@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
-export default function Home() {
+export default function Public() {
   return (
     <>
       <Head>
@@ -9,7 +10,16 @@ export default function Home() {
         <meta content={'width=device-width, initial-scale=1'} name={'viewport'} />
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
-      <main></main>
+      <main>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <Link href={'/home'}>Home</Link>
+          <Link href={'/profile'}>Profile</Link>
+          <Link href={'/messenger'}>Messenger</Link>
+          <Link href={'/statistics'}>Statistics</Link>
+          <Link href={'/search'}>Search</Link>
+          <Link href={'/favorites'}>Favorites</Link>
+        </nav>
+      </main>
     </>
   )
 }
