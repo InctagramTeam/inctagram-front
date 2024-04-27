@@ -1,7 +1,22 @@
-/** @type {import("tailwindcss").Config} */
+/** @type {plugin | postcss.PluginCreator<string | Config | {config: string | Config}>} */
+
+const plugin = require('tailwindcss')
+
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
-  plugins: [],
+  plugins: [
+    plugin(({ addComponents, addUtilities, config }) => {
+      addComponents({
+        '.btn-primary': {
+          backgroundColor: 'red',
+          border: '1px solid black',
+          height: '100px',
+          padding: '10px 20px',
+          width: '200px',
+        },
+      })
+    }),
+  ],
   theme: {
     colors: {
       Accent: {
