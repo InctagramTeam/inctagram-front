@@ -18,6 +18,7 @@
     "@it-incubator/eslint-config": "^1.0.2",
     "@it-incubator/prettier-config": "^0.1.2",
     "@it-incubator/stylelint-config": "^1.0.3",
+    "@tailwindcss/typography": "^0.5.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
