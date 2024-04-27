@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 
 import { Inter } from 'next/font/google'
 
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 
 const inter = Inter({ subsets: ['latin'] })
 
