@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function Public() {
   return (
-    <PageWrapper>
+    <PageWrapper title={'Main | Inctagram'}>
       <nav className={'navbar'}>
         <Link href={'/home'}>Home</Link>
         <Link href={'/profile'}>Profile</Link>
@@ -11,7 +11,7 @@ export default function Public() {
         <Link href={'/statistics'}>Statistics</Link>
         <Link href={'/search'}>Search</Link>
         <Link href={'/favorites'}>Favorites</Link>
-        <Link href={'/auth'}>Favorites</Link>
+        <button className={''}></button>
       </nav>
     </PageWrapper>
   )
