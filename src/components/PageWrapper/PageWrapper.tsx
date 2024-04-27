@@ -3,13 +3,20 @@ import { PropsWithChildren } from 'react'
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
 
 type Props = {
+  description?: string
+  favicon?: string
   title?: string
 }
 
-export const PageWrapper = ({ children, title }: PropsWithChildren<Props>) => {
+export const PageWrapper = ({
+  children,
+  description,
+  favicon,
+  title,
+}: PropsWithChildren<Props>) => {
   return (
     <>
-      <HeadMeta title={title} />
+      <HeadMeta description={description} favicon={favicon} title={title} />
       <>{children}</>
     </>
   )
