@@ -1,9 +1,11 @@
-import { PageWrapper } from '@/components/PageWrapper/PageWrapper'
+import HeadMeta from '@/components/HeadMeta/HeadMeta'
+import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 
-export default function Public() {
+function Public() {
   return (
-    <PageWrapper title={'Main | Inctagram'}>
+    <>
+      <HeadMeta title={'Main | Inctagram'} />
       <nav className={'navbar'}>
         <Link href={'/home'}>Home</Link>
         <Link href={'/profile'}>Profile</Link>
@@ -13,6 +15,9 @@ export default function Public() {
         <Link href={'/favorites'}>Favorites</Link>
         <button className={''}></button>
       </nav>
-    </PageWrapper>
+    </>
   )
 }
+
+Public.getLayout = getLayout
+export default Public

@@ -1,5 +1,14 @@
+import HeadMeta from '@/components/HeadMeta/HeadMeta'
+import { getLayout } from '@/components/Layout/Layout'
+
 const Home = () => {
-  return <h1>Home</h1>
+  return (
+    <>
+      <HeadMeta title={'Home'} />
+      <h1>Home</h1>
+    </>
+  )
 }
 
+Home.getLayout = getLayout
 export default Home
