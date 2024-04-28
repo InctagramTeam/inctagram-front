@@ -1,15 +1,20 @@
+import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
-import { Inter } from 'next/font/google'
+import type { ReactElement, ReactNode } from 'react'
 
 import '@/styles/globals.scss'
 
-const inter = Inter({ subsets: ['latin'] })
+export type NextPageWithLayout<P = {}, IP = P> = {
+  getLayout?: (page: ReactElement) => ReactNode
+} & NextPage<P, IP>
 
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <main className={inter.className}>
-      <Component {...pageProps} />
-    </main>
-  )
+type AppPropsWithLayout = {
+  Component: NextPageWithLayout
+} & AppProps
+
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? (page => page)
+
+  return getLayout(<Component {...pageProps} />)
 }
