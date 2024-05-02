@@ -2,26 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+// shad_cn global styles
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply border-border box-border m-0 p-0;
+  }
 
-html,
-body {
-  overflow-x: hidden;
-  max-width: 100vw;
-  color: white;
-  background-color: #262626;
-}
+  html,
+  body {
+    @apply text-Light-100 bg-Dark-700 text-[100%] overflow-x-hidden min-h-full font-[400] leading-6 not-italic m-0 p-0;
+  }
 
-a {
-  @apply hover:text-Accent-300 uppercase transition-all;
-}
+  a {
+    @apply hover:text-Primary-500 uppercase transition-all;
+  }
 
-.navbar {
-  @apply flex gap-5;
+  .navbar {
+    @apply flex gap-5;
+  }
+
+  :root {
+    // default variables for light theme shad_cn
+    --background: #fff;
+    --foreground: #373737;
+    --card: #fff;
+    --card-foreground: #373737;
+    --popover: #fff;
+    --popover-foreground: #373737;
+    --primary: #000;
+    --primary-foreground: #fafafa;
+    --secondary: #c6f2ff;
+    --secondary-foreground: #302828;
+    --muted: #c6f2ff;
+    --muted-foreground: #8da094;
+    --accent: #c6f2ff;
+    --accent-foreground: #302828;
+    --destructive: #ff3f3f;
+    --destructive-foreground: #c6f2ff;
+    --border: #bad4e4;
+    --input: #bad4e4;
+    --ring: #fff;
+    --radius: 0.5rem;
+  }
+
+  // default variables for dark theme shad_cn
+  .dark {
+    --background: #dedede;
+    --foreground: #fafafa;
+    --card: #dedede;
+    --card-foreground: #fafafa;
+    --popover: #dedede;
+    --popover-foreground: #fafafa;
+    --primary: #fafafa;
+    --primary-foreground: #2d2d2d;
+    --secondary: #353535;
+    --secondary-foreground: #fafafa;
+    --muted: #353535;
+    --muted-foreground: #b4b4b4;
+    --accent: #353535;
+    --accent-foreground: #fafafa;
+    --destructive: #f99;
+    --destructive-foreground: #fafafa;
+    --border: #4c4c4c;
+    --input: #353535;
+    --ring: #d3d3d3;
+  }
 }

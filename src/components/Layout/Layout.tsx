@@ -2,13 +2,17 @@ import { PropsWithChildren, ReactElement } from 'react'
 
 import { NextPage } from 'next'
 import { Inter } from 'next/font/google'
+import { cn } from '@/utils/merge-cn'
 
-import style from '@/styles/layout.module.scss'
-
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'],
+})
 
 export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
-  return <main className={`${style.layout} ${inter.className}`}>{children}</main>
+  return <main className={cn('font-inter', inter.variable)}>{children}</main>
 }
 
 export const getLayout = (page: ReactElement) => {
