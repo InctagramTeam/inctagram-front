@@ -1,25 +1,45 @@
-/** @type {plugin | postcss.PluginCreator<string | Config | {config: string | Config}>} */
+/** @type {import('tailwindcss').Config} */
 
 const plugin = require('tailwindcss')
 
 module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+  ],
+  darkMode: ['class'],
   plugins: [
     plugin(({ addComponents, addUtilities, config }) => {
       addComponents({
         '.btn-primary': {
-          backgroundColor: 'red',
-          border: '1px solid black',
-          height: '100px',
-          padding: '10px 20px',
-          width: '200px',
+          backgroundColor: '#397DF6',
+          color: 'white',
+          height: '36px',
+          padding: '10px 24px',
+          width: '182px',
+          borderRadius: '0.125rem',
+          transition: 'background-color .3s ease-in-out',
+          '&:hover, &:focus': {
+            backgroundColor: '#73A5FF',
+          },
+          '&:active': {
+            backgroundColor: '#2F68CC',
+          },
+          '&:disable': {
+            backgroundColor: '#234E99',
+          },
         },
       })
     }),
+    require('@tailwindcss/forms'),
+    require('tailwindcss-animate'),
   ],
+  prefix: '',
   theme: {
     colors: {
-      Accent: {
+      Primary: {
         100: '#73A5FF',
         300: '#4C8DFF',
         500: '#397DF6',
@@ -61,7 +81,108 @@ module.exports = {
         700: '#D99000',
         900: '#D99000',
       },
+      // shad_cn ui colors
+      accent: {
+        DEFAULT: '#c6f2ff',
+        foreground: '#302828',
+      },
+      background: '#ffffff',
+      border: '#bad4e4',
+      card: {
+        DEFAULT: '#ffffff',
+        foreground: '#373737',
+      },
+      destructive: {
+        DEFAULT: '#ff3f3f',
+        foreground: '#c6f2ff',
+      },
+      foreground: '#373737',
+      input: '#bad4e4',
+      muted: {
+        DEFAULT: '#c6f2ff',
+        foreground: '#8da094',
+      },
+      popover: {
+        DEFAULT: '#ffffff',
+        foreground: '#373737',
+      },
+      primary: {
+        DEFAULT: '#000',
+        foreground: '#FAFAFA',
+      },
+      ring: '#ffffff',
+      secondary: {
+        DEFAULT: '#c6f2ff',
+        foreground: '#302828',
+      },
     },
-    extend: {},
+    // custom container
+    container: {
+      center: true,
+      padding: '0.9375rem',
+      screens: {
+        before_desktop: '1024px',
+        before_tablet: '640px',
+        big_desktop: '1536px',
+        desktop: '1280px',
+        mobile: '360px',
+        tablet: '768px',
+      },
+    },
+    extend: {
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      boxShadow: {
+        'shadow-large-text': '0px 4px 4px rgba(0, 0, 0, 0.25)',
+      },
+      keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
+        },
+      },
+      // custom indexes
+      zIndex: {
+        1: '1',
+        2: '2',
+        3: '3',
+        4: '4',
+        5: '5',
+      },
+    },
+    fontFamily: {
+      inter: 'Inter sans-serif',
+    },
+    fontSize: {
+      // sizes for typography
+      'md-H2-18': ['1.125rem', { fontWeight: '700', lineHeight: '1.5rem' }],
+      'md-H3-16': ['1rem', { fontWeight: '600', lineHeight: '1.5rem' }],
+      'md-bold-16': ['1rem', { fontWeight: '700', lineHeight: '1.5rem' }],
+      'md-reg-16': ['1rem', { fontWeight: '400', lineHeight: '1.5rem' }],
+      'sm-14': ['0.875rem', { fontWeight: '500', lineHeight: '1.5rem' }],
+      'sm-bold-14': ['0.875rem', { fontWeight: '700', lineHeight: '1.5rem' }],
+      'sm-reg-14': ['0.875rem', { fontWeight: '400', lineHeight: '1.5rem' }],
+      'sm-reg-link-14': ['0.875rem', { fontWeight: '400', lineHeight: '1.5rem' }],
+      'xs-12': ['0.75rem', { fontWeight: '400', lineHeight: '1rem' }],
+      'xs-link-12': ['0.75rem', { fontWeight: '400', lineHeight: '1rem' }],
+      'xs-semi-bold-12': ['0.75rem', { fontWeight: '600', lineHeight: '1rem' }],
+    },
+    fontWeight: {
+      'bold-700': '700',
+      'medium-500': '500',
+      'normal-400': '400',
+      'semi_bold-600': '600',
+    },
   },
 }
