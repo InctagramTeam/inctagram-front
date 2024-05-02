@@ -12,7 +12,7 @@ const inter = Inter({
 })
 
 export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
-  return <main className={cn('min-h-screen font-inter', inter.variable)}>{children}</main>
+  return <main className={cn('font-inter', inter.variable)}>{children}</main>
 }
 
 export const getLayout = (page: ReactElement) => {

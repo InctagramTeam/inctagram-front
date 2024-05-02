@@ -11,7 +11,7 @@ module.exports = {
   ],
   darkMode: ['class'],
   plugins: [
-    plugin(({ addComponents, addUtilities, config }) => {
+    plugin(({ addComponents }) => {
       addComponents({
         '.btn-primary': {
           backgroundColor: '#397DF6',
