@@ -10,32 +10,7 @@ module.exports = {
     './src/**/*.{ts,tsx}',
   ],
   darkMode: ['class'],
-  plugins: [
-    plugin(({ addComponents }) => {
-      addComponents({
-        '.btn-primary': {
-          backgroundColor: '#397DF6',
-          color: 'white',
-          height: '36px',
-          padding: '10px 24px',
-          width: '182px',
-          borderRadius: '0.125rem',
-          transition: 'background-color .3s ease-in-out',
-          '&:hover, &:focus': {
-            backgroundColor: '#73A5FF',
-          },
-          '&:active': {
-            backgroundColor: '#2F68CC',
-          },
-          '&:disable': {
-            backgroundColor: '#234E99',
-          },
-        },
-      })
-    }),
-    require('@tailwindcss/forms'),
-    require('tailwindcss-animate'),
-  ],
+  plugins: [require('@tailwindcss/forms'), require('tailwindcss-animate')],
   prefix: '',
   theme: {
     colors: {
