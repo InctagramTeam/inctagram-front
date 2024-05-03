@@ -32,7 +32,8 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="JavaScript">
-      <option name="SOFT_MARGINS" value="80" />
+      <option name="RIGHT_MARGIN" value="180" />
+      <option name="SOFT_MARGINS" value="180" />
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />
         <option name="CONTINUATION_INDENT_SIZE" value="2" />
@@ -40,10 +41,10 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="TypeScript">
-      <option name="RIGHT_MARGIN" value="80" />
+      <option name="RIGHT_MARGIN" value="180" />
       <option name="BLANK_LINES_AFTER_IMPORTS" value="2" />
       <option name="WRAP_ON_TYPING" value="1" />
-      <option name="SOFT_MARGINS" value="80" />
+      <option name="SOFT_MARGINS" value="180" />
       <indentOptions>
         <option name="INDENT_SIZE" value="2" />
         <option name="CONTINUATION_INDENT_SIZE" value="2" />
