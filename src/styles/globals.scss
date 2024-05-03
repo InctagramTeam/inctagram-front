@@ -7,16 +7,16 @@
   *,
   *::before,
   *::after {
-    @apply border-border box-border m-0 p-0;
+    @apply m-0 box-border border-border p-0;
   }
 
   html,
   body {
-    @apply text-Light-100 bg-Dark-700 text-[100%] overflow-x-hidden min-h-full font-[400] leading-6 not-italic m-0 p-0;
+    @apply m-0 min-h-full overflow-x-hidden bg-Dark-700 p-0 text-[100%] font-[400] not-italic leading-6 text-Light-100;
   }
 
   a {
-    @apply hover:text-Primary-500 transition-all duration-150 ease-in-out;
+    @apply transition-all duration-150 ease-in-out hover:text-Primary-500;
   }
 
   .navbar {
