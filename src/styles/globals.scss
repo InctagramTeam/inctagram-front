@@ -16,7 +16,7 @@
   }
 
   a {
-    @apply hover:text-Primary-500 uppercase transition-all;
+    @apply hover:text-Primary-500 transition-all duration-150 ease-in-out;
   }
 
   .navbar {
@@ -31,7 +31,7 @@
     --card-foreground: #373737;
     --popover: #fff;
     --popover-foreground: #373737;
-    --primary: #000;
+    --primary: #397df6;
     --primary-foreground: #fafafa;
     --secondary: #c6f2ff;
     --secondary-foreground: #302828;
