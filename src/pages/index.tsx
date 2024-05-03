@@ -14,6 +14,7 @@ function Public() {
         <Link href={'/statistics'}>Statistics</Link>
         <Link href={'/search'}>Search</Link>
         <Link href={'/favorites'}>Favorites</Link>
+        <Link href={'/favorites'}>Favorites</Link>
       </nav>
     </>
   )
