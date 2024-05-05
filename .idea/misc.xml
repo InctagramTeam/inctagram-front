@@ -4,4 +4,7 @@
     <option name="show" value="ASK" />
     <option name="description" value="" />
   </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="FLOW" />
+  </component>
 </project>

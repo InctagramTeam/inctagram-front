@@ -2,6 +2,7 @@ import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 import inctagram from 'public/inctagram.png'
+import { Checkbox } from '@/components/ui/checkbox/checkbox'
 
 function Public() {
   return (
@@ -15,6 +16,7 @@ function Public() {
         <Link href={'/search'}>Search</Link>
         <Link href={'/favorites'}>Favorites</Link>
       </nav>
+      <Checkbox />
     </>
   )
 }
