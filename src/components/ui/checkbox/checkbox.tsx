@@ -25,7 +25,7 @@ const Checkbox = forwardRef<ElementRef<typeof CheckboxPrimitive.Root>, CheckboxP
       id,
       name,
       position = 'right',
-      label = 'Some text',
+      label = 'Text',
       onValueChange,
       ...rest
     } = props
