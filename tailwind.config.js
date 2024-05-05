@@ -106,8 +106,12 @@ module.exports = {
     },
     extend: {
       animation: {
+        // Shad_cn ui
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        // Custom
+        fadeIn: 'fadeIn .5s ease-in-out',
+        scaleIn: 'scaleIn .35s ease-in-out',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -118,6 +122,7 @@ module.exports = {
         'shadow-large-text': '0px 4px 4px rgba(0, 0, 0, 0.25)',
       },
       keyframes: {
+        // Shad_cn ui
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -125,6 +130,24 @@ module.exports = {
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
+        },
+      },
+      // Custom animate
+      fadeIn: {
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+      },
+      scaleIn: {
+        '0%': {
+          opacity: 0,
+          transform: 'scale(0.9)',
+        },
+        '50%': {
+          opacity: 0.3,
+        },
+        '100%': {
+          opacity: 1,
+          transform: 'scale(1)',
         },
       },
       // custom indexes
