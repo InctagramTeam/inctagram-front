@@ -51,7 +51,6 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
       disabled && 'cursor-default text-Dark-100',
       position === 'left' && '-ml-[10px]'
     ),
-    // button самая внешний квадратик -- внутри label
     checkboxPrimitiveRoot: cn(
       checked &&
         !disabled &&
@@ -107,7 +106,6 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
 
   return (
     <LabelPrimitive.Root htmlFor={id} className={commonClasses.label} asChild={false}>
-      {/* button самая внешний квадратик -- внутри label */}
       <div className={commonClasses.divWrapper}>
         <CheckboxPrimitive.Root
           ref={ref}
@@ -121,9 +119,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
           onCheckedChange={onValueChange}
           {...rest}
         >
-          {/* div внутри кнопки -- внутренний квадратик */}
           <div className={commonClasses.divDisabled}></div>
-          {/* span над svg */}
           <CheckboxPrimitive.Indicator className={commonClasses.indicator} forceMount>
             {checked && (
               <div>
