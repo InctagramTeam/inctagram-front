@@ -17,9 +17,9 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
     className,
     classNameInput,
     disabled,
-    error,
+    error = true,
     id,
-    label,
+    label = 'Some text',
     onKeyDown,
     onValueChange,
     type = 'search',
@@ -46,7 +46,11 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
       error && 'text-Light-100 outline outline-1 outline-offset-1 outline-Danger-500',
       classNameInput
     ),
-    label: cn(`font-sm-reg-14`, disabled && `text-Dark-100`),
+    label: cn(
+      `font-sm-reg-14 mt-10 absolute inset-0`,
+      disabled && `text-Dark-100`,
+      error && `text-Danger-500`
+    ),
     textField: cn(`flex flex-col`, className),
   }
 
@@ -71,11 +75,6 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
 
   return (
     <div className={classes.textField}>
-      {label && (
-        <LabelPrimitive.Root className={classes.label} htmlFor={id} asChild>
-          {label}
-        </LabelPrimitive.Root>
-      )}
       <div className={'flex justify-between py-3 px-6 space-x-6'}>
         <form action="" className={`w-full max-w-md h-[36px]`}>
           <div
@@ -95,6 +94,11 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
               value={value}
               {...restProps}
             />
+            {label && (
+              <LabelPrimitive.Root className={classes.label} htmlFor={id} asChild={false}>
+                {label}
+              </LabelPrimitive.Root>
+            )}
             {type === 'search' && (
               <div
                 className={`absolute inset-2 text-Dark-100 focus:focus-within:text-Dark-300 pointer-events-none`}
