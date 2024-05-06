@@ -19,13 +19,13 @@ export type CheckboxProps = {
 
 const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref) => {
   const {
-    checked,
+    checked = true,
     className,
     disabled,
     id,
     name,
     position = 'right',
-    label = 'Text',
+    label = '',
     onValueChange,
     ...rest
   } = props
