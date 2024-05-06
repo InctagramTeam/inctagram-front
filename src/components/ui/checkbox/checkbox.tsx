@@ -2,7 +2,7 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import * as LabelPrimitive from '@radix-ui/react-label'
-import CheckIcon from 'public/assets/icons/CheckIcon'
+import CheckIcon from '@/assets/icons/CheckIcon'
 import { cn } from '@/utils/merge-cn'
 
 type CheckboxPrimitiveElement = ElementRef<typeof CheckboxPrimitive.Root>
@@ -25,7 +25,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
     id,
     name,
     position = 'right',
-    label = 'Text',
+    label = '',
     onValueChange,
     ...rest
   } = props
@@ -51,13 +51,12 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
       disabled && 'cursor-default text-Dark-100',
       position === 'left' && '-ml-[10px]'
     ),
-    // button самая внешний квадратик -- внутри label
     checkboxPrimitiveRoot: cn(
       checked &&
         !disabled &&
         `cursor-pointer relative w-[18px] h-[18px] before:content-[''] before:absolute
-          before:block before:t-[-50%] before:l-[-50%] before:scale-0 hover:before:scale-100
-          hover:before:-translate-x-1 hover:before:-translate-y-3 hover:before:opacity-60 hover:before:z-1
+          before:block before:scale-0 hover:before:scale-100
+          hover:before:-tran slate-x-1 hover:before:-translate-y-3 hover:before:-translate-x-1 hover:before:opacity-60 hover:before:z-1
           before:w-[26px] before:h-[26px] before:bg-Dark-100 before:rounded-[50%]
           before:transition-all duration-150 ease-in-out
           hover:active:before:scale-100 hover:active:before:bg-Dark-100
@@ -66,7 +65,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
           focus:ring-offset-Primary-300`,
       !checked &&
         !disabled &&
-        `cursor-pointer relative w-[18px] h-[18px] before:content-[''] before:absolute
+        `peer data-[state=checked]:text-Light-100  cursor-pointer relative w-[18px] h-[18px] before:content-[''] before:absolute
           before:block before:t-[-50%] before:l-[-50%] before:scale-0 hover:before:scale-100
           hover:before:-translate-x-1 hover:before:-translate-y-1/2
           before:w-[26px] before:h-[26px] before:bg-Dark-100 before:rounded-[50%]
@@ -89,23 +88,24 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
         : `absolute z-0 inset-0 border-2 border-Light-100 rounded`
     ),
     icon: cn(
-      disabled && `fill-[#fff]-100 border border-2 border-Light-100 rounded `,
+      disabled && `fill-[#fff]-100 border border-2 border-Light-100 rounded text-Light-100`,
       checked &&
         !disabled &&
-        `fill-[#fff-100] absolute z-0 inset-0 border border-2 border-Light-100 rounded
+        `fill-[#fff-100] absolute z-0 inset-0 border-2 border-Light-100 rounded
            hover:before:
           `
     ),
     // span над svg
     indicator: cn(
-      disabled && checked && 'text-Light-100',
+      disabled &&
+        checked &&
+        `text-Light-100 appearance-none border-2 border-Light-100 rounded w-[18px] h-[18px] bg-Light-100/50`,
       !disabled && checked && 'fill-Light-100'
     ),
   }
 
   return (
-    <LabelPrimitive.Root className={commonClasses.label} asChild={false}>
-      {/* button самая внешний квадратик -- внутри label */}
+    <LabelPrimitive.Root htmlFor={id} className={commonClasses.label} asChild={false}>
       <div className={commonClasses.divWrapper}>
         <CheckboxPrimitive.Root
           ref={ref}
@@ -119,9 +119,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
           onCheckedChange={onValueChange}
           {...rest}
         >
-          {/* div внутри кнопки -- внутренний квадратик */}
           <div className={commonClasses.divDisabled}></div>
-          {/* span над svg */}
           <CheckboxPrimitive.Indicator className={commonClasses.indicator} forceMount>
             {checked && (
               <div>
@@ -137,4 +135,5 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
 })
 
 Checkbox.displayName = CheckboxPrimitive.Root.displayName
+
 export { Checkbox }

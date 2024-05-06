@@ -91,7 +91,7 @@ module.exports = {
         foreground: '#302828',
       },
     },
-    // custom container
+    // Custom container
     container: {
       center: true,
       padding: '0.9375rem',
