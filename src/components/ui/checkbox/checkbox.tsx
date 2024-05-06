@@ -135,4 +135,5 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
 })
 
 Checkbox.displayName = CheckboxPrimitive.Root.displayName
+
 export { Checkbox }
