@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+input[type='text']:focus ~ .input-text {
+  @apply text-Primary-500 bg-Dark-900 transform -translate-y-9 -translate-x-4 scale-75;
+}
+
 // shad_cn global styles
 @layer base {
   *,

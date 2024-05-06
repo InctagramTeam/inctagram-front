@@ -3,6 +3,7 @@ import { ChangeEvent, ComponentPropsWithoutRef, KeyboardEvent, forwardRef, useSt
 import { cn } from '@/utils/merge-cn'
 import { Close, Eye, EyeOff, Search } from '@/assets/icons'
 import * as LabelPrimitive from '@radix-ui/react-label'
+import * as FormPrimitive from '@radix-ui/react-form'
 
 export type Props = {
   classNameInput?: string
@@ -17,7 +18,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
     className,
     classNameInput,
     disabled,
-    error = true,
+    error,
     id,
     label = 'Some text',
     onKeyDown,
@@ -30,17 +31,18 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
 
   const classes = {
     input: cn(
-      `flex w-full h-[36px] bg-Dark-900 font-sm-reg-14 placeholder-Dark-100 text-Light-100 rounded-md border-none ring-2
+      `flex w-full h-[36px] bg-Dark-900 font-sm-reg-14 placeholder-Dark-100 text-Light-100
+      rounded-md border-none ring-2 
       pr-3 pl-10 shadow-sm ring-Dark-100 focus:ring-Dark-100 
-      transition-colors file:border-0 file:bg-transparent file:font-sm-reg-14 
-      focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+      transition-colors file:border-0 file:bg-transparent file:font-sm-reg-14
+      focus-visible:outline-none focus-visible:transparent focus-visible:ring-1 focus-visible:ring-ring
       disabled:cursor-not-allowed disabled:opacity-50
       `,
       type === 'text' &&
         `flex w-full h-[36px] bg-Dark-900 font-sm-reg-14 placeholder-Dark-100 text-Light-100 rounded-xl border-none ring-2
       pr-3 pl-5 shadow-sm ring-Dark-100 focus:ring-Dark-100 
       transition-colors file:border-0 file:bg-transparent file:font-sm-reg-14 
-      focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+      focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring 
       disabled:cursor-not-allowed disabled:opacity-50`,
       type === 'text' && 'pr-[15px]',
       error && 'text-Light-100 outline outline-1 outline-offset-1 outline-Danger-500',
@@ -48,7 +50,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
     ),
     label: cn(
       `font-sm-reg-14 mt-10 absolute inset-0`,
-      disabled && `text-Dark-100`,
+      disabled && `text-Dark-100 cursor-not-allowed`,
       error && `text-Danger-500`
     ),
     textField: cn(`flex flex-col`, className),
@@ -76,7 +78,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
   return (
     <div className={classes.textField}>
       <div className={'flex justify-between py-3 px-6 space-x-6'}>
-        <form action="" className={`w-full max-w-md h-[36px]`}>
+        <FormPrimitive.Root action="" className={`w-full max-w-[280px] h-[36px]`} asChild>
           <div
             className={`relative w-full max-w-[280px] items-center focus:focus-within:text-Dark-300`}
           >
@@ -163,7 +165,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
               </button>
             )}
           </div>
-        </form>
+        </FormPrimitive.Root>
       </div>
       {error && <span className={`font-xs-12 text-Danger-500`}>{error}</span>}
     </div>
