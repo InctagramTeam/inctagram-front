@@ -1,94 +1,170 @@
-import { ComponentPropsWithoutRef, forwardRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
+'use client'
+import { ChangeEvent, ComponentPropsWithoutRef, KeyboardEvent, forwardRef, useState } from 'react'
+import { cn } from '@/utils/merge-cn'
+import { Close, Eye, EyeOff, Search } from '@/assets/icons'
+import * as LabelPrimitive from '@radix-ui/react-label'
 
-import { Icon } from '@/components/icon/Icon'
-import { Typography } from '@/components/ui/typography'
-import { clsx } from 'clsx'
-
-import s from 'src/components/ui/input/input.module.scss'
-
-export type TextFieldProps = {
-  clearField?: () => void
-  errorMessage?: string
+export type Props = {
+  classNameInput?: string
+  error?: string
   label?: string
-  type?: 'password' | 'search' | 'text'
-} & ComponentPropsWithoutRef<'input'>
+  onValueChange?: (value: string) => void
+  type?: 'email' | 'password' | 'search' | 'text'
+} & Omit<ComponentPropsWithoutRef<'input'>, 'type'>
 
-type Props = TextFieldProps & Omit<ComponentPropsWithoutRef<'input'>, keyof TextFieldProps>
+const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
+  const {
+    className,
+    classNameInput,
+    disabled,
+    error,
+    id,
+    label,
+    onKeyDown,
+    onValueChange,
+    type = 'search',
+    value,
+    ...restProps
+  } = props
+  const [isVisible, setIsVisible] = useState(false)
 
-export const TextField = forwardRef<HTMLInputElement, Props>(
-  ({ className, clearField, errorMessage, label, type = 'text', ...rest }, ref) => {
-    const [showPassword, setShowPassword] = useState(false)
+  const classes = {
+    input: cn(
+      `flex w-full h-[36px] bg-Dark-900 font-sm-reg-14 placeholder-Dark-100 text-Light-100 rounded-md border-none ring-2
+      pr-3 pl-10 shadow-sm ring-Dark-100 focus:ring-Dark-100 
+      transition-colors file:border-0 file:bg-transparent file:font-sm-reg-14 
+      focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+      disabled:cursor-not-allowed disabled:opacity-50
+      `,
+      type === 'text' &&
+        `flex w-full h-[36px] bg-Dark-900 font-sm-reg-14 placeholder-Dark-100 text-Light-100 rounded-xl border-none ring-2
+      pr-3 pl-5 shadow-sm ring-Dark-100 focus:ring-Dark-100 
+      transition-colors file:border-0 file:bg-transparent file:font-sm-reg-14 
+      focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring
+      disabled:cursor-not-allowed disabled:opacity-50`,
+      type === 'text' && 'pr-[15px]',
+      error && 'text-Light-100 outline outline-1 outline-offset-1 outline-Danger-500',
+      classNameInput
+    ),
+    label: cn(`font-sm-reg-14`, disabled && `text-Dark-100`),
+    textField: cn(`flex flex-col`, className),
+  }
 
-    const { t } = useTranslation()
+  const onVisible = () => {
+    setIsVisible(prevState => !prevState)
+  }
 
-    const isPasswordType = type === 'password'
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    restProps.onChange?.(e)
+    onValueChange?.(e.target.value)
+  }
+  const clearFieldHandler = () => {
+    onValueChange?.('')
+  }
 
-    const isSearchType = type === 'search'
-
-    const isShowClearButton = isSearchType && clearField && rest.value
-
-    const finalType = getFinalType(type, showPassword)
-
-    const passwordHandler = () => setShowPassword(prev => !prev)
-
-    const classes = {
-      input: clsx(s.input, isSearchType && s.search, errorMessage && s.error),
-      label: clsx(s.label, rest.disabled && s.disabled),
-      root: clsx(s.root, className),
-      searchIcon: clsx(s.searchIcon, rest.disabled && s.disabledIcon),
+  const onKeydownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      onKeyDown && onKeyDown(e)
     }
+  }
 
-    return (
-      <div className={classes.root}>
-        <Typography as={'label'} className={classes.label} variant={'body2'}>
+  return (
+    <div className={classes.textField}>
+      {label && (
+        <LabelPrimitive.Root className={classes.label} htmlFor={id} asChild>
           {label}
-          <div className={s.container}>
+        </LabelPrimitive.Root>
+      )}
+      <div className={'flex justify-between py-3 px-6 space-x-6'}>
+        <form action="" className={`w-full max-w-md h-[36px]`}>
+          <div
+            className={`relative w-full max-w-[280px] items-center focus:focus-within:text-Dark-300`}
+          >
             <input
               className={classes.input}
+              disabled={disabled}
+              id={id}
+              onChange={onChangeHandler}
+              onKeyDown={onKeydownHandler}
               ref={ref}
-              type={isPasswordType ? finalType : 'text'}
-              {...rest}
+              placeholder={'Search'}
+              autoComplete={'off'}
+              aria-label={'search talk'}
+              type={!isVisible ? type : 'text'}
+              value={value}
+              {...restProps}
             />
-            {isPasswordType && (
-              <button
-                className={s.button}
-                disabled={rest.disabled}
-                onClick={passwordHandler}
-                type={'button'}
+            {type === 'search' && (
+              <div
+                className={`absolute inset-2 text-Dark-100 focus:focus-within:text-Dark-300 pointer-events-none`}
               >
-                {showPassword ? <Icon name={'eyeOff'} /> : <Icon name={'eye'} />}
+                <Search className={`w-5 h-5 absolute ml-3 `} />
+              </div>
+            )}
+            {type === 'password' &&
+              (isVisible ? (
+                <button
+                  className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
+               absolute top-[50%] right-[12px] -translate-y-[50%]
+               disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500
+               `}
+                  disabled={disabled}
+                  onClick={onVisible}
+                  type="button"
+                >
+                  <Eye />
+                </button>
+              ) : (
+                <button
+                  className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
+               absolute top-[50%] right-[12px] -translate-y-[50%]
+               disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500
+               `}
+                  disabled={disabled}
+                  onClick={onVisible}
+                  type="button"
+                >
+                  <EyeOff />
+                </button>
+              ))}
+            {type === 'search' && value && (
+              <button
+                className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
+               absolute top-[50%] right-[12px] -translate-y-[50%]
+               disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500
+               `}
+                disabled={disabled}
+                onClick={clearFieldHandler}
+                type="button"
+              >
+                <div className={``}>
+                  <Close />
+                </div>
               </button>
             )}
-            {isSearchType && (
-              <Icon className={classes.searchIcon} height={20} name={'search'} width={20} />
-            )}
-            {isShowClearButton && (
+            {type === 'search' && value && (
               <button
-                className={s.button}
-                disabled={rest.disabled}
-                onClick={clearField}
-                type={'button'}
+                className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
+               absolute top-[50%] right-[12px] -translate-y-[50%]
+               disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500
+               `}
+                disabled={disabled}
+                onClick={clearFieldHandler}
+                type="button"
               >
-                <Icon height={16} name={'cross'} width={16} />
+                <div className={``}>
+                  <Close />
+                </div>
               </button>
             )}
           </div>
-        </Typography>
-        {!!errorMessage && (
-          <Typography className={s.errorMessage} variant={'caption'}>
-            {t(`validate.${errorMessage}`)}
-          </Typography>
-        )}
+        </form>
       </div>
-    )
-  }
-)
+      {error && <span className={`font-xs-12 text-Danger-500`}>{error}</span>}
+    </div>
+  )
+})
 
-function getFinalType(type: TextFieldProps['type'], showPassword: boolean) {
-  if (type === 'password' && !showPassword) {
-    return 'password'
-  }
-
-  return 'text'
-}
+Input.displayName = 'Input'
+export { Input }
