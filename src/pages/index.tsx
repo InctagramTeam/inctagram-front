@@ -3,7 +3,7 @@ import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 import instagram from 'public/inctagram.png'
 
-function Public() {
+function Home() {
   return (
     <>
       <HeadMeta favicon={instagram.src} title={'Main | Instagram'} />
@@ -20,5 +20,5 @@ function Public() {
   )
 }
 
-Public.getLayout = getLayout
-export default Public
+Home.getLayout = getLayout
+export default Home
