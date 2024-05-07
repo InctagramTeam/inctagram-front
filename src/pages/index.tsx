@@ -1,6 +1,7 @@
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
+import CloseIcon from './../assets/icons/Home'
 import instagram from 'public/inctagram.png'
 import { Input } from '@/components/ui/input'
 
@@ -16,7 +17,7 @@ function Public() {
         <Link href={'/search'}>Search</Link>
         <Link href={'/favorites'}>Favorites</Link>
       </nav>
-      <Input />
+      <Input iconStart={<CloseIcon />} />
       <br />
     </>
   )

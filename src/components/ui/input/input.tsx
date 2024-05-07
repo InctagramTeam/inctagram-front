@@ -5,6 +5,7 @@ import {
   forwardRef,
   KeyboardEvent,
   memo,
+  ReactNode,
   useState,
 } from 'react'
 import { cn } from '@/utils/merge-cn'
@@ -13,6 +14,8 @@ import * as LabelPrimitive from '@radix-ui/react-label'
 
 export type Props = {
   classNameInput?: string
+  iconEnd?: ReactNode
+  iconStart?: ReactNode
   error?: string
   label?: string
   onValueChange?: (value: string) => void
@@ -83,6 +86,10 @@ const Input = memo(
       }
     }
 
+    const dataIconStart = rest.iconStart ? 'start' : ''
+    // const dataIconEnd = iconEnd || isShowClearButton ? 'end' : ''
+    // const dataIcon = dataIconStart + dataIconEnd
+
     return (
       <div className={'flex justify-between py-3 px-6 space-x-6'}>
         <div
@@ -98,7 +105,13 @@ const Input = memo(
           focus:ring-offset-Primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1 active:bg-Dark-500
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300 disabled:bg-Primary-900 disabled:text-Light-900`}
           >
-            {type === 'search' && (
+            {!!rest.iconStart ? (
+              <span
+                className={`absolute top-1/2 text-Dark-100 left-[12px] transform -translate-y-1/2 grid items-center h-4 w-4`}
+              >
+                {rest.iconStart}
+              </span>
+            ) : type === 'search' ? (
               <div
                 className={cn(`absolute left-0 flex items-center pl-3 py-[6px] pointer-events-none text-Dark-100
                 focus:focus-within:text-Dark-300
@@ -106,6 +119,8 @@ const Input = memo(
               >
                 <Search className={`w-5 h-5 ml-3`} />
               </div>
+            ) : (
+              ''
             )}
             <input
               className={classes.input}
@@ -117,6 +132,7 @@ const Input = memo(
               placeholder={'Search'}
               autoComplete={'off'}
               aria-label={'search'}
+              // data-icon={dataIcon}
               type={!isVisible ? type : 'search'}
               value={value}
               {...rest}
