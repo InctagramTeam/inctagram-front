@@ -60,7 +60,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
           before:w-[26px] before:h-[26px] before:bg-Dark-100 before:rounded-[50%]
           before:transition-all duration-150 ease-in-out
           hover:active:before:scale-100 hover:active:before:bg-Dark-100
-          hover:active:before:delay-[-0.5s] hover:focus-visible:before:scale-100
+          hover:focus-visible:before:scale-100
           focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:rounded-[4px] focus:border-Light-100
           focus:ring-offset-Primary-300`,
       !checked &&
@@ -71,7 +71,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
           before:w-[26px] before:h-[26px] before:bg-Dark-100 before:rounded-[50%]
           before:transition-all transition duration-150 ease-in-out
           hover:active:before:scale-100 hover:active:before:bg-Dark-100
-          hover:active:before:delay-[0.5s] hover:focus-visible:before:scale-100
+          hover:focus-visible:before:scale-100
           hover:focus-visible:before:bg-Dark-100
           focus-visible:outline-none focus-visible:before:block focus-visible:before:t-[-50%]
           focus-visible:before:l-[-50%] focus-visible:before:scale-100 focus-visible:before:w-[26px]

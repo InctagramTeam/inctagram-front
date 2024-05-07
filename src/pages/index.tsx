@@ -2,9 +2,8 @@ import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 import instagram from 'public/inctagram.png'
-import { Input } from '@/components/ui/input'
 
-function Public() {
+function Home() {
   return (
     <>
       <HeadMeta favicon={instagram.src} title={'Main | Instagram'} />
@@ -16,11 +15,10 @@ function Public() {
         <Link href={'/search'}>Search</Link>
         <Link href={'/favorites'}>Favorites</Link>
       </nav>
-      <Input />
       <br />
     </>
   )
 }
 
-Public.getLayout = getLayout
-export default Public
+Home.getLayout = getLayout
+export default Home
