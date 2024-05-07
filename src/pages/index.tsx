@@ -3,7 +3,6 @@ import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 import instagram from 'public/inctagram.png'
 import { Input } from '@/components/ui/input'
-import { Checkbox } from '@/components/ui/checkbox'
 
 function Public() {
   return (
@@ -19,7 +18,6 @@ function Public() {
       </nav>
       <Input />
       <br />
-      <Checkbox />
     </>
   )
 }
