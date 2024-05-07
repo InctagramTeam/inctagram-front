@@ -31,16 +31,15 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref) => {
 
   const classes = {
     input: cn(
-      `flex w-full h-[36px] bg-Dark-900 md-reg-16 placeholder-Light-900 text-Light-100
-      rounded-md border-none ring-2 pr-3 pl-10 shadow-sm ring-Dark-100
-      transition-colors file:border-0 file:bg-transparent file:md-reg-16
+      `flex w-full h-[36px] bg-Dark-900 md-reg-16 placeholder-Dark-100 text-Light-100
+      rounded-md border-none ring-2 pl-10 pt-3 shadow-sm ring-Dark-100
+      transition-colors duration-150 file:border-0 file:bg-transparent file:md-reg-16
       disabled:cursor-not-allowed disabled:opacity-50
       focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
       focus:ring-offset-Primary-300
       focus-visible:outline-none focus-visible:ring-1 focus-visible:offset-1
       focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
-      disabled:bg-Dark-700 disabled:text-Light-900
-      `,
+      disabled:bg-Dark-700 disabled:text-Light-900`,
       type === 'text' &&
         `flex w-full h-[36px] bg-Dark-900 font-md-reg-16 placeholder-Dark-100 text-Light-100 rounded-xl border-none ring-2
       pr-3 pl-5 shadow-sm ring-Dark-100 focus:ring-Dark-100 
