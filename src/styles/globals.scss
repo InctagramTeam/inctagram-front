@@ -4,6 +4,30 @@
 
 // shad_cn global styles
 @layer base {
+  // delete autofill in input
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    background: linear-gradient(
+      top,
+      rgb(255 255 255 / 0%) 0%,
+      rgb(0 174 255 / 4%) 50%,
+      rgb(255 255 255 / 0%) 51%,
+      rgb(0 174 255 / 3%) 100%
+    );
+    border: 0;
+    box-shadow: 0 0 0 1000px #8d9094 inset;
+
+    transition: background-color 5000s ease-in-out 0s;
+
+    -webkit-text-fill-color: #8d9094;
+  }
+
   *,
   *::before,
   *::after {

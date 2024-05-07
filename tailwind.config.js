@@ -13,84 +13,6 @@ module.exports = {
   plugins: [require('@tailwindcss/forms'), require('tailwindcss-animate')],
   prefix: '',
   theme: {
-    colors: {
-      Primary: {
-        100: '#73A5FF',
-        300: '#4C8DFF',
-        500: '#397DF6',
-        700: '#2F68CC',
-        900: '#234E99',
-      },
-      Danger: {
-        100: '#FF8099',
-        300: '#F23D61',
-        500: '#CC1439',
-        700: '#990F2B',
-        900: '#660A1D',
-      },
-      Dark: {
-        100: '#4C4C4C',
-        300: '#333333',
-        500: '#171717',
-        700: '#0D0D0D',
-        900: '#000000',
-      },
-      Light: {
-        100: '#FFFFFF',
-        300: '#F7FBFF',
-        500: '#EDF3FA',
-        700: '#D5DAE0',
-        900: '#8D9094',
-      },
-      Success: {
-        100: '#80FFBF',
-        300: '#22E584',
-        500: '#14CC70',
-        700: '#0F9954',
-        900: '#0A6638',
-      },
-      Warning: {
-        100: '#FFD073',
-        300: '#E5AC39',
-        500: '#D99000',
-        700: '#D99000',
-        900: '#D99000',
-      },
-      // shad_cn ui colors
-      accent: {
-        DEFAULT: '#c6f2ff',
-        foreground: '#302828',
-      },
-      background: '#ffffff',
-      border: '#bad4e4',
-      card: {
-        DEFAULT: '#ffffff',
-        foreground: '#373737',
-      },
-      destructive: {
-        DEFAULT: '#ff3f3f',
-        foreground: '#c6f2ff',
-      },
-      foreground: '#373737',
-      input: '#bad4e4',
-      muted: {
-        DEFAULT: '#c6f2ff',
-        foreground: '#8da094',
-      },
-      popover: {
-        DEFAULT: '#ffffff',
-        foreground: '#373737',
-      },
-      primary: {
-        DEFAULT: '#397DF6',
-        foreground: '#FAFAFA',
-      },
-      ring: '#ffffff',
-      secondary: {
-        DEFAULT: '#c6f2ff',
-        foreground: '#302828',
-      },
-    },
     // Custom container
     container: {
       center: true,
@@ -105,6 +27,85 @@ module.exports = {
       },
     },
     extend: {
+      // Design colors
+      colors: {
+        Primary: {
+          100: '#73A5FF',
+          300: '#4C8DFF',
+          500: '#397DF6',
+          700: '#2F68CC',
+          900: '#234E99',
+        },
+        Danger: {
+          100: '#FF8099',
+          300: '#F23D61',
+          500: '#CC1439',
+          700: '#990F2B',
+          900: '#660A1D',
+        },
+        Dark: {
+          100: '#4C4C4C',
+          300: '#333333',
+          500: '#171717',
+          700: '#0D0D0D',
+          900: '#000000',
+        },
+        Light: {
+          100: '#FFFFFF',
+          300: '#F7FBFF',
+          500: '#EDF3FA',
+          700: '#D5DAE0',
+          900: '#8D9094',
+        },
+        Success: {
+          100: '#80FFBF',
+          300: '#22E584',
+          500: '#14CC70',
+          700: '#0F9954',
+          900: '#0A6638',
+        },
+        Warning: {
+          100: '#FFD073',
+          300: '#E5AC39',
+          500: '#D99000',
+          700: '#D99000',
+          900: '#D99000',
+        },
+        // Shad_cn ui default colors
+        accent: {
+          DEFAULT: '#c6f2ff',
+          foreground: '#302828',
+        },
+        background: '#ffffff',
+        border: '#bad4e4',
+        card: {
+          DEFAULT: '#ffffff',
+          foreground: '#373737',
+        },
+        destructive: {
+          DEFAULT: '#ff3f3f',
+          foreground: '#c6f2ff',
+        },
+        foreground: '#373737',
+        input: '#bad4e4',
+        muted: {
+          DEFAULT: '#c6f2ff',
+          foreground: '#8da094',
+        },
+        popover: {
+          DEFAULT: '#ffffff',
+          foreground: '#373737',
+        },
+        primary: {
+          DEFAULT: '#397DF6',
+          foreground: '#FAFAFA',
+        },
+        ring: '#ffffff',
+        secondary: {
+          DEFAULT: '#c6f2ff',
+          foreground: '#302828',
+        },
+      },
       animation: {
         // Shad_cn ui
         'accordion-down': 'accordion-down 0.2s ease-out',
