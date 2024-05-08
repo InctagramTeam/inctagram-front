@@ -2,10 +2,12 @@ import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 import instagram from 'public/inctagram.png'
+import { Input } from '@/components/ui/input'
+import { Page } from '@/components/ui/page'
 
-function Home() {
+function Public() {
   return (
-    <>
+    <Page>
       <HeadMeta favicon={instagram.src} title={'Main | Instagram'} />
       <nav className={'navbar'}>
         <Link href={'/home'}>Home</Link>
@@ -16,9 +18,10 @@ function Home() {
         <Link href={'/favorites'}>Favorites</Link>
       </nav>
       <br />
-    </>
+      <Input />
+    </Page>
   )
 }
 
-Home.getLayout = getLayout
-export default Home
+Public.getLayout = getLayout
+export default Public

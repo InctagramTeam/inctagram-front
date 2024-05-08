@@ -4,13 +4,21 @@ import { cn } from '@/utils/merge-cn'
 import { Slot } from '@radix-ui/react-slot'
 import { type VariantProps, cva } from 'class-variance-authority'
 
-// How to use Button component: https://ui.shadcn.com/docs/components/button
 const buttonVariants = cva(
+  /**
+   * Общие стили кнопки.
+   */
   `inline-flex items-center justify-center whitespace-nowrap
   disabled:pointer-events-none disabled:opacity-90`,
   {
     defaultVariants: {
+      /**
+       * Размер кнопки в соответствии с дизайн системой
+       */
       size: 'default',
+      /**
+       * Вариант кнопки. Отвечает за визуал кнопки.
+       */
       variant: 'primary',
     },
     variants: {
@@ -92,6 +100,10 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+  /**
+   * Флаг - возвращает первый дочерний элемент, убираем из DOM дерева
+   * родительский элемент (тэг) передав дочернему все атрибуты
+   */
   asChild?: boolean
 }
 

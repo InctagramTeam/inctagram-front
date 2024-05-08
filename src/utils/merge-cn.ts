@@ -1,7 +1,9 @@
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
-// for merge tailwind classes
+/**
+ * Функция для сложения классов tailwind для того, чтобы предотвратить конфликты стилей
+ */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }

@@ -38,7 +38,9 @@ module.exports = {
         'header-height': '3.75rem', // 60px
       },
       // Custom fonts
-      fontFamily: ['Inter', 'sans-serif'],
+      fontFamily: {
+        inter: ['Inter', 'sans-serif'],
+      },
       fontSize: {
         'md-H2-18': ['1.125rem', { fontWeight: '700', lineHeight: '1.5rem' }], // '1.125rem' = 18px, '1.5rem' = 24px,
         'md-H3-16': ['1rem', { fontWeight: '600', lineHeight: '1.5rem' }], // '1rem' = 16px, '1.5rem' = 24px,
