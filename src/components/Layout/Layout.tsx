@@ -1,9 +1,8 @@
 import { PropsWithChildren, ReactElement } from 'react'
-
-import { Container } from '@/components/ui/container'
 import { cn } from '@/utils/merge-cn'
 import { NextPage } from 'next'
 import { Inter } from 'next/font/google'
+import { Header } from '@/components/ui/header/header'
 
 const inter = Inter({
   display: 'swap',
@@ -14,9 +13,10 @@ const inter = Inter({
 
 export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
   return (
-    <Container>
-      <main className={cn('font-inter', inter.variable)}>{children}</main>
-    </Container>
+    <>
+      <Header />
+      <main className={cn(`pt-header-height w-full`, inter.variable)}>{children}</main>
+    </>
   )
 }
 

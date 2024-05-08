@@ -1,6 +1,6 @@
 'use client'
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactElement } from 'react'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import CheckIcon from '@/assets/icons/CheckIcon'
 import { cn } from '@/utils/merge-cn'
@@ -17,7 +17,7 @@ export type CheckboxProps = {
   onValueChange?: (checked: boolean) => void
 } & Omit<ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>, 'checked' | 'onCheckedChange'>
 
-const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref) => {
+const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref): ReactElement => {
   const {
     checked = true,
     className,

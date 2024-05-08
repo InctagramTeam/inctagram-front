@@ -1,10 +1,25 @@
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-// shad_cn global styles
+/* Shad_cn global styles: */
 @layer base {
-  // delete autofill in input
+  input,
+  button,
+  select,
+  textarea,
+  optgroup,
+  option {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    color: inherit;
+  }
+
+  /* Delete autofill in input: */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus input:-webkit-autofill,
@@ -13,18 +28,13 @@
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    background: linear-gradient(
-      top,
-      rgb(255 255 255 / 0%) 0%,
-      rgb(0 174 255 / 4%) 50%,
-      rgb(255 255 255 / 0%) 51%,
-      rgb(0 174 255 / 3%) 100%
-    );
     border: 0;
     box-shadow: 0 0 0 1000px #8d9094 inset;
 
     transition: background-color 5000s ease-in-out 0s;
 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     -webkit-text-fill-color: #8d9094;
   }
 
@@ -36,11 +46,17 @@
 
   html,
   body {
-    @apply m-0 min-h-full overflow-x-hidden bg-Dark-700 p-0 text-[100%] font-[400] not-italic leading-6 text-Light-100;
+    @apply flex items-center flex-col m-0 p-0 min-h-[100dvh] overflow-x-hidden bg-Dark-700 text-[100%]
+    font-inter text-main-reg-16 leading-m-main-24 font-main-400 not-italic text-Light-100
+    scrollbar-thin scrollbar-thumb-teal-500 scrollbar-track-slate-700;
   }
 
   a {
     @apply transition-all duration-150 ease-in-out hover:text-Primary-500;
+  }
+
+  a:visited {
+    @apply text-inherit;
   }
 
   .navbar {
@@ -48,7 +64,7 @@
   }
 
   :root {
-    // default variables for light theme shad_cn
+    // Default variables for light theme shad_cn:
     --background: #fff;
     --foreground: #373737;
     --card: #fff;
@@ -71,7 +87,7 @@
     --radius: 0.5rem;
   }
 
-  // default variables for dark theme shad_cn
+  // Default variables for dark theme shad_cn:
   .dark {
     --background: #dedede;
     --foreground: #fafafa;
