@@ -10,9 +10,16 @@ module.exports = {
     './src/**/*.{ts,tsx}',
   ],
   darkMode: ['class'],
-  plugins: [require('@tailwindcss/forms'), require('tailwindcss-animate')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwindcss-animate'),
+    require('tailwind-scrollbar'),
+  ],
   prefix: '',
   theme: {
+    variants: {
+      scrollbar: ['dark'],
+    },
     // Custom container
     container: {
       center: true,
@@ -27,6 +34,35 @@ module.exports = {
       },
     },
     extend: {
+      spacing: {
+        'header-height': '3.75rem', // 60px
+      },
+      // Custom fonts
+      fontFamily: ['Inter', 'sans-serif'],
+      fontSize: {
+        'md-H2-18': ['1.125rem', { fontWeight: '700', lineHeight: '1.5rem' }], // '1.125rem' = 18px, '1.5rem' = 24px,
+        'md-H3-16': ['1rem', { fontWeight: '600', lineHeight: '1.5rem' }], // '1rem' = 16px, '1.5rem' = 24px,
+        'md-bold-16': ['1rem', { fontWeight: '700', lineHeight: '1.5rem' }], // '1rem' = 16px, '1.5rem' = 24px,
+        'main-reg-16': ['1rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '1rem' = 16px, '1.5rem' = 24px,
+        'sm-14': ['0.875rem', { fontWeight: '500', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
+        'sm-bold-14': ['0.875rem', { fontWeight: '700', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
+        'sm-reg-14': ['0.875rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
+        'sm-reg-link-14': ['0.875rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
+        'xs-12': ['0.75rem', { fontWeight: '400', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,
+        'xs-link-12': ['0.75rem', { fontWeight: '400', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,
+        'xs-semi-bold-12': ['0.75rem', { fontWeight: '600', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,
+      },
+      fontWeight: {
+        'bold-700': '700',
+        'medium-500': '500',
+        'main-400': '400',
+        'semi-bold-600': '600',
+      },
+      lineHeight: {
+        's-16': '16px', // 1rem
+        'm-main-24': '24px', // 1.5rem
+        'l-36': '36px', // 2.25rem
+      },
       // Design colors
       colors: {
         Primary: {
@@ -162,26 +198,6 @@ module.exports = {
     },
     fontFamily: {
       inter: 'Inter sans-serif',
-    },
-    fontSize: {
-      // sizes for typography
-      'md-H2-18': ['1.125rem', { fontWeight: '700', lineHeight: '1.5rem' }], // '1.125rem' = 18px, '1.5rem' = 24px,
-      'md-H3-16': ['1rem', { fontWeight: '600', lineHeight: '1.5rem' }], // '1rem' = 16px, '1.5rem' = 24px,
-      'md-bold-16': ['1rem', { fontWeight: '700', lineHeight: '1.5rem' }], // '1rem' = 16px, '1.5rem' = 24px,
-      'md-reg-16': ['1rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '1rem' = 16px, '1.5rem' = 24px,
-      'sm-14': ['0.875rem', { fontWeight: '500', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
-      'sm-bold-14': ['0.875rem', { fontWeight: '700', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
-      'sm-reg-14': ['0.875rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
-      'sm-reg-link-14': ['0.875rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
-      'xs-12': ['0.75rem', { fontWeight: '400', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,
-      'xs-link-12': ['0.75rem', { fontWeight: '400', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,
-      'xs-semi-bold-12': ['0.75rem', { fontWeight: '600', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,
-    },
-    fontWeight: {
-      'bold-700': '700',
-      'medium-500': '500',
-      'normal-400': '400',
-      'semi-bold-600': '600',
     },
   },
 }
