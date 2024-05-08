@@ -4,6 +4,7 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactElement } from '
 import * as LabelPrimitive from '@radix-ui/react-label'
 import CheckIcon from '@/assets/icons/CheckIcon'
 import { cn } from '@/utils/merge-cn'
+import { AnimatePresence, motion } from 'framer-motion'
 
 type CheckboxPrimitiveElement = ElementRef<typeof CheckboxPrimitive.Root>
 
@@ -122,9 +123,34 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
           <div className={commonClasses.divDisabled}></div>
           <CheckboxPrimitive.Indicator className={commonClasses.indicator} forceMount>
             {checked && (
-              <div>
-                <CheckIcon className={commonClasses.icon} />
-              </div>
+              <AnimatePresence initial={false}>
+                <motion.div
+                  animate={'checked'}
+                  exit={'unchecked'}
+                  initial={'unchecked'}
+                  variants={{
+                    checked: { scale: 1 },
+                    unchecked: { scale: 0.5 },
+                  }}
+                >
+                  <motion.div
+                    variants={{
+                      checked: {
+                        opacity: 1,
+                        strokeDashoffset: 0,
+                        transition: { duration: 0.1 },
+                      },
+                      unchecked: {
+                        opacity: 0,
+                        transition: { duration: 0.1 },
+                      },
+                    }}
+                  >
+                    <CheckIcon className={commonClasses.icon} />
+                  </motion.div>
+                </motion.div>
+                <div></div>
+              </AnimatePresence>
             )}
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>
