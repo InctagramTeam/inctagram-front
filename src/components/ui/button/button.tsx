@@ -1,15 +1,15 @@
 import * as React from 'react'
+import { ButtonHTMLAttributes } from 'react'
 
 import { cn } from '@/utils/merge-cn'
 import { Slot } from '@radix-ui/react-slot'
-import { type VariantProps, cva } from 'class-variance-authority'
+import { cva, type VariantProps } from 'class-variance-authority'
 
 const buttonVariants = cva(
   /**
    * Общие стили кнопки.
    */
-  `inline-flex items-center justify-center whitespace-nowrap
-  disabled:pointer-events-none disabled:opacity-90`,
+  `inline-flex items-center justify-center whitespace-nowrap disabled:pointer-events-none disabled:opacity-90`,
   {
     defaultVariants: {
       /**
@@ -98,10 +98,10 @@ const buttonVariants = cva(
 )
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   /**
-   * Флаг - возвращает первый дочерний элемент, убираем из DOM дерева
+   * Флаг - возвращает первый дочерний элемент, удаляется из DOM (дерева если asChild === true)
    * родительский элемент (тэг) передав дочернему все атрибуты
    */
   asChild?: boolean
@@ -109,6 +109,10 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ asChild = false, className, size, variant, ...props }, ref) => {
+    /**
+     * Если asChild === false вернется Slot === Comp (родительский компонент), иначе родитель удалится из ДОМ
+     * дерева передав класс и др.атрибуты дочернему элементу
+     */
     const Comp = asChild ? Slot : 'button'
 
     return (
