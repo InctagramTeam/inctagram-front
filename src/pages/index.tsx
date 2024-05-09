@@ -1,9 +1,8 @@
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
+import { Page } from '@/components/ui/page'
 import Link from 'next/link'
 import instagram from 'public/inctagram.png'
-import { Page } from '@/components/ui/page'
-import { Cards } from '@/components/Card/Cards'
 
 function Public() {
   return (
