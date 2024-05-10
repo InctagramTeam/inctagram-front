@@ -1,3 +1,2 @@
-import { Header } from './header'
-
-export {Header}
+export { Header } from './header/header'
+export { Navbar } from './navbar/navbar'

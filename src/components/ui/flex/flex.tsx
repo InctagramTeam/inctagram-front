@@ -1,4 +1,4 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
 import { cn } from '@/utils/merge-cn'
 
 // types
@@ -49,41 +49,50 @@ const gapClasses: Record<FlexGap, string> = {
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
 export interface FlexProps extends DivProps {
-  alignItems?: FlexAlignItems
+  /**
+   * Выравнивание флекс элементов
+   */
+  align?: FlexAlignItems
   children: ReactNode
   className?: string
   flexDirection?: FlexDirection
   gap?: FlexGap
-  justifyContent?: FlexJustifyContent
-  max?: boolean
+  justify?: FlexJustifyContent
+  /**
+   * Растягивает Flex контейнер на всю ширину
+   */
+  maxWidth?: boolean
   wrap?: FlexWrap
 }
 
-export const Flex = (props: FlexProps) => {
+const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   const {
-    alignItems = 'center',
+    align = 'center',
     children,
     className,
     flexDirection = 'row',
     gap,
-    justifyContent = 'start',
-    max,
+    justify = 'start',
+    maxWidth,
     wrap = 'nowrap',
-    ...otherProps
+    ...flexProps
   } = props
 
   const classes = [
     className,
-    justifyClasses[justifyContent],
-    alignClasses[alignItems],
+    justifyClasses[justify],
+    alignClasses[align],
     directionClasses[flexDirection],
     'flex-wrap',
     gap && gapClasses[gap],
   ]
 
   return (
-    <div className={cn('flex', max && 'w-full', classes)} {...otherProps}>
+    <div ref={ref} className={cn('flex', maxWidth && 'w-full', classes)} {...flexProps}>
       {children}
     </div>
   )
-}
+})
+
+Flex.displayName = 'Flex'
+export { Flex }
