@@ -26,11 +26,15 @@ export const PageWrapper = ({
   paddingTop = '24px',
   ...rest
 }: Props): ReactElement => {
-  const classesPage = cn(`flex items-center justify-center`, className)
-  const styles: CSSProperties = { padding: paddingTop, ...style }
+  const classesPage = cn(`flex items-center justify-center max-w-[1280px] w-full`, className)
+  const styles: CSSProperties = { paddingTop: paddingTop, ...style }
 
   return (
-    <section className={classesPage} style={styles} {...rest}>
+    <section
+      className={cn(`w-full max-w-[1280px] min-h-full p-[0_15px] mx-auto`, classesPage)}
+      style={styles}
+      {...rest}
+    >
       <HeadMeta favicon={instagram.src} title={title} description={description} />
       {children}
     </section>
