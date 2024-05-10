@@ -1,10 +1,10 @@
 'use client'
+
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactElement } from 'react'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import CheckIcon from '@/assets/icons/CheckIcon'
 import { cn } from '@/utils/merge-cn'
-import { AnimatePresence, motion } from 'framer-motion'
 
 type CheckboxPrimitiveElement = ElementRef<typeof CheckboxPrimitive.Root>
 
@@ -20,7 +20,7 @@ export type CheckboxProps = {
 
 const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref): ReactElement => {
   const {
-    checked = true,
+    checked,
     className,
     disabled,
     id,
@@ -96,7 +96,6 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
            hover:before:
           `
     ),
-    // span над svg
     indicator: cn(
       disabled &&
         checked &&
@@ -122,36 +121,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
         >
           <div className={commonClasses.divDisabled}></div>
           <CheckboxPrimitive.Indicator className={commonClasses.indicator} forceMount>
-            {checked && (
-              <AnimatePresence initial={false}>
-                <motion.div
-                  animate={'checked'}
-                  exit={'unchecked'}
-                  initial={'unchecked'}
-                  variants={{
-                    checked: { scale: 1 },
-                    unchecked: { scale: 0.5 },
-                  }}
-                >
-                  <motion.div
-                    variants={{
-                      checked: {
-                        opacity: 1,
-                        strokeDashoffset: 0,
-                        transition: { duration: 0.1 },
-                      },
-                      unchecked: {
-                        opacity: 0,
-                        transition: { duration: 0.1 },
-                      },
-                    }}
-                  >
-                    <CheckIcon className={commonClasses.icon} />
-                  </motion.div>
-                </motion.div>
-                <div></div>
-              </AnimatePresence>
-            )}
+            {checked && <CheckIcon className={commonClasses.icon} />}
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>
       </div>
@@ -161,5 +131,4 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
 })
 
 Checkbox.displayName = CheckboxPrimitive.Root.displayName
-
 export { Checkbox }

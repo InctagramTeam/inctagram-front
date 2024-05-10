@@ -1,5 +1,6 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
+import { DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef, CSSProperties } from 'react'
 import { cn } from '@/utils/merge-cn'
+import { clsx } from 'clsx'
 
 // types
 export type FlexJustifyContent =
@@ -13,7 +14,7 @@ export type FlexJustifyContent =
 export type FlexAlignItems = 'center' | 'end' | 'start'
 export type FlexDirection = 'column' | 'row'
 export type FlexWrap = 'nowrap' | 'wrap'
-export type FlexGap = '8' | '10' | '20' | '30' | '40' | '50'
+export type FlexGap = '8' | '10' | '20' | '30' | '40' | '50' | '60' | '70' | '80'
 
 // mapping types + classes
 const justifyClasses: Record<FlexJustifyContent, string> = {
@@ -43,6 +44,9 @@ const gapClasses: Record<FlexGap, string> = {
   30: 'gap-[30px]',
   40: 'gap-[40px]',
   50: 'gap-[50px]',
+  60: 'gap-[60px]',
+  70: 'gap-[70px]',
+  80: 'gap-[80px]',
 }
 
 // props
@@ -54,6 +58,10 @@ export interface FlexProps extends DivProps {
    */
   align?: FlexAlignItems
   children: ReactNode
+  marginBottom?: CSSProperties['marginBottom']
+  marginTop?: CSSProperties['marginTop']
+  padding?: CSSProperties['padding']
+  margin?: CSSProperties['margin']
   className?: string
   flexDirection?: FlexDirection
   gap?: FlexGap
@@ -72,11 +80,24 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     className,
     flexDirection = 'row',
     gap,
+    marginBottom = '10px',
+    marginTop = '10px',
+    padding,
+    margin,
+    style,
     justify = 'start',
     maxWidth,
     wrap = 'nowrap',
     ...flexProps
   } = props
+
+  const styles: CSSProperties = {
+    marginBottom: marginBottom,
+    marginTop: marginTop,
+    margin: margin,
+    padding: padding,
+    ...style,
+  }
 
   const classes = [
     className,
@@ -88,7 +109,12 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   ]
 
   return (
-    <div ref={ref} className={cn('flex', maxWidth && 'w-full', classes)} {...flexProps}>
+    <div
+      style={styles}
+      ref={ref}
+      className={clsx('flex', maxWidth && 'w-full', classes, className)}
+      {...flexProps}
+    >
       {children}
     </div>
   )

@@ -20,13 +20,13 @@ export type TextProps<T extends ElementType = 'span'> = {
     | 'H3' // 16px;
     | 'regular_text_16' // 16px - BASE FONT;
     | 'bold_text_16'
-    | 'regular_text_14'
-    | 'medium_text_14'
+    | 'regular-text-14'
+    | 'medium-text-14'
     | 'bold_text_14'
-    | 'small_text_12'
+    | 'small-text-12'
     | 'semi-bold_small_text_12'
     | 'regular-link_14'
-    | 'small-link_14'
+    | 'small-link_12'
     | 'error_text_12'
     | 'muted_text'
     | 'inline_code'
@@ -61,20 +61,24 @@ const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
    "Мерж" классов тайлвинд:
    */
   const textClasses = clsx(
-    variant === 'Large' && `text-3xl-large-26`,
-    variant === 'H1' && `text-xl-H1-20`,
-    variant === 'H2' && `text-lg-H2-18`,
-    variant === 'H3' && `text-base-H3-16`,
-    variant === 'regular_text_16' && `text-main-reg-16`,
+    // Main fonts
+    variant === 'Large' && `text-Large-26`,
+    variant === 'H1' && `text-H1-20`,
+    variant === 'H2' && `text-H2-18`,
+    variant === 'H3' && `text-H3-16`,
+    variant === 'regular_text_16' && `regular-text-16`,
+    variant === 'bold_text_16' && `text-bold-text-16`,
+    variant === 'regular-text-14' && `text-regular-text-14`,
+    variant === 'medium-text-14' && `text-medium-text-14`,
+    variant === 'bold_text_14' && `text-sm-bold-14`,
+    variant === 'small-text-12' && `text-small-text-12`,
+    variant === 'semi-bold_small_text_12' && `text-semi-bold_small_text_12`,
+    variant === 'regular-link_14' && `text-regular_link-14`,
+    variant === 'small-link_12' && `text-small-link_12`,
+
+    // Additional fonts
+    variant === 'error_text_12' && `text-small-text-12 text-Danger-500`,
     variant === 'muted_text' && `text-md text-muted-foreground`,
-    variant === 'bold_text_16' && `text-md-bold-16`,
-    variant === 'regular_text_14' && `text-sm-reg-14`,
-    variant === 'medium_text_14' && `text-sm-medium-14`,
-    variant === 'bold_text_14' && `text-sm-bold-14`,
-    variant === 'bold_text_14' && `text-sm-bold-14`,
-    variant === 'regular-link_14' && `text-sm-reg-link-14`,
-    variant === 'small-link_14' && `text-xs-link-12`,
-    variant === 'error_text_12' && `text-xs-small-12 text-Danger-500`,
     /**
      * Текст с "фоновой" обводкой
      */

@@ -27,6 +27,7 @@ export const PageWrapper = ({
   ...rest
 }: Props): ReactElement => {
   const classesPage = cn(`flex items-center justify-center max-w-[1280px] w-full`, className)
+
   const styles: CSSProperties = { paddingTop: paddingTop, ...style }
 
   return (

@@ -30,7 +30,7 @@ const buttonVariants = cva(
       },
       variant: {
         primary: `bg-Primary-500 font-inter 
-    font-semi_bold-600 text-md-H3-16 text-Light-100 border-2 border-Primary-700
+    font-semi_bold-600 text-H3-16 text-Light-100 border-2 border-Primary-700
     rounded-[4px] shadow-sm shadow-Primary-700
     transition-all duration-150 ease-in-out
     active:bg-Primary-700 active:transition-all duration-150 ease-in-out
@@ -42,7 +42,7 @@ const buttonVariants = cva(
     focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
     disabled:bg-Primary-900 disabled:text-Light-900`,
         secondary: `bg-Dark-300 font-inter font-semi_bold-600
-    text-md-H3-16 text-Light-100 rounded-[2px] shadow-sm shadow-Dark-300 
+    text-H3-16 text-Light-100 rounded-[2px] shadow-sm shadow-Dark-300 
     active:bg-[#212121] transition-all duration-150 ease-in-out
     hover:text-Light-100 hover:bg-Dark-100/90 hover:-translate-y-px transform
     hover:transition-all duration-150 ease-in-out
@@ -53,7 +53,7 @@ const buttonVariants = cva(
     focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
     disabled:bg-Dark-500 disabled:text-Light-900`,
         outline: `bg-Dark-500
-    font-inter font-semi_bold-600 text-md-H3-16 text-Primary-500
+    font-inter font-semi_bold-600 text-H3-16 text-Primary-500
     border-2 border-Primary-500 rounded-[2px] shadow-sm shadow-Primary-500 
     active:bg-Dark-700 active:text-Primary-700 active:border-Primary-700
     transition-all duration-150 ease-in-out
@@ -66,7 +66,7 @@ const buttonVariants = cva(
     focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
     disabled:bg-Dark-900 disabled:text-Primary-900 border-Primary-900`,
         ghost: `bg-Dark-700
-    font-inter font-semi_bold-600 text-md-H3-16 text-Primary-500
+    font-inter font-semi_bold-600 text-H3-16 text-Primary-500
     active:bg-Dark-700 active:text-Primary-700
     transition-all duration-150 ease-in-out
     hover:text-Primary-100 hover:bg-Dark-700/60 hover:-translate-y-px transform
