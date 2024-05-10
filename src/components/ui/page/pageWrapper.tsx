@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, CSSProperties, ReactElement } from 'react'
 import { cn } from '@/utils/merge-cn'
+import { Container } from '@/components/ui/container'
 
 type Props = ComponentPropsWithoutRef<'section'> & {
   paddingTop?: CSSProperties['paddingTop']
