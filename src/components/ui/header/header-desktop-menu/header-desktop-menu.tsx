@@ -1,4 +1,6 @@
-export const DesktopMenu = () => {
+type Props = {}
+
+export const HeaderDesktopMenu = ({}: Props) => {
   return (
     <nav>
       <ul className={`flex gap-8 justify-center`}>

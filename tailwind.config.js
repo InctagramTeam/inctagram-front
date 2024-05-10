@@ -127,8 +127,8 @@ module.exports = {
         foreground: '#373737',
         input: '#bad4e4',
         muted: {
-          DEFAULT: '#c6f2ff',
-          foreground: '#8da094',
+          DEFAULT: '#F4F4F5',
+          foreground: '#71717a',
         },
         popover: {
           DEFAULT: '#ffffff',
