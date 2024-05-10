@@ -5,16 +5,15 @@ const Recaptcha = () => {
   return (
     <div
       className={
-        'relative flex justify-around items-center w-[300px] h-[79px] border rounded-sm border-[#333333] bg-[#171717]'
+        'relative flex justify-between pl-5 pr-5 items-center w-[300px] h-[79px] border rounded-sm border-[#333333] bg-[#171717]'
       }
     >
-      {/*<Expired />*/}
+      <Expired />
       <Error />
       <div className={'flex justify-between items-center w-[111px] h-[20px]'}>
         <BoxDefault />
         {/*<BoxChecked />*/}
         {/*<BoxLoading />*/}
-        {/*<div className={'w-[20px] h-[20px] border rounded-sm border-[#B7B7B7] bg-[#FFFFFF]'}></div>*/}
         <div className={'text-xs font-medium text-[#FFFFFF]'}>I’m not a robot</div>
       </div>
       <div className={'flex flex-col items-center w-[44px] h-[64px]'}>
