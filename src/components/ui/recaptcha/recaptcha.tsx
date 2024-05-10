@@ -23,7 +23,6 @@ const Recaptcha = () => {
     </div>
   )
 }
-
 const BoxDefault = () => {
   return (
     <div className={'w-[20px] h-[20px] border rounded-[1px] border-[#B7B7B7] bg-[#FFFFFF]'}></div>
@@ -68,7 +67,6 @@ const BoxLoading = () => {
     </div>
   )
 }
-
 const Privacy = () => {
   return (
     <div
