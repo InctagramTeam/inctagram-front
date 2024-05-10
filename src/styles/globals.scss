@@ -38,25 +38,41 @@
     -webkit-text-fill-color: #8d9094;
   }
 
+  input[type='file'],
+  input[type='file']::-webkit-file-upload-button {
+    @apply cursor-pointer;
+  }
+
   *,
   *::before,
   *::after {
     @apply m-0 box-border border-border p-0;
   }
 
-  html,
+  html {
+    @apply w-full h-[100dvh];
+  }
+
   body {
-    @apply flex items-center flex-col m-0 p-0 min-h-[100dvh] overflow-x-hidden bg-Dark-700 text-[100%]
+    @apply bg-Dark-700 m-0 p-0 w-full min-h-full overflow-x-hidden
     font-inter text-main-reg-16 leading-m-main-24 font-main-400 not-italic text-Light-100
     scrollbar-thin scrollbar-thumb-teal-500 scrollbar-track-slate-700;
   }
 
+  #__next {
+    @apply flex flex-col items-center w-full h-screen;
+  }
+
   a {
-    @apply transition-all duration-150 ease-in-out hover:text-Primary-500;
+    @apply decoration-0 transition-all duration-150 ease-in-out hover:text-Primary-500;
   }
 
   a:visited {
     @apply text-inherit;
+  }
+
+  li {
+    @apply list-none;
   }
 
   .navbar {

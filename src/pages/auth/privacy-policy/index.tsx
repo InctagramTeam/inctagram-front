@@ -1,13 +1,11 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
-import { Page } from '@/components/ui/page'
+import { PageWrapper } from '@/components/ui/page'
 
 const PrivacyPolicy = () => {
   return (
-    <Page paddingTop={'72px'}>
-      <HeadMeta title={'PrivacyPolicy'} />
+    <PageWrapper paddingTop={'72px'} title={'PrivacyPolicy | Instagram'}>
       <h1>PrivacyPolicy</h1>
-    </Page>
+    </PageWrapper>
   )
 }
 
