@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './nprogress';
+
 /* Shad_cn global styles: */
 @layer base {
   input,
