@@ -15,7 +15,15 @@ export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
   return (
     <>
       <Header />
-      <main className={cn(`pt-header-height w-full`, inter.variable)}>{children}</main>
+      <main
+        className={cn(
+          `relative flex flex-col justify-center gap-[15px] flex-wrap
+          pt-header-height w-full max-w-[1280px] mx-auto`,
+          inter.variable
+        )}
+      >
+        {children}
+      </main>
     </>
   )
 }

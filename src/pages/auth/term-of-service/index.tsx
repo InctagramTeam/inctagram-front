@@ -1,13 +1,11 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
-import { Page } from '@/components/ui/page'
+import { PageWrapper } from '@/components/ui/page'
 
 const TermOfService = () => {
   return (
-    <Page paddingTop={'72px'}>
-      <HeadMeta title={'TermOfService'} />
+    <PageWrapper paddingTop={'72px'} title={'TermOfService | Instagram'}>
       <h1>TermOfService</h1>
-    </Page>
+    </PageWrapper>
   )
 }
 

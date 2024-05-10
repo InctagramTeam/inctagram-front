@@ -1,13 +1,20 @@
 import { ComponentPropsWithoutRef, CSSProperties, ReactElement } from 'react'
 import { cn } from '@/utils/merge-cn'
-import { Container } from '@/components/ui/container'
+import HeadMeta from '@/components/HeadMeta/HeadMeta'
+import instagram from 'public/inctagram.png'
 
 type Props = ComponentPropsWithoutRef<'section'> & {
   paddingTop?: CSSProperties['paddingTop']
+  description?: string
+  favicon?: string
+  title?: string
 }
 
-export const Page = ({
+export const PageWrapper = ({
   children,
+  title,
+  description,
+  favicon,
   className,
   style,
   /**
@@ -19,11 +26,12 @@ export const Page = ({
   paddingTop = '24px',
   ...rest
 }: Props): ReactElement => {
-  const classesPage = cn(``, className)
+  const classesPage = cn(`flex items-center justify-center`, className)
   const styles: CSSProperties = { padding: paddingTop, ...style }
 
   return (
     <section className={classesPage} style={styles} {...rest}>
+      <HeadMeta favicon={instagram.src} title={title} description={description} />
       {children}
     </section>
   )

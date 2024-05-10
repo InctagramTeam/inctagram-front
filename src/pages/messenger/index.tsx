@@ -1,13 +1,11 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
-import { Page } from '@/components/ui/page'
+import { PageWrapper } from '@/components/ui/page'
 
 const Messenger = () => {
   return (
-    <Page>
-      <HeadMeta title={'Messenger'} />
+    <PageWrapper title={'Messenger | Instagram'}>
       <h1>Messenger</h1>
-    </Page>
+    </PageWrapper>
   )
 }
 
