@@ -50,7 +50,11 @@ const BoxLoading = () => {
 
 const Privacy = () => {
   return (
-    <div className={'flex justify-center items-center w-[42px] h-[7px] text-[6px] font-medium'}>
+    <div
+      className={
+        'flex justify-center items-center w-[42px] h-[7px] text-[6px] font-medium leading-[7px]'
+      }
+    >
       Privacy-Terms
     </div>
   )
@@ -58,9 +62,20 @@ const Privacy = () => {
 const Expired = () => {
   return (
     <div
-      className={'absolute left-4 top-0.5 w-[175px] h-[24px] text-[10px] text-[#FF0000] leading-3'}
+      className={
+        'absolute left-4 top-0.5 w-[175px] h-[24px] text-[10px] text-[#FF0000] leading-[11px]'
+      }
     >
       Verification expired. Check the checkbox again.
+    </div>
+  )
+}
+const Error = () => {
+  return (
+    <div
+      className={'absolute left-4 top-0.5 w-[175px] h-[24px] text-[10px] text-[#FF0000] leading-3'}
+    >
+      Please verify that you are not a robot
     </div>
   )
 }
