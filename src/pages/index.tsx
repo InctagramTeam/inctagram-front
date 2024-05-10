@@ -1,8 +1,9 @@
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
+import { Menu } from '@/components/Menu/Menu'
+import { Page } from '@/components/ui/page'
 import Link from 'next/link'
 import instagram from 'public/inctagram.png'
-import { Page } from '@/components/ui/page'
 
 function Public() {
   return (
@@ -16,6 +17,7 @@ function Public() {
         <Link href={'/search'}>Search</Link>
         <Link href={'/favorites'}>Favorites</Link>
       </nav>
+      <Menu />
     </Page>
   )
 }
