@@ -1,4 +1,4 @@
-// todo <Recaptcha state={'loading'} expired={true} error={false} />
+// <Recaptcha state={'loading'} expired={true} error={false} />
 
 import React from 'react'
 import { Recaptchalogo1 } from '@/assets/icons'
