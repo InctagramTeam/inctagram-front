@@ -1,19 +1,30 @@
+// todo <Recaptcha state={'loading'} expired={true} error={false} />
+
 import React from 'react'
 import { Recaptchalogo1 } from '@/assets/icons'
 
-const Recaptcha = () => {
+type PropsType = {
+  state?: 'loading' | 'checked' | 'default' | undefined
+  expired?: boolean
+  error?: boolean
+}
+const Recaptcha = (props: PropsType) => {
   return (
     <div
       className={
         'relative flex justify-between pl-5 pr-5 items-center w-[300px] h-[79px] border rounded-sm border-[#333333] bg-[#171717]'
       }
     >
-      <Expired />
-      <Error />
+      {props.expired && <Expired />}
+      {props.error && <Error />}
       <div className={'flex justify-between items-center w-[111px] h-[20px]'}>
-        <BoxDefault />
-        {/*<BoxChecked />*/}
-        {/*<BoxLoading />*/}
+        {props.state === 'loading' ? (
+          <BoxLoading />
+        ) : props.state === 'checked' ? (
+          <BoxChecked />
+        ) : (
+          <BoxDefault />
+        )}
         <div className={'text-xs font-medium text-[#FFFFFF]'}>I’m not a robot</div>
       </div>
       <div className={'flex flex-col items-center w-[44px] h-[64px]'}>
