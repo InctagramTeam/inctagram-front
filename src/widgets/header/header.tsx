@@ -1,6 +1,6 @@
 import { Flex } from '@/components/ui/flex/flex'
 import { Logo } from '@/components/ui/logo/logo'
-import { HeaderDesktopMenu } from './header-desktop-menu/header-desktop-menu'
+import { HeaderDesktopMenu } from '@/widgets/header/header-desktop-menu/header-desktop-menu'
 
 type Props = {}
 
