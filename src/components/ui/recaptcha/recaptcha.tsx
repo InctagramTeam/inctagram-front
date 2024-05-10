@@ -1,7 +1,29 @@
 import React from 'react'
 import { Recaptchalogo1 } from '@/assets/icons'
-import CheckIcon from '@/assets/icons/CheckIcon'
-import CheckDisabledIcon from '@/assets/icons/CheckDisabledIcon'
+
+const Recaptcha = () => {
+  return (
+    <div
+      className={
+        'relative flex justify-around items-center w-[300px] h-[79px] border rounded-sm border-[#333333] bg-[#171717]'
+      }
+    >
+      {/*<Expired />*/}
+      <Error />
+      <div className={'flex justify-between items-center w-[111px] h-[20px]'}>
+        <BoxDefault />
+        {/*<BoxChecked />*/}
+        {/*<BoxLoading />*/}
+        {/*<div className={'w-[20px] h-[20px] border rounded-sm border-[#B7B7B7] bg-[#FFFFFF]'}></div>*/}
+        <div className={'text-xs font-medium text-[#FFFFFF]'}>I’m not a robot</div>
+      </div>
+      <div className={'flex flex-col items-center w-[44px] h-[64px]'}>
+        <Recaptchalogo1 className={'w-[44px] h-[48px]'} />
+        <Privacy />
+      </div>
+    </div>
+  )
+}
 
 const BoxDefault = () => {
   return (
@@ -40,8 +62,8 @@ const BoxLoading = () => {
         <path
           d="M2.5 2C6.69126 2.20312 15.159 5.0875 15.5 15"
           stroke="#4D8DF4"
-          stroke-width="4"
-          stroke-linecap="round"
+          strokeWidth="4"
+          strokeLinecap="round"
         />
       </svg>
     </div>
@@ -63,7 +85,7 @@ const Expired = () => {
   return (
     <div
       className={
-        'absolute left-4 top-0.5 w-[175px] h-[24px] text-[10px] text-[#FF0000] leading-[11px]'
+        'absolute left-4 top-0.5 w-[175px] h-[24px] text-[10px] text-[#FF0000] leading-[12px]'
       }
     >
       Verification expired. Check the checkbox again.
@@ -72,45 +94,13 @@ const Expired = () => {
 }
 const Error = () => {
   return (
-    <div
-      className={'absolute left-4 top-0.5 w-[175px] h-[24px] text-[10px] text-[#FF0000] leading-3'}
-    >
-      Please verify that you are not a robot
-    </div>
-  )
-}
-
-// position: absolute;
-// width: 175px;
-// height: 24px;
-// left: 17px;
-// top: 4px;
-//
-// font-family: 'Roboto';
-// font-style: normal;
-// font-weight: 400;
-// font-size: 10px;
-// line-height: 12px;
-
-// color: #FF0000
-const Recaptcha = () => {
-  return (
-    <div
-      className={
-        'relative flex justify-around items-center w-[300px] h-[79px] border rounded-sm border-[#333333] bg-[#171717]'
-      }
-    >
-      <Expired />
-      <div className={'flex justify-between items-center w-[111px] h-[20px]'}>
-        <BoxDefault />
-        {/*<BoxChecked />*/}
-        {/*<BoxLoading />*/}
-        {/*<div className={'w-[20px] h-[20px] border rounded-sm border-[#B7B7B7] bg-[#FFFFFF]'}></div>*/}
-        <div className={'text-xs font-medium text-[#FFFFFF]'}>I’m not a robot</div>
-      </div>
-      <div className={'flex flex-col items-center w-[44px] h-[64px]'}>
-        <Recaptchalogo1 className={'w-[44px] h-[48px]'} />
-        <Privacy />
+    <div className={'absolute -left-2 -top-2 w-[314px] h-[124px] border border-[#FF0000] '}>
+      <div
+        className={
+          'absolute left-2 top-11 w-[183px] h-[12px] text-[10px] text-[#FF0000] leading-[12]'
+        }
+      >
+        Please verify that you are not a robot
       </div>
     </div>
   )
