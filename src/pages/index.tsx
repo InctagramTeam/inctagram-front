@@ -4,7 +4,7 @@ import { PageWrapper } from '@/components/ui/page'
 
 function Public() {
   return (
-    <PageWrapper title={'Main | Instagram'} className={`w-full`}>
+    <PageWrapper title={'Main | Instagram'}>
       <nav className={'navbar'}>
         <Link href={'/home'}>Home</Link>
         <Link href={'/profile'}>Profile</Link>
