@@ -3,6 +3,7 @@ import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 import instagram from 'public/inctagram.png'
 import { Page } from '@/components/ui/page'
+import { Recaptchalogo1 } from '@/assets/icons'
 
 function Public() {
   return (
