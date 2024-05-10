@@ -1,13 +1,11 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { getLayout } from '@/components/Layout/Layout'
-import { Page } from '@/components/ui/page'
+import { PageWrapper } from '@/components/ui/page'
 
 const Statistics = () => {
   return (
-    <Page>
-      <HeadMeta title={'Statistics'} />
+    <PageWrapper title={'Statistics | Instagram'}>
       <h1>Statistics</h1>
-    </Page>
+    </PageWrapper>
   )
 }
 
