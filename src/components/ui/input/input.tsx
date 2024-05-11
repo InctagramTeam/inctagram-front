@@ -9,7 +9,6 @@ import {
   ReactNode,
   useState,
 } from 'react'
-import { cn } from '@/utils/merge-cn'
 import { Close, Eye, EyeOff, Search } from '@/assets/icons'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import { clsx } from 'clsx'
@@ -33,7 +32,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
     placeholder = '',
     classNameInput,
     disabled,
-    error = '',
+    error = 'Error',
     id,
     label = '',
     onKeyDown,
@@ -46,7 +45,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
 
   const classes = {
     input: clsx(
-      `flex w-full regular-text-16 h-[36px] bg-Dark-900 placeholder-Dark-100 text-Light-100
+      `flex w-full regular-text-16 h-[36px] bg-Dark-900 placeholder-Dark-100 text-Light-900
       rounded-sm border-none ring-1 px-6 shadow-sm shadow-Dark-300 ring-Dark-100
       transition-colors duration-150 file:border-0 file:bg-transparent file:font-inter
       disabled:cursor-not-allowed disabled:opacity-50
@@ -56,6 +55,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
       focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-500
       disabled:bg-Dark-700 disabled:text-Light-900 active:bg-Dark-500`,
       error && 'text-Light-100 outline outline-1 outline-offset-1 outline-Danger-500',
+      type === 'password' && 'bg-Dark-500 text-Light-900',
       classNameInput
     ),
     label: clsx(
@@ -92,13 +92,13 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
           {label}
         </LabelPrimitive.Root>
         <div
-          className={`relative shadow-sm shadow-Dark-300 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
+          className={`relative focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
           focus:ring-offset-Primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1 active:bg-Dark-500
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300 disabled:bg-Primary-900 disabled:text-Light-900`}
         >
           {!!rest.startIcon ? (
             <span
-              className={cn(
+              className={clsx(
                 `absolute top-1/2 text-Dark-100 left-[12px] transform -translate-y-1/2 grid items-center w-[18px] h-[18px]`,
                 error &&
                   label &&
@@ -112,7 +112,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
             </span>
           ) : type === 'search' ? (
             <div
-              className={cn(`absolute left-0 flex items-center pl-3 py-[11px] pointer-events-none text-Dark-100
+              className={clsx(`absolute  left-0 flex items-center pl-3 py-[11px] pointer-events-none text-Dark-100
                 focus:focus-within:text-Dark-300
                 transition-all duration-150`)}
             >
@@ -135,8 +135,8 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
           />
           {!!rest.endIcon && (
             <span
-              className={cn(
-                `absolute text-Dark-100 top-[25%] right-[12px] transform grid items-center w-[18px] h-[18px]`,
+              className={clsx(
+                `absolute  text-Dark-100 top-[25%] right-[12px] transform grid items-center w-[18px] h-[18px]`,
                 error
                   ? 'absolute text-Dark-100 top-[16%] right-[12px] transform grid items-center w-[18px] h-[18px]'
                   : null
@@ -145,18 +145,12 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
               {rest.endIcon}
             </span>
           )}
-          {error && (
-            <div
-              className={`font-small-text-12 text-Danger-500 flex items-center w-full h-[20px] m-[4px_0]`}
-            >
-              {error}
-            </div>
-          )}
+          {error && <div className={`text-regular-text-14 text-Danger-500 mt-[5px]`}>{error}</div>}
         </div>
         {type === 'password' &&
           (isVisible ? (
             <button
-              className={cn(
+              className={clsx(
                 ` text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100`,
@@ -172,11 +166,11 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
               disabled={disabled}
               onClick={onVisible}
             >
-              <Eye className={`w-7 h-7 mr-3 absolute right-0 top-[33%]`} />
+              <Eye className={`w-7 h-7 mr-3 absolute right-0 top-[33%] z-1000`} />
             </button>
           ) : (
             <button
-              className={cn(
+              className={clsx(
                 `text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100`,
@@ -190,13 +184,13 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
               disabled={disabled}
               onClick={onVisible}
             >
-              <EyeOff className={`w-7 h-7 mr-3 absolute right-0 top-[33%]`} />
+              <EyeOff className={`w-7 h-7 mr-3 absolute right-0 top-[33%] z-1000`} />
             </button>
           ))}
         {type === 'search' ||
-          (type !== 'password' && value && (
+          (type !== 'password' && type !== 'text' && type !== 'email' && value && (
             <button
-              className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
+              className={`cursor-pointer flex items-center text-Light-900 transition-colors ease-in-out delay-150
               absolute top-[50%] right-[12px] -translate-y-[50%]
               disabled:text-Dark-100`}
               disabled={disabled}
