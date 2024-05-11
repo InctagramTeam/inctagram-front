@@ -12,6 +12,7 @@ import {
 import { cn } from '@/utils/merge-cn'
 import { Close, Eye, EyeOff, Search } from '@/assets/icons'
 import * as LabelPrimitive from '@radix-ui/react-label'
+import { clsx } from 'clsx'
 
 export type Props = {
   classNameInput?: string
@@ -44,7 +45,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
   const [isVisible, setIsVisible] = useState(false)
 
   const classes = {
-    input: cn(
+    input: clsx(
       `flex w-full regular-text-16 h-[36px] bg-Dark-900 placeholder-Dark-100 text-Light-100
       rounded-sm border-none ring-1 px-6 shadow-sm shadow-Dark-300 ring-Dark-100
       transition-colors duration-150 file:border-0 file:bg-transparent file:font-inter
@@ -57,11 +58,10 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
       error && 'text-Light-100 outline outline-1 outline-offset-1 outline-Danger-500',
       classNameInput
     ),
-    label: cn(
-      `font-regular-text-14 text-Light-900`,
+    label: clsx(
+      `text-regular-text-14 text-Light-900`,
       disabled && `text-Dark-100 cursor-not-allowed`
     ),
-    textField: cn(`flex flex-col`, className),
   }
 
   const onVisible = () => {
@@ -185,9 +185,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
                 type === 'password' &&
                   !error &&
                   label &&
-                  `text-Light-100/60
-                  focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100`
+                  `text-Light-100/60 focus:focus-within:text-Dark-300 disabled:text-Dark-100`
               )}
               disabled={disabled}
               onClick={onVisible}
@@ -199,8 +197,8 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
           (type !== 'password' && value && (
             <button
               className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
-       absolute top-[50%] right-[12px] -translate-y-[50%]
-       disabled:text-Dark-100`}
+              absolute top-[50%] right-[12px] -translate-y-[50%]
+              disabled:text-Dark-100`}
               disabled={disabled}
               onClick={clearFieldHandler}
               type="button"
