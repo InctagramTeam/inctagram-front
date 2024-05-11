@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { TextField } from '@/components/ui/TextField'
 
 type Props = {}
 
@@ -18,6 +19,7 @@ const SignUp = ({}: Props) => {
         className={`Card w-[380px] min-h-[648px] bg-Dark-500 rounded
         border border-Dark-300 shadow-shadow-Dark-30`}
       >
+        <TextField />
         <div className={`wrapper-text-icons w-full flex flex-col items-center justify-center`}>
           <Text variant={'H1'} align={'center'} className={'mt-[23px]'} mt={'26px'} mb={'13px'}>
             Sign Up

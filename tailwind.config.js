@@ -26,7 +26,6 @@ module.exports = {
     variants: {
       scrollbar: ['dark'],
     },
-    // Custom container
     container: {
       center: true,
       padding: '0.9375rem',
@@ -110,7 +109,7 @@ module.exports = {
           700: '#D99000',
           900: '#D99000',
         },
-        // Shad_cn ui default colors
+        // Shad_cn ui colors
         accent: {
           DEFAULT: '#c6f2ff',
           foreground: '#302828',

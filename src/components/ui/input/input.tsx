@@ -43,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
 
   const classes = {
     input: clsx(
-      `flex w-full regular-text-16 h-[36px] bg-Dark-900 placeholder-Light-900 text-Light-900
+      `flex w-full text-regular-text-16 h-[36px] bg-Dark-900 placeholder-Light-900 text-Light-900
       rounded-sm border-none ring-1 px-6 shadow-sm shadow-Dark-300 ring-Dark-100
       transition-colors duration-150 file:border-0 file:bg-transparent file:font-inter
       disabled:cursor-not-allowed disabled:opacity-50
