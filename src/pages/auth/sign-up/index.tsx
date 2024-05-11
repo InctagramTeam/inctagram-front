@@ -23,7 +23,7 @@ const SignUp = () => {
             <GoogleRepoIcon />
             <GithubRepoIcon />
           </Flex>
-          <Flex direction={'column'} gap={'24'}>
+          <Flex direction={'column'} gap={'24'} mb={'0'}>
             <Input label={'Username'} type={'text'} className={`text-regular-text-14 mb-6`} />
             <Input label={'Email'} type={'email'} />
             <Input label={'Password'} type={'password'} />
