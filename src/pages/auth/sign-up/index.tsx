@@ -19,7 +19,7 @@ const SignUp = ({}: Props) => {
         border border-Dark-300 shadow-shadow-Dark-30`}
       >
         <div className={`wrapper-text-icons w-full flex flex-col items-center justify-center`}>
-          <Text align={'center'} className={'mt-[23px]'} mt={'26px'} mb={'13px'}>
+          <Text variant={'H1'} align={'center'} className={'mt-[23px]'} mt={'26px'} mb={'13px'}>
             Sign Up
           </Text>
           <Flex mb={'24px'} justify={'center'} gap={'60'}>
