@@ -43,7 +43,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
 
   const classes = {
     input: clsx(
-      `flex w-full regular-text-16 h-[36px] bg-Dark-900 placeholder-Dark-100 text-Light-900
+      `flex w-full regular-text-16 h-[36px] bg-Dark-900 placeholder-Light-900 text-Light-900
       rounded-sm border-none ring-1 px-6 shadow-sm shadow-Dark-300 ring-Dark-100
       transition-colors duration-150 file:border-0 file:bg-transparent file:font-inter
       disabled:cursor-not-allowed disabled:opacity-50
@@ -53,7 +53,6 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
       focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-500
       disabled:bg-Dark-700 disabled:text-Light-900 active:bg-Dark-500`,
       error && 'text-Light-100 outline outline-1 outline-offset-1 outline-Danger-500',
-      type === 'password' && 'bg-Dark-500 text-Light-900',
       classNameInput
     ),
     label: clsx(
@@ -82,7 +81,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
   }
 
   return (
-    <div className={'InputWrapper flex border-bottom justify-between py-3 px-6 space-x-6'}>
+    <div className={'InputWrapper flex border-bottom justify-between px-6 space-x-6'}>
       <div
         className={`relative w-full max-w-[280px] items-center focus:focus-within:text-Dark-300 active:bg-Dark-500`}
       >
@@ -110,8 +109,8 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
             </span>
           ) : type === 'search' ? (
             <div
-              className={clsx(`absolute  left-0 flex items-center pl-3 py-[11px] pointer-events-none text-Dark-100
-                focus:focus-within:text-Dark-300
+              className={clsx(`absolute left-0 flex items-center pl-3 py-[11px] pointer-events-none text-Dark-100
+                focus:focus-within:text-Light-900
                 transition-all duration-150`)}
             >
               <Search className={`w-[20px] h-[20px] ml-3`} />
@@ -134,55 +133,61 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
           {!!rest.endIcon && (
             <span
               className={clsx(
-                `absolute  text-Dark-100 top-[25%] right-[12px] transform grid items-center w-[18px] h-[18px]`,
+                `absolute text-Light-900 top-[25%] right-[12px] transform grid items-center w-[18px] h-[18px]`,
                 error
-                  ? 'absolute text-Dark-100 top-[16%] right-[12px] transform grid items-center w-[18px] h-[18px]'
+                  ? 'absolute text-Light-900 top-[16%] right-[12px] transform grid items-center w-[18px] h-[18px]'
                   : null
               )}
             >
               {rest.endIcon}
             </span>
           )}
-          {error && <div className={`text-regular-text-14 text-Danger-500 mt-[5px]`}>{error}</div>}
+          {error && <div className={`text-regular-text-14 text-Danger-500 mt-[2px]`}>{error}</div>}
         </div>
         {type === 'password' &&
           (isVisible ? (
             <button
               className={clsx(
-                ` text-Light-100/60
-                  focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100`,
                 type === 'password' && error && `top-1/2`,
                 type === 'password' && error && !label && `top-1/4`,
                 type === 'password' &&
                   !error &&
                   label &&
                   `text-Light-100/60
-                  focus:focus-within:text-Dark-300
+                  focus:focus-within:text-Light-900
                   disabled:text-Dark-100`
               )}
               disabled={disabled}
               onClick={onVisible}
             >
-              <Eye className={`w-7 h-7 mr-3 absolute right-0 top-[33%] z-1000`} />
+              <Eye
+                className={clsx(
+                  error && label
+                    ? `w-7 h-7 mr-3 absolute right-0 top-[26%] z-1000`
+                    : 'w-7 h-7 mr-3 absolute right-0 top-[33%] z-1000'
+                )}
+              />
             </button>
           ) : (
             <button
               className={clsx(
-                `text-Light-100/60
-                  focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100`,
                 type === 'password' && error && `top-1/2`,
                 type === 'password' && error && !label && `top-1/4`,
                 type === 'password' &&
                   !error &&
                   label &&
-                  `text-Light-100/60 focus:focus-within:text-Dark-300 disabled:text-Dark-100`
+                  `text-Light-100/60 focus:focus-within:text-Light-900 disabled:text-Dark-100`
               )}
               disabled={disabled}
               onClick={onVisible}
             >
-              <EyeOff className={`w-7 h-7 mr-3 absolute right-0 top-[33%] z-1000`} />
+              <EyeOff
+                className={clsx(
+                  error && label
+                    ? `w-7 h-7 mr-3 absolute right-0 top-[26%] z-1000`
+                    : 'w-7 h-7 mr-3 absolute right-0 top-[33%] z-1000'
+                )}
+              />
             </button>
           ))}
         {type === 'search' ||
