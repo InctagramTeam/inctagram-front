@@ -159,7 +159,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
               className={cn(
                 ` text-Light-100/60
                   focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`,
+                  disabled:text-Dark-100`,
                 type === 'password' && error && `top-1/2`,
                 type === 'password' && error && !label && `top-1/4`,
                 type === 'password' &&
@@ -167,7 +167,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
                   label &&
                   `text-Light-100/60
                   focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`
+                  disabled:text-Dark-100`
               )}
               disabled={disabled}
               onClick={onVisible}
@@ -179,7 +179,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
               className={cn(
                 `text-Light-100/60
                   focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`,
+                  disabled:text-Dark-100`,
                 type === 'password' && error && `top-1/2`,
                 type === 'password' && error && !label && `top-1/4`,
                 type === 'password' &&
@@ -187,7 +187,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
                   label &&
                   `text-Light-100/60
                   focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`
+                  disabled:text-Dark-100`
               )}
               disabled={disabled}
               onClick={onVisible}
@@ -200,7 +200,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
             <button
               className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
        absolute top-[50%] right-[12px] -translate-y-[50%]
-       disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`}
+       disabled:text-Dark-100`}
               disabled={disabled}
               onClick={clearFieldHandler}
               type="button"
