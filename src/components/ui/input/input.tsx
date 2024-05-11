@@ -29,7 +29,7 @@ export type Props = {
 const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => {
   const {
     className,
-    placeholder = 'Search',
+    placeholder = '',
     classNameInput,
     disabled,
     error = '',
@@ -37,7 +37,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
     label = '',
     onKeyDown,
     onValueChange,
-    type = 'email',
+    type = 'text',
     value,
     ...rest
   } = props
@@ -45,26 +45,22 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
 
   const classes = {
     input: cn(
-      `flex w-full h-[36px] bg-Dark-900 placeholder-Dark-100 text-Light-100
-      rounded-md border-none ring-2 pl-10 pt-3 shadow-sm shadow-Dark-300 ring-Dark-100
+      `flex w-full regular-text-16 h-[36px] bg-Dark-900 placeholder-Dark-100 text-Light-100
+      rounded-sm border-none ring-1 px-6 shadow-sm shadow-Dark-300 ring-Dark-100
       transition-colors duration-150 file:border-0 file:bg-transparent file:font-inter
       disabled:cursor-not-allowed disabled:opacity-50
       focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
-      focus:ring-offset-Primary-300
+      focus:ring-offset-Primary-500 focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
       focus-visible:outline-none focus-visible:ring-1 focus-visible:offset-1
-      focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
+      focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-500
       disabled:bg-Dark-700 disabled:text-Light-900 active:bg-Dark-500`,
-      type === 'text' &&
-        `flex w-full h-[36px] bg-Dark-900 font-inter placeholder-Dark-100 text-Light-100 rounded-xl border-none ring-2
-      pr-3 pl-5 shadow-sm ring-Dark-100 focus:ring-Dark-100 
-      transition-colors file:border-0 file:bg-transparent file:font-inter 
-      focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring 
-      disabled:cursor-not-allowed disabled:opacity-50`,
-      type === 'text' && 'pr-[15px]',
       error && 'text-Light-100 outline outline-1 outline-offset-1 outline-Danger-500',
       classNameInput
     ),
-    label: cn(`text-Light-900`, disabled && `text-Dark-100 cursor-not-allowed`),
+    label: cn(
+      `font-regular-text-14 text-Light-900`,
+      disabled && `text-Dark-100 cursor-not-allowed`
+    ),
     textField: cn(`flex flex-col`, className),
   }
 
@@ -88,15 +84,13 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
   }
 
   return (
-    <div className={'flex border-bottom justify-between py-3 px-6 space-x-6'}>
+    <div className={'InputWrapper flex border-bottom justify-between py-3 px-6 space-x-6'}>
       <div
         className={`relative w-full max-w-[280px] items-center focus:focus-within:text-Dark-300 active:bg-Dark-500`}
       >
-        {label ? (
-          <LabelPrimitive.Root className={classes.label} htmlFor={id} asChild={false}>
-            {label}
-          </LabelPrimitive.Root>
-        ) : null}
+        <LabelPrimitive.Root className={classes.label} htmlFor={id} asChild={false}>
+          {label}
+        </LabelPrimitive.Root>
         <div
           className={`relative shadow-sm shadow-Dark-300 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
           focus:ring-offset-Primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1 active:bg-Dark-500
@@ -153,7 +147,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
           )}
           {error && (
             <div
-              className={`font-xs-12 text-Danger-500 flex items-center w-full h-[20px] m-[4px_0]`}
+              className={`font-small-text-12 text-Danger-500 flex items-center w-full h-[20px] m-[4px_0]`}
             >
               {error}
             </div>
@@ -163,7 +157,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
           (isVisible ? (
             <button
               className={cn(
-                `absolute right-0 -translate-y-[50%] top-1/2 flex items-center pl-3 py-[6px] text-Light-100/60
+                ` text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`,
                 type === 'password' && error && `top-1/2`,
@@ -171,19 +165,19 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
                 type === 'password' &&
                   !error &&
                   label &&
-                  `absolute top-[50%] py-[30px] pb-[6px] right-0 -translate-y-[50%] flex items-center text-Light-100/60
+                  `text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`
               )}
               disabled={disabled}
               onClick={onVisible}
             >
-              <Eye className={`w-5 h-5 mr-3`} />
+              <Eye className={`w-7 h-7 mr-3 absolute right-0 top-[33%]`} />
             </button>
           ) : (
             <button
               className={cn(
-                `absolute right-0 -translate-y-[50%] top-1/2 flex items-center pl-3 py-[6px] text-Light-100/60
+                `text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`,
                 type === 'password' && error && `top-1/2`,
@@ -191,70 +185,29 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
                 type === 'password' &&
                   !error &&
                   label &&
-                  `absolute top-[50%] py-[30px] pb-[6px] right-0 -translate-y-[50%] flex items-center text-Light-100/60
+                  `text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`
               )}
               disabled={disabled}
               onClick={onVisible}
             >
-              <EyeOff className={`w-5 h-5 mr-3`} />
+              <EyeOff className={`w-7 h-7 mr-3 absolute right-0 top-[33%]`} />
             </button>
           ))}
-        {type === 'email' &&
-          (isVisible ? (
+        {type === 'search' ||
+          (type !== 'password' && value && (
             <button
-              className={cn(
-                `absolute right-0 -translate-y-[50%] top-1/2 flex items-center pl-3 py-[6px] text-Light-100/60
-                  focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`,
-                type === 'email' && error && `top-1/2`,
-                type === 'email' && error && !label && `top-1/4`,
-                type === 'email' &&
-                  !error &&
-                  label &&
-                  `absolute top-[50%] py-[30px] pb-[6px] right-0 -translate-y-[50%] flex items-center text-Light-100/60
-                  focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`
-              )}
+              className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
+       absolute top-[50%] right-[12px] -translate-y-[50%]
+       disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`}
               disabled={disabled}
-              onClick={onVisible}
+              onClick={clearFieldHandler}
+              type="button"
             >
-              <Eye className={`w-5 h-5 mr-3`} />
-            </button>
-          ) : (
-            <button
-              className={cn(
-                `absolute right-0 -translate-y-[50%] top-1/2 flex items-center pl-3 py-[6px] text-Light-100/60
-                  focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`,
-                type === 'email' && error && `top-1/2`,
-                type === 'email' && error && !label && `top-1/4`,
-                type === 'email' &&
-                  !error &&
-                  label &&
-                  `absolute top-[50%] py-[30px] pb-[6px] right-0 -translate-y-[50%] flex items-center text-Light-100/60
-                  focus:focus-within:text-Dark-300
-                  disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`
-              )}
-              disabled={disabled}
-              onClick={onVisible}
-            >
-              <EyeOff className={`w-5 h-5 mr-3`} />
+              <Close />
             </button>
           ))}
-        {type === 'search' && value && (
-          <button
-            className={`cursor-pointer flex items-center text-Light-100 transition-colors ease-in-out delay-150
-               absolute top-[50%] right-[12px] -translate-y-[50%]
-               disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`}
-            disabled={disabled}
-            onClick={clearFieldHandler}
-            type="button"
-          >
-            <Close />
-          </button>
-        )}
       </div>
     </div>
   )
