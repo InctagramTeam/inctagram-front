@@ -1,5 +1,3 @@
-'use client'
-
 import {
   ChangeEvent,
   ComponentPropsWithoutRef,
@@ -32,12 +30,12 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
     placeholder = '',
     classNameInput,
     disabled,
-    error = 'Error',
+    error = '',
     id,
     label = '',
     onKeyDown,
     onValueChange,
-    type = 'text',
+    type = 'search',
     value,
     ...rest
   } = props
