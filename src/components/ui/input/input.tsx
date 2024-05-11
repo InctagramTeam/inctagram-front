@@ -80,12 +80,16 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
   }
 
   return (
-    <div className={'InputWrapper relative flex flex-col border-bottom justify-between'}>
+    <div
+      className={
+        'InputWrapper w-full max-w-[330px] relative flex flex-col border-bottom justify-between'
+      }
+    >
       <LabelPrimitive.Root className={classes.label} htmlFor={id} asChild={false}>
         {label}
       </LabelPrimitive.Root>
       <div
-        className={`relative focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
+        className={`relative w-full focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
           focus:ring-offset-Primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1 active:bg-Dark-500
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300 disabled:bg-Primary-900 disabled:text-Light-900`}
       >

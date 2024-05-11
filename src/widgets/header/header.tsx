@@ -10,7 +10,7 @@ export const Header = ({}: Props) => {
       className={`fixed flex items-center justify-between inset-0 border-b-[1px] shadow-sm shadow-Dark-300
       border-Dark-100 w-full h-header-height py-[15px] px-[15px] z-10`}
     >
-      <Flex maxWidth justify={'spaceBetween'} gap={'20'} align={'center'}>
+      <Flex maxWidth justify={'spaceBetween'} gap={'20'} items={'center'}>
         <Logo />
         <HeaderDesktopMenu />
       </Flex>
