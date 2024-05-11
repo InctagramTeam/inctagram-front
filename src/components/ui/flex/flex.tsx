@@ -15,6 +15,11 @@ export type FlexAlignItems = 'center' | 'end' | 'start'
 export type FlexDirection = 'column' | 'row'
 export type FlexWrap = 'nowrap' | 'wrap'
 export type FlexGap =
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '6'
   | '8'
   | '10'
   | '12'
@@ -52,6 +57,11 @@ const directionClasses: Record<FlexDirection, string> = {
 }
 
 const gapClasses: Record<FlexGap, string> = {
+  1: 'gap-[1px]',
+  2: 'gap-[2px]',
+  3: 'gap-[3px]',
+  4: 'gap-[4px]',
+  6: 'gap-[6px]',
   8: 'gap-[8px]',
   10: 'gap-[10px]',
   12: 'gap-[12px]',
@@ -75,7 +85,7 @@ export interface FlexProps extends DivProps {
   /**
    * Выравнивание флекс элементов
    */
-  align?: FlexAlignItems
+  items?: FlexAlignItems
   children: ReactNode
   mb?: CSSProperties['marginBottom']
   ml?: CSSProperties['marginLeft']
@@ -85,6 +95,8 @@ export interface FlexProps extends DivProps {
   my?: CSSProperties['marginLeft']
   m?: CSSProperties['margin']
   p?: CSSProperties['padding']
+  width?: CSSProperties['width']
+  maxWidth_X?: CSSProperties['width']
   className?: string
   direction?: FlexDirection
   gap?: FlexGap
@@ -98,10 +110,11 @@ export interface FlexProps extends DivProps {
 
 const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   const {
-    align = 'center',
+    items = 'center',
     children,
     className,
     direction = 'row',
+    width,
     gap,
     m,
     p,
@@ -114,6 +127,7 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     style,
     justify = 'start',
     maxWidth,
+    maxWidth_X,
     wrap = 'nowrap',
     ...flexProps
   } = props
@@ -127,13 +141,15 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     ...(my && { marginBottom: my, marginTop: my }),
     ...(m && { margin: m }),
     ...(p && { padding: p }),
+    ...(width && { width: width }),
+    ...(maxWidth_X && { maxWidth_X: maxWidth_X }),
     ...style,
   }
 
   const classes = [
     className,
     justifyClasses[justify],
-    alignClasses[align],
+    alignClasses[items],
     directionClasses[direction],
     'flex-wrap',
     gap && gapClasses[gap],
