@@ -1,5 +1,6 @@
 import type { SVGProps } from 'react'
-import { Ref, forwardRef, memo } from 'react'
+import { forwardRef, memo, Ref } from 'react'
+
 const SearchIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
     <path
