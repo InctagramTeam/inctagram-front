@@ -29,7 +29,7 @@ export type Props = {
 const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => {
   const {
     className,
-    placeholder = 'Search',
+    placeholder = '',
     classNameInput,
     disabled,
     error = '',
@@ -37,7 +37,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
     label = '',
     onKeyDown,
     onValueChange,
-    type = 'email',
+    type = 'text',
     value,
     ...rest
   } = props
@@ -84,15 +84,13 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
   }
 
   return (
-    <div className={'flex border-bottom justify-between py-3 px-6 space-x-6'}>
+    <div className={'InputWrapper flex border-bottom justify-between py-3 px-6 space-x-6'}>
       <div
         className={`relative w-full max-w-[280px] items-center focus:focus-within:text-Dark-300 active:bg-Dark-500`}
       >
-        {label ? (
-          <LabelPrimitive.Root className={classes.label} htmlFor={id} asChild={false}>
-            {label}
-          </LabelPrimitive.Root>
-        ) : null}
+        <LabelPrimitive.Root className={classes.label} htmlFor={id} asChild={false}>
+          {label}
+        </LabelPrimitive.Root>
         <div
           className={`relative shadow-sm shadow-Dark-300 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
           focus:ring-offset-Primary-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1 active:bg-Dark-500
@@ -159,7 +157,7 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
           (isVisible ? (
             <button
               className={cn(
-                `absolute right-0 -translate-y-[50%] top-1/2 flex items-center pl-3 py-[6px] text-Light-100/60
+                ` text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`,
                 type === 'password' && error && `top-1/2`,
@@ -167,19 +165,19 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
                 type === 'password' &&
                   !error &&
                   label &&
-                  `absolute top-[50%] py-[30px] pb-[6px] right-0 -translate-y-[50%] flex items-center text-Light-100/60
+                  `text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`
               )}
               disabled={disabled}
               onClick={onVisible}
             >
-              <Eye className={`w-5 h-5 mr-3`} />
+              <Eye className={`w-7 h-7 mr-3 absolute right-0 top-[33%]`} />
             </button>
           ) : (
             <button
               className={cn(
-                `absolute right-0 -translate-y-[50%] top-1/2 flex items-center pl-3 py-[6px] text-Light-100/60
+                `text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`,
                 type === 'password' && error && `top-1/2`,
@@ -187,14 +185,14 @@ const Input = forwardRef<HTMLInputElement, Props>((props, ref): ReactElement => 
                 type === 'password' &&
                   !error &&
                   label &&
-                  `absolute top-[50%] py-[30px] pb-[6px] right-0 -translate-y-[50%] flex items-center text-Light-100/60
+                  `text-Light-100/60
                   focus:focus-within:text-Dark-300
                   disabled:text-Dark-100 focus:outline outline-1 focus:outline-offset-1 focus:outline-Primary-500`
               )}
               disabled={disabled}
               onClick={onVisible}
             >
-              <EyeOff className={`w-5 h-5 mr-3`} />
+              <EyeOff className={`w-7 h-7 mr-3 absolute right-0 top-[33%]`} />
             </button>
           ))}
         {type === 'search' ||

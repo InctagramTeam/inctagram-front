@@ -60,6 +60,9 @@ const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
     align,
     children,
     color,
+    /**
+     * mb, ml, mr, mt, mx, my - Внешние отступы (маржины) Text от соседних элементов
+     */
     mb,
     ml,
     mr,
