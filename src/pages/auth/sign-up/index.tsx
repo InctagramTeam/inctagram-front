@@ -19,11 +19,11 @@ const SignUp = () => {
           <Text align={'center'} className={'mt-[23px]'}>
             Sign Up
           </Text>
-          <Flex gap={'60'} marginTop={'10px'}>
+          <Flex gap={'60'} mt={'10px'}>
             <GoogleRepoIcon />
             <GithubRepoIcon />
           </Flex>
-          <Flex marginTop={`24px`} flexDirection={'column'} marginBottom={'24px'} padding={'24px'}>
+          <Flex mt={`24px`} direction={'column'} mb={'24px'} p={'px'}>
             <Input label={'Username'} type={'text'} className={`text-regular-text-14`} />
             <Input label={'Email'} type={'email'} />
             <Input label={'Password'} type={'password'} />

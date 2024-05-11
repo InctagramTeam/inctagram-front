@@ -14,7 +14,21 @@ export type FlexJustifyContent =
 export type FlexAlignItems = 'center' | 'end' | 'start'
 export type FlexDirection = 'column' | 'row'
 export type FlexWrap = 'nowrap' | 'wrap'
-export type FlexGap = '8' | '10' | '20' | '30' | '40' | '50' | '60' | '70' | '80'
+export type FlexGap =
+  | '8'
+  | '10'
+  | '12'
+  | '14'
+  | '20'
+  | '24'
+  | '26'
+  | '30'
+  | '34'
+  | '40'
+  | '50'
+  | '60'
+  | '70'
+  | '80'
 
 // mapping types + classes
 const justifyClasses: Record<FlexJustifyContent, string> = {
@@ -40,8 +54,13 @@ const directionClasses: Record<FlexDirection, string> = {
 const gapClasses: Record<FlexGap, string> = {
   8: 'gap-[8px]',
   10: 'gap-[10px]',
+  12: 'gap-[12px]',
+  14: 'gap-[14px]',
   20: 'gap-[20px]',
+  24: 'gap-[24px]',
+  26: 'gap-[26px]',
   30: 'gap-[30px]',
+  34: 'gap-[34px]',
   40: 'gap-[40px]',
   50: 'gap-[50px]',
   60: 'gap-[60px]',
@@ -58,12 +77,16 @@ export interface FlexProps extends DivProps {
    */
   align?: FlexAlignItems
   children: ReactNode
-  marginBottom?: CSSProperties['marginBottom']
-  marginTop?: CSSProperties['marginTop']
-  padding?: CSSProperties['padding']
-  margin?: CSSProperties['margin']
+  mb?: CSSProperties['marginBottom']
+  ml?: CSSProperties['marginLeft']
+  mr?: CSSProperties['marginRight']
+  mt?: CSSProperties['marginTop']
+  mx?: CSSProperties['marginRight']
+  my?: CSSProperties['marginLeft']
+  m?: CSSProperties['margin']
+  p?: CSSProperties['padding']
   className?: string
-  flexDirection?: FlexDirection
+  direction?: FlexDirection
   gap?: FlexGap
   justify?: FlexJustifyContent
   /**
@@ -78,12 +101,16 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     align = 'center',
     children,
     className,
-    flexDirection = 'row',
+    direction = 'row',
     gap,
-    marginBottom = '10px',
-    marginTop = '10px',
-    padding,
-    margin,
+    m,
+    p,
+    mb,
+    ml,
+    mr,
+    mt,
+    mx,
+    my,
     style,
     justify = 'start',
     maxWidth,
@@ -91,11 +118,15 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     ...flexProps
   } = props
 
-  const styles: CSSProperties = {
-    marginBottom: marginBottom,
-    marginTop: marginTop,
-    margin: margin,
-    padding: padding,
+  const styles = {
+    ...(mr && { marginRight: mr }),
+    ...(ml && { marginLeft: ml }),
+    ...(mt && { marginTop: mt }),
+    ...(mb && { marginBottom: mb }),
+    ...(mx && { marginLeft: mx, marginRight: mx }),
+    ...(my && { marginBottom: my, marginTop: my }),
+    ...(m && { margin: m }),
+    ...(p && { padding: p }),
     ...style,
   }
 
@@ -103,7 +134,7 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     className,
     justifyClasses[justify],
     alignClasses[align],
-    directionClasses[flexDirection],
+    directionClasses[direction],
     'flex-wrap',
     gap && gapClasses[gap],
   ]

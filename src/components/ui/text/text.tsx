@@ -32,6 +32,12 @@ export type TextProps<T extends ElementType = 'span'> = {
     | 'inline_code'
   children: ReactNode
   color?: CSSProperties['color']
+  mb?: CSSProperties['marginBottom']
+  ml?: CSSProperties['marginLeft']
+  mr?: CSSProperties['marginRight']
+  mt?: CSSProperties['marginTop']
+  mx?: CSSProperties['marginRight']
+  my?: CSSProperties['marginLeft']
 } & ComponentPropsWithoutRef<T>
 
 const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
@@ -54,6 +60,12 @@ const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
     align,
     children,
     color,
+    mb,
+    ml,
+    mr,
+    mt,
+    mx,
+    my,
     ...textProps
   } = props
 
@@ -100,6 +112,12 @@ const Text = forwardRef<HTMLSpanElement, TextProps>((props, ref) => {
   )
 
   const styles = {
+    ...(mr && { marginRight: mr }),
+    ...(ml && { marginLeft: ml }),
+    ...(mt && { marginTop: mt }),
+    ...(mb && { marginBottom: mb }),
+    ...(mx && { marginLeft: mx, marginRight: mx }),
+    ...(my && { marginBottom: my, marginTop: my }),
     ...(color && { color }),
     ...style,
   }
