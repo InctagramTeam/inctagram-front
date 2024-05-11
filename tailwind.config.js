@@ -15,6 +15,14 @@ module.exports = {
   ],
   prefix: '',
   theme: {
+    screens: {
+      lg: '1024px',
+      sm: '640px',
+      '2xl': '1536px',
+      xl: '1280px',
+      xs: '360px',
+      md: '768px',
+    },
     variants: {
       scrollbar: ['dark'],
     },
@@ -22,14 +30,6 @@ module.exports = {
     container: {
       center: true,
       padding: '0.9375rem',
-      screens: {
-        before_desktop: '1024px',
-        before_tablet: '640px',
-        big_desktop: '1536px',
-        desktop: '1280px',
-        mobile: '360px',
-        tablet: '768px',
-      },
     },
     extend: {
       spacing: {

@@ -70,11 +70,11 @@ const SignUp = ({}: Props) => {
         </Flex>
 
         <Flex direction={'column'} gap={'12'}>
-          <Button>Sign Up</Button>
+          <Button className={'w-full max-w-[330px]'}>Sign Up</Button>
           <Text variant={'regular_text_16'} className={`text-Primary-300`}>
             Do you have an account?
           </Text>
-          <Button variant={'link'} className={'text-Primary-300 w-full max-w-[330px]'}>
+          <Button variant={'link'} className={'text-Primary-300 '}>
             Sign In
           </Button>
         </Flex>
