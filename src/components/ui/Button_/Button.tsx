@@ -33,7 +33,7 @@ export const Button: ButtonComponent = forwardRef(
   ) => {
     const Component = asComponent || 'button'
 
-    const classNames = {
+    const classes = {
       btn: clsx(
         `w-full h-9 inline-flex gap-[12px] items-center justify-center border-box 
         text-regular-text-16 text-Light-100 border-none rounded outline-none transition-all
@@ -135,7 +135,7 @@ export const Button: ButtonComponent = forwardRef(
     }
 
     return (
-      <Component className={classNames.btn} {...restProps} ref={ref}>
+      <Component className={classes.btn} {...restProps} ref={ref}>
         {startIcon}
         {children}
         {endIcon}
