@@ -1,8 +1,9 @@
 import { getLayout } from '@/components/Layout/Layout'
 import { PageWrapper } from '@/components/ui/page'
 import { Text } from '@/components/ui/text'
-import GoogleIcon from 'src/assets/icons/GoogleRepoIcon'
+import GoogleIcon from '@/assets/icons/GoogleRepoIcon'
 import GithubIcon from '@/assets/icons/GithubRepoIcon'
+import ArrowIosBackIcon from '../../../assets/icons/ArrowIosBack'
 import { Flex } from '@/components/ui/flex/flex'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
@@ -36,7 +37,7 @@ const SignUp = ({}: Props) => {
           direction={'column'}
           gap={'24'}
           mb={'24px'}
-          maxWidth_X={'330px'}
+          max={'330px'}
           justify={'center'}
           items={'center'}
         >
