@@ -4,16 +4,17 @@ import { Text } from '@/components/ui/text'
 import GoogleIcon from '@/assets/icons/GoogleIcon'
 import GithubIcon from '@/assets/icons/GithubIcon'
 import { Flex } from '@/components/ui/flex/flex'
-import { Checkbox } from '@/components/ui/checkbox'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/Button_'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 
 type Props = {}
 
 const SignUp = ({}: Props) => {
   return (
     <PageWrapper title={'SignUp | Instagram'}>
+      {/* todo: Card component... */}
       <div
         className={`_Card_ w-[380px] min-h-[648px] bg-Dark-500 rounded
         border border-Dark-300 shadow-shadow-Dark-30`}
@@ -68,7 +69,7 @@ const SignUp = ({}: Props) => {
           />
           <div className={'w-full max-w-[330px] mx-auto'}>
             <Flex justify={'spaceEvenly'} items={'center'} gap={'1'}>
-              <Checkbox className={'mr-2 inline-block'} />
+              <Checkbox checked className={'mr-2 inline-block'} />
               <Text variant={'small-text-12'}>I agree to the</Text>
               <Text asComponent={Link} href={'auth/term-of-service'} variant={'small-link_12'}>
                 Terms of Service

@@ -14,7 +14,8 @@ export type CheckboxProps = {
   disabled?: boolean
   id?: string
   label?: string
-  position?: 'right' | 'left'
+  required?: boolean
+  labelPosition?: 'right' | 'left'
   onValueChange?: (checked: boolean) => void
 } & Omit<ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>, 'checked' | 'onCheckedChange'>
 
@@ -25,7 +26,8 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
     disabled,
     id,
     name,
-    position = 'right',
+    required,
+    labelPosition = 'right',
     label = '',
     onValueChange,
     ...rest
@@ -33,14 +35,13 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
 
   const commonClasses = {
     label: cn(
-      '',
       checked && disabled && `cursor-default flex gap-[0_15px] opacity-60 text-Light-700 shadow-sm`,
       checked &&
         !disabled &&
         `cursor-pointer flex gap-[0_15px] text-Light-100 hover:-translate-y-[1px] hover:text-Primary-300/90`,
       !checked &&
         disabled &&
-        `cursor-default flex gap-[0_15px] opacity-60 text-Light-700 shadow-sm`,
+        `cursor-not-allowed flex gap-[0_15px] opacity-60 text-Light-700 shadow-sm`,
       !checked &&
         !disabled &&
         `cursor-pointer flex gap-[0_15px] text-Light-700 hover:-translate-y-[1px] shadow-sm hover:text-Primary-500 hover:animate-[wiggle_1s_ease-in-out_infinite] `,
@@ -49,8 +50,8 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
     divWrapper: cn(
       `flex items-center justify-center w-[18px] h-[18px] rounded-[50%]
          hover:not-disabled:bg-Dark-500 hover:active:not-disabled:bg-Dark-500`,
-      disabled && 'cursor-default text-Dark-100',
-      position === 'left' && '-ml-[10px]'
+      disabled && 'cursor-not-allowed text-Dark-100',
+      labelPosition === 'left' && '-ml-[10px]'
     ),
     checkboxPrimitiveRoot: cn(
       checked &&
@@ -78,28 +79,29 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
           focus-visible:before:l-[-50%] focus-visible:before:scale-100 focus-visible:before:w-[26px]
           focus-visible:before:h-[26px] focus-visible:before:-translate-y-3 focus-visible:before:-translate-x-1
           focus-visible:before:bg-Dark-500`,
-      checked && disabled && `cursor-default rounded relative w-[18px] h-[18px] bg-Light-100/50`,
+      checked &&
+        disabled &&
+        `cursor-not-allowed rounded relative w-[18px] h-[18px] bg-Light-100/50`,
       !checked &&
         disabled &&
-        'cursor-default rounded relative w-[18px] h-[18px] bg-Dark-900 opacity-60 border-2 border-bg-Dark-100'
+        'cursor-not-allowed rounded relative w-[18px] h-[18px] bg-Dark-900 opacity-60 border-2 border-bg-Dark-100'
     ),
     divDisabled: cn(
       disabled
-        ? `absolute z-0 inset-0 rounded`
+        ? `absolute z-0 inset-0 rounded cursor-not-allowed`
         : `absolute z-0 inset-0 border-2 border-Light-100 rounded`
     ),
     icon: cn(
-      disabled && `fill-[#fff]-100 border border-2 border-Light-100 rounded text-Light-100`,
+      disabled &&
+        `fill-[#fff]-100 border border-2 border-Light-100 rounded text-Light-100 cursor-not-allowed`,
       checked &&
         !disabled &&
-        `fill-[#fff-100] absolute z-0 inset-0 border-2 border-Light-100 rounded
-           hover:before:
-          `
+        `fill-[#fff-100] absolute z-0 inset-0 border-2 border-Light-100 rounded`
     ),
     indicator: cn(
       disabled &&
         checked &&
-        `text-Light-100 appearance-none border-2 border-Light-100 rounded w-[18px] h-[18px] bg-Light-100/50`,
+        `cursor-not-allowed text-Light-100 appearance-none border-2 border-Light-100 rounded w-[18px] h-[18px] bg-Light-100/50`,
       !disabled && checked && 'fill-Light-100'
     ),
   }
@@ -115,6 +117,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
           disabled={disabled}
           defaultChecked
           id={id}
+          required={required}
           asChild={false}
           onCheckedChange={onValueChange}
           {...rest}

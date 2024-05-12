@@ -6,10 +6,24 @@ import { PolymorphComponentPropsWithRef } from '@/common/types/polymorph'
 type CustomProps = {
   className?: string
   endIcon?: ReactNode
+  /**
+   * Увеличивает кнопку на всю свободную ширину
+   */
   fullWidth?: boolean
   startIcon?: ReactNode
+  /**
+   * Вариант кнопки. Отвечает за визуал кнопки.
+   */
   variant?: 'outline' | 'primary' | 'secondary' | 'text' | 'ghost' | 'link' | 'destructive'
   disabled?: boolean
+  /**
+   * Размеры кнопки
+   */
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+  /**
+   * Флаг, делающий кнопку квадратной
+   */
+  square?: boolean
 }
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
@@ -27,6 +41,8 @@ export const Button: ButtonComponent = forwardRef(
       startIcon,
       variant = 'primary',
       disabled,
+      size = 'lg',
+      square = false,
       ...restProps
     }: Props<T>,
     ref: ElementRef<T>
@@ -130,7 +146,12 @@ export const Button: ButtonComponent = forwardRef(
         variant === 'destructive' &&
           disabled &&
           `bg-red-700/20 text-white-100/10 cursor-not-allowed`,
-        className
+        size === 'sm' && `w-[100px] h-[36px]`,
+        size === 'lg' && `w-[180px] h-[36px]`,
+        size === 'xl' && `w-[220px] h-[36px]`,
+        size === '2xl' && `w-[260px] h-[36px]`,
+        className,
+        square && `rounded-none`
       ),
     }
 
