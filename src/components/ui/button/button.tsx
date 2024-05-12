@@ -1,29 +1,29 @@
-import { ElementRef, ElementType, forwardRef, ReactNode } from 'react'
+import { ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
-import clsx from 'clsx'
 import { PolymorphComponentPropsWithRef } from '@/common/types/polymorph'
+import clsx from 'clsx'
 
 type CustomProps = {
   className?: string
+  disabled?: boolean
   endIcon?: ReactNode
   /**
    * Увеличивает кнопку на всю свободную ширину
    */
   fullWidth?: boolean
-  startIcon?: ReactNode
-  /**
-   * Вариант кнопки. Отвечает за визуал кнопки.
-   */
-  variant?: 'outline' | 'primary' | 'secondary' | 'text' | 'ghost' | 'link' | 'destructive'
-  disabled?: boolean
   /**
    * Размеры кнопки
    */
-  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+  size?: '2xl' | 'lg' | 'md' | 'sm' | 'xl'
   /**
    * Флаг, делающий кнопку квадратной
    */
   square?: boolean
+  startIcon?: ReactNode
+  /**
+   * Вариант кнопки. Отвечает за визуал кнопки.
+   */
+  variant?: 'destructive' | 'ghost' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 }
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
@@ -36,13 +36,13 @@ export const Button: ButtonComponent = forwardRef(
       asComponent,
       children,
       className,
+      disabled,
       endIcon,
       fullWidth,
-      startIcon,
-      variant = 'primary',
-      disabled,
       size = 'lg',
       square = false,
+      startIcon,
+      variant = 'primary',
       ...restProps
     }: Props<T>,
     ref: ElementRef<T>

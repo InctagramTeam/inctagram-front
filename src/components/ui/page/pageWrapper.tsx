@@ -1,22 +1,21 @@
-import { ComponentPropsWithoutRef, CSSProperties, ReactElement } from 'react'
-import { cn } from '@/utils/merge-cn'
+import { CSSProperties, ComponentPropsWithoutRef, ReactElement } from 'react'
+
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
+import { cn } from '@/utils/merge-cn'
 import instagram from 'public/inctagram.png'
 
-type Props = ComponentPropsWithoutRef<'section'> & {
-  paddingTop?: CSSProperties['paddingTop']
+type Props = {
   description?: string
   favicon?: string
+  paddingTop?: CSSProperties['paddingTop']
   title?: string
-}
+} & ComponentPropsWithoutRef<'section'>
 
 export const PageWrapper = ({
   children,
-  title,
+  className,
   description,
   favicon,
-  className,
-  style,
   /**
    * Отступ страницы от секции
    * Например: Отступ страницы SingIn от Header
@@ -24,6 +23,8 @@ export const PageWrapper = ({
    задаем props при отрисовки согласно макета paddingTop = 36рх)
    */
   paddingTop = '24px',
+  style,
+  title,
   ...rest
 }: Props): ReactElement => {
   const classesPage = cn(`flex items-center justify-center max-w-[1280px] w-full`, className)
@@ -36,7 +37,7 @@ export const PageWrapper = ({
       style={styles}
       {...rest}
     >
-      <HeadMeta favicon={instagram.src} title={title} description={description} />
+      <HeadMeta description={description} favicon={instagram.src} title={title} />
       {children}
     </section>
   )

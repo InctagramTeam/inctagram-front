@@ -1,47 +1,25 @@
 import {
-  ComponentPropsWithoutRef,
   CSSProperties,
+  ComponentPropsWithoutRef,
   ElementRef,
   ElementType,
   ForwardedRef,
-  forwardRef,
   PropsWithChildren,
   ReactNode,
+  forwardRef,
 } from 'react'
+
 import { clsx } from 'clsx'
 
 // Types
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, TextProps>
 type TextComponent = <T extends ElementType = 'p'>(props: Props<T>) => ReactNode
 
-export type TextColor = 'warning' | 'error' | 'info' | 'primary' | 'success' | 'lightDark' | 'dark'
-export type TextAlign = 'right' | 'left' | 'center'
+export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'
+export type TextAlign = 'center' | 'left' | 'right'
 
 // PropsType
 type TextProps = {
-  /**
-   * Пример использования с props "as": Текст будет ссылкой:
-   * <Text as={Link} to={'main/auth/sign-in'} variant="subtitle1" className={s.name}>Привет!</Text>
-   */
-  textAlign?: TextAlign
-  textColor?: TextColor
-  variant?:
-    | 'Large' // 26px;
-    | 'H1' // 20px;
-    | 'H2' // 18px;
-    | 'H3' // 16px;
-    | 'regular_text_16' // 16px - BASE FONT;
-    | 'bold_text_16'
-    | 'regular-text-14'
-    | 'medium-text-14'
-    | 'bold_text_14'
-    | 'small-text-12'
-    | 'semi-bold_small_text_12'
-    | 'regular-link_14'
-    | 'small-link_12'
-    | 'error_text_12'
-    | 'muted_text'
-    | 'inline_code'
   children: ReactNode
   color?: CSSProperties['color']
   mb?: CSSProperties['marginBottom']
@@ -50,29 +28,38 @@ type TextProps = {
   mt?: CSSProperties['marginTop']
   mx?: CSSProperties['marginRight']
   my?: CSSProperties['marginLeft']
+  /**
+   * Пример использования с props "as": Текст будет ссылкой:
+   * <Text as={Link} to={'main/auth/sign-in'} variant="subtitle1" className={s.name}>Привет!</Text>
+   */
+  textAlign?: TextAlign
+  textColor?: TextColor
+  variant?:
+    | 'H1' // 20px;
+    | 'H2' // 18px;
+    | 'H3' // 16px;
+    | 'Large' // 26px;
+    | 'bold_text_14'
+    | 'bold_text_16'
+    | 'error_text_12'
+    | 'inline_code'
+    | 'medium-text-14'
+    | 'muted_text'
+    | 'regular_text_16' // 16px - BASE FONT;
+    | 'regular-link_14'
+    | 'regular-text-14'
+    | 'semi-bold_small_text_12'
+    | 'small-link_12'
+    | 'small-text-12'
 }
 
 // Component:
 export const Text: TextComponent = forwardRef(
   <T extends ElementType = 'span'>(
     {
-      className,
       asComponent,
-      /**
-       * Задаёт шрифт + размер + межстрочный интервал текста
-       */
-      variant = 'regular_text_16',
-      textColor = 'primary',
-      /**
-       * style - для передачи цвета текста пропсом при отрисовки компонента Text
-       * Пример использования: <Text variant={'Large'} style={{color: "green"}}>Some text</Text>
-       */
-      style,
-      /**
-       * Выравнивание текста
-       */
-      textAlign = 'left',
       children,
+      className,
       color,
       /**
        * mb, ml, mr, mt, mx, my - Внешние отступы (маржины) Text от соседних элементов
@@ -83,6 +70,20 @@ export const Text: TextComponent = forwardRef(
       mt,
       mx,
       my,
+      /**
+       * style - для передачи цвета текста пропсом при отрисовки компонента Text
+       * Пример использования: <Text variant={'Large'} style={{color: "green"}}>Some text</Text>
+       */
+      style,
+      /**
+       * Выравнивание текста
+       */
+      textAlign = 'left',
+      textColor = 'primary',
+      /**
+       * Задаёт шрифт + размер + межстрочный интервал текста
+       */
+      variant = 'regular_text_16',
       ...textProps
     }: Props<T>,
     ref: ElementRef<T>
@@ -142,11 +143,15 @@ export const Text: TextComponent = forwardRef(
     return (
       <>
         {variant === 'inline_code' ? (
-          <code className="relative rounded bg-Light-900/90 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+          <code
+            className={
+              'relative rounded bg-Light-900/90 px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold'
+            }
+          >
             {children}
           </code>
         ) : (
-          <Component ref={ref} className={textClasses} style={styles} {...textProps}>
+          <Component className={textClasses} ref={ref} style={styles} {...textProps}>
             {children}
           </Component>
         )}
@@ -164,13 +169,11 @@ interface AsComponentProp<T extends ElementType> {
   asComponent?: T
 }
 
-export type PolymorphComponentProps<T extends ElementType, P = {}> = PropsWithChildren<
-  P & AsComponentProp<T>
+export type PolymorphComponentProps<T extends ElementType, P = {}> = Omit<
+  ComponentPropsWithoutRef<T>,
+  keyof (AsComponentProp<T> & P)
 > &
-  Omit<ComponentPropsWithoutRef<T>, keyof (AsComponentProp<T> & P)>
+  PropsWithChildren<AsComponentProp<T> & P>
 
-export type PolymorphComponentPropsWithRef<T extends ElementType, P = {}> = PolymorphComponentProps<
-  T,
-  P
-> &
-  ForwardedRefProp<T>
+export type PolymorphComponentPropsWithRef<T extends ElementType, P = {}> = ForwardedRefProp<T> &
+  PolymorphComponentProps<T, P>

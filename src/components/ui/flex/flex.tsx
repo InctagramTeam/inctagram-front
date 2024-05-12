@@ -1,5 +1,5 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef, CSSProperties } from 'react'
-import { cn } from '@/utils/merge-cn'
+import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
+
 import { clsx } from 'clsx'
 
 // types
@@ -82,52 +82,52 @@ const gapClasses: Record<FlexGap, string> = {
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
 export interface FlexProps extends DivProps {
+  children: ReactNode
+  className?: string
+  direction?: FlexDirection
+  gap?: FlexGap
   /**
    * Выравнивание флекс элементов
    */
   items?: FlexAlignItems
-  children: ReactNode
+  justify?: FlexJustifyContent
+  m?: CSSProperties['margin']
+  max?: CSSProperties['width']
+  /**
+   * Растягивает Flex контейнер на всю ширину
+   */
+  maxWidth?: boolean
   mb?: CSSProperties['marginBottom']
   ml?: CSSProperties['marginLeft']
   mr?: CSSProperties['marginRight']
   mt?: CSSProperties['marginTop']
   mx?: CSSProperties['marginRight']
   my?: CSSProperties['marginLeft']
-  m?: CSSProperties['margin']
   p?: CSSProperties['padding']
   width?: CSSProperties['width']
-  max?: CSSProperties['width']
-  className?: string
-  direction?: FlexDirection
-  gap?: FlexGap
-  justify?: FlexJustifyContent
-  /**
-   * Растягивает Flex контейнер на всю ширину
-   */
-  maxWidth?: boolean
   wrap?: FlexWrap
 }
 
 const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   const {
-    items = 'center',
     children,
     className,
     direction = 'row',
-    width,
     gap,
+    items = 'center',
+    justify = 'start',
     m,
-    p,
+    max,
+    maxWidth,
     mb,
     ml,
     mr,
     mt,
     mx,
     my,
+    p,
     style,
-    justify = 'start',
-    maxWidth,
-    max,
+    width,
     wrap = 'nowrap',
     ...flexProps
   } = props
@@ -157,9 +157,9 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
 
   return (
     <div
-      style={styles}
-      ref={ref}
       className={clsx('flex', maxWidth && 'w-full', classes, className)}
+      ref={ref}
+      style={styles}
       {...flexProps}
     >
       {children}
