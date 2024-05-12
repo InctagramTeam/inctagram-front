@@ -1,6 +1,10 @@
-import type { SVGProps } from 'react'
-import { Ref, forwardRef, memo } from 'react'
-const GithubIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+import { forwardRef, HTMLAttributes, memo, Ref } from 'react'
+
+type SvgWithColor = {
+  className?: string
+} & HTMLAttributes<SVGElement>
+
+const GithubIcon = (props: SvgWithColor, ref: Ref<SVGSVGElement>) => (
   <svg
     width={36}
     height={36}

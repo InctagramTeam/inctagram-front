@@ -1,7 +1,12 @@
-import type { SVGProps } from 'react'
-import { Ref, forwardRef, memo } from 'react'
-const CheckIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+import { forwardRef, HTMLAttributes, memo, Ref } from 'react'
+
+type SvgWithColor = {
+  className?: string
+} & HTMLAttributes<SVGElement>
+
+const CheckIcon = (props: SvgWithColor, ref: Ref<SVGSVGElement>) => (
   <svg
+    ref={ref}
     width="100%"
     height="100%"
     viewBox="0 0 18 18"

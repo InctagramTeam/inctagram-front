@@ -1,18 +1,32 @@
-import { ChangeEvent, ComponentPropsWithoutRef, KeyboardEvent, forwardRef, useState } from 'react'
+import {
+  ChangeEvent,
+  ComponentPropsWithoutRef,
+  KeyboardEvent,
+  forwardRef,
+  useState,
+  ReactNode,
+} from 'react'
 
 import clsx from 'clsx'
 
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/assets/icons'
+import * as LabelPrimitive from '@radix-ui/react-label'
 
-export type TextFieldProps = {
+export type Props = {
   classNameInput?: string
+  /**
+   * Показ иконки внутри инпута: слева или справа от текста Инпута
+   */
+  endIcon?: ReactNode
+  startIcon?: ReactNode
   error?: string
+  disabled?: boolean
   label?: string
   onValueChange?: (value: string) => void
   type?: 'email' | 'password' | 'search' | 'text'
 } & Omit<ComponentPropsWithoutRef<'input'>, 'type'>
 
-export const Input = forwardRef<HTMLInputElement, TextFieldProps>(
+export const Input = forwardRef<HTMLInputElement, Props>(
   (
     {
       className,
@@ -23,9 +37,9 @@ export const Input = forwardRef<HTMLInputElement, TextFieldProps>(
       label = '',
       onKeyDown,
       onValueChange,
-      type = 'text',
+      type = 'search',
       value,
-      ...props
+      ...rest
     },
     ref
   ) => {
@@ -68,7 +82,7 @@ export const Input = forwardRef<HTMLInputElement, TextFieldProps>(
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-      props.onChange?.(e)
+      rest.onChange?.(e)
       onValueChange?.(e.target.value)
     }
     const clearFieldHandler = () => {
@@ -85,9 +99,9 @@ export const Input = forwardRef<HTMLInputElement, TextFieldProps>(
     return (
       <div className={classes.textField}>
         {label && (
-          <label className={classes.label} htmlFor={id}>
+          <LabelPrimitive.Root className={classes.label} htmlFor={id}>
             {label}
-          </label>
+          </LabelPrimitive.Root>
         )}
         <div className={`_InputWrapper_ relative`}>
           <input
@@ -99,9 +113,26 @@ export const Input = forwardRef<HTMLInputElement, TextFieldProps>(
             ref={ref}
             type={!isVisible ? type : 'text'}
             value={value}
-            {...props}
+            {...rest}
           />
-          {type === 'search' && (
+          {!!rest.startIcon ? (
+            <span
+              className={clsx(
+                `absolute top-1/2 text-Light-900 left-[12px] transform -translate-y-1/2 grid items-center w-[18px] h-[18px]`,
+                error &&
+                  label &&
+                  'absolute top-[18px] text-Dark-100 left-[12px] transform -translate-y-1/2 grid items-center w-[18px] h-[18px]',
+                error &&
+                  !label &&
+                  'absolute top-[19px] text-Dark-100 left-[12px] transform -translate-y-1/2 grid items-center w-[18px] h-[18px]',
+                disabled &&
+                  `absolute top-[19px] text-Dark-100 left-[12px] transform -translate-y-1/2 grid items-center w-[18px] h-[18px]
+                  cursor-not-allowed`
+              )}
+            >
+              {rest.startIcon}
+            </span>
+          ) : type === 'search' ? (
             <div
               className={clsx(
                 `_DivWrapper_ absolute top-1/2 left-[12px] transform -translate-y-1/2 text-Light-900
@@ -113,6 +144,18 @@ export const Input = forwardRef<HTMLInputElement, TextFieldProps>(
             >
               <SearchIcon />
             </div>
+          ) : null}
+          {!!rest.endIcon && (
+            <span
+              className={clsx(
+                `absolute text-Light-900 top-[25%] right-[12px] transform grid items-center w-[18px] h-[18px]`,
+                error
+                  ? 'absolute text-Light-900 top-[16%] right-[12px] transform grid items-center w-[18px] h-[18px]'
+                  : null
+              )}
+            >
+              {rest.endIcon}
+            </span>
           )}
           {type === 'password' &&
             (isVisible ? (
@@ -139,7 +182,7 @@ export const Input = forwardRef<HTMLInputElement, TextFieldProps>(
                 right-[12px] transform -translate-y-1/2 transition-colors ease-in-out delay-150
                 focus:ring-1 focus:ring-offset-1 focus:ring-opacity-70
                 focus:ring-offset-Primary-500 focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500`,
-                  disabled && `text-Dark-100`
+                  disabled && `text-Dark-100/60 cursor-not-allowed`
                 )}
                 disabled={disabled}
                 onClick={onVisible}

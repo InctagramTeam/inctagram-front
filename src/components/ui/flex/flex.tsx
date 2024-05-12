@@ -96,7 +96,7 @@ export interface FlexProps extends DivProps {
   m?: CSSProperties['margin']
   p?: CSSProperties['padding']
   width?: CSSProperties['width']
-  maxWidth_X?: CSSProperties['width']
+  max?: CSSProperties['width']
   className?: string
   direction?: FlexDirection
   gap?: FlexGap
@@ -127,7 +127,7 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     style,
     justify = 'start',
     maxWidth,
-    maxWidth_X,
+    max,
     wrap = 'nowrap',
     ...flexProps
   } = props
@@ -142,7 +142,7 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     ...(m && { margin: m }),
     ...(p && { padding: p }),
     ...(width && { width: width }),
-    ...(maxWidth_X && { maxWidth_X: maxWidth_X }),
+    ...(max && { max: max }),
     ...style,
   }
 

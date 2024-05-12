@@ -1,6 +1,10 @@
-import type { SVGProps } from 'react'
-import { Ref, forwardRef, memo } from 'react'
-const SvgCloseOutline = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+import { forwardRef, HTMLAttributes, memo, Ref } from 'react'
+
+type SvgWithColor = {
+  className?: string
+} & HTMLAttributes<SVGElement>
+
+const CloseIcon = (props: SvgWithColor, ref: Ref<SVGSVGElement>) => (
   <svg
     width={24}
     height={24}
@@ -10,19 +14,19 @@ const SvgCloseOutline = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>
     ref={ref}
     {...props}
   >
-    <g clipPath="url(#close-outline_svg__a)">
+    <g clipPath="url(#close_svg__a)">
       <path
         fill="currentColor"
         d="m13.41 12 4.3-4.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1.004 1.004 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l4.29-4.3 4.29 4.3a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095z"
       />
     </g>
     <defs>
-      <clipPath id="close-outline_svg__a">
+      <clipPath id="close_svg__a">
         <path fill="currentColor" d="M0 0h24v24H0z" />
       </clipPath>
     </defs>
   </svg>
 )
-const ForwardRef = forwardRef(SvgCloseOutline)
+const ForwardRef = forwardRef(CloseIcon)
 const Memo = memo(ForwardRef)
 export default Memo
