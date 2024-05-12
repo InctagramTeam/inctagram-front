@@ -2,31 +2,30 @@ import {
   ChangeEvent,
   ComponentPropsWithoutRef,
   KeyboardEvent,
+  ReactNode,
   forwardRef,
   useState,
-  ReactNode,
 } from 'react'
-
-import clsx from 'clsx'
 
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/assets/icons'
 import * as LabelPrimitive from '@radix-ui/react-label'
+import clsx from 'clsx'
 
-export type Props = {
+export type InputProps = {
   classNameInput?: string
+  disabled?: boolean
   /**
    * Показ иконки внутри инпута: слева или справа от текста Инпута
    */
   endIcon?: ReactNode
-  startIcon?: ReactNode
   error?: string
-  disabled?: boolean
   label?: string
   onValueChange?: (value: string) => void
+  startIcon?: ReactNode
   type?: 'email' | 'password' | 'search' | 'text'
 } & Omit<ComponentPropsWithoutRef<'input'>, 'type'>
 
-export const Input = forwardRef<HTMLInputElement, Props>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
@@ -115,7 +114,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             value={value}
             {...rest}
           />
-          {!!rest.startIcon ? (
+          {rest.startIcon ? (
             <span
               className={clsx(
                 `absolute top-1/2 text-Light-900 left-[12px] transform -translate-y-1/2 grid items-center w-[18px] h-[18px]`,
@@ -171,7 +170,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
                 )}
                 disabled={disabled}
                 onClick={onVisible}
-                type="button"
+                type={'button'}
               >
                 <EyeIcon />
               </button>
@@ -186,7 +185,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
                 )}
                 disabled={disabled}
                 onClick={onVisible}
-                type="button"
+                type={'button'}
               >
                 <EyeOffIcon />
               </button>
@@ -202,7 +201,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               )}
               disabled={disabled}
               onClick={clearFieldHandler}
-              type="button"
+              type={'button'}
             >
               <CloseIcon />
             </button>
