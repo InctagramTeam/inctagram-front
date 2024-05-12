@@ -11,25 +11,6 @@ import {
 import { clsx } from 'clsx'
 
 // Types
-interface ForwardedRefProp<T extends ElementType> {
-  ref?: ForwardedRef<ElementRef<T>>
-}
-
-interface AsComponentProp<T extends ElementType> {
-  as?: T
-}
-
-export type PolymorphComponentProps<T extends ElementType, P = {}> = PropsWithChildren<
-  P & AsComponentProp<T>
-> &
-  Omit<ComponentPropsWithoutRef<T>, keyof (AsComponentProp<T> & P)>
-
-export type PolymorphComponentPropsWithRef<T extends ElementType, P = {}> = PolymorphComponentProps<
-  T,
-  P
-> &
-  ForwardedRefProp<T>
-
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, TextProps>
 type TextComponent = <T extends ElementType = 'p'>(props: Props<T>) => ReactNode
 
@@ -42,7 +23,7 @@ type TextProps = {
    * Пример использования с props "as": Текст будет ссылкой:
    * <Text as={Link} to={'main/auth/sign-in'} variant="subtitle1" className={s.name}>Привет!</Text>
    */
-  align?: TextAlign
+  textAlign?: TextAlign
   textColor?: TextColor
   variant?:
     | 'Large' // 26px;
@@ -73,10 +54,10 @@ type TextProps = {
 
 // Component:
 export const Text: TextComponent = forwardRef(
-  <T extends ElementType = 'p'>(
+  <T extends ElementType = 'span'>(
     {
       className,
-      as,
+      asComponent,
       /**
        * Задаёт шрифт + размер + межстрочный интервал текста
        */
@@ -90,7 +71,7 @@ export const Text: TextComponent = forwardRef(
       /**
        * Выравнивание текста
        */
-      align = 'left',
+      textAlign = 'left',
       children,
       color,
       /**
@@ -120,7 +101,7 @@ export const Text: TextComponent = forwardRef(
       variant === 'small-text-12' && `text-small-text-12`,
       variant === 'semi-bold_small_text_12' && `text-semi-bold_small_text_12`,
       variant === 'regular-link_14' && `text-regular_link-14 underline cursor-pointer`,
-      variant === 'small-link_12' && `text-small-link_12 underline`,
+      variant === 'small-link_12' && `text-small-link_12 text-Primary-300 underline cursor pointer`,
 
       // Additional fonts
       variant === 'error_text_12' && `text-small-text-12 text-Danger-500`,
@@ -139,9 +120,9 @@ export const Text: TextComponent = forwardRef(
       textColor === 'lightDark' && `text-Dark-100`,
       textColor === 'dark' && `text-Success-900`,
 
-      align === 'center' && `text-center`,
-      align === 'left' && `text-left`,
-      align === 'right' && `text-right`,
+      textAlign === 'center' && `text-center`,
+      textAlign === 'left' && `text-left`,
+      textAlign === 'right' && `text-right`,
       className
     )
 
@@ -156,7 +137,7 @@ export const Text: TextComponent = forwardRef(
       ...style,
     }
 
-    const Component = as || 'p'
+    const Component = asComponent || 'p'
 
     return (
       <>
@@ -173,3 +154,23 @@ export const Text: TextComponent = forwardRef(
     )
   }
 )
+
+// PolymorphTypes
+interface ForwardedRefProp<T extends ElementType> {
+  ref?: ForwardedRef<ElementRef<T>>
+}
+
+interface AsComponentProp<T extends ElementType> {
+  asComponent?: T
+}
+
+export type PolymorphComponentProps<T extends ElementType, P = {}> = PropsWithChildren<
+  P & AsComponentProp<T>
+> &
+  Omit<ComponentPropsWithoutRef<T>, keyof (AsComponentProp<T> & P)>
+
+export type PolymorphComponentPropsWithRef<T extends ElementType, P = {}> = PolymorphComponentProps<
+  T,
+  P
+> &
+  ForwardedRefProp<T>

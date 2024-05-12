@@ -1,6 +1,10 @@
-import type { SVGProps } from 'react'
-import { Ref, forwardRef, memo } from 'react'
-const EyeOffIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+import { forwardRef, HTMLAttributes, memo, Ref } from 'react'
+
+type SvgWithColor = {
+  className?: string
+} & HTMLAttributes<SVGElement>
+
+const EyeOffIcon = (props: SvgWithColor, ref: Ref<SVGSVGElement>) => (
   <svg
     width={24}
     height={24}

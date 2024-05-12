@@ -1,7 +1,10 @@
-import type { SVGProps } from 'react'
-import { Ref, forwardRef, memo } from 'react'
+import { forwardRef, HTMLAttributes, memo, Ref } from 'react'
 
-const CloseIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+type SvgWithColor = {
+  className?: string
+} & HTMLAttributes<SVGElement>
+
+const CloseIcon = (props: SvgWithColor, ref: Ref<SVGSVGElement>) => (
   <svg
     width={24}
     height={24}

@@ -15,11 +15,12 @@ import * as LabelPrimitive from '@radix-ui/react-label'
 export type Props = {
   classNameInput?: string
   /**
-   * Показ иконки внутри инпута: слева или справа от текста placeholder_a
+   * Показ иконки внутри инпута: слева или справа от текста Инпута
    */
   endIcon?: ReactNode
   startIcon?: ReactNode
   error?: string
+  disabled?: boolean
   label?: string
   onValueChange?: (value: string) => void
   type?: 'email' | 'password' | 'search' | 'text'
