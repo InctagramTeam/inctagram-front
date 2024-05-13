@@ -1,10 +1,6 @@
-import { HTMLAttributes, Ref, forwardRef, memo } from 'react'
+import { Ref, SVGProps, forwardRef, memo } from 'react'
 
-type SvgWithColor = {
-  className?: string
-} & HTMLAttributes<SVGElement>
-
-const SearchIcon = (props: SvgWithColor, ref: Ref<SVGSVGElement>) => (
+const SearchIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg fill={'currentColor'} height={'20'} ref={ref} viewBox={'0 0 24 24'} width={'20'}>
     <path
       d={

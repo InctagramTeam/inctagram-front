@@ -1,8 +1,6 @@
-import { ComponentPropsWithoutRef, CSSProperties, ElementType, ReactNode } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
 import { clsx } from 'clsx'
-
-import s from './typography.module.scss'
 
 export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'
 export type TextAlign = 'center' | 'left' | 'right'
@@ -71,7 +69,7 @@ export function Text<T extends ElementType = 'p'>({
    */
   variant = 'regular_text_16',
   ...rest
-}: TextProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>>) {
+}: Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>> & TextProps<T>) {
   const textClasses = clsx(
     // Main fonts
     variant === 'Large' && `text-Large-26`,

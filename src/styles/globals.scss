@@ -59,7 +59,6 @@
   /* Reset ,browser Input styles */
   input[type='search']::-webkit-search-cancel-button {
     display: none;
-    appearance: none;
   }
 
   input[type='search']::-webkit-search-decoration {
@@ -112,7 +111,7 @@
 
   :root {
     // My vars in APP
-    --header-height: 3.75rem;
+    --header-height: 3.75rem; // 60px
 
     // Default variables for light theme shad_cn:
     --background: #fff;

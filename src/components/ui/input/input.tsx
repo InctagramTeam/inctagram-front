@@ -7,28 +7,30 @@ import {
   useRef,
   useState,
 } from 'react'
+
+import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/assets/icons'
+import { Text } from '@/components/ui/text/text'
+import { mergeRefs } from '@/utils/merge-refs'
 import { clsx } from 'clsx'
 
-import { Text } from '@/components/ui/text/text'
-import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/assets/icons'
-import { mergeRefs } from '@/utils/merge-refs'
-
-export type TextFieldProps = {
-  // У нас компонент инпут, но он вложен в див и если нам понадобится, например, добавить марджины
-  // там где используется инпут,
-  // то надо будет присвоить ему класс и применить стили
-  // Но класс надо будет передать именно в контейнер, то есть див, а не в сам инпут,
-  // чтобы марджины были у инпута,
-  // лэйбла и у всего того что в контейнере)
-  // Пример:
-  // <FormTextField
-  // inputProps={{ className: s.formTextField }} // этот класс пойдет в инпут
-  // className = {'divClassName'} // этот пойдет в див
-  // /> -- То же самое с labelProps
-  containerProps?: ComponentProps<'div'>
-  errorMessage?: string
-  label?: string
+export type InputProps = {
   disabled?: boolean
+  /**
+   * --> Чтобы задать стили отдельно, для элементов html разметки снаружи достучаться до них <--
+   * Пример использования:
+   * <Input
+   *    ref={inputRef}
+   *   labelProps={{ className: `text-blue-700` }} // --> стили зададаться для label
+   *   divContainerProps={{ className: `text-blue-700` }}
+   *   className={`w-full max-w-[330px]`} --> стили зададаться для:<div {...divContainerProps} className={classNames.root}>
+   *   label={'Username'}
+   *   type={'text'}
+   * />
+   */
+  divContainerProps?: ComponentProps<'div'>
+  errorMessage?: string
+  inputProps?: ComponentProps<'input'>
+  label?: string
   labelProps?: ComponentProps<'label'>
   /**
    * Обратный вызов, который вызывается при нажатии на кнопку очистки
@@ -36,36 +38,50 @@ export type TextFieldProps = {
    */
   onClearInput?: () => void
   onValueChange?: (value: string) => void
-  // Так как мы делаем компоненты универсальными и нам нужны все возможные пропсы,
-  // которые мы можем передать в нативный элемент,
-  // то есть html тег, то мы используем тип ComponentPropsWithoutRef<‘input’>
-  // и в дженерике указываем для какого именно тэга
+  /**
+   * Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы,
+   * которые мы можем передать в нативный элемент,
+   * т.e html тег, то мы используем тип ComponentPropsWithoutRef<‘input’>
+   * и в дженерике указываем для какого именно тэга
+   */
 } & ComponentPropsWithoutRef<'input'>
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
-      containerProps,
-      errorMessage = 'Error',
-      id,
       disabled,
-      label,
-      labelProps,
+      divContainerProps = {},
+      errorMessage = '',
+      id,
+      inputProps = {},
+      label = '',
+      labelProps = {},
       onChange,
       onClearInput,
       onValueChange,
       placeholder,
-      type = 'text',
+      type = 'search',
       ...restProps
     },
+    /**
+     * Так как используем react-hook-form, он работает через рефы, то должны принимать ref
+     */
     forwardedRef
   ) => {
     const generatedId = useId()
     const finalId = id ?? generatedId
 
-    const inputRefOrTextareaRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
-    const finalRef = mergeRefs([forwardedRef, inputRefOrTextareaRef])
+    /**
+     * Чтобы получить доступ к инпуту: inputRef
+     */
+    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
+
+    /**
+     * Чтобы передать несколько ссылок (ref) на инпут нужно их скомбинировать в finalRef
+     */
+    const finalRef = mergeRefs([forwardedRef, inputRef])
+
     const [revealPassword, setRevealPassword] = useState(false)
 
     const isRevealPasswordButtonShown = type === 'password'
@@ -79,26 +95,35 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       onValueChange?.(e.target.value)
     }
 
+    /**
+     * Вызывается при нажатии на кнопку для показа/скрытия пароля.
+     * Она инвертирует состояние revealPassword, указывающее, должен ли пароль быть видимым.
+     */
     function handleToggleShowPassword() {
       setRevealPassword((prevState: boolean) => !prevState)
     }
 
+    /**
+     * Вызывается при нажатии на кнопку ("Х") для очистки введенных данных в инпуте
+     * Она сначала вызывает переданный колбэк onClearInput, если он был передан, а затем
+     * очищает значение инпута и вызывает колбэк onValueChange, передавая ему пустую строку
+     */
     function handleClearInput() {
       if (onClearInput) {
         return onClearInput()
       }
 
-      if (!inputRefOrTextareaRef.current) {
+      if (!inputRef.current) {
         return
       }
-      inputRefOrTextareaRef.current.value = ''
+      inputRef.current.value = ''
       onValueChange?.('')
     }
 
     const classNames = {
       error: clsx(
         errorMessage && `_Error_ text-small-text-12 text-Danger-500 mt-1 `,
-        containerProps?.className
+        divContainerProps?.className
       ),
       input: clsx(
         `Input relative w-full h-full min-h-[36px] p-[6px_42px_6px_12px] text-regular-text-16 text-Light-900
@@ -118,12 +143,14 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         [type],
         type === 'text' || (type === 'email' && `pr-3`)
       ),
-      inputContainer: clsx(`_FieldContainer_ relative w-full text-regular-text-16 text-Light-900`),
+      inputWrapper: clsx(`_FieldContainer_ relative w-full text-regular-text-16 text-Light-900`),
       label: clsx(
         `_Label_ mb-[1px] text-Dark-100 text-regular-text-14 text-Light-900`,
         { [`text-Dark-100`]: disabled },
-        labelProps?.className
+        labelProps?.className,
+        disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
       ),
+      root: clsx(`_Root_  w-full min-w-[200px] text-regular-text-16 text-Light-900`, className),
       searchIcon: clsx(
         `_LeadingIcon_ absolute text-Light-900 top-1/2 bottom-1/2 left-0 transform -translate-t-1/2
       w-[20px] h-[20px] ml-[12px] p-0 bg-transparent border-o outline-0 ring-0
@@ -131,13 +158,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       focus-visible:outline-Primary-50
       active:not:disabled:text-Light-100
       `,
-        disabled && `text-Dark-100`
+        disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
       ),
-      root: clsx(`_Root_  w-full min-w-[200px] text-regular-text-16 text-Light-900`, className),
     }
 
     return (
-      <div {...containerProps} className={classNames.root}>
+      <div {...divContainerProps} className={classNames.root}>
         {label && (
           <Text
             {...labelProps}
@@ -149,22 +175,25 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             {label}
           </Text>
         )}
-        <div className={classNames.inputContainer}>
+        <div className={classNames.inputWrapper}>
           {isSearchField && (
             <div className={`top-1/4 absolute left-[3%]`}>
               <SearchIcon
                 className={classNames.searchIcon}
-                onClick={() => inputRefOrTextareaRef.current?.focus()}
+                onClick={() => inputRef.current?.focus()}
               />
             </div>
           )}
           <input
+            {...inputProps}
             className={classNames.input}
+            disabled={disabled}
             id={finalId}
             onChange={handleChange}
             placeholder={placeholder}
             ref={finalRef}
             type={finalType}
+            value={restProps.value}
             {...restProps}
           />
           {isRevealPasswordButtonShown && (
@@ -175,8 +204,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
               rounder-[0.25rem] outline-0 ring-0 focus:outline-none
               focus:ring-1 focus:ring-offset-1 focus:ring-opacity-70
               focus:ring-offset-Primary-500 focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500`,
-                disabled && `text-Dark-100 active:not:disabled:text-Light-100`
+                disabled &&
+                  `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed cursor-not-allowed`
               )}
+              disabled={disabled}
               onClick={handleToggleShowPassword}
               type={'button'}
             >
@@ -190,17 +221,17 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                 right-[12px] transform -translate-y-1/2 transition-colors ease-in-out delay-150
                 focus:ring-1 focus:ring-offset-1 focus:ring-opacity-70
                 focus:ring-offset-Primary-500 focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500`,
-                disabled && `text-Dark-100`
+                disabled && `text-Dark-100/60 cursor-not-allowed`
               )}
+              disabled={disabled}
               onClick={handleClearInput}
               type={'button'}
             >
-              <CloseIcon height={20} width={20} className={`text-Primary-500`} />
+              <CloseIcon className={`text-Primary-500`} height={20} width={20} />
             </button>
           )}
         </div>
-
-        <Text className={classNames.error} variant={'error_text_12'} style={{ color: 'red' }}>
+        <Text className={classNames.error} style={{ color: 'red' }} variant={'error_text_12'}>
           {errorMessage}
         </Text>
       </div>
@@ -208,6 +239,13 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   }
 )
 
+/**
+ * Для определения конечного типа инпута в компоненте Input. Она принимает два аргумента:
+ * type (тип инпута) и showPassword (флаг, указывающий, должен ли пароль быть видимым).
+ * Если тип инпута равен 'password' и пароль должен быть видимым (showPassword === true),
+ * функция возвращает 'text', в противном случае она возвращает исходный тип инпута.
+ * Это позволяет динамически изменять тип инпута для отображения или скрытия введенного текста в поле пароля
+ */
 function getFinalType(
   type: ComponentProps<'input'>['type'],
   showPassword: boolean
