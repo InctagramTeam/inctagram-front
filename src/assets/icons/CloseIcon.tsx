@@ -1,13 +1,8 @@
-import { HTMLAttributes, Ref, forwardRef, memo } from 'react'
+import { forwardRef, memo, Ref, SVGProps } from 'react'
 
-type SvgWithColor = {
-  className?: string
-} & HTMLAttributes<SVGElement>
-
-const CloseIcon = (props: SvgWithColor, ref: Ref<SVGSVGElement>) => (
+const CloseIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     fill={'none'}
-    height={24}
     ref={ref}
     viewBox={'0 0 24 24'}
     width={24}

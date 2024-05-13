@@ -5,9 +5,9 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Flex } from '@/components/ui/flex/flex'
 import { Input } from '@/components/ui/input'
-import { PageWrapper } from '@/components/ui/page'
-import { Text } from '@/components/ui/text'
 import Link from 'next/link'
+import { PageWrapper } from 'src/components/ui/page-wrapper'
+import { Text } from 'src/components/ui/text/text'
 
 type Props = {}
 
