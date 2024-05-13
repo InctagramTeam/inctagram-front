@@ -32,6 +32,7 @@ module.exports = {
     },
     extend: {
       spacing: {
+        // Custom vars
         'header-height': '3.75rem', // 60px
       },
       // Custom fonts
