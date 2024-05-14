@@ -1,4 +1,4 @@
-import { forwardRef, memo, Ref, SVGProps } from 'react'
+import { Ref, SVGProps, forwardRef, memo } from 'react'
 
 const CloseIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg

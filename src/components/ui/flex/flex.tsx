@@ -11,8 +11,8 @@ export type FlexJustifyContent =
   | 'spaceEvenly'
   | 'start'
 
-export type FlexAlignItems = 'center' | 'end' | 'start'
-export type FlexDirection = 'column' | 'row'
+export type FlexAlignItems = 'baseline' | 'center' | 'end' | 'start' | 'stretch'
+export type FlexDirection = 'col_reverse' | 'column' | 'row' | 'row_reverse'
 export type FlexWrap = 'nowrap' | 'wrap'
 export type FlexGap =
   | '1'
@@ -24,7 +24,10 @@ export type FlexGap =
   | '10'
   | '12'
   | '14'
+  | '16'
+  | '18'
   | '20'
+  | '22'
   | '24'
   | '26'
   | '30'
@@ -46,14 +49,18 @@ const justifyClasses: Record<FlexJustifyContent, string> = {
 }
 
 const alignClasses: Record<FlexAlignItems, string> = {
+  baseline: 'items-baseline',
   center: 'items-center',
   end: 'items-end',
   start: 'items-start',
+  stretch: 'items-stretch',
 }
 
 const directionClasses: Record<FlexDirection, string> = {
+  col_reverse: 'flex-col-reverse',
   column: 'flex flex-col',
   row: 'flex flex-row',
+  row_reverse: 'flex-row-reverse',
 }
 
 const gapClasses: Record<FlexGap, string> = {
@@ -66,7 +73,10 @@ const gapClasses: Record<FlexGap, string> = {
   10: 'gap-[10px]',
   12: 'gap-[12px]',
   14: 'gap-[14px]',
+  16: 'gap-[16px]',
+  18: 'gap-[18px]',
   20: 'gap-[20px]',
+  22: 'gap-[22px]',
   24: 'gap-[24px]',
   26: 'gap-[26px]',
   30: 'gap-[30px]',
