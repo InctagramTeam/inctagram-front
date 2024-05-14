@@ -1,5 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import { ComponentPropsWithoutRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react'
 import CrossIcon from '@/assets/icons/CrossIcon'
 import { clsx } from 'clsx'
 
@@ -20,21 +20,33 @@ export const Modal = ({ open, onOpenChange, children, ...rest }: ModalProps) => 
 type ModalContentProps = {
   title?: string
   classNameOverlay?: string
-  children: ReactNode
+  children?: ReactNode
   customTitleComponent?: ReactNode
+  paddingTop?: CSSProperties['paddingTop']
+  style?: CSSProperties
 } & ComponentPropsWithoutRef<typeof Dialog.Content>
 
-export const ModalContent = ({ title, children, classNameOverlay, ...rest }: ModalContentProps) => {
+export const ModalContent = ({
+  title = '',
+  children,
+  classNameOverlay,
+  paddingTop = '12px',
+  style,
+  ...rest
+}: ModalContentProps) => {
+  const styles: CSSProperties = { paddingTop: paddingTop, ...style }
+
   return (
     <Dialog.Portal {...rest}>
       <Dialog.Overlay
         className={clsx(
-          `fixed inset-0 bg-Dark-700/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
+          `fixed inset-0 bg-Dark-900/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
           data-[state=open]:animate-[dialog-overlay-show_200ms]`,
           classNameOverlay
         )}
       />
       <Dialog.Content
+        style={styles}
         forceMount
         className="fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
         bg-Dark-300 p-8 text-Light-100 ring-1 ring-Dark-100 shadow-sm
@@ -46,8 +58,8 @@ export const ModalContent = ({ title, children, classNameOverlay, ...rest }: Mod
             {title}
           </Dialog.Title>
           <Dialog.Close
-            className="text-Light-100 w-6 h-6 hover:text-Light-700 absolute
-          -right-[10%] -top-[50%] -translate-x-1/2 -translate-y-1/2
+            className="text-Light-100 hover:text-Light-700 absolute
+          -right-[25px] top-[6px] -translate-x-1/2 -translate-y-1/2
           "
           >
             <CrossIcon />
