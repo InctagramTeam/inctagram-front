@@ -1,6 +1,5 @@
 import { getLayout } from '@/components/Layout/Layout'
 import { PageWrapper } from '@/components/ui/page'
-import TabSwitcher from '@/components/ui/tabs/tabs'
 
 const Home = () => {
   return (
