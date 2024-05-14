@@ -22,7 +22,7 @@ type ModalContentProps = {
   classNameOverlay?: string
   children?: ReactNode
   customTitleComponent?: ReactNode
-  paddingTop?: CSSProperties['paddingTop']
+  padding?: CSSProperties['padding']
   style?: CSSProperties
 } & ComponentPropsWithoutRef<typeof Dialog.Content>
 
@@ -30,11 +30,11 @@ export const ModalContent = ({
   title = '',
   children,
   classNameOverlay,
-  paddingTop = '12px',
+  padding = '12px 0 11px 36px',
   style,
   ...rest
 }: ModalContentProps) => {
-  const styles: CSSProperties = { paddingTop: paddingTop, ...style }
+  const styles: CSSProperties = { padding: padding, ...style }
 
   return (
     <Dialog.Portal {...rest}>
@@ -54,14 +54,10 @@ export const ModalContent = ({
         data-[state=open]:animate-[dialog-content-show_200ms]"
       >
         <div className="flex justify-between items-center relative">
-          <Dialog.Title className="text-xl pb-[11px] w-full border-b border-b-Dark-100">
+          <Dialog.Title className="text-xl pb-[11px] border-b border-b-Dark-100">
             {title}
           </Dialog.Title>
-          <Dialog.Close
-            className="text-Light-100 hover:text-Light-700 absolute
-          -right-[25px] top-[6px] -translate-x-1/2 -translate-y-1/2
-          "
-          >
+          <Dialog.Close className="text-Light-100 hover:text-Light-700 pr-4">
             <CrossIcon />
           </Dialog.Close>
         </div>
