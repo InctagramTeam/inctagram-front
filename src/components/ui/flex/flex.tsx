@@ -1,4 +1,4 @@
-import { CSSProperties, DetailedHTMLProps, forwardRef, HTMLAttributes, ReactNode } from 'react'
+import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
 
 import { clsx } from 'clsx'
 
@@ -11,8 +11,8 @@ export type FlexJustifyContent =
   | 'spaceEvenly'
   | 'start'
 
-export type FlexAlignItems = 'center' | 'end' | 'start' | 'baseline' | 'stretch'
-export type FlexDirection = 'column' | 'row' | 'row_reverse' | 'col_reverse'
+export type FlexAlignItems = 'baseline' | 'center' | 'end' | 'start' | 'stretch'
+export type FlexDirection = 'col_reverse' | 'column' | 'row' | 'row_reverse'
 export type FlexWrap = 'nowrap' | 'wrap'
 export type FlexGap =
   | '1'
@@ -40,27 +40,27 @@ export type FlexGap =
 
 // mapping types + classes
 const justifyClasses: Record<FlexJustifyContent, string> = {
-  start: 'justify-start',
   center: 'justify-center',
   end: 'justify-end',
   spaceAround: 'justify-around',
   spaceBetween: 'justify-between',
   spaceEvenly: 'justify-evenly',
+  start: 'justify-start',
 }
 
 const alignClasses: Record<FlexAlignItems, string> = {
+  baseline: 'items-baseline',
   center: 'items-center',
   end: 'items-end',
   start: 'items-start',
-  baseline: 'items-baseline',
   stretch: 'items-stretch',
 }
 
 const directionClasses: Record<FlexDirection, string> = {
+  col_reverse: 'flex-col-reverse',
   column: 'flex flex-col',
   row: 'flex flex-row',
   row_reverse: 'flex-row-reverse',
-  col_reverse: 'flex-col-reverse',
 }
 
 const gapClasses: Record<FlexGap, string> = {

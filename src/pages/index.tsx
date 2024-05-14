@@ -1,8 +1,6 @@
 import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 import { PageWrapper } from 'src/components/ui/page-wrapper'
-import { Modal } from '@/components/ui/modal/modal'
-import { Button } from '@/components/ui/button'
 
 function Public() {
   return (
@@ -16,12 +14,6 @@ function Public() {
         <Link href={'/favorites'}>Favorites</Link>
       </nav>
       <div></div>
-      <Modal>
-        <Modal.Button asChild className={'w-full max-w-[150px]'}>
-          <Button className={'w-full max-w-[150px]'}>Follow</Button>
-        </Modal.Button>
-        <Modal.Content title={'Slim'}>Hello</Modal.Content>
-      </Modal>
     </PageWrapper>
   )
 }
