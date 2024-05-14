@@ -1,10 +1,9 @@
 @import 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap';
+@import 'modal-animate';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import './nprogress';
 
 /* Shad_cn global styles: */
 @layer base {
@@ -39,6 +38,42 @@
     -webkit-text-fill-color: #8d9094;
   }
 
+  /* Scrollbar */
+  * {
+    scrollbar-color: var(--primary-500) var(--dark-500);
+    scrollbar-width: thin;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--dark-500);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--primary-500);
+  }
+
+  /* Reset ,browser Input styles */
+  input[type='search']::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  input[type='search']::-webkit-search-decoration {
+    display: none;
+  }
+
+  input[type='search']::-webkit-search-results-button {
+    display: none;
+  }
+
+  input[type='search']::-webkit-search-results-decoration {
+    display: none;
+  }
+
   input[type='file'],
   input[type='file']::-webkit-file-upload-button {
     @apply cursor-pointer;
@@ -56,12 +91,7 @@
 
   body {
     @apply bg-Dark-700 m-0 p-0 w-full min-h-full overflow-x-hidden
-    font-inter text-regular-text-16 leading-m-main-24 font-main-400 not-italic text-Light-100
-    scrollbar-thin scrollbar-thumb-teal-500 scrollbar-track-slate-700;
-  }
-
-  #__next {
-    @apply flex flex-col items-center w-full h-screen;
+    font-inter text-regular-text-16 leading-m-main-24 font-main-400 not-italic text-Light-100;
   }
 
   a {
@@ -81,6 +111,9 @@
   }
 
   :root {
+    // My vars in APP
+    --header-height: 3.75rem; // 60px
+
     // Default variables for light theme shad_cn:
     --background: #fff;
     --foreground: #373737;

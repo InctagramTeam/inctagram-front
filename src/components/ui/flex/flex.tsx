@@ -1,5 +1,5 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef, CSSProperties } from 'react'
-import { cn } from '@/utils/merge-cn'
+import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
+
 import { clsx } from 'clsx'
 
 // types
@@ -11,15 +11,23 @@ export type FlexJustifyContent =
   | 'spaceEvenly'
   | 'start'
 
-export type FlexAlignItems = 'center' | 'end' | 'start'
-export type FlexDirection = 'column' | 'row'
+export type FlexAlignItems = 'baseline' | 'center' | 'end' | 'start' | 'stretch'
+export type FlexDirection = 'col_reverse' | 'column' | 'row' | 'row_reverse'
 export type FlexWrap = 'nowrap' | 'wrap'
 export type FlexGap =
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '6'
   | '8'
   | '10'
   | '12'
   | '14'
+  | '16'
+  | '18'
   | '20'
+  | '22'
   | '24'
   | '26'
   | '30'
@@ -41,22 +49,34 @@ const justifyClasses: Record<FlexJustifyContent, string> = {
 }
 
 const alignClasses: Record<FlexAlignItems, string> = {
+  baseline: 'items-baseline',
   center: 'items-center',
   end: 'items-end',
   start: 'items-start',
+  stretch: 'items-stretch',
 }
 
 const directionClasses: Record<FlexDirection, string> = {
+  col_reverse: 'flex-col-reverse',
   column: 'flex flex-col',
   row: 'flex flex-row',
+  row_reverse: 'flex-row-reverse',
 }
 
 const gapClasses: Record<FlexGap, string> = {
+  1: 'gap-[1px]',
+  2: 'gap-[2px]',
+  3: 'gap-[3px]',
+  4: 'gap-[4px]',
+  6: 'gap-[6px]',
   8: 'gap-[8px]',
   10: 'gap-[10px]',
   12: 'gap-[12px]',
   14: 'gap-[14px]',
+  16: 'gap-[16px]',
+  18: 'gap-[18px]',
   20: 'gap-[20px]',
+  22: 'gap-[22px]',
   24: 'gap-[24px]',
   26: 'gap-[26px]',
   30: 'gap-[30px]',
@@ -72,48 +92,52 @@ const gapClasses: Record<FlexGap, string> = {
 type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
 export interface FlexProps extends DivProps {
+  children: ReactNode
+  className?: string
+  direction?: FlexDirection
+  gap?: FlexGap
   /**
    * Выравнивание флекс элементов
    */
-  align?: FlexAlignItems
-  children: ReactNode
+  items?: FlexAlignItems
+  justify?: FlexJustifyContent
+  m?: CSSProperties['margin']
+  max?: CSSProperties['width']
+  /**
+   * Растягивает Flex контейнер на всю ширину
+   */
+  maxWidth?: boolean
   mb?: CSSProperties['marginBottom']
   ml?: CSSProperties['marginLeft']
   mr?: CSSProperties['marginRight']
   mt?: CSSProperties['marginTop']
   mx?: CSSProperties['marginRight']
   my?: CSSProperties['marginLeft']
-  m?: CSSProperties['margin']
   p?: CSSProperties['padding']
-  className?: string
-  direction?: FlexDirection
-  gap?: FlexGap
-  justify?: FlexJustifyContent
-  /**
-   * Растягивает Flex контейнер на всю ширину
-   */
-  maxWidth?: boolean
+  width?: CSSProperties['width']
   wrap?: FlexWrap
 }
 
 const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
   const {
-    align = 'center',
     children,
     className,
     direction = 'row',
     gap,
+    items = 'center',
+    justify = 'start',
     m,
-    p,
+    max,
+    maxWidth,
     mb,
     ml,
     mr,
     mt,
     mx,
     my,
+    p,
     style,
-    justify = 'start',
-    maxWidth,
+    width,
     wrap = 'nowrap',
     ...flexProps
   } = props
@@ -127,13 +151,15 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
     ...(my && { marginBottom: my, marginTop: my }),
     ...(m && { margin: m }),
     ...(p && { padding: p }),
+    ...(width && { width: width }),
+    ...(max && { max: max }),
     ...style,
   }
 
   const classes = [
     className,
     justifyClasses[justify],
-    alignClasses[align],
+    alignClasses[items],
     directionClasses[direction],
     'flex-wrap',
     gap && gapClasses[gap],
@@ -141,9 +167,9 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
 
   return (
     <div
-      style={styles}
-      ref={ref}
       className={clsx('flex', maxWidth && 'w-full', classes, className)}
+      ref={ref}
+      style={styles}
       {...flexProps}
     >
       {children}
