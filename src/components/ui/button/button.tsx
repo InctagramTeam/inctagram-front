@@ -23,7 +23,7 @@ type CustomProps = {
   /**
    * Вариант кнопки. Отвечает за визуал кнопки.
    */
-  variant?: 'destructive' | 'ghost' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
+  variant?: 'destructive' | 'text' | 'link' | 'outline' | 'primary' | 'secondary'
 }
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
@@ -115,23 +115,21 @@ export const Button: ButtonComponent = forwardRef(
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300`,
         variant === 'link' && disabled && `text-Primary-900/50 cursor-not-allowed`,
-        variant === 'ghost' &&
+        variant === 'text' &&
           !disabled &&
-          `bg-[#AEB2B6]
+          `bg-Dark-700
           font-inter font-semi_bold-600 text-H3-16 text-Light-300
           active:bg-Dark-700 active:text-Primary-700
           active:transition-all duration-150 ease-in-out
-          hover:text-Light-300 hover:-translate-y-px transform
-          hover:transition-all duration-150 ease-in-out
+          hover:text-Primary-300 hover:transition-colors duration-150 ease-in-out hover:-translate-y-px transform
           focus:bg-Dark-500 focus:bg-Dark-700 focus:outline-none
           focus:ring-1 focus:ring-Primary-700 focus:ring-offset-1 focus:ring-opacity-50
           focus:ring-offset-Primary-700
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
-          focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300 focus-visible:[#AEB2B6]
+          focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300 focus-visible:Dark-700
           focus-visible:transition-all duration-150 ease-in-out
-          disabled:bg-[#AEB2B6] disabled:text-Light-300 disabled:cursor-not-allowed`,
-        variant === 'ghost' && disabled && `bg-[#8D9094] text-Light-500 cursor-not-allowed`,
-        variant === 'ghost' && disabled && `bg-Dark-500 text-Primary-900 cursor-not-allowed`,
+          disabled:bg-Dark-700 disabled:text-Light-300 disabled:cursor-not-allowed`,
+        variant === 'text' && disabled && `bg-Dark-700 text-Light-500 cursor-not-allowed`,
         variant === 'destructive' &&
           !disabled &&
           `bg-[#ff3f3f] text-Light-100 shadow-sm 

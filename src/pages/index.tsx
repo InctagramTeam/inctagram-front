@@ -1,22 +1,40 @@
 import { getLayout } from '@/components/Layout/Layout'
-import Link from 'next/link'
-import { PageWrapper } from 'src/components/ui/page-wrapper'
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import MoreIcon from '@/assets/icons/MoreIcon'
+import { Dropdown } from '@/components/ui/DropDownMenu'
+import { Text } from '@/components/ui/text'
+import TrashIcon from '@/assets/icons/TrashIcon'
+import EditIcon from '@/assets/icons/EditIcon'
 
 function Public() {
+  const [editMode, setEditMode] = useState(false)
+  const [openConfirmDelete, setOpenConfirmDelete] = useState(false)
+
+  const openEditModal = () => {
+    const handleActivateEditMode = () => setEditMode(true)
+  }
+
   return (
-    <PageWrapper title={'Main | Instagram'}>
-      <nav className={'navbar'}>
-        <Link href={'/home'}>Home</Link>
-        <Link href={'/profile'}>Profile</Link>
-        <Link href={'/messenger'}>Messenger</Link>
-        <Link href={'/statistics'}>Statistics</Link>
-        <Link href={'/search'}>Search</Link>
-        <Link href={'/favorites'}>Favorites</Link>
-      </nav>
-      <div></div>
-    </PageWrapper>
+    <div className="flex min-h-full items-center justify-center">
+      <Dropdown.Menu
+        align="end"
+        modal={false}
+        trigger={
+          <Button style={{ padding: '0' }} variant="text">
+            <MoreIcon />
+          </Button>
+        }
+      >
+        <Dropdown.Item onClick={openEditModal} startIcon={<EditIcon />}>
+          <Text variant="regular-text-14">Редактировать</Text>
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => setOpenConfirmDelete(true)} startIcon={<TrashIcon />}>
+          <Text variant="regular-text-14">Удалить</Text>
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </div>
   )
 }
-
 Public.getLayout = getLayout
 export default Public

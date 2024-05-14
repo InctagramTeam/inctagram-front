@@ -89,4 +89,6 @@ Modal.Close = Dialog.Close
  *        <div>Card</div>
  *     </Modal.Content>
  *  </Modal>
+ *
+ *  - data-[state=closed]:animate-[dialog-content-hide_200ms] --> При изменении дата атрибутов делаем анимацию
  */
