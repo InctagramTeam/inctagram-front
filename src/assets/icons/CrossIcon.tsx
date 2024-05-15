@@ -2,17 +2,17 @@ import { Ref, SVGProps, forwardRef, memo } from 'react'
 
 const CheckIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
-    fill={'none'}
-    height={'100%'}
     ref={ref}
-    viewBox={'0 0 18 18'}
-    width={'100%'}
-    xmlns={'http://www.w3.org/2000/svg'}
     {...props}
+    fill={'none'}
+    height={'16'}
+    viewBox={'0 0 14 14'}
+    width={'16'}
+    xmlns={'http://www.w3.org/2000/svg'}
   >
     <path
       d={
-        'M16 0H2a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V2a2 2 0 00-2-2zM7 14L2 9l1.41-1.41L7 11.17l7.59-7.59L16 5l-9 9z'
+        'M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z'
       }
       fill={'currentColor'}
     />

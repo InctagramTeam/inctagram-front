@@ -1,5 +1,5 @@
 import { getLayout } from '@/components/Layout/Layout'
-import { PageWrapper } from '@/components/ui/page'
+import { PageWrapper } from 'src/components/ui/page-wrapper'
 
 const Search = () => {
   return (

@@ -3,8 +3,10 @@ import type { AppProps } from 'next/app'
 
 import type { ReactElement, ReactNode } from 'react'
 
-import '@/styles/globals.scss'
 import { useLoader } from '@/components/hooks/use-loader'
+
+import '../styles/nprogress.scss'
+import '@/styles/globals.scss'
 
 export type NextPageWithLayout<P = {}, IP = P> = {
   getLayout?: (page: ReactElement) => ReactNode
