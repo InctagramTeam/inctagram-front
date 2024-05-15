@@ -23,19 +23,19 @@ export type Tab = {
 type TabsProps = {
   /** Контент табов передается в качестве дочерних компонентов */
   children: ReactNode
-  size?: 'base'
-
-  /** Массив с названиями табов, их значением и состоянием */
-  tabs: Tab[]
+  contentClassName?: string
 
   /** Собственные классы для настройки вида списка, кнопок и контентной части*/
   listClassName?: string
+
+  size?: 'base'
+  /** Массив с названиями табов, их значением и состоянием */
+  tabs: Tab[]
   triggerClassName?: string
-  contentClassName?: string
 }
 
 const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>((props, ref) => {
-  const { children, size, tabs, listClassName, triggerClassName, contentClassName } = props
+  const { children, contentClassName, listClassName, size, tabs, triggerClassName } = props
 
   const classes = {
     content: cn('w-full', contentClassName),
