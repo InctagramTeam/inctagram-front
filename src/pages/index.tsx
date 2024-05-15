@@ -16,24 +16,22 @@ function Public() {
   }
 
   return (
-    <div className="flex min-h-full items-center justify-center">
-      <Dropdown.Menu
-        align="end"
-        modal={false}
-        trigger={
-          <Button style={{ padding: '0' }} variant="text">
-            <MoreIcon />
-          </Button>
-        }
-      >
-        <Dropdown.Item onClick={openEditModal} startIcon={<EditIcon />}>
-          <Text variant="regular-text-14">Редактировать</Text>
-        </Dropdown.Item>
-        <Dropdown.Item onClick={() => setOpenConfirmDelete(true)} startIcon={<TrashIcon />}>
-          <Text variant="regular-text-14">Удалить</Text>
-        </Dropdown.Item>
-      </Dropdown.Menu>
-    </div>
+    <Dropdown.Menu
+      align="end"
+      modal={false}
+      trigger={
+        <Button style={{ padding: '0' }} variant="text">
+          <MoreIcon />
+        </Button>
+      }
+    >
+      <Dropdown.Item onClick={openEditModal} startIcon={<EditIcon />}>
+        <Text variant="regular-text-14">Редактировать</Text>
+      </Dropdown.Item>
+      <Dropdown.Item onClick={() => setOpenConfirmDelete(true)} startIcon={<TrashIcon />}>
+        <Text variant="regular-text-14">Удалить</Text>
+      </Dropdown.Item>
+    </Dropdown.Menu>
   )
 }
 Public.getLayout = getLayout

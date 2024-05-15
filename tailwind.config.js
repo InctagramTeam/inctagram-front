@@ -68,6 +68,7 @@ module.exports = {
       },
       // Design colors
       colors: {
+        current: 'currentColor',
         Primary: {
           100: '#73A5FF',
           300: '#4C8DFF',

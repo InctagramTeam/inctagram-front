@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
+import s from './dropdown.module.scss'
 
 type MenuProps = {
   className?: string
@@ -12,12 +13,6 @@ type MenuProps = {
   onOpenChange?: (open: boolean) => void
   open?: boolean
   /**
-   * onPointerDownOutside - Обработчик события мыши или "касание" пальцем экрана,
-   * вызываемый при возникновении события с указателем за пределами компонента.
-   * Его можно предотвратить, вызвав event.preventDefault.
-   */
-  portal?: boolean
-  /**
    * Выравнивание относительно триггера (кнопки)
    */
   align?: 'center' | 'end' | 'start'
@@ -25,6 +20,7 @@ type MenuProps = {
    * Расстояние в "px" от trigger-a
    */
   sideOffset?: number
+  side?: 'top' | 'right' | 'bottom' | 'left'
   trigger: ReactNode
 } & Omit<ComponentPropsWithoutRef<typeof RadixDropdown.Content>, 'asChild'>
 
@@ -37,58 +33,57 @@ export const Menu = forwardRef<ElementRef<typeof RadixDropdown.Content>, MenuPro
       onOpenChange,
       open,
       align = 'center',
-      sideOffset = 0,
-      portal = true,
+      sideOffset = 8,
+      side = 'top',
       trigger,
       ...rest
     },
     ref
   ) => {
-    const menuContent = (
-      <RadixDropdown.Content
-        align={align}
-        sideOffset={sideOffset}
-        className={clsx(
-          `_Content_ relative z-100 bg-Dark-500 border-1 border-Dark-100 rounded will-change-transform mt-1
-overflow-hidden p-2 text-left shadow-sm shadow-Dark-500 backdrop-blur
-data-[side=top]:animate-[slide-down-and-fade_150ms]
-data-[side=right]:animate-[slide-left-and-fade_150ms]
-data-[side=bottom]:animate-[slide-up-and-fade_150ms]
-data-[side=left]:animate-[slide-right-and-fade_150ms]
-focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50 focus:ring-offset-Dark-300
-focus-visible:outline-none focus-visible:ring-1 focus-visible:offset-1
-focus-visible:ring-opacity-50 focus-visible:ring-offset-Dark-300`,
-          className
-        )}
-        ref={ref}
-        {...rest}
-        onPointerDownOutside={e => {
-          if (!portal) {
-            e.detail.originalEvent.preventDefault()
-          }
-        }}
-      >
-        <RadixDropdown.Arrow
-          style={{ color: 'white' }}
-          className={`absolute z-1 bg-Dark-100 fill-Dark-500`}
-          height={10}
-          width={14}
-        />
-        <RadixDropdown.Arrow
-          style={{ color: 'white' }}
-          className={`absolute z-1 bg-Dark-100 fill-Dark-500 -top-1 left-0`}
-          height={10}
-          width={14}
-        />
-        {children}
-      </RadixDropdown.Content>
-    )
-
     return (
-      <RadixDropdown.Root modal={modal} onOpenChange={onOpenChange} open={open}>
-        <RadixDropdown.Trigger asChild>{trigger}</RadixDropdown.Trigger>
-        {portal ? <RadixDropdown.Portal>{menuContent}</RadixDropdown.Portal> : menuContent}
-      </RadixDropdown.Root>
+      <div>
+        <RadixDropdown.Root modal={modal} onOpenChange={onOpenChange} open={open}>
+          <RadixDropdown.Trigger
+            className={clsx(
+              `cursor-pointer block select-none rounded
+        hover:text-Primary-100 hover:transition-all duration-150 ease-in-out
+        focus-visible:outline-none`,
+              className
+            )}
+            asChild
+          >
+            {trigger}
+          </RadixDropdown.Trigger>
+          <RadixDropdown.Portal>
+            <RadixDropdown.Content
+              side={side}
+              align={align}
+              sideOffset={sideOffset}
+              className={clsx(
+                `_Content_ relative left-1/2 top-1/2 z-200 bg-Dark-700 ring-1 ring-Dark-100 rounded
+           -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center mt-4 will-change-transform
+          transition-all duration-150 ease-in out
+          overflow-hidden text-left shadow-xs shadow-Dark-500 backdrop-blur
+          data-[side=top]:animate-[slide-down-and-fade_150ms]
+          data-[side=right]:animate-[slide-left-and-fade_150ms]
+          data-[side=bottom]:animate-[slide-up-and-fade_150ms]
+          data-[side=left]:animate-[slide-right-and-fade_150ms]
+`,
+                className
+              )}
+              ref={ref}
+              {...rest}
+              onPointerDownOutside={e => e.detail.originalEvent.preventDefault()}
+            >
+              <div className={``}>
+                <RadixDropdown.Arrow className={s.DropdownMenuArrow} height={10} width={14} />
+                <RadixDropdown.Arrow className={s.DropdownMenuTwoArrow} height={10} width={14} />
+              </div>
+              {children}
+            </RadixDropdown.Content>
+          </RadixDropdown.Portal>
+        </RadixDropdown.Root>
+      </div>
     )
   }
 )
