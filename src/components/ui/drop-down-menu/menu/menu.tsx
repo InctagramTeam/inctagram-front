@@ -1,6 +1,5 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import { Dropdown } from '@/components/ui/drop-down-menu'
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
 
@@ -20,7 +19,7 @@ type MenuProps = {
   portal?: boolean
   side?: 'bottom' | 'left' | 'right' | 'top'
   /**
-   * Расстояние в "px" от trigger-a до RadixDropdown.Content
+   * Расстояние в "px" от trigger до RadixDropdown.Content
    */
   sideOffset?: number
   trigger: ReactNode
@@ -48,7 +47,7 @@ export const Menu = forwardRef<ElementRef<typeof RadixDropdown.Content>, MenuPro
         <RadixDropdown.Trigger
           asChild
           className={clsx(
-            `cursor-pointer block select-none rounded
+            `_Trigger_ cursor-pointer block select-none rounded
         hover:text-Primary-100 hover:transition-all duration-150 ease-in-out
         focus-visible:outline-none cus-visible:outline-none`,
             className
