@@ -19,7 +19,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         active:border-Light-100`,
         error && `border-Danger-500 `
       ),
-      error: cn(`text-sm-reg-14 block text-Danger-500`),
+      error: cn(`!text-regular-text-14 block text-Danger-500`),
     }
 
     return (
