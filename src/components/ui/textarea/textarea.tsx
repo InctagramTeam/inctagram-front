@@ -1,16 +1,17 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
+
 import { cn } from '@/utils/merge-cn'
 
 export type TextareaProps = {
-  label?: string
-  error?: string
   className?: string
+  error?: string
+  label?: string
 } & Omit<ComponentPropsWithoutRef<'textarea'>, 'className'>
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ label, disabled, error, className, id, ...rest }, ref) => {
+  ({ className, disabled, error, id, label, ...rest }, ref) => {
     const classes = {
-      wrapper: cn(className),
+      error: cn(`!text-regular-text-14 block text-Danger-500`),
       label: cn(`block text-Light-900`, disabled && `text-Dark-100`),
       textarea: cn(
         `bg-Dark-500 placeholder-Light-900 px-[12px] py-[6px] rounded-[2px] border-[1px] border-Dark-100 resize-none h-[84px] 
@@ -19,13 +20,13 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         active:border-Light-100`,
         error && `border-Danger-500 `
       ),
-      error: cn(`!text-regular-text-14 block text-Danger-500`),
+      wrapper: cn(className),
     }
 
     return (
       <div className={classes.wrapper}>
         {label && (
-          <label htmlFor={id} className={classes.label}>
+          <label className={classes.label} htmlFor={id}>
             {label}
           </label>
         )}

@@ -1,2 +1,2 @@
-export * from './textarea'
 export * from './controlled-textarea'
+export * from './textarea'

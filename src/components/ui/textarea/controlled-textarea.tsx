@@ -1,8 +1,9 @@
-import { Textarea, TextareaProps } from '@/components/ui/textarea/textarea'
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
-type Props<T extends FieldValues> = Omit<TextareaProps, 'id' | 'value' | 'onChange'> &
-  Omit<UseControllerProps<T>, 'disabled' | 'defaultValue' | 'rules'>
+import { Textarea, TextareaProps } from '@/components/ui/textarea/textarea'
+
+type Props<T extends FieldValues> = Omit<TextareaProps, 'id' | 'onChange' | 'value'> &
+  Omit<UseControllerProps<T>, 'defaultValue' | 'disabled' | 'rules'>
 
 const ControlledTextarea = <T extends FieldValues>({ control, name, ...rest }: Props<T>) => {
   const {
