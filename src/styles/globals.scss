@@ -1,4 +1,5 @@
 @import 'https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap';
+@import 'modal-animate';
 
 @tailwind base;
 @tailwind components;
@@ -59,7 +60,6 @@
   /* Reset ,browser Input styles */
   input[type='search']::-webkit-search-cancel-button {
     display: none;
-    appearance: none;
   }
 
   input[type='search']::-webkit-search-decoration {
@@ -95,7 +95,7 @@
   }
 
   a {
-    @apply decoration-0 transition-all duration-150 ease-in-out hover:text-Primary-500;
+    @apply decoration-0 transition-all duration-150 ease-in-out hover:text-Primary-100;
   }
 
   a:visited {
@@ -111,6 +111,9 @@
   }
 
   :root {
+    // My vars in APP
+    --header-height: 3.75rem; // 60px
+
     // Default variables for light theme shad_cn:
     --background: #fff;
     --foreground: #373737;

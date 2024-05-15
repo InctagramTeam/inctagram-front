@@ -1,6 +1,6 @@
 'use client'
 
-import { ComponentPropsWithoutRef, ElementRef, ReactElement, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactElement, forwardRef, useId } from 'react'
 
 import CheckIcon from '@/assets/icons/CheckIcon'
 import { cn } from '@/utils/merge-cn'
@@ -33,6 +33,9 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
     required,
     ...rest
   } = props
+
+  const generatedId = useId()
+  const finalId = id ?? generatedId
 
   const commonClasses = {
     checkboxPrimitiveRoot: cn(
@@ -108,10 +111,9 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
   }
 
   return (
-    <LabelPrimitive.Root asChild={false} className={commonClasses.label} htmlFor={id}>
+    <LabelPrimitive.Root className={commonClasses.label} htmlFor={finalId}>
       <div className={commonClasses.divWrapper}>
         <CheckboxPrimitive.Root
-          asChild={false}
           checked={checked}
           className={commonClasses.checkboxPrimitiveRoot}
           defaultChecked

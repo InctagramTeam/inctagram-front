@@ -18,7 +18,7 @@ export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
       <Header />
       <main
         className={cn(
-          `flex flex-col justify-center pt-header-height w-full items-center mx-auto`,
+          `flex flex-col justify-center pt-[var(--header-height)] w-full items-center mx-auto`,
           inter.variable
         )}
       >
@@ -31,3 +31,4 @@ export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
 export const getLayout = (page: ReactElement) => {
   return <Layout>{page}</Layout>
 }
+// text-[color:var(--text-color)]
