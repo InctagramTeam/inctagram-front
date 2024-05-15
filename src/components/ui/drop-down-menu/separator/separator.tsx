@@ -1,7 +1,6 @@
 import { ComponentPropsWithoutRef } from 'react'
 
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
-
 import clsx from 'clsx'
 
 type Props = ComponentPropsWithoutRef<typeof RadixDropdown.Separator>

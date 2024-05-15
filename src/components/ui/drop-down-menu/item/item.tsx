@@ -14,7 +14,7 @@ export const Item = ({ children, className, endIcon, startIcon, ...rest }: Props
       className={clsx(
         `_Item_ cursor-pointer bg-Dark-500 flex gap-[6px] items-center p-[0.75rem] outline-none
       w-40 select-none rounded px-2 py-1.5 text-Light-100 data-[highlighted]:bg-Dark-100
-      data-[highlighted]:text-Light-100 hover:text-Primary-100`,
+       data-[highlighted]:text-Primary-100 hover:data-[highlighted]:text-Primary-100`,
         className
       )}
       {...rest}
