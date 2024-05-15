@@ -3,6 +3,7 @@ import { getLayout } from '@/components/Layout/Layout'
 import Link from 'next/link'
 import instagram from 'public/inctagram.png'
 import { Page } from '@/components/ui/page'
+import SelectboxDemo from '@/components/ui/select/SelectboxDemo'
 
 function Public() {
   return (
@@ -16,6 +17,7 @@ function Public() {
         <Link href={'/search'}>Search</Link>
         <Link href={'/favorites'}>Favorites</Link>
       </nav>
+      <SelectboxDemo />
     </Page>
   )
 }
