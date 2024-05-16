@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'rea
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
 
-type MenuProps = {
+export type MenuProps = {
   /**
    * Выравнивание относительно триггера (кнопки)
    */
