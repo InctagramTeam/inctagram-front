@@ -32,9 +32,10 @@ type NavbarProps = {
 }
 
 const linkClasses = {
-  default: `flex gap-[12px] font-medium-text-14 transition hover:text-Primary-100 disabled:text-Dark-100 mb-[24px] last:absolute last:bottom-[36px] last:mb-0`,
   active: `text-Primary-500`,
-  inactive: `text-Light-100`,
+  base: `flex gap-[12px] font-medium-text-14 transition ease-in-out hover:text-Primary-100 mb-[24px] last:absolute last:bottom-[36px] last:mb-0`,
+  default: `text-Light-100`,
+  disabled: `pointer-events-none text-Dark-100`,
 }
 
 const getIcon = (href: string, isActive: boolean) => {
@@ -81,12 +82,18 @@ export const Navbar = ({ className, links }: NavbarProps) => {
 
         return (
           <Link
+            aria-disabled={link.disabled}
             className={clsx(
-              linkClasses.default,
-              isActive ? linkClasses.active : linkClasses.inactive
+              isActive
+                ? linkClasses.active
+                : link.disabled
+                  ? linkClasses.disabled
+                  : linkClasses.default,
+              linkClasses.base
             )}
             href={link.href}
             key={link.href}
+            onClick={link.handleClick}
           >
             {getIcon(link.href, isActive)}
             {link.name}

@@ -19,7 +19,7 @@ const links = [
     name: 'Home',
   },
   {
-    disabled: false,
+    disabled: true,
     href: '/create',
     name: 'Create',
   },
@@ -44,11 +44,12 @@ const links = [
     name: 'Statistics',
   },
   {
-    disabled: true,
+    disabled: false,
     href: '/favorites',
     name: 'Favorites',
   },
   {
+    disabled: true,
     href: '/log-out',
     name: 'Log-out',
   },
