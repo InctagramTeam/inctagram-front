@@ -14,7 +14,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       error: cn(`!text-regular-text-14 block text-Danger-500`),
       label: cn(`block text-Light-900`, disabled && `text-Dark-100`),
       textarea: cn(
-        `bg-Dark-500 placeholder-Light-900 px-[12px] py-[6px] rounded-[2px] border-[1px] border-Dark-100 resize-none h-[84px] 
+        `bg-Dark-500 placeholder-Light-900 px-[12px] py-[6px] rounded-[2px] border-[1px] border-Dark-100 resize-none w-full h-[84px] 
         transition-color duration-300 ease-in-out transition-border-color 
         disabled:placeholder-Dark-100
         active:border-Light-100`,
