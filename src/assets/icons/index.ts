@@ -1,3 +1,5 @@
+export { default as BellIcon } from '@/assets/icons/BellIcon'
+export { default as BellOutlineIcon } from '@/assets/icons/BellOutlineIcon'
 export { default as CloseIcon } from '@/assets/icons/CloseIcon'
 export { default as EyeIcon } from '@/assets/icons/EyeIcon'
 export { default as EyeOffIcon } from '@/assets/icons/EyeOffIcon'
