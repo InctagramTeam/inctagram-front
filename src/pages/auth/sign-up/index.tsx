@@ -3,15 +3,16 @@ import GoogleIcon from '@/assets/icons/GoogleIcon'
 import { getLayout } from '@/components/Layout/Layout'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Flex } from '@/components/ui/flex/flex'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import { PageWrapper } from 'src/components/ui/page-wrapper'
 import { Text } from 'src/components/ui/text/text'
+import { ReturnComponent } from '@/common/types'
+import { Flex } from '@/components/ui/flex'
 
 type Props = {}
 
-const SignUp = ({}: Props) => {
+const SignUp = ({}: Props): ReturnComponent => {
   return (
     <PageWrapper title={'SignUp | Instagram'}>
       {/* todo: Card component instead of div (_Card_) */}

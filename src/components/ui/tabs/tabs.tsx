@@ -2,6 +2,7 @@ import React, { ReactNode, forwardRef, ComponentPropsWithoutRef, useRef } from '
 
 import { cn } from '@/utils/merge-cn'
 import * as Tabs from '@radix-ui/react-tabs'
+import { ReturnComponent } from '@/common/types'
 
 /** Стили для активного и неактивного состояния табов */
 const baseClasses = `w-full h-fit bg-transparent text-nowrap font-H3-16 border-b-2 
@@ -34,56 +35,58 @@ type TabsProps = {
   fullWidth?: boolean
 } & Omit<ComponentPropsWithoutRef<typeof Tabs.Root>, 'asChild'>
 
-const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>((props, tabsTriggerRef) => {
-  const {
-    children,
-    contentClassName,
-    listClassName,
-    size,
-    tabsValues,
-    fullWidth,
-    triggerClassName,
-    ariaLabel,
-    ...rest
-  } = props
+const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>(
+  (props, tabsTriggerRef): ReturnComponent => {
+    const {
+      children,
+      contentClassName,
+      listClassName,
+      size,
+      tabsValues,
+      fullWidth,
+      triggerClassName,
+      ariaLabel,
+      ...rest
+    } = props
 
-  const contentRef = useRef<HTMLDivElement>(null)
+    const contentRef = useRef<HTMLDivElement | null>(null)
 
-  const classes = {
-    content: cn('w-full', contentClassName),
-    /** Табы растягиваются на всю ширину контейнера и скролятся, если их ширина превышает ширину контейнера */
-    list: cn('flex w-full overflow-x-scroll', listClassName),
-    trigger: cn([baseClasses, sizes[size || 'base'], fullWidth && `w-full`, triggerClassName]),
-  }
+    const classes = {
+      content: cn('w-full', contentClassName),
+      /** Табы растягиваются на всю ширину контейнера и скролятся, если их ширина превышает ширину контейнера */
+      list: cn('flex w-full overflow-x-scroll', listClassName),
+      trigger: cn([baseClasses, sizes[size || 'base'], fullWidth && `w-full`, triggerClassName]),
+    }
 
-  return (
-    <Tabs.Root defaultValue={tabsValues[0].value} {...rest}>
-      <Tabs.List className={classes.list} aria-label={ariaLabel || 'tab-switcher'}>
-        {tabsValues.map((tab, index) => (
-          <Tabs.Trigger
-            className={classes.trigger}
-            disabled={tab.disabled}
-            key={index}
-            ref={tabsTriggerRef}
-            value={tab.value}
+    return (
+      <Tabs.Root defaultValue={tabsValues[0].value} {...rest}>
+        <Tabs.List className={classes.list} aria-label={ariaLabel || 'tab-switcher'}>
+          {tabsValues.map((tab, index) => (
+            <Tabs.Trigger
+              className={classes.trigger}
+              disabled={tab.disabled}
+              key={index}
+              ref={tabsTriggerRef}
+              value={tab.value}
+            >
+              {tab.title}
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
+
+        {React.Children.map(children, (child, i) => (
+          <Tabs.Content
+            ref={contentRef}
+            className={classes.content}
+            key={i}
+            value={tabsValues[i].value}
           >
-            {tab.title}
-          </Tabs.Trigger>
+            {child}
+          </Tabs.Content>
         ))}
-      </Tabs.List>
-
-      {React.Children.map(children, (child, i) => (
-        <Tabs.Content
-          ref={contentRef}
-          className={classes.content}
-          key={i}
-          value={tabsValues[i].value}
-        >
-          {child}
-        </Tabs.Content>
-      ))}
-    </Tabs.Root>
-  )
-})
+      </Tabs.Root>
+    )
+  }
+)
 
 export default TabSwitcher

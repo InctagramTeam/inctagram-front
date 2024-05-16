@@ -2,6 +2,7 @@ import { ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
 import { PolymorphComponentPropsWithRef } from '@/common/types/polymorph'
 import clsx from 'clsx'
+import { ReturnComponent } from '@/common/types'
 
 type CustomProps = {
   className?: string
@@ -38,7 +39,7 @@ export const Button: ButtonComponent = forwardRef(
       ...restProps
     }: Props<T>,
     ref: ElementRef<T>
-  ) => {
+  ): ReturnComponent => {
     const Component = asComponent || 'button'
 
     const classes = {

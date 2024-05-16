@@ -3,6 +3,7 @@ import { CSSProperties, ComponentPropsWithoutRef, ReactElement } from 'react'
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { cn } from '@/utils/merge-cn'
 import instagram from 'public/inctagram.png'
+import { ReturnComponent } from '@/common/types'
 
 type Props = {
   description?: string
@@ -26,7 +27,7 @@ export const PageWrapper = ({
   style,
   title,
   ...rest
-}: Props): ReactElement => {
+}: Props): ReturnComponent => {
   const classesPage = cn(`flex items-center justify-center max-w-[1280px] w-full`, className)
 
   const styles: CSSProperties = { paddingTop: paddingTop, ...style }
