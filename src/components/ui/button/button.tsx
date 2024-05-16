@@ -7,22 +7,14 @@ type CustomProps = {
   className?: string
   disabled?: boolean
   endIcon?: ReactNode
-  /**
-   * Увеличивает кнопку на всю свободную ширину
-   */
+  /** Увеличивает кнопку на всю свободную ширину */
   fullWidth?: boolean
-  /**
-   * Размеры кнопки
-   */
+  /** Размеры кнопки */
   size?: '2xl' | 'lg' | 'md' | 'sm' | 'xl'
-  /**
-   * Флаг, делающий кнопку квадратной
-   */
+  /** Флаг, делающий кнопку квадратной */
   square?: boolean
   startIcon?: ReactNode
-  /**
-   * Вариант кнопки. Отвечает за визуал кнопки.
-   */
+  /** Вариант кнопки. Отвечает за визуал кнопки */
   variant?: 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 }
 

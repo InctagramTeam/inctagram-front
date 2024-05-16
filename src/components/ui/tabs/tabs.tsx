@@ -47,11 +47,11 @@ const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>((props, ref) => {
   return (
     <Tabs.Root defaultValue={tabs[0].value}>
       <Tabs.List className={classes.list}>
-        {tabs.map((tab, i) => (
+        {tabs.map((tab, index) => (
           <Tabs.Trigger
             className={classes.trigger}
             disabled={tab.disabled}
-            key={i}
+            key={index}
             ref={ref}
             value={tab.value}
           >
