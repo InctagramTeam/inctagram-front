@@ -46,6 +46,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
       labelPosition === 'left' && '-ml-[10px]'
     ),
     checkboxPrimitiveRoot: clsx(
+      checked && !label && !disabled && `top-0 left-0 -translate-y-7 -translate-x-[2px]`,
       checked &&
         !disabled &&
         `cursor-pointer relative w-[18px] h-[18px] before:content-[''] before:absolute
@@ -88,13 +89,15 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>((props, ref
       !disabled && checked && 'fill-Light-100 cursor-pointer'
     ),
     label: clsx(
-      `cursor-default flex gap-[0_15px] opacity-60 text-Light-700 shadow-sm`,
+      `cursor-default text-Light-700/60 text-regular-text-14 px-1 mb-1`,
+      checked && label && `ml-[22px]`,
+      !checked && label && `ml-[22px] -translate-y-[3px] hover:translate-y-[1px]`,
       checked && disabled && `cursor-default`,
       checked && !disabled && `cursor-pointer hover:text-Primary-300/90`,
       !checked && disabled && `cursor-default shadow-sm`,
       !checked &&
         !disabled &&
-        `cursor-pointer hover:-translate-y-[1px] shadow-sm hover:text-Primary-500 hover:animate-[wiggle_1s_ease-in-out_infinite]`,
+        `cursor-pointer hover:-translate-y-[1px] hover:text-Primary-500 hover:animate-[wiggle_1s_ease-in-out_infinite]`,
       className && className
     ),
   }
