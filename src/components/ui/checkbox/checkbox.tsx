@@ -58,7 +58,7 @@ const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>(
           !disabled &&
           `cursor-pointer relative w-[18px] h-[18px] before:content-[''] before:absolute
           before:block before:scale-0 hover:before:scale-100
-          hover:before:-tran slate-x-1 hover:before:-translate-y-1 hover:before:-translate-x-1 hover:before:opacity-60 hover:before:z-1
+          hover:before:-translate-x-1 hover:before:-translate-y-1 hover:before:-translate-x-1 hover:before:opacity-60 hover:before:z-1
           before:w-[26px] before:h-[26px] before:bg-Dark-100 before:rounded-[50%]
           before:transition-all duration-150 ease-in-out
           hover:active:before:scale-100 hover:active:before:bg-Dark-100
