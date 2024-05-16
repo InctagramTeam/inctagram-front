@@ -1,4 +1,4 @@
-import React, { ReactNode, forwardRef } from 'react'
+import React, { ReactNode, forwardRef, ComponentPropsWithoutRef, useRef } from 'react'
 
 import { cn } from '@/utils/merge-cn'
 import * as Tabs from '@radix-ui/react-tabs'
@@ -32,10 +32,12 @@ type TabsProps = {
   /** Массив с названиями табов, их значением и состоянием */
   tabs: Tab[]
   triggerClassName?: string
-}
+} & Omit<ComponentPropsWithoutRef<typeof Tabs.Root>, 'asChild'>
 
-const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>((props, ref) => {
-  const { children, contentClassName, listClassName, size, tabs, triggerClassName } = props
+const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>((props, tabsTriggerRef) => {
+  const { children, contentClassName, listClassName, size, tabs, triggerClassName, ...rest } = props
+
+  const contentRef = useRef(null)
 
   const classes = {
     content: cn('w-full', contentClassName),
@@ -45,14 +47,14 @@ const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>((props, ref) => {
   }
 
   return (
-    <Tabs.Root defaultValue={tabs[0].value}>
+    <Tabs.Root defaultValue={tabs[0].value} {...rest}>
       <Tabs.List className={classes.list}>
         {tabs.map((tab, index) => (
           <Tabs.Trigger
             className={classes.trigger}
             disabled={tab.disabled}
             key={index}
-            ref={ref}
+            ref={tabsTriggerRef}
             value={tab.value}
           >
             {tab.label}
@@ -61,7 +63,7 @@ const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>((props, ref) => {
       </Tabs.List>
 
       {React.Children.map(children, (child, i) => (
-        <Tabs.Content className={classes.content} key={i} value={tabs[i].value}>
+        <Tabs.Content ref={contentRef} className={classes.content} key={i} value={tabs[i].value}>
           {child}
         </Tabs.Content>
       ))}

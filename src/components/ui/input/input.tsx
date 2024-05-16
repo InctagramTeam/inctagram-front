@@ -64,22 +64,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type = 'search',
       ...restProps
     },
-    /**
-     * Так как используем react-hook-form, он работает через рефы, то должны принимать ref
-     */
+    /** Так как используем react-hook-form, он работает через рефы, то должны принимать ref */
     forwardedRef
   ) => {
     const generatedId = useId()
     const finalId = id ?? generatedId
 
-    /**
-     * Чтобы получить доступ к инпуту: inputRef
-     */
+    /** Чтобы получить доступ к инпуту: inputRef */
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
 
-    /**
-     * Чтобы передать несколько ссылок (ref) на инпут нужно их скомбинировать в finalRef
-     */
+    /** Чтобы передать несколько ссылок (ref) на инпут нужно их скомбинировать в finalRef */
     const finalRef = mergeRefs([forwardedRef, inputRef])
 
     const [revealPassword, setRevealPassword] = useState(false)
