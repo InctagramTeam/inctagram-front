@@ -14,6 +14,7 @@ import {
   TrendingIcon,
 } from '@/assets/icons'
 import { cn } from '@/utils/merge-cn'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -31,8 +32,9 @@ type NavbarProps = {
 }
 
 const linkClasses = {
+  default: `flex gap-[12px] font-medium-text-14 transition hover:text-Primary-100 disabled:text-Dark-100 mb-[24px] last:absolute last:bottom-[36px] last:mb-0`,
   active: `text-Primary-500`,
-  default: `flex gap-[12px] font-medium-text-14 text-Light-100 hover:text-Primary-100 disabled:text-Dark-100 mb-[24px] last:absolute last:bottom-[36px] last:mb-0`,
+  inactive: `text-Light-100`,
 }
 
 const getIcon = (href: string, isActive: boolean) => {
@@ -79,7 +81,10 @@ export const Navbar = ({ className, links }: NavbarProps) => {
 
         return (
           <Link
-            className={cn(linkClasses.default, link?.className, isActive && linkClasses.active)}
+            className={clsx(
+              linkClasses.default,
+              isActive ? linkClasses.active : linkClasses.inactive
+            )}
             href={link.href}
             key={link.href}
           >
