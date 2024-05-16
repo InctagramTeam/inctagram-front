@@ -1,6 +1,7 @@
 import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
 
 import { clsx } from 'clsx'
+import { ReturnComponent } from '@/common/types'
 
 // types
 export type FlexJustifyContent =
@@ -118,7 +119,7 @@ export interface FlexProps extends DivProps {
   wrap?: FlexWrap
 }
 
-const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref) => {
+const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref): ReturnComponent => {
   const {
     children,
     className,

@@ -1,1 +1,1 @@
-export {}
+export { useLoader } from './use-loader'
