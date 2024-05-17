@@ -1,9 +1,9 @@
 import { CSSProperties, ComponentPropsWithoutRef, ReactElement } from 'react'
 
+import { ReturnComponent } from '@/common/types'
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
 import { cn } from '@/utils/merge-cn'
 import instagram from 'public/inctagram.png'
-import { ReturnComponent } from '@/common/types'
 
 type Props = {
   description?: string

@@ -1,7 +1,7 @@
 import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
 
-import { clsx } from 'clsx'
 import { ReturnComponent } from '@/common/types'
+import { clsx } from 'clsx'
 
 // types
 export type FlexJustifyContent =

@@ -1,8 +1,8 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
+import { ReturnComponent } from '@/common/types'
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
-import { ReturnComponent } from '@/common/types'
 
 type Props = {
   endIcon?: ReactNode

@@ -9,10 +9,10 @@ import {
 } from 'react'
 
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/assets/icons'
+import { ReturnComponent } from '@/common/types'
 import { Text } from '@/components/ui/text/text'
 import { mergeRefs } from '@/utils/merge-refs'
 import { clsx } from 'clsx'
-import { ReturnComponent } from '@/common/types'
 
 export type InputProps = {
   disabled?: boolean

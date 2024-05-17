@@ -1,8 +1,8 @@
 import { ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
+import { ReturnComponent } from '@/common/types'
 import { PolymorphComponentPropsWithRef } from '@/common/types/polymorph'
 import clsx from 'clsx'
-import { ReturnComponent } from '@/common/types'
 
 type CustomProps = {
   className?: string
