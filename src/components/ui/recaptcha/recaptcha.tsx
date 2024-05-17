@@ -114,4 +114,4 @@ const Error = () => {
   )
 }
 
-export default Recaptcha
+export { Recaptcha }
