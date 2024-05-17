@@ -6,7 +6,6 @@ import {
   CSSProperties,
   ReactNode,
   useContext,
-  useEffect,
   useState,
 } from 'react'
 import { clsx } from 'clsx'
@@ -23,8 +22,8 @@ type DropdownProps = {
   className?: string
   children: ReactNode
   /**
-   * Модальность выпадающего меню. Если установлено значение true, взаимодействие свнешними
-   * элементами будет отключено, и читателям экрана будет видно только содержимое меню.
+   * Если установлено значение true, взаимодействие свнешними элементами будет отключено,
+   * и читателям экрана будет видно только содержимое меню.
    */
   modal?: boolean
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Root>
@@ -90,7 +89,7 @@ function DropdownMenu({
   portal = true,
   align = 'start',
   className,
-  sideOffset = 8,
+  sideOffset = 0,
   ...rest
 }: DropdownMenu) {
   const { open, setOpen } = useContext(DropdownContext)
@@ -107,7 +106,7 @@ function DropdownMenu({
             sideOffset={sideOffset}
             align={align}
             className={clsx(
-              `relative z-10 bg-Dark-500 border-1 border-Dark-100 rounded will-change-transform mt-1
+              ` relative z-10 bg-Dark-500 border-1 border-Dark-100 rounded will-change-transform mt-1
                 overflow-hidden p-2 text-left shadow-sm shadow-Dark-500 backdrop-blur
                 data-[side=top]:animate-[slide-down-and-fade_150ms]
                 data-[side=right]:animate-[slide-left-and-fade_150ms]
@@ -117,7 +116,7 @@ function DropdownMenu({
                 focus:outline-none focus:ring-2 focus:ring-Dark-100 focus:ring-opacity-50
                 focus-visible:outline-none focus-visible:ring-1 focus-visible:offset-1
                 focus-visible:ring-opacity-50
-                `
+                active:Dark-100 duration-150 active:text-Light-100`
             )}
             {...rest}
             onPointerDownOutside={e => {
@@ -126,25 +125,14 @@ function DropdownMenu({
               }
             }}
           >
-            {/*<DropdownRadix.Arrow*/}
-            {/*  className={`relative text-Dark-300 stroke-1 stroke-Dark-500 fill-current-Dark-700`}*/}
-            {/*  height={0}*/}
-            {/*  width={0}*/}
-            {/*/>*/}
-            {/*<DropdownRadix.Arrow*/}
-            {/*  className={`relative z-1 -top-1 left-0 text-Dark-300 fill-current-Dark-700 stroke-1 stroke-Dark-500`}*/}
-            {/*  height={0}*/}
-            {/*  width={0}*/}
-            {/*/>*/}
-            {/*<DropdownRadix.Arrow*/}
-            {/*  className={`absolute -top-[0.4rem] left-1/2 rotate-45 w-4 h-4 bg-Dark-700 border-2 border-Dark-100*/}
-            {/*  border-t-0 border-left-0 fill-Dark-700`}*/}
-            {/*/>*/}
-            <DropdownRadix.Arrow
-              className={`relative z-1 -top-1 left-0 fill-Primary-100 stroke-1 stroke-Dark-500`}
-              height={15}
-              width={10}
-            />
+            <div className={`absolute`}>
+              <DropdownRadix.Arrow
+                className={`relative top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 fill-Dark-700
+              stroke-1 stroke-Dark-100 rounded`}
+                height={10}
+                width={14}
+              />
+            </div>
             {children}
           </DropdownRadix.Content>
         </DropdownRadix.Portal>
@@ -175,7 +163,8 @@ function DropdownItem({ children, onSelect, endIcon, startIcon, ...rest }: Dropd
       }}
       className="cursor-pointer bg-Dark-500 flex gap-[6px] items-center p-[0.75rem] outline-none
       w-40 select-none rounded px-2 py-1.5 text-Light-100 data-[highlighted]:bg-Dark-100 data-[highlighted]:text-Light-100
-       data-[highlighted]:focus:outline-none transition-all duration-150 ease-linear hover:bg-Dark-100"
+       data-[highlighted]:focus:outline-none transition-all duration-150 ease-linear hover:bg-Dark-100
+       "
       {...rest}
     >
       {startIcon && startIcon}
