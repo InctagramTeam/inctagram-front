@@ -1,9 +1,6 @@
-import { HTMLAttributes, Ref, forwardRef, memo } from 'react'
+import { Ref, SVGProps, forwardRef, memo } from 'react'
 
-type SvgWithColor = {
-  className?: string
-} & HTMLAttributes<SVGElement>
-const ChevronLeftIcon = (props: SvgWithColor, ref: Ref<SVGSVGElement>) => (
+const ChevronLeftIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     fill={'none'}
     height={'24'}
