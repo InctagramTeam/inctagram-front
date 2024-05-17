@@ -17,7 +17,6 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
   const commonClasses = {
     dayPicker: cn(`py-[16px] px-[24px]`, className),
     icons: cn(`fill-Light-100 w-[20px] h-[20px]`),
-    iconsWrappers: cn(`flex h-full w-full justify-center items-center rounded-[50%] bg-Dark-100`),
   }
 
   const dayPickerClassNames = {
@@ -44,9 +43,15 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
     month: 'space-y-4',
     months: 'flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 w-full',
     nav: 'space-x-1 flex items-center',
-    nav_button: '',
-    nav_button_next: 'h-[36px] w-[36px]',
-    nav_button_previous: 'h-[36px] w-[36px]',
+    nav_button: cn(
+      `flex justify-center items-center h-[36px] w-[36px] outline-none `,
+      'bg-Dark-100 rounded-full border-2 border-transparent',
+      `duration-300 transition-bg transition-border`,
+      `hover:bg-Dark-300 active:bg-Light-900`,
+      `focus-visible:border-Primary-500`
+    ),
+    nav_button_next: '',
+    nav_button_previous: '',
     row: 'flex w-full mt-2',
     table: 'w-full border-collapse !mt-[12px]',
     ...classNames,
@@ -61,16 +66,8 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
       className={commonClasses.dayPicker}
       classNames={dayPickerClassNames}
       components={{
-        IconLeft: () => (
-          <span className={commonClasses.iconsWrappers}>
-            <ChevronLeftIcon className={commonClasses.icons} />
-          </span>
-        ),
-        IconRight: () => (
-          <span className={commonClasses.iconsWrappers}>
-            <ChevronRightIcon className={commonClasses.icons} />
-          </span>
-        ),
+        IconLeft: () => <ChevronLeftIcon className={commonClasses.icons} />,
+        IconRight: () => <ChevronRightIcon className={commonClasses.icons} />,
       }}
       modifiers={modifiers}
       modifiersClassNames={modifiersClassNames}
