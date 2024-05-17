@@ -6,18 +6,21 @@ import { useAlert } from '@/components/ui/alert/hooks'
 import { cn } from '@/utils/merge-cn'
 import { type VariantProps, cva } from 'class-variance-authority'
 
-const alertVariants = cva('relative w-full rounded-[2px] border px-[1.5rem] py-[0.8rem]', {
-  variants: {
-    variant: {
-      danger: 'bg-Danger-900 border-Danger-500',
-      success: 'bg-Success-900 border-Success-500',
-    },
-  },
-})
-
 type Props = {
   text: string
 } & ComponentPropsWithoutRef<'div'>
+
+const alertVariants = cva(
+  'relative w-full rounded-[2px] border px-[1.5rem] py-[0.8rem] pr-[4.4rem]',
+  {
+    variants: {
+      variant: {
+        danger: 'bg-Danger-900 border-Danger-500',
+        success: 'bg-Success-900 border-Success-500',
+      },
+    },
+  }
+)
 
 export const Alert = ({
   className,
@@ -27,7 +30,7 @@ export const Alert = ({
 }: Props & VariantProps<typeof alertVariants>) => {
   const classes = {
     closeButton: cn(
-      `flex justify-center items-center absolute !w-[24px] h-[24px] right-[1.5rem] top-[0.7rem]`,
+      `flex justify-center items-center absolute w-[1.5rem] h-[1.5rem] right-[1.5rem] top-[0.8rem]`,
       `rounded-[4px] border-2 border-transparent outline-none`,
       `transition-opacity transition-transform duration-300`,
       `hover:translate-y-[-4px] active:opacity-50`,
