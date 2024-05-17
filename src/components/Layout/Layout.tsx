@@ -1,7 +1,7 @@
 import { PropsWithChildren, ReactElement } from 'react'
 
 import { cn } from '@/utils/merge-cn'
-import { Header } from '@/widgets'
+import { Header, Navbar } from '@/widgets'
 import { NextPage } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -11,6 +11,49 @@ const inter = Inter({
   variable: '--font-inter',
   weight: ['400', '500', '600', '700'],
 })
+
+const links = [
+  {
+    disabled: false,
+    href: '/home',
+    name: 'Home',
+  },
+  {
+    disabled: true,
+    href: '/create',
+    name: 'Create',
+  },
+  {
+    disabled: false,
+    href: '/profile',
+    name: 'Profile',
+  },
+  {
+    disabled: false,
+    href: '/messenger',
+    name: 'Messenger',
+  },
+  {
+    disabled: false,
+    href: '/search',
+    name: 'Search',
+  },
+  {
+    disabled: false,
+    href: '/statistics',
+    name: 'Statistics',
+  },
+  {
+    disabled: false,
+    href: '/favorites',
+    name: 'Favorites',
+  },
+  {
+    disabled: true,
+    href: '/log-out',
+    name: 'Log-out',
+  },
+]
 
 export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
   return (
@@ -22,6 +65,7 @@ export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
           inter.variable
         )}
       >
+        <Navbar links={links} />
         {children}
       </main>
     </>

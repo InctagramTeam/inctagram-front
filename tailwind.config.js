@@ -31,6 +31,9 @@ module.exports = {
       padding: '0.9375rem',
     },
     extend: {
+      data: {
+        checked: 'ui~="checked"',
+      },
       spacing: {
         // Custom vars
         'header-height': '3.75rem', // 60px

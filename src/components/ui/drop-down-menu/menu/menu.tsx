@@ -2,6 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'rea
 
 import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
+import { ReturnComponent } from '@/common/types'
 
 type MenuProps = {
   /**
@@ -41,7 +42,7 @@ export const Menu = forwardRef<ElementRef<typeof RadixDropdown.Content>, MenuPro
       ...rest
     },
     ref
-  ) => {
+  ): ReturnComponent => {
     return (
       <RadixDropdown.Root modal={modal} onOpenChange={onOpenChange} open={open}>
         <RadixDropdown.Trigger
