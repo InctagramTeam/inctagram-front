@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import * as RadixDropdown from '@radix-ui/react-dropdown-menu'
+import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import clsx from 'clsx'
 import { ReturnComponent } from '@/common/types'
 
@@ -20,13 +20,13 @@ type MenuProps = {
   portal?: boolean
   side?: 'bottom' | 'left' | 'right' | 'top'
   /**
-   * Расстояние в "px" от trigger до RadixDropdown.Content
+   * Расстояние в "px" от trigger до DropdownRadix.Content
    */
   sideOffset?: number
   trigger: ReactNode
-} & Omit<ComponentPropsWithoutRef<typeof RadixDropdown.Content>, 'asChild'>
+} & Omit<ComponentPropsWithoutRef<typeof DropdownRadix.Content>, 'asChild'>
 
-export const Menu = forwardRef<ElementRef<typeof RadixDropdown.Content>, MenuProps>(
+export const Menu = forwardRef<ElementRef<typeof DropdownRadix.Content>, MenuProps>(
   (
     {
       align = 'center',
@@ -44,23 +44,23 @@ export const Menu = forwardRef<ElementRef<typeof RadixDropdown.Content>, MenuPro
     ref
   ): ReturnComponent => {
     return (
-      <RadixDropdown.Root modal={modal} onOpenChange={onOpenChange} open={open}>
-        <RadixDropdown.Trigger
+      <DropdownRadix.Root modal={modal} onOpenChange={onOpenChange} open={open}>
+        <DropdownRadix.Trigger
           asChild
           className={clsx(
             `_Trigger_ cursor-pointer block select-none rounded
         hover:text-Primary-100 hover:transition-all duration-150 ease-in-out
-        focus-visible:outline-none cus-visible:outline-none`,
+        focus-visible:outline-none focus-visible:outline-none`,
             className
           )}
         >
           {trigger}
-        </RadixDropdown.Trigger>
-        <RadixDropdown.Portal>
-          <RadixDropdown.Content
+        </DropdownRadix.Trigger>
+        <DropdownRadix.Portal>
+          <DropdownRadix.Content
             align={align}
             className={clsx(
-              `_Content_ relative z-10 bg-Dark-700 ring-1 ring-Dark-100 rounded
+              `_Content_ relative z-10 mt-3 bg-Dark-700 ring-1 ring-Dark-100 rounded
           will-change-transform
           transition-all duration-150 ease-in out
           overflow-hidden text-left shadow-xs shadow-Dark-500 backdrop-blur
@@ -68,8 +68,7 @@ export const Menu = forwardRef<ElementRef<typeof RadixDropdown.Content>, MenuPro
           data-[side=right]:animate-[slide-left-and-fade_150ms]
           data-[side=bottom]:animate-[slide-up-and-fade_150ms]
           data-[side=left]:animate-[slide-right-and-fade_150ms]`,
-              className,
-              align === 'center' && ``
+              className
             )}
             ref={ref}
             side={side}
@@ -78,12 +77,31 @@ export const Menu = forwardRef<ElementRef<typeof RadixDropdown.Content>, MenuPro
             onPointerDownOutside={e => !portal && e.detail.originalEvent.preventDefault()}
           >
             {children}
-          </RadixDropdown.Content>
-        </RadixDropdown.Portal>
-      </RadixDropdown.Root>
+            <DropdownRadix.Arrow
+              className={`absolute -top-[0.4rem] left-[50%] rotate-45
+            w-[1rem] h-[1rem] bg-Dark-700 border-2 border-Dark-500 border-t-0 border-l-0
+            fill-Dark-500`}
+            />
+          </DropdownRadix.Content>
+        </DropdownRadix.Portal>
+      </DropdownRadix.Root>
     )
   }
 )
+// position: absolute;
+//   top: -0.4rem;
+//   left: calc(50% - 3px);
+//   transform: rotate(45deg);
+//
+//   width: 1rem;
+//   height: 1rem;
+//
+//   background-color: var(--color-dark-700);
+//   border: 1px solid var(--color-dark-500);
+//   border-top: none;
+//   border-left: none;
+//
+//   fill: var(--color-dark-700);
 
 /**
  * Пример использования:
