@@ -38,19 +38,6 @@
     -webkit-text-fill-color: #8d9094;
   }
 
-  /* Scrollbar */
-  * {
-    scrollbar-color: var(--primary-500) var(--dark-500);
-
-    &::-webkit-scrollbar-track {
-      background: var(--dark-500);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--primary-500);
-    }
-  }
-
   /* Reset ,browser Input styles */
   input[type='search']::-webkit-search-cancel-button {
     display: none;
@@ -80,7 +67,7 @@
   }
 
   html {
-    @apply w-full h-[100dvh];
+    @apply w-full h-[400dvh] scrollbar-thin scrollbar-thumb-Primary-500 scrollbar-track-Dark-500;
   }
 
   body {
@@ -90,10 +77,6 @@
 
   a {
     @apply decoration-0 transition-all duration-150 ease-in-out hover:text-Primary-100;
-  }
-
-  a:visited {
-    @apply text-inherit;
   }
 
   li {

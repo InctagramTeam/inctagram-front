@@ -1,5 +1,6 @@
 import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
+import { ReturnComponent } from '@/common/types'
 import { clsx } from 'clsx'
 
 export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'
@@ -45,9 +46,7 @@ export function Text<T extends ElementType = 'p'>({
   children,
   className,
   color,
-  /**
-   * mb, ml, mr, mt, mx, my - Внешние отступы (маржины) Text от соседних элементов
-   */
+  /** mb, ml, mr, mt, mx, my - Внешние отступы (маржины) Text от соседних элементов */
   mb,
   ml,
   mr,
@@ -59,17 +58,13 @@ export function Text<T extends ElementType = 'p'>({
    * Пример использования: <Text variant={'Large'} style={{color: "green"}}>Some text</Text>
    */
   style,
-  /**
-   * Выравнивание текста
-   */
+  /** Выравнивание текста */
   textAlign = 'left',
   textColor = 'primary',
-  /**
-   * Задаёт шрифт + размер + межстрочный интервал текста
-   */
+  /** Задаёт шрифт + размер + межстрочный интервал текста */
   variant = 'regular_text_16',
   ...rest
-}: Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>> & TextProps<T>) {
+}: Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>> & TextProps<T>): ReturnComponent {
   const textClasses = clsx(
     // Main fonts
     variant === 'Large' &&

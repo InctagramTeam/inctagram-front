@@ -1,13 +1,12 @@
-import React, { ReactNode, forwardRef } from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode, forwardRef, useRef } from 'react'
 
+import { ReturnComponent } from '@/common/types'
 import { cn } from '@/utils/merge-cn'
 import * as Tabs from '@radix-ui/react-tabs'
 
 /** Стили для активного и неактивного состояния табов */
 const baseClasses = `w-full h-fit bg-transparent text-nowrap font-H3-16 border-b-2 
-
 data-[state='active']:text-Primary-500 data-[state='active']:border-b-Primary-500 disabled:data-[state='active']:text-Primary-900 disabled:data-[state='active']:border-b-Primary-900 hover:data-[state='active']:bg-Primary-900 hover:data-[state='active']:bg-opacity-15 active:data-[state='active']:bg-Primary-100 active:data-[state='active']:bg-opacity-15 active:data-[state='active']:outline-none focus-visible:data-[state='active']:outline-none focus-visible:data-[state='active']:ring-2 focus-visible:data-[state='active']:rounded-sm focus-visible:data-[state='active']:ring-Primary-300
-
 data-[state='inactive']:text-Dark-100 data-[state='inactive']:border-b-Dark-100 disabled:data-[state='inactive']:text-Dark-300 disabled:data-[state='inactive']:border-b-Dark-300 focus-visible:data-[state='inactive']:outline-none focus-visible:data-[state='inactive']:ring-2 focus-visible:data-[state='inactive']:rounded-sm focus-visible:data-[state='inactive']:ring-Primary-300 hover:data-[state='inactive']:bg-Primary-900 hover:data-[state='inactive']:bg-opacity-15 active:data-[state='inactive']:bg-Primary-100 active:data-[state='inactive']:bg-opacity-15 active:data-[state='inactive']:outline-none active:ring-0`
 
 const sizes = {
@@ -16,57 +15,78 @@ const sizes = {
 
 export type Tab = {
   disabled?: boolean
-  label: string
+  title: string
   value: string
 }
 
 type TabsProps = {
+  ariaLabel?: string
   /** Контент табов передается в качестве дочерних компонентов */
   children: ReactNode
+
   contentClassName?: string
 
+  fullWidth?: boolean
   /** Собственные классы для настройки вида списка, кнопок и контентной части*/
   listClassName?: string
-
   size?: 'base'
   /** Массив с названиями табов, их значением и состоянием */
-  tabs: Tab[]
+  tabsValues: Tab[]
   triggerClassName?: string
-}
+} & Omit<ComponentPropsWithoutRef<typeof Tabs.Root>, 'asChild'>
 
-const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>((props, ref) => {
-  const { children, contentClassName, listClassName, size, tabs, triggerClassName } = props
+const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>(
+  (props, tabsTriggerRef): ReturnComponent => {
+    const {
+      ariaLabel,
+      children,
+      contentClassName,
+      fullWidth,
+      listClassName,
+      size,
+      tabsValues,
+      triggerClassName,
+      ...rest
+    } = props
 
-  const classes = {
-    content: cn('w-full', contentClassName),
-    /** Табы растягиваются на всю ширину контейнера и скролятся, если их ширина превышает ширину контейнера */
-    list: cn('flex w-full overflow-x-scroll', listClassName),
-    trigger: cn([baseClasses, sizes[size || 'base'], triggerClassName]),
-  }
+    const contentRef = useRef<HTMLDivElement | null>(null)
 
-  return (
-    <Tabs.Root defaultValue={tabs[0].value}>
-      <Tabs.List className={classes.list}>
-        {tabs.map((tab, i) => (
-          <Tabs.Trigger
-            className={classes.trigger}
-            disabled={tab.disabled}
+    const classes = {
+      content: cn('w-full', contentClassName),
+      /** Табы растягиваются на всю ширину контейнера и скролятся, если их ширина превышает ширину контейнера */
+      list: cn('flex w-full overflow-x-scroll', listClassName),
+      trigger: cn([baseClasses, sizes[size || 'base'], fullWidth && `w-full`, triggerClassName]),
+    }
+
+    return (
+      <Tabs.Root defaultValue={tabsValues[0].value} {...rest}>
+        <Tabs.List aria-label={ariaLabel || 'tab-switcher'} className={classes.list}>
+          {tabsValues.map((tab, index) => (
+            <Tabs.Trigger
+              className={classes.trigger}
+              disabled={tab.disabled}
+              key={index}
+              ref={tabsTriggerRef}
+              value={tab.value}
+            >
+              {tab.title}
+            </Tabs.Trigger>
+          ))}
+        </Tabs.List>
+
+        {React.Children.map(children, (child, i) => (
+          <Tabs.Content
+            className={classes.content}
             key={i}
-            ref={ref}
-            value={tab.value}
+            ref={contentRef}
+            value={tabsValues[i].value}
           >
-            {tab.label}
-          </Tabs.Trigger>
+            {child}
+          </Tabs.Content>
         ))}
-      </Tabs.List>
-
-      {React.Children.map(children, (child, i) => (
-        <Tabs.Content className={classes.content} key={i} value={tabs[i].value}>
-          {child}
-        </Tabs.Content>
-      ))}
-    </Tabs.Root>
-  )
-})
+      </Tabs.Root>
+    )
+  }
+)
 
 export default TabSwitcher

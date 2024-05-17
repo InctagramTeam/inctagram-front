@@ -9,6 +9,7 @@ import {
 } from 'react'
 
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/assets/icons'
+import { ReturnComponent } from '@/common/types'
 import { Text } from '@/components/ui/text/text'
 import { mergeRefs } from '@/utils/merge-refs'
 import { clsx } from 'clsx'
@@ -39,10 +40,8 @@ export type InputProps = {
   onClearInput?: () => void
   onValueChange?: (value: string) => void
   /**
-   * Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы,
-   * которые мы можем передать в нативный элемент,
-   * т.e html тег, то мы используем тип ComponentPropsWithoutRef<‘input’>
-   * и в дженерике указываем для какого именно тэга
+   * Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы, которые мы можем передать в нативный элемент,
+   * т.e html тег, то мы используем тип ComponentPropsWithoutRef<‘input’> и в дженерике указываем для какого именно тэга
    */
 } & ComponentPropsWithoutRef<'input'>
 
@@ -64,22 +63,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       type = 'search',
       ...restProps
     },
-    /**
-     * Так как используем react-hook-form, он работает через рефы, то должны принимать ref
-     */
+    /** Так как используем react-hook-form, он работает через рефы, то должны принимать ref */
     forwardedRef
-  ) => {
+  ): ReturnComponent => {
     const generatedId = useId()
     const finalId = id ?? generatedId
 
-    /**
-     * Чтобы получить доступ к инпуту: inputRef
-     */
+    /** Чтобы получить доступ к инпуту: inputRef */
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
 
-    /**
-     * Чтобы передать несколько ссылок (ref) на инпут нужно их скомбинировать в finalRef
-     */
+    /** Чтобы передать несколько ссылок (ref) на инпут нужно их скомбинировать в finalRef */
     const finalRef = mergeRefs([forwardedRef, inputRef])
 
     const [revealPassword, setRevealPassword] = useState(false)
@@ -94,7 +87,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange?.(e)
       onValueChange?.(e.target.value)
     }
-
     /**
      * Вызывается при нажатии на кнопку для показа/скрытия пароля.
      * Она инвертирует состояние revealPassword, указывающее, должен ли пароль быть видимым.
@@ -102,7 +94,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     function handleToggleShowPassword() {
       setRevealPassword((prevState: boolean) => !prevState)
     }
-
     /**
      * Вызывается при нажатии на кнопку ("Х") для очистки введенных данных в инпуте
      * Она сначала вызывает переданный колбэк onClearInput, если он был передан, а затем

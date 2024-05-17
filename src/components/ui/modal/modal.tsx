@@ -1,6 +1,7 @@
 import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import CrossIcon from '@/assets/icons/CrossIcon'
+import { ReturnComponent } from '@/common/types'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
 
@@ -34,7 +35,7 @@ export const ModalContent = ({
   style,
   title = '',
   ...rest
-}: ModalContentProps) => {
+}: ModalContentProps): ReturnComponent => {
   const styles: CSSProperties = { padding: padding, ...style }
 
   return (
