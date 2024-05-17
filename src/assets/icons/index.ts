@@ -3,6 +3,7 @@ export { default as CalendarOutlineIcon } from '@/assets/icons/CalendarOutlineIc
 export { default as ChevronLeftIcon } from '@/assets/icons/ChevronLeftIcon'
 export { default as ChevronRightIcon } from '@/assets/icons/ChevronRightIcon'
 export { default as CloseIcon } from '@/assets/icons/CloseIcon'
+export { default as CrossIcon } from '@/assets/icons/CrossIcon'
 export { default as EyeIcon } from '@/assets/icons/EyeIcon'
 export { default as EyeOffIcon } from '@/assets/icons/EyeOffIcon'
 export { default as BookmarkIcon } from 'src/assets/icons/BookmarkIcon'
