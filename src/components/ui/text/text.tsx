@@ -1,7 +1,7 @@
 import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
-import { clsx } from 'clsx'
 import { ReturnComponent } from '@/common/types'
+import { clsx } from 'clsx'
 
 export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'
 export type TextAlign = 'center' | 'left' | 'right'
