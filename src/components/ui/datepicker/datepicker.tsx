@@ -11,9 +11,9 @@ import { Calendar, CalendarProps } from './calendar'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
 
 export type DatePickerProps = {
-  // Контент тригера (без иконки) передается в качества родителя
-  children?: ReactNode
   className?: string
+  // Контент тригера (без иконки)
+  contentTrigger: ReactNode
   disabled?: boolean
   error?: string
   id?: string
@@ -23,8 +23,8 @@ export type DatePickerProps = {
 } & CalendarProps
 
 export const DatePicker = ({
-  children,
   className,
+  contentTrigger,
   disabled,
   error,
   id,
@@ -61,7 +61,7 @@ export const DatePicker = ({
       <Popover onOpenChange={onOpenChange} open={open}>
         <PopoverTrigger asChild disabled={disabled}>
           <Button className={classes.button} disabled={disabled} id={id}>
-            {children}
+            {contentTrigger}
             {open ? (
               <CalendarIcon className={classes.triggerIcon} />
             ) : (
