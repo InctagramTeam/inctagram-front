@@ -9,7 +9,6 @@ import {
   useEffect,
   useState,
 } from 'react'
-import { AnimatePresence, motion, useAnimationControls } from 'framer-motion'
 import { clsx } from 'clsx'
 import { Text } from '@/components/ui/text'
 
@@ -95,81 +94,61 @@ function DropdownMenu({
   ...rest
 }: DropdownMenu) {
   const { open, setOpen } = useContext(DropdownContext)
-  let controls = useAnimationControls()
 
   async function closeMenu() {
-    await controls.start('closed')
     setOpen(false)
   }
 
-  /**
-   * Эффект запуска анимации когда меняется "open"
-   */
-  useEffect(() => {
-    if (open) {
-      controls.start('open')
-    }
-  }, [controls, open])
-
   return (
     <DropdownMenuContext.Provider value={{ closeMenu }}>
-      <AnimatePresence>
-        {open && (
-          <DropdownRadix.Portal forceMount>
-            <DropdownRadix.Content
-              sideOffset={sideOffset}
-              align={align}
-              className={clsx(
-                `relative z-10 bg-Dark-500 border-1 border-Dark-100 rounded will-change-transform mt-1
-                overflow-hidden bg-white/75 p-2 text-left shadow-sm shadow-Dark-500 backdrop-blur
+      {open && (
+        <DropdownRadix.Portal forceMount>
+          <DropdownRadix.Content
+            sideOffset={sideOffset}
+            align={align}
+            className={clsx(
+              `relative z-10 bg-Dark-500 border-1 border-Dark-100 rounded will-change-transform mt-1
+                overflow-hidden p-2 text-left shadow-sm shadow-Dark-500 backdrop-blur
                 data-[side=top]:animate-[slide-down-and-fade_150ms]
                 data-[side=right]:animate-[slide-left-and-fade_150ms]
                 data-[side=bottom]:animate-[slide-up-and-fade_150ms]
                 data-[side=left]:animate-[slide-right-and-fade_150ms]
-                focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
-                focus:ring-offset-Dark-300
+                hover:ring-1 hover:ring-Dark-100
+                focus:outline-none focus:ring-2 focus:ring-Dark-100 focus:ring-opacity-50
                 focus-visible:outline-none focus-visible:ring-1 focus-visible:offset-1
-                focus-visible:ring-opacity-50 focus-visible:ring-offset-Dark-300
+                focus-visible:ring-opacity-50
                 `
-              )}
-              {...rest}
-              onPointerDownOutside={e => {
-                if (!portal) {
-                  e.detail.originalEvent.preventDefault()
-                }
-              }}
-            >
-              <motion.div
-                initial="closed"
-                animate={controls}
-                exit="closed"
-                variants={{
-                  open: {
-                    opacity: 1,
-                    transition: { ease: 'easeOut', duration: 0.1 },
-                  },
-                  closed: {
-                    opacity: 0,
-                    transition: { ease: 'easeIn', duration: 0.2 },
-                  },
-                }}
-              >
-                <DropdownRadix.Arrow
-                  className={`relative text-Dark-300 stroke-1 stroke-Dark-500 fill-current-Dark-700`}
-                  height={0}
-                  width={0}
-                />
-                <DropdownRadix.Arrow
-                  className={`relative z-1 -top-1 left-0 text-Dark-300 fill-current-Dark-700 stroke-1 stroke-Dark-500`}
-                  height={0}
-                  width={0}
-                />
-                {children}
-              </motion.div>
-            </DropdownRadix.Content>
-          </DropdownRadix.Portal>
-        )}
-      </AnimatePresence>
+            )}
+            {...rest}
+            onPointerDownOutside={e => {
+              if (!portal) {
+                e.detail.originalEvent.preventDefault()
+              }
+            }}
+          >
+            {/*<DropdownRadix.Arrow*/}
+            {/*  className={`relative text-Dark-300 stroke-1 stroke-Dark-500 fill-current-Dark-700`}*/}
+            {/*  height={0}*/}
+            {/*  width={0}*/}
+            {/*/>*/}
+            {/*<DropdownRadix.Arrow*/}
+            {/*  className={`relative z-1 -top-1 left-0 text-Dark-300 fill-current-Dark-700 stroke-1 stroke-Dark-500`}*/}
+            {/*  height={0}*/}
+            {/*  width={0}*/}
+            {/*/>*/}
+            {/*<DropdownRadix.Arrow*/}
+            {/*  className={`absolute -top-[0.4rem] left-1/2 rotate-45 w-4 h-4 bg-Dark-700 border-2 border-Dark-100*/}
+            {/*  border-t-0 border-left-0 fill-Dark-700`}*/}
+            {/*/>*/}
+            <DropdownRadix.Arrow
+              className={`relative z-1 -top-1 left-0 fill-Primary-100 stroke-1 stroke-Dark-500`}
+              height={15}
+              width={10}
+            />
+            {children}
+          </DropdownRadix.Content>
+        </DropdownRadix.Portal>
+      )}
     </DropdownMenuContext.Provider>
   )
 }
@@ -182,20 +161,13 @@ type DropdownMenuItem = {
   startIcon?: ReactNode
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Item>
 
-function DropdownMenuItem({ children, onSelect, endIcon, startIcon, ...rest }: DropdownMenuItem) {
-  let controls = useAnimationControls()
+function DropdownItem({ children, onSelect, endIcon, startIcon, ...rest }: DropdownMenuItem) {
   let { closeMenu } = useContext(DropdownMenuContext)
   return (
     <DropdownRadix.Item
       onSelect={async e => {
         e.preventDefault()
-
-        await controls.start({
-          color: '#fff',
-          transition: { duration: 0.04 },
-        })
         await sleep(0.075)
-
         await closeMenu()
         if (onSelect) {
           onSelect()
@@ -204,14 +176,11 @@ function DropdownMenuItem({ children, onSelect, endIcon, startIcon, ...rest }: D
       className="cursor-pointer bg-Dark-500 flex gap-[6px] items-center p-[0.75rem] outline-none
       w-40 select-none rounded px-2 py-1.5 text-Light-100 data-[highlighted]:bg-Dark-100 data-[highlighted]:text-Light-100
        data-[highlighted]:focus:outline-none transition-all duration-150 ease-linear hover:bg-Dark-100"
-      asChild
       {...rest}
     >
-      <motion.div animate={controls}>
-        {startIcon && startIcon}
-        {children}
-        {endIcon && endIcon}
-      </motion.div>
+      {startIcon && startIcon}
+      {children}
+      {endIcon && endIcon}
     </DropdownRadix.Item>
   )
 }
@@ -225,7 +194,7 @@ function DropdownMenuItem({ children, onSelect, endIcon, startIcon, ...rest }: D
  * Для создания задержки перед выполнением операций в асинхронном коде.
  */
 const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, s * 1000))
-Dropdown.MenuItem = DropdownMenuItem
+Dropdown.Item = DropdownItem
 
 // -------------------------------------> DropdownMenuItemWithIcon <-----------------------------------------------------------------
 export type DropdownItemWithIconProps = Omit<DropdownMenuItemProps, 'children'> & {
@@ -247,12 +216,10 @@ export const DropdownItemWithIcon = ({
   ...rest
 }: DropdownItemWithIconProps) => {
   const classNames = {
-    //
     item: clsx(
       `cursor-pointer flex gap-[6px] items-center p-[12px_0] text-regular-text-14 outline-none`,
       className
     ),
-    //
     itemIcon: clsx(
       `flex items-center justify-center w-6 h-6 disabled:opacity-20`,
       disabled && `disabled:opacity-20 opacity-20`
@@ -276,6 +243,7 @@ export const DropdownItemWithIcon = ({
     </DropdownRadix.Item>
   )
 }
+Dropdown.ItemWithIcon = DropdownItemWithIcon
 
 // -------------------------------------> Separator <-----------------------------------------------------------------
 /**
@@ -287,24 +255,31 @@ export const DropdownItemWithIcon = ({
 type SeparatorProps = ComponentPropsWithoutRef<typeof DropdownRadix.Separator>
 
 export const Separator = ({ className, ...rest }: SeparatorProps) => {
-  return <DropdownRadix.Separator className={clsx(`h-[1px] bg-Dark-100`, className)} {...rest} />
+  return (
+    <DropdownRadix.Separator
+      className={clsx(`h-[0.5px] bg-Light-900/50 shadow-sm shadow-Dark-100`, className)}
+      {...rest}
+    />
+  )
 }
+Dropdown.Separator = Separator
 
 /**
  * Пример использования:
  *   let [text, setText] = useState('Select an item')
  *
- *    <Dropdown>
- *       <Dropdown.Button></Dropdown.Button>
- *          <Dropdown.Menu>
- *            <Dropdown.MenuItem onSelect={() => setText('Click_1')}>Item 1</DropdownMenu.Item>
+ * <Dropdown>
+ *         <Dropdown.Button>
+ *           <MoreIcon />
+ *         </Dropdown.Button>
+ *         <Dropdown.Menu>
+ *            <Dropdown.Item onSelect={() => setText('Click_1')}>Item 1</Dropdown.Item>
  *            <Dropdown.Separator />
- *            <Dropdown.MenuItem onSelect={() => setText('Click_2')}>Item 2</DropdownMenu.Item>
+ *            <Dropdown.Item onSelect={() => setText('Click_2')}>Item 2</Dropdown.Item>
  *            <Dropdown.Separator />
- *            <Dropdown.MenuItem onSelect={() => setText('Click_3')}>Item 3</DropdownMenu.Item>
- *            <Dropdown.Separator />
- *        </Dropdown.Menu>
- *     </Dropdown>
+ *            <Dropdown.Item onSelect={() => setText('Click_3')}>Item 3</Dropdown.Item>
+ *         </Dropdown.Menu>
+ *  </Dropdown>
         <div className="px-6 py-8 text-right">
  *         <p>{text}</p>
  *      </div>
