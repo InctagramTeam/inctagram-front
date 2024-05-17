@@ -1,3 +1,4 @@
+export { Flex } from './flex'
 export type {
   FlexAlignItems,
   FlexDirection,
@@ -5,4 +6,3 @@ export type {
   FlexJustifyContent,
   FlexWrap,
 } from '@/components/ui/flex/flex'
-export { Flex } from './flex'

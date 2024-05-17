@@ -1,14 +1,14 @@
 import GithubIcon from '@/assets/icons/GithubIcon'
 import GoogleIcon from '@/assets/icons/GoogleIcon'
+import { ReturnComponent } from '@/common/types'
 import { getLayout } from '@/components/Layout/Layout'
 import { Button } from '@/components/ui/button'
+import { Flex } from '@/components/ui/flex'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
+import { Checkbox } from 'src/components/ui/checkbox'
 import { PageWrapper } from 'src/components/ui/page-wrapper'
 import { Text } from 'src/components/ui/text/text'
-import { ReturnComponent } from '@/common/types'
-import { Flex } from '@/components/ui/flex'
-import { Checkbox } from 'src/components/ui/checkbox'
 
 type Props = {}
 

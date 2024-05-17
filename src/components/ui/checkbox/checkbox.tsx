@@ -1,32 +1,32 @@
-import React, { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode, useId } from 'react'
+import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useId } from 'react'
 
+import CheckIcon from '@/assets/icons/CheckIcon'
+import { ReturnComponent } from '@/common/types'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import * as LabelRadix from '@radix-ui/react-label'
 import clsx from 'clsx'
-import CheckIcon from '@/assets/icons/CheckIcon'
-import { ReturnComponent } from '@/common/types'
 
 export type CheckboxProps = {
   checked?: boolean
   className?: string
   disabled?: boolean
-  label?: ReactNode | string
   id?: string
+  label?: ReactNode | string
   labelPosition?: 'left' | 'right'
-  value?: string
   onValueChange?: (checked: boolean) => void
   required?: boolean
+  value?: string
 } & Omit<ComponentPropsWithoutRef<typeof CheckboxRadix.Root>, 'checked' | 'onCheckedChange'>
 
 export type Ref = ElementRef<typeof CheckboxRadix.Root>
 
 export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnComponent => {
   const {
+    checked,
     className,
     disabled,
-    label = '',
-    checked,
     id,
+    label = '',
     labelPosition = 'right',
     name,
     onValueChange,
@@ -40,14 +40,15 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
   return (
     <div className={`_container_ flex items-center`}>
       <LabelRadix.Root
-        htmlFor={finalId}
         className={clsx(
           `_label_ select-none z-0 inline-flex gap-[11px] items-center text-regular-text-14 cursor-default`,
           className,
           disabled && `text-Light-900/60`
         )}
+        htmlFor={finalId}
       >
         <CheckboxRadix.Root
+          checked={checked}
           className={clsx(
             disabled && `cursor-default`,
             `_Checkbox_ relative w-[18px] h-[18px] p-[3px_1px] bg-transparent cursor-pointer flex shrink-0 items-center justify-center
@@ -72,12 +73,11 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
             data-[state=unchecked]:bg-Dark-700
             `
           )}
-          id={id}
-          checked={checked}
-          name={name}
           disabled={disabled}
-          required={required}
+          id={id}
+          name={name}
           ref={ref}
+          required={required}
           {...restProps}
         >
           <CheckboxRadix.Indicator
