@@ -1,141 +1,99 @@
-'use client'
+import React, { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode, useId } from 'react'
 
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactElement, useId } from 'react'
-
+import * as CheckboxRadix from '@radix-ui/react-checkbox'
+import * as LabelRadix from '@radix-ui/react-label'
+import clsx from 'clsx'
 import CheckIcon from '@/assets/icons/CheckIcon'
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
-import * as LabelPrimitive from '@radix-ui/react-label'
-import { clsx } from 'clsx'
 import { ReturnComponent } from '@/common/types'
-
-type CheckboxPrimitiveElement = ElementRef<typeof CheckboxPrimitive.Root>
 
 export type CheckboxProps = {
   checked?: boolean
   className?: string
   disabled?: boolean
+  label?: ReactNode | string
   id?: string
-  label?: string
   labelPosition?: 'left' | 'right'
+  value?: string
   onValueChange?: (checked: boolean) => void
   required?: boolean
-  /**
-   * Так как мы делаем компоненты универсальными и нам нужны все возможные пропсы, которые мы можем передать в нативный элемент,
-   * то есть html тег, то мы используем тип (пример для инпута) ComponentPropsWithoutRef<‘input’>
-   *  Убираем пропсы Radix: 'checked' | 'onCheckedChange' т.к они есть в input
-   */
-} & Omit<ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>, 'checked' | 'onCheckedChange'>
+} & Omit<ComponentPropsWithoutRef<typeof CheckboxRadix.Root>, 'checked' | 'onCheckedChange'>
 
-const Checkbox = forwardRef<CheckboxPrimitiveElement, CheckboxProps>(
-  (props, ref): ReturnComponent => {
-    const {
-      checked,
-      className,
-      disabled,
-      id,
-      label = '',
-      labelPosition = 'right',
-      name,
-      onValueChange,
-      required,
-      ...rest
-    } = props
+export type Ref = ElementRef<typeof CheckboxRadix.Root>
 
-    const generatedId = useId()
-    const finalId = id ?? generatedId
+export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnComponent => {
+  const {
+    className,
+    disabled,
+    label = '',
+    checked,
+    id,
+    labelPosition = 'right',
+    name,
+    onValueChange,
+    required,
+    ...restProps
+  } = props
 
-    const commonClasses = {
-      divWrapper: clsx(
-        `relative border-2 w-[18px] h-[18px] z-100 opacity-100 rounded border-Dark-100
-         hover:not-disabled:bg-Dark-500 hover:active:not-disabled:bg-Dark-500`,
-        !checked && disabled && 'cursor-default text-Dark-100',
-        disabled && 'cursor-default text-Dark-100',
-        labelPosition === 'left' && '-ml-[10px]'
-      ),
-      checkboxPrimitiveRoot: clsx(
-        checked && !label && !disabled && `top-0 left-0 -translate-y-7 -translate-x-[2px]`,
-        checked &&
-          !disabled &&
-          `cursor-pointer relative w-[18px] h-[18px] before:content-[''] before:absolute
-          before:block before:scale-0 hover:before:scale-100
-          hover:before:-translate-x-1 hover:before:-translate-y-1 hover:before:-translate-x-1 hover:before:opacity-60 hover:before:z-1
-          before:w-[26px] before:h-[26px] before:bg-Dark-100 before:rounded-[50%]
-          before:transition-all duration-150 ease-in-out
-          hover:active:before:scale-100 hover:active:before:bg-Dark-100
-          hover:focus-visible:before:scale-100
-          focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:rounded-[4px] focus:border-Light-100
-          focus:ring-offset-Primary-300`,
-        !checked &&
-          !disabled &&
-          `peer cursor-pointer data-[state=checked]:text-Light-100 relative w-[18px] h-[18px] before:content-[''] before:absolute
-          before:block before:t-[-50%] before:l-[-50%] before:scale-0 hover:before:scale-100
-          hover:before:-translate-x-[4px] hover:before:-translate-y-6 hover:before:opacity-35
-          before:w-[26px] before:h-[26px] before:bg-Dark-100 before:rounded-[50%]
-          before:transition-all transition duration-150 ease-in-out
-          hover:active:before:scale-100 hover:active:before:bg-Dark-100
-          hover:focus-visible:before:scale-100
-          hover:focus-visible:before:bg-Dark-100
-          focus-visible:outline-none focus-visible:before:block focus-visible:before:t-[-50%]
-          focus-visible:before:l-[-50%] focus-visible:before:scale-100 focus-visible:before:w-[26px]
-          focus-visible:before:h-[26px] focus-visible:before:-translate-y-3 focus-visible:before:-translate-x-1
-          focus-visible:before:bg-Dark-500`,
-        checked && disabled && `cursor-default rounded`,
-        !checked &&
-          disabled &&
-          'cursor-default rounded relative -z-100 opacity-0 bg-Dark-900 opacity-60 border-2 border-bg-Dark-100'
-      ),
-      divDisabled: clsx(
-        `relative z-0 inset-0 rounded cursor-default`,
-        disabled && `border-2 border-Light-100/60`
-      ),
-      buttonIndicator: clsx(
-        disabled &&
-          checked &&
-          `absolute z-2 top-1/2 left-1/2 -translate-y-4 -translate-x-[2px] cursor-default text-Light-100/60
-        appearance-none rounded w-[18px] h-[18px] bg-Dark-100/50`,
-        !disabled && checked && 'fill-Light-100 cursor-pointer'
-      ),
-      label: clsx(
-        `cursor-default text-Light-700/60 text-regular-text-14 px-1 mb-1`,
-        checked && label && `ml-[22px]`,
-        !checked && label && `ml-[22px] -translate-y-[3px] hover:translate-y-[1px]`,
-        checked && disabled && `cursor-default`,
-        checked && !disabled && `cursor-pointer hover:text-Primary-300/90`,
-        !checked && disabled && `cursor-default shadow-sm`,
-        !checked &&
-          !disabled &&
-          `cursor-pointer hover:-translate-y-[1px] hover:text-Primary-500 hover:animate-[wiggle_1s_ease-in-out_infinite]`,
-        className && className
-      ),
-    }
+  const generatedId = useId()
+  const finalId = id ?? generatedId
 
-    return (
-      <div className={commonClasses.divWrapper}>
-        <LabelPrimitive.Root className={commonClasses.label} htmlFor={finalId}>
-          {label}
-        </LabelPrimitive.Root>
-        <CheckboxPrimitive.Root
-          checked={checked}
-          className={commonClasses.checkboxPrimitiveRoot}
-          defaultChecked
-          disabled={disabled}
+  return (
+    <div className={`_container_ flex items-center`}>
+      <LabelRadix.Root
+        htmlFor={finalId}
+        className={clsx(
+          `_label_ select-none z-0 inline-flex gap-[11px] items-center text-regular-text-14 cursor-default`,
+          className,
+          disabled && `text-Light-900/60`
+        )}
+      >
+        <CheckboxRadix.Root
+          className={clsx(
+            disabled && `cursor-default`,
+            `_Checkbox_ relative w-[18px] h-[18px] p-[3px_1px] bg-transparent cursor-pointer flex shrink-0 items-center justify-center
+            border-2 border-Light-500 rounded
+            before:content-['']
+            before:absolute before:-z-1 before:w-[32px] before:h-[32px] before:opacity-0
+            before:bg-Light-900/60 before:rounded-[50%] before:scale-0 hover:before:scale-100
+            hover:before:-translate-y-[1px] hover:before:-translate-x-[1px] hover:before:opacity-60 hover:before:z-1
+            hover:not:before:data-[disabled]:opacity-100 hover:not:before:data-[disabled=true]:bg-Dark-300
+            hover:not:before:data-[disabled]:transition-opacity hover:not:before:data-[disabled]:delay-150
+            focus-visible:not:data-[disabled]:outline-none
+            focus-visible:not:data-[disabled]:outline-none
+            focus-visible:not:data-[disabled]:before:opacity-100
+            focus-visible:not:data-[disabled]:before:bg-Dark-500
+            active:not:data-[disabled]:before:bg-Dark-100
+            hover:disabled:cursor-default hover:disabled:before:hidden
+            data-[state=checked]:bg-Light-100 data-[disabled]:cursor-default 
+            data-[disabled]:bg-Dark-100 data-[disabled]:border-2 data-[disabled]:border-Light-900 data-[disabled]:opacity-30
+            data-[state=checked]:cursor-pointer data-[state=checked,disabled]:bg-Dark-100
+            data-[state=checked]:border-2 data-[state=checked]:border-Dark-100
+            data-[state=unchecked]:cursor-pointer data-[state=unchecked]:border-2 data-[state=unchecked]:border-Dark-100
+            data-[state=unchecked]:bg-Dark-700
+            `
+          )}
           id={id}
+          checked={checked}
           name={name}
-          onCheckedChange={onValueChange}
-          ref={ref}
+          disabled={disabled}
           required={required}
-          {...rest}
+          ref={ref}
+          {...restProps}
         >
-          <div className={commonClasses.divDisabled}>
-            <CheckboxPrimitive.Indicator className={commonClasses.buttonIndicator} forceMount>
-              {checked && <CheckIcon />}
-            </CheckboxPrimitive.Indicator>
-          </div>
-        </CheckboxPrimitive.Root>
-      </div>
-    )
-  }
-)
-
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
-export { Checkbox }
+          <CheckboxRadix.Indicator
+            className={`_indicator_ flex items-center justify-center data-[disabled]:cursor-default`}
+          >
+            <CheckIcon
+              className={
+                disabled
+                  ? `_checkIconDisabled_ text-Light-700 cursor-default`
+                  : `_checkIcon_ text-Dark-900`
+              }
+            />
+          </CheckboxRadix.Indicator>
+        </CheckboxRadix.Root>
+        {label}
+      </LabelRadix.Root>
+    </div>
+  )
+})

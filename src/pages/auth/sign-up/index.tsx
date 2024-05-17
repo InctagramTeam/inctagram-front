@@ -8,7 +8,7 @@ import { PageWrapper } from 'src/components/ui/page-wrapper'
 import { Text } from 'src/components/ui/text/text'
 import { ReturnComponent } from '@/common/types'
 import { Flex } from '@/components/ui/flex'
-import { Checkbox } from '@/components/ui/Checkbox_'
+import { Checkbox } from 'src/components/ui/checkbox'
 
 type Props = {}
 
