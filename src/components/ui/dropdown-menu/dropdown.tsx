@@ -1,15 +1,16 @@
-import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
-import { DropdownMenuItemProps } from '@radix-ui/react-dropdown-menu'
 import {
-  ComponentPropsWithoutRef,
-  createContext,
   CSSProperties,
+  ComponentPropsWithoutRef,
   ReactNode,
+  createContext,
   useContext,
   useState,
 } from 'react'
-import { clsx } from 'clsx'
+
 import { Text } from '@/components/ui/text'
+import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
+import { DropdownMenuItemProps } from '@radix-ui/react-dropdown-menu'
+import { clsx } from 'clsx'
 
 // local context type
 type DropdownContext = { open: boolean; setOpen: (open: boolean) => void }
@@ -19,8 +20,8 @@ const DropdownContext = createContext<DropdownContext>({ open: false, setOpen: (
 
 // props-type
 type DropdownProps = {
-  className?: string
   children: ReactNode
+  className?: string
   /**
    * Если установлено значение true, взаимодействие свнешними элементами будет отключено,
    * и читателям экрана будет видно только содержимое меню.
@@ -29,12 +30,12 @@ type DropdownProps = {
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Root>
 
 // --------------------------------------------> Dropdown <-----------------------------------------------------------------
-export const Dropdown = ({ children, modal, className, ...rest }: DropdownProps) => {
-  let [open, setOpen] = useState(false)
+export const Dropdown = ({ children, className, modal, ...rest }: DropdownProps) => {
+  const [open, setOpen] = useState(false)
 
   return (
     <DropdownContext.Provider value={{ open, setOpen }}>
-      <DropdownRadix.Root open={open} onOpenChange={setOpen} modal={modal} {...rest}>
+      <DropdownRadix.Root modal={modal} onOpenChange={setOpen} open={open} {...rest}>
         {children}
       </DropdownRadix.Root>
     </DropdownContext.Provider>
@@ -65,30 +66,30 @@ function DropdownButton({ children, className, ...rest }: DropdownButton) {
 Dropdown.Button = DropdownButton
 // --------------------------------------->  DropdownMenu <-----------------------------------------------------------------
 /* context */
-let DropdownMenuContext = createContext({ closeMenu: () => {} })
+const DropdownMenuContext = createContext({ closeMenu: () => {} })
 
 /* type */
 type DropdownMenu = {
+  /** Выравнивание относительно триггера (кнопки) */
+  align?: 'center' | 'end' | 'start'
   children: ReactNode
+  className?: string
   /**
    * onPointerDownOutside - Обработчик события мыши или "касание" пальцем экрана,
    * вызываемый при возникновении события с указателем за пределами компонента.
    * Его можно предотвратить, вызвав event.preventDefault.
    */
   portal?: boolean
-  /** Выравнивание относительно триггера (кнопки) */
-  align?: 'center' | 'end' | 'start'
   /** Расстояние в "px" от trigger-a */
   sideOffset?: number
-  className?: string
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Content>
 
 /* Component */
 function DropdownMenu({
-  children,
-  portal = true,
   align = 'start',
+  children,
   className,
+  portal = true,
   sideOffset = 0,
   ...rest
 }: DropdownMenu) {
@@ -103,7 +104,6 @@ function DropdownMenu({
       {open && (
         <DropdownRadix.Portal forceMount>
           <DropdownRadix.Content
-            sideOffset={sideOffset}
             align={align}
             className={clsx(
               ` relative z-10 bg-Dark-500 border-1 border-Dark-100 rounded will-change-transform mt-1
@@ -118,6 +118,7 @@ function DropdownMenu({
                 focus-visible:ring-opacity-50
                 active:Dark-100 duration-150 active:text-Light-100`
             )}
+            sideOffset={sideOffset}
             {...rest}
             onPointerDownOutside={e => {
               if (!portal) {
@@ -144,15 +145,20 @@ Dropdown.Menu = DropdownMenu
 // -------------------------------------> DropdownMenuItem <-----------------------------------------------------------------
 type DropdownMenuItem = {
   children: ReactNode
-  onSelect?: () => void
   endIcon?: ReactNode
+  onSelect?: () => void
   startIcon?: ReactNode
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Item>
 
-function DropdownItem({ children, onSelect, endIcon, startIcon, ...rest }: DropdownMenuItem) {
-  let { closeMenu } = useContext(DropdownMenuContext)
+function DropdownItem({ children, endIcon, onSelect, startIcon, ...rest }: DropdownMenuItem) {
+  const { closeMenu } = useContext(DropdownMenuContext)
+
   return (
     <DropdownRadix.Item
+      className="cursor-pointer bg-Dark-500 flex gap-[6px] items-center p-[0.75rem] outline-none
+      w-40 select-none rounded px-2 py-1.5 text-Light-100 data-[highlighted]:bg-Dark-100 data-[highlighted]:text-Light-100
+       data-[highlighted]:focus:outline-none transition-all duration-150 ease-linear hover:bg-Dark-100
+       "
       onSelect={async e => {
         e.preventDefault()
         await sleep(0.075)
@@ -161,10 +167,6 @@ function DropdownItem({ children, onSelect, endIcon, startIcon, ...rest }: Dropd
           onSelect()
         }
       }}
-      className="cursor-pointer bg-Dark-500 flex gap-[6px] items-center p-[0.75rem] outline-none
-      w-40 select-none rounded px-2 py-1.5 text-Light-100 data-[highlighted]:bg-Dark-100 data-[highlighted]:text-Light-100
-       data-[highlighted]:focus:outline-none transition-all duration-150 ease-linear hover:bg-Dark-100
-       "
       {...rest}
     >
       {startIcon && startIcon}
@@ -183,25 +185,27 @@ function DropdownItem({ children, onSelect, endIcon, startIcon, ...rest }: Dropd
  * Для создания задержки перед выполнением операций в асинхронном коде.
  */
 const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, s * 1000))
+
 Dropdown.Item = DropdownItem
 
 // -------------------------------------> DropdownMenuItemWithIcon <-----------------------------------------------------------------
-export type DropdownItemWithIconProps = Omit<DropdownMenuItemProps, 'children'> & {
-  icon: ReactNode
-  text?: string
-  disabled?: boolean
-  onSelect: () => void
+export type DropdownItemWithIconProps = {
   className?: string
+  disabled?: boolean
+  icon: ReactNode
+  onSelect: () => void
   style: CSSProperties
-} & ComponentPropsWithoutRef<'div'>
+  text?: string
+} & ComponentPropsWithoutRef<'div'> &
+  Omit<DropdownMenuItemProps, 'children'>
 
 export const DropdownItemWithIcon = ({
-  icon,
-  text,
-  disabled,
-  onSelect,
   className,
+  disabled,
+  icon,
+  onSelect,
   style,
+  text,
   ...rest
 }: DropdownItemWithIconProps) => {
   const classNames = {
@@ -217,17 +221,17 @@ export const DropdownItemWithIcon = ({
 
   return (
     <DropdownRadix.Item
+      asChild
       className={classNames.item}
       disabled={disabled}
-      onSelect={onSelect}
       onClick={event => event.stopPropagation()}
+      onSelect={onSelect}
       style={style}
-      asChild
       {...rest}
     >
       <div>
         <div className={classNames.itemIcon}>{icon}</div>
-        <Text variant="regular_text_16">{text}</Text>
+        <Text variant={'regular_text_16'}>{text}</Text>
       </div>
     </DropdownRadix.Item>
   )
