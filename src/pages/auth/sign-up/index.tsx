@@ -6,16 +6,16 @@ import { Button } from '@/components/ui/button'
 import { Flex } from '@/components/ui/flex'
 import { Input } from '@/components/ui/input'
 import Link from 'next/link'
-import { Checkbox } from 'src/components/ui/checkbox'
-import { PageWrapper } from 'src/components/ui/page-wrapper'
-import { Text } from 'src/components/ui/text/text'
+import { Checkbox } from '@/components/ui/checkbox'
+import { PageWrapper } from '@/components/ui/page-wrapper'
+import { Text } from '@/components/ui/text'
 
 type Props = {}
 
 const SignUp = ({}: Props): ReturnComponent => {
   return (
     <PageWrapper title={'SignUp | Instagram'}>
-      {/* todo: Card component instead of div (_Card_) */}
+      {/* Todo: Card component instead of div */}
       <div
         className={`_Card_ w-[380px] min-h-[648px] bg-Dark-500 rounded
         border border-Dark-300 shadow-shadow-Dark-30`}
