@@ -25,7 +25,7 @@ const links = [
   },
   {
     disabled: false,
-    href: '/profile',
+    href: '/My Profile',
     name: 'Profile',
   },
   {
@@ -75,4 +75,3 @@ export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
 export const getLayout = (page: ReactElement) => {
   return <Layout>{page}</Layout>
 }
-// text-[color:var(--text-color)]

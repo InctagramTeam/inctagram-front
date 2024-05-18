@@ -1,6 +1,7 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
 import { cn } from '@/utils/merge-cn'
+import { ReturnComponent } from '@/common/types'
 
 export type TextareaProps = {
   className?: string
@@ -9,7 +10,7 @@ export type TextareaProps = {
 } & Omit<ComponentPropsWithoutRef<'textarea'>, 'className'>
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, disabled, error, id, label, ...rest }, ref) => {
+  ({ className, disabled, error, id, label, ...rest }, ref): ReturnComponent => {
     const classes = {
       error: cn(`!text-regular-text-14 block text-Danger-500`),
       label: cn(`block text-Light-900`, disabled && `text-Dark-100`),
