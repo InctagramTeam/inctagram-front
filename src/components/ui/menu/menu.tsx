@@ -7,7 +7,6 @@ import {
   PersonOutline,
   PlusSquare,
   PlusSquareOutline,
-  Search,
   SearchOutline,
 } from '@/assets/icons'
 import { getLayout } from '@/components/Layout/Layout'
