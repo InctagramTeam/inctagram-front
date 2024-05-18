@@ -3,9 +3,9 @@
 import * as React from 'react'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
+import { ReturnComponent } from '@/common/types'
 import { cn } from '@/utils/merge-cn'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { ReturnComponent } from '@/common/types'
 
 const Popover = PopoverPrimitive.Root
 

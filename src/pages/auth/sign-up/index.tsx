@@ -3,12 +3,12 @@ import GoogleIcon from '@/assets/icons/GoogleIcon'
 import { ReturnComponent } from '@/common/types'
 import { getLayout } from '@/components/Layout/Layout'
 import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Flex } from '@/components/ui/flex'
 import { Input } from '@/components/ui/input'
-import Link from 'next/link'
-import { Checkbox } from '@/components/ui/checkbox'
 import { PageWrapper } from '@/components/ui/page-wrapper'
 import { Text } from '@/components/ui/text'
+import Link from 'next/link'
 
 type Props = {}
 

@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
-import { cn } from '@/utils/merge-cn'
 import { ReturnComponent } from '@/common/types'
+import { cn } from '@/utils/merge-cn'
 
 export type TextareaProps = {
   className?: string
