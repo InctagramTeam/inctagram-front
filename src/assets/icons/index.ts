@@ -1,4 +1,3 @@
-export { default as BeakIcon } from '@/assets/icons/BeakIcon'
 export { default as BellIcon } from '@/assets/icons/BellIcon'
 export { default as BellOutlineIcon } from '@/assets/icons/BellOutlineIcon'
 export { default as CalendarIcon } from '@/assets/icons/CalendarIcon'
