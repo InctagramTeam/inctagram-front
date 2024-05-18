@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Flex } from '@/components/ui/flex/flex'
 import { Logo } from '@/components/ui/logo/logo'
 import { cn } from '@/utils/merge-cn'
+import { NotificationProps, NotificationsDropdown } from '@/widgets'
 import Link from 'next/link'
-import { NotificationsDropdown, NotificationProps } from '@/widgets'
 
 type Props = {
   classes?: string
@@ -26,7 +26,7 @@ export const Header = ({ countNotifications, isAuth = false, notifications }: Pr
       `w-[24px] !h-[24px] justify-center hover:translate-y-0 !p-0 relative`,
       `hover:bg-Primary-500 active:opacity-50 duration-300 transition-opacity`
     ),
-    header: `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-max py-[15px] z-10 bg-Dark-700`,
+    header: `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,
     loginLink: cn(
       `px-[26px] !text-Primary-500 duration-300`,
       `hover:no-underline hover:!text-Primary-100`,
@@ -71,7 +71,7 @@ export const Header = ({ countNotifications, isAuth = false, notifications }: Pr
             notifications={notifications}
             onOpenChange={setOpenDropdown}
             open={openDropdown}
-            sideOffset={9}
+            sideOffset={10}
             trigger={trigger}
           />
           <div>Select</div>
