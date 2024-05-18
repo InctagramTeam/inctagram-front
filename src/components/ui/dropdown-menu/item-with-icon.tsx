@@ -1,22 +1,25 @@
-import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
-import { ComponentPropsWithoutRef, CSSProperties, ReactNode, forwardRef } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react'
+
 import { ReturnComponent } from '@/common/types'
-import { clsx } from 'clsx'
 import { Text } from '@/components/ui/text'
+import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
+import { clsx } from 'clsx'
+
 import { DropdownItemProps } from './item'
 
-export type DropdownItemWithIconProps = Omit<DropdownItemProps, 'children'> & {
-  icon: ReactNode
-  text?: string
-  disabled?: boolean
-  onSelect: () => void
+export type DropdownItemWithIconProps = {
   className?: string
+  disabled?: boolean
+  icon: ReactNode
+  onSelect: () => void
   style?: CSSProperties
-} & ComponentPropsWithoutRef<'div'>
+  text?: string
+} & ComponentPropsWithoutRef<'div'> &
+  Omit<DropdownItemProps, 'children'>
 
 const DropdownItemWithIcon = forwardRef<HTMLDivElement, DropdownItemWithIconProps>(
   (props, ref): ReturnComponent => {
-    const { icon, text, disabled, onSelect, className, style, ...rest } = props
+    const { className, disabled, icon, onSelect, style, text, ...rest } = props
 
     const classNames = {
       item: clsx(
@@ -31,17 +34,17 @@ const DropdownItemWithIcon = forwardRef<HTMLDivElement, DropdownItemWithIconProp
 
     return (
       <DropdownRadix.Item
+        asChild
         className={classNames.item}
         disabled={disabled}
-        onSelect={onSelect}
         onClick={event => event.stopPropagation()}
+        onSelect={onSelect}
         style={style}
-        asChild
         {...rest}
       >
         <div ref={ref}>
           <div className={classNames.itemIcon}>{icon}</div>
-          <Text variant="regular_text_16">{text}</Text>
+          <Text variant={'regular_text_16'}>{text}</Text>
         </div>
       </DropdownRadix.Item>
     )

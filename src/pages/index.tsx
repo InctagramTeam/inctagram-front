@@ -1,6 +1,6 @@
 import { getLayout } from '@/components/Layout/Layout'
-import { PageWrapper } from 'src/components/ui/page-wrapper'
 import Link from 'next/link'
+import { PageWrapper } from 'src/components/ui/page-wrapper'
 
 function Public() {
   return (

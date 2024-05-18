@@ -1,23 +1,24 @@
-import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
+import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
+
 type DropdownProps = {
-  className?: string
   children: ReactNode
+  className?: string
   /**
    * Если установлено значение true, взаимодействие с внешними элементами будет отключено,
    * и читателям экрана будет видно только содержимое меню.
    */
   modal?: boolean
-  open?: boolean
   onOpenChange?: (open: boolean) => void
+  open?: boolean
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Root>
 
 export function Dropdown(props: DropdownProps) {
-  const { children, modal, className, open, onOpenChange, ...rest } = props
+  const { children, className, modal, onOpenChange, open, ...rest } = props
 
   return (
-    <DropdownRadix.Root open={open} onOpenChange={onOpenChange} modal={modal} {...rest}>
+    <DropdownRadix.Root modal={modal} onOpenChange={onOpenChange} open={open} {...rest}>
       {children}
     </DropdownRadix.Root>
   )

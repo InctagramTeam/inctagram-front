@@ -1,44 +1,46 @@
-import { ComponentPropsWithoutRef, CSSProperties, ReactNode, forwardRef } from 'react'
-import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
+import { CSSProperties, ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react'
+
 import { ReturnComponent } from '@/common/types'
+import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
 
 type MenuProps = {
-  trigger: ReactNode
+  /** Выравнивание относительно триггера (кнопки) */
+  align?: 'center' | 'end' | 'start'
+  className?: string
+  modal?: boolean
+  onOpenChange?: (open: boolean) => void
+  open?: boolean
   /**
    * onPointerDownOutside - Обработчик события мыши или "касание" пальцем экрана,
    * вызываемый при возникновении события с указателем за пределами компонента.
    * Его можно предотвратить, вызвав event.preventDefault.
    */
   portal?: boolean
-  /** Выравнивание относительно триггера (кнопки) */
-  align?: 'center' | 'end' | 'start'
   /** Расстояние в "px" от trigger-a */
   sideOffset?: number
-  className?: string
-  modal?: boolean
   style?: CSSProperties
-  open?: boolean
-  onOpenChange?: (open: boolean) => void
+  trigger: ReactNode
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Content>
 
 const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent => {
   const {
-    children,
-    portal = true,
     align = 'start',
-    style,
+    children,
     className,
-    sideOffset = 0,
-    trigger,
     modal,
-    open,
     onOpenChange,
+    open,
+    portal = true,
+    sideOffset = 0,
+    style,
+    trigger,
     ...rest
   } = props
 
   const menuContent = (
     <DropdownRadix.Content
+      align={align}
       className={clsx(
         `relative overflow-visible mt-[10px]
          border border-Dark-100 rounded-[10px] p-[5px] pb-0 bg-Dark-500 text-Light-100 shadow-sm
@@ -48,7 +50,6 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
          before:border-l-[1px] before:border-t-[1px] before:rounded-xs`,
         className
       )}
-      align={align}
       ref={ref}
       {...rest}
       onPointerDownOutside={e => {
