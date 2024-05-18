@@ -24,11 +24,7 @@ const Menu = () => {
       }
     >
       <Link href={'/home'}>
-        {isActive('/home') ? (
-          <Home className={'text-[#397DF6]'} />
-        ) : (
-          <HomeOutline className={'text-[#397DF6]'} />
-        )}
+        {isActive('/home') ? <Home className={'text-[#397DF6]'} /> : <HomeOutline />}
       </Link>
       <Link href={'/favorites'}>
         {isActive('/favorites') ? (
