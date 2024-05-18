@@ -25,10 +25,14 @@ const Menu = () => {
       }
     >
       <Link href={'/home'}>
-        {isActive('/home') ? <Home className={'text-[#397DF6]'} /> : <HomeOutline />}
+        {isActive('/home') ? (
+          <Home className={'text-[#397DF6]'} />
+        ) : (
+          <HomeOutline className={'text-[#397DF6]'} />
+        )}
       </Link>
-      <Link href={'/publication'}>
-        {isActive('/publication') ? (
+      <Link href={'/favorites'}>
+        {isActive('/favorites') ? (
           <PlusSquare className={'text-[#397DF6]'} />
         ) : (
           <PlusSquareOutline />
@@ -42,7 +46,7 @@ const Menu = () => {
         )}
       </Link>
       <Link href={'/search'}>
-        {isActive('/search') ? <Search className={'text-[#397DF6]'} /> : <SearchOutline />}
+        {isActive('/search') ? <SearchOutline className={'text-[#397DF6]'} /> : <SearchOutline />}
       </Link>
       <Link href={'/profile'}>
         {isActive('/profile') ? <Person className={'text-[#397DF6]'} /> : <PersonOutline />}
@@ -52,4 +56,5 @@ const Menu = () => {
 }
 
 Menu.getlayout = getLayout
-export default Menu
+
+export { Menu }

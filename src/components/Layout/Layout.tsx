@@ -1,8 +1,9 @@
 import { PropsWithChildren, ReactElement } from 'react'
+
+import { Header } from '@/components/ui/header/header'
 import { cn } from '@/utils/merge-cn'
 import { NextPage } from 'next'
 import { Inter } from 'next/font/google'
-import { Header } from '@/components/ui/header/header'
 
 const inter = Inter({
   display: 'swap',
