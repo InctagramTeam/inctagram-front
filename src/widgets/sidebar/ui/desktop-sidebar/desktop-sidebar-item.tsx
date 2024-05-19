@@ -26,7 +26,7 @@ type Props = {
 }
 
 const linkClasses = {
-  active: `text-Primary-500`,
+  active: ` text-Primary-500`,
   base: `flex gap-[12px] font-medium-text-14 transition ease-in-out hover:text-Primary-100 mb-[24px] last:absolute last:bottom-[36px] last:mb-0`,
   default: `text-Light-100`,
   disabled: `pointer-events-none text-Dark-100 cursor-default`,
@@ -72,6 +72,7 @@ export const DesktopSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link }
     >
       {getIcon(link.href, isActive)}
       {link.name}
+      <div className={clsx(isActive && `absolute right-8 w-2 h-2 rounded bg-Primary-900`)}></div>
     </Link>
   )
 })

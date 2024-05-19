@@ -23,9 +23,11 @@ export const DesktopSidebar = forwardRef<HTMLElement, Props>(
           )}
           ref={ref}
         >
-          {links.map(link => {
-            return <DesktopSidebarItem key={link.href} link={link} />
-          })}
+          <ul className={`rounded-md cursor-pointer transition-colors`}>
+            {links.map(link => {
+              return <DesktopSidebarItem key={link.href} link={link} />
+            })}
+          </ul>
         </nav>
       </aside>
     )
