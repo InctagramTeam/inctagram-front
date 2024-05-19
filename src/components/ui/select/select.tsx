@@ -8,7 +8,6 @@ import { ChevronDown, ChevronUp } from 'lucide-react'
 
 import { cn } from '@/utils/merge-cn'
 import { FC } from 'react'
-import { transform } from 'sucrase'
 
 const Select = SelectPrimitive.Root
 
