@@ -20,7 +20,12 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      'flex w-[210px] h-[36px] items-center justify-between outline-none border rounded-none data-[state=closed]:border-Dark-100 data-[state=open]:border-Light-100 bg-Dark-700 px-2 py-2 text-base font-normal focus:border-Primary-500 focus:border-2 focus:rounded-sm disabled:cursor-not-allowed disabled:text-Dark-100',
+      'w-[210px] h-[36px] flex items-center justify-between ' +
+        ' bg-Dark-700 px-2 py-2 text-base font-normal outline-none border rounded-none' +
+        ' data-[state=closed]:border-Dark-100 data-[state=open]:border-Light-100 data-[state=open]:text-Light-100 ' +
+        ' hover:text-Light-900 focus:border-Light-900' +
+        ' focus:text-Light-900 focus:border-Primary-500 focus:border-2 focus:rounded-sm' +
+        ' disabled:cursor-not-allowed disabled:text-Dark-100',
       className
     )}
     {...props}
@@ -69,7 +74,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        'relative z-50 w-[210px] border border-t-0 border-Light-100 bg-Dark-700 m-0 p-0 max-h-96 min-w-[8rem] overflow-hidden text-popover-foreground',
+        'relative z-50 w-[210px] border border-t-0 border-Light-100 bg-Dark-700 m-0 p-0 max-h-96 min-w-[8rem] overflow-hidden text-popover-foreground ',
         // position === 'popper' &&
         // 'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
         className
@@ -109,7 +114,8 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      'flex w-[210px] h-[36px] cursor-default select-none items-center pl-2 pr-2 text-base font-normal text-Light-100 outline-none focus:bg-Dark-300 focus:text-Primary-500 data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+      'w-[210px] h-[36px] flex cursor-default select-none items-center pl-2 pr-2 text-base font-normal text-Light-100 outline-none ' +
+        'focus:bg-Dark-300 focus:text-Primary-500',
       className
     )}
     {...props}
@@ -161,12 +167,10 @@ export const SelectBox: FC<PropsType> = ({ title, disabled }) => {
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectItem value="Select-box1">Select-box1</SelectItem>
-            <SelectItem value="Select-box2">Select-box2</SelectItem>
-            <SelectItem value="Select-box3">Select-box2</SelectItem>
-            <SelectItem value="Select-box4">Select-box2</SelectItem>
-            <SelectItem value="Select-box5">Select-box2</SelectItem>
-            <SelectItem value="Select-box6">Select-box2</SelectItem>
+            <SelectItem value="Select-box1">Select-box-1</SelectItem>
+            <SelectItem value="Select-box2">Select-box-2</SelectItem>
+            <SelectItem value="Select-box3">Select-box-3</SelectItem>
+            <SelectItem value="Select-box4">Select-box-4</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

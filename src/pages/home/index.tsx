@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <PageWrapper title={'Home | Instagram'}>
       <h1>Home</h1>
-      <SelectBox title={'select'} disabled={false} />
+      <SelectBox title={'Select-box'} disabled={false} />
     </PageWrapper>
   )
 }
