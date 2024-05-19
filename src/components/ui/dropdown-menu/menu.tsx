@@ -3,7 +3,7 @@ import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import { ReturnComponent } from '@/common/types'
 import { clsx } from 'clsx'
 
-type MenuProps = {
+export type MenuProps = {
   trigger: ReactNode
   /**
    * onPointerDownOutside - Обработчик события мыши или "касание" пальцем экрана,
@@ -26,10 +26,10 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
   const {
     children,
     portal = true,
-    align = 'start',
+    align = 'end',
     style,
     className,
-    sideOffset = 0,
+    sideOffset = 2,
     trigger,
     modal,
     open,
@@ -40,7 +40,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
   const menuContent = (
     <DropdownRadix.Content
       className={clsx(
-        `relative overflow-visible mt-[10px]
+        `relative overflow-visible
          border border-Dark-100 rounded-[10px] p-[5px] pb-0 bg-Dark-500 text-Light-100 shadow-sm
          before:content-[''] before:absolute before:bg-Dark-500 before:left-[10px] before:w-[10px] before:h-[10px]
          before:-top-[6px] before:shadow-[0_07px_Dark-500] before:rotate-45 before:z-1
@@ -50,6 +50,8 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
       )}
       align={align}
       ref={ref}
+      style={style}
+      sideOffset={sideOffset}
       {...rest}
       onPointerDownOutside={e => {
         if (!portal) {
@@ -63,7 +65,9 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
 
   return (
     <DropdownRadix.Root modal={modal} onOpenChange={onOpenChange} open={open}>
-      <DropdownRadix.Trigger className={'outline-none'}>{trigger}</DropdownRadix.Trigger>
+      <DropdownRadix.Trigger asChild style={style} className={'outline-none'}>
+        {trigger}
+      </DropdownRadix.Trigger>
       {portal ? <DropdownRadix.Portal>{menuContent}</DropdownRadix.Portal> : menuContent}
     </DropdownRadix.Root>
   )
