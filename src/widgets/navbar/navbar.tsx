@@ -12,8 +12,8 @@ import {
   PlusOutlineIcon,
   SearchOutline,
   TrendingIcon,
-} from '@/assets/icons'
-import { cn } from '@/utils/merge-cn'
+} from '@/shared/assets/icons'
+import { cn } from '@/shared/lib/utils/merge-cn'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
