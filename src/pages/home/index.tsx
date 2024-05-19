@@ -1,7 +1,6 @@
 import { getLayout } from '@/components/Layout/Layout'
 import { PageWrapper } from 'src/components/ui/page-wrapper'
 import * as React from 'react'
-import { SelectBox } from '@/components/ui/select/select'
 
 const Home = () => {
   return (
