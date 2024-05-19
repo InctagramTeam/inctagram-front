@@ -1,4 +1,4 @@
-import { CSSProperties, ComponentPropsWithoutRef, ReactElement } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef } from 'react'
 
 import { ReturnComponent } from '@/common/types'
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
