@@ -1,11 +1,14 @@
+import { ComponentPropsWithoutRef } from 'react'
+
+import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
 import { clsx } from 'clsx'
 
-interface ErrorPageProps {
+type ErrorPageProps = {
   className?: string
-}
+} & ComponentPropsWithoutRef<'div'>
 
-export const Error = ({ className }: ErrorPageProps) => {
+export const Error = ({ className }: ErrorPageProps): ReturnComponent => {
   const reloadPage = () => {
     location.reload()
   }

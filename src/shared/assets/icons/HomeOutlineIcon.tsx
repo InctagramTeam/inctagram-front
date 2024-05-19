@@ -2,6 +2,7 @@ import { Ref, SVGProps, forwardRef, memo } from 'react'
 
 const HomeOutlineIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
+    {...props}
     fill={'none'}
     height={'24'}
     ref={ref}

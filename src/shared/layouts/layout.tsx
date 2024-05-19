@@ -2,7 +2,7 @@ import { PropsWithChildren, ReactElement } from 'react'
 
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { Header } from '@/widgets/header'
-import { Navbar } from '@/widgets/navbar'
+import { DesktopSidebar } from '@/widgets/sidebar'
 import { NextPage } from 'next'
 import { Inter } from 'next/font/google'
 
@@ -66,7 +66,7 @@ export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
           inter.variable
         )}
       >
-        <Navbar links={links} />
+        <DesktopSidebar links={links} />
         {children}
       </main>
     </>

@@ -1,7 +1,7 @@
 import React, { Component, ErrorInfo, ReactNode, Suspense } from 'react'
 
 import { EMPTY_STRING } from '@/shared/constants/base'
-import { Error } from '@/widgets/error'
+import { Error } from '@/widgets/error-boundary'
 
 interface ErrorBoundaryProps {
   children: ReactNode
@@ -18,13 +18,13 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   static getDerivedStateFromError(error: Error) {
-    // console.log(error)
+    // console.log(error-boundary)
 
     return { hasError: true }
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    // console.log(error, errorInfo)
+    // console.log(error-boundary, errorInfo)
   }
 
   render() {
