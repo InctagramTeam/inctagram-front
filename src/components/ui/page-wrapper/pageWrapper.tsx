@@ -1,4 +1,4 @@
-import { CSSProperties, ComponentPropsWithoutRef, ReactElement } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef } from 'react'
 
 import { ReturnComponent } from '@/common/types'
 import HeadMeta from '@/components/HeadMeta/HeadMeta'
@@ -34,7 +34,10 @@ export const PageWrapper = ({
 
   return (
     <section
-      className={cn(`w-full max-w-[1280px] min-h-full p-[0_15px] mx-auto`, classesPage)}
+      className={cn(
+        `w-full max-w-[1280px] min-h-full p-[0_15px] mx-auto focus-visible:outline-none`,
+        classesPage
+      )}
       style={styles}
       {...rest}
     >
