@@ -11,6 +11,7 @@ type CustomProps = {
   endIcon?: ReactNode
   /** Увеличивает кнопку на всю свободную ширину */
   fullWidth?: boolean
+  isOpen?: boolean
   /** Размеры кнопки */
   size?: '2xl' | 'lg' | 'md' | 'sm' | 'xl'
   /** Флаг, делающий кнопку квадратной */

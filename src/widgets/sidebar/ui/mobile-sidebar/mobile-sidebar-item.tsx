@@ -5,7 +5,6 @@ import {
   BookmarkOutlineIcon,
   HomeIcon,
   HomeOutlineIcon,
-  LogOutIcon,
   MessageIcon,
   MessageOutlineIcon,
   PersonIcon,
@@ -52,7 +51,6 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link },
       case '/statistics':
         return <TrendingIcon />
       case '/log-out':
-        return <LogOutIcon />
       default:
         return null
     }
@@ -62,6 +60,7 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link },
     <Link
       aria-disabled={link.disabled}
       className={clsx(
+        `ml-10 mb-0`,
         isActive ? linkClasses.active : link.disabled ? linkClasses.disabled : linkClasses.default,
         linkClasses.base
       )}
@@ -70,9 +69,10 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link },
       ref={ref}
     >
       {getIcon(link.href, isActive)}
-      {link.name}
+      {link.name !== 'Log-out' && link.name}
     </Link>
   )
 })
+//
 
 MobileSidebarItem.displayName = 'MobileSidebarItem'
