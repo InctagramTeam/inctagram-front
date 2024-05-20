@@ -1,24 +1,25 @@
 'use client'
 
 import * as React from 'react'
+import { forwardRef } from 'react'
+
+import { CalendarIcon, CalendarOutlineIcon } from '@/assets/icons'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/utils/merge-cn'
 
 import { Calendar, CalendarProps } from './calendar'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
-import { CalendarIcon, CalendarOutlineIcon } from '@/assets/icons'
-import { forwardRef } from 'react'
-import { Button } from '@/components/ui/button'
 
 export type DatePickerProps = {
   className?: string
   disabled?: boolean
-  label?: string
-  id: string
   error?: string
+  id: string
+  label?: string
   name?: string
-  textTrigger: string
   onOpenChange?: (value: boolean) => void
   open?: boolean
+  textTrigger: string
   value?: string
 } & CalendarProps
 
@@ -27,14 +28,14 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     {
       className,
       disabled,
-      value,
-      id,
-      name,
       error,
-      onOpenChange,
+      id,
       label,
-      textTrigger,
+      name,
+      onOpenChange,
       open,
+      textTrigger,
+      value,
       ...rest
     },
     ref
@@ -66,21 +67,21 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     return (
       <>
         <Popover onOpenChange={onOpenChange} open={open}>
-          <label htmlFor={id} className={classes.label}>
+          <label className={classes.label} htmlFor={id}>
             {label && label}
             <input
+              aria-describedby={errorId}
               className={'hidden'}
-              type="date"
-              value={value ?? textTrigger}
+              id={inputId}
               name={name}
               onChange={() => {}}
               ref={ref}
-              id={inputId}
-              aria-describedby={errorId}
+              type={'date'}
+              value={value ?? textTrigger}
             />
           </label>
           <PopoverTrigger asChild>
-            <Button variant={'text'} className={classes.button} disabled={disabled}>
+            <Button className={classes.button} disabled={disabled} variant={'text'}>
               {textTrigger}
               {open ? (
                 <CalendarIcon className={classes.triggerIcon} />
@@ -93,7 +94,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             <Calendar className={classes.calendar} {...rest} />
           </PopoverContent>
           {error && (
-            <span className={classes.error} id={errorId} role="alert" aria-labelledby={inputId}>
+            <span aria-labelledby={inputId} className={classes.error} id={errorId} role={'alert'}>
               {error}
             </span>
           )}
