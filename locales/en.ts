@@ -2,6 +2,17 @@
 export const en = {
   button: {
     signUp: 'Sign Up',
+    submit: 'Submit',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    reset: 'Reset',
+  },
+  validation: {
+    maxPassword: 'Maximum 20 characters for password',
+    minPassword: 'Minimum 6 characters for password',
+    passwordsMustMatch: 'The passwords must match',
+    requiredField: 'This field is required',
+    invalidEmail: 'Invalid email address',
   },
   lang: {
     en: 'English',
