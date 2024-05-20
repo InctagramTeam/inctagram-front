@@ -112,7 +112,7 @@ export const Button: ButtonComponent = forwardRef(
         variant === 'link' && disabled && `text-Primary-900/50 cursor-not-allowed`,
         variant === 'text' &&
           !disabled &&
-          `shrink bg-Dark-700 h-[4px] py-3 px-0 max-w-[330px]
+          `bg-Dark-700 h-[4px] py-3 px-0 max-w-[330px]
           font-inter font-semi_bold-600 text-H3-16 text-Light-300 transition-colors duration-150 ease-in-out
           active:bg-Dark-700 active:text-Primary-700
           active:transition-all duration-150 ease-in-out
