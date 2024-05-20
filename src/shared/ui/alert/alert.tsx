@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { ComponentPropsWithoutRef } from 'react'
 
-import { type VariantProps, cva } from 'class-variance-authority'
+import CrossIcon from '@/shared/assets/icons/CrossIcon'
 import { cn } from '@/shared/lib/utils'
 import { useAlert } from '@/shared/ui/alert/hooks'
-import CrossIcon from '@/shared/assets/icons/CrossIcon'
+import { type VariantProps, cva } from 'class-variance-authority'
 
 type Props = {
   text: string
