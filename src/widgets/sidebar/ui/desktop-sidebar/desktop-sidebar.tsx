@@ -116,17 +116,17 @@ export const DesktopSidebar = forwardRef<HTMLElement, Props>(
               `fixed top-[60px] left-0 h-screen  pt-[72px] pl-[50px] pr-[40px] pb-[36px] w-full max-w-[240px]  border-r-[1px] border-r-Dark-300 [&>*:nth-child(5)]:mb-[46px] shadow-sm`,
               className,
               isCollapsed &&
-                `absolute top-[80px] left-0 w-full max-w-[80px] h-full flex justify-center p-2 border-r-Dark-300 [&>*:nth-child(5)]:mb-[46px] shadow-sm`
+              `absolute top-[80px] left-0 w-full max-w-[80px] h-full flex justify-center p-2 border-r-Dark-300 [&>*:nth-child(5)]:mb-[46px] shadow-sm`
             )}
           >
             <ul className="rounded-md cursor-pointer transition-colors">
               {isCollapsed
                 ? links.map(link => (
-                    <DesktopSidebarItem key={link.href} isCollapsed={isCollapsed} link={link} />
-                  ))
+                  <DesktopSidebarItem key={link.href} isCollapsed={isCollapsed} link={link} />
+                ))
                 : desktopLinks.map(link => (
-                    <DesktopSidebarItem key={link.href} isCollapsed={isCollapsed} link={link} />
-                  ))}
+                  <DesktopSidebarItem key={link.href} isCollapsed={isCollapsed} link={link} />
+                ))}
             </ul>
           </nav>
         </aside>
