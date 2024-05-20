@@ -1,9 +1,9 @@
 import { CSSProperties, ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react'
 
-import { ReturnComponent } from '@/common/types'
-import { Text } from '@/components/ui/text'
+import { Text } from '@/shared/ui/text'
 import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
+import { ReturnComponent } from 'src/shared/types'
 
 import { DropdownItemProps } from './item'
 

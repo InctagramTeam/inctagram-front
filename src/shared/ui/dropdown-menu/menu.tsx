@@ -1,10 +1,10 @@
 import { CSSProperties, ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react'
 
-import { ReturnComponent } from '@/common/types'
+import { ReturnComponent } from '@/shared/types'
 import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
 
-type MenuProps = {
+export type MenuProps = {
   /** Выравнивание относительно триггера (кнопки) */
   align?: 'center' | 'end' | 'start'
   className?: string
@@ -25,14 +25,14 @@ type MenuProps = {
 
 const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent => {
   const {
-    align = 'start',
+    align = 'end',
     children,
     className,
     modal,
     onOpenChange,
     open,
     portal = true,
-    sideOffset = 0,
+    sideOffset = 2,
     style,
     trigger,
     ...rest
@@ -42,7 +42,7 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
     <DropdownRadix.Content
       align={align}
       className={clsx(
-        `relative overflow-visible mt-[10px]
+        `relative overflow-visible
          border border-Dark-100 rounded-[10px] p-[5px] pb-0 bg-Dark-500 text-Light-100 shadow-sm
          before:content-[''] before:absolute before:bg-Dark-500 before:left-[10px] before:w-[10px] before:h-[10px]
          before:-top-[6px] before:shadow-[0_07px_Dark-500] before:rotate-45 before:z-1
@@ -51,6 +51,8 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
         className
       )}
       ref={ref}
+      sideOffset={sideOffset}
+      style={style}
       {...rest}
       onPointerDownOutside={e => {
         if (!portal) {
@@ -64,7 +66,9 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
 
   return (
     <DropdownRadix.Root modal={modal} onOpenChange={onOpenChange} open={open}>
-      <DropdownRadix.Trigger className={'outline-none'}>{trigger}</DropdownRadix.Trigger>
+      <DropdownRadix.Trigger asChild className={'outline-none'} style={style}>
+        {trigger}
+      </DropdownRadix.Trigger>
       {portal ? <DropdownRadix.Portal>{menuContent}</DropdownRadix.Portal> : menuContent}
     </DropdownRadix.Root>
   )

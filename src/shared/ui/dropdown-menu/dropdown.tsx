@@ -6,15 +6,13 @@ type DropdownProps = {
   children: ReactNode
   className?: string
   /**
-   * Если установлено значение true, взаимодействие с внешними элементами будет отключено,
-   * и читателям экрана будет видно только содержимое меню.
-   */
+   * Если true, взаимодействие с внешними элементами будет отключено, будет видно только содержимое меню */
   modal?: boolean
   onOpenChange?: (open: boolean) => void
   open?: boolean
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Root>
 
-export function Dropdown(props: DropdownProps) {
+export const Dropdown = (props: DropdownProps) => {
   const { children, className, modal, onOpenChange, open, ...rest } = props
 
   return (
@@ -27,7 +25,7 @@ export function Dropdown(props: DropdownProps) {
 /**
  * Пример использования:
  *       <Dropdown.Menu
- *         align="center"
+ *         align="end"
  *         trigger={
  *           <Button style={{ padding: '0' }} variant="text">
  *             <MoreIcon />
