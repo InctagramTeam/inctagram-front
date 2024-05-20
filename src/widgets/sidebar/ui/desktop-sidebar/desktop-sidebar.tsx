@@ -96,7 +96,7 @@ export const DesktopSidebar = forwardRef<HTMLElement, Props>(
         {isCollapsed ? (
           <Button
             onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
-            className={'absolute z-10 left-[100px] top-1/5 rounded-full w-8 h-8 !bg-Dark-100/25 '}
+            className={'absolute z-10 left-[100px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
             variant={'text'}
           >
             <ChevronRightIcon className={'!fill-Light-100/70'} />
@@ -104,7 +104,7 @@ export const DesktopSidebar = forwardRef<HTMLElement, Props>(
         ) : (
           <Button
             onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
-            className={'absolute z-10 left-[200px] top-1/5 rounded-full w-8 h-8 !bg-Dark-100/25 '}
+            className={'absolute z-10 left-[200px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
             variant={'text'}
           >
             <ChevronLeftIcon className={'!fill-Light-100/70'} />
