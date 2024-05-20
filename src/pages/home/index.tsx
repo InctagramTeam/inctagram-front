@@ -1,6 +1,5 @@
 import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { Recaptcha } from '@/shared/ui/recaptcha/recaptcha'
 
 const Home = () => {
   return (
