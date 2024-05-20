@@ -1,11 +1,12 @@
 'use client'
 import { ComponentPropsWithoutRef, useState } from 'react'
+
 import { ReturnComponent } from '@/shared/types'
+import { TooltipProvider } from '@/shared/ui/tooltip/tooltip'
 import { MobileSidebarItem } from '@/widgets/sidebar'
+import { clsx } from 'clsx'
 
 import { NavLink } from '../../model/types/navlink.types'
-import { clsx } from 'clsx'
-import { TooltipProvider } from '@/shared/ui/tooltip/tooltip'
 
 const mobileLinks = [
   {

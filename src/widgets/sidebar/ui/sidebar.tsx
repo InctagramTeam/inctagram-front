@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+
 import { DesktopSidebar, MobileSidebar } from '@/widgets/sidebar'
 
 export const Sidebar = () => {

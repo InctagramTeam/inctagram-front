@@ -14,12 +14,12 @@ import {
   SearchOutline,
   TrendingIcon,
 } from '@/shared/assets/icons'
+import { ReturnComponent } from '@/shared/types'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip/tooltip'
 import { NavLink } from '@/widgets/sidebar'
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ReturnComponent } from '@/shared/types'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip/tooltip'
 
 type Props = {
   link: NavLink
@@ -60,7 +60,7 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(
     }
 
     return (
-      <Tooltip key={link.href} delayDuration={0}>
+      <Tooltip delayDuration={0} key={link.href}>
         <TooltipTrigger asChild>
           <Link
             aria-disabled={link.disabled}
@@ -79,8 +79,8 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(
           >
             {getIcon(link.href, isActive)}
             <TooltipContent
-              side="top"
-              className="flex text-Light-100 bg-Dark-500 items-center gap-4"
+              className={'flex text-Light-100 bg-Dark-500 items-center gap-4'}
+              side={'top'}
             >
               {link.name !== 'Log-out' && link.name}
             </TooltipContent>

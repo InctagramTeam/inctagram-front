@@ -2,8 +2,9 @@ import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
-import { DesktopSidebarItem } from './desktop-sidebar-item'
 import { NavLink } from '@/widgets/sidebar'
+
+import { DesktopSidebarItem } from './desktop-sidebar-item'
 
 type Props = {
   className?: string
