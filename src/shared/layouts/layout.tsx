@@ -26,8 +26,8 @@ const links = [
   },
   {
     disabled: false,
-    href: '/My Profile',
-    name: 'Profile',
+    href: '/profile',
+    name: 'My Profile',
   },
   {
     disabled: false,

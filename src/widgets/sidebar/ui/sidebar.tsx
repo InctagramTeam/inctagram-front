@@ -10,6 +10,7 @@ type Props = {
 export const Sidebar = ({ links }: Props) => {
   const [width, setWidth] = useState<null | number>(null)
   const breakpoint = 360
+  0
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -29,7 +30,7 @@ export const Sidebar = ({ links }: Props) => {
   return (
     <>
       {width < breakpoint ? (
-        <MobileSidebar links={links} />
+        <MobileSidebar />
       ) : (
         <DesktopSidebar className={'flex '} links={links} />
       )}

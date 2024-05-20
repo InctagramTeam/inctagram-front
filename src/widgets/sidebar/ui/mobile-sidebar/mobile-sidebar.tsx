@@ -6,29 +6,50 @@ import { ReturnComponent } from '@/shared/types'
 import { MobileSidebarItem } from '@/widgets/sidebar'
 
 import { NavLink } from '../../model/types/navlink.types'
+import { Flex } from '@/shared/ui/flex'
+
+const links = [
+  {
+    disabled: false,
+    href: '/home',
+  },
+  {
+    disabled: true,
+    href: '/create',
+  },
+  {
+    disabled: false,
+    href: '/messenger',
+  },
+  {
+    disabled: false,
+    href: '/search',
+  },
+  {
+    disabled: false,
+    href: '/profile',
+  },
+] as NavLink[]
 
 type Props = {
   className?: string
-  links: NavLink[]
 } & ComponentPropsWithoutRef<'aside'>
 
-export const MobileSidebar = ({ className, links }: Props): ReturnComponent => {
+export const MobileSidebar = ({ className }: Props): ReturnComponent => {
   const [isOpenMenu, setIsOpenMenu] = useState(false)
 
   return (
-    <aside className={'w-full'}>
-      <nav
-        className={cn(
-          className,
-          'fixed flex justify-center items-end h-[660px] border-r-[1px]' + 'border-r-Dark-300'
-        )}
-        onClick={() => setIsOpenMenu(!isOpenMenu)}
-      >
-        {links.map(link => (
-          <MobileSidebarItem key={link.href} link={link} />
-        ))}
-      </nav>
-    </aside>
+    <nav
+      className={cn(
+        className,
+        `fixed w-full bottom-0  left-0 right-0 flex flex justify-center h-[60px] border-t-[1px] border-t-Dark-300 shadow-sm pt-4`
+      )}
+      onClick={() => setIsOpenMenu(!isOpenMenu)}
+    >
+      {links.map(link => (
+        <MobileSidebarItem key={link.href} link={link} />
+      ))}
+    </nav>
   )
 }
 MobileSidebar.displayName = 'MobileSidebar'
