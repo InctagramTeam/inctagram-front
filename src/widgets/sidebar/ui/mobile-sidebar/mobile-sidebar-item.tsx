@@ -19,6 +19,7 @@ import { clsx } from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReturnComponent } from '@/shared/types'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip/tooltip'
 
 type Props = {
   link: NavLink
@@ -59,24 +60,33 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(
     }
 
     return (
-      <Link
-        aria-disabled={link.disabled}
-        className={clsx(
-          `ml-10 mb-0`,
-          isActive
-            ? linkClasses.active
-            : link.disabled
-              ? linkClasses.disabled
-              : linkClasses.default,
-          linkClasses.base
-        )}
-        href={link.href}
-        onClick={link.handleClick}
-        ref={ref}
-      >
-        {getIcon(link.href, isActive)}
-        {link.name !== 'Log-out' && link.name}
-      </Link>
+      <Tooltip key={link.href} delayDuration={0}>
+        <TooltipTrigger asChild>
+          <Link
+            aria-disabled={link.disabled}
+            className={clsx(
+              `ml-10 mb-0`,
+              isActive
+                ? linkClasses.active
+                : link.disabled
+                  ? linkClasses.disabled
+                  : linkClasses.default,
+              linkClasses.base
+            )}
+            href={link.href}
+            onClick={link.handleClick}
+            ref={ref}
+          >
+            {getIcon(link.href, isActive)}
+            <TooltipContent
+              side="top"
+              className="flex text-Light-100 bg-Dark-500 items-center gap-4"
+            >
+              {link.name !== 'Log-out' && link.name}
+            </TooltipContent>
+          </Link>
+        </TooltipTrigger>
+      </Tooltip>
     )
   }
 )

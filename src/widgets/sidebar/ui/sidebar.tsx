@@ -1,16 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { DesktopSidebar, MobileSidebar } from '@/widgets/sidebar'
 
-import { DesktopSidebar, MobileSidebar, NavLink } from '@/widgets/sidebar'
-
-type Props = {
-  links: NavLink[]
-}
-
-export const Sidebar = ({ links }: Props) => {
+export const Sidebar = () => {
+  const [isCollapsed, setIsCollapsed] = useState(false)
   const [width, setWidth] = useState<null | number>(null)
   const breakpoint = 360
-  0
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -27,13 +22,5 @@ export const Sidebar = ({ links }: Props) => {
     return null
   }
 
-  return (
-    <>
-      {width < breakpoint ? (
-        <MobileSidebar />
-      ) : (
-        <DesktopSidebar className={'flex '} links={links} />
-      )}
-    </>
-  )
+  return <>{width < breakpoint ? <MobileSidebar /> : <DesktopSidebar className={'flex '} />}</>
 }
