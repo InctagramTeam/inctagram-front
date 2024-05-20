@@ -1,5 +1,5 @@
-import { getLayout } from '@/components/Layout/Layout'
-import { PageWrapper } from 'src/components/ui/page-wrapper'
+import { getLayout } from '@/shared/layouts/layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
 
 const Home = () => {
   return (
