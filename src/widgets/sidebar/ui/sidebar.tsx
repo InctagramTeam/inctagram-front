@@ -4,9 +4,7 @@ import { useEffect, useState } from 'react'
 import { DesktopSidebar, MobileSidebar } from '@/widgets/sidebar'
 import { TabletSidebar } from './tablet-sidebar/tablet-sidebar'
 
-export const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false)
-
+export const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
   const [width, setWidth] = useState<null | number>(null)
   const mobileBreakpoint_360 = 360
   const tabletBreakpoint_768 = 768

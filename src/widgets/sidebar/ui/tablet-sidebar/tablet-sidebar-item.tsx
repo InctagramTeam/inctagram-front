@@ -1,26 +1,13 @@
 import { forwardRef } from 'react'
 
-import {
-  BookmarkIcon,
-  BookmarkOutlineIcon,
-  HomeIcon,
-  HomeOutlineIcon,
-  LogOutIcon,
-  MessageIcon,
-  MessageOutlineIcon,
-  PersonIcon,
-  PersonOutlineIcon,
-  PlusIcon,
-  PlusOutlineIcon,
-  SearchOutline,
-  TrendingIcon,
-} from '@/shared/assets/icons'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { NavLink } from '../../model/types/navlink.types'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/tooltip/tooltip'
+
+import { getIcon } from '../helpers/getIcon'
 
 type Props = {
   link: NavLink
@@ -36,29 +23,6 @@ const linkClasses = {
 export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link }, ref) => {
   const pathname = usePathname()
   const isActive = pathname!.startsWith(link.href)
-
-  const getIcon = (href: string, isActive: boolean) => {
-    switch (href) {
-      case '/home':
-        return isActive ? <HomeIcon /> : <HomeOutlineIcon />
-      case '/create':
-        return isActive ? <PlusIcon /> : <PlusOutlineIcon />
-      case '/profile':
-        return isActive ? <PersonIcon /> : <PersonOutlineIcon />
-      case '/messenger':
-        return isActive ? <MessageIcon /> : <MessageOutlineIcon />
-      case '/favorites':
-        return isActive ? <BookmarkIcon /> : <BookmarkOutlineIcon />
-      case '/search':
-        return <SearchOutline />
-      case '/statistics':
-        return <TrendingIcon />
-      case '/log-out':
-        return <LogOutIcon />
-      default:
-        return null
-    }
-  }
 
   return (
     <Tooltip key={link.href} delayDuration={0}>
