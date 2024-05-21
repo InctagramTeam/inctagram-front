@@ -1,21 +1,21 @@
-import GithubIcon from '@/assets/icons/GithubIcon'
-import GoogleIcon from '@/assets/icons/GoogleIcon'
-import { ReturnComponent } from '@/common/types'
-import { getLayout } from '@/components/Layout/Layout'
-import { Button } from '@/components/ui/button'
-import { Flex } from '@/components/ui/flex'
-import { Input } from '@/components/ui/input'
+import GithubIcon from '@/shared/assets/icons/GithubIcon'
+import GoogleIcon from '@/shared/assets/icons/GoogleIcon'
+import { getLayout } from '@/shared/layouts/layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { ReturnComponent } from '@/shared/types'
+import { Button } from '@/shared/ui/button'
+import { Checkbox } from '@/shared/ui/checkbox'
+import { Flex } from '@/shared/ui/flex'
+import { Input } from '@/shared/ui/input'
+import { Text } from '@/shared/ui/text'
 import Link from 'next/link'
-import { Checkbox } from 'src/components/ui/checkbox'
-import { PageWrapper } from 'src/components/ui/page-wrapper'
-import { Text } from 'src/components/ui/text/text'
 
 type Props = {}
 
 const SignUp = ({}: Props): ReturnComponent => {
   return (
     <PageWrapper title={'SignUp | Instagram'}>
-      {/* todo: Card component instead of div (_Card_) */}
+      {/* Todo: Card component instead of div */}
       <div
         className={`_Card_ w-[380px] min-h-[648px] bg-Dark-500 rounded
         border border-Dark-300 shadow-shadow-Dark-30`}
