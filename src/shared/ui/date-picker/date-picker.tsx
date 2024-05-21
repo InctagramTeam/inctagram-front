@@ -43,11 +43,11 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         `h-auto py-[6px] px-[12px] gap-[24px] border border-Dark-300 !border-solid rounded-[2px] 
         transition-colors duration-300
         hover:bg-Dark-500 hover:!text-Light-100 hover:border-Dark-100 hover:translate-y-0
-        active:bg-Dark-500
-        focus:bg-Dark-500 focus:border-transparent focus:ring-opacity-100
-        focus-visible:bg-Dark-500 focus-visible:border-transparent focus-visible:ring-opacity-100`,
+        active:!bg-Dark-500 active:!text-Light-100
+        focus:!bg-Dark-500 focus:border-transparent focus:ring-opacity-100 focus:ring-offset-Primary-700 focus:ring-2
+        focus-visible:bg-Dark-500 focus-visible:border-transparent focus-visible:ring-offset-Primary-700`,
         disabled && '!bg-Dark-500 !text-Light-900 pointer-events-none',
-        error && '!text-Danger-500 border-Danger-500'
+        error && '!text-Danger-500 !bg-Dark-500 border-Danger-500'
       ),
       calendar: cn(`border-[1px] !border-Dark-300 bg-Dark-500 rounded-[2px]`),
       error: cn(`block !text-Danger-500 text-small-text-12`),
