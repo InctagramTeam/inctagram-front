@@ -15,7 +15,7 @@ type Props = {
 
 const linkClasses = {
   active: ` text-Primary-500`,
-  base: `flex gap-[12px] font-medium-text-14 transition ease-in-out hover:text-Primary-100 mb-[24px] last:absolute last:bottom-[36px] last:mb-0`,
+  base: `flex gap-[12px] font-medium-text-14 transition ease-in-out hover:text-Primary-100 last:mt-auto last:mb-0`,
   default: `text-Light-100`,
   disabled: `pointer-events-none text-Dark-100 cursor-default`,
 }
@@ -25,7 +25,7 @@ export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link },
   const isActive = pathname!.startsWith(link.href)
 
   return (
-    <Tooltip key={link.href} delayDuration={0}>
+    <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
         <Link
           aria-disabled={link.disabled}
@@ -45,7 +45,7 @@ export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link },
           <TooltipContent
             side="right"
             className="flexrounded-1/2 h-8 w-full max-w-[100px] !text-Light-100 bg-Dark-500
-            items-center gap-4"
+              items-center gap-4"
           >
             {link.name}
           </TooltipContent>

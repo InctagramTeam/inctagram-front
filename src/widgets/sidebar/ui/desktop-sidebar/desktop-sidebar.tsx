@@ -62,7 +62,7 @@ export const DesktopSidebar = forwardRef<HTMLElement, Props>(
         {isCollapsed ? (
           <Button
             onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
-            className={'absolute z-10 left-[30px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
+            className={'fixed z-10 left-[30px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
             variant={'text'}
           >
             <ChevronRightIcon className={'!fill-Light-100/70'} />
@@ -70,21 +70,23 @@ export const DesktopSidebar = forwardRef<HTMLElement, Props>(
         ) : (
           <Button
             onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
-            className={'absolute z-10 left-[200px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
+            className={'fixed z-10 left-[200px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
             variant={'text'}
           >
             <ChevronLeftIcon className={'!fill-Light-100/70'} />
           </Button>
         )}
-        <aside className="w-full" ref={ref}>
+
+        <aside>
           <nav
             className={cn(
-              `fixed top-[60px] left-0 pt-[72px] pl-[50px] pr-[40px] pb-[36px] w-full max-w-[240px] border-r-[1px] border-r-Dark-300 shadow-sm`,
+              `fixed top-[60px] left-0 pt-[72px] pl-[50px] pr-[40px] pb-[36px] w-full max-w-[240px] h-[calc(100vh-60px)] border-r-[1px] border-r-Dark-300 shadow-sm`,
               className,
               isCollapsed && `w-full max-w-[80px] flex justify-center shadow-sm`
             )}
+            ref={ref}
           >
-            <ul className="flex flex-col gap-[24px] rounded-md cursor-pointer transition-colors [&>*:nth-child(5)]:mb-[46px] h-screen">
+            <ul className="flex flex-col gap-[24px] rounded-md cursor-pointer transition-colors [&>*:nth-child(5)]:mb-[46px] h-full">
               {links.map(link => (
                 <DesktopSidebarItem key={link.href} isCollapsed={isCollapsed} link={link} />
               ))}

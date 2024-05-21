@@ -8,6 +8,7 @@ type Props = {
   isCollapsed?: boolean
   setIsCollapsed?: (isCollapsed: boolean) => void
 }
+
 export const Sidebar = ({ isCollapsed, setIsCollapsed }: Props) => {
   const [width, setWidth] = useState<null | number>(null)
   const mobileBreakpoint_360 = 360

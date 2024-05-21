@@ -59,14 +59,15 @@ export const TabletSidebar = forwardRef<HTMLElement, Props>(
         <aside className="w-full" ref={ref}>
           <nav
             className={cn(
-              `absolute top-[80px] left-1 w-full max-w-[80px] min-h-[80px]
-            flex justify-center p-2 border-r-Dark-300 [&>*:nth-child(5)]:mb-[46px] shadow-sm`,
+              `absolute top-[60px] left-1 w-full max-w-[80px] h-[calc(100vh-60px)] flex justify-center px-2 py-[20px] border-r border-r-Dark-300 shadow-sm`,
               className
             )}
           >
-            <ul className="rounded-md cursor-pointer transition-colors">
+            <ul className="flex flex-col gap-[24px] rounded-md cursor-pointer transition-colors [&>*:nth-child(5)]:mb-[46px] h-full">
               {tabletLinks.map(link => (
-                <TabletSidebarItem key={link.href} link={link} />
+                <li key={link.href} className="last:mt-auto">
+                  <TabletSidebarItem link={link} />
+                </li>
               ))}
             </ul>
           </nav>
