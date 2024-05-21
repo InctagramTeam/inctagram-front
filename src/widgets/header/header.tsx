@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-import { BellIcon, BellOutlineIcon } from '@/assets/icons'
-import { Button } from '@/components/ui/button'
-import { Flex } from '@/components/ui/flex/flex'
-import { Logo } from '@/components/ui/logo/logo'
-import { cn } from '@/utils/merge-cn'
-import { NotificationProps, NotificationsDropdown } from '@/widgets'
 import Link from 'next/link'
+import { cn } from '@/shared/lib/utils'
+import { Button } from '@/shared/ui/button'
+import { BellOutlineIcon, BellIcon } from '@/shared/assets/icons'
+import { Flex } from '@/shared/ui/flex'
+import { Logo } from '@/shared/ui/logo'
+import { NotificationProps, NotificationsDropdown } from '@/widgets/header/notifications-dropdown'
 
 type Props = {
   classes?: string

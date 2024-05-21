@@ -1,3 +1,5 @@
+export { default as BellIcon } from './BellIcon'
+export { default as BellOutlineIcon } from './BellOutlineIcon'
 export { default as BookmarkIcon } from './BookmarkIcon'
 export { default as BookmarkOutlineIcon } from './BookmarkOutlineIcon'
 export { default as CalendarIcon } from './CalendarIcon'
