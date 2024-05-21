@@ -9,14 +9,14 @@ import { Flex } from '@/shared/ui/flex'
 import { Input } from '@/shared/ui/input'
 import { Text } from '@/shared/ui/text'
 import Link from 'next/link'
+import { Card } from '@/shared/ui/card/card'
 
 type Props = {}
 
 const SignUp = ({}: Props): ReturnComponent => {
   return (
     <PageWrapper title={'SignUp | Instagram'}>
-      {/* Todo: Card component instead of div */}
-      <div
+      <Card
         className={`_Card_ w-[380px] min-h-[648px] bg-Dark-500 rounded
         border border-Dark-300 shadow-shadow-Dark-30`}
       >
@@ -92,7 +92,7 @@ const SignUp = ({}: Props): ReturnComponent => {
             Sign In
           </Button>
         </Flex>
-      </div>
+      </Card>
     </PageWrapper>
   )
 }

@@ -1,7 +1,28 @@
-import * as React from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef, ReactNode } from 'react'
 
-export const Card = () => {
-  return (
-    <div className={'w-[100px] h-[100px] bg-[#171717] border border-[#333333] rounded-sm'}></div>
-  )
-}
+import clsx from 'clsx'
+import { PolymorphComponentPropsWithRef } from '@/shared/types'
+
+type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, ComponentPropsWithoutRef<T>>
+
+type CardComponent = <T extends ElementType = 'div'>(props: Props<T>) => ReactNode
+
+export const Card: CardComponent = forwardRef(
+  <T extends ElementType = 'div'>(
+    { asComponent, className, ...rest }: Props<T>,
+    ref: ElementRef<T>
+  ) => {
+    const Component = asComponent || 'div'
+
+    return (
+      <Component
+        className={clsx(
+          `bg-Dark-500 border-[1px] border-Dark-300 rounded-[2px] shadow-sm`,
+          className
+        )}
+        ref={ref}
+        {...rest}
+      />
+    )
+  }
+)
