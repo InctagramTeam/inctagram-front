@@ -103,3 +103,37 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
 )
 
 DatePicker.displayName = 'DatePicker'
+
+// Example
+// import { addDays, format } from 'date-fns'
+// import { DateRange } from "react-day-picker";
+// const ExampleDatePicker = () => {
+//   const [date, setDate] = useState<DateRange | undefined>({
+//     from: new Date(2022, 0, 20),
+//     to: addDays(new Date(2022, 0, 20), 20),
+//   })
+//
+//   const textTrigger = date?.from
+//     ? date.to
+//       ? `${format(date.from, 'LLL dd, y')} - ${format(date.to, 'LLL dd, y')}`
+//       : format(date.from, 'LLL dd, y')
+//     : 'Pick a date'
+//
+//   const [open, setOpen] = useState(false)
+//
+//   return (
+//     <div>
+//       <DatePicker
+//         initialFocus
+//         mode={'range'}
+//         label={'label'}
+//         onOpenChange={setOpen}
+//         onSelect={setDate}
+//         open={open}
+//         id={'id'}
+//         selected={date}
+//         textTrigger={textTrigger}
+//       />
+//     </div>
+//   )
+// }
