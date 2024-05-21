@@ -4,12 +4,16 @@ import { useEffect, useState } from 'react'
 import { DesktopSidebar, MobileSidebar } from '@/widgets/sidebar'
 import { TabletSidebar } from './tablet-sidebar/tablet-sidebar'
 
-export const Sidebar = ({ isCollapsed, setIsCollapsed }) => {
+type Props = {
+  isCollapsed?: boolean
+  setIsCollapsed?: (isCollapsed: boolean) => void
+}
+export const Sidebar = ({ isCollapsed, setIsCollapsed }: Props) => {
   const [width, setWidth] = useState<null | number>(null)
   const mobileBreakpoint_360 = 360
   const tabletBreakpoint_768 = 768
 
-  const toggleSidebarView = (isCollapsed: boolean) => setIsCollapsed(isCollapsed)
+  const toggleSidebarView = (isCollapsed: boolean) => setIsCollapsed?.(isCollapsed)
 
   useEffect(() => {
     if (typeof window !== 'undefined') {

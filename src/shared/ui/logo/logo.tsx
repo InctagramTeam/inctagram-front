@@ -1,7 +1,7 @@
-import logo from '@/assets/images/logo.svg'
+import logo from '@/shared/assets/images/logo.svg'
+import { cn } from '@/shared/lib/utils'
 import Image from 'next/image'
 import Link from 'next/link'
-import { cn } from '@/shared/lib/utils'
 export const Logo = () => {
   const classes = {
     img: `w-full h-full object-contain`,

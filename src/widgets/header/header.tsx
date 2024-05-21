@@ -1,21 +1,17 @@
-import { useState } from 'react'
-
-import Link from 'next/link'
 import { cn } from '@/shared/lib/utils'
-import { Button } from '@/shared/ui/button'
-import { BellOutlineIcon, BellIcon } from '@/shared/assets/icons'
 import { Flex } from '@/shared/ui/flex'
-import { Logo } from '@/shared/ui/logo'
-import { NotificationProps, NotificationsDropdown } from '@/widgets/header/notifications-dropdown'
+import { Logo } from '@/shared/ui/logo/logo'
+import { HeaderDesktop } from '@/widgets/header/header-desktop/header-desktop'
+import { NotificationProps } from '@/widgets/header/notifications-dropdown'
 
 type Props = {
-  classes?: string
+  className?: string
   countNotifications?: number
   isAuth?: boolean
   notifications?: NotificationProps[]
 }
 
-export const Header = ({ countNotifications, isAuth = false, notifications }: Props) => {
+export const Header = ({ className, ...rest }: Props) => {
   const classes = {
     button: `py-[6px] text-center !text-H3-16 hover:translate-y-0`,
     countNotifications: cn(
@@ -37,64 +33,11 @@ export const Header = ({ countNotifications, isAuth = false, notifications }: Pr
     wrapper: `max-w-[1186px] w-full mx-auto px-[15px]`,
   }
 
-  const [openDropdown, setOpenDropdown] = useState(false)
-
-  const trigger = (
-    <Button
-      aria-label={openDropdown ? 'close notifications' : 'open notifications'}
-      className={classes.dropdownTrigger}
-      variant={'text'}
-    >
-      <>
-        {openDropdown ? (
-          <BellIcon aria-hidden className={'fill-Primary-500'} />
-        ) : (
-          <BellOutlineIcon aria-hidden className={'fill-Light-100'} />
-        )}
-        {countNotifications && (
-          <span className={classes.countNotifications}>
-            {countNotifications < 100 ? countNotifications : '...'}
-          </span>
-        )}
-      </>
-    </Button>
-  )
-
   return (
     <header className={classes.header}>
       <Flex className={classes.wrapper} gap={'20'} items={'center'} justify={'spaceBetween'}>
         <Logo />
-        <Flex className={'flex-nowrap'} gap={'40'}>
-          <NotificationsDropdown
-            align={'end'}
-            modal
-            notifications={notifications}
-            onOpenChange={setOpenDropdown}
-            open={openDropdown}
-            sideOffset={10}
-            trigger={trigger}
-          />
-          <div>Select</div>
-          {!isAuth && (
-            <Flex className={'flex-nowrap'} gap={'24'}>
-              <Button
-                asComponent={Link}
-                className={`${classes.button} ${classes.loginLink}`}
-                href={'/auth/sign-in'}
-                variant={'link'}
-              >
-                Log&nbsp;in
-              </Button>
-              <Button
-                asComponent={Link}
-                className={`${classes.button} ${classes.signupLink}`}
-                href={'/auth/sign-up'}
-              >
-                Sign&nbsp;up
-              </Button>
-            </Flex>
-          )}
-        </Flex>
+        <HeaderDesktop {...rest} />
       </Flex>
     </header>
   )
