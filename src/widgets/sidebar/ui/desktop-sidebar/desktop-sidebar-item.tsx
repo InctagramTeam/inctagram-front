@@ -26,7 +26,7 @@ export const DesktopSidebarItem = forwardRef<HTMLAnchorElement, Props>(
     const isActive = pathname!.startsWith(link.href)
 
     return (
-      <li className="last:mt-auto last:-translate-y-[160px]">
+      <li className="last:mt-auto">
         <Link
           aria-disabled={link.disabled}
           className={clsx(

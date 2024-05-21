@@ -25,7 +25,7 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(
     const isActive = pathname!.startsWith(link.href)
 
     return (
-      <Tooltip delayDuration={0} key={link.href}>
+      <Tooltip delayDuration={0}>
         <TooltipTrigger asChild>
           <Link
             aria-disabled={link.disabled}
