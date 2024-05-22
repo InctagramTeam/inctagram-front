@@ -2,7 +2,7 @@ import { cn } from '@/shared/lib/utils'
 import { Flex } from '@/shared/ui/flex'
 import { Logo } from '@/widgets/header/ui/logo/logo'
 import { DesktopHeader } from '@/widgets/header/ui/desktop-header/desktop-header'
-import { NotificationProps } from 'src/widgets/header/ui/notifications-dropdown'
+import { NotificationProps } from '@/widgets/header/ui/notifications-dropdown'
 
 type Props = {
   className?: string
