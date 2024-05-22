@@ -12,8 +12,8 @@ import {
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
 
-import { getIcon } from '@/widgets/sidebar/model/utils/getIcon'
 import { ReturnComponent } from '@/shared/types'
+import { getIcon } from '@/widgets/sidebar'
 
 type Props = {
   link: NavLink
