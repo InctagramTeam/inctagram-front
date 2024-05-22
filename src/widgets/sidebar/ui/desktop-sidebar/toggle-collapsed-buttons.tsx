@@ -1,17 +1,16 @@
 import { Button } from '@/shared/ui/button'
 import { ChevronLeftIcon, ChevronRightIcon } from '@/shared/assets/icons'
+import { useLayoutContext } from '@/shared/layouts/context/layout-context'
+import { ReturnComponent } from '@/shared/types'
 
-type Props = {
-  isCollapsed?: boolean
-  onToggleIsCollapsedClick: (isCollapsed: boolean) => void
-}
+export const ToggleCollapsedButtons = (): ReturnComponent => {
+  const { isCollapsed, toggleSidebar } = useLayoutContext()
 
-export const ToggleCollapsedButtons = ({ onToggleIsCollapsedClick, isCollapsed }: Props) => {
   return (
     <>
       {isCollapsed ? (
         <Button
-          onClick={() => onToggleIsCollapsedClick?.(!isCollapsed)}
+          onClick={toggleSidebar}
           className={'fixed z-10 left-[30px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
           variant={'text'}
         >
@@ -19,7 +18,7 @@ export const ToggleCollapsedButtons = ({ onToggleIsCollapsedClick, isCollapsed }
         </Button>
       ) : (
         <Button
-          onClick={() => onToggleIsCollapsedClick?.(!isCollapsed)}
+          onClick={toggleSidebar}
           className={'fixed z-10 left-[200px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
           variant={'text'}
         >

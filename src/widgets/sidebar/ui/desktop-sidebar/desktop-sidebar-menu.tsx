@@ -1,13 +1,13 @@
-import React, { forwardRef, ComponentPropsWithoutRef } from 'react'
+import React, { ComponentPropsWithoutRef, forwardRef } from 'react'
 import { cn } from '@/shared/lib/utils'
-import { DESKTOP_SIDEBAR_LINKS, DesktopSidebarList } from '@/widgets/sidebar'
+import { DesktopSidebarList } from '@/widgets/sidebar'
+import { useLayoutContext } from '@/shared/layouts/context/layout-context'
+import { ReturnComponent } from '@/shared/types'
 
-type Props = {
-  isCollapsed?: boolean
-} & ComponentPropsWithoutRef<'aside'>
+export const DesktopSidebarMenu = forwardRef<HTMLElement, ComponentPropsWithoutRef<'nav'>>(
+  ({ ...rest }, ref): ReturnComponent => {
+    const { isCollapsed } = useLayoutContext()
 
-export const DesktopSidebarMenu = forwardRef<HTMLElement, Props>(
-  ({ isCollapsed, ...rest }, ref) => {
     return (
       <nav
         className={cn(
@@ -18,7 +18,7 @@ export const DesktopSidebarMenu = forwardRef<HTMLElement, Props>(
         ref={ref}
         {...rest}
       >
-        <DesktopSidebarList links={DESKTOP_SIDEBAR_LINKS} collapsed={isCollapsed} />
+        <DesktopSidebarList />
       </nav>
     )
   }

@@ -1,6 +1,6 @@
 import { NavLink } from '@/widgets/sidebar'
 
-export const DESKTOP_SIDEBAR_LINKS = [
+const BASE_LINKS: NavLink[] = [
   {
     disabled: false,
     href: '/home',
@@ -13,11 +13,6 @@ export const DESKTOP_SIDEBAR_LINKS = [
   },
   {
     disabled: false,
-    href: '/profile',
-    name: 'My Profile',
-  },
-  {
-    disabled: false,
     href: '/messenger',
     name: 'Messenger',
   },
@@ -26,6 +21,14 @@ export const DESKTOP_SIDEBAR_LINKS = [
     href: '/search',
     name: 'Search',
   },
+  {
+    disabled: false,
+    href: '/profile',
+    name: 'Profile',
+  },
+]
+
+const ADDITIONAL_DESKTOP_LINKS: NavLink[] = [
   {
     disabled: false,
     href: '/statistics',
@@ -41,4 +44,7 @@ export const DESKTOP_SIDEBAR_LINKS = [
     href: '/log-out',
     name: 'Log-out',
   },
-] as NavLink[]
+]
+
+export const SIDEBAR_LINKS: NavLink[] = [...BASE_LINKS, ...ADDITIONAL_DESKTOP_LINKS]
+export const MOBILE_LINKS: NavLink[] = BASE_LINKS

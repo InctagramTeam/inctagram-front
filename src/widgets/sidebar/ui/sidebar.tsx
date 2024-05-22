@@ -1,14 +1,9 @@
 'use client'
 import { DesktopSidebar, MobileSidebar } from '@/widgets/sidebar'
 import { TabletSidebar } from './tablet-sidebar/tablet-sidebar'
-import { useResponsiveSidebar } from '@/widgets/sidebar/model/hooks/use-responsive-sidebar'
+import { useResponsiveSidebar } from '../model/hooks/use-responsive-sidebar'
 
-type Props = {
-  isCollapsed?: boolean
-  setIsCollapsed?: (isCollapsed: boolean) => void
-}
-
-export const Sidebar = ({ isCollapsed, setIsCollapsed }: Props) => {
+export const Sidebar = () => {
   const { width, tabletBreakpoint_768, mobileBreakpoint_360 } = useResponsiveSidebar()
 
   if (width === null) {
@@ -24,10 +19,5 @@ export const Sidebar = ({ isCollapsed, setIsCollapsed }: Props) => {
     return <MobileSidebar />
   }
 
-  return (
-    <DesktopSidebar
-      isCollapsed={isCollapsed}
-      onToggleIsCollapsedClick={(isCollapsed: boolean) => setIsCollapsed?.(isCollapsed)}
-    />
-  )
+  return <DesktopSidebar />
 }

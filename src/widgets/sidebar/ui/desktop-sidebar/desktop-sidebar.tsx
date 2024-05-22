@@ -1,23 +1,20 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from 'react'
 import { ReturnComponent } from '@/shared/types'
-import { DesktopSidebarMenu, ToggleCollapsedButtons } from '../../index'
+import { ToggleCollapsedButtons } from '../../index'
+import { DesktopSidebarMenu } from './desktop-sidebar-menu'
 
 type Props = {
   className?: string
-  isCollapsed?: boolean
-  onToggleIsCollapsedClick: (isCollapsed: boolean) => void
 } & ComponentPropsWithoutRef<'aside'>
 
 export const DesktopSidebar = forwardRef<HTMLElement, Props>(
-  ({ className, onToggleIsCollapsedClick, isCollapsed, ...rest }, ref): ReturnComponent => {
+  ({ className, ...rest }, ref): ReturnComponent => {
     return (
       <>
-        <ToggleCollapsedButtons
-          onToggleIsCollapsedClick={onToggleIsCollapsedClick}
-          isCollapsed={isCollapsed}
-          {...rest}
-        />
-        <DesktopSidebarMenu isCollapsed={isCollapsed} ref={ref} {...rest} />
+        <ToggleCollapsedButtons {...rest} />
+        <aside ref={ref}>
+          <DesktopSidebarMenu ref={ref} {...rest} />
+        </aside>
       </>
     )
   }

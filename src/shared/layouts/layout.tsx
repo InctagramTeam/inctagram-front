@@ -1,18 +1,16 @@
-import { PropsWithChildren, ReactElement, useState } from 'react'
-
-import { Header } from '@/widgets/header'
-import { Sidebar } from '@/widgets/sidebar/ui/sidebar'
 import { NextPage } from 'next'
+import { PropsWithChildren, ReactElement } from 'react'
+import { Header } from '@/widgets/header'
 import { Main } from '@/widgets/main/main'
+import { Sidebar } from '@/widgets/sidebar'
+import { LayoutContextProvider } from './context/layout-context'
 
 export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false)
-
   return (
     <>
       <Header />
-      <Main isCollapsed={isCollapsed}>
-        <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+      <Main>
+        <Sidebar />
         {children}
       </Main>
     </>
@@ -20,5 +18,9 @@ export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
 }
 
 export const getLayout = (page: ReactElement) => {
-  return <Layout>{page}</Layout>
+  return (
+    <LayoutContextProvider>
+      <Layout>{page}</Layout>
+    </LayoutContextProvider>
+  )
 }

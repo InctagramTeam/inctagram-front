@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import clsx from 'clsx'
 import { Inter } from 'next/font/google'
+import { useLayoutContext } from '@/shared/layouts/context/layout-context'
 
 const inter = Inter({
   display: 'swap',
@@ -10,12 +11,13 @@ const inter = Inter({
 })
 
 type Props = {
-  isCollapsed: boolean
   children?: ReactNode
   layoutMainChildren?: ReactNode
 }
 
-export const Main = ({ isCollapsed, children }: Props) => {
+export const Main = ({ children }: Props) => {
+  const { isCollapsed } = useLayoutContext()
+
   return (
     <main
       className={clsx(
