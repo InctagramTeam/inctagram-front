@@ -4,8 +4,8 @@ import { Button } from '@/shared/ui/button'
 import { Flex } from '@/shared/ui/flex'
 import { NotificationProps, NotificationsDropdown } from '@/widgets/header'
 import Link from 'next/link'
-import { LanguageSelection } from "../language-selection/language-selection"
-import { NotificationButtonMode } from "../notification-button-mode/notification-button-mode"
+import { LanguageSelection } from '../language-selection/language-selection'
+import { NotificationButtonMode } from '../notification-button-mode/notification-button-mode'
 
 type Props = {
   countNotifications?: number
