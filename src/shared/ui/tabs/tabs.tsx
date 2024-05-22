@@ -17,77 +17,84 @@ const sizes = {
 export type Tab = {
   disabled?: boolean
   title: string
+  /** Уникальное значение, которое связывает триггер с содержимым.  */
   value: string
 }
 
 type TabsProps = {
   ariaLabel?: string
-  /** Контент табов передается в качестве дочерних компонентов */
-  children: ReactNode
-
-  contentClassName?: string
-
+  children?: ReactNode
+  defaultValue?: string
   fullWidth?: boolean
-  /** Собственные классы для настройки вида списка, кнопок и контентной части*/
+  rootClassName?: string
   listClassName?: string
+  triggerClassName?: string
+
+  /** Контролируемое значение активируемой вкладки. Должно использоваться в сочетании с onValueChange */
+  value?: string
+  onValueChange?: (value: string) => void
+
   size?: 'base'
   /** Массив с названиями табов, их значением и состоянием */
-  tabsValues: Tab[]
-  triggerClassName?: string
-} & Omit<ComponentPropsWithoutRef<typeof Tabs.Root>, 'asChild'>
+  tabs: Tab[]
+}
 
-const TabSwitcher = forwardRef<HTMLButtonElement, TabsProps>(
-  (props, tabsTriggerRef): ReturnComponent => {
-    const {
-      ariaLabel,
-      children,
-      contentClassName,
-      fullWidth,
-      listClassName,
-      size,
-      tabsValues,
-      triggerClassName,
-      ...rest
-    } = props
+export const TabSwitcher = (props: TabsProps): ReturnComponent => {
+  const {
+    ariaLabel,
+    children,
+    tabs,
+    defaultValue,
+    fullWidth,
+    rootClassName,
+    listClassName,
+    triggerClassName,
+    size,
+    onValueChange,
+    value,
+  } = props
 
-    const contentRef = useRef<HTMLDivElement | null>(null)
-
-    const classes = {
-      content: cn('w-full', contentClassName),
-      /** Табы растягиваются на всю ширину контейнера и скролятся, если их ширина превышает ширину контейнера */
-      list: cn('flex w-full overflow-x-scroll', listClassName),
-      trigger: cn([baseClasses, sizes[size || 'base'], fullWidth && `w-full`, triggerClassName]),
-    }
-
-    return (
-      <Tabs.Root defaultValue={tabsValues[0].value} {...rest}>
-        <Tabs.List aria-label={ariaLabel || 'tab-switcher'} className={classes.list}>
-          {tabsValues.map((tab, index) => (
-            <Tabs.Trigger
-              className={classes.trigger}
-              disabled={tab.disabled}
-              key={index}
-              ref={tabsTriggerRef}
-              value={tab.value}
-            >
-              {tab.title}
-            </Tabs.Trigger>
-          ))}
-        </Tabs.List>
-
-        {React.Children.map(children, (child, i) => (
-          <Tabs.Content
-            className={classes.content}
-            key={i}
-            ref={contentRef}
-            value={tabsValues[i].value}
-          >
-            {child}
-          </Tabs.Content>
-        ))}
-      </Tabs.Root>
-    )
+  const classes = {
+    /** Табы растягиваются на всю ширину контейнера и скролятся, если их ширина превышает ширину контейнера */
+    list: cn('flex w-full overflow-x-scroll', listClassName),
+    trigger: cn([baseClasses, sizes[size || 'base'], fullWidth && `w-full`, triggerClassName]),
   }
-)
 
-export default TabSwitcher
+  return (
+    <Tabs.Root
+      className={rootClassName}
+      defaultValue={defaultValue}
+      onValueChange={onValueChange}
+      value={value}
+    >
+      <Tabs.List aria-label={ariaLabel || 'tab-switcher'} className={classes.list}>
+        {tabs.map(tab => (
+          <Tabs.Trigger
+            className={classes.trigger}
+            disabled={tab.disabled}
+            key={tab.value}
+            value={tab.value}
+          >
+            {tab.title}
+          </Tabs.Trigger>
+        ))}
+      </Tabs.List>
+      {children}
+    </Tabs.Root>
+  )
+}
+
+export type TabContentProps = {
+  children: ReactNode
+  className?: string
+  /** Уникальное значение, которое связывает триггер с содержимым.  */
+  value: string
+}
+
+export const TabContent = ({ children, className, value }: TabContentProps): ReturnComponent => {
+  return (
+    <Tabs.Content className={className} value={value}>
+      {children}
+    </Tabs.Content>
+  )
+}
