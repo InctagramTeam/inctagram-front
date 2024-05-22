@@ -1,18 +1,20 @@
-import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
+import React from 'react'
 import { Button } from '@/shared/ui/button'
+import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils'
-import { NotificationProps } from '@/widgets/header'
 
 type Props = {
+  openDropdown: boolean
+  setOpenDropdown: (open: boolean) => void
   countNotifications?: number
-  openDropdown?: boolean
-  onToggleDropdownClick?: () => void
+  className?: string
 }
 
-export const NotificationButtonMode = ({
-  countNotifications,
+export const NotificationTrigger = ({
   openDropdown,
-  onToggleDropdownClick,
+  setOpenDropdown,
+  countNotifications,
+  className,
 }: Props) => {
   const classes = {
     countNotifications: cn(
@@ -21,7 +23,8 @@ export const NotificationButtonMode = ({
     ),
     dropdownTrigger: cn(
       `w-[24px] !h-[24px] justify-center hover:translate-y-0 !p-0 relative`,
-      `hover:bg-Primary-500 active:opacity-50 duration-300 transition-opacity`
+      `hover:bg-Primary-500 active:opacity-50 duration-300 transition-opacity`,
+      className
     ),
   }
 
@@ -29,7 +32,7 @@ export const NotificationButtonMode = ({
     <Button
       aria-label={openDropdown ? 'close notifications' : 'open notifications'}
       className={classes.dropdownTrigger}
-      onClick={onToggleDropdownClick}
+      onClick={() => setOpenDropdown(!openDropdown)}
       variant={'text'}
     >
       <>
