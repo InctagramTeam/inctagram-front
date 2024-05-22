@@ -2,9 +2,8 @@ import * as React from 'react'
 
 import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils'
-import { Button } from '@/shared/ui/button'
-import { Dropdown } from '@/shared/ui/dropdown-menu'
-import { NotificationProps, NotificationsDropdownList } from '@/widgets/header'
+import { Dropdown, MenuProps } from '@/shared/ui/dropdown-menu'
+import { NotificationDropdownList } from '@/widgets/header/ui/notification-droddown-list/notification-dropdown-list'
 
 export type NotificationsDropdownProps = {
   alternativeText?: string
@@ -12,7 +11,6 @@ export type NotificationsDropdownProps = {
   onOpenChange?: (value: boolean) => void
   open?: boolean
 }
-
 export const NotificationsDropdown = ({
   alternativeText = 'Уведомлений еще нет',
   notifications,

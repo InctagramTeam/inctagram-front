@@ -4,36 +4,7 @@ import { ComponentPropsWithoutRef, useState } from 'react'
 import { ReturnComponent } from '@/shared/types'
 import { MobileSidebarItem } from '@/widgets/sidebar'
 import { clsx } from 'clsx'
-
-import { NavLink } from '../../model/types/navlink.types'
-
-const mobileLinks = [
-  {
-    disabled: false,
-    href: '/home',
-    name: 'Home',
-  },
-  {
-    disabled: true,
-    href: '/create',
-    name: 'Create',
-  },
-  {
-    disabled: false,
-    href: '/messenger',
-    name: 'Messenger',
-  },
-  {
-    disabled: false,
-    href: '/search',
-    name: 'Search',
-  },
-  {
-    disabled: false,
-    href: '/profile',
-    name: 'Profile',
-  },
-] as NavLink[]
+import { MOBILE_LINKS } from '../../model/constants/sidebar-links'
 
 type Props = {
   className?: string
@@ -51,8 +22,8 @@ export const MobileSidebar = ({ className }: Props): ReturnComponent => {
         )}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
       >
-        <ul className={'flex gap-[36px]'}>
-          {mobileLinks.map(link => (
+        <ul className="flex gap-[36px]">
+          {MOBILE_LINKS.map(link => (
             <li key={link.href}>
               <MobileSidebarItem link={link} />
             </li>

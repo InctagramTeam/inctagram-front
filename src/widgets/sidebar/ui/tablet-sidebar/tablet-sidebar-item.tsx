@@ -1,17 +1,19 @@
 import { forwardRef } from 'react'
 
+import clsx from 'clsx'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+import { NavLink } from '../../model/types/navlink.types'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
-import clsx from 'clsx'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 
-import { NavLink } from '../../model/types/navlink.types'
-import { getIcon } from '../helpers/getIcon'
+import { getIcon } from '@/widgets/sidebar/model/utils/getIcon'
+import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   link: NavLink
@@ -25,44 +27,46 @@ const linkClasses = {
   disabled: `pointer-events-none text-Dark-100 cursor-default`,
 }
 
-export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link }, ref) => {
-  const pathname = usePathname()
-  const isActive = pathname!.startsWith(link.href)
+export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(
+  ({ link }, ref): ReturnComponent => {
+    const pathname = usePathname()
+    const isActive = pathname!.startsWith(link.href)
 
-  return (
-    <TooltipProvider>
-      <Tooltip delayDuration={0}>
-        <TooltipTrigger asChild>
-          <Link
-            aria-disabled={link.disabled}
-            className={clsx(
-              isActive
-                ? linkClasses.active
-                : link.disabled
-                  ? linkClasses.disabled
-                  : linkClasses.default,
-              linkClasses.base
-            )}
-            href={link.href}
-            onClick={link.handleClick}
-            ref={ref}
-          >
-            {getIcon(link.href, isActive)}
-            <TooltipContent
-              className="flexrounded-1/2 h-8 w-full max-w-[100px] !text-Light-100 bg-Dark-500
-              items-center gap-4"
-              side={'right'}
+    return (
+      <TooltipProvider>
+        <Tooltip delayDuration={0}>
+          <TooltipTrigger asChild>
+            <Link
+              aria-disabled={link.disabled}
+              className={clsx(
+                isActive
+                  ? linkClasses.active
+                  : link.disabled
+                    ? linkClasses.disabled
+                    : linkClasses.default,
+                linkClasses.base
+              )}
+              href={link.href}
+              onClick={link.handleClick}
+              ref={ref}
             >
-              {link.name}
-            </TooltipContent>
-            <div
-              className={clsx(isActive && `absolute right-6 w-2 h-2 rounded bg-Primary-900`)}
-            ></div>
-          </Link>
-        </TooltipTrigger>
-      </Tooltip>
-    </TooltipProvider>
-  )
-})
+              {getIcon(link.href, isActive)}
+              <TooltipContent
+                side="right"
+                className="flexrounded-1/2 h-8 w-full max-w-[100px] !text-Light-100 bg-Dark-500
+              items-center gap-4"
+              >
+                {link.name}
+              </TooltipContent>
+              <div
+                className={clsx(isActive && `absolute right-6 w-2 h-2 rounded bg-Primary-900`)}
+              ></div>
+            </Link>
+          </TooltipTrigger>
+        </Tooltip>
+      </TooltipProvider>
+    )
+  }
+)
 
 TabletSidebarItem.displayName = 'DesktopSidebarItem'
