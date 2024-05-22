@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { cn } from '@/shared/lib/utils'
 import { Flex } from '@/shared/ui/flex'
-import { Logo } from '@/shared/ui/logo/logo'
-import { HeaderDesktop } from '@/widgets/header/header-desktop/header-desktop'
-import { HeaderMobile } from '@/widgets/header/header-mobile'
-import { NotificationProps } from 'src/widgets/header/header-desktop/notifications-dropdown'
+import { HeaderDesktop, HeaderMobile, Logo, NotificationProps } from '@/widgets/header/ui'
 
 type Props = {
   className?: string
