@@ -1,9 +1,10 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
+
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
-import { TabletSidebarItem } from 'src/widgets/sidebar/ui/tablet-sidebar/tablet-sidebar-item'
-import { NavLink } from '@/widgets/sidebar'
 import { TooltipProvider } from '@/shared/ui/tooltip/tooltip'
+import { NavLink } from '@/widgets/sidebar'
+import { TabletSidebarItem } from 'src/widgets/sidebar/ui/tablet-sidebar/tablet-sidebar-item'
 
 const tabletLinks = [
   {
@@ -56,7 +57,7 @@ export const TabletSidebar = forwardRef<HTMLElement, Props>(
   ({ className }, ref): ReturnComponent => {
     return (
       <TooltipProvider>
-        <aside className="w-full" ref={ref}>
+        <aside className={'w-full'} ref={ref}>
           <nav
             className={cn(
               `absolute top-[80px] left-1 w-full max-w-[80px] min-h-[80px]
@@ -64,7 +65,7 @@ export const TabletSidebar = forwardRef<HTMLElement, Props>(
               className
             )}
           >
-            <ul className="rounded-md cursor-pointer transition-colors">
+            <ul className={'rounded-md cursor-pointer transition-colors'}>
               {tabletLinks.map(link => (
                 <TabletSidebarItem key={link.href} link={link} />
               ))}

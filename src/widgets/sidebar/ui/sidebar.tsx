@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 
 import { DesktopSidebar, MobileSidebar } from '@/widgets/sidebar'
+
 import { TabletSidebar } from './tablet-sidebar/tablet-sidebar'
 
 type Props = {
@@ -19,6 +20,7 @@ export const Sidebar = ({ isCollapsed, setIsCollapsed }: Props) => {
     if (typeof window !== 'undefined') {
       setWidth(window.innerWidth)
       const handleWindowResize = () => setWidth(window.innerWidth)
+
       window.addEventListener('resize', handleWindowResize)
 
       return () => window.removeEventListener('resize', handleWindowResize)
