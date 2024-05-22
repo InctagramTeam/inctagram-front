@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { useState } from 'react'
 
 import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
@@ -6,6 +7,7 @@ import { Button } from '@/shared/ui/button'
 import { Flex } from '@/shared/ui/flex'
 import { NotificationProps, NotificationsDropdown } from '@/widgets/header'
 import Link from 'next/link'
+import { LanguageSelection } from '@/widgets/header/language-selection/language-selection'
 
 type Props = {
   countNotifications?: number
@@ -66,7 +68,9 @@ export const HeaderDesktop = ({ countNotifications, isAuth, notifications }: Pro
         sideOffset={10}
         trigger={trigger}
       />
-      <div>Select</div>
+      <div>
+        <LanguageSelection />
+      </div>
       {!isAuth && (
         <Flex className={'flex-nowrap'} gap={'24'}>
           <Button

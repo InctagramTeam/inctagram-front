@@ -1,6 +1,6 @@
 import { cn } from '@/shared/lib/utils'
 import { Flex } from '@/shared/ui/flex'
-import { Logo } from '@/shared/ui/logo/logo'
+import { Logo } from '@/widgets/header/logo/logo'
 import { HeaderDesktop } from '@/widgets/header/header-desktop/header-desktop'
 import { NotificationProps } from '@/widgets/header/notifications-dropdown'
 
