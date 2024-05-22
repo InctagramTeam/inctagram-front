@@ -1,17 +1,20 @@
+import { useEffect, useState } from 'react'
+
 import { cn } from '@/shared/lib/utils'
 import { Flex } from '@/shared/ui/flex'
 import { Logo } from '@/shared/ui/logo/logo'
 import { HeaderDesktop } from '@/widgets/header/header-desktop/header-desktop'
-import { NotificationProps } from '@/widgets/header/notifications-dropdown'
+import { HeaderMobile } from '@/widgets/header/header-mobile'
+import { NotificationProps } from 'src/widgets/header/header-desktop/notifications-dropdown'
 
 type Props = {
   className?: string
-  countNotifications?: number
   isAuth?: boolean
+  logout?: () => void
   notifications?: NotificationProps[]
 }
 
-export const Header = ({ className, ...rest }: Props) => {
+export const Header = ({ className, logout, ...rest }: Props) => {
   const classes = {
     button: `py-[6px] text-center !text-H3-16 hover:translate-y-0`,
     countNotifications: cn(
@@ -33,11 +36,29 @@ export const Header = ({ className, ...rest }: Props) => {
     wrapper: `max-w-[1186px] w-full mx-auto px-[15px]`,
   }
 
+  const [width, setWidth] = useState<null | number>(null)
+  const mobileBreakpoint = 768
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setWidth(window.innerWidth)
+      const handleWindowResize = () => setWidth(window.innerWidth)
+
+      window.addEventListener('resize', handleWindowResize)
+
+      return () => window.removeEventListener('resize', handleWindowResize)
+    }
+  }, [])
+
+  if (width === null) {
+    return null
+  }
+
   return (
     <header className={classes.header}>
       <Flex className={classes.wrapper} gap={'20'} items={'center'} justify={'spaceBetween'}>
         <Logo />
-        <HeaderDesktop {...rest} />
+        {width > mobileBreakpoint ? <HeaderDesktop {...rest} /> : <HeaderMobile logout={logout} />}
       </Flex>
     </header>
   )

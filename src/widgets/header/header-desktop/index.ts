@@ -1,1 +1,2 @@
-export { HeaderDesktop } from './header-desktop'
+export * from './header-desktop'
+export * from './notifications-dropdown'
