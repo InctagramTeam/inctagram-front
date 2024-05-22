@@ -51,7 +51,7 @@ export const MobileSidebar = ({ className }: Props): ReturnComponent => {
         )}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
       >
-        <ul className="flex gap-[36px]">
+        <ul className={'flex gap-[36px]'}>
           {mobileLinks.map(link => (
             <li key={link.href}>
               <MobileSidebarItem link={link} />

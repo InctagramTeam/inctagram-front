@@ -1,6 +1,7 @@
+import * as React from 'react'
+
 import { Button } from '@/shared/ui/button'
 import Link from 'next/link'
-import * as React from 'react'
 
 export const AuthButtons = () => {
   const classes = {

@@ -1,7 +1,7 @@
-import { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
-import clsx from 'clsx'
 import { PolymorphComponentPropsWithRef } from '@/shared/types'
+import clsx from 'clsx'
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, ComponentPropsWithoutRef<T>>
 

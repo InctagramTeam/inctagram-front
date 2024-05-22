@@ -1,10 +1,11 @@
-import { Dropdown } from '@/shared/ui/dropdown-menu'
 import * as React from 'react'
 import { ReactNode } from 'react'
 
+import { Dropdown } from '@/shared/ui/dropdown-menu'
+
 type Props = {
-  notifications?: NotificationProps[]
   alternativeText?: string
+  notifications?: NotificationProps[]
 }
 
 export type NotificationProps = {
@@ -14,17 +15,17 @@ export type NotificationProps = {
   title: string
 }
 
-export const NotificationsDropdownList = ({ notifications, alternativeText }: Props) => {
+export const NotificationsDropdownList = ({ alternativeText, notifications }: Props) => {
   const classes = {
-    wrapper: `pr-[4px] h-full w-full`,
+    alternativeText: `flex justify-center items-center h-full w-full text-center`,
     item: `flex-col w-full !items-start gap-0 cursor-auto relative py-[12px] outline-0
       hover:!text-Light-100 hover:!bg-transparent
       after:content-[""] after:h-[1px] after:bg-Dark-100 after:absolute after:top-0 after:left-0 after:right-[4px]`,
+    longAgo: `text-small-text-12 text-Light-900`,
     new: `text-small-text-12 text-bold text-Primary-500`,
     subtitle: `text-sm-bold-14`,
     text: `text-regular-text-14`,
-    longAgo: `text-small-text-12 text-Light-900`,
-    alternativeText: `flex justify-center items-center h-full w-full text-center`,
+    wrapper: `pr-[4px] h-full w-full`,
   }
 
   return (
