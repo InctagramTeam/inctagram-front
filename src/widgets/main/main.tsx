@@ -9,12 +9,13 @@ const inter = Inter({
   weight: ['400', '500', '600', '700'],
 })
 
-type MainContentProps = {
+type Props = {
   isCollapsed: boolean
-  children: ReactNode
+  children?: ReactNode
+  layoutMainChildren?: ReactNode
 }
 
-const Main = ({ isCollapsed, children }: MainContentProps) => {
+export const Main = ({ isCollapsed, children }: Props) => {
   return (
     <main
       className={clsx(
@@ -27,5 +28,3 @@ const Main = ({ isCollapsed, children }: MainContentProps) => {
     </main>
   )
 }
-
-export default Main

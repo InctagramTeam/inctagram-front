@@ -9,3 +9,4 @@ export { ToggleCollapsedButtons } from './ui/desktop-sidebar/toggle-collapsed-bu
 export { DESKTOP_SIDEBAR_LINKS } from './model/constants/desktop-sidebar-links'
 export { DesktopSidebarMenu } from './ui/desktop-sidebar/desktop-sidebar-menu'
 export { useResponsiveSidebar } from './model/hooks/use-responsive-sidebar'
+export { Main } from '../main/main'
