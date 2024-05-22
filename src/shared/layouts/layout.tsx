@@ -23,7 +23,7 @@ export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
       <main
         className={clsx(
           isCollapsed ? 'pl-[80px]' : 'pl-[220px]',
-          `flex flex-col justify-center pt-[var(--header-height)] w-full items-center mx-auto`,
+          `flex flex-col justify-center pt-[var(--header-height)] w-full items-center`,
           inter.variable
         )}
       >

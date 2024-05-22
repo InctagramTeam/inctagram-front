@@ -2,7 +2,6 @@
 import { ComponentPropsWithoutRef, useState } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
-import { TooltipProvider } from '@/shared/ui/tooltip/tooltip'
 import { MobileSidebarItem } from '@/widgets/sidebar'
 import { clsx } from 'clsx'
 
@@ -44,20 +43,22 @@ export const MobileSidebar = ({ className }: Props): ReturnComponent => {
   const [isOpenMenu, setIsOpenMenu] = useState(false)
 
   return (
-    <TooltipProvider>
-      <aside>
-        <nav
-          className={clsx(
-            className,
-            `fixed w-full bottom-0 left-0 right-0 flex justify-center h-[60px] border-t-[1px] border-t-Dark-300 shadow-sm pt-4`
-          )}
-          onClick={() => setIsOpenMenu(!isOpenMenu)}
-        >
+    <aside>
+      <nav
+        className={clsx(
+          className,
+          `fixed w-full bottom-0 left-0 right-0 flex justify-center h-[60px] border-t-[1px] border-t-Dark-300 shadow-sm pt-4`
+        )}
+        onClick={() => setIsOpenMenu(!isOpenMenu)}
+      >
+        <ul className="flex gap-[36px]">
           {mobileLinks.map(link => (
-            <MobileSidebarItem key={link.href} link={link} />
+            <li key={link.href}>
+              <MobileSidebarItem link={link} />
+            </li>
           ))}
-        </nav>
-      </aside>
-    </TooltipProvider>
+        </ul>
+      </nav>
+    </aside>
   )
 }

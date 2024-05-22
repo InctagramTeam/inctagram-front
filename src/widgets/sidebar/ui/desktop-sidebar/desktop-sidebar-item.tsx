@@ -8,8 +8,8 @@ import { NavLink } from '../../model/types/navlink.types'
 import { getIcon } from '../helpers/getIcon'
 
 type Props = {
-  isCollapsed?: boolean
   link: NavLink
+  isCollapsed?: boolean
 }
 
 const linkClasses = {
@@ -21,12 +21,12 @@ const linkClasses = {
 }
 
 export const DesktopSidebarItem = forwardRef<HTMLAnchorElement, Props>(
-  ({ isCollapsed, link }, ref) => {
+  ({ link, isCollapsed }, ref) => {
     const pathname = usePathname()
     const isActive = pathname!.startsWith(link.href)
 
     return (
-      <li className={'last:mt-auto last:-translate-y-[160px]'}>
+      <li className="last:mt-auto">
         <Link
           aria-disabled={link.disabled}
           className={clsx(

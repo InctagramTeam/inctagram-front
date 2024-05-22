@@ -5,148 +5,108 @@
  */
 
 import * as React from 'react'
-import { FC } from 'react'
-
+import { ComponentPropsWithoutRef, ElementRef, FC, forwardRef, ReactNode } from 'react'
 import { cn } from '@/shared/lib/utils/merge-cn'
-import * as SelectPrimitive from '@radix-ui/react-select'
+import * as SelectRadix from '@radix-ui/react-select'
 import { ChevronDown, ChevronUp } from 'lucide-react'
 
-const Select = SelectPrimitive.Root
+const Select: typeof SelectRadix.Root = SelectRadix.Root
+const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
+const SelectValue: typeof SelectRadix.Value = SelectRadix.Value
 
-const SelectGroup = SelectPrimitive.Group
-
-const SelectValue = SelectPrimitive.Value
-
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ children, className, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    className={cn(
-      'w-[210px] h-[36px] flex items-center justify-between ' +
-        ' bg-Dark-700 px-2 py-2 text-base font-normal outline-none border rounded-none' +
-        ' data-[state=closed]:border-Dark-100 data-[state=open]:border-Light-100 data-[state=open]:text-Light-100 ' +
-        ' hover:text-Light-900 focus:border-Light-900' +
-        ' focus:text-Light-900 focus:border-Primary-500 focus:border-2 focus:rounded-sm' +
-        ' disabled:cursor-not-allowed disabled:text-Dark-100',
-      className
-    )}
-    ref={ref}
-    {...props}
-  >
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <ChevronDown className={'h-4 w-4'} />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-))
-
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
-
-const SelectScrollUpButton = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.ScrollUpButton>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollUpButton>
+const SelectLabel = forwardRef<
+  ElementRef<typeof SelectRadix.Label>,
+  ComponentPropsWithoutRef<typeof SelectRadix.Label>
 >(({ className, ...props }, ref) => (
-  <SelectPrimitive.ScrollUpButton
-    className={cn('flex cursor-default items-center justify-center py-1', className)}
-    ref={ref}
-    {...props}
-  >
-    <ChevronUp className={'h-4 w-4'} />
-  </SelectPrimitive.ScrollUpButton>
-))
-
-SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName
-
-const SelectScrollDownButton = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.ScrollDownButton>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.ScrollDownButton>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.ScrollDownButton
-    className={cn('flex cursor-default items-center justify-center py-1', className)}
-    ref={ref}
-    {...props}
-  >
-    <ChevronDown className={'h-4 w-4'} />
-  </SelectPrimitive.ScrollDownButton>
-))
-
-SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName
-
-const SelectContent = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
->(({ children, className, position = 'popper', ...props }, ref) => (
-  <SelectPrimitive.Portal>
-    <SelectPrimitive.Content
-      className={cn(
-        'relative z-50 w-[210px] border border-t-0 border-Light-100 bg-Dark-700 m-0 p-0 max-h-96 min-w-[8rem] overflow-hidden text-popover-foreground ',
-        // position === 'popper' &&
-        // 'data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1',
-        className
-      )}
-      position={position}
-      ref={ref}
-      {...props}
-    >
-      <SelectPrimitive.Viewport
-        className={cn(
-          'p-0',
-          position === 'popper' && 'min-h-fit w-full min-w-[var(--radix-select-trigger-width)]'
-        )}
-      >
-        {children}
-      </SelectPrimitive.Viewport>
-    </SelectPrimitive.Content>
-  </SelectPrimitive.Portal>
-))
-
-SelectContent.displayName = SelectPrimitive.Content.displayName
-
-const SelectLabel = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label
+  <SelectRadix.Label
     className={cn('py-1.5 pl-8 pr-2 text-sm font-semibold', className)}
     ref={ref}
     {...props}
   />
 ))
 
-SelectLabel.displayName = SelectPrimitive.Label.displayName
+const SelectTrigger = forwardRef<
+  ElementRef<typeof SelectRadix.Trigger>,
+  ComponentPropsWithoutRef<typeof SelectRadix.Trigger> & { icon?: ReactNode }
+>(({ children, className, icon, ...props }, ref) => {
+  const classes = {
+    trigger: cn(
+      `w-[210px] h-[36px] flex items-center justify-between 
+        bg-Dark-700 px-2 py-2 text-base font-normal outline-none border rounded-none
+        data-[state=closed]:border-Dark-100 data-[state=open]:border-Dark-100
+        data-[state=open]:text-Light-100 ' +
+        hover:text-Light-900 focus:border-Light-900 shadow-sm
+        focus:text-Light-900 focus:border-Primary-500/60 focus:border-[1px]
+        focus:rounded-sm
+        disabled:cursor-not-allowed disabled:text-Dark-100/60`,
+      className
+    ),
+  }
 
-const SelectItem = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
+  return (
+    <SelectRadix.Trigger className={classes.trigger} ref={ref} {...props}>
+      {children}
+      <SelectRadix.Icon asChild>{icon}</SelectRadix.Icon>
+    </SelectRadix.Trigger>
+  )
+})
+
+const SelectContent = forwardRef<
+  ElementRef<typeof SelectRadix.Content>,
+  ComponentPropsWithoutRef<typeof SelectRadix.Content>
+>(({ children, className, position = 'popper', ...props }, ref) => (
+  <SelectRadix.Portal>
+    <SelectRadix.Content
+      className={cn(
+        `relative z-50 w-full border border-t-0 border-Dark-100 bg-Dark-700 m-0 p-0' +
+          max-h-96 min-w-[8rem]
+          overflow-hidden text-popover-foreground`,
+        className
+      )}
+      position={position}
+      ref={ref}
+      {...props}
+    >
+      <SelectRadix.Viewport
+        className={cn(
+          'p-0',
+          position === 'popper' && 'min-h-fit w-full min-w-[var(--radix-select-trigger-width)]'
+        )}
+      >
+        {children}
+      </SelectRadix.Viewport>
+    </SelectRadix.Content>
+  </SelectRadix.Portal>
+))
+
+const SelectItem = forwardRef<
+  ElementRef<typeof SelectRadix.Item>,
+  ComponentPropsWithoutRef<typeof SelectRadix.Item>
 >(({ children, className, ...props }, ref) => (
-  <SelectPrimitive.Item
+  <SelectRadix.Item
     className={cn(
-      'w-[210px] h-[36px] flex cursor-default select-none items-center pl-2 pr-2 text-base font-normal text-Light-100 outline-none ' +
-        'focus:bg-Dark-300 focus:text-Primary-500',
+      `w-[210px] h-[36px] flex cursor-default select-none items-center pl-2 pr-2
+        text-base font-normal text-Light-100 outline-none 
+        focus:bg-Dark-100/30 focus:text-Light-100 focus:shadow-sm`,
       className
     )}
     ref={ref}
     {...props}
   >
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-  </SelectPrimitive.Item>
+    <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
+  </SelectRadix.Item>
 ))
 
-SelectItem.displayName = SelectPrimitive.Item.displayName
-
-const SelectSeparator = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Separator>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
+const SelectSeparator = forwardRef<
+  ElementRef<typeof SelectRadix.Separator>,
+  ComponentPropsWithoutRef<typeof SelectRadix.Separator>
 >(({ className, ...props }, ref) => (
-  <SelectPrimitive.Separator
-    className={cn('-mx-1 my-1 h-px bg-muted', className)}
+  <SelectRadix.Separator
+    className={cn('-mx-1 my-1 h-px bg-Dark-100/40 shadow-sm', className)}
     ref={ref}
     {...props}
   />
 ))
-
-SelectSeparator.displayName = SelectPrimitive.Separator.displayName
 
 type PropsType = {
   children?: React.ReactNode
@@ -188,6 +148,32 @@ export const SelectBox: FC<PropsType> = ({ disabled, title }) => {
     </LabelWrap>
   )
 }
+
+const SelectScrollUpButton = forwardRef<
+  ElementRef<typeof SelectRadix.ScrollUpButton>,
+  ComponentPropsWithoutRef<typeof SelectRadix.ScrollUpButton>
+>(({ className, ...props }, ref) => (
+  <SelectRadix.ScrollUpButton
+    className={cn('flex cursor-default items-center justify-center py-1', className)}
+    ref={ref}
+    {...props}
+  >
+    <ChevronUp className={'h-4 w-4'} />
+  </SelectRadix.ScrollUpButton>
+))
+
+const SelectScrollDownButton = forwardRef<
+  ElementRef<typeof SelectRadix.ScrollDownButton>,
+  ComponentPropsWithoutRef<typeof SelectRadix.ScrollDownButton>
+>(({ className, ...props }, ref) => (
+  <SelectRadix.ScrollDownButton
+    className={cn('flex cursor-default items-center justify-center py-1', className)}
+    ref={ref}
+    {...props}
+  >
+    <ChevronDown className={'h-4 w-4'} />
+  </SelectRadix.ScrollDownButton>
+))
 
 export {
   Select,
