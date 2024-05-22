@@ -1,8 +1,8 @@
 import { cn } from '@/shared/lib/utils'
 import { Flex } from '@/shared/ui/flex'
-import { Logo } from '@/widgets/header/logo/logo'
-import { HeaderDesktop } from '@/widgets/header/header-desktop/header-desktop'
-import { NotificationProps } from '@/widgets/header/notifications-dropdown'
+import { Logo } from '@/widgets/header/ui/logo/logo'
+import { DesktopHeader } from '@/widgets/header/ui/desktop-header/desktop-header'
+import { NotificationProps } from 'src/widgets/header/ui/notifications-dropdown'
 
 type Props = {
   className?: string
@@ -22,7 +22,7 @@ export const Header = ({ className, ...rest }: Props) => {
       `w-[24px] !h-[24px] justify-center hover:translate-y-0 !p-0 relative`,
       `hover:bg-Primary-500 active:opacity-50 duration-300 transition-opacity`
     ),
-    header: `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,
+    desktopHeader: `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,
     loginLink: cn(
       `px-[26px] !text-Primary-500 duration-300`,
       `hover:no-underline hover:!text-Primary-100`,
@@ -34,10 +34,10 @@ export const Header = ({ className, ...rest }: Props) => {
   }
 
   return (
-    <header className={classes.header}>
+    <header className={classes.desktopHeader}>
       <Flex className={classes.wrapper} gap={'20'} items={'center'} justify={'spaceBetween'}>
         <Logo />
-        <HeaderDesktop {...rest} />
+        <DesktopHeader {...rest} />
       </Flex>
     </header>
   )
