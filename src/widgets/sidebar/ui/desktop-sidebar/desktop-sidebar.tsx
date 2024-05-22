@@ -1,10 +1,12 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
+
+import { ChevronLeftIcon, ChevronRightIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
-import { DesktopSidebarItem } from './desktop-sidebar-item'
-import { NavLink } from '@/widgets/sidebar'
 import { Button } from '@/shared/ui/button'
-import { ChevronLeftIcon, ChevronRightIcon } from '@/shared/assets/icons'
+import { NavLink } from '@/widgets/sidebar'
+
+import { DesktopSidebarItem } from './desktop-sidebar-item'
 
 const links = [
   {
@@ -56,21 +58,21 @@ type Props = {
 } & ComponentPropsWithoutRef<'aside'>
 
 export const DesktopSidebar = forwardRef<HTMLElement, Props>(
-  ({ className, onToggleIsCollapsedClick, isCollapsed }, ref): ReturnComponent => {
+  ({ className, isCollapsed, onToggleIsCollapsedClick }, ref): ReturnComponent => {
     return (
       <>
         {isCollapsed ? (
           <Button
-            onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
             className={'fixed z-10 left-[30px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
+            onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
             variant={'text'}
           >
             <ChevronRightIcon className={'!fill-Light-100/70'} />
           </Button>
         ) : (
           <Button
-            onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
             className={'fixed z-10 left-[200px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
+            onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
             variant={'text'}
           >
             <ChevronLeftIcon className={'!fill-Light-100/70'} />
@@ -86,9 +88,13 @@ export const DesktopSidebar = forwardRef<HTMLElement, Props>(
             )}
             ref={ref}
           >
-            <ul className="flex flex-col gap-[24px] rounded-md cursor-pointer transition-colors [&>*:nth-child(5)]:mb-[46px] h-full">
+            <ul
+              className={
+                'flex flex-col gap-[24px] rounded-md cursor-pointer transition-colors [&>*:nth-child(5)]:mb-[46px] h-full'
+              }
+            >
               {links.map(link => (
-                <DesktopSidebarItem key={link.href} isCollapsed={isCollapsed} link={link} />
+                <DesktopSidebarItem isCollapsed={isCollapsed} key={link.href} link={link} />
               ))}
             </ul>
           </nav>

@@ -11,7 +11,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     require('tailwindcss-animate'),
-    require('tailwind-scrollbar'),
+    require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
   ],
   prefix: '',
   theme: {

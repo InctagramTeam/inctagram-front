@@ -26,31 +26,31 @@ type TabsProps = {
   children?: ReactNode
   defaultValue?: string
   fullWidth?: boolean
-  rootClassName?: string
   listClassName?: string
-  triggerClassName?: string
-
-  /** Контролируемое значение активируемой вкладки. Должно использоваться в сочетании с onValueChange */
-  value?: string
   onValueChange?: (value: string) => void
+  rootClassName?: string
 
   size?: 'base'
   /** Массив с названиями табов, их значением и состоянием */
   tabs: Tab[]
+
+  triggerClassName?: string
+  /** Контролируемое значение активируемой вкладки. Должно использоваться в сочетании с onValueChange */
+  value?: string
 }
 
 export const TabSwitcher = (props: TabsProps): ReturnComponent => {
   const {
     ariaLabel,
     children,
-    tabs,
     defaultValue,
     fullWidth,
-    rootClassName,
     listClassName,
-    triggerClassName,
-    size,
     onValueChange,
+    rootClassName,
+    size,
+    tabs,
+    triggerClassName,
     value,
   } = props
 

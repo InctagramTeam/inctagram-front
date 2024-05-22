@@ -4,12 +4,12 @@ import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
+import { Card } from '@/shared/ui/card/card'
 import { Checkbox } from '@/shared/ui/checkbox'
 import { Flex } from '@/shared/ui/flex'
 import { Input } from '@/shared/ui/input'
 import { Text } from '@/shared/ui/text'
 import Link from 'next/link'
-import { Card } from '@/shared/ui/card/card'
 
 type Props = {}
 

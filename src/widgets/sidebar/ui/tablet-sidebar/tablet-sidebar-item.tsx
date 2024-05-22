@@ -1,17 +1,16 @@
 import { forwardRef } from 'react'
 
-import clsx from 'clsx'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
-import { NavLink } from '../../model/types/navlink.types'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
+import clsx from 'clsx'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
+import { NavLink } from '../../model/types/navlink.types'
 import { getIcon } from '../helpers/getIcon'
 
 type Props = {
@@ -50,9 +49,9 @@ export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(({ link },
           >
             {getIcon(link.href, isActive)}
             <TooltipContent
-              side="right"
               className="flexrounded-1/2 h-8 w-full max-w-[100px] !text-Light-100 bg-Dark-500
               items-center gap-4"
+              side={'right'}
             >
               {link.name}
             </TooltipContent>

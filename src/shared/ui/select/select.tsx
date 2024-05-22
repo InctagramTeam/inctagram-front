@@ -5,7 +5,8 @@
  */
 
 import * as React from 'react'
-import { ComponentPropsWithoutRef, ElementRef, FC, forwardRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, FC, ReactNode, forwardRef } from 'react'
+
 import { cn } from '@/shared/lib/utils/merge-cn'
 import * as SelectRadix from '@radix-ui/react-select'
 import { ChevronDown, ChevronUp } from 'lucide-react'
@@ -27,7 +28,7 @@ const SelectLabel = forwardRef<
 
 const SelectTrigger = forwardRef<
   ElementRef<typeof SelectRadix.Trigger>,
-  ComponentPropsWithoutRef<typeof SelectRadix.Trigger> & { icon?: ReactNode }
+  { icon?: ReactNode } & ComponentPropsWithoutRef<typeof SelectRadix.Trigger>
 >(({ children, className, icon, ...props }, ref) => {
   const classes = {
     trigger: cn(
