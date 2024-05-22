@@ -1,8 +1,9 @@
 import { cn } from '@/shared/lib/utils'
 import { Flex } from '@/shared/ui/flex'
 import { Logo } from '@/widgets/header/ui/logo/logo'
-import { DesktopHeader } from '@/widgets/header/ui/desktop-header/desktop-header'
-import { NotificationProps } from '@/widgets/header/ui/notifications-dropdown'
+import { NotificationProps } from './notifications-dropdown'
+import { DesktopHeader } from './desktop-header/desktop-header'
+import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   className?: string
@@ -11,7 +12,7 @@ type Props = {
   notifications?: NotificationProps[]
 }
 
-export const Header = ({ className, ...rest }: Props) => {
+export const Header = ({ className, ...rest }: Props): ReturnComponent => {
   const classes = {
     button: `py-[6px] text-center !text-H3-16 hover:translate-y-0`,
     countNotifications: cn(

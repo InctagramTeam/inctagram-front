@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils'

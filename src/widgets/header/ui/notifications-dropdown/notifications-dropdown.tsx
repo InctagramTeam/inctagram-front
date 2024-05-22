@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 
 import { cn } from '@/shared/lib/utils'
 import { Dropdown, MenuProps } from '@/shared/ui/dropdown-menu'
-import { NotificationDropdownList } from '@/widgets/header/ui/notification-droddown-list/notification-dropdown-list'
+import { NotificationDropdownList } from '@/widgets/header'
 
 export type NotificationsDropdownProps = {
   alternativeText?: string

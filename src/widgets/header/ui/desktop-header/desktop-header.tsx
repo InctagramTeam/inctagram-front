@@ -1,11 +1,12 @@
+'use client'
 import { useState } from 'react'
 import { Flex } from '@/shared/ui/flex'
-import { NotificationProps, NotificationsDropdown } from '@/widgets/header'
+import { NotificationButton, NotificationProps, NotificationsDropdown } from '@/widgets/header'
 import { LanguageSelection } from '../language-selection/language-selection'
-import { AuthButtons } from '@/widgets/header/ui/auth-buttons/auth-buttons'
+import { AuthButtons } from '../auth-buttons/auth-buttons'
 import { Button } from '@/shared/ui/button'
 import { cn } from '@/shared/lib/utils'
-import { NotificationButton } from '@/widgets/header/ui/notification-button-mode/notification-button'
+import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   countNotifications?: number
@@ -13,7 +14,8 @@ type Props = {
   notifications?: NotificationProps[]
 }
 
-export const DesktopHeader = ({ countNotifications, isAuth, notifications }: Props) => {
+export const DesktopHeader = (props: Props): ReturnComponent => {
+  const { countNotifications, isAuth, notifications } = props
   const [openDropdown, setOpenDropdown] = useState(false)
 
   const classes = {

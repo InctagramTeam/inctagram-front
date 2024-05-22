@@ -1,53 +1,6 @@
-import { ComponentPropsWithoutRef, forwardRef } from 'react'
-import { cn } from '@/shared/lib/utils/merge-cn'
+import React, { ComponentPropsWithoutRef, forwardRef } from 'react'
 import { ReturnComponent } from '@/shared/types'
-import { DesktopSidebarItem } from './desktop-sidebar-item'
-import { NavLink } from '@/widgets/sidebar'
-import { Button } from '@/shared/ui/button'
-import { ChevronLeftIcon, ChevronRightIcon } from '@/shared/assets/icons'
-
-const links = [
-  {
-    disabled: false,
-    href: '/home',
-    name: 'Home',
-  },
-  {
-    disabled: true,
-    href: '/create',
-    name: 'Create',
-  },
-  {
-    disabled: false,
-    href: '/profile',
-    name: 'My Profile',
-  },
-  {
-    disabled: false,
-    href: '/messenger',
-    name: 'Messenger',
-  },
-  {
-    disabled: false,
-    href: '/search',
-    name: 'Search',
-  },
-  {
-    disabled: false,
-    href: '/statistics',
-    name: 'Statistics',
-  },
-  {
-    disabled: false,
-    href: '/favorites',
-    name: 'Favorites',
-  },
-  {
-    disabled: true,
-    href: '/log-out',
-    name: 'Log-out',
-  },
-] as NavLink[]
+import { DesktopSidebarMenu, ToggleCollapsedButtons } from '../../index'
 
 type Props = {
   className?: string
@@ -56,46 +9,17 @@ type Props = {
 } & ComponentPropsWithoutRef<'aside'>
 
 export const DesktopSidebar = forwardRef<HTMLElement, Props>(
-  ({ className, onToggleIsCollapsedClick, isCollapsed }, ref): ReturnComponent => {
+  ({ className, onToggleIsCollapsedClick, isCollapsed, ...rest }, ref): ReturnComponent => {
     return (
       <>
-        {isCollapsed ? (
-          <Button
-            onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
-            className={'fixed z-10 left-[30px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
-            variant={'text'}
-          >
-            <ChevronRightIcon className={'!fill-Light-100/70'} />
-          </Button>
-        ) : (
-          <Button
-            onClick={() => onToggleIsCollapsedClick(!isCollapsed)}
-            className={'fixed z-10 left-[200px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
-            variant={'text'}
-          >
-            <ChevronLeftIcon className={'!fill-Light-100/70'} />
-          </Button>
-        )}
-
-        <aside>
-          <nav
-            className={cn(
-              `fixed top-[60px] left-0 pt-[72px] pl-[50px] pr-[40px] pb-[36px] w-full max-w-[240px] h-[calc(100vh-60px)] border-r-[1px] border-r-Dark-300 shadow-sm`,
-              className,
-              isCollapsed && `w-full max-w-[80px] flex justify-center shadow-sm`
-            )}
-            ref={ref}
-          >
-            <ul className="flex flex-col gap-[24px] rounded-md cursor-pointer transition-colors [&>*:nth-child(5)]:mb-[46px] h-full">
-              {links.map(link => (
-                <DesktopSidebarItem key={link.href} isCollapsed={isCollapsed} link={link} />
-              ))}
-            </ul>
-          </nav>
-        </aside>
+        <ToggleCollapsedButtons
+          onToggleIsCollapsedClick={onToggleIsCollapsedClick}
+          isCollapsed={isCollapsed}
+          {...rest}
+        />
+        <DesktopSidebarMenu isCollapsed={isCollapsed} ref={ref} {...rest} />
       </>
     )
   }
 )
-
 DesktopSidebar.displayName = 'DesktopSidebar'

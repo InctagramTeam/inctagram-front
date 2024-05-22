@@ -1,3 +1,4 @@
+'use client'
 import { cn } from '@/shared/lib/utils'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { NotificationProps } from '@/widgets/header'

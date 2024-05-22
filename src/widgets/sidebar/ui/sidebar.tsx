@@ -1,8 +1,7 @@
 'use client'
-import { useEffect, useState } from 'react'
-
 import { DesktopSidebar, MobileSidebar } from '@/widgets/sidebar'
 import { TabletSidebar } from './tablet-sidebar/tablet-sidebar'
+import { useResponsiveSidebar } from '@/widgets/sidebar/model/hooks/use-responsive-sidebar'
 
 type Props = {
   isCollapsed?: boolean
@@ -10,21 +9,7 @@ type Props = {
 }
 
 export const Sidebar = ({ isCollapsed, setIsCollapsed }: Props) => {
-  const [width, setWidth] = useState<null | number>(null)
-  const mobileBreakpoint_360 = 360
-  const tabletBreakpoint_768 = 768
-
-  const toggleSidebarView = (isCollapsed: boolean) => setIsCollapsed?.(isCollapsed)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setWidth(window.innerWidth)
-      const handleWindowResize = () => setWidth(window.innerWidth)
-      window.addEventListener('resize', handleWindowResize)
-
-      return () => window.removeEventListener('resize', handleWindowResize)
-    }
-  }, [])
+  const { width, tabletBreakpoint_768, mobileBreakpoint_360 } = useResponsiveSidebar()
 
   if (width === null) {
     return null
@@ -39,5 +24,10 @@ export const Sidebar = ({ isCollapsed, setIsCollapsed }: Props) => {
     return <MobileSidebar />
   }
 
-  return <DesktopSidebar isCollapsed={isCollapsed} onToggleIsCollapsedClick={toggleSidebarView} />
+  return (
+    <DesktopSidebar
+      isCollapsed={isCollapsed}
+      onToggleIsCollapsedClick={(isCollapsed: boolean) => setIsCollapsed?.(isCollapsed)}
+    />
+  )
 }
