@@ -1,5 +1,5 @@
-export * from 'src/widgets/header/ui/header'
+export * from './ui/header'
 export * from './ui/notifications-dropdown'
 
 export { LanguageSelection } from './ui/language-selection/language-selection'
-export { NotificationTrigger } from '@/widgets/header/ui/notification-button-mode/notification-button'
+export { NotificationButton } from './ui/notification-button-mode/notification-button'
