@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import * as React from 'react'
 
 import { cn } from '@/shared/lib/utils'
 import { Flex } from '@/shared/ui/flex'
@@ -9,7 +10,6 @@ import {
   NotificationProps,
   NotificationsDropdown,
 } from '@/widgets/header/ui'
-import * as React from 'react'
 import { LanguageSelection } from '@/widgets/header/ui/language-selection/language-selection'
 import { SelectItemProps } from '@radix-ui/react-select'
 
@@ -22,12 +22,12 @@ type Props = {
 
 const languages: SelectItemProps[] = [
   {
-    value: 'english',
     textValue: 'English',
+    value: 'english',
   },
   {
-    value: 'russia',
     textValue: 'Russia',
+    value: 'russia',
   },
 ]
 
@@ -82,10 +82,10 @@ export const Header = ({ className, logout, notifications, ...rest }: Props) => 
         <Flex className={'flex-nowrap'} gap={'40'}>
           {isDesktop && <NotificationsDropdown notifications={notifications} />}
           <LanguageSelection
-            items={languages}
-            value={value}
-            onValueChange={setValue}
             isMobile={!isDesktop}
+            items={languages}
+            onValueChange={setValue}
+            value={value}
           />
           {isDesktop ? (
             <Flex className={'flex-nowrap'} gap={'24'}>

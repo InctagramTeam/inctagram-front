@@ -1,5 +1,7 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from 'react'
+
 import { ReturnComponent } from '@/shared/types'
+
 import { DesktopSidebarMenu } from './desktop-sidebar-menu'
 import { ToggleCollapsedButtons } from './toggle-collapsed-buttons'
 
