@@ -9,6 +9,7 @@ export const useResponsiveSidebar = () => {
     if (typeof window !== 'undefined') {
       setWidth(window.innerWidth)
       const handleWindowResize = () => setWidth(window.innerWidth)
+
       window.addEventListener('resize', handleWindowResize)
 
       return () => window.removeEventListener('resize', handleWindowResize)
@@ -16,8 +17,8 @@ export const useResponsiveSidebar = () => {
   }, [])
 
   return {
-    width,
     mobileBreakpoint_360,
     tabletBreakpoint_768,
+    width,
   }
 }

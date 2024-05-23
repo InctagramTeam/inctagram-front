@@ -1,11 +1,11 @@
 'use client'
-import { TabletSidebar } from './tablet-sidebar/tablet-sidebar'
 import { useResponsiveSidebar } from '../model/hooks/use-responsive-sidebar'
-import { MobileSidebar } from './mobile-sidebar/mobile-sidebar'
 import { DesktopSidebar } from './desktop-sidebar/desktop-sidebar'
+import { MobileSidebar } from './mobile-sidebar/mobile-sidebar'
+import { TabletSidebar } from './tablet-sidebar/tablet-sidebar'
 
 export const Sidebar = () => {
-  const { width, tabletBreakpoint_768, mobileBreakpoint_360 } = useResponsiveSidebar()
+  const { mobileBreakpoint_360, tabletBreakpoint_768, width } = useResponsiveSidebar()
 
   if (width === null) {
     return null

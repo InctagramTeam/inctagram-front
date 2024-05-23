@@ -1,7 +1,9 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from 'react'
-import { cn } from '@/shared/lib/utils'
+
 import { useLayoutContext } from '@/shared/layouts/context/layout-context'
+import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
+
 import { DesktopSidebarList } from './desktop-sidebar-list'
 
 export const DesktopSidebarMenu = forwardRef<HTMLElement, ComponentPropsWithoutRef<'nav'>>(

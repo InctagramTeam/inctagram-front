@@ -26,7 +26,7 @@ export const NotificationsDropdown = ({
       scrollbar-thumb-rounded-full scrollbar-track-rounded-full`,
     countNotifications: `bg-Danger-500 text-Light-100 rounded-full w-[13px] h-[13px] flex items-center justify-center absolute top-0 right-0 text-[0.6rem] leading-[0.5rem]`,
     dropdownTrigger: cn(
-      `w-[24px] !h-[24px] py-0 px-0 justify-center relative duration-300 transition-colors
+      `!w-[24px] !h-[24px] !p-0 justify-center relative duration-300 transition-colors
       hover:translate-y-0 hover:text-Primary-500 active:opacity-50 `,
       open ? `text-Primary-500` : `text-Light-100`
     ),
