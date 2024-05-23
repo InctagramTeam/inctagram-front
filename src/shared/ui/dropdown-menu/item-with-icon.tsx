@@ -14,7 +14,7 @@ export type DropdownItemWithIconProps = {
   onSelect: () => void
   style?: CSSProperties
   text?: string
-} & ComponentPropsWithoutRef<'div'> &
+} & ComponentPropsWithoutRef<typeof DropdownRadix.Item> &
   Omit<DropdownItemProps, 'children'>
 
 const DropdownItemWithIcon = forwardRef<HTMLDivElement, DropdownItemWithIconProps>(

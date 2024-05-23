@@ -13,7 +13,7 @@ export type CheckboxProps = {
   id?: string
   label?: ReactNode | string
   labelPosition?: 'left' | 'right'
-  onValueChange?: (checked: boolean) => void
+  onCheckedChange?: (checked: boolean) => void
   required?: boolean
   value?: string
 } & Omit<ComponentPropsWithoutRef<typeof CheckboxRadix.Root>, 'checked' | 'onCheckedChange'>
@@ -29,7 +29,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
     label = '',
     labelPosition = 'right',
     name,
-    onValueChange,
+    onCheckedChange,
     required,
     ...restProps
   } = props
