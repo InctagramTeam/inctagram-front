@@ -1,6 +1,7 @@
-import { DesktopSidebarItem, SIDEBAR_LINKS } from '@/widgets/sidebar'
 import { ReturnComponent } from '@/shared/types'
 import { useLayoutContext } from '@/shared/layouts'
+import { SIDEBAR_LINKS } from '../../model/constants/sidebar-links'
+import { DesktopSidebarItem } from './desktop-sidebar-item'
 
 export const DesktopSidebarList = (): ReturnComponent => {
   const { isCollapsed } = useLayoutContext()

@@ -7,11 +7,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
-import { NavLink } from '@/widgets/sidebar'
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { getIcon } from '../../model/utils/getIcon'
+import { NavLink } from '../../model/types/navlink.types'
 
 type Props = {
   link: NavLink

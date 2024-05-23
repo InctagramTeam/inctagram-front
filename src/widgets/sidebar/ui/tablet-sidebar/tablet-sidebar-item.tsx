@@ -13,7 +13,7 @@ import {
 } from '@/shared/ui/tooltip/tooltip'
 
 import { ReturnComponent } from '@/shared/types'
-import { getIcon } from '@/widgets/sidebar'
+import { getIcon } from '../../model/utils/getIcon'
 
 type Props = {
   link: NavLink

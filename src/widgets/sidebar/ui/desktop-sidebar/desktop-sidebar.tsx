@@ -1,7 +1,7 @@
 import React, { ComponentPropsWithoutRef, forwardRef } from 'react'
 import { ReturnComponent } from '@/shared/types'
-import { ToggleCollapsedButtons } from '../../index'
 import { DesktopSidebarMenu } from './desktop-sidebar-menu'
+import { ToggleCollapsedButtons } from './toggle-collapsed-buttons'
 
 type Props = {
   className?: string

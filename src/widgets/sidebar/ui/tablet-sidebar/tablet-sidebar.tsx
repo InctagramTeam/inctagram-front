@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 import { ReturnComponent } from '@/shared/types'
-import { TabletSidebarMenu } from '@/widgets/sidebar'
+import { TabletSidebarMenu } from '@/widgets/sidebar/ui/tablet-sidebar/tablet-sidebar-menu'
 
 type Props = {
   className?: string

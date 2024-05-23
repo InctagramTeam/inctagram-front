@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react'
 import { cn } from '@/shared/lib/utils'
-import { TabletSidebarList } from '@/widgets/sidebar'
 import { ComponentPropsWithoutRef } from 'react'
 import { ReturnComponent } from '@/shared/types'
+import { TabletSidebarList } from './tablet-sidebar-list'
 
 type Props = {
   className?: string
