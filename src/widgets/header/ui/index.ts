@@ -1,6 +1,4 @@
 export * from './auth-buttons'
-export * from './header-desktop'
-export * from './header-mobile'
 export * from './logo'
 export * from './mobile-dropdown'
 export * from './notifications-dropdown'
