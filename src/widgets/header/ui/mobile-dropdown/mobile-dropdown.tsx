@@ -1,8 +1,9 @@
 import { LogOutIcon, MoreIcon } from '@/shared/assets/icons'
 import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
-import { getIcon, NavLink } from '@/widgets/sidebar'
 import Link from 'next/link'
+import { getIcon } from '@/widgets/sidebar/model/utils/getIcon'
+import { NavLink } from '@/widgets/sidebar/model/types/navlink.types'
 
 const links: NavLink[] = [
   { href: '/settings', name: 'Profile Settings' },
