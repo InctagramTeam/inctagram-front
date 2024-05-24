@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
+
+import { useLayoutContext } from '@/shared/layouts/context/layout-context'
 import clsx from 'clsx'
 import { Inter } from 'next/font/google'
-import { useLayoutContext } from '@/shared/layouts/context/layout-context'
 
 const inter = Inter({
   display: 'swap',

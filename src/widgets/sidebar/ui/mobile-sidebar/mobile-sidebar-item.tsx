@@ -10,8 +10,9 @@ import {
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { getIcon } from '../../model/utils/getIcon'
+
 import { NavLink } from '../../model/types/navlink.types'
+import { getIcon } from '../../model/utils/getIcon'
 
 type Props = {
   link: NavLink

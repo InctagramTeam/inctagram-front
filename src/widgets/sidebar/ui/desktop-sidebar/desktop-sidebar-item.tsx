@@ -3,12 +3,13 @@ import { ComponentPropsWithoutRef, forwardRef } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
 import { NavLink } from '../../model/types/navlink.types'
 import { getIcon } from '../../model/utils/getIcon'
 
 type Props = {
-  link: NavLink
   isCollapsed?: boolean
+  link: NavLink
 } & ComponentPropsWithoutRef<'li'>
 
 const linkClasses = {
@@ -20,12 +21,12 @@ const linkClasses = {
 }
 
 export const DesktopSidebarItem = forwardRef<HTMLAnchorElement, Props>(
-  ({ link, isCollapsed }, ref) => {
+  ({ isCollapsed, link }, ref) => {
     const pathname = usePathname()
     const isActive = pathname!.startsWith(link.href)
 
     return (
-      <li className="last:mt-auto">
+      <li className={'last:mt-auto'}>
         <Link
           aria-disabled={link.disabled}
           className={clsx(

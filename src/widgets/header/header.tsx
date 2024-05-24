@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react'
+import * as React from 'react'
 
 import { cn } from '@/shared/lib/utils'
 import { Flex } from '@/shared/ui/flex'
-import { HeaderDesktop, HeaderMobile, Logo, NotificationProps } from '@/widgets/header/ui'
+import {
+  AuthButtons,
+  Logo,
+  MobileDropdown,
+  NotificationProps,
+  NotificationsDropdown,
+} from '@/widgets/header/ui'
+import { LanguageSelection } from '@/widgets/header/ui/language-selection/language-selection'
+import { SelectItemProps } from '@radix-ui/react-select'
 
 type Props = {
   className?: string
@@ -11,7 +20,18 @@ type Props = {
   notifications?: NotificationProps[]
 }
 
-export const Header = ({ className, logout, ...rest }: Props) => {
+const languages: SelectItemProps[] = [
+  {
+    textValue: 'English',
+    value: 'english',
+  },
+  {
+    textValue: 'Russia',
+    value: 'russia',
+  },
+]
+
+export const Header = ({ className, logout, notifications, ...rest }: Props) => {
   const classes = {
     button: `py-[6px] text-center !text-H3-16 hover:translate-y-0`,
     countNotifications: cn(
@@ -36,6 +56,8 @@ export const Header = ({ className, logout, ...rest }: Props) => {
   const [width, setWidth] = useState<null | number>(null)
   const mobileBreakpoint = 768
 
+  const [value, setValue] = useState(languages[0].value)
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setWidth(window.innerWidth)
@@ -51,11 +73,28 @@ export const Header = ({ className, logout, ...rest }: Props) => {
     return null
   }
 
+  const isDesktop = width > mobileBreakpoint
+
   return (
     <header className={classes.header}>
       <Flex className={classes.wrapper} gap={'20'} items={'center'} justify={'spaceBetween'}>
         <Logo />
-        {width > mobileBreakpoint ? <HeaderDesktop {...rest} /> : <HeaderMobile logout={logout} />}
+        <Flex className={'flex-nowrap'} gap={'40'}>
+          {isDesktop && <NotificationsDropdown notifications={notifications} />}
+          <LanguageSelection
+            isMobile={!isDesktop}
+            items={languages}
+            onValueChange={setValue}
+            value={value}
+          />
+          {isDesktop ? (
+            <Flex className={'flex-nowrap'} gap={'24'}>
+              <AuthButtons />
+            </Flex>
+          ) : (
+            <MobileDropdown logout={logout} />
+          )}
+        </Flex>
       </Flex>
     </header>
   )

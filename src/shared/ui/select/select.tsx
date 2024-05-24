@@ -68,12 +68,7 @@ const SelectContent = forwardRef<
       ref={ref}
       {...props}
     >
-      <SelectRadix.Viewport
-        className={cn(
-          'p-0',
-          position === 'popper' && 'min-h-fit w-full min-w-[var(--radix-select-trigger-width)]'
-        )}
-      >
+      <SelectRadix.Viewport className={cn('p-0', position === 'popper' && 'min-h-fit w-full')}>
         {children}
       </SelectRadix.Viewport>
     </SelectRadix.Content>
