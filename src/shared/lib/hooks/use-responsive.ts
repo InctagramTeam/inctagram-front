@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
 
-export const useResponsiveSidebar = () => {
+export const useResponsive = () => {
   const [width, setWidth] = useState<null | number>(null)
-  const mobileBreakpoint_360 = 360
-  const tabletBreakpoint_768 = 768
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -16,9 +14,5 @@ export const useResponsiveSidebar = () => {
     }
   }, [])
 
-  return {
-    mobileBreakpoint_360,
-    tabletBreakpoint_768,
-    width,
-  }
+  return { width }
 }
