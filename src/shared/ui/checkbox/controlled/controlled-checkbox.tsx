@@ -1,20 +1,22 @@
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
+
 import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
 
 /** Исключили:
  - rules: правила валидации react-hook-form -> используем валидатор Zod
  - defaultValue - так как используем в родительской компоненте
  */
-type Props<T extends FieldValues> = Omit<UseControllerProps<T>, 'rules' | 'defaultValue'> &
+type Props<T extends FieldValues> =
   /** Не имеем возможность контролировать компонент снаружи, нет возможности передать ему value, onChange */
-  Omit<CheckboxProps, 'checked' | 'onCheckedChange'>
+  Omit<CheckboxProps, 'checked' | 'onCheckedChange'> &
+    Omit<UseControllerProps<T>, 'defaultValue' | 'rules'>
 
 export const ControlledCheckbox = <T extends FieldValues>({
-  label,
-  shouldUnregister,
   control,
-  name,
   disabled,
+  label,
+  name,
+  shouldUnregister,
   /** В ...rest попадут все пропсы: CheckboxProps */
   ...rest
 }: Props<T>) => {
@@ -22,8 +24,8 @@ export const ControlledCheckbox = <T extends FieldValues>({
     field: { onChange: onValueChange, value: checked },
   } = useController({
     control,
-    name,
     disabled,
+    name,
     shouldUnregister,
   })
 
@@ -31,10 +33,10 @@ export const ControlledCheckbox = <T extends FieldValues>({
     <Checkbox
       {...rest}
       checked={checked}
-      id={name}
       disabled={disabled}
-      onCheckedChange={onValueChange}
+      id={name}
       label={label}
+      onCheckedChange={onValueChange}
       {...rest}
     />
   )

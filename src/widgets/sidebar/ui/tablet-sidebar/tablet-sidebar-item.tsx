@@ -1,6 +1,8 @@
 import { forwardRef } from 'react'
 
+import { getIcon } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
+import { NavLink } from '@/shared/types/navlink'
 import {
   Tooltip,
   TooltipContent,
@@ -10,9 +12,6 @@ import {
 import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-import { NavLink } from '../../model/types/navlink.types'
-import { getIcon } from '../../model/utils/getIcon'
 
 type Props = {
   link: NavLink
@@ -51,8 +50,9 @@ export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(
             >
               {getIcon(link.href, isActive)}
               <TooltipContent
-                className="flexrounded-1/2 h-8 w-full max-w-[100px] !text-Light-100 bg-Dark-500
-              items-center gap-4"
+                className={
+                  'flexrounded-1/2 h-8 w-full max-w-[100px] !text-Light-100 bg-Dark-500 items-center gap-4'
+                }
                 side={'right'}
               >
                 {link.name}
