@@ -1,15 +1,9 @@
 import { LogOutIcon, MoreIcon } from '@/shared/assets/icons'
 import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
-import { NavLink } from '@/widgets/sidebar/model/types/navlink.types'
+import { links } from '@/widgets/header/model/constants'
 import { getIcon } from '@/widgets/sidebar/model/utils/getIcon'
 import Link from 'next/link'
-
-const links: NavLink[] = [
-  { href: '/settings', name: 'Profile Settings' },
-  { href: '/statistics', name: 'Statistics' },
-  { href: '/favorites', name: 'Favorites' },
-]
 
 type Props = {
   logout?: () => void
