@@ -1,8 +1,8 @@
 import { LogOutIcon, MoreIcon } from '@/shared/assets/icons'
+import { getIcon } from '@/shared/lib/utils/getIcon'
 import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
-import { links } from '@/widgets/header/model/constants'
-import { getIcon } from '@/widgets/sidebar/model/utils/getIcon'
+import { LINKS } from '@/widgets/header/model/constants'
 import Link from 'next/link'
 
 type Props = {
@@ -28,7 +28,7 @@ export const MobileDropdown = ({ logout }: Props) => {
   return (
     <Dropdown.Menu className={classes.menu} trigger={trigger}>
       <div>
-        {links.map((link, index) => {
+        {LINKS.map((link, index) => {
           return (
             <Dropdown.Item className={classes.item} key={index}>
               <Link className={classes.link} href={link.href}>

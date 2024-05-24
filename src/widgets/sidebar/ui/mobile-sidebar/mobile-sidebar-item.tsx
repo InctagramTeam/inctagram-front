@@ -1,5 +1,6 @@
 import { forwardRef } from 'react'
 
+import { getIcon } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import { NavLink } from '@/shared/types/navlink'
 import {
@@ -11,8 +12,6 @@ import {
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-import { getIcon } from '../../model/utils/getIcon'
 
 type Props = {
   link: NavLink

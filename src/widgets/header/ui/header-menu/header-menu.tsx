@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { MD_BREAKPOINT } from '@/shared/constants'
 import { useResponsive } from '@/shared/lib/hooks'
 import { Flex } from '@/shared/ui/flex'
-import { languages } from '@/widgets/header/model/constants'
+import { LANGUAGES } from '@/widgets/header/model/constants'
 import { AuthButtons } from '@/widgets/header/ui/auth-buttons'
 import { LanguageSelection } from '@/widgets/header/ui/language-selection'
 import { MobileDropdown } from '@/widgets/header/ui/mobile-dropdown'
@@ -18,7 +18,7 @@ type Props = {
 }
 export const HeaderMenu = ({ isAuth, logout, notifications }: Props) => {
   const { width } = useResponsive()
-  const [value, setValue] = useState(languages[0].value)
+  const [value, setValue] = useState(LANGUAGES[0].value)
 
   if (width === null) {
     return null
@@ -31,7 +31,7 @@ export const HeaderMenu = ({ isAuth, logout, notifications }: Props) => {
       {isDesktop && <NotificationsDropdown notifications={notifications} />}
       <LanguageSelection
         isMobile={!isDesktop}
-        items={languages}
+        items={LANGUAGES}
         onValueChange={setValue}
         value={value}
       />

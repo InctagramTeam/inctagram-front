@@ -1,6 +1,6 @@
 import { SelectItemProps } from '@radix-ui/react-select'
 
-export const languages: SelectItemProps[] = [
+export const LANGUAGES: SelectItemProps[] = [
   {
     textValue: 'English',
     value: 'english',

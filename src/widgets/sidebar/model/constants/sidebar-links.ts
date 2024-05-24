@@ -1,4 +1,4 @@
-import { NavLink } from '@/widgets/sidebar'
+import { NavLink } from '@/shared/types'
 
 const BASE_LINKS: NavLink[] = [
   {

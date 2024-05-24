@@ -1,8 +1,6 @@
 import * as React from 'react'
-import { useState } from 'react'
 
 import { Flex } from '@/shared/ui/flex'
-import { languages } from '@/widgets/header/model/constants'
 import { HeaderMenu } from '@/widgets/header/ui/header-menu'
 import { Logo } from '@/widgets/header/ui/logo'
 import { NotificationProps } from '@/widgets/header/ui/notifications-dropdown-list'
