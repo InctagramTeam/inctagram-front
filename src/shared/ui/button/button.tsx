@@ -1,4 +1,4 @@
-import { ElementRef, ElementType, ReactNode, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef, ReactNode } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
 import clsx from 'clsx'
@@ -16,18 +16,21 @@ type CustomProps = {
   size?: '2xl' | 'lg' | 'md' | 'sm' | 'xl'
   /** Флаг, делающий кнопку квадратной */
   square?: boolean
+  rounded?: boolean
   startIcon?: ReactNode
   /** Вариант кнопки. Отвечает за визуал кнопки */
   variant?: 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 }
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
-
 type ButtonComponent = <T extends ElementType = 'button'>(props: Props<T>) => ReactNode
 
 export const Button: ButtonComponent = forwardRef(
   <T extends ElementType = 'button'>(
-    {
+    props: Props<T> & Omit<ComponentPropsWithoutRef<T>, keyof Props<T>>,
+    ref: ElementRef<T>
+  ): ReturnComponent => {
+    const {
       asComponent,
       children,
       className,
@@ -36,12 +39,11 @@ export const Button: ButtonComponent = forwardRef(
       fullWidth,
       size,
       square = false,
+      rounded = false,
       startIcon,
       variant = 'primary',
-      ...restProps
-    }: Props<T>,
-    ref: ElementRef<T>
-  ): ReturnComponent => {
+      ...rest
+    } = props
     const Component = asComponent || 'button'
 
     const classes = {
@@ -143,12 +145,13 @@ export const Button: ButtonComponent = forwardRef(
         size === 'xl' && `w-[220px] h-[36px]`,
         size === '2xl' && `w-[260px] h-[36px]`,
         className,
-        square && `rounded-none`
+        square && `rounded-none`,
+        rounded && `rounded-full`
       ),
     }
 
     return (
-      <Component className={classes.btn} {...restProps} ref={ref}>
+      <Component className={classes.btn} {...rest} ref={ref}>
         {startIcon}
         {children}
         {endIcon}

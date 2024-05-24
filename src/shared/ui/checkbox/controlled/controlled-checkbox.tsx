@@ -1,7 +1,7 @@
 import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
 
-/** Исключили (Omit-ом)
+/** Исключили:
  - rules: правила валидации react-hook-form -> используем валидатор Zod
  - defaultValue - так как используем в родительской компоненте
  */
