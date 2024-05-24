@@ -1,4 +1,4 @@
-import { CSSProperties, ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, CSSProperties, forwardRef, ReactNode } from 'react'
 
 import { Text } from '@/shared/ui/text'
 import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
@@ -6,6 +6,12 @@ import { clsx } from 'clsx'
 import { ReturnComponent } from 'src/shared/types'
 
 import { DropdownItemProps } from './item'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/shared/ui/tooltip/tooltip'
 
 export type DropdownItemWithIconProps = {
   className?: string
@@ -44,7 +50,17 @@ const DropdownItemWithIcon = forwardRef<HTMLDivElement, DropdownItemWithIconProp
       >
         <div ref={ref}>
           <div className={classNames.itemIcon}>{icon}</div>
-          <Text variant={'regular_text_16'}>{text}</Text>
+          <TooltipProvider>
+            <Tooltip delayDuration={0}>
+              <TooltipTrigger asChild>
+                <TooltipContent>
+                  <Text asComponent={'p'} variant={'regular_text_16'}>
+                    {text}
+                  </Text>
+                </TooltipContent>
+              </TooltipTrigger>
+            </Tooltip>
+          </TooltipProvider>
         </div>
       </DropdownRadix.Item>
     )
