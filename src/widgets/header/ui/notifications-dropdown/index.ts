@@ -1,1 +1,2 @@
-export * from './notifications-dropdown'
+export { NotificationsDropdown } from './notifications-dropdown'
+export type { NotificationsDropdownProps } from './notifications-dropdown'

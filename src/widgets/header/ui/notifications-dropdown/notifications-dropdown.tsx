@@ -4,7 +4,10 @@ import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils'
 import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
-import { NotificationProps, NotificationsDropdownList } from '@/widgets/header'
+import {
+  NotificationProps,
+  NotificationsDropdownList,
+} from '@/widgets/header/ui/notifications-dropdown-list'
 
 export type NotificationsDropdownProps = {
   alternativeText?: string

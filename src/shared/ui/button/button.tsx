@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
 import clsx from 'clsx'
@@ -12,11 +12,11 @@ type CustomProps = {
   /** Увеличивает кнопку на всю свободную ширину */
   fullWidth?: boolean
   isOpen?: boolean
+  rounded?: boolean
   /** Размеры кнопки */
   size?: '2xl' | 'lg' | 'md' | 'sm' | 'xl'
   /** Флаг, делающий кнопку квадратной */
   square?: boolean
-  rounded?: boolean
   startIcon?: ReactNode
   /** Вариант кнопки. Отвечает за визуал кнопки */
   variant?: 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
@@ -27,7 +27,7 @@ type ButtonComponent = <T extends ElementType = 'button'>(props: Props<T>) => Re
 
 export const Button: ButtonComponent = forwardRef(
   <T extends ElementType = 'button'>(
-    props: Props<T> & Omit<ComponentPropsWithoutRef<T>, keyof Props<T>>,
+    props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
     ref: ElementRef<T>
   ): ReturnComponent => {
     const {
@@ -37,9 +37,9 @@ export const Button: ButtonComponent = forwardRef(
       disabled,
       endIcon,
       fullWidth,
+      rounded = false,
       size,
       square = false,
-      rounded = false,
       startIcon,
       variant = 'primary',
       ...rest
