@@ -28,23 +28,24 @@ type SelectProps = {
 
 const classNames = {
   content: cn(
-    `relative z-50 w-full border border-t-0 border-Dark-100 bg-Dark-700 m-0 p-0' +
-      max-h-96 min-w-[8rem]
+    `relative z-50 w-full ring-1 ring-t-0 ring-Dark-100 data-[state=open]:ring-Light-100 bg-Dark-700 m-0 p-0 max-h-96 min-w-[8rem]
       overflow-hidden text-popover-foreground`
   ),
 
   item: `w-[210px] h-[36px] flex cursor-default select-none items-center pl-2 pr-2
-  text-base font-normal text-Light-100 outline-none 
-  focus:bg-Dark-100/30 focus:text-Light-100 focus:shadow-sm`,
+  text-base font-normal text-Light-100 outline-none
+  focus:bg-Dark-100/30 focus:text-Primary-500 focus:shadow-sm hover:cursor-pointer`,
 
   label: 'py-1.5 pl-8 pr-2 text-sm font-semibold',
 
   trigger: `w-[210px] h-[36px] flex items-center justify-between 
-  bg-Dark-700 px-2 py-2 text-base font-normal outline-none border rounded-none
-  data-[state=closed]:border-Dark-100 data-[state=open]:border-Dark-100
-  data-[state=open]:text-Light-100 ' +
-  hover:text-Light-900 focus:border-Light-900 shadow-sm
-  focus:text-Light-900 focus:border-Primary-500/60 focus:border-[1px]
+  bg-Dark-700 px-2 py-2 text-base font-normal outline-none rounded-sm ring-1
+  data-[state=closed]:ring-Dark-100
+  data-[state=open]:ring-Light-100
+  data-[state=open]:text-Light-100
+  hover:cursor-pointer 
+  focus:ring-Light-900 shadow-sm
+  focus:text-Light-900 focus:ring-Primary-500 focus:ring-2
   focus:rounded-sm
   disabled:cursor-not-allowed disabled:text-Dark-100/60`,
 

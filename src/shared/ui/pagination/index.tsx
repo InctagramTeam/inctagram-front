@@ -1,3 +1,4 @@
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@/shared/assets/icons'
 import { ReturnComponent } from '@/shared/types'
 import { clsx } from 'clsx'
 
@@ -118,7 +119,7 @@ const PageButton = ({ disabled, onClick, page, selected }: PageButtonProps) => {
 const PrevButton = ({ disabled, onClick }: NavigationButtonProps) => {
   return (
     <button className={classNames.item} disabled={disabled} onClick={onClick}>
-      <KeyboardArrowLeft className={classNames.icon} size={16} />
+      <KeyboardArrowLeft className={classNames.icon} />
     </button>
   )
 }
@@ -126,7 +127,7 @@ const PrevButton = ({ disabled, onClick }: NavigationButtonProps) => {
 const NextButton = ({ disabled, onClick }: NavigationButtonProps) => {
   return (
     <button className={classNames.item} disabled={disabled} onClick={onClick}>
-      <KeyboardArrowRight className={classNames.icon} size={16} />
+      <KeyboardArrowRight className={classNames.icon} />
     </button>
   )
 }
