@@ -1,13 +1,10 @@
 import * as React from 'react'
 
 import { cn } from '@/shared/lib/utils'
-import { Select, SelectContent, SelectTrigger } from '@/shared/ui/select/select'
+import { Select, SelectContent } from '@/shared/ui/select/select'
 import { LanguageSelectionList } from '@/widgets/header/ui/language-selection-list/language-selection-list'
 import { LanguageSelectionTrigger } from '@/widgets/header/ui/language-selection-trigger'
 import { SelectItemProps, SelectProps } from '@radix-ui/react-select'
-import { SelectScrollUpButton } from '@/shared/ui/select/select'
-import { SelectScrollDownButton } from '@/shared/ui/select/select'
-import Image from 'next/image'
 import { EMPTY_STRING } from '@/shared/constants/base'
 
 type Props = {
