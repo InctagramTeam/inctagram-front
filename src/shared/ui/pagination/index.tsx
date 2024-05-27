@@ -5,18 +5,6 @@ import { clsx } from 'clsx'
 import { SelectBox } from '../select/select'
 import { usePagination } from './usePagination'
 
-type PaginationConditionals =
-  | {
-      onPerPageChange: (itemPerPage: number) => void
-      perPage: number
-      perPageOptions: number[]
-    }
-  | {
-      onPerPageChange?: never
-      perPage?: null
-      perPageOptions?: never
-    }
-
 export type PaginationProps = {
   count: number
   onChange: (page: number) => void
@@ -25,71 +13,19 @@ export type PaginationProps = {
   perPage?: null | number
   perPageOptions?: number[]
   siblings?: number
-} & PaginationConditionals
-
-const classNames = {
-  container: '',
-  dots: '',
-  icon: '',
-  item: 's.item',
-  pageButton(selected?: boolean) {
-    return clsx(this.item, selected && '')
-  },
-  root: '',
-  select: '',
-  selectBox: '',
 }
 
-export const Pagination = ({
-  count,
-  onChange,
-  onPerPageChange,
-  page,
-  perPage = null,
-  perPageOptions,
-  siblings,
-}: PaginationProps): ReturnComponent => {
-  const {
-    handleMainPageClicked,
-    handleNextPageClicked,
-    handlePreviousPageClicked,
-    isFirstPage,
-    isLastPage,
-    paginationRange,
-  } = usePagination({
-    count,
-    onChange,
-    page,
-    siblings,
-  })
-
-  const showPerPageSelect = !!perPage && !!perPageOptions && !!onPerPageChange
-
-  return (
-    <div className={classNames.root}>
-      <div className={classNames.container}>
-        <PrevButton disabled={isFirstPage} onClick={handlePreviousPageClicked} />
-
-        <MainPaginationButtons
-          currentPage={page}
-          onClick={handleMainPageClicked}
-          paginationRange={paginationRange}
-        />
-
-        <NextButton disabled={isLastPage} onClick={handleNextPageClicked} />
-      </div>
-
-      {showPerPageSelect && (
-        <PerPageSelect
-          {...{
-            onPerPageChange,
-            perPage,
-            perPageOptions,
-          }}
-        />
-      )}
-    </div>
-  )
+const classNames = {
+  container: 'flex gap-[12px]',
+  dots: '',
+  icon: '',
+  item: 'min-w-[24px] h-[24px] rounded-sm focus:ring focus:ring-Primary-500 hover:bg-Dark-500 outline-none',
+  pageButton(selected?: boolean) {
+    return clsx(this.item, selected && 'bg-Light-100 text-Dark-900 hover:bg-Light-100')
+  },
+  root: 'flex items-center',
+  select: 'mx-[6px]',
+  selectBox: 'flex items-center gap-[6px]',
 }
 
 type NavigationButtonProps = {
@@ -167,19 +103,71 @@ export type PerPageSelectProps = {
 export const PerPageSelect = ({ onPerPageChange, perPage, perPageOptions }: PerPageSelectProps) => {
   const selectOptions = perPageOptions.map(value => ({
     label: value,
-    value,
+    value: value,
   }))
 
   return (
     <div className={classNames.selectBox}>
-      Показать
+      Show
       <SelectBox
-        className={classNames.select}
         onChange={onPerPageChange}
         options={selectOptions}
         value={perPage}
+        variant='pagination'
       />
-      на странице
+      on page
+    </div>
+  )
+}
+
+export const Pagination = ({
+  count,
+  onChange,
+  onPerPageChange,
+  page,
+  perPage = null,
+  perPageOptions,
+  siblings,
+}: PaginationProps): ReturnComponent => {
+  const {
+    handleMainPageClicked,
+    handleNextPageClicked,
+    handlePreviousPageClicked,
+    isFirstPage,
+    isLastPage,
+    paginationRange,
+  } = usePagination({
+    count,
+    onChange,
+    page,
+    siblings,
+  })
+
+  const showPerPageSelect = !!perPage && !!perPageOptions && !!onPerPageChange
+
+  return (
+    <div className={classNames.root}>
+      <div className={classNames.container}>
+        <PrevButton disabled={isFirstPage} onClick={handlePreviousPageClicked} />
+
+        <MainPaginationButtons
+          currentPage={page}
+          onClick={handleMainPageClicked}
+          paginationRange={paginationRange}
+        />
+
+        <NextButton disabled={isLastPage} onClick={handleNextPageClicked} />
+      </div>
+
+      {showPerPageSelect && (
+        <PerPageSelect
+          {...{
+            onPerPageChange,
+            perPage,
+            perPageOptions,
+          }}
+        />
+      )}
     </div>
   )
 }

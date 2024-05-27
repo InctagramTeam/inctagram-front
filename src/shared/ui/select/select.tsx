@@ -12,34 +12,39 @@ const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
 const SelectValue: typeof SelectRadix.Value = SelectRadix.Value
 
-type Option = { disabled?: boolean; label: string; value: string }
+type Option = { disabled?: boolean; label: string | number; value: string | number }
 
-type SelectProps = {
+interface CommonProps {
   disabled?: boolean
   label?: string
   name?: string
-  onChange?: (value: string) => void
   options: Option[]
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
-  value?: string
+  className?: string
+  variant?: 'primary' | 'pagination'
 }
 
-const classNames = {
-  content: cn(
-    `relative z-50 w-full ring-1 ring-t-0 ring-Dark-100 data-[state=open]:ring-Light-100 
-    bg-Dark-700 m-0 p-0 max-h-96 min-w-[8rem] 
-    overflow-hidden text-popover-foreground rounded-br-sm rounded-bl-sm`
-  ),
+type ConditionalProps = {
+  onChange?: (value: string | number) => void
+  value?: string | number
+}
 
-  item: `w-[210px] h-[36px] flex cursor-default select-none items-center pl-2 pr-2 
+export type SelectProps = CommonProps & ConditionalProps
+
+const classNames = {
+  content: `relative z-50 ring-1 ring-t-0 ring-Dark-100 data-[state=open]:ring-Light-100 
+    bg-Dark-700 m-0 p-0 max-h-96
+    overflow-hidden text-popover-foreground rounded-br-sm rounded-bl-sm`,
+
+  item: `h-[36px] flex cursor-default select-none items-center pl-2 pr-2 
   text-base font-normal text-Light-100 outline-none 
   focus:bg-Dark-100/30 focus:text-Primary-500 focus:shadow-sm hover:cursor-pointer`,
 
   label: 'py-1.5 pl-8 pr-2 text-sm font-semibold',
 
-  trigger: `w-[210px] h-[36px] flex items-center justify-between  
+  trigger: `h-[36px] flex items-center justify-between  
   bg-Dark-700 px-2 py-2 text-base font-normal outline-none rounded-sm ring-1 
   data-[state=closed]:ring-Dark-100 
   data-[state=open]:rounded-br-none data-[state=open]:rounded-bl-none 
@@ -67,10 +72,8 @@ const SelectTrigger = forwardRef<
   { icon?: ReactNode } & ComponentPropsWithoutRef<typeof SelectRadix.Trigger>
 >(({ children, className, icon, ...props }, ref) => {
   return (
-    <SelectRadix.Trigger className={classNames.trigger} ref={ref} {...props}>
+    <SelectRadix.Trigger className={cn(classNames.trigger, className)} ref={ref} {...props}>
       {children}
-      <ChevronUp className='chevron-up'/>
-      <ChevronDown className='chevron-down'/>
       <SelectRadix.Icon asChild>{icon}</SelectRadix.Icon>
     </SelectRadix.Trigger>
   )
@@ -81,7 +84,7 @@ const SelectContent = forwardRef<
   ComponentPropsWithoutRef<typeof SelectRadix.Content>
 >(({ children, className, position = 'popper', ...props }, ref) => (
   <SelectRadix.Portal>
-    <SelectRadix.Content className={classNames.content} position={position} ref={ref} {...props}>
+    <SelectRadix.Content className={cn(classNames.content, className)} position={position} ref={ref} {...props}>
       <SelectRadix.Viewport className={cn('p-0', position === 'popper' && 'min-h-fit w-full')}>
         {children}
       </SelectRadix.Viewport>
@@ -93,7 +96,7 @@ const SelectItem = forwardRef<
   ElementRef<typeof SelectRadix.Item>,
   ComponentPropsWithoutRef<typeof SelectRadix.Item>
 >(({ children, className, ...props }, ref) => (
-  <SelectRadix.Item className={classNames.item} ref={ref} {...props}>
+  <SelectRadix.Item className={cn(classNames.item, className)} ref={ref} {...props}>
     <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
   </SelectRadix.Item>
 ))
@@ -145,6 +148,8 @@ const SelectBox = ({
   position,
   required,
   value,
+  className,
+  variant = 'primary',
 }: SelectProps): ReturnComponent => {
 
   return (
@@ -154,15 +159,18 @@ const SelectBox = ({
       onValueChange={onChange}
       required={required}
       value={value}
+      className={className}
     >
-      <SelectTrigger>
+      <SelectTrigger className={variant === 'pagination' ? 'w-[50px] pl-[6px] pr-[1px] py-0 gap-[1px] justify-center' : 'w-[210px]'}>
         <SelectValue placeholder={placeholder} />
+        <ChevronUp className={cn('chevron-up', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}/>
+        <ChevronDown className={cn('chevron-down', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}/>
       </SelectTrigger>
-      <SelectContent position={position}>
+      <SelectContent position={position} className={variant === 'pagination' ? 'w-[50px]' : 'w-full'}>
         {label && <SelectLabel>{label}</SelectLabel>}
 
         {options.map(option => (
-          <SelectItem disabled={option.disabled} key={option.value} value={option.value}>
+          <SelectItem className={variant === 'pagination' ? 'w-[50px]' : 'w-[210px]'} disabled={option.disabled} key={option.value} value={option.value}>
             {option.label}
           </SelectItem>
         ))}
