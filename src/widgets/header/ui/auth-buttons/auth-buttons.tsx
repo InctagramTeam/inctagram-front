@@ -2,8 +2,9 @@ import * as React from 'react'
 
 import { Button } from '@/shared/ui/button'
 import Link from 'next/link'
+import { ReturnComponent } from '@/shared/types'
 
-export const AuthButtons = () => {
+export const AuthButtons = (): ReturnComponent => {
   const classes = {
     button: `py-[6px] text-center !text-H3-16 hover:translate-y-0`,
     loginLink: `px-[26px] !text-Primary-500 duration-300

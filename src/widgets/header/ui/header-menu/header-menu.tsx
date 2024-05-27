@@ -10,13 +10,14 @@ import { LanguageSelection } from '@/widgets/header/ui/language-selection'
 import { MobileDropdown } from '@/widgets/header/ui/mobile-dropdown'
 import { NotificationsDropdown } from '@/widgets/header/ui/notifications-dropdown'
 import { NotificationProps } from '@/widgets/header/ui/notifications-dropdown-list'
+import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   isAuth?: boolean
   logout?: () => void
   notifications?: NotificationProps[]
 }
-export const HeaderMenu = ({ isAuth, logout, notifications }: Props) => {
+export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComponent => {
   const { width } = useResponsive()
   const [value, setValue] = useState(LANGUAGES[0].value)
 

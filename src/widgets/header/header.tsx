@@ -5,6 +5,7 @@ import { HeaderMenu } from '@/widgets/header/ui/header-menu'
 import { Logo } from '@/widgets/header/ui/logo'
 import { NotificationProps } from '@/widgets/header/ui/notifications-dropdown-list'
 import { clsx } from 'clsx'
+import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   className?: string
@@ -13,7 +14,7 @@ type Props = {
   notifications?: NotificationProps[]
 }
 
-export const Header = ({ className, ...rest }: Props) => {
+export const Header = ({ className, ...rest }: Props): ReturnComponent => {
   const classes = {
     header: clsx(
       `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,
