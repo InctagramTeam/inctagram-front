@@ -5,6 +5,8 @@ import { Select, SelectContent } from '@/shared/ui/select/select'
 import { LanguageSelectionList } from '@/widgets/header/ui/language-selection-list/language-selection-list'
 import { LanguageSelectionTrigger } from '@/widgets/header/ui/language-selection-trigger'
 import { SelectItemProps, SelectProps } from '@radix-ui/react-select'
+import { SelectScrollUpButton } from '@/shared/ui/select/select'
+import { SelectScrollDownButton } from '@/shared/ui/select/select'
 
 type Props = {
   isMobile: boolean
