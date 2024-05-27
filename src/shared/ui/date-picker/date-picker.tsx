@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { forwardRef } from 'react'
+import { ChangeEvent, forwardRef, useId } from 'react'
 
 import { CalendarIcon, CalendarOutlineIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils/merge-cn'
@@ -7,26 +7,30 @@ import { Button } from '@/shared/ui/button'
 
 import { Calendar, CalendarProps } from './calendar'
 import { Popover, PopoverContent, PopoverTrigger } from './popover'
+import { ReturnComponent } from '@/shared/types'
 
 export type DatePickerProps = {
-  className?: string
+  triggerClassName?: string
+  calendarClassName?: string
   disabled?: boolean
-  error?: string
-  id: string
+  errorMessage?: string
+  id?: string
   label?: string
   name?: string
   onOpenChange?: (value: boolean) => void
+  onValueChange?: (value: string) => void
   open?: boolean
   textTrigger: string
+  /** value, onValueChange и ref нужны для нативного инпута, чтобы можно было использовать react-hook-form */
   value?: string
 } & CalendarProps
 
 export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
   (
     {
-      className,
+      triggerClassName,
       disabled,
-      error,
+      errorMessage,
       id,
       label,
       name,
@@ -34,10 +38,13 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       open,
       textTrigger,
       value,
+      onValueChange,
+      className,
+      calendarClassName,
       ...rest
     },
     ref
-  ) => {
+  ): ReturnComponent => {
     const classes = {
       button: cn(
         `h-auto py-[6px] px-[12px] gap-[24px] border border-Dark-300 !border-solid rounded-[2px] 
@@ -47,7 +54,8 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         focus:!bg-Dark-500 focus:border-transparent focus:ring-opacity-100 focus:ring-offset-Primary-700 focus:ring-2
         focus-visible:bg-Dark-500 focus-visible:border-transparent focus-visible:ring-offset-Primary-700`,
         disabled && '!bg-Dark-500 !text-Light-900 pointer-events-none',
-        error && '!text-Danger-500 !bg-Dark-500 border-Danger-500'
+        errorMessage && '!text-Danger-500 !bg-Dark-500 border-Danger-500',
+        triggerClassName
       ),
       calendar: cn(`border-[1px] !border-Dark-300 bg-Dark-500 rounded-[2px]`),
       error: cn(`block !text-Danger-500 text-small-text-12`),
@@ -55,12 +63,17 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         `block !text-Light-900 text-regular-text-14 text-left`,
         disabled && 'text-Dark-100'
       ),
-      popoverContent: cn(`w-[300px] p-0 !border-none`),
-      triggerIcon: cn(`h-[24px] w-[24px] fill-Light-100`, error && `fill-Danger-500`),
+      popoverContent: cn(`w-[300px] p-0 !border-none`, calendarClassName),
+      triggerIcon: cn(`h-[24px] w-[24px] fill-Light-100`, errorMessage && `fill-Danger-500`),
     }
 
-    const errorId = `${id}-error-id`
-    const inputId = `${id}-input-id`
+    const generatedId = useId()
+    const inputId = id ?? generatedId
+    const errorId = `${inputId}-error`
+
+    const changeValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+      onValueChange?.(e.currentTarget.value)
+    }
 
     return (
       <>
@@ -72,7 +85,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
               className={'hidden'}
               id={inputId}
               name={name}
-              onChange={() => {}}
+              onChange={changeValueHandler}
               ref={ref}
               type={'date'}
               value={value ?? textTrigger}
@@ -91,9 +104,9 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
           <PopoverContent className={classes.popoverContent}>
             <Calendar className={classes.calendar} {...rest} />
           </PopoverContent>
-          {error && (
+          {errorMessage && (
             <span aria-labelledby={inputId} className={classes.error} id={errorId} role={'alert'}>
-              {error}
+              {errorMessage}
             </span>
           )}
         </Popover>
