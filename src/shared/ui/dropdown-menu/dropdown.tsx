@@ -16,7 +16,7 @@ export const Dropdown = (props: DropdownProps) => {
   const { children, className, modal, onOpenChange, open, ...rest } = props
 
   return (
-    <DropdownRadix.Root modal={modal} onOpenChange={onOpenChange} open={open} {...rest}>
+    <DropdownRadix.Root {...rest} modal={modal} onOpenChange={onOpenChange} open={open}>
       {children}
     </DropdownRadix.Root>
   )

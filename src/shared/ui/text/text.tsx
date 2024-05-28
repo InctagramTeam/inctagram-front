@@ -144,7 +144,7 @@ export function Text<T extends ElementType = 'p'>({
           {children}
         </code>
       ) : (
-        <Component className={textClasses} style={styles} {...rest}>
+        <Component {...rest} className={textClasses} style={styles}>
           {children}
         </Component>
       )}

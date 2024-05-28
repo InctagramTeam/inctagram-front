@@ -31,7 +31,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
     name,
     onCheckedChange,
     required,
-    ...restProps
+    ...rest
   } = props
 
   const generatedId = useId()
@@ -48,6 +48,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
         htmlFor={finalId}
       >
         <CheckboxRadix.Root
+          {...rest}
           checked={checked}
           className={clsx(
             disabled && `cursor-default`,
@@ -78,7 +79,6 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
           name={name}
           ref={ref}
           required={required}
-          {...restProps}
         >
           <CheckboxRadix.Indicator
             className={`_indicator_ flex items-center justify-center data-[disabled]:cursor-default`}

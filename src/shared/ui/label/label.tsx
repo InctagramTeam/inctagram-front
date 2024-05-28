@@ -16,8 +16,8 @@ type LabelProps = {
 } & React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
 
 const Label = React.forwardRef<React.ElementRef<typeof LabelPrimitive.Root>, LabelProps>(
-  ({ className, ...props }, ref) => (
-    <LabelPrimitive.Root className={cn(labelVariants(), className)} ref={ref} {...props} />
+  ({ className, ...rest }, ref) => (
+    <LabelPrimitive.Root {...rest} className={cn(labelVariants(), className)} ref={ref} />
   )
 )
 

@@ -146,7 +146,7 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref): ReturnComponent
     style,
     width,
     wrap = 'nowrap',
-    ...flexProps
+    ...rest
   } = props
 
   const styles = {
@@ -175,10 +175,10 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref): ReturnComponent
 
   return (
     <div
+      {...rest}
       className={clsx('flex', maxWidth && 'w-full', classes, className)}
       ref={ref}
       style={styles}
-      {...flexProps}
     >
       {children}
     </div>

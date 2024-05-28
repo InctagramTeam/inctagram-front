@@ -62,7 +62,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onValueChange,
       placeholder,
       type = 'search',
-      ...restProps
+      ...rest
     },
     /** Так как используем react-hook-form, он работает через рефы, то должны принимать ref */
     forwardedRef
@@ -177,6 +177,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </div>
           )}
           <input
+            {...rest}
             {...inputProps}
             className={classNames.input}
             disabled={disabled}
@@ -185,8 +186,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             placeholder={placeholder}
             ref={finalRef}
             type={finalType}
-            value={restProps.value}
-            {...restProps}
+            value={rest.value}
           />
           {isRevealPasswordButtonShown && (
             <button
