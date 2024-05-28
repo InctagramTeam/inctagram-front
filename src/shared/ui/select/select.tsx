@@ -6,7 +6,8 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode } from 'rea
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
 import * as SelectRadix from '@radix-ui/react-select'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import ChevronDownIcon from '@/shared/assets/icons/ChevronDownIcon'
+import ChevronUpIcon from '@/shared/assets/icons/ChevronUpIcon'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
@@ -65,16 +66,16 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
       <SelectTrigger
         className={
           variant === 'pagination'
-            ? 'w-[50px] pl-[6px] pr-[1px] py-0 gap-[1px] justify-center'
+            ? 'w-[50px] justify-center gap-[1px] py-0 pl-[6px] pr-[1px]'
             : 'w-[210px]'
         }
       >
         <SelectValue placeholder={placeholder} />
-        <ChevronUp
-          className={cn('chevron-up', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}
+        <ChevronUpIcon
+          className={cn('chevron-up', variant === 'pagination' ? '[h-16px] w-[16px]' : '')}
         />
-        <ChevronDown
-          className={cn('chevron-down', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}
+        <ChevronDownIcon
+          className={cn('chevron-down', variant === 'pagination' ? '[h-16px] w-[16px]' : '')}
         />
       </SelectTrigger>
       <SelectContent

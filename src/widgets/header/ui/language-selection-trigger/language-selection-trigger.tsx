@@ -3,7 +3,7 @@ import * as React from 'react'
 import { cn } from '@/shared/lib/utils'
 import { SelectTrigger } from '@/shared/ui/select/select'
 import Image from 'next/image'
-import { ChevronDown } from 'lucide-react'
+import ChevronDownIcon from '@/shared/assets/icons/ChevronDownIcon'
 
 type Props = {
   currentTextValue: string
@@ -42,7 +42,7 @@ export const LanguageSelectionTrigger = ({ currentTextValue, currentValue, isMob
         />
         {!isMobile && currentTextValue}
       </div>
-      <ChevronDown className={classes.icon} aria-hidden />
+      <ChevronDownIcon className={classes.icon} aria-hidden />
     </SelectTrigger>
   )
 }
