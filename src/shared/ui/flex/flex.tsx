@@ -49,6 +49,12 @@ const justifyClasses: Record<FlexJustifyContent, string> = {
   start: 'justify-start',
 }
 
+const flexWrapClasses: Record<FlexWrap, string> = {
+  nowrap: 'nowrap',
+  wrap: 'nowrap',
+}
+// 'nowrap' | 'wrap'
+
 const alignClasses: Record<FlexAlignItems, string> = {
   baseline: 'items-baseline',
   center: 'items-center',
@@ -162,7 +168,8 @@ const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref): ReturnComponent
     justifyClasses[justify],
     alignClasses[items],
     directionClasses[direction],
-    'flex-wrap',
+    directionClasses[direction],
+    flexWrapClasses[wrap],
     gap && gapClasses[gap],
   ]
 

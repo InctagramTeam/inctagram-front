@@ -6,7 +6,7 @@ import { ReturnComponent } from '@/shared/types'
 
 export const AuthButtons = (): ReturnComponent => {
   const classes = {
-    button: `py-[6px] text-center !text-H3-16 hover:translate-y-0`,
+    button: `py-[6px] text-center !text-H3-16`,
     loginLink: `px-[26px] !text-Primary-500 duration-300
       hover:no-underline hover:!text-Primary-100
       active:!text-Primary-700

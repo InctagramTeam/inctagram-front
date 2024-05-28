@@ -5,6 +5,8 @@ import clsx from 'clsx'
 
 import { PolymorphComponentPropsWithRef } from '../../types'
 
+type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
+
 type CustomProps = {
   className?: string
   disabled?: boolean
@@ -19,10 +21,11 @@ type CustomProps = {
   square?: boolean
   startIcon?: ReactNode
   /** Вариант кнопки. Отвечает за визуал кнопки */
-  variant?: 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
+  variant?: ButtonVariant
 }
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
+
 type ButtonComponent = <T extends ElementType = 'button'>(props: Props<T>) => ReactNode
 
 export const Button: ButtonComponent = forwardRef(
@@ -48,9 +51,9 @@ export const Button: ButtonComponent = forwardRef(
 
     const classes = {
       btn: clsx(
-        `w-full h-9 inline-flex gap-[12px] items-center justify-center border-box 
+        `inline-flex gap-[12px] items-center justify-center border-box 
         text-regular-text-16 text-Light-100 border-none rounded outline-none transition-all
-        duration-150 ease-in-out`,
+        duration-150 ease-in-out cursor-pointer whitespace-nowrap text-center`,
         [variant],
         fullWidth && `w-full`,
         variant === 'primary' &&
@@ -58,7 +61,7 @@ export const Button: ButtonComponent = forwardRef(
           `bg-Primary-500
           hover:transition-all duration-150 ease-in-out
           active:text-Light-100 active:bg-Primary-700 
-          hover:text-Light-100 hover:bg-Primary-300 hover:-translate-y-px transform
+          hover:text-Light-100 hover:bg-Primary-300
           focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
           focus:ring-offset-Primary-300
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
@@ -73,7 +76,7 @@ export const Button: ButtonComponent = forwardRef(
           !disabled &&
           `bg-Dark-100 rounded-[2px] shadow-sm shadow-Dark-300 
            active:bg-[#212121]
-           hover:text-Light-100 hover:bg-Dark-100/90 hover:-translate-y-px transform
+           hover:text-Light-100 hover:bg-Dark-100/90
            hover:transition-all duration-150 ease-in-out
            focus:bg-Dark-300 focus:outline-none focus:ring-2
            focus:ring-Primary-300 focus:ring-offset-1
@@ -91,7 +94,7 @@ export const Button: ButtonComponent = forwardRef(
           rounded-[2px] shadow-sm shadow-Primary-900 
           active:bg-Dark-700 active:text-Primary-700 active:border-Primary-700
           hover:text-Primary-100 hover:bg-Dark-500/60 hover:ring-1 hover:ring-Primary-100
-          hover:transition-all duration-150 ease-in-out hover:-translate-y-px transform
+          hover:transition-all duration-150 ease-in-out
           focus:bg-Dark-700 focus:outline-none
           focus:ring-1 focus:ring-Primary-700 focus:ring-offset-1 focus:ring-opacity-50
           focus:ring-offset-Primary-700
@@ -106,7 +109,7 @@ export const Button: ButtonComponent = forwardRef(
           `text-Primary-500 underline-offset-4
           border-b-2 border-transparent hover:border-text-Primary-300/50
           transition-all duration-150 ease-in-out 
-          hover:underline hover:text-[rgb(106_156_243)] hover:-translate-y-px transform
+          hover:underline hover:text-[rgb(106_156_243)]
           hover:transition-all duration-150 ease-in-out
           focus:outline-none focus:text-[rgb(106_156_243)] focus:underline
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
@@ -114,11 +117,11 @@ export const Button: ButtonComponent = forwardRef(
         variant === 'link' && disabled && `text-Primary-900/50 cursor-not-allowed`,
         variant === 'text' &&
           !disabled &&
-          `bg-Dark-700 h-[4px] py-3 px-0 max-w-[330px]
+          `bg-Dark-700 h-[4px] py-3 px-0
           font-inter font-semi_bold-600 text-H3-16 text-Light-300 transition-colors duration-150 ease-in-out
           active:bg-Dark-700 active:text-Primary-700
           active:transition-all duration-150 ease-in-out
-          hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out hover:-translate-y-px transform
+          hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out
           focus:bg-Dark-500 focus:bg-Dark-700 focus:outline-none
           focus:ring-offset-Primary-700
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
@@ -130,7 +133,7 @@ export const Button: ButtonComponent = forwardRef(
           !disabled &&
           `bg-[#ff3f3f] text-Light-100 shadow-sm 
            hover:bg-red-400 transition-all duration-150 ease-in-out
-           hover:-translate-y-px transform hover:transition-all duration-150 ease-in-out
+           hover:transition-all duration-150 ease-in-out
            focus:outline-none focus:ring-1 focus:ring-Primary-700
            focus:ring-offset-1 focus:ring-opacity-50 focus:ring-offset-Primary-700
            focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
@@ -150,8 +153,9 @@ export const Button: ButtonComponent = forwardRef(
       ),
     }
 
+    /** className={classes.btn} перезаписывает rest пропсы */
     return (
-      <Component className={classes.btn} {...rest} ref={ref}>
+      <Component {...rest} className={classes.btn} ref={ref}>
         {startIcon}
         {children}
         {endIcon}
