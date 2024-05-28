@@ -84,7 +84,7 @@ const SignUp = ({}: Props): ReturnComponent => {
         </Flex>
 
         <Flex direction={'column'} gap={'12'}>
-          <Button className={'w-full max-w-[330px]'}>Sign Up</Button>
+          <Button className={'w-full max-w-[330px] py-[6px]'}>Sign Up</Button>
           <Text className={`text-Primary-300`} variant={'regular_text_16'}>
             Do you have an account?
           </Text>

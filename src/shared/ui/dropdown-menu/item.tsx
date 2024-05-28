@@ -33,7 +33,8 @@ const Item = ({
 
   return (
     <DropdownRadix.Item
-      className={`cursor - pointer bg-Dark-500 flex gap-[6px] items-center p-[0.75rem] outline-none
+      asChild
+      className={`cursor-pointer bg-Dark-500 flex gap-[6px] items-center p-[0.75rem] outline-none
         w-40 select-none py-1.5 text-Light-100 data-[highlighted]:bg-Dark-100 data-[highlighted]:text-Light-100
         border-b-[1px] border-b-Dark-100/10 shadow-sm hover:text-Primary-100
         data-[highlighted]:focus:outline-none transition-all duration-150 ease-linear hover:bg-Dark-100/70`}
@@ -42,9 +43,11 @@ const Item = ({
       style={style}
       {...rest}
     >
-      {startIcon && startIcon}
-      {children}
-      {endIcon && endIcon}
+      <>
+        {startIcon && startIcon}
+        {children}
+        {endIcon && endIcon}
+      </>
     </DropdownRadix.Item>
   )
 }
