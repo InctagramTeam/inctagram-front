@@ -16,12 +16,12 @@ export const Card: CardComponent = forwardRef(
 
     return (
       <Component
+        {...rest}
         className={clsx(
           `bg-Dark-500 border-[1px] border-Dark-300 rounded-[2px] shadow-sm`,
           className
         )}
         ref={ref}
-        {...rest}
       />
     )
   }
