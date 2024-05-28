@@ -1,2 +1,1 @@
-export * from './alert'
-export * from './hooks'
+export { Alert } from './alert'
