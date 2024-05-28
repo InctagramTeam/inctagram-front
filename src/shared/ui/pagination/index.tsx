@@ -8,7 +8,7 @@ import { usePagination } from './usePagination'
 export type PaginationProps = {
   count: number
   onChange: (page: number) => void
-  onPerPageChange?: (itemPerPage: number) => void
+  onPerPageChange?: (itemPerPage: number | string) => void
   page: number
   perPage?: null | number
   perPageOptions?: number[]
@@ -71,7 +71,7 @@ const NextButton = ({ disabled, onClick }: NavigationButtonProps) => {
 type MainPaginationButtonsProps = {
   currentPage: number
   onClick: (pageNumber: number) => () => void
-  paginationRange: (number | string)[]
+  paginationRange: number[]
 }
 
 const MainPaginationButtons = ({
@@ -81,7 +81,7 @@ const MainPaginationButtons = ({
 }: MainPaginationButtonsProps) => {
   return (
     <>
-      {paginationRange.map((page: number | string, index) => {
+      {paginationRange.map((page: number, index) => {
         const isSelected = page === currentPage
 
         if (typeof page !== 'number') {
@@ -95,7 +95,7 @@ const MainPaginationButtons = ({
 }
 
 export type PerPageSelectProps = {
-  onPerPageChange: (itemPerPage: number) => void
+  onPerPageChange: (itemPerPage: number | string) => void
   perPage: number
   perPageOptions: number[]
 }
@@ -113,7 +113,7 @@ export const PerPageSelect = ({ onPerPageChange, perPage, perPageOptions }: PerP
         onChange={onPerPageChange}
         options={selectOptions}
         value={perPage}
-        variant='pagination'
+        variant="pagination"
       />
       on page
     </div>
@@ -153,7 +153,7 @@ export const Pagination = ({
         <MainPaginationButtons
           currentPage={page}
           onClick={handleMainPageClicked}
-          paginationRange={paginationRange}
+          paginationRange={paginationRange as number[]}
         />
 
         <NextButton disabled={isLastPage} onClick={handleNextPageClicked} />

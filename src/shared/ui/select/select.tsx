@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useState } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode } from 'react'
 
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
@@ -12,26 +12,91 @@ const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
 const SelectValue: typeof SelectRadix.Value = SelectRadix.Value
 
-type Option = { disabled?: boolean; label: string | number; value: string | number }
+type ConditionalProps<T extends string | number> = {
+  onChange?: (value: T) => void
+  value?: T
+}
 
-interface CommonProps {
+export type SelectOption<T extends string | number> = {
+  disabled?: boolean
+  label: string | number
+  value: T
+}
+
+type CommonOwnProps<T extends string | number> = {
   disabled?: boolean
   label?: string
   name?: string
-  options: Option[]
+  options: SelectOption<T>[]
   placeholder?: string
+  className?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
-  className?: string
   variant?: 'primary' | 'pagination'
 }
 
-type ConditionalProps = {
-  onChange?: (value: string | number) => void
-  value?: string | number
-}
+export type SelectProps = CommonOwnProps<string | number> & ConditionalProps<string | number>
 
-export type SelectProps = CommonProps & ConditionalProps
+const SelectBox = (props: SelectProps): ReturnComponent => {
+  const {
+    disabled,
+    label,
+    name,
+    onChange,
+    options,
+    placeholder,
+    position,
+    required,
+    value,
+    className,
+    variant = 'primary',
+    ...rest
+  } = props
+
+  return (
+    <Select
+      {...rest}
+      disabled={disabled}
+      name={name}
+      onValueChange={onChange}
+      required={required}
+      value={value as string}
+    >
+      <SelectTrigger
+        className={
+          variant === 'pagination'
+            ? 'w-[50px] pl-[6px] pr-[1px] py-0 gap-[1px] justify-center'
+            : 'w-[210px]'
+        }
+      >
+        <SelectValue placeholder={placeholder} />
+        <ChevronUp
+          className={cn('chevron-up', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}
+        />
+        <ChevronDown
+          className={cn('chevron-down', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}
+        />
+      </SelectTrigger>
+      <SelectContent
+        position={position}
+        className={variant === 'pagination' ? 'w-[50px]' : 'w-full'}
+      >
+        {label && <SelectLabel>{label}</SelectLabel>}
+
+        {options.map(option => (
+          <SelectItem
+            className={variant === 'pagination' ? 'w-[50px]' : 'w-[210px]'}
+            disabled={option.disabled}
+            key={option.value}
+            value={option.value as string}
+          >
+            {option.label}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  )
+}
 
 const classNames = {
   content: `relative z-50 ring-1 ring-t-0 ring-Dark-100 data-[state=open]:ring-Light-100 
@@ -84,7 +149,12 @@ const SelectContent = forwardRef<
   ComponentPropsWithoutRef<typeof SelectRadix.Content>
 >(({ children, className, position = 'popper', ...props }, ref) => (
   <SelectRadix.Portal>
-    <SelectRadix.Content className={cn(classNames.content, className)} position={position} ref={ref} {...props}>
+    <SelectRadix.Content
+      className={cn(classNames.content, className)}
+      position={position}
+      ref={ref}
+      {...props}
+    >
       <SelectRadix.Viewport className={cn('p-0', position === 'popper' && 'min-h-fit w-full')}>
         {children}
       </SelectRadix.Viewport>
@@ -137,47 +207,6 @@ const SelectScrollDownButton = forwardRef<
     <ChevronDown className={'h-4 w-4'} />
   </SelectRadix.ScrollDownButton>
 ))
-
-const SelectBox = ({
-  disabled,
-  label,
-  name,
-  onChange,
-  options,
-  placeholder,
-  position,
-  required,
-  value,
-  className,
-  variant = 'primary',
-}: SelectProps): ReturnComponent => {
-
-  return (
-    <Select
-      disabled={disabled}
-      name={name}
-      onValueChange={onChange}
-      required={required}
-      value={value}
-      className={className}
-    >
-      <SelectTrigger className={variant === 'pagination' ? 'w-[50px] pl-[6px] pr-[1px] py-0 gap-[1px] justify-center' : 'w-[210px]'}>
-        <SelectValue placeholder={placeholder} />
-        <ChevronUp className={cn('chevron-up', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}/>
-        <ChevronDown className={cn('chevron-down', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}/>
-      </SelectTrigger>
-      <SelectContent position={position} className={variant === 'pagination' ? 'w-[50px]' : 'w-full'}>
-        {label && <SelectLabel>{label}</SelectLabel>}
-
-        {options.map(option => (
-          <SelectItem className={variant === 'pagination' ? 'w-[50px]' : 'w-[210px]'} disabled={option.disabled} key={option.value} value={option.value}>
-            {option.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
-  )
-}
 
 export {
   Select,

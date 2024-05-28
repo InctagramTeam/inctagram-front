@@ -1,2 +1,2 @@
-export { LANGUAGES } from '@/widgets/header/model/constants/languages'
+export { LANGUAGES } from './languages'
 export { LINKS } from './mobile-dropdown-links'
