@@ -11,7 +11,7 @@ const ControlledTextarea = <T extends FieldValues>({ control, name, ...rest }: P
     fieldState: { error },
   } = useController({ control, name })
 
-  return <Textarea error={error?.message} id={name} {...field} {...rest} />
+  return <Textarea {...rest} {...field} errorMessage={error?.message} id={name} />
 }
 
 ControlledTextarea.displayName = 'ControlledTextarea'

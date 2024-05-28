@@ -1,5 +1,4 @@
-import React, { forwardRef } from 'react'
-import { ComponentPropsWithoutRef } from 'react'
+import React, { ComponentPropsWithoutRef, forwardRef } from 'react'
 
 import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'

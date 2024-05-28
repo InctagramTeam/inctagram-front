@@ -1,13 +1,13 @@
 import { ReactNode, createContext, useContext, useState } from 'react'
 
 // type
-export type LayoutContext = {
+export type Props = {
   isCollapsed?: boolean
   toggleSidebar?: () => void
 }
 
 // default values
-export const LayoutContext = createContext<LayoutContext>({
+export const LayoutContext = createContext<Props>({
   isCollapsed: false,
   toggleSidebar: () => {},
 })
