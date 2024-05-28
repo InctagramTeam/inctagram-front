@@ -6,8 +6,9 @@ import { cn } from '@/shared/lib/utils/merge-cn'
 import { Button } from '@/shared/ui/button'
 
 import { Calendar, CalendarProps } from './calendar'
-import { Popover, PopoverContent, PopoverTrigger } from './popover'
+
 import { ReturnComponent } from '@/shared/types'
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover/popover'
 
 export type DatePickerProps = {
   triggerClassName?: string
@@ -57,7 +58,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         errorMessage && '!text-Danger-500 !bg-Dark-500 border-Danger-500',
         triggerClassName
       ),
-      calendar: cn(`border-[1px] !border-Dark-300 bg-Dark-500 rounded-[2px]`),
+      calendar: cn(`border-[1px] !border-Dark-300 bg-Dark-500 rounded-[2px] text-Light-100`),
       error: cn(`block !text-Danger-500 text-small-text-12`),
       label: cn(
         `block !text-Light-900 text-regular-text-14 text-left`,
