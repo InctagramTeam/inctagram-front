@@ -192,7 +192,7 @@ const SelectScrollUpButton = forwardRef<
     ref={ref}
     {...props}
   >
-    <ChevronUp className={'h-4 w-4'} />
+    <ChevronUpIcon className={'h-4 w-4'} />
   </SelectRadix.ScrollUpButton>
 ))
 
@@ -205,7 +205,7 @@ const SelectScrollDownButton = forwardRef<
     ref={ref}
     {...props}
   >
-    <ChevronDown className={'h-4 w-4'} />
+    <ChevronDownIcon className={'h-4 w-4'} />
   </SelectRadix.ScrollDownButton>
 ))
 
