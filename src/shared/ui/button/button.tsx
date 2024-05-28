@@ -153,7 +153,7 @@ export const Button: ButtonComponent = forwardRef(
       ),
     }
 
-    /** className={classes.btn} перезаписывает rest пропсы */
+    /** className={classes.btn} перезаписывает {...rest} пропсы */
     return (
       <Component {...rest} className={classes.btn} ref={ref}>
         {startIcon}

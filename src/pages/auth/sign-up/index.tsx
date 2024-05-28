@@ -9,7 +9,7 @@ import { Checkbox } from '@/shared/ui/checkbox'
 import { Flex } from '@/shared/ui/flex'
 import { Input } from '@/shared/ui/input'
 import { Text } from '@/shared/ui/text'
-import Link from 'next/link'
+import { AppLink } from 'src/shared/ui/app-link'
 
 type Props = {}
 
@@ -32,24 +32,12 @@ const SignUp = ({}: Props): ReturnComponent => {
             Sign Up
           </Text>
           <Flex gap={'60'} justify={'center'} mb={'24px'}>
-            <Button
-              asComponent={Link}
-              className={'w-full max-w-[36px] p-0 m-0 '}
-              href={'https://google.com'}
-              type={'button'}
-              variant={'link'}
-            >
+            <AppLink className={'w-full max-w-[36px] p-0 m-0 '} href={'https://google.com'}>
               <GoogleIcon />
-            </Button>
-            <Button
-              asComponent={Link}
-              className={`w-full max-w-[36px] p-0 m-0`}
-              href={'https://github.com'}
-              type={'button'}
-              variant={'link'}
-            >
+            </AppLink>
+            <AppLink className={`w-full max-w-[36px] p-0 m-0`} href={'https://github.com'}>
               <GithubIcon />
-            </Button>
+            </AppLink>
           </Flex>
         </div>
         <Flex
@@ -72,11 +60,11 @@ const SignUp = ({}: Props): ReturnComponent => {
             <Flex gap={'1'} items={'center'} justify={'spaceEvenly'}>
               <Checkbox className={'mr-2 inline-block'} />
               <Text variant={'small-text-12'}>I agree to the</Text>
-              <Text asComponent={Link} href={'auth/term-of-service'} variant={'small-link_12'}>
+              <Text asComponent={AppLink} href={'auth/term-of-service'} variant={'small-link_12'}>
                 Terms of Service
               </Text>
               <Text variant={'small-text-12'}>and</Text>
-              <Text asComponent={Link} href={'auth/privacy-policy'} variant={'small-link_12'}>
+              <Text asComponent={AppLink} href={'auth/privacy-policy'} variant={'small-link_12'}>
                 Privacy Policy
               </Text>
             </Flex>
@@ -88,14 +76,12 @@ const SignUp = ({}: Props): ReturnComponent => {
           <Text className={`text-Primary-300`} variant={'regular_text_16'}>
             Do you have an account?
           </Text>
-          <Button asComponent={Link} href={'auth/sign-in'} variant={'link'}>
-            Sign In
-          </Button>
+          <AppLink href={'/sign-in'}>Sign In</AppLink>
         </Flex>
       </Card>
     </PageWrapper>
   )
 }
-
+// <AppLink href={'auth/sign-in'}>Sign In</AppLink>
 SignUp.getLayout = getLayout
 export default SignUp

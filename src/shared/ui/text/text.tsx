@@ -18,7 +18,7 @@ interface TextProps<T extends ElementType> {
   my?: CSSProperties['marginLeft']
   /**
    * Пример использования с props "as": Текст будет ссылкой:
-   * <Text as={Link} to={'main/auth/sign-in'} variant="subtitle1" className={s.name}>Привет!</Text>
+   * <Text as={AppLink} to={'main/auth/sign-in'} variant="subtitle1" className={s.name}>Привет!</Text>
    */
   textAlign?: TextAlign
   textColor?: TextColor
