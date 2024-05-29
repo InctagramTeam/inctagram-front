@@ -11,8 +11,8 @@ type Props = {
 
 export const MobileDropdown = ({ logout }: Props) => {
   const classes = {
-    items: `flex flex-col gap-[12px] mb-[12px]`,
     item: `w-full data-[highlighted]:ring-Primary-700 data-[highlighted]:ring-1 data-[highlighted]:outline-none rounded-[2px]`,
+    items: `flex flex-col gap-[12px] mb-[12px]`,
     link: `bg-transparent h-auto flex gap-[12px] py-[6px] px-[12px] transition duration-300 outline-none rounded-[2px] !text-regular-text-14
     active:opacity-60 focus:ring-1 focus:ring-Primary-700 focus-visible:ring-1 focus-visible:ring-Primary-700`,
     logoutButton: `h-auto !justify-normal bg-transparent focus:bg-transparent hover:translate-y-0 active:bg-transparent active:!text-Light-100`,
@@ -38,8 +38,8 @@ export const MobileDropdown = ({ logout }: Props) => {
                     asComponent={Link}
                     className={classes.link}
                     href={link.href}
-                    variant={'text'}
                     startIcon={getIcon(link.href, false)}
+                    variant={'text'}
                   >
                     {link.name}
                   </Button>
@@ -50,9 +50,9 @@ export const MobileDropdown = ({ logout }: Props) => {
         </ul>
         <Dropdown.Item className={classes.item}>
           <Button
-            startIcon={<LogOutIcon />}
             className={`${classes.link} ${classes.logoutButton}`}
             onClick={logout}
+            startIcon={<LogOutIcon />}
             variant={'text'}
           >
             Log Out

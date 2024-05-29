@@ -16,9 +16,9 @@ type Props = {
 export const LanguageSelection = ({ isMobile = false, items, value, ...rest }: Props) => {
   const classes = {
     content: cn(
-      'rounded-b-[2px] bg-Dark-500 border border-Light-100',
-      !isMobile && 'w-[164px] border-t-0',
-      isMobile && 'min-w-0'
+      'bg-Dark-500 border border-Light-100',
+      !isMobile && 'w-[164px] border-t-0 rounded-b-[2px]',
+      isMobile && 'min-w-0 rounded-[2px]'
     ),
   }
 
