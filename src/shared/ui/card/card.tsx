@@ -1,3 +1,4 @@
+'use client'
 import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
 import { PolymorphComponentPropsWithRef } from '@/shared/types'
@@ -18,7 +19,7 @@ export const Card: CardComponent = forwardRef(
       <Component
         {...rest}
         className={clsx(
-          `bg-Dark-500 border-[1px] border-Dark-300 rounded-[2px] shadow-sm`,
+          `shadow-shadow-Dark-30 rounded-[2px] border-[1px] border-Dark-300 bg-Dark-500 shadow-sm`,
           className
         )}
         ref={ref}
@@ -26,3 +27,7 @@ export const Card: CardComponent = forwardRef(
     )
   }
 )
+
+//   background-color: var(--dark-500);
+//   border: 1px solid var(--dark-300);
+//   border-radius: 2px;

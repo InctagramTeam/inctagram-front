@@ -35,7 +35,7 @@ export const PageWrapper = ({
   return (
     <section
       className={cn(
-        `w-full max-w-[1280px] min-h-full p-[0_15px] mx-auto focus-visible:outline-none`,
+        `_Section_ mx-auto min-h-full w-full max-w-[1280px] p-[0_15px] focus-visible:outline-none`,
         classesPage
       )}
       style={styles}

@@ -51,7 +51,7 @@ export const Button: ButtonComponent = forwardRef(
 
     const classes = {
       btn: clsx(
-        `inline-flex gap-[12px] items-center justify-center border-box 
+        `inline-flex gap-[12px] items-center justify-center border-box
         text-regular-text-16 text-Light-100 border-none rounded outline-none transition-all
         duration-150 ease-in-out cursor-pointer whitespace-nowrap text-center`,
         [variant],
@@ -69,8 +69,7 @@ export const Button: ButtonComponent = forwardRef(
           disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed`,
         variant === 'primary' &&
           disabled &&
-          `bg-Primary-900 text-Light-900 cursor-not-allowed
-          disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed
+          `bg-Primary-900 text-Light-900 cursor-not-allowed disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed
         `,
         variant === 'secondary' &&
           !disabled &&

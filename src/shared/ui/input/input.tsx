@@ -141,7 +141,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       ),
       root: clsx(`_Root_  w-full min-w-[200px] text-regular-text-16 text-Light-900`, className),
       searchIcon: clsx(
-        `_LeadingIcon_ absolute text-Light-900 top-1/2 bottom-1/2 left-0 transform -translate-t-1/2
+        `_LeadingIcon_ absolute text-Light-900 top-1/2 bottom-1/2 -left-3 transform -translate-t-1/2
       w-[20px] h-[20px] ml-[12px] p-0 bg-transparent border-o outline-0 ring-0
       focus-visible:text-Light-100 focus-visible:outline focus-visible:outline-2
       focus-visible:outline-Primary-50

@@ -1,3 +1,4 @@
+'use client'
 import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { ReturnComponent } from '@/shared/types'
@@ -9,16 +10,18 @@ import { useRef } from 'react'
 type Props = {}
 
 const SignUp = ({}: Props): ReturnComponent => {
-  const ref = useRef<UseFormRef<SignUpFormValues> | null>(null)
+  const ref = useRef<UseFormRef<SignUpFormValues>>(null)
 
-  const handleSubmit = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
-    console.log(formData, ref, passwordConfirm, accept)
+  const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
+    // console.log(formData, ref, passwordConfirm, accept)
   }
   return (
     <PageWrapper title={'SignUp | Instagram'}>
       <SignUpForm
         // disabled={isLoading}
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmitForm}
+        hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? ''}
+        hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? ''}
         ref={ref}
       />
     </PageWrapper>

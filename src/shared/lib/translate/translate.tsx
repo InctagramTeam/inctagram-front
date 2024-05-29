@@ -1,3 +1,4 @@
+'use client'
 import { FC, Fragment, ReactNode } from 'react'
 
 const tagsRegex = /(<\d+>[^<>]*<\/\d+>)/
