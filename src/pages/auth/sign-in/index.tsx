@@ -1,10 +1,11 @@
 import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { SignInForm } from '@/feature/auth/ui/sign-in-form'
 
 const SignIn = () => {
   return (
     <PageWrapper paddingTop={'108px'} title={'SignIn | Instagram'}>
-      <h1>SignIn</h1>
+      <SignInForm />
     </PageWrapper>
   )
 }
