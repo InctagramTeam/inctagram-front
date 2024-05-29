@@ -35,6 +35,7 @@ type FlexGapType =
   | '22'
   | '24'
   | '26'
+  | '28'
   | '30'
   | '34'
   | '40'
@@ -94,6 +95,7 @@ const gapClasses: Record<FlexGapType, string> = {
   22: 'gap-[22px]',
   24: 'gap-[24px]',
   26: 'gap-[26px]',
+  28: 'gap-[28px]',
   30: 'gap-[30px]',
   34: 'gap-[34px]',
   40: 'gap-[40px]',

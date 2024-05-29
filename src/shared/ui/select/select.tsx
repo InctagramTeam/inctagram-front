@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode } from 'react'
-
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
 import * as SelectRadix from '@radix-ui/react-select'
@@ -36,9 +35,9 @@ type CommonOwnProps<T extends string | number> = {
   variant?: 'primary' | 'pagination'
 }
 
-export type SelectProps = CommonOwnProps<string | number> & ConditionalProps<string | number>
+export type SelectAllProps = CommonOwnProps<string | number> & ConditionalProps<string | number>
 
-const SelectBox = (props: SelectProps): ReturnComponent => {
+const SelectBox = (props: SelectAllProps): ReturnComponent => {
   const {
     disabled,
     label,
@@ -128,7 +127,7 @@ const SelectLabel = forwardRef<
   ElementRef<typeof SelectRadix.Label>,
   ComponentPropsWithoutRef<typeof SelectRadix.Label>
 >(({ children, className, ...props }, ref) => (
-  <SelectRadix.Label className={classNames.label} ref={ref} {...props}>
+  <SelectRadix.Label {...props} className={classNames.label} ref={ref}>
     {children}
   </SelectRadix.Label>
 ))
@@ -138,7 +137,7 @@ const SelectTrigger = forwardRef<
   { icon?: ReactNode } & ComponentPropsWithoutRef<typeof SelectRadix.Trigger>
 >(({ children, className, icon, ...props }, ref) => {
   return (
-    <SelectRadix.Trigger className={cn(classNames.trigger, className)} ref={ref} {...props}>
+    <SelectRadix.Trigger {...props} className={cn(classNames.trigger, className)} ref={ref}>
       {children}
       <SelectRadix.Icon asChild>{icon}</SelectRadix.Icon>
     </SelectRadix.Trigger>
@@ -167,7 +166,7 @@ const SelectItem = forwardRef<
   ElementRef<typeof SelectRadix.Item>,
   ComponentPropsWithoutRef<typeof SelectRadix.Item>
 >(({ children, className, ...props }, ref) => (
-  <SelectRadix.Item className={cn(classNames.item, className)} ref={ref} {...props}>
+  <SelectRadix.Item {...props} className={cn(classNames.item, className)} ref={ref}>
     <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
   </SelectRadix.Item>
 ))
