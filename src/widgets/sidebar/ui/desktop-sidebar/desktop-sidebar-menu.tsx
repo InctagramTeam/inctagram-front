@@ -13,9 +13,9 @@ export const DesktopSidebarMenu = forwardRef<HTMLElement, ComponentPropsWithoutR
     return (
       <nav
         className={cn(
-          `fixed top-[60px] left-0 pt-[72px] pl-[50px] pr-[40px] pb-[36px] w-full max-w-[240px] h-[calc(100vh-60px)] border-r-[1px] border-r-Dark-300 shadow-sm`,
+          `fixed left-0 top-[60px] h-[calc(100vh-60px)] w-full max-w-[240px] border-r-[1px] border-r-Dark-300 pb-[36px] pl-[50px] pr-[40px] pt-[72px] shadow-sm`,
           rest.className,
-          isCollapsed && `w-full max-w-[80px] flex justify-center shadow-sm`
+          isCollapsed && `flex w-full max-w-[80px] justify-center shadow-sm`
         )}
         ref={ref}
         {...rest}

@@ -23,7 +23,7 @@ export const Main = ({ children }: Props) => {
     <main
       className={clsx(
         isCollapsed ? 'pl-[80px]' : 'pl-[220px]',
-        `flex flex-col justify-center pt-[var(--header-height)] w-full items-center`,
+        `flex w-full flex-col items-center justify-center pt-[var(--header-height)]`,
         inter.variable
       )}
     >

@@ -5,23 +5,23 @@ import { ReturnComponent } from '@/shared/types'
 
 export type TextareaProps = {
   containerClassName?: string
-  textareaClassName?: string
   errorMessage?: string
-  onValueChange?: (value: string) => void
   label?: string
+  onValueChange?: (value: string) => void
+  textareaClassName?: string
 } & ComponentPropsWithoutRef<'textarea'>
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     {
+      className,
       containerClassName,
       disabled,
-      className,
-      onChange,
-      onValueChange,
       errorMessage,
       id,
       label,
+      onChange,
+      onValueChange,
       ...rest
     },
     ref
@@ -59,8 +59,8 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={classes.textarea}
           disabled={disabled}
           id={finalId}
-          ref={ref}
           onChange={changeValueHandler}
+          ref={ref}
           {...rest}
         />
         {errorMessage && <span className={classes.error}> {errorMessage} </span>}

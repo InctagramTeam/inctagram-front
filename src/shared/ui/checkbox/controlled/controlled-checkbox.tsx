@@ -1,5 +1,6 @@
 'use client'
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
+
 import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
 
 /** Исключили:
@@ -8,7 +9,7 @@ import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
  */
 type Props<T extends FieldValues> =
   /** Не имеем возможность контролировать компонент снаружи, нет возможности передать ему value, onChange */
-  Omit<CheckboxProps, 'checked' | 'onCheckedChange' | 'id'> &
+  Omit<CheckboxProps, 'checked' | 'id' | 'onCheckedChange'> &
     Omit<UseControllerProps<T>, 'defaultValue' | 'rules'>
 
 export const ControlledCheckbox = <T extends FieldValues>({

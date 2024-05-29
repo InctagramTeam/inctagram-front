@@ -1,9 +1,9 @@
 import * as React from 'react'
 
+import ChevronDownIcon from '@/shared/assets/icons/ChevronDownIcon'
 import { cn } from '@/shared/lib/utils'
 import { SelectTrigger } from '@/shared/ui/select/select'
 import Image from 'next/image'
-import ChevronDownIcon from '@/shared/assets/icons/ChevronDownIcon'
 
 type Props = {
   currentTextValue: string
@@ -14,6 +14,7 @@ type Props = {
 export const LanguageSelectionTrigger = ({ currentTextValue, currentValue, isMobile }: Props) => {
   const classes = {
     flag: 'w-[20px] h-[20px] object-contain',
+    icon: 'basis-[24px] shrink-0 h-[24px] icon transition-rotate duration-300',
     trigger: cn(
       `[&_.icon]:data-[state=open]:rotate-180 focus:border-Dark-100
     focus-visible:text-Light-900 focus-visible:ring-2 focus-visible:ring-offset-Primary-500 focus-visible:border-transparent`,
@@ -22,7 +23,6 @@ export const LanguageSelectionTrigger = ({ currentTextValue, currentValue, isMob
     hover:text-Light-900 hover:border-Light-900 justify-between`,
       isMobile && `gap-[2px] border-none justify-normal min-w-max ring-0 p-0 `
     ),
-    icon: 'basis-[24px] shrink-0 h-[24px] icon transition-rotate duration-300',
     triggerInner: cn(
       !isMobile && `flex items-center gap-[12px]`,
       isMobile && `basis-[20px] shrink-0 h-[20px]`
@@ -42,7 +42,7 @@ export const LanguageSelectionTrigger = ({ currentTextValue, currentValue, isMob
         />
         {!isMobile && currentTextValue}
       </div>
-      <ChevronDownIcon className={classes.icon} aria-hidden />
+      <ChevronDownIcon aria-hidden className={classes.icon} />
     </SelectTrigger>
   )
 }

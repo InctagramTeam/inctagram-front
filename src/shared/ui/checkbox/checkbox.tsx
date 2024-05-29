@@ -1,5 +1,6 @@
 'use client'
-import React, { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode, useId } from 'react'
+import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useId } from 'react'
+
 import CheckIcon from '@/shared/assets/icons/CheckIcon'
 import { ReturnComponent } from '@/shared/types'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
@@ -49,6 +50,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
       >
         <CheckboxRadix.Root
           {...rest}
+          checked={checked}
           className={clsx(
             disabled && `cursor-default`,
             `_Checkbox_ hover:not:before:data-[disabled]:opacity-100 hover:not:before:data-[disabled=true]:bg-Dark-300
@@ -77,7 +79,6 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
             hover:disabled:before:hidden
             `
           )}
-          checked={checked}
           disabled={disabled}
           id={id}
           name={name}

@@ -67,12 +67,12 @@
   }
 
   html {
-    @apply w-full h-[400dvh] scrollbar-thin scrollbar-thumb-Primary-700 scrollbar-track-Dark-500;
+    @apply h-[400dvh] w-full scrollbar-thin scrollbar-track-Dark-500 scrollbar-thumb-Primary-700;
   }
 
   body {
-    @apply bg-Dark-700 m-0 p-0 w-full min-h-full overflow-x-hidden
-    font-inter text-regular-text-16 leading-m-main-24 font-main-400 not-italic text-Light-100;
+    @apply m-0 min-h-full w-full overflow-x-hidden bg-Dark-700 p-0
+    font-inter text-regular-text-16 font-main-400 not-italic leading-m-main-24 text-Light-100;
   }
 
   a {

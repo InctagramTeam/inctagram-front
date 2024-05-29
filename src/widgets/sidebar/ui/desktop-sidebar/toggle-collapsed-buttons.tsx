@@ -10,7 +10,7 @@ export const ToggleCollapsedButtons = (): ReturnComponent => {
     <>
       {isCollapsed ? (
         <Button
-          className={'fixed z-10 left-[30px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
+          className={'top-1/5 fixed left-[30px] z-10 !h-8 !w-8 rounded-full !bg-Dark-100/25 '}
           onClick={toggleSidebar}
           variant={'text'}
         >
@@ -18,7 +18,7 @@ export const ToggleCollapsedButtons = (): ReturnComponent => {
         </Button>
       ) : (
         <Button
-          className={'fixed z-10 left-[200px] top-1/5 rounded-full !w-8 !h-8 !bg-Dark-100/25 '}
+          className={'top-1/5 fixed left-[200px] z-10 !h-8 !w-8 rounded-full !bg-Dark-100/25 '}
           onClick={toggleSidebar}
           variant={'text'}
         >

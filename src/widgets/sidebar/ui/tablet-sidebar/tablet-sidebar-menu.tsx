@@ -14,8 +14,8 @@ export const TabletSidebarMenu = forwardRef<HTMLElement, Props>(
     return (
       <nav
         className={cn(
-          `absolute top-[60px] left-1 w-full max-w-[80px] h-[calc(100vh-60px)]
-          flex justify-center px-2 py-[20px] border-r border-r-Dark-300 shadow-sm`,
+          `absolute left-1 top-[60px] flex h-[calc(100vh-60px)] w-full
+          max-w-[80px] justify-center border-r border-r-Dark-300 px-2 py-[20px] shadow-sm`,
           className
         )}
         ref={ref}

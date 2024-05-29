@@ -11,12 +11,12 @@ const Recaptcha = (props: PropsType) => {
   return (
     <div
       className={
-        'relative flex justify-between pl-5 pr-5 items-center w-[300px] h-[79px] border rounded-sm border-[#333333] bg-[#171717]'
+        'relative flex h-[79px] w-[300px] items-center justify-between rounded-sm border border-[#333333] bg-[#171717] pl-5 pr-5'
       }
     >
       {props.expired && <Expired />}
       {props.error && <Error />}
-      <div className={'flex justify-between items-center w-[111px] h-[20px]'}>
+      <div className={'flex h-[20px] w-[111px] items-center justify-between'}>
         {props.state === 'loading' ? (
           <BoxLoading />
         ) : props.state === 'checked' ? (
@@ -26,7 +26,7 @@ const Recaptcha = (props: PropsType) => {
         )}
         <div className={'text-xs font-medium text-[#FFFFFF]'}>I’m not a robot</div>
       </div>
-      <div className={'flex flex-col items-center w-[44px] h-[64px]'}>
+      <div className={'flex h-[64px] w-[44px] flex-col items-center'}>
         <svg
           fill={'none'}
           height={48}
@@ -68,12 +68,12 @@ const Recaptcha = (props: PropsType) => {
 }
 const BoxDefault = () => {
   return (
-    <div className={'w-[20px] h-[20px] border rounded-[1px] border-[#B7B7B7] bg-[#FFFFFF]'}></div>
+    <div className={'h-[20px] w-[20px] rounded-[1px] border border-[#B7B7B7] bg-[#FFFFFF]'}></div>
   )
 }
 const BoxChecked = () => {
   return (
-    <div className={'flex justify-center items-center w-[24px] h-[18px]'}>
+    <div className={'flex h-[18px] w-[24px] items-center justify-center'}>
       <svg
         fill={'none'}
         height={'19'}
@@ -94,7 +94,7 @@ const BoxChecked = () => {
 }
 const BoxLoading = () => {
   return (
-    <div className={'flex justify-center items-center w-[13px] h-[13px]'}>
+    <div className={'flex h-[13px] w-[13px] items-center justify-center'}>
       <svg
         fill={'none'}
         height={'17'}
@@ -116,7 +116,7 @@ const Privacy = () => {
   return (
     <div
       className={
-        'flex justify-center items-center w-[42px] h-[7px] text-[6px] font-light leading-[7px]'
+        'flex h-[7px] w-[42px] items-center justify-center text-[6px] font-light leading-[7px]'
       }
     >
       Privacy-Terms
@@ -127,7 +127,7 @@ const Expired = () => {
   return (
     <div
       className={
-        'absolute left-4 top-0.5 w-[195px] h-[24px] text-[10px] text-[#FF0000] leading-[12px]'
+        'absolute left-4 top-0.5 h-[24px] w-[195px] text-[10px] leading-[12px] text-[#FF0000]'
       }
     >
       Verification expired. Check the checkbox again.
@@ -136,10 +136,10 @@ const Expired = () => {
 }
 const Error = () => {
   return (
-    <div className={'absolute -left-2 -top-2 w-[314px] h-[124px] border border-[#FF0000] '}>
+    <div className={'absolute -left-2 -top-2 h-[124px] w-[314px] border border-[#FF0000] '}>
       <div
         className={
-          'absolute left-2 top-11 w-[183px] h-[12px] text-[10px] text-[#FF0000] leading-[12]'
+          'absolute left-2 top-11 h-[12px] w-[183px] text-[10px] leading-[12] text-[#FF0000]'
         }
       >
         Please verify that you are not a robot

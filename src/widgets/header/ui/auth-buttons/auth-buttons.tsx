@@ -1,8 +1,8 @@
 import * as React from 'react'
 
+import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
 import Link from 'next/link'
-import { ReturnComponent } from '@/shared/types'
 
 export const AuthButtons = (): ReturnComponent => {
   const classes = {

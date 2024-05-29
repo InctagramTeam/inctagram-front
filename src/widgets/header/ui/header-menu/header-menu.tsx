@@ -3,14 +3,15 @@ import { useState } from 'react'
 
 import { MD_BREAKPOINT } from '@/shared/constants'
 import { useResponsive } from '@/shared/lib/hooks'
+import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui/flex'
+
 import { LANGUAGES } from '../../model/constants'
 import { AuthButtons } from '../auth-buttons'
 import { LanguageSelection } from '../language-selection'
 import { MobileDropdown } from '../mobile-dropdown'
 import { NotificationsDropdown } from '../notifications-dropdown'
 import { NotificationProps } from '../notifications-dropdown-list'
-import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   isAuth?: boolean

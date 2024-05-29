@@ -2,11 +2,11 @@
 
 import {
   CSSProperties,
+  ComponentPropsWithoutRef,
   DetailedHTMLProps,
   HTMLAttributes,
   ReactNode,
   forwardRef,
-  ComponentPropsWithoutRef,
 } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
@@ -133,7 +133,7 @@ export interface FlexProps extends DivPropsType {
   wrap?: FlexWrapType
 }
 
-const Flex = forwardRef<HTMLDivElement, FlexProps & ComponentPropsWithoutRef<'div'>>(
+const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexProps>(
   (props, ref): ReturnComponent => {
     const {
       children,

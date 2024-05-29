@@ -1,9 +1,10 @@
 'use client'
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
+
 import { Input, InputProps } from '@/shared/ui/input/input'
 
-type Props<T extends FieldValues> = UseControllerProps<T> &
-  Omit<InputProps, 'id' | 'onChange' | 'value'>
+type Props<T extends FieldValues> = Omit<InputProps, 'id' | 'onChange' | 'value'> &
+  UseControllerProps<T>
 
 export const ControlledInput = <T extends FieldValues>({
   control,

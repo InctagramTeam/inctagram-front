@@ -3,15 +3,13 @@ import { ChangeEvent, forwardRef, useId } from 'react'
 
 import { CalendarIcon, CalendarOutlineIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils/merge-cn'
+import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover/popover'
 
 import { Calendar, CalendarProps } from './calendar'
 
-import { ReturnComponent } from '@/shared/types'
-import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover/popover'
-
 export type DatePickerProps = {
-  triggerClassName?: string
   calendarClassName?: string
   disabled?: boolean
   errorMessage?: string
@@ -22,6 +20,7 @@ export type DatePickerProps = {
   onValueChange?: (value: string) => void
   open?: boolean
   textTrigger: string
+  triggerClassName?: string
   /** value, onValueChange и ref нужны для нативного инпута, чтобы можно было использовать react-hook-form */
   value?: string
 } & CalendarProps
@@ -29,19 +28,19 @@ export type DatePickerProps = {
 export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
   (
     {
-      triggerClassName,
+      calendarClassName,
+      className,
       disabled,
       errorMessage,
       id,
       label,
       name,
       onOpenChange,
+      onValueChange,
       open,
       textTrigger,
+      triggerClassName,
       value,
-      onValueChange,
-      className,
-      calendarClassName,
       ...rest
     },
     ref

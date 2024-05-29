@@ -36,7 +36,7 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(
             <Link
               aria-disabled={link.disabled}
               className={clsx(
-                `ml-10 mb-0`,
+                `mb-0 ml-10`,
                 isActive
                   ? linkClasses.active
                   : link.disabled
@@ -50,7 +50,7 @@ export const MobileSidebarItem = forwardRef<HTMLAnchorElement, Props>(
             >
               {getIcon(link.href, isActive)}
               <TooltipContent
-                className={'flex text-Light-100 bg-Dark-500 items-center gap-4'}
+                className={'flex items-center gap-4 bg-Dark-500 text-Light-100'}
                 side={'top'}
               >
                 {link.name !== 'Log-out' && link.name}

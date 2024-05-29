@@ -42,12 +42,12 @@ const Menu = forwardRef<HTMLDivElement, MenuProps>((props, ref): ReturnComponent
     <DropdownRadix.Content
       align={align}
       className={clsx(
-        `relative overflow-visible
-         border border-Dark-100 rounded-[10px] p-[5px] pb-0 bg-Dark-500 text-Light-100 shadow-sm
-         before:content-[''] before:absolute before:bg-Dark-500 before:left-[10px] before:w-[10px] before:h-[10px]
-         before:-top-[6px] before:shadow-[0_07px_Dark-500] before:rotate-45 before:z-1
+        `before:rounded-xs relative
+         overflow-visible rounded-[10px] border border-Dark-100 bg-Dark-500 p-[5px] pb-0 text-Light-100
+         shadow-sm before:absolute before:-top-[6px] before:left-[10px] before:z-1 before:h-[10px]
+         before:w-[10px] before:rotate-45 before:border-l-[1px] before:border-t-[1px]
          before:border-Dark-100
-         before:border-l-[1px] before:border-t-[1px] before:rounded-xs`,
+         before:bg-Dark-500 before:shadow-[0_07px_Dark-500] before:content-['']`,
         className
       )}
       ref={ref}

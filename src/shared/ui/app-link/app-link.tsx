@@ -1,7 +1,8 @@
 'use client'
+import React, { ReactNode } from 'react'
+
 import clsx from 'clsx'
 import Link from 'next/link'
-import React, { ReactNode } from 'react'
 
 export type LinkOwnProps = {
   children?: ReactNode
