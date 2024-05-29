@@ -29,7 +29,7 @@ export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComp
   const isDesktop = width > MD_BREAKPOINT
 
   return (
-    <Flex className={'flex-nowrap'} gap={'40'}>
+    <Flex gap={'40'}>
       {isDesktop && <NotificationsDropdown notifications={notifications} />}
       <LanguageSelection
         isMobile={!isDesktop}
