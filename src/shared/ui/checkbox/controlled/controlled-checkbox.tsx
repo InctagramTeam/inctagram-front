@@ -1,3 +1,4 @@
+'use client'
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
 import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
@@ -8,7 +9,7 @@ import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
  */
 type Props<T extends FieldValues> =
   /** Не имеем возможность контролировать компонент снаружи, нет возможности передать ему value, onChange */
-  Omit<CheckboxProps, 'checked' | 'onCheckedChange'> &
+  Omit<CheckboxProps, 'checked' | 'id' | 'onCheckedChange'> &
     Omit<UseControllerProps<T>, 'defaultValue' | 'rules'>
 
 export const ControlledCheckbox = <T extends FieldValues>({
@@ -37,7 +38,6 @@ export const ControlledCheckbox = <T extends FieldValues>({
       id={name}
       label={label}
       onCheckedChange={onValueChange}
-      {...rest}
     />
   )
 }

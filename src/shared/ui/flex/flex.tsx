@@ -1,10 +1,19 @@
-import { CSSProperties, DetailedHTMLProps, HTMLAttributes, ReactNode, forwardRef } from 'react'
+'use client'
+
+import {
+  CSSProperties,
+  ComponentPropsWithoutRef,
+  DetailedHTMLProps,
+  HTMLAttributes,
+  ReactNode,
+  forwardRef,
+} from 'react'
 
 import { ReturnComponent } from '@/shared/types'
 import { clsx } from 'clsx'
 
 // types
-export type FlexJustifyContent =
+type FlexJustifyContent =
   | 'center'
   | 'end'
   | 'spaceAround'
@@ -12,10 +21,7 @@ export type FlexJustifyContent =
   | 'spaceEvenly'
   | 'start'
 
-export type FlexAlignItems = 'baseline' | 'center' | 'end' | 'start' | 'stretch'
-export type FlexDirection = 'col_reverse' | 'column' | 'row' | 'row_reverse'
-export type FlexWrap = 'nowrap' | 'wrap'
-export type FlexGap =
+type FlexGapType =
   | '1'
   | '2'
   | '3'
@@ -31,6 +37,7 @@ export type FlexGap =
   | '22'
   | '24'
   | '26'
+  | '28'
   | '30'
   | '34'
   | '40'
@@ -39,7 +46,11 @@ export type FlexGap =
   | '70'
   | '80'
 
-// mapping types + classes
+type FlexAlignItemsType = 'baseline' | 'center' | 'end' | 'start' | 'stretch'
+type FlexDirectionType = 'col_reverse' | 'column' | 'row' | 'row_reverse'
+type FlexWrapType = 'no_wrap' | 'wrap' | 'wrap_reverse'
+
+// mapping types in classes
 const justifyClasses: Record<FlexJustifyContent, string> = {
   center: 'justify-center',
   end: 'justify-end',
@@ -49,13 +60,13 @@ const justifyClasses: Record<FlexJustifyContent, string> = {
   start: 'justify-start',
 }
 
-const flexWrapClasses: Record<FlexWrap, string> = {
-  nowrap: 'nowrap',
-  wrap: 'nowrap',
+const flexWrapClasses: Record<FlexWrapType, string> = {
+  no_wrap: 'flex-nowrap',
+  wrap: 'flex-wrap',
+  wrap_reverse: 'flex-wrap-reverse',
 }
-// 'nowrap' | 'wrap'
 
-const alignClasses: Record<FlexAlignItems, string> = {
+const alignClasses: Record<FlexAlignItemsType, string> = {
   baseline: 'items-baseline',
   center: 'items-center',
   end: 'items-end',
@@ -63,14 +74,14 @@ const alignClasses: Record<FlexAlignItems, string> = {
   stretch: 'items-stretch',
 }
 
-const directionClasses: Record<FlexDirection, string> = {
+const directionClasses: Record<FlexDirectionType, string> = {
   col_reverse: 'flex-col-reverse',
-  column: 'flex flex-col',
-  row: 'flex flex-row',
+  column: 'flex-col',
+  row: 'flex-row',
   row_reverse: 'flex-row-reverse',
 }
 
-const gapClasses: Record<FlexGap, string> = {
+const gapClasses: Record<FlexGapType, string> = {
   1: 'gap-[1px]',
   2: 'gap-[2px]',
   3: 'gap-[3px]',
@@ -86,6 +97,7 @@ const gapClasses: Record<FlexGap, string> = {
   22: 'gap-[22px]',
   24: 'gap-[24px]',
   26: 'gap-[26px]',
+  28: 'gap-[28px]',
   30: 'gap-[30px]',
   34: 'gap-[34px]',
   40: 'gap-[40px]',
@@ -96,23 +108,19 @@ const gapClasses: Record<FlexGap, string> = {
 }
 
 // props
-type DivProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+type DivPropsType = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
-export interface FlexProps extends DivProps {
+export interface FlexProps extends DivPropsType {
   children: ReactNode
   className?: string
-  direction?: FlexDirection
-  gap?: FlexGap
-  /**
-   * Выравнивание флекс элементов
-   */
-  items?: FlexAlignItems
+  direction?: FlexDirectionType
+  gap?: FlexGapType
+  /** Выравнивание флекс элементов */
+  items?: FlexAlignItemsType
   justify?: FlexJustifyContent
   m?: CSSProperties['margin']
   max?: CSSProperties['width']
-  /**
-   * Растягивает Flex контейнер на всю ширину
-   */
+  /** Растягивает Flex контейнер на всю ширину */
   maxWidth?: boolean
   mb?: CSSProperties['marginBottom']
   ml?: CSSProperties['marginLeft']
@@ -122,68 +130,70 @@ export interface FlexProps extends DivProps {
   my?: CSSProperties['marginLeft']
   p?: CSSProperties['padding']
   width?: CSSProperties['width']
-  wrap?: FlexWrap
+  wrap?: FlexWrapType
 }
 
-const Flex = forwardRef<HTMLDivElement, FlexProps>((props, ref): ReturnComponent => {
-  const {
-    children,
-    className,
-    direction = 'row',
-    gap,
-    items = 'center',
-    justify = 'start',
-    m,
-    max,
-    maxWidth,
-    mb,
-    ml,
-    mr,
-    mt,
-    mx,
-    my,
-    p,
-    style,
-    width,
-    wrap = 'nowrap',
-    ...flexProps
-  } = props
+const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexProps>(
+  (props, ref): ReturnComponent => {
+    const {
+      children,
+      className,
+      direction = 'row',
+      gap,
+      items = 'center',
+      justify = 'start',
+      m,
+      max,
+      maxWidth,
+      mb,
+      ml,
+      mr,
+      mt,
+      mx,
+      my,
+      p,
+      style,
+      width,
+      wrap = 'no_wrap',
+      ...rest
+    } = props
 
-  const styles = {
-    ...(mr && { marginRight: mr }),
-    ...(ml && { marginLeft: ml }),
-    ...(mt && { marginTop: mt }),
-    ...(mb && { marginBottom: mb }),
-    ...(mx && { marginLeft: mx, marginRight: mx }),
-    ...(my && { marginBottom: my, marginTop: my }),
-    ...(m && { margin: m }),
-    ...(p && { padding: p }),
-    ...(width && { width: width }),
-    ...(max && { max: max }),
-    ...style,
+    const styles = {
+      ...style,
+      ...(mr && { marginRight: mr }),
+      ...(ml && { marginLeft: ml }),
+      ...(mt && { marginTop: mt }),
+      ...(mb && { marginBottom: mb }),
+      ...(mx && { marginLeft: mx, marginRight: mx }),
+      ...(my && { marginBottom: my, marginTop: my }),
+      ...(m && { margin: m }),
+      ...(p && { padding: p }),
+      ...(width && { width: width }),
+      ...(max && { max: max }),
+    }
+
+    const classes = [
+      className,
+      justifyClasses[justify],
+      alignClasses[items],
+      directionClasses[direction],
+      directionClasses[direction],
+      flexWrapClasses[wrap],
+      gap && gapClasses[gap],
+    ]
+
+    return (
+      <div
+        {...rest}
+        className={clsx('flex', maxWidth && 'w-full', classes, className)}
+        ref={ref}
+        style={styles}
+      >
+        {children}
+      </div>
+    )
   }
-
-  const classes = [
-    className,
-    justifyClasses[justify],
-    alignClasses[items],
-    directionClasses[direction],
-    directionClasses[direction],
-    flexWrapClasses[wrap],
-    gap && gapClasses[gap],
-  ]
-
-  return (
-    <div
-      className={clsx('flex', maxWidth && 'w-full', classes, className)}
-      ref={ref}
-      style={styles}
-      {...flexProps}
-    >
-      {children}
-    </div>
-  )
-})
+)
 
 Flex.displayName = 'Flex'
 export { Flex }

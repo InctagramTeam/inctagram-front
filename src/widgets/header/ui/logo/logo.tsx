@@ -1,8 +1,8 @@
 import logo from '@/shared/assets/images/logo.svg'
 import { cn } from '@/shared/lib/utils'
+import { ReturnComponent } from '@/shared/types'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ReturnComponent } from '@/shared/types'
 export const Logo = (): ReturnComponent => {
   const classes = {
     img: `w-full h-full object-contain`,

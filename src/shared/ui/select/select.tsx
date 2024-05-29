@@ -1,44 +1,46 @@
 'use client'
 
 import * as React from 'react'
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
+import ChevronDownIcon from '@/shared/assets/icons/ChevronDownIcon'
+import ChevronUpIcon from '@/shared/assets/icons/ChevronUpIcon'
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
 import * as SelectRadix from '@radix-ui/react-select'
-import { ChevronDown, ChevronUp } from 'lucide-react'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
 const SelectValue: typeof SelectRadix.Value = SelectRadix.Value
 
-type ConditionalProps<T extends string | number> = {
+type ConditionalProps<T extends number | string> = {
   onChange?: (value: T) => void
   value?: T
 }
 
-export type SelectOption<T extends string | number> = {
+export type SelectOption<T extends number | string> = {
   disabled?: boolean
-  label: string | number
+  label: number | string
   value: T
 }
 
-type CommonOwnProps<T extends string | number> = {
+type CommonOwnProps<T extends number | string> = {
+  className?: string
   disabled?: boolean
   label?: string
   name?: string
   options: SelectOption<T>[]
   placeholder?: string
-  className?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
-  variant?: 'primary' | 'pagination'
+  variant?: 'pagination' | 'primary'
 }
 
-export type SelectProps = CommonOwnProps<string | number> & ConditionalProps<string | number>
+export type SelectAllProps = CommonOwnProps<number | string> & ConditionalProps<number | string>
 
-const SelectBox = (props: SelectProps): ReturnComponent => {
+const SelectBox = (props: SelectAllProps): ReturnComponent => {
   const {
+    className,
     disabled,
     label,
     name,
@@ -48,7 +50,6 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     position,
     required,
     value,
-    className,
     variant = 'primary',
     ...rest
   } = props
@@ -65,21 +66,21 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
       <SelectTrigger
         className={
           variant === 'pagination'
-            ? 'w-[50px] pl-[6px] pr-[1px] py-0 gap-[1px] justify-center'
+            ? 'w-[50px] justify-center gap-[1px] py-0 pl-[6px] pr-[1px]'
             : 'w-[210px]'
         }
       >
         <SelectValue placeholder={placeholder} />
-        <ChevronUp
-          className={cn('chevron-up', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}
+        <ChevronUpIcon
+          className={cn('chevron-up', variant === 'pagination' ? '[h-16px] w-[16px]' : '')}
         />
-        <ChevronDown
-          className={cn('chevron-down', variant === 'pagination' ? 'w-[16px] [h-16px]' : '')}
+        <ChevronDownIcon
+          className={cn('chevron-down', variant === 'pagination' ? '[h-16px] w-[16px]' : '')}
         />
       </SelectTrigger>
       <SelectContent
-        position={position}
         className={variant === 'pagination' ? 'w-[50px]' : 'w-full'}
+        position={position}
       >
         {label && <SelectLabel>{label}</SelectLabel>}
 
@@ -127,7 +128,7 @@ const SelectLabel = forwardRef<
   ElementRef<typeof SelectRadix.Label>,
   ComponentPropsWithoutRef<typeof SelectRadix.Label>
 >(({ children, className, ...props }, ref) => (
-  <SelectRadix.Label className={classNames.label} ref={ref} {...props}>
+  <SelectRadix.Label {...props} className={classNames.label} ref={ref}>
     {children}
   </SelectRadix.Label>
 ))
@@ -137,7 +138,7 @@ const SelectTrigger = forwardRef<
   { icon?: ReactNode } & ComponentPropsWithoutRef<typeof SelectRadix.Trigger>
 >(({ children, className, icon, ...props }, ref) => {
   return (
-    <SelectRadix.Trigger className={cn(classNames.trigger, className)} ref={ref} {...props}>
+    <SelectRadix.Trigger {...props} className={cn(classNames.trigger, className)} ref={ref}>
       {children}
       <SelectRadix.Icon asChild>{icon}</SelectRadix.Icon>
     </SelectRadix.Trigger>
@@ -166,7 +167,7 @@ const SelectItem = forwardRef<
   ElementRef<typeof SelectRadix.Item>,
   ComponentPropsWithoutRef<typeof SelectRadix.Item>
 >(({ children, className, ...props }, ref) => (
-  <SelectRadix.Item className={cn(classNames.item, className)} ref={ref} {...props}>
+  <SelectRadix.Item {...props} className={cn(classNames.item, className)} ref={ref}>
     <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
   </SelectRadix.Item>
 ))
@@ -191,7 +192,7 @@ const SelectScrollUpButton = forwardRef<
     ref={ref}
     {...props}
   >
-    <ChevronUp className={'h-4 w-4'} />
+    <ChevronUpIcon className={'h-4 w-4'} />
   </SelectRadix.ScrollUpButton>
 ))
 
@@ -204,7 +205,7 @@ const SelectScrollDownButton = forwardRef<
     ref={ref}
     {...props}
   >
-    <ChevronDown className={'h-4 w-4'} />
+    <ChevronDownIcon className={'h-4 w-4'} />
   </SelectRadix.ScrollDownButton>
 ))
 

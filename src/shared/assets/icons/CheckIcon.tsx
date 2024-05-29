@@ -2,12 +2,11 @@ import { Ref, SVGProps, forwardRef, memo } from 'react'
 
 const CheckIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
-    fill={'none'}
+    fill={'currentColor'}
     height={'100%'}
     ref={ref}
     viewBox={'0 0 18 18'}
     width={'100%'}
-    xmlns={'http://www.w3.org/2000/svg'}
     {...props}
   >
     <path

@@ -17,8 +17,7 @@ import { clsx } from 'clsx'
 
 export type InputProps = {
   disabled?: boolean
-  /**
-   * --> Чтобы задать стили отдельно, для элементов html разметки снаружи достучаться до них <--
+  /** Чтобы задать стили отдельно, для элементов html разметки снаружи достучаться до них <--
    * Пример использования:
    * <Input
    *    ref={inputRef}
@@ -34,14 +33,12 @@ export type InputProps = {
   inputProps?: ComponentProps<'input'>
   label?: string
   labelProps?: ComponentProps<'label'>
-  /**
-   * Обратный вызов, который вызывается при нажатии на кнопку очистки
+  /** Обратный вызов, который вызывается при нажатии на кнопку очистки
    * Если не указан, очищает внутреннее значение через ref и вызывает onValueChange с пустой строкой
    */
   onClearInput?: () => void
   onValueChange?: (value: string) => void
-  /**
-   * Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы, которые мы можем передать в нативный элемент,
+  /** Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы, которые мы можем передать в нативный элемент,
    * т.e html тег, то мы используем тип ComponentPropsWithoutRef<‘input’> и в дженерике указываем для какого именно тэга
    */
 } & ComponentPropsWithoutRef<'input'>
@@ -62,7 +59,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onValueChange,
       placeholder,
       type = 'search',
-      ...restProps
+      ...rest
     },
     /** Так как используем react-hook-form, он работает через рефы, то должны принимать ref */
     forwardedRef
@@ -144,7 +141,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       ),
       root: clsx(`_Root_  w-full min-w-[200px] text-regular-text-16 text-Light-900`, className),
       searchIcon: clsx(
-        `_LeadingIcon_ absolute text-Light-900 top-1/2 bottom-1/2 left-0 transform -translate-t-1/2
+        `_LeadingIcon_ absolute text-Light-900 top-1/2 bottom-1/2 -left-3 transform -translate-t-1/2
       w-[20px] h-[20px] ml-[12px] p-0 bg-transparent border-o outline-0 ring-0
       focus-visible:text-Light-100 focus-visible:outline focus-visible:outline-2
       focus-visible:outline-Primary-50
@@ -169,7 +166,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className={classNames.inputWrapper}>
           {isSearchField && (
-            <div className={`top-1/4 absolute left-[3%]`}>
+            <div className={`absolute left-[3%] top-1/4`}>
               <SearchIcon
                 className={classNames.searchIcon}
                 onClick={() => inputRef.current?.focus()}
@@ -177,6 +174,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </div>
           )}
           <input
+            {...rest}
             {...inputProps}
             className={classNames.input}
             disabled={disabled}
@@ -185,19 +183,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             placeholder={placeholder}
             ref={finalRef}
             type={finalType}
-            value={restProps.value}
-            {...restProps}
+            value={rest.value}
           />
           {isRevealPasswordButtonShown && (
             <button
               className={clsx(
-                `_ShowPassword_ cursor-pointer absolute top-1/2 right-0 bottom-1/2
-              transform -translate-y-1/2 w-[20px] h-[20px] mr-[12px] p-0 bg-transparent border-0
-              rounder-[0.25rem] outline-0 ring-0 focus:outline-none
-              focus:ring-1 focus:ring-offset-1 focus:ring-opacity-70
-              focus:ring-offset-Primary-500 focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500`,
+                `_ShowPassword_ rounder-[0.25rem] absolute bottom-1/2 right-0 top-1/2
+              mr-[12px] h-[20px] w-[20px] -translate-y-1/2 transform cursor-pointer border-0 bg-transparent
+              p-0 outline-0 ring-0 focus:opacity-60
+              focus:shadow-sm focus:shadow-Primary-500 focus:outline-none
+              focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
                 disabled &&
-                  `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed cursor-not-allowed`
+                  `active:not:disabled:text-Light-100 cursor-not-allowed text-Dark-300 disabled:cursor-not-allowed`
               )}
               disabled={disabled}
               onClick={handleToggleShowPassword}
@@ -209,11 +206,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {isClearInputButtonShown && (
             <button
               className={clsx(
-                `_ClearInput_ absolute flex items-center text-Light-100 unset cursor-pointer top-1/2
-                right-[12px] transform -translate-y-1/2 transition-colors ease-in-out delay-150
-                focus:ring-1 focus:ring-offset-1 focus:ring-opacity-70
-                focus:ring-offset-Primary-500 focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500`,
-                disabled && `text-Dark-100/60 cursor-not-allowed`
+                `_ClearInput_ unset absolute right-[12px] top-1/2 flex -translate-y-1/2 transform
+                cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
+                focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
+                focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
+                disabled && `cursor-not-allowed text-Dark-100/60`
               )}
               disabled={disabled}
               onClick={handleClearInput}

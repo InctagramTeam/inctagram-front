@@ -19,7 +19,7 @@ export const MobileSidebar = ({ className }: Props): ReturnComponent => {
       <nav
         className={clsx(
           className,
-          `fixed w-full bottom-0 left-0 right-0 flex justify-center h-[60px] border-t-[1px] border-t-Dark-300 shadow-sm pt-4`
+          `fixed bottom-0 left-0 right-0 flex h-[60px] w-full justify-center border-t-[1px] border-t-Dark-300 pt-4 shadow-sm`
         )}
         onClick={() => setIsOpenMenu(!isOpenMenu)}
       >

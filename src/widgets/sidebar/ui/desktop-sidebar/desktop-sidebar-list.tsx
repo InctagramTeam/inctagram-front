@@ -10,7 +10,7 @@ export const DesktopSidebarList = (): ReturnComponent => {
   return (
     <ul
       className={
-        'flex flex-col gap-[24px] rounded-md cursor-pointer transition-colors [&>*:nth-child(5)]:mb-[46px] h-full'
+        'flex h-full cursor-pointer flex-col gap-[24px] rounded-md transition-colors [&>*:nth-child(5)]:mb-[46px]'
       }
     >
       {SIDEBAR_LINKS.map(link => (

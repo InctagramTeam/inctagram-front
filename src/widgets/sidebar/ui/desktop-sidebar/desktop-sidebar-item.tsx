@@ -43,7 +43,7 @@ export const DesktopSidebarItem = forwardRef<HTMLAnchorElement, Props>(
           {getIcon(link.href, isActive)}
           {!isCollapsed && link.name}
           <div
-            className={clsx(isActive && `absolute right-4 w-2 h-2 rounded bg-Primary-900`)}
+            className={clsx(isActive && `absolute right-4 h-2 w-2 rounded bg-Primary-900`)}
           ></div>
         </Link>
       </li>

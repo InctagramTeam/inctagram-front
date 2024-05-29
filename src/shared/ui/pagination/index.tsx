@@ -84,10 +84,6 @@ const MainPaginationButtons = ({
       {paginationRange.map((page: number, index) => {
         const isSelected = page === currentPage
 
-        if (typeof page !== 'number') {
-          return <Dots key={index} />
-        }
-
         return <PageButton key={index} onClick={onClick(page)} page={page} selected={isSelected} />
       })}
     </>
@@ -113,7 +109,7 @@ export const PerPageSelect = ({ onPerPageChange, perPage, perPageOptions }: PerP
         onChange={onPerPageChange}
         options={selectOptions}
         value={perPage}
-        variant="pagination"
+        variant={'pagination'}
       />
       on page
     </div>
