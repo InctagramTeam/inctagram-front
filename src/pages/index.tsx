@@ -1,14 +1,8 @@
 import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { en, ru } from 'locales'
 
 function Public() {
-  const router = useRouter()
-
-  const t = router.locale === 'en' ? en : ru
-
   return (
     <PageWrapper title={'Main | Instagram'}>
       <nav className={'navbar'}>

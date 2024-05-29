@@ -1,11 +1,12 @@
 import * as React from 'react'
 
+import { EMPTY_STRING } from '@/shared/constants/base'
 import { cn } from '@/shared/lib/utils'
 import { Select, SelectContent } from '@/shared/ui/select/select'
+import { SelectItemProps, SelectProps } from '@radix-ui/react-select'
+
 import { LanguageSelectionList } from '../language-selection-list'
 import { LanguageSelectionTrigger } from '../language-selection-trigger'
-import { SelectItemProps, SelectProps } from '@radix-ui/react-select'
-import { EMPTY_STRING } from '@/shared/constants/base'
 
 type Props = {
   isMobile: boolean

@@ -34,10 +34,10 @@ const Item = ({
   return (
     <DropdownRadix.Item
       asChild
-      className={`cursor-pointer bg-Dark-500 flex gap-[6px] items-center p-[0.75rem] outline-none
-        w-40 select-none py-1.5 text-Light-100 data-[highlighted]:bg-Dark-100 data-[highlighted]:text-Light-100
-        border-b-[1px] border-b-Dark-100/10 shadow-sm hover:text-Primary-100
-        data-[highlighted]:focus:outline-none transition-all duration-150 ease-linear hover:bg-Dark-100/70`}
+      className={`flex w-40 cursor-pointer select-none items-center gap-[6px] border-b-[1px]
+        border-b-Dark-100/10 bg-Dark-500 p-[0.75rem] py-1.5 text-Light-100 shadow-sm
+        outline-none transition-all duration-150 ease-linear
+        data-[highlighted]:bg-Dark-100 data-[highlighted]:text-Light-100 hover:bg-Dark-100/70 hover:text-Primary-100 data-[highlighted]:focus:outline-none`}
       disabled={disabled}
       onSelect={handleSelect}
       style={style}

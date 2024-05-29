@@ -2,10 +2,10 @@
 
 import * as React from 'react'
 
+import XIcon from '@/shared/assets/icons/XIcon'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { type VariantProps, cva } from 'class-variance-authority'
 import { clsx } from 'clsx'
-import XIcon from '@/shared/assets/icons/XIcon'
 
 const Sheet = SheetPrimitive.Root
 

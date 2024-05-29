@@ -1,11 +1,11 @@
 import * as React from 'react'
 
+import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui/flex'
 import { HeaderMenu } from '@/widgets/header/ui/header-menu'
 import { Logo } from '@/widgets/header/ui/logo'
 import { NotificationProps } from '@/widgets/header/ui/notifications-dropdown-list'
 import { clsx } from 'clsx'
-import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   className?: string

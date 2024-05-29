@@ -1,3 +1,4 @@
+'use client'
 import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
@@ -41,7 +42,7 @@ interface TextProps<T extends ElementType> {
     | 'small-text-12'
 }
 
-export function Text<T extends ElementType = 'p'>({
+export function Text<T extends ElementType = 'span'>({
   asComponent,
   children,
   className,
@@ -67,32 +68,19 @@ export function Text<T extends ElementType = 'p'>({
 }: Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>> & TextProps<T>): ReturnComponent {
   const textClasses = clsx(
     // Main fonts
-    variant === 'Large' &&
-      `text-Large-26 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'H1' &&
-      `text-H1-20 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'H2' &&
-      `text-H2-18 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'H3' &&
-      `text-H3-16 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'regular_text_16' &&
-      `regular-text-16 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'bold_text_16' &&
-      `text-bold-text-16 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'regular-text-14' &&
-      `text-regular-text-14 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'medium-text-14' &&
-      `text-medium-text-14 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'bold_text_14' &&
-      `text-sm-bold-14 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'small-text-12' &&
-      `text-small-text-12 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'semi-bold_small_text_12' &&
-      `text-semi-bold_small_text_12 hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'regular-link_14' &&
-      `text-regular_link-14 underline cursor-pointer hover:text-Primary-100 hover:transition-colors duration-150 ease-in-out`,
-    variant === 'small-link_12' &&
-      `text-small-link_12 text-Primary-300 underline cursor pointer hover:text-Primary-500 hover:transition-colors duration-150 ease-in-out`,
+    variant === 'Large' && `text-Large-26`,
+    variant === 'H1' && `text-H1-20`,
+    variant === 'H2' && `text-H2-18`,
+    variant === 'H3' && `text-H3-16`,
+    variant === 'regular_text_16' && `regular-text-16`,
+    variant === 'bold_text_16' && `text-bold-text-16`,
+    variant === 'regular-text-14' && `text-regular-text-14`,
+    variant === 'medium-text-14' && `text-medium-text-14`,
+    variant === 'bold_text_14' && `text-sm-bold-14`,
+    variant === 'small-text-12' && `text-small-text-12`,
+    variant === 'semi-bold_small_text_12' && `text-semi-bold_small_text_12`,
+    variant === 'regular-link_14' && `text-regular_link-14 underline cursor-pointer`,
+    variant === 'small-link_12' && `text-small-link_12 text-Primary-300 underline cursor pointer`,
 
     // Additional fonts
     variant === 'error_text_12' &&
@@ -131,10 +119,10 @@ export function Text<T extends ElementType = 'p'>({
     ...style,
   }
 
-  const Component = asComponent || 'p'
+  const Component = asComponent || 'span'
 
   return (
-    <div>
+    <>
       {variant === 'inline_code' ? (
         <code
           className={
@@ -148,6 +136,6 @@ export function Text<T extends ElementType = 'p'>({
           {children}
         </Component>
       )}
-    </div>
+    </>
   )
 }

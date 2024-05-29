@@ -50,19 +50,19 @@ export const ModalContent = ({
       />
       <Dialog.Content
         className={`fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
-        bg-Dark-300 p-8 text-Light-100 ring-1 ring-Dark-100 shadow-sm
+        bg-Dark-300 p-8 text-Light-100 shadow-sm ring-1 ring-Dark-100
         data-[state=closed]:animate-[dialog-content-hide_200ms]
         data-[state=open]:animate-[dialog-content-show_200ms]`}
         forceMount
         style={styles}
       >
-        <div className={'flex justify-between items-center relative'}>
-          <Dialog.Title className={'text-xl pb-[11px] border-b border-b-Dark-100'}>
+        <div className={'relative flex items-center justify-between'}>
+          <Dialog.Title className={'border-b border-b-Dark-100 pb-[11px] text-xl'}>
             {title}
           </Dialog.Title>
           <Dialog.Close
             className={
-              'text-Light-100 hover:text-Primary-300 hover:transition-all duration-150 pr-4'
+              'pr-4 text-Light-100 duration-150 hover:text-Primary-300 hover:transition-all'
             }
           >
             <CrossIcon />

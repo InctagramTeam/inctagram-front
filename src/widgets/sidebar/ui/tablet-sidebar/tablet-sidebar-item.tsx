@@ -51,14 +51,14 @@ export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(
               {getIcon(link.href, isActive)}
               <TooltipContent
                 className={
-                  'flexrounded-1/2 h-8 w-full max-w-[100px] !text-Light-100 bg-Dark-500 items-center gap-4'
+                  'flexrounded-1/2 h-8 w-full max-w-[100px] items-center gap-4 bg-Dark-500 !text-Light-100'
                 }
                 side={'right'}
               >
                 {link.name}
               </TooltipContent>
               <div
-                className={clsx(isActive && `absolute right-6 w-2 h-2 rounded bg-Primary-900`)}
+                className={clsx(isActive && `absolute right-6 h-2 w-2 rounded bg-Primary-900`)}
               ></div>
             </Link>
           </TooltipTrigger>
