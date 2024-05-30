@@ -12,7 +12,7 @@ import { LanguageSelection } from '../language-selection'
 import { MobileDropdown } from '../mobile-dropdown'
 import { NotificationsDropdown } from '../notifications-dropdown'
 import { NotificationProps } from '../notifications-dropdown-list'
-import { LangSelectSwitcher } from '@/widgets/header/ui/lang-select-switcher'
+import { LangSelectSwitcher } from '@/shared/lib/translate/ui/lang-select-switcher'
 
 type Props = {
   isAuth?: boolean

@@ -13,32 +13,34 @@ const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
 const SelectValue: typeof SelectRadix.Value = SelectRadix.Value
 
-type ConditionalProps<T extends number | string> = {
+type ChangeValueProps<T extends number | string> = {
   onChange?: (value: T) => void
   value?: T
 }
 
-export type SelectOption<T extends number | string> = {
+export type Options<T extends number | string> = {
   disabled?: boolean
-  label: number | string
+  label?: number | string
+  icon?: ReactNode
+  name?: ReactNode
   value: T
 }
 
-type CommonOwnProps<T extends number | string> = {
+type OwnProps<T extends number | string> = {
   className?: string
   disabled?: boolean
   label?: string
   name?: string
-  options: SelectOption<T>[]
+  options: Options<T>[]
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
   variant?: 'pagination' | 'primary'
 }
 
-export type SelectAllProps = CommonOwnProps<number | string> & ConditionalProps<number | string>
+export type SelectProps = OwnProps<number | string> & ChangeValueProps<number | string>
 
-const SelectBox = (props: SelectAllProps): ReturnComponent => {
+const SelectBox = (props: SelectProps): ReturnComponent => {
   const {
     className,
     disabled,
@@ -99,7 +101,7 @@ const SelectBox = (props: SelectAllProps): ReturnComponent => {
   )
 }
 
-const classNames = {
+const classes = {
   content: `relative z-50 ring-1 ring-t-0 ring-Dark-100 data-[state=open]:ring-Light-100 
     bg-Dark-700 m-0 p-0 max-h-96
     overflow-hidden text-popover-foreground rounded-br-sm rounded-bl-sm`,
@@ -128,7 +130,7 @@ const SelectLabel = forwardRef<
   ElementRef<typeof SelectRadix.Label>,
   ComponentPropsWithoutRef<typeof SelectRadix.Label>
 >(({ children, className, ...props }, ref) => (
-  <SelectRadix.Label {...props} className={classNames.label} ref={ref}>
+  <SelectRadix.Label {...props} className={classes.label} ref={ref}>
     {children}
   </SelectRadix.Label>
 ))
@@ -138,7 +140,7 @@ const SelectTrigger = forwardRef<
   { icon?: ReactNode } & ComponentPropsWithoutRef<typeof SelectRadix.Trigger>
 >(({ children, className, icon, ...props }, ref) => {
   return (
-    <SelectRadix.Trigger {...props} className={cn(classNames.trigger, className)} ref={ref}>
+    <SelectRadix.Trigger {...props} className={cn(classes.trigger, className)} ref={ref}>
       {children}
       <SelectRadix.Icon asChild>{icon}</SelectRadix.Icon>
     </SelectRadix.Trigger>
@@ -151,7 +153,7 @@ const SelectContent = forwardRef<
 >(({ children, className, position = 'popper', ...props }, ref) => (
   <SelectRadix.Portal>
     <SelectRadix.Content
-      className={cn(classNames.content, className)}
+      className={cn(classes.content, className)}
       position={position}
       ref={ref}
       {...props}
@@ -167,7 +169,7 @@ const SelectItem = forwardRef<
   ElementRef<typeof SelectRadix.Item>,
   ComponentPropsWithoutRef<typeof SelectRadix.Item>
 >(({ children, className, ...props }, ref) => (
-  <SelectRadix.Item {...props} className={cn(classNames.item, className)} ref={ref}>
+  <SelectRadix.Item {...props} className={cn(classes.item, className)} ref={ref}>
     <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
   </SelectRadix.Item>
 ))
