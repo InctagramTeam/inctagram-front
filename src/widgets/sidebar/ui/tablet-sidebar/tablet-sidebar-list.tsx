@@ -1,6 +1,6 @@
 import { ReturnComponent } from '@/shared/types'
 
-import { SIDEBAR_LINKS } from '../../model/constants/sidebar-links'
+import { SIDEBAR_LINKS } from '@/widgets/sidebar/model/ulils/sidebar-links'
 import { TabletSidebarItem } from './tablet-sidebar-item'
 
 export const TabletSidebarList = ({ ...rest }): ReturnComponent => {
