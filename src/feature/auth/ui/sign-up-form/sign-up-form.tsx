@@ -7,7 +7,7 @@ import GoogleIcon from '@/shared/assets/icons/GoogleIcon'
 import { AuthRoutes, GeneralRoutes } from '@/shared/constants/routes'
 import { useFormRevalidateWithLocale } from '@/shared/lib/hooks/use-form-revalidate-with-locale'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
-import { Translate } from '@/shared/lib/translate'
+import { Translate } from 'src/shared/lib/translate'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
 import { AppLink } from '@/shared/ui/app-link'
@@ -149,7 +149,10 @@ export const SignUpForm = forwardRef(
               control={control}
               disabled={disabled}
               label={
-                <Text className={`ml-4 `} variant={'small-text-12'}>
+                <Text
+                  className={`ml-4 inline-block w-full text-balance text-left`}
+                  variant={'small-text-12'}
+                >
                   <Translate
                     tags={{
                       '1': () => (
@@ -163,6 +166,7 @@ export const SignUpForm = forwardRef(
                       ),
                       '2': () => (
                         <Text
+                          className={`text-balance`}
                           asComponent={Link}
                           href={{ pathname: GeneralRoutes.PRIVACY, query: { sender: 'signup' } }}
                           variant={'small-link_12'}
@@ -181,13 +185,16 @@ export const SignUpForm = forwardRef(
         </Flex>
 
         <Flex direction={'column'}>
-          <Button className={'w-full max-w-[330px] p-[6px]'} disabled={disabled || isValid}>
+          <Button
+            className={'w-full max-w-[330px] text-balance p-[6px]'}
+            disabled={disabled || isValid}
+          >
             {t.button.signUp}
           </Button>
-          <Text className={`mt-[18px] text-Light-100`} variant={'regular_text_16'}>
+          <Text className={`mt-[18px] text-balance text-Light-100`} variant={'regular_text_16'}>
             {t.pages.signUp.question}
           </Text>
-          <AppLink className={`my-6`} href={AuthRoutes.SIGN_IN}>
+          <AppLink className={`my-6 text-balance`} href={AuthRoutes.SIGN_IN}>
             {t.button.signIn}
           </AppLink>
         </Flex>

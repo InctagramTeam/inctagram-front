@@ -4,12 +4,15 @@ import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { LINKS } from '@/widgets/header/model/constants'
 import Link from 'next/link'
+import { useTranslation } from '@/shared/lib/hooks/use-translation'
 
 type Props = {
   logout?: () => void
 }
 
 export const MobileDropdown = ({ logout }: Props) => {
+  const { t } = useTranslation()
+
   const classes = {
     item: `w-full data-[highlighted]:ring-Primary-700 data-[highlighted]:ring-1 data-[highlighted]:outline-none rounded-[2px]`,
     items: `flex flex-col gap-[12px] mb-[12px]`,
@@ -55,7 +58,7 @@ export const MobileDropdown = ({ logout }: Props) => {
             startIcon={<LogOutIcon />}
             variant={'text'}
           >
-            Log Out
+            {t.button.logOut}
           </Button>
         </Dropdown.Item>
       </div>

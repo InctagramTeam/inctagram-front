@@ -9,16 +9,13 @@ type Props = {
   className?: string
 } & ComponentPropsWithoutRef<'aside'>
 
-export const DesktopSidebar = forwardRef<HTMLElement, Props>(
-  ({ className, ...rest }, ref): ReturnComponent => {
-    return (
-      <>
-        <ToggleCollapsedButtons {...rest} />
-        <aside ref={ref}>
-          <DesktopSidebarMenu ref={ref} {...rest} />
-        </aside>
-      </>
-    )
-  }
-)
-DesktopSidebar.displayName = 'DesktopSidebar'
+export const DesktopSidebar = ({ className, ...rest }: Props): ReturnComponent => {
+  return (
+    <nav>
+      <ToggleCollapsedButtons />
+      <aside>
+        <DesktopSidebarMenu {...rest} />
+      </aside>
+    </nav>
+  )
+}

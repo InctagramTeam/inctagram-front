@@ -4,7 +4,7 @@ import { ComponentPropsWithoutRef, useState } from 'react'
 import { ReturnComponent } from '@/shared/types'
 import { clsx } from 'clsx'
 
-import { MOBILE_LINKS } from '../../model/constants/sidebar-links'
+import { getMobileLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
 import { MobileSidebarItem } from './mobile-sidebar-item'
 
 type Props = {
@@ -24,7 +24,7 @@ export const MobileSidebar = ({ className }: Props): ReturnComponent => {
         onClick={() => setIsOpenMenu(!isOpenMenu)}
       >
         <ul className={'flex gap-[36px]'}>
-          {MOBILE_LINKS.map(link => (
+          {getMobileLinks().map(link => (
             <li key={link.href}>
               <MobileSidebarItem link={link} />
             </li>
