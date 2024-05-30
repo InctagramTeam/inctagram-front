@@ -12,6 +12,7 @@ import { LanguageSelection } from '../language-selection'
 import { MobileDropdown } from '../mobile-dropdown'
 import { NotificationsDropdown } from '../notifications-dropdown'
 import { NotificationProps } from '../notifications-dropdown-list'
+import { LangSelectSwitcher } from '@/widgets/header/ui/lang-select-switcher'
 
 type Props = {
   isAuth?: boolean
@@ -31,6 +32,7 @@ export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComp
   return (
     <Flex gap={'40'}>
       {isDesktop && <NotificationsDropdown notifications={notifications} />}
+      <LangSelectSwitcher />
       <LanguageSelection
         isMobile={!isDesktop}
         items={LANGUAGES}
