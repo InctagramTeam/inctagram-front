@@ -2,6 +2,7 @@ import * as React from 'react'
 import { ReactNode } from 'react'
 
 import { Dropdown } from '@/shared/ui/dropdown-menu'
+import { useTranslation } from '@/shared/lib/hooks/use-translation'
 
 type Props = {
   alternativeText?: string
@@ -35,7 +36,7 @@ export const NotificationsDropdownList = ({ alternativeText, notifications }: Pr
           <Dropdown.Item className={classes.item} key={index}>
             <div>
               <span className={classes.subtitle}>{item.title}</span>
-              {item.isNew && <span className={classes.new}>&nbsp;Новое</span>}
+              {item.isNew && <span className={classes.new}>&nbsp;</span>}
             </div>
             <p className={classes.text}>{item.text}</p>
             <span className={classes.longAgo}>{item.longAgo}</span>
