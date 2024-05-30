@@ -8,6 +8,7 @@ import ChevronUpIcon from '@/shared/assets/icons/ChevronUpIcon'
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
 import * as SelectRadix from '@radix-ui/react-select'
+import { clsx } from 'clsx'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
@@ -93,13 +94,26 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
             key={option.value}
             value={option.value as string}
           >
-            {option.label}
+            <span
+              className={clsx(
+                `flex items-center gap-[12px] text-regular-text-14`,
+                variant === 'pagination' && `leading-3`
+              )}
+            >
+              {option.label}
+              {option.icon}
+              {option.name}
+            </span>
           </SelectItem>
         ))}
       </SelectContent>
     </Select>
   )
 }
+//   display: flex;
+//   gap: 12px;
+//   align-items: center;
+//   line-height: var(--line-height-m);
 
 const classes = {
   content: `relative z-50 ring-1 ring-t-0 ring-Dark-100 data-[state=open]:ring-Light-100 

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { LanguageSelection } from '@/shared/lib/translate/ui/language-selection'
+import { LanguageSelection } from './language-selection'
 
-export const LangSelectSwitcher = ({ ...rest }) => {
+export const LangSelectSwitcher = () => {
   return <LanguageSelection />
 }

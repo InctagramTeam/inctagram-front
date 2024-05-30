@@ -8,11 +8,11 @@ import { Flex } from '@/shared/ui/flex'
 
 import { LANGUAGES } from '../../model/constants'
 import { AuthButtons } from '../auth-buttons'
-import { LanguageSelection } from '../language-selection'
 import { MobileDropdown } from '../mobile-dropdown'
 import { NotificationsDropdown } from '../notifications-dropdown'
 import { NotificationProps } from '../notifications-dropdown-list'
-import { LangSelectSwitcher } from '@/shared/lib/translate/ui/lang-select-switcher'
+import { LangSelectSwitcher } from '@/shared/lib/translate'
+import { LanguageSelection } from '@/widgets/header/ui/language-selection'
 
 type Props = {
   isAuth?: boolean
@@ -32,7 +32,11 @@ export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComp
   return (
     <Flex gap={'40'}>
       {isDesktop && <NotificationsDropdown notifications={notifications} />}
+
+      {/* Селект для смены языка в Арр */}
+      {/*TODO: фотографии флагов не отображаются + смещение селекта?? */}
       <LangSelectSwitcher />
+
       <LanguageSelection
         isMobile={!isDesktop}
         items={LANGUAGES}

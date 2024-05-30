@@ -3,7 +3,7 @@ import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { EnIcon, RuIcon } from '@/shared/assets/lang'
 import { ReactNode } from 'react'
 
-type Language = {
+export type Language = {
   icon: ReactNode
   textValue: string
   value: string

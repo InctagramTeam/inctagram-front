@@ -1,16 +1,16 @@
 import * as React from 'react'
-
 import { cn } from '@/shared/lib/utils'
+import { useResponsive } from '@/shared/lib/hooks'
+import { MD_BREAKPOINT } from '@/shared/constants'
+import { getLanguages } from '@/shared/lib/translate'
 import { SelectItem } from '@/shared/ui/select/select'
 import Image from 'next/image'
-import { SelectItemProps } from '@radix-ui/react-select'
 
-type Props = {
-  isMobile: boolean
-  items: SelectItemProps[]
-}
+export const LanguageSelectionList = () => {
+  const { width } = useResponsive()
+  const isDesktop = width && width > MD_BREAKPOINT
+  const isMobile = !isDesktop
 
-export const LanguageSelectionList = ({ isMobile, items }: Props) => {
   const classes = {
     flag: 'w-[20px] h-[20px] object-contain',
     item: cn(
@@ -24,8 +24,8 @@ export const LanguageSelectionList = ({ isMobile, items }: Props) => {
 
   return (
     <>
-      {items.map(item => (
-        <SelectItem className={`${classes.item} ${item.className}`} key={item.value} {...item}>
+      {getLanguages().map(item => (
+        <SelectItem className={classes.item} key={item.value} {...item}>
           <div className={classes.itemInner}>
             <Image
               alt={item.textValue ?? ''}
