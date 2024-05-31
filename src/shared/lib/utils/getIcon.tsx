@@ -14,24 +14,25 @@ import {
   SettingIcon,
   TrendingIcon,
 } from '@/shared/assets/icons'
+import { AppRoutes } from '@/shared/constants/routes'
 
 export const getIcon = (href: string, isActive: boolean) => {
   switch (href) {
-    case '/home':
+    case AppRoutes.HOME:
       return isActive ? <HomeIcon /> : <HomeOutlineIcon />
-    case '/create':
+    case AppRoutes.CREATE_POST:
       return isActive ? <PlusIcon /> : <PlusOutlineIcon />
-    case '/profile':
+    case AppRoutes.PROFILE:
       return isActive ? <PersonIcon /> : <PersonOutlineIcon />
-    case '/messenger':
+    case AppRoutes.MESSENGER:
       return isActive ? <MessageIcon /> : <MessageOutlineIcon />
-    case '/favorites':
+    case AppRoutes.FAVORITES:
       return isActive ? <BookmarkIcon /> : <BookmarkOutlineIcon />
-    case '/search':
+    case AppRoutes.SEARCH:
       return <SearchOutline />
-    case '/settings':
+    case AppRoutes.PROFILE_SETTINGS:
       return <SettingIcon />
-    case '/statistics':
+    case AppRoutes.STATISTICS:
       return <TrendingIcon />
     case '/log-out':
       return <LogOutIcon />
