@@ -1,2 +1,1 @@
-export { LANGUAGES } from './languages'
-export { LINKS } from './mobile-dropdown-links'
+export { mobileDropdownLinks } from './mobile-dropdown-links'
