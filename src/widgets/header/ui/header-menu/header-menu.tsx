@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { MD_BREAKPOINT } from '@/shared/constants'
+import { LG_BREAKPOINT, MD_BREAKPOINT } from '@/shared/constants'
 import { useResponsive } from '@/shared/lib/hooks'
 import { LangSelectSwitcher } from '@/shared/lib/translate'
 import { ReturnComponent } from '@/shared/types'
@@ -23,7 +23,7 @@ export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComp
     return null
   }
 
-  const isDesktop = width > MD_BREAKPOINT
+  const isDesktop = width > LG_BREAKPOINT
 
   return (
     <Flex gap={'40'}>
