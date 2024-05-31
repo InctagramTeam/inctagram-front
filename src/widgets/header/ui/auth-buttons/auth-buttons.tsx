@@ -4,6 +4,7 @@ import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
 import Link from 'next/link'
+import { AuthRoutes } from '@/shared/constants/routes'
 
 export const AuthButtons = (): ReturnComponent => {
   const { t } = useTranslation()
@@ -22,7 +23,7 @@ export const AuthButtons = (): ReturnComponent => {
       <Button
         asComponent={Link}
         className={`${classes.button} ${classes.loginLink}`}
-        href={'/auth/sign-in'}
+        href={AuthRoutes.SIGN_IN}
         variant={'link'}
       >
         {t.button.signIn}
@@ -30,7 +31,7 @@ export const AuthButtons = (): ReturnComponent => {
       <Button
         asComponent={Link}
         className={`${classes.button} ${classes.signupLink}`}
-        href={'/auth/sign-up'}
+        href={AuthRoutes.SIGN_UP}
       >
         {t.button.signUp}
       </Button>

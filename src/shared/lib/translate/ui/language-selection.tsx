@@ -1,15 +1,13 @@
 import * as React from 'react'
-
+import { MD_BREAKPOINT } from '@/shared/constants'
+import { LanguageSelectionTrigger } from './language-selection-trigger'
+import { useLangSwitcher } from '@/shared/lib/translate/model/hooks/use-lang-switcher'
+import { useResponsive } from '@/shared/lib/hooks'
+import { cn } from '@/shared/lib/utils'
+import { Select, SelectContent } from '@/shared/ui/select/select'
 import { LanguageSelectionList } from '@/shared/lib/translate/ui/language-selection-list'
 
-import { MD_BREAKPOINT } from '../../../constants/breakpoints'
-import { Select, SelectContent } from '../../../ui/select/select'
-import { useResponsive } from '../../hooks'
-import { cn } from '../../utils'
-import { useLangSwitcher } from '../model/hooks/use-lang-switcher'
-import { LanguageSelectionTrigger } from './language-selection-trigger'
-
-export const LanguageSelection = ({ ...rest }) => {
+export const LanguageSelection = () => {
   const { changeLocale, defaultLocale, locale } = useLangSwitcher()
 
   const { width } = useResponsive()
@@ -18,23 +16,25 @@ export const LanguageSelection = ({ ...rest }) => {
 
   const classes = {
     content: cn(
-      'bg-Dark-500 border border-Light-100',
-      !isMobile && 'w-[164px] border-t-0 rounded-b-[2px]',
+      'bg-Dark-500 border border-Light-100 w-[--radix-popper-anchor-width]',
+      !isMobile && ' border-t-0 rounded-b-[2px]',
       isMobile && 'min-w-0 rounded-[2px]'
     ),
     flag: 'w-[20px] h-[20px] object-contain',
     item: cn(
       `flex gap-[12px] h-auto px-[12px] py-[6px] cursor-pointer transition-colors duration-300 
     hover:!text-Primary-500 hover:bg-Dark-300`,
-      !isMobile && `w-full max-w-full`,
+      !isMobile && ``,
       isMobile && 'max-w-max'
     ),
     itemInner: 'flex gap-[12px] text-inherit',
   }
 
+  const value = locale || defaultLocale
+
   return (
-    <Select onValueChange={changeLocale} value={locale || defaultLocale} {...rest}>
-      <LanguageSelectionTrigger />
+    <Select onValueChange={changeLocale} value={value}>
+      <LanguageSelectionTrigger currentValue={value} />
       <SelectContent className={classes.content}>
         <LanguageSelectionList />
       </SelectContent>
