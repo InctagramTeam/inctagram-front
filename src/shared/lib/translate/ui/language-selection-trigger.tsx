@@ -1,7 +1,7 @@
 import { SelectTrigger } from '../../../ui/select/select'
 import Image from 'next/image'
 import ChevronDownIcon from 'src/shared/assets/icons/ChevronIcon'
-import { getLanguages } from '../model/helpers/get-languages'
+import { getLanguages } from '@/shared/lib/translate'
 import * as React from 'react'
 import { cn } from '../../utils'
 import { MD_BREAKPOINT } from '../../../constants'
