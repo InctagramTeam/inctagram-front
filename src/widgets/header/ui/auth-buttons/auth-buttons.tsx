@@ -1,10 +1,10 @@
 import * as React from 'react'
 
+import { AuthRoutes } from '@/shared/constants/routes'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
 import Link from 'next/link'
-import { AuthRoutes } from '@/shared/constants/routes'
 
 export const AuthButtons = (): ReturnComponent => {
   const { t } = useTranslation()

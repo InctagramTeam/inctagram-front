@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { getLanguages } from '@/shared/lib/translate'
-import Image from 'next/image'
-import { ChevronIcon } from 'src/shared/assets/icons'
+
 import { MD_BREAKPOINT } from '@/shared/constants'
+import { EMPTY_STRING } from '@/shared/constants/base'
 import { useResponsive } from '@/shared/lib/hooks'
+import { getLanguages } from '@/shared/lib/translate'
 import { cn } from '@/shared/lib/utils'
 import { SelectTrigger } from '@/shared/ui/select/select'
-import { EMPTY_STRING } from '@/shared/constants/base'
+import Image from 'next/image'
+import { ChevronIcon } from 'src/shared/assets/icons'
 
 type Props = {
   currentValue?: string

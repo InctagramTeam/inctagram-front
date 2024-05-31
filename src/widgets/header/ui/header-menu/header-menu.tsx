@@ -1,14 +1,15 @@
 import * as React from 'react'
+
 import { MD_BREAKPOINT } from '@/shared/constants'
 import { useResponsive } from '@/shared/lib/hooks'
+import { LangSelectSwitcher } from '@/shared/lib/translate'
 import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui/flex'
 
-import { LangSelectSwitcher } from '@/shared/lib/translate'
-import { NotificationProps } from '../notifications-dropdown-list'
-import { NotificationsDropdown } from '../notifications-dropdown'
 import { AuthButtons } from '../auth-buttons'
 import { MobileDropdown } from '../mobile-dropdown'
+import { NotificationsDropdown } from '../notifications-dropdown'
+import { NotificationProps } from '../notifications-dropdown-list'
 
 type Props = {
   isAuth?: boolean

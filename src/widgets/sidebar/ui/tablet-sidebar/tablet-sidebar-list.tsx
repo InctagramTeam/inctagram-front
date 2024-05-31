@@ -1,7 +1,7 @@
 import { ReturnComponent } from '@/shared/types'
+import { getSidebarLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
 
 import { TabletSidebarItem } from './tablet-sidebar-item'
-import { getSidebarLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
 
 export const TabletSidebarList = ({ ...rest }): ReturnComponent => {
   return (
