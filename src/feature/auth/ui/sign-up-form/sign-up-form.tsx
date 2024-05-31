@@ -20,7 +20,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { Translate } from 'src/shared/lib/translate'
 
-import { SignUpFormValues, signUpSchema } from '../../model/utils/validators/signUpValidationSchema'
+import {
+  SignUpFormValues,
+  signUpSchema,
+} from 'src/feature/auth/model/utils/validators/sign-up-validation-schema'
 
 type Props = {
   className?: string
