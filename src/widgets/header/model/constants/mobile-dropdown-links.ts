@@ -1,5 +1,5 @@
-import { NavLink } from '@/shared/types'
 import { AppRoutes } from '@/shared/constants/routes'
+import { NavLink } from '@/shared/types'
 
 export const mobileDropdownLinks: NavLink[] = [
   { href: AppRoutes.PROFILE_SETTINGS, name: 'Profile Settings' },
