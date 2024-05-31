@@ -1,4 +1,4 @@
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@/shared/assets/icons'
+import { ChevronIcon } from '@/shared/assets/icons'
 import { ReturnComponent } from '@/shared/types'
 import { clsx } from 'clsx'
 
@@ -18,7 +18,7 @@ export type PaginationProps = {
 const classNames = {
   container: 'flex gap-[12px]',
   dots: '',
-  icon: '',
+  icon: 'w-[1rem] h-[1rem]',
   item: 'min-w-[24px] h-[24px] rounded-sm focus:ring focus:ring-Primary-500 hover:bg-Dark-500 outline-none',
   pageButton(selected?: boolean) {
     return clsx(this.item, selected && 'bg-Light-100 text-Dark-900 hover:bg-Light-100')
@@ -55,7 +55,7 @@ const PageButton = ({ disabled, onClick, page, selected }: PageButtonProps) => {
 const PrevButton = ({ disabled, onClick }: NavigationButtonProps) => {
   return (
     <button className={classNames.item} disabled={disabled} onClick={onClick}>
-      <KeyboardArrowLeft className={classNames.icon} />
+      <ChevronIcon className={`${classNames.icon} rotate-90`} />
     </button>
   )
 }
@@ -63,7 +63,7 @@ const PrevButton = ({ disabled, onClick }: NavigationButtonProps) => {
 const NextButton = ({ disabled, onClick }: NavigationButtonProps) => {
   return (
     <button className={classNames.item} disabled={disabled} onClick={onClick}>
-      <KeyboardArrowRight className={classNames.icon} />
+      <ChevronIcon className={`${classNames.icon} -rotate-90`} />
     </button>
   )
 }

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import ChevronDownIcon from '@/shared/assets/icons/ChevronDownIcon'
+import ChevronDownIcon from '@/shared/assets/icons/ChevronIcon'
 import { cn } from '@/shared/lib/utils'
 import { SelectTrigger } from '@/shared/ui/select/select'
 import Image from 'next/image'

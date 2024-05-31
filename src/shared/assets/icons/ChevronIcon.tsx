@@ -1,6 +1,6 @@
 import { Ref, SVGProps, forwardRef, memo } from 'react'
 
-const ChevronUpIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+const ChevronIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     {...props}
     fill={'none'}
@@ -13,10 +13,10 @@ const ChevronUpIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) 
     viewBox={'0 0 24 24'}
     width={'24'}
   >
-    <path d={'m18 15-6-6-6 6'} />
+    <path d={'m6 9 6 6 6-6'} />
   </svg>
 )
-const ForwardRef = forwardRef(ChevronUpIcon)
+const ForwardRef = forwardRef(ChevronIcon)
 const Memo = memo(ForwardRef)
 
 export default Memo

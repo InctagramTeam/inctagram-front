@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { DayModifiers, DayPicker } from 'react-day-picker'
 
-import { ChevronLeftIcon, ChevronRightIcon } from '@/shared/assets/icons'
+import { ChevronIcon } from '@/shared/assets/icons'
 import { EMPTY_STRING } from '@/shared/constants/base'
 import { cn } from '@/shared/lib/utils/merge-cn'
 
@@ -11,11 +11,6 @@ export type CalendarProps = React.ComponentProps<typeof DayPicker>
 const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) => {
   const modifiers: DayModifiers = {
     weekend: (date: Date) => date.getDay() === 0 || date.getDay() === 6,
-  }
-
-  const commonClasses = {
-    dayPicker: cn(`py-[16px] px-[24px]`, className),
-    icons: cn(`fill-Light-100 w-[20px] h-[20px]`),
   }
 
   const dayPickerClassNames = {
@@ -62,11 +57,11 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
 
   return (
     <DayPicker
-      className={commonClasses.dayPicker}
+      className={cn(`px-[24px] py-[16px]`, className)}
       classNames={dayPickerClassNames}
       components={{
-        IconLeft: () => <ChevronLeftIcon className={commonClasses.icons} />,
-        IconRight: () => <ChevronRightIcon className={commonClasses.icons} />,
+        IconLeft: () => <ChevronIcon className={'h-[20px] w-[20px] rotate-90'} />,
+        IconRight: () => <ChevronIcon className={'h-[20px] w-[20px] -rotate-90'} />,
       }}
       modifiers={modifiers}
       modifiersClassNames={modifiersClassNames}
