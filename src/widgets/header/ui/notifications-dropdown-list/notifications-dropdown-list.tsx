@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { ReactNode } from 'react'
 
-import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
+import { Dropdown } from '@/shared/ui/dropdown-menu'
 
 type Props = {
   alternativeText?: string

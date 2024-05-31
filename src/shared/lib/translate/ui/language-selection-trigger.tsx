@@ -1,12 +1,14 @@
-import { SelectTrigger } from '../../../ui/select/select'
-import Image from 'next/image'
-import ChevronDownIcon from '../../../assets/icons/ChevronDownIcon'
-import { getLanguages } from '../model/helpers/get-languages'
 import * as React from 'react'
-import { cn } from '../../utils'
+
+import { getLanguages } from '@/shared/lib/translate'
+import Image from 'next/image'
+import ChevronDownIcon from 'src/shared/assets/icons/ChevronIcon'
+
 import { MD_BREAKPOINT } from '../../../constants'
-import { useResponsive } from '../../hooks'
 import { EMPTY_STRING } from '../../../constants/base'
+import { SelectTrigger } from '../../../ui/select/select'
+import { useResponsive } from '../../hooks'
+import { cn } from '../../utils'
 
 export const LanguageSelectionTrigger = ({ ...rest }) => {
   const { width } = useResponsive()

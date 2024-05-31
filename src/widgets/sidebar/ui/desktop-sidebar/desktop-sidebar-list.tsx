@@ -1,7 +1,7 @@
 import { useLayoutContext } from '@/shared/layouts'
 import { ReturnComponent } from '@/shared/types'
-
 import { getSidebarLinks } from 'src/widgets/sidebar/model/ulils/sidebar-links'
+
 import { DesktopSidebarItem } from './desktop-sidebar-item'
 
 export const DesktopSidebarList = (): ReturnComponent => {

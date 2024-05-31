@@ -3,8 +3,7 @@
 import * as React from 'react'
 import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import ChevronDownIcon from '@/shared/assets/icons/ChevronDownIcon'
-import ChevronUpIcon from '@/shared/assets/icons/ChevronUpIcon'
+import { ChevronIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
 import * as SelectRadix from '@radix-ui/react-select'
@@ -21,8 +20,8 @@ type ChangeValueProps<T extends number | string> = {
 
 export type Options<T extends number | string> = {
   disabled?: boolean
-  label?: number | string
   icon?: ReactNode
+  label?: number | string
   name?: ReactNode
   value: T
 }
@@ -39,7 +38,7 @@ type OwnProps<T extends number | string> = {
   variant?: 'pagination' | 'primary'
 }
 
-export type SelectProps = OwnProps<number | string> & ChangeValueProps<number | string>
+export type SelectProps = ChangeValueProps<number | string> & OwnProps<number | string>
 
 const SelectBox = (props: SelectProps): ReturnComponent => {
   const {
@@ -74,10 +73,13 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
         }
       >
         <SelectValue placeholder={placeholder} />
-        <ChevronUpIcon
-          className={cn('chevron-up', variant === 'pagination' ? '[h-16px] w-[16px]' : '')}
+        <ChevronIcon
+          className={cn(
+            'chevron-up rotate-180',
+            variant === 'pagination' ? '[h-16px] w-[16px]' : ''
+          )}
         />
-        <ChevronDownIcon
+        <ChevronIcon
           className={cn('chevron-down', variant === 'pagination' ? '[h-16px] w-[16px]' : '')}
         />
       </SelectTrigger>
@@ -208,7 +210,7 @@ const SelectScrollUpButton = forwardRef<
     ref={ref}
     {...props}
   >
-    <ChevronUpIcon className={'h-4 w-4'} />
+    <ChevronIcon className={'h-4 w-4 rotate-180'} />
   </SelectRadix.ScrollUpButton>
 ))
 
@@ -221,7 +223,7 @@ const SelectScrollDownButton = forwardRef<
     ref={ref}
     {...props}
   >
-    <ChevronDownIcon className={'h-4 w-4'} />
+    <ChevronIcon className={'h-4 w-4'} />
   </SelectRadix.ScrollDownButton>
 ))
 

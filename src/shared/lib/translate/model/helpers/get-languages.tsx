@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
-import { EnIcon, RuIcon } from '@/shared/assets/lang'
 import { ReactNode } from 'react'
+
+import { EnIcon, RuIcon } from '@/shared/assets/lang'
+import { useTranslation } from '@/shared/lib/hooks/use-translation'
 
 export type Language = {
   icon: ReactNode

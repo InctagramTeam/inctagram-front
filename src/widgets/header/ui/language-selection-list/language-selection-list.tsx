@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { cn } from '@/shared/lib/utils'
 import { SelectItem } from '@/shared/ui/select/select'
-import Image from 'next/image'
 import { SelectItemProps } from '@radix-ui/react-select'
+import Image from 'next/image'
 
 type Props = {
   isMobile: boolean

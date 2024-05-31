@@ -1,5 +1,5 @@
-import { NavLink } from '@/shared/types'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
+import { NavLink } from '@/shared/types'
 
 const getBaseLinks = (): NavLink[] => {
   const { t } = useTranslation()

@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { cn } from '@/shared/lib/utils'
-import { useResponsive } from '@/shared/lib/hooks'
+
 import { MD_BREAKPOINT } from '@/shared/constants'
+import { useResponsive } from '@/shared/lib/hooks'
 import { getLanguages } from '@/shared/lib/translate'
+import { cn } from '@/shared/lib/utils'
 import { SelectItem } from '@/shared/ui/select/select'
 import Image from 'next/image'
 

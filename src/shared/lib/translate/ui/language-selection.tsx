@@ -1,11 +1,13 @@
-import { Select, SelectContent } from '../../../ui/select/select'
 import * as React from 'react'
-import { useLangSwitcher } from '../model/hooks/use-lang-switcher'
-import { cn } from '../../utils'
-import { MD_BREAKPOINT } from '../../../constants/breakpoints'
-import { useResponsive } from '../../hooks'
-import { LanguageSelectionTrigger } from './language-selection-trigger'
+
 import { LanguageSelectionList } from '@/shared/lib/translate/ui/language-selection-list'
+
+import { MD_BREAKPOINT } from '../../../constants/breakpoints'
+import { Select, SelectContent } from '../../../ui/select/select'
+import { useResponsive } from '../../hooks'
+import { cn } from '../../utils'
+import { useLangSwitcher } from '../model/hooks/use-lang-switcher'
+import { LanguageSelectionTrigger } from './language-selection-trigger'
 
 export const LanguageSelection = ({ ...rest }) => {
   const { changeLocale, defaultLocale, locale } = useLangSwitcher()

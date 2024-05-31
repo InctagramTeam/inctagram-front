@@ -2,9 +2,9 @@
 import { ComponentPropsWithoutRef, useState } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
+import { getMobileLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
 import { clsx } from 'clsx'
 
-import { getMobileLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
 import { MobileSidebarItem } from './mobile-sidebar-item'
 
 type Props = {
