@@ -20,8 +20,8 @@ type ChangeValueProps<T extends number | string> = {
 
 export type Options<T extends number | string> = {
   disabled?: boolean
-  label?: number | string
   icon?: ReactNode
+  label?: number | string
   name?: ReactNode
   value: T
 }
@@ -38,7 +38,7 @@ type OwnProps<T extends number | string> = {
   variant?: 'pagination' | 'primary'
 }
 
-export type SelectProps = OwnProps<number | string> & ChangeValueProps<number | string>
+export type SelectProps = ChangeValueProps<number | string> & OwnProps<number | string>
 
 const SelectBox = (props: SelectProps): ReturnComponent => {
   const {

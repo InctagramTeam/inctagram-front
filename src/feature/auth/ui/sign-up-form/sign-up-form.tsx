@@ -7,7 +7,6 @@ import GoogleIcon from '@/shared/assets/icons/GoogleIcon'
 import { AuthRoutes, GeneralRoutes } from '@/shared/constants/routes'
 import { useFormRevalidateWithLocale } from '@/shared/lib/hooks/use-form-revalidate-with-locale'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
-import { Translate } from 'src/shared/lib/translate'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
 import { AppLink } from '@/shared/ui/app-link'
@@ -19,6 +18,7 @@ import { ControlledInput } from '@/shared/ui/input'
 import { Text } from '@/shared/ui/text'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { Translate } from 'src/shared/lib/translate'
 
 import { SignUpFormValues, signUpSchema } from '../../model/utils/validators/signUpValidationSchema'
 
@@ -166,8 +166,8 @@ export const SignUpForm = forwardRef(
                       ),
                       '2': () => (
                         <Text
-                          className={`text-balance`}
                           asComponent={Link}
+                          className={`text-balance`}
                           href={{ pathname: GeneralRoutes.PRIVACY, query: { sender: 'signup' } }}
                           variant={'small-link_12'}
                         >

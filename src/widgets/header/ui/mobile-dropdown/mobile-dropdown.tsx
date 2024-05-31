@@ -1,10 +1,10 @@
 import { LogOutIcon, MoreIcon } from '@/shared/assets/icons'
+import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { getIcon } from '@/shared/lib/utils/getIcon'
 import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { LINKS } from '@/widgets/header/model/constants'
 import Link from 'next/link'
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
 
 type Props = {
   logout?: () => void

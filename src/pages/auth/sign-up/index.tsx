@@ -1,13 +1,12 @@
 'use client'
 import { useRef } from 'react'
 
+import { SignUpFormValues } from '@/feature/auth/model/utils/validators/signUpValidationSchema'
+import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
 import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
-
-import { SignUpFormValues } from '@/feature/auth/model/utils/validators/signUpValidationSchema'
-import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
 
 type Props = {}
 
