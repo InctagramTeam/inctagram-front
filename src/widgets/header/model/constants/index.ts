@@ -1,1 +1,1 @@
-export { LINKS } from './mobile-dropdown-links'
+export { mobileDropdownLinks } from './mobile-dropdown-links'

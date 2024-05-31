@@ -3,7 +3,7 @@ import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { getIcon } from '@/shared/lib/utils/getIcon'
 import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
-import { LINKS } from '@/widgets/header/model/constants'
+import { mobileDropdownLinks } from '@/widgets/header/model/constants'
 import Link from 'next/link'
 
 type Props = {
@@ -33,7 +33,7 @@ export const MobileDropdown = ({ logout }: Props) => {
     <Dropdown.Menu className={classes.menu} trigger={trigger}>
       <div>
         <ul className={classes.items}>
-          {LINKS.map((link, index) => {
+          {mobileDropdownLinks.map((link, index) => {
             return (
               <Dropdown.Item className={classes.item} key={index}>
                 <li>
