@@ -1,10 +1,13 @@
 import { LocaleType } from '@/../locales'
-import { PASSWORD_PATTERN, USERNAME_PATTERN } from '@/shared/constants/regexs'
+import { USERNAME_PATTERN } from '@/shared/constants/regexs'
 import { z } from 'zod'
+import { emailSchema, passwordSchema } from '@/shared/lib/utils'
 
 export const signUpSchema = (t: LocaleType) =>
   z
     .object({
+      email: emailSchema(t),
+      password: passwordSchema(t),
       accept: z
         .boolean()
         .optional()
@@ -12,14 +15,6 @@ export const signUpSchema = (t: LocaleType) =>
         .refine(value => value, {
           message: t.validation.required,
         }),
-      email: z.string().email({ message: t.validation.emailVerification }).default(''),
-      password: z
-        .string()
-        .trim()
-        .min(6, t.validation.minLength(6))
-        .max(20, t.validation.maxLength(20))
-        .regex(PASSWORD_PATTERN, t.validation.passwordVerification)
-        .default(''),
       passwordConfirm: z.string().default(''),
       username: z
         .string()
