@@ -1,9 +1,6 @@
 'use client'
 
-import GithubIcon from '@/shared/assets/icons/GithubIcon'
-import GoogleIcon from '@/shared/assets/icons/GoogleIcon'
 import { AuthRoutes } from '@/shared/constants/routes'
-import { AppLink } from '@/shared/ui/app-link'
 import { Button } from '@/shared/ui/button'
 import { Card } from '@/shared/ui/card'
 import { Flex } from '@/shared/ui/flex'
@@ -19,16 +16,19 @@ import { ReturnComponent } from '@/shared/types'
 import { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle } from 'react'
 import { useFormRevalidateWithLocale } from '@/shared/lib/hooks/use-form-revalidate-with-locale'
 import { UseFormRef } from '@/shared/types/form'
+import { AppList } from '@/shared/ui/app-list'
 
 type Props = {
   className?: string
   onSubmit: (formData: SignInFormValues) => void
   disabled?: boolean
+  hrefGithub: string
+  hrefGoogle: string
 } & Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'>
 
 export const SignInForm = forwardRef(
   (props: Props, methodsRef: Ref<UseFormRef<SignInFormValues> | null>): ReturnComponent => {
-    const { className, disabled, onSubmit, ...rest } = props
+    const { hrefGoogle, hrefGithub, className, disabled, onSubmit, ...rest } = props
     const classes = {
       appItems: `flex gap-[60px] justify-center mb-[1.5rem]`,
       appLink: `py-[6px]`,
@@ -71,18 +71,7 @@ export const SignInForm = forwardRef(
           Sign In
           {/*{ t.pages.signIn.title }*/}
         </Text>
-        <ul className={classes.appItems}>
-          <li>
-            <AppLink className={'h-[36px] w-[36px]'} href={'#'}>
-              <GoogleIcon />
-            </AppLink>
-          </li>
-          <li>
-            <AppLink className={`h-[36px] w-[36px]`} href={'#'}>
-              <GithubIcon />
-            </AppLink>
-          </li>
-        </ul>
+        <AppList items={[{ href: hrefGithub }, { href: hrefGoogle }]} />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
           <ControlledInput
             control={control}
@@ -123,9 +112,14 @@ export const SignInForm = forwardRef(
           <Text className={`mb-[6px] text-Light-100`} variant={'regular_text_16'}>
             Don’t have an account?
           </Text>
-          <AppLink className={classes.appLink} href={AuthRoutes.SIGN_UP}>
+          <Button
+            asComponent={Link}
+            variant={'link'}
+            className={`my-6 text-balance`}
+            href={AuthRoutes.SIGN_UP}
+          >
             {t.button.signUp}
-          </AppLink>
+          </Button>
         </Flex>
       </Card>
     )

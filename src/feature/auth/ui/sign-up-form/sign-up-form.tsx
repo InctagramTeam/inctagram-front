@@ -2,14 +2,11 @@
 import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
 
-import GithubIcon from '@/shared/assets/icons/GithubIcon'
-import GoogleIcon from '@/shared/assets/icons/GoogleIcon'
 import { AuthRoutes, GeneralRoutes } from '@/shared/constants/routes'
 import { useFormRevalidateWithLocale } from '@/shared/lib/hooks/use-form-revalidate-with-locale'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
-import { AppLink } from '@/shared/ui/app-link'
 import { Button } from '@/shared/ui/button'
 import { Card } from '@/shared/ui/card/card'
 import { ControlledCheckbox } from '@/shared/ui/checkbox'
@@ -20,10 +17,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { Translate } from 'src/shared/lib/translate'
 
-import {
-  SignUpFormValues,
-  signUpSchema,
-} from 'src/feature/auth/model/utils/validators/sign-up-validation-schema'
+import { SignUpFormValues, signUpSchema } from 'src/feature/auth/model/utils/validators'
+import { AppList } from '@/shared/ui/app-list'
 
 type Props = {
   className?: string
@@ -89,14 +84,12 @@ export const SignUpForm = forwardRef(
           >
             {t.pages.signUp.title}
           </Text>
-          <Flex gap={'60'} justify={'center'} mb={'24px'}>
-            <AppLink className={'m-0 w-full max-w-[36px] p-0 '} href={hrefGoogle}>
-              <GoogleIcon />
-            </AppLink>
-            <AppLink className={`m-0 w-full max-w-[36px] p-0`} href={hrefGithub}>
-              <GithubIcon />
-            </AppLink>
-          </Flex>
+          <AppList
+            items={[
+              { href: hrefGithub, 'aria-label': 'Sign up with github' },
+              { href: hrefGoogle, 'aria-label': 'Sign up with google' },
+            ]}
+          />
         </div>
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
           <ControlledInput
@@ -197,9 +190,14 @@ export const SignUpForm = forwardRef(
           <Text className={`mt-[18px] text-balance text-Light-100`} variant={'regular_text_16'}>
             {t.pages.signUp.question}
           </Text>
-          <AppLink className={`my-6 text-balance`} href={AuthRoutes.SIGN_IN}>
+          <Button
+            asComponent={Link}
+            variant={'link'}
+            className={`my-6 text-balance`}
+            href={AuthRoutes.SIGN_IN}
+          >
             {t.button.signIn}
-          </AppLink>
+          </Button>
         </Flex>
       </Card>
     )

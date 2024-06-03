@@ -15,6 +15,7 @@ import {
   TrendingIcon,
 } from '@/shared/assets/icons'
 import { AppRoutes } from '@/shared/constants/routes'
+import { GithubIcon, GoogleIcon } from '@/shared/assets/icons'
 
 export const getIcon = (href: string, isActive: boolean) => {
   switch (href) {
@@ -34,6 +35,10 @@ export const getIcon = (href: string, isActive: boolean) => {
       return <SettingIcon />
     case AppRoutes.STATISTICS:
       return <TrendingIcon />
+    case process.env.NEXT_PUBLIC_GITHUB_OAUTH2:
+      return <GithubIcon />
+    case process.env.NEXT_PUBLIC_GOOGLE_OAUTH2:
+      return <GoogleIcon />
     case '/log-out':
       return <LogOutIcon />
     default:
