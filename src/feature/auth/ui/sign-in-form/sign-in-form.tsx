@@ -1,47 +1,48 @@
 'use client'
 
+import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
+import { useForm } from 'react-hook-form'
+
+import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
 import { AuthRoutes } from '@/shared/constants/routes'
+import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
+import { ReturnComponent, UseFormRef } from '@/shared/types'
+import { AppList } from '@/shared/ui/app-list'
 import { Button } from '@/shared/ui/button'
 import { Card } from '@/shared/ui/card'
 import { Flex } from '@/shared/ui/flex'
 import { ControlledInput } from '@/shared/ui/input'
 import { Text } from '@/shared/ui/text'
-import Link from 'next/link'
-import { useTranslation, useFormRevalidateWithLocale } from '@/shared/lib/hooks'
-import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
 import { clsx } from 'clsx'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle } from 'react'
-import { AppList } from '@/shared/ui/app-list'
+import Link from 'next/link'
 
 type Props = {
   className?: string
-  onSubmit: (formData: SignInFormValues) => void
   disabled?: boolean
   hrefGithub: string
   hrefGoogle: string
+  onSubmit: (formData: SignInFormValues) => void
 } & Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'>
 
 export const SignInForm = forwardRef(
   (props: Props, methodsRef: Ref<UseFormRef<SignInFormValues> | null>): ReturnComponent => {
-    const { hrefGoogle, hrefGithub, className, disabled, onSubmit, ...rest } = props
+    const { className, disabled, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
     const classes = {
       button: `py-[6px] px-[24px] mb-[1.2rem]`,
       forgotLink: `py-[0] ml-auto h-auto text-Light-900 mb-[1.5rem] text-right !text-regular-text-14 bg-transparent`,
       form: clsx(`max-w-[380px] w-full p-[1.5rem]`, className),
     }
 
-    const { t, locale } = useTranslation()
+    const { locale, t } = useTranslation()
 
     const {
       control,
-      formState: { isValid, errors },
+      formState: { errors, isValid },
+      getValues,
       handleSubmit,
       reset,
       setError,
-      getValues,
       setValue,
     } = useForm<SignInFormValues>({
       defaultValues: {
@@ -68,31 +69,31 @@ export const SignInForm = forwardRef(
         </Text>
         <AppList
           items={[
-            { href: hrefGithub, 'aria-label': 'Sign in with github' },
-            { href: hrefGoogle, 'aria-label': 'Sign in with github' },
+            { 'aria-label': 'Sign in with github', href: hrefGithub },
+            { 'aria-label': 'Sign in with github', href: hrefGoogle },
           ]}
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
           <ControlledInput
+            autoComplete={'email'}
             control={control}
+            disabled={disabled}
+            errorMessage={errors.email?.message}
+            label={t.label.email}
             name={'email'}
             placeholder={t.placeholders.email}
             rules={{ required: true }}
-            autoComplete={'email'}
-            label={t.label.email}
-            errorMessage={errors.email?.message}
-            disabled={disabled}
             type={'email'}
           />
           <ControlledInput
+            autoComplete={'current-password'}
             control={control}
+            disabled={disabled}
+            errorMessage={errors.password?.message}
+            label={t.label.password}
             name={'password'}
             placeholder={t.placeholders.password}
             rules={{ required: true }}
-            autoComplete={'current-password'}
-            label={t.label.password}
-            errorMessage={errors.password?.message}
-            disabled={disabled}
             type={'password'}
           />
         </Flex>
@@ -100,9 +101,9 @@ export const SignInForm = forwardRef(
           <Button
             asComponent={Link}
             className={classes.forgotLink}
+            disabled={isValid || disabled}
             href={AuthRoutes.FORGOT_PASSWORD}
             variant={'text'}
-            disabled={isValid || disabled}
           >
             Forgot Password
           </Button>
@@ -114,9 +115,9 @@ export const SignInForm = forwardRef(
           </Text>
           <Button
             asComponent={Link}
-            variant={'link'}
             className={`m-[0] text-balance`}
             href={AuthRoutes.SIGN_UP}
+            variant={'link'}
           >
             {t.button.signUp}
           </Button>

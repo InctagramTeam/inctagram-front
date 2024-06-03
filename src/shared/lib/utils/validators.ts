@@ -1,6 +1,6 @@
+import { PASSWORD_PATTERN } from '@/shared/constants/regexs'
 import { LocaleType } from 'locales'
 import { z } from 'zod'
-import { PASSWORD_PATTERN } from '@/shared/constants/regexs'
 
 export const emailSchema = (t: LocaleType) => {
   return z.string().email({ message: t.validation.emailVerification }).default('')

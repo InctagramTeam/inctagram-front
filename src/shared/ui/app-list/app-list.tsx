@@ -2,11 +2,10 @@
 
 import { cn, getIcon } from '@/shared/lib/utils'
 import Link from 'next/link'
-import { clsx } from 'clsx'
 
 type Props = {
-  items: AppProps[]
   className?: string
+  items: AppProps[]
 }
 
 export type AppProps = {
@@ -24,10 +23,11 @@ export const AppList = ({ className, items }: Props) => {
   return (
     <ul className={classes.items}>
       {items.map((item, index) => {
-        const { href, className, ...rest } = item
+        const { className, href, ...rest } = item
+
         return (
           <li key={index}>
-            <Link href={href} className={cn(classes.link, className)} {...rest}>
+            <Link className={cn(classes.link, className)} href={href} {...rest}>
               {getIcon(href, false)}
             </Link>
           </li>

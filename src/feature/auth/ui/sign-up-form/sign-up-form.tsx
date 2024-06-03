@@ -2,10 +2,12 @@
 import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
 import { AuthRoutes, GeneralRoutes } from '@/shared/constants'
 import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
+import { AppList } from '@/shared/ui/app-list'
 import { Button } from '@/shared/ui/button'
 import { Card } from '@/shared/ui/card'
 import { ControlledCheckbox } from '@/shared/ui/checkbox'
@@ -13,12 +15,9 @@ import { Flex } from '@/shared/ui/flex'
 import { ControlledInput } from '@/shared/ui/input'
 import { Text } from '@/shared/ui/text'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { clsx } from 'clsx'
 import Link from 'next/link'
 import { Translate } from 'src/shared/lib/translate'
-
-import { AppList } from '@/shared/ui/app-list'
-import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
-import { clsx } from 'clsx'
 
 type Props = {
   className?: string
@@ -78,8 +77,8 @@ export const SignUpForm = forwardRef(
         </Text>
         <AppList
           items={[
-            { href: hrefGithub, 'aria-label': 'Sign up with github' },
-            { href: hrefGoogle, 'aria-label': 'Sign up with google' },
+            { 'aria-label': 'Sign up with github', href: hrefGithub },
+            { 'aria-label': 'Sign up with google', href: hrefGoogle },
           ]}
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
@@ -90,9 +89,9 @@ export const SignUpForm = forwardRef(
             errorMessage={errors.username?.message}
             label={t.label.userName}
             name={'username'}
-            type={'text'}
             placeholder={t.placeholders.username}
             rules={{ required: true }}
+            type={'text'}
           />
           <ControlledInput
             autoComplete={'email'}
@@ -169,8 +168,8 @@ export const SignUpForm = forwardRef(
         <Flex direction={'column'}>
           <Button
             className={'mb-[18px] text-balance p-[6px]'}
-            fullWidth
             disabled={disabled || isValid}
+            fullWidth
           >
             {t.button.signUp}
           </Button>
@@ -179,9 +178,9 @@ export const SignUpForm = forwardRef(
           </Text>
           <Button
             asComponent={Link}
-            variant={'link'}
             className={`m-[0] text-balance`}
             href={AuthRoutes.SIGN_IN}
+            variant={'link'}
           >
             {t.button.signIn}
           </Button>

@@ -1,9 +1,10 @@
+import { useRef } from 'react'
+
+import { SignInFormValues } from '@/feature/auth/model/utils/validators'
 import { SignInForm } from '@/feature/auth/ui/sign-in-form'
 import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { SignInFormValues } from '@/feature/auth/model/utils/validators'
 import { ReturnComponent } from '@/shared/types'
-import { useRef } from 'react'
 import { UseFormRef } from '@/shared/types/form'
 
 const SignIn = (): ReturnComponent => {

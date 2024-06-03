@@ -14,8 +14,8 @@ import {
   SettingIcon,
   TrendingIcon,
 } from '@/shared/assets/icons'
-import { AppRoutes } from '@/shared/constants/routes'
 import { GithubIcon, GoogleIcon } from '@/shared/assets/icons'
+import { AppRoutes } from '@/shared/constants/routes'
 
 export const getIcon = (href: string, isActive: boolean) => {
   switch (href) {

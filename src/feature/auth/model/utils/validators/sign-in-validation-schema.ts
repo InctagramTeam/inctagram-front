@@ -1,6 +1,6 @@
-import { z } from 'zod'
-import { LocaleType } from 'locales'
 import { emailSchema, passwordSchema } from '@/shared/lib/utils'
+import { LocaleType } from 'locales'
+import { z } from 'zod'
 
 export const signInSchema = (t: LocaleType) =>
   z.object({

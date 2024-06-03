@@ -1,3 +1,5 @@
+export { EMPTY_STRING } from './base'
+
 export {
   LG_BREAKPOINT,
   MD_BREAKPOINT,
@@ -7,8 +9,6 @@ export {
   XS_BREAKPOINT,
 } from './breakpoints'
 
-export { EMPTY_STRING } from './base'
-
-export { USERNAME_PATTERN, PASSWORD_PATTERN } from './regexs'
+export { PASSWORD_PATTERN, USERNAME_PATTERN } from './regexs'
 
 export { AppRoutes, AuthRoutes, GeneralRoutes } from './routes'
