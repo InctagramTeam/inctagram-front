@@ -36,7 +36,7 @@ export const SignUpForm = forwardRef(
     const {
       control,
       /** Состояние формы6 errors - ошибки всех полей */
-      formState: { errors, isValid },
+      formState: { errors },
       /** Получение значений формы */
       getValues,
       handleSubmit,
@@ -168,7 +168,7 @@ export const SignUpForm = forwardRef(
         <Flex direction={'column'}>
           <Button
             className={'mb-[18px] text-balance p-[6px]'}
-            disabled={disabled || isValid}
+            disabled={!!Object.keys(errors).length || disabled}
             fullWidth
           >
             {t.button.signUp}

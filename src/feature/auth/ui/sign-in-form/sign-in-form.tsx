@@ -107,7 +107,11 @@ export const SignInForm = forwardRef(
           >
             Forgot Password
           </Button>
-          <Button className={classes.button} fullWidth>
+          <Button
+            className={classes.button}
+            disabled={!!Object.keys(errors).length || disabled}
+            fullWidth
+          >
             {t.button.signIn}
           </Button>
           <Text className={`mb-[12px] text-Light-100`} variant={'regular_text_16'}>
