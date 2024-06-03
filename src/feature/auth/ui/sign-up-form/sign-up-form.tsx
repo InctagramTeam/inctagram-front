@@ -2,13 +2,12 @@
 import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { AuthRoutes, GeneralRoutes } from '@/shared/constants/routes'
-import { useFormRevalidateWithLocale } from '@/shared/lib/hooks/use-form-revalidate-with-locale'
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
+import { AuthRoutes, GeneralRoutes } from '@/shared/constants'
+import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
 import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card/card'
+import { Card } from '@/shared/ui/card'
 import { ControlledCheckbox } from '@/shared/ui/checkbox'
 import { Flex } from '@/shared/ui/flex'
 import { ControlledInput } from '@/shared/ui/input'
@@ -17,8 +16,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
 import { Translate } from 'src/shared/lib/translate'
 
-import { SignUpFormValues, signUpSchema } from 'src/feature/auth/model/utils/validators'
 import { AppList } from '@/shared/ui/app-list'
+import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
+import { clsx } from 'clsx'
 
 type Props = {
   className?: string
@@ -70,42 +70,32 @@ export const SignUpForm = forwardRef(
       <Card
         {...rest}
         asComponent={'form'}
-        className={`_Card_ min-h-[648px] w-full max-w-[380px]`}
+        className={clsx('w-full max-w-[380px] p-[1.5rem]', className)}
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className={`_Wrapper-text-icons_ flex w-full flex-col items-center justify-center`}>
-          <Text
-            asComponent={'h1'}
-            className={'mt-[23px]'}
-            mb={'13px'}
-            mt={'26px'}
-            textAlign={'center'}
-            variant={'H1'}
-          >
-            {t.pages.signUp.title}
-          </Text>
-          <AppList
-            items={[
-              { href: hrefGithub, 'aria-label': 'Sign up with github' },
-              { href: hrefGoogle, 'aria-label': 'Sign up with google' },
-            ]}
-          />
-        </div>
+        <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
+          {t.pages.signUp.title}
+        </Text>
+        <AppList
+          items={[
+            { href: hrefGithub, 'aria-label': 'Sign up with github' },
+            { href: hrefGoogle, 'aria-label': 'Sign up with google' },
+          ]}
+        />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
           <ControlledInput
             autoComplete={'username'}
-            className={`w-full max-w-[330px]`}
             control={control}
             disabled={disabled}
             errorMessage={errors.username?.message}
             label={t.label.userName}
             name={'username'}
+            type={'text'}
             placeholder={t.placeholders.username}
             rules={{ required: true }}
           />
           <ControlledInput
             autoComplete={'email'}
-            className={`w-full max-w-[330px]`}
             control={control}
             disabled={disabled}
             errorMessage={errors.email?.message}
@@ -117,7 +107,6 @@ export const SignUpForm = forwardRef(
           />
           <ControlledInput
             autoComplete={'new-password'}
-            className={`w-full max-w-[330px]`}
             control={control}
             disabled={disabled}
             errorMessage={errors.password?.message}
@@ -129,7 +118,6 @@ export const SignUpForm = forwardRef(
           />
           <ControlledInput
             autoComplete={'new-password'}
-            className={`mb-[10px] w-full max-w-[330px]`}
             control={control}
             disabled={disabled}
             errorMessage={errors.passwordConfirm?.message}
@@ -139,61 +127,60 @@ export const SignUpForm = forwardRef(
             rules={{ required: true }}
             type={'password'}
           />
-          <div className={'mx-auto mb-[12px] w-full max-w-[330px]'}>
-            <ControlledCheckbox
-              className={'mr-2 inline-block'}
-              control={control}
-              disabled={disabled}
-              label={
-                <Text
-                  className={`ml-4 inline-block w-full text-balance text-left`}
-                  variant={'small-text-12'}
-                >
-                  <Translate
-                    tags={{
-                      '1': () => (
-                        <Text
-                          asComponent={Link}
-                          href={{ pathname: GeneralRoutes.TERMS, query: { sender: 'signup' } }}
-                          variant={'small-link_12'}
-                        >
-                          {t.pages.signUp.agreement.terms}
-                        </Text>
-                      ),
-                      '2': () => (
-                        <Text
-                          asComponent={Link}
-                          className={`text-balance`}
-                          href={{ pathname: GeneralRoutes.PRIVACY, query: { sender: 'signup' } }}
-                          variant={'small-link_12'}
-                        >
-                          {t.pages.signUp.agreement.privacy}
-                        </Text>
-                      ),
-                    }}
-                    text={t.pages.signUp.agreement.description}
-                  />
-                </Text>
-              }
-              name={'accept'}
-            />
-          </div>
+          <ControlledCheckbox
+            className={'mr-2 inline-block'}
+            control={control}
+            disabled={disabled}
+            label={
+              <Text
+                className={`ml-4 inline-block w-full text-balance text-left`}
+                variant={'small-text-12'}
+              >
+                <Translate
+                  tags={{
+                    '1': () => (
+                      <Text
+                        asComponent={Link}
+                        href={{ pathname: GeneralRoutes.TERMS, query: { sender: 'signup' } }}
+                        variant={'small-link_12'}
+                      >
+                        {t.pages.signUp.agreement.terms}
+                      </Text>
+                    ),
+                    '2': () => (
+                      <Text
+                        asComponent={Link}
+                        className={`text-balance`}
+                        href={{ pathname: GeneralRoutes.PRIVACY, query: { sender: 'signup' } }}
+                        variant={'small-link_12'}
+                      >
+                        {t.pages.signUp.agreement.privacy}
+                      </Text>
+                    ),
+                  }}
+                  text={t.pages.signUp.agreement.description}
+                />
+              </Text>
+            }
+            name={'accept'}
+          />
         </Flex>
 
         <Flex direction={'column'}>
           <Button
-            className={'w-full max-w-[330px] text-balance p-[6px]'}
+            className={'mb-[18px] text-balance p-[6px]'}
+            fullWidth
             disabled={disabled || isValid}
           >
             {t.button.signUp}
           </Button>
-          <Text className={`mt-[18px] text-balance text-Light-100`} variant={'regular_text_16'}>
+          <Text className={`mb-[12px] text-balance text-Light-100`} variant={'regular_text_16'}>
             {t.pages.signUp.question}
           </Text>
           <Button
             asComponent={Link}
             variant={'link'}
-            className={`my-6 text-balance`}
+            className={`m-[0] text-balance`}
             href={AuthRoutes.SIGN_IN}
           >
             {t.button.signIn}

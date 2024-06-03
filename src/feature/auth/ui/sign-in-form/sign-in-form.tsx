@@ -7,15 +7,13 @@ import { Flex } from '@/shared/ui/flex'
 import { ControlledInput } from '@/shared/ui/input'
 import { Text } from '@/shared/ui/text'
 import Link from 'next/link'
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
+import { useTranslation, useFormRevalidateWithLocale } from '@/shared/lib/hooks'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
 import { clsx } from 'clsx'
-import { ReturnComponent } from '@/shared/types'
+import { ReturnComponent, UseFormRef } from '@/shared/types'
 import { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle } from 'react'
-import { useFormRevalidateWithLocale } from '@/shared/lib/hooks/use-form-revalidate-with-locale'
-import { UseFormRef } from '@/shared/types/form'
 import { AppList } from '@/shared/ui/app-list'
 
 type Props = {
@@ -30,12 +28,9 @@ export const SignInForm = forwardRef(
   (props: Props, methodsRef: Ref<UseFormRef<SignInFormValues> | null>): ReturnComponent => {
     const { hrefGoogle, hrefGithub, className, disabled, onSubmit, ...rest } = props
     const classes = {
-      appItems: `flex gap-[60px] justify-center mb-[1.5rem]`,
-      appLink: `py-[6px]`,
       button: `py-[6px] px-[24px] mb-[1.2rem]`,
-      forgotLink: `py-[0] ml-auto h-auto text-Light-900 mb-[1.5rem] text-right text-regular-text-14 bg-transparent`,
+      forgotLink: `py-[0] ml-auto h-auto text-Light-900 mb-[1.5rem] text-right !text-regular-text-14 bg-transparent`,
       form: clsx(`max-w-[380px] w-full p-[1.5rem]`, className),
-      title: `mb-[0.8rem]`,
     }
 
     const { t, locale } = useTranslation()
@@ -67,11 +62,16 @@ export const SignInForm = forwardRef(
         onSubmit={handleSubmit(onSubmit)}
         {...rest}
       >
-        <Text asComponent={'h1'} className={classes.title} textAlign={'center'} variant={'H1'}>
+        <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
           Sign In
           {/*{ t.pages.signIn.title }*/}
         </Text>
-        <AppList items={[{ href: hrefGithub }, { href: hrefGoogle }]} />
+        <AppList
+          items={[
+            { href: hrefGithub, 'aria-label': 'Sign in with github' },
+            { href: hrefGoogle, 'aria-label': 'Sign in with github' },
+          ]}
+        />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
           <ControlledInput
             control={control}
@@ -109,13 +109,13 @@ export const SignInForm = forwardRef(
           <Button className={classes.button} fullWidth>
             {t.button.signIn}
           </Button>
-          <Text className={`mb-[6px] text-Light-100`} variant={'regular_text_16'}>
+          <Text className={`mb-[12px] text-Light-100`} variant={'regular_text_16'}>
             Don’t have an account?
           </Text>
           <Button
             asComponent={Link}
             variant={'link'}
-            className={`my-6 text-balance`}
+            className={`m-[0] text-balance`}
             href={AuthRoutes.SIGN_UP}
           >
             {t.button.signUp}
