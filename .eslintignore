@@ -1,0 +1,2 @@
+# Allow the .storybook foler (dot-folders are ignored by eslint by default)
+!.storybook

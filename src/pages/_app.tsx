@@ -7,6 +7,7 @@ import { useLoader } from '@/shared/lib/hooks/use-loader'
 
 import '@/app/styles/nprogress.scss'
 import '@/app/styles/globals.scss'
+import { AppProvider } from '@/app/providers/app-provider'
 
 export type NextPageWithLayout<P = {}, IP = P> = {
   getLayout?: (page: ReactElement) => ReactNode
@@ -22,8 +23,8 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? (page => page)
 
   return getLayout(
-    <>
+    <AppProvider>
       <Component {...pageProps} />
-    </>
+    </AppProvider>
   )
 }
