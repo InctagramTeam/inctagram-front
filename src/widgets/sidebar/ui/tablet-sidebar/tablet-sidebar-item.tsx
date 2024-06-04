@@ -19,8 +19,8 @@ type Props = {
 
 const linkClasses = {
   active: ` text-Primary-500`,
-  base: `flex gap-[12px] font-medium-text-14 transition ease-in-out
-  hover:text-Primary-100 last:mt-auto last:mb-0`,
+  base: `block gap-[12px] font-medium-text-14 transition ease-in-out
+  hover:text-Primary-100 last:mt-auto last:mb-0 relative`,
   default: `text-Light-100`,
   disabled: `pointer-events-none text-Dark-100 cursor-default`,
 }
@@ -51,14 +51,17 @@ export const TabletSidebarItem = forwardRef<HTMLAnchorElement, Props>(
               {getIcon(link.href, isActive)}
               <TooltipContent
                 className={
-                  'flexrounded-1/2 h-8 w-full max-w-[100px] items-center gap-4 bg-Dark-500 !text-Light-100'
+                  'rounded-1/2 flex h-8 w-full max-w-[100px] items-center gap-4 bg-Dark-500 !text-Light-100'
                 }
                 side={'right'}
               >
                 {link.name}
               </TooltipContent>
               <div
-                className={clsx(isActive && `absolute right-6 h-2 w-2 rounded bg-Primary-900`)}
+                aria-hidden
+                className={clsx(
+                  isActive && `absolute -right-2 top-0 h-2 w-2 rounded bg-Primary-900`
+                )}
               ></div>
             </Link>
           </TooltipTrigger>
