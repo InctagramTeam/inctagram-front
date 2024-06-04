@@ -15,7 +15,7 @@ type Props = {
   notifications?: NotificationProps[]
 }
 
-export const Header = ({ className, ...rest }: Props): ReturnComponent => {
+export const Header = ({ className, ...props }: Props): ReturnComponent => {
   const classes = {
     header: clsx(
       `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,
@@ -28,7 +28,7 @@ export const Header = ({ className, ...rest }: Props): ReturnComponent => {
     <header className={classes.header}>
       <Flex className={classes.wrapper} gap={'20'} items={'center'} justify={'spaceBetween'}>
         <Logo />
-        <HeaderMenu {...rest} />
+        <HeaderMenu {...props} />
       </Flex>
     </header>
   )

@@ -1,8 +1,17 @@
 'use client'
-import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
+import * as React from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ElementType,
+  forwardRef,
+  HTMLAttributes,
+  ReactNode,
+} from 'react'
 
 import { PolymorphComponentPropsWithRef } from '@/shared/types'
 import clsx from 'clsx'
+import { cn } from '@/shared/lib/utils'
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, ComponentPropsWithoutRef<T>>
 
@@ -28,6 +37,36 @@ export const Card: CardComponent = forwardRef(
   }
 )
 
-//   background-color: var(--dark-500);
-//   border: 1px solid var(--dark-300);
-//   border-radius: 2px;
+const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('flex flex-col space-y-1.5 p-6', className)} {...props} />
+  )
+)
+
+const CardTitle = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => (
+    <h3
+      ref={ref}
+      className={cn('tracking-bg-Dark-500 text-2xl font-semibold leading-none', className)}
+      {...props}
+    />
+  )
+)
+
+export const CardDescription = forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p ref={ref} className={cn('text-sm text-Dark-100', className)} {...props} />
+))
+
+export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
+  )
+)
+export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn('flex items-center p-6 pt-0', className)} {...props} />
+  )
+)
