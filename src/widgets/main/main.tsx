@@ -1,8 +1,10 @@
 import { ReactNode } from 'react'
 
 import { useLayoutContext } from '@/shared/layouts/context/layout-context'
-import clsx from 'clsx'
 import { Inter } from 'next/font/google'
+import { useResponsive } from '@/shared/lib/hooks'
+import { LG_BREAKPOINT } from '@/shared/constants'
+import { cn } from '@/shared/lib/utils'
 
 const inter = Inter({
   display: 'swap',
@@ -18,16 +20,21 @@ type Props = {
 
 export const Main = ({ children }: Props) => {
   const { isCollapsed } = useLayoutContext()
+  const { width } = useResponsive()
 
-  return (
-    <main
-      className={clsx(
-        isCollapsed ? 'pl-[80px]' : 'pl-[220px]',
-        `flex w-full flex-col items-center justify-center pt-[var(--header-height)]`,
-        inter.variable
-      )}
-    >
-      {children}
-    </main>
-  )
+  if (!width) {
+    return
+  }
+
+  const tablet = width < LG_BREAKPOINT
+
+  const classes = {
+    main: cn(
+      `flex pt-[var(--header-height)] pl-[220px]`,
+      (isCollapsed || tablet) && 'pl-[80px]',
+      inter.variable
+    ),
+  }
+
+  return <main className={classes.main}>{children}</main>
 }

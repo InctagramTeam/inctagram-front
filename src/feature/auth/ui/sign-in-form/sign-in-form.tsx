@@ -83,6 +83,7 @@ export const SignInForm = forwardRef(
             name={'email'}
             placeholder={t.placeholders.email}
             rules={{ required: true }}
+            aria-invalid={errors.email ? 'true' : 'false'}
             type={'email'}
           />
           <ControlledInput
@@ -94,6 +95,7 @@ export const SignInForm = forwardRef(
             name={'password'}
             placeholder={t.placeholders.password}
             rules={{ required: true }}
+            aria-invalid={errors.password ? 'true' : 'false'}
             type={'password'}
           />
         </Flex>

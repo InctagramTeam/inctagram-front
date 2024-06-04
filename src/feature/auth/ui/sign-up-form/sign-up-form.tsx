@@ -91,6 +91,7 @@ export const SignUpForm = forwardRef(
             name={'username'}
             placeholder={t.placeholders.username}
             rules={{ required: true }}
+            aria-invalid={errors.username ? 'true' : 'false'}
             type={'text'}
           />
           <ControlledInput
@@ -102,6 +103,7 @@ export const SignUpForm = forwardRef(
             name={'email'}
             placeholder={t.placeholders.email}
             rules={{ required: true }}
+            aria-invalid={errors.email ? 'true' : 'false'}
             type={'email'}
           />
           <ControlledInput
@@ -113,6 +115,7 @@ export const SignUpForm = forwardRef(
             name={'password'}
             placeholder={t.placeholders.password}
             rules={{ required: true }}
+            aria-invalid={errors.password ? 'true' : 'false'}
             type={'password'}
           />
           <ControlledInput
@@ -124,6 +127,7 @@ export const SignUpForm = forwardRef(
             name={'passwordConfirm'}
             placeholder={t.placeholders.passwordConfirm}
             rules={{ required: true }}
+            aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
             type={'password'}
           />
           <ControlledCheckbox

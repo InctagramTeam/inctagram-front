@@ -10,16 +10,16 @@ export const DesktopSidebarMenu = forwardRef<HTMLElement, ComponentPropsWithoutR
   ({ ...rest }, ref): ReturnComponent => {
     const { isCollapsed } = useLayoutContext()
 
+    const classes = {
+      nav: cn(
+        `h-[calc(100vh-60px)] top-[60px] pt-[72px] overflow-auto fixed l-0 w-full max-w-[240px] border-r-[1px] pb-[36px] border-r-Dark-300 pl-[60px] pr-[20px] shadow-sm`,
+        rest.className,
+        isCollapsed && `flex w-full max-w-[80px] justify-center shadow-sm`
+      ),
+    }
+
     return (
-      <nav
-        className={cn(
-          `fixed left-0 top-[60px] h-[calc(100vh-60px)] w-full max-w-[240px] border-r-[1px] border-r-Dark-300 pb-[36px] pl-[50px] pr-[40px] pt-[72px] shadow-sm`,
-          rest.className,
-          isCollapsed && `flex w-full max-w-[80px] justify-center shadow-sm`
-        )}
-        ref={ref}
-        {...rest}
-      >
+      <nav className={classes.nav} ref={ref} {...rest}>
         <DesktopSidebarList />
       </nav>
     )
