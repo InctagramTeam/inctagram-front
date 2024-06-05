@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { useLayoutContext } from '@/shared/layouts/context/layout-context'
 import { Inter } from 'next/font/google'
 import { useResponsive } from '@/shared/lib/hooks'
-import { LG_BREAKPOINT } from '@/shared/constants'
+import { LG_BREAKPOINT, SM_BREAKPOINT } from '@/shared/constants'
 import { cn } from '@/shared/lib/utils'
 
 const inter = Inter({
@@ -26,12 +26,11 @@ export const Main = ({ children }: Props) => {
     return
   }
 
-  const tablet = width < LG_BREAKPOINT
-
   const classes = {
     main: cn(
       `flex pt-[var(--header-height)] pl-[220px]`,
-      (isCollapsed || tablet) && 'pl-[80px]',
+      (isCollapsed || width < LG_BREAKPOINT) && 'pl-[80px]',
+      width < SM_BREAKPOINT && 'pl-0',
       inter.variable
     ),
   }
