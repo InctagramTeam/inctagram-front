@@ -1,22 +1,23 @@
-import { Button } from '@/shared/ui/button'
-import { LogOutIcon } from '@/shared/assets/icons'
 import React, { ComponentPropsWithoutRef } from 'react'
+
+import { LogOutIcon } from '@/shared/assets/icons'
 import { useTranslation } from '@/shared/lib/hooks'
-import { clsx } from 'clsx'
+import { Button } from '@/shared/ui/button'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
+import { clsx } from 'clsx'
 
 type Props = {
   iconClassName?: string
   onlyIcon?: boolean
 } & ComponentPropsWithoutRef<'button'>
 export const LogoutButton = ({
-  disabled,
   className,
+  disabled,
   iconClassName,
   onlyIcon = false,
   ...rest
@@ -37,16 +38,16 @@ export const LogoutButton = ({
       <Tooltip delayDuration={0}>
         <TooltipTrigger asChild>
           <Button
+            aria-label={onlyIcon ? t.button.logOut : ''}
             className={clsx(
               'h-auto !justify-normal self-start py-[0] !text-left !text-medium-text-14',
               disabled && '!cursor-default !text-Dark-100',
               className
             )}
-            onClick={() => {}}
             disabled={disabled}
+            onClick={() => {}}
             startIcon={<LogOutIcon className={iconClassName} />}
             variant={'text'}
-            aria-label={onlyIcon ? t.button.logOut : ''}
             {...rest}
           >
             {onlyIcon ? (

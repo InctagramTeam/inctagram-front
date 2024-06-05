@@ -4,14 +4,14 @@ import {
   ComponentPropsWithoutRef,
   ElementRef,
   ElementType,
-  forwardRef,
   HTMLAttributes,
   ReactNode,
+  forwardRef,
 } from 'react'
 
+import { cn } from '@/shared/lib/utils'
 import { PolymorphComponentPropsWithRef } from '@/shared/types'
 import clsx from 'clsx'
-import { cn } from '@/shared/lib/utils'
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, ComponentPropsWithoutRef<T>>
 
@@ -39,15 +39,15 @@ export const Card: CardComponent = forwardRef(
 
 const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('flex flex-col space-y-1.5 p-6', className)} {...props} />
+    <div className={cn('flex flex-col space-y-1.5 p-6', className)} ref={ref} {...props} />
   )
 )
 
 const CardTitle = React.forwardRef<HTMLParagraphElement, HTMLAttributes<HTMLHeadingElement>>(
   ({ className, ...props }, ref) => (
     <h3
-      ref={ref}
       className={cn('tracking-bg-Dark-500 text-2xl font-semibold leading-none', className)}
+      ref={ref}
       {...props}
     />
   )
@@ -57,16 +57,16 @@ export const CardDescription = forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <p ref={ref} className={cn('text-sm text-Dark-100', className)} {...props} />
+  <p className={cn('text-sm text-Dark-100', className)} ref={ref} {...props} />
 ))
 
 export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('p-6 pt-0', className)} {...props} />
+    <div className={cn('p-6 pt-0', className)} ref={ref} {...props} />
   )
 )
 export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('flex items-center p-6 pt-0', className)} {...props} />
+    <div className={cn('flex items-center p-6 pt-0', className)} ref={ref} {...props} />
   )
 )

@@ -1,8 +1,8 @@
 import { ChevronIcon } from '@/shared/assets/icons'
 import { useLayoutContext } from '@/shared/layouts/context/layout-context'
+import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
-import { cn } from '@/shared/lib/utils'
 
 export const ToggleCollapsedButtons = (): ReturnComponent => {
   const { isCollapsed, toggleSidebar } = useLayoutContext()
@@ -15,7 +15,7 @@ export const ToggleCollapsedButtons = (): ReturnComponent => {
   }
 
   return (
-    <Button className={classes.button} onClick={toggleSidebar} variant={'text'} aria-hidden>
+    <Button aria-hidden className={classes.button} onClick={toggleSidebar} variant={'text'}>
       <ChevronIcon className={classes.icon} />
     </Button>
   )

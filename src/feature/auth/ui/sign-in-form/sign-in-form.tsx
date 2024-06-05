@@ -75,6 +75,7 @@ export const SignInForm = forwardRef(
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
           <ControlledInput
+            aria-invalid={errors.email ? 'true' : 'false'}
             autoComplete={'email'}
             control={control}
             disabled={disabled}
@@ -83,10 +84,10 @@ export const SignInForm = forwardRef(
             name={'email'}
             placeholder={t.placeholders.email}
             rules={{ required: true }}
-            aria-invalid={errors.email ? 'true' : 'false'}
             type={'email'}
           />
           <ControlledInput
+            aria-invalid={errors.password ? 'true' : 'false'}
             autoComplete={'current-password'}
             control={control}
             disabled={disabled}
@@ -95,7 +96,6 @@ export const SignInForm = forwardRef(
             name={'password'}
             placeholder={t.placeholders.password}
             rules={{ required: true }}
-            aria-invalid={errors.password ? 'true' : 'false'}
             type={'password'}
           />
         </Flex>

@@ -1,18 +1,20 @@
-import { SidebarLink } from '@/widgets/sidebar/ui'
 import React from 'react'
+
+import { useLayoutContext } from '@/shared/layouts'
 import { cn } from '@/shared/lib/utils'
 import { NavLink } from '@/shared/types'
-import { useLayoutContext } from '@/shared/layouts'
+import { SidebarLink } from '@/widgets/sidebar/ui'
 
 type Props = {
   isMobile?: boolean
   links: NavLink[]
 }
 
-export const SidebarList = ({ links, isMobile = false }: Props) => {
+export const SidebarList = ({ isMobile = false, links }: Props) => {
   const { isCollapsed } = useLayoutContext()
 
   const classes = {
+    item: cn(isMobile && `w-[24px] h-[24px]`, !isMobile && 'flex'),
     list: cn(
       'w-full flex cursor-pointer rounded-md transition-colors',
       !isMobile && 'mb-[46px] flex-col gap-[24px] [&>*:nth-child(5)]:mb-[46px]',
@@ -20,7 +22,6 @@ export const SidebarList = ({ links, isMobile = false }: Props) => {
       isCollapsed && 'items-center',
       isMobile && 'gap-[36px]'
     ),
-    item: cn(isMobile && `w-[24px] h-[24px]`, !isMobile && 'flex'),
   }
 
   return (

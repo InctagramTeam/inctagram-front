@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
 
-import { useLayoutContext } from '@/shared/layouts/context/layout-context'
-import { Inter } from 'next/font/google'
-import { useResponsive } from '@/shared/lib/hooks'
 import { LG_BREAKPOINT, SM_BREAKPOINT } from '@/shared/constants'
+import { useLayoutContext } from '@/shared/layouts/context/layout-context'
+import { useResponsive } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
+import { Inter } from 'next/font/google'
 
 const inter = Inter({
   display: 'swap',

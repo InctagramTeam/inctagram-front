@@ -1,9 +1,9 @@
 import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
+import { LG_BREAKPOINT, SM_BREAKPOINT, XS_BREAKPOINT } from '@/shared/constants'
+import { useResponsive } from '@/shared/lib/hooks'
 import { cn, getIcon } from '@/shared/lib/utils'
 import { NavLink } from '@/shared/types/navlink'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { Button } from '@/shared/ui/button'
 import {
   Tooltip,
@@ -11,8 +11,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
-import { LG_BREAKPOINT, SM_BREAKPOINT, XS_BREAKPOINT } from '@/shared/constants'
-import { useResponsive } from '@/shared/lib/hooks'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 type Props = {
   isCollapsed?: boolean
@@ -36,6 +36,7 @@ export const SidebarLink = forwardRef<HTMLAnchorElement, Props>(
     const classes = {
       content:
         'rounded-1/2 flex h-8 w-full max-w-[100px] items-center gap-4 bg-Dark-500 !text-Light-100',
+      icon: 'h-[24px] basis-[24px]',
       link: cn(
         `relative h-auto flex !items-start gap-[12px] py-[0]
       !text-medium-text-14 text-Light-100 !whitespace-normal !text-left 
@@ -46,7 +47,6 @@ export const SidebarLink = forwardRef<HTMLAnchorElement, Props>(
         isActive && `text-Primary-500 before:opacity-1`,
         link.className
       ),
-      icon: 'h-[24px] basis-[24px]',
     }
 
     return (
@@ -54,19 +54,19 @@ export const SidebarLink = forwardRef<HTMLAnchorElement, Props>(
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
             <Button
+              aria-label={isCollapsed ? link.name : ''}
               asComponent={Link}
-              disabled={link.disabled}
-              variant={'text'}
               className={classes.link}
+              disabled={link.disabled}
               href={link.href}
               onClick={link.handleClick}
               ref={ref}
               startIcon={
-                <span className={classes.icon} aria-hidden>
+                <span aria-hidden className={classes.icon}>
                   {getIcon(link.href, isActive)}
                 </span>
               }
-              aria-label={isCollapsed ? link.name : ''}
+              variant={'text'}
               {...rest}
             >
               {desktop && !isCollapsed && link.name}

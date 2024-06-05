@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
+
 import { cn } from '@/shared/lib/utils'
 import { useAlert } from '@/shared/ui/alert/hooks'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { type VariantProps, cva } from 'class-variance-authority'
 
 type Props = {
-  text: string
   icon: ReactNode
+  text: string
 } & ComponentPropsWithoutRef<'div'>
 
 const alertVariants = cva(
@@ -23,8 +24,8 @@ const alertVariants = cva(
 
 export const Alert = ({
   className,
-  text,
   icon,
+  text,
   variant,
   ...rest
 }: Props & VariantProps<typeof alertVariants>) => {

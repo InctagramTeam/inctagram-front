@@ -1,13 +1,14 @@
 'use client'
 
-import { LG_BREAKPOINT, SM_BREAKPOINT } from '@/shared/constants'
-import { useResponsive } from '@/shared/lib/hooks'
-import { getBaseLinks, getSidebarLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
 import React from 'react'
+
+import { LG_BREAKPOINT, SM_BREAKPOINT } from '@/shared/constants'
 import { useLayoutContext } from '@/shared/layouts'
+import { useResponsive } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import { LogoutButton } from '@/shared/ui/logout-button'
+import { getBaseLinks, getSidebarLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 
 export const Sidebar = (): ReturnComponent => {
@@ -23,6 +24,8 @@ export const Sidebar = (): ReturnComponent => {
   const desktop = width > LG_BREAKPOINT
 
   const classes = {
+    button: cn('mt-auto', (tablet || isCollapsed) && 'mx-auto'),
+    navigation: `h-full flex justify-between items-center flex-col`,
     wrapper: cn(
       `w-full fixed shadow-sm`,
       !mobile &&
@@ -34,8 +37,6 @@ export const Sidebar = (): ReturnComponent => {
       mobile &&
         'z-2 bottom-0 right-0 h-[var(--header-height)] w-full border-t-[1px] border-t-Dark-300 pt-4 bg-Dark-700'
     ),
-    navigation: `h-full flex justify-between items-center flex-col`,
-    button: cn('mt-auto', (tablet || isCollapsed) && 'mx-auto'),
   }
 
   return (
@@ -43,7 +44,7 @@ export const Sidebar = (): ReturnComponent => {
       <nav className={classes.navigation}>
         {desktop && <ToggleCollapsedButtons />}
         {mobile ? (
-          <SidebarList links={getBaseLinks()} isMobile />
+          <SidebarList isMobile links={getBaseLinks()} />
         ) : (
           <>
             <SidebarList links={getSidebarLinks()} />
