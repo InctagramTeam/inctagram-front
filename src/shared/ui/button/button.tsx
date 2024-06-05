@@ -154,7 +154,7 @@ export const Button: ButtonComponent = forwardRef(
 
     /** className={classes.btn} перезаписывает {...rest} пропсы */
     return (
-      <Component {...rest} className={classes.btn} ref={ref}>
+      <Component {...rest} disabled={disabled} className={classes.btn} ref={ref}>
         {startIcon}
         {children}
         {endIcon}
