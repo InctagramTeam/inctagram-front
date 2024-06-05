@@ -22,13 +22,13 @@ export type SignUpRequest = {
 export type SignUpResponse = {
   avatar: string
   created: string
+  description?: string
   email: string
   id: string
   isEmailVerified: boolean
   name: string
-  updated: string
   status: string
-  description?: string
+  updated: string
 }
 
 /** OAuthGoogleParams -- url: 'auth/google/login' */
@@ -48,10 +48,10 @@ export type SignInRequest = {
 }
 
 export type SignInResponse = {
+  accessToken: string
   email: string
   password: string
   rememberMe?: boolean
-  accessToken: string
   status?: string
 }
 

@@ -83,6 +83,7 @@ export const SignUpForm = forwardRef(
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
           <ControlledInput
+            aria-invalid={errors.username ? 'true' : 'false'}
             autoComplete={'username'}
             control={control}
             disabled={disabled}
@@ -91,10 +92,10 @@ export const SignUpForm = forwardRef(
             name={'username'}
             placeholder={t.placeholders.username}
             rules={{ required: true }}
-            aria-invalid={errors.username ? 'true' : 'false'}
             type={'text'}
           />
           <ControlledInput
+            aria-invalid={errors.email ? 'true' : 'false'}
             autoComplete={'email'}
             control={control}
             disabled={disabled}
@@ -103,10 +104,10 @@ export const SignUpForm = forwardRef(
             name={'email'}
             placeholder={t.placeholders.email}
             rules={{ required: true }}
-            aria-invalid={errors.email ? 'true' : 'false'}
             type={'email'}
           />
           <ControlledInput
+            aria-invalid={errors.password ? 'true' : 'false'}
             autoComplete={'new-password'}
             control={control}
             disabled={disabled}
@@ -115,10 +116,10 @@ export const SignUpForm = forwardRef(
             name={'password'}
             placeholder={t.placeholders.password}
             rules={{ required: true }}
-            aria-invalid={errors.password ? 'true' : 'false'}
             type={'password'}
           />
           <ControlledInput
+            aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
             autoComplete={'new-password'}
             control={control}
             disabled={disabled}
@@ -127,7 +128,6 @@ export const SignUpForm = forwardRef(
             name={'passwordConfirm'}
             placeholder={t.placeholders.passwordConfirm}
             rules={{ required: true }}
-            aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
             type={'password'}
           />
           <ControlledCheckbox

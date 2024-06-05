@@ -110,6 +110,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     const classNames = {
+      clearInputButton: clsx(
+        `_ClearInput_ unset absolute right-[12px] top-1/2 flex -translate-y-1/2 transform
+                cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
+                focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
+                focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
+        disabled && `cursor-not-allowed text-Dark-100/60`
+      ),
       error: clsx(
         errorMessage && `_Error_ text-small-text-12 !text-Danger-500 mt-1 `,
         divContainerProps?.className
@@ -159,13 +166,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         disabled &&
           `active:not:disabled:text-Light-100 cursor-not-allowed text-Dark-300 disabled:cursor-not-allowed`
       ),
-      clearInputButton: clsx(
-        `_ClearInput_ unset absolute right-[12px] top-1/2 flex -translate-y-1/2 transform
-                cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
-                focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
-                focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
-        disabled && `cursor-not-allowed text-Dark-100/60`
-      ),
     }
 
     return (
@@ -183,7 +183,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className={classNames.inputWrapper}>
           {isSearchField && (
-            <div className={`absolute left-[3%] top-1/4`} aria-hidden>
+            <div aria-hidden className={`absolute left-[3%] top-1/4`}>
               <SearchIcon
                 className={classNames.searchIcon}
                 onClick={() => inputRef.current?.focus()}
@@ -204,25 +204,25 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {isRevealPasswordButtonShown && (
             <button
+              aria-controls={finalId}
+              aria-label={revealPassword ? 'close password' : 'show password'}
+              aria-pressed={revealPassword}
               className={classNames.showPasswordButton}
               disabled={disabled}
               onClick={handleToggleShowPassword}
               type={'button'}
-              aria-label={revealPassword ? 'close password' : 'show password'}
-              aria-pressed={revealPassword}
-              aria-controls={finalId}
             >
               {revealPassword ? <EyeOffIcon /> : <EyeIcon />}
             </button>
           )}
           {isClearInputButtonShown && (
             <button
+              aria-controls={finalId}
+              aria-label={'clear field'}
               className={classNames.clearInputButton}
               disabled={disabled}
               onClick={handleClearInput}
-              aria-label={'clear field'}
               type={'button'}
-              aria-controls={finalId}
             >
               <CloseIcon className={`text-Primary-500`} height={20} width={20} />
             </button>
