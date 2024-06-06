@@ -13,7 +13,7 @@ export const AppQueryClientProvider = ({ children, pageProps = {} }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
       <HydrationBoundary state={pageProps.dehydratedState}>{children}</HydrationBoundary>
-      <ReactQueryDevtools initialIsOpen />
+      <ReactQueryDevtools initialIsOpen={false} /> {/* вкл. девтулз реакт-квери */}
     </QueryClientProvider>
   )
 }

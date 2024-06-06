@@ -14,7 +14,7 @@ export const Logo = (): ReturnComponent => {
   }
 
   return (
-    <Link className={classes.link} href={'/home'}>
+    <Link className={classes.link} href={'/home-nav-links'}>
       <Image alt={'Logo'} className={classes.img} height={36} src={logo} width={128} />
     </Link>
   )

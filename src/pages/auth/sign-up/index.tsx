@@ -6,11 +6,9 @@ import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
-import { getLayout } from '@/shared/layouts/base-layout/base-layout'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
-type Props = {}
-
-const SignUp = ({}: Props): ReturnComponent => {
+const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
 
   const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
@@ -30,5 +28,5 @@ const SignUp = ({}: Props): ReturnComponent => {
   )
 }
 
-SignUp.getLayout = getLayout
+SignUp.getLayout = getAuthLayout
 export default SignUp

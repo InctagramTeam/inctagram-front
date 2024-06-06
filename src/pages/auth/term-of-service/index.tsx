@@ -1,5 +1,5 @@
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { getLayout } from '@/shared/layouts/base-layout/base-layout'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
 const TermOfService = () => {
   return (
@@ -9,5 +9,5 @@ const TermOfService = () => {
   )
 }
 
-TermOfService.getLayout = getLayout
+TermOfService.getLayout = getAuthLayout
 export default TermOfService

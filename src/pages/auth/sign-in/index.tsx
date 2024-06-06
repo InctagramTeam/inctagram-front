@@ -5,7 +5,7 @@ import { SignInForm } from '@/feature/auth/ui/sign-in-form'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
-import { getLayout } from '@/shared/layouts/base-layout/base-layout'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
 const SignIn = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
@@ -26,5 +26,5 @@ const SignIn = (): ReturnComponent => {
   )
 }
 
-SignIn.getLayout = getLayout
+SignIn.getLayout = getAuthLayout
 export default SignIn

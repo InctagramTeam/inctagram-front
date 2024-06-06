@@ -1,14 +1,14 @@
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { Home } from '@/widgets/home/home'
-import { getLayout } from '@/shared/layouts/base-layout/base-layout'
+import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
+import { HomeNavLinks } from '@/widgets/main'
 
 function HomePage() {
   return (
-    <PageWrapper title={'Main | Instagram'}>
-      <Home />
+    <PageWrapper title={'Main | Instagram'} paddingTop={'24px'}>
+      <HomeNavLinks />
     </PageWrapper>
   )
 }
 
-HomePage.getLayout = getLayout
+HomePage.getLayout = getBaseAppLayout
 export default HomePage

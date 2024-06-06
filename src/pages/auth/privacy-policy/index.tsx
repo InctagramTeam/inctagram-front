@@ -1,5 +1,5 @@
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { getLayout } from '@/shared/layouts/base-layout/base-layout'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
 const PrivacyPolicy = () => {
   return (
@@ -9,5 +9,5 @@ const PrivacyPolicy = () => {
   )
 }
 
-PrivacyPolicy.getLayout = getLayout
+PrivacyPolicy.getLayout = getAuthLayout
 export default PrivacyPolicy

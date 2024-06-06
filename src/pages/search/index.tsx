@@ -1,5 +1,5 @@
+import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { getLayout } from '@/shared/layouts/base-layout/base-layout'
 
 const Search = () => {
   return (
@@ -9,5 +9,5 @@ const Search = () => {
   )
 }
 
-Search.getLayout = getLayout
+Search.getLayout = getBaseAppLayout
 export default Search
