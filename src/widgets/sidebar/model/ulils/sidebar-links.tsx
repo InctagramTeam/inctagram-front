@@ -51,4 +51,3 @@ const getAdditionalDesktopLinks = (): NavLink[] => {
 }
 
 export const getSidebarLinks = (): NavLink[] => [...getBaseLinks(), ...getAdditionalDesktopLinks()]
-export const getMobileLinks = (): NavLink[] => getBaseLinks()
