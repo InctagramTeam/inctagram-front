@@ -27,7 +27,7 @@ export const Sidebar = (): ReturnComponent => {
 
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
-    navigation: cn(`h-full flex justify-between flex-col`, mobile && 'items-center'),
+    navigation: cn(`h-full flex justify-between flex-col items-start`, mobile && 'items-center'),
     wrapper: cn(
       `w-full fixed shadow-sm`,
       !mobile &&
@@ -58,7 +58,6 @@ export const Sidebar = (): ReturnComponent => {
               onClick={() => {}}
               onlyIcon={onlyIcons}
               startIcon={<LogOutIcon />}
-              variant={'text'}
             />
           </>
         )}
