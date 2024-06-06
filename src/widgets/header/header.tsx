@@ -4,9 +4,7 @@ import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui/flex'
 import { clsx } from 'clsx'
 
-import { HeaderMenu } from './ui/header-menu'
-import { Logo } from './ui/logo'
-import { NotificationProps } from './ui/notifications-dropdown-list'
+import { HeaderMenu, NotificationProps, Logo } from './ui'
 
 type Props = {
   className?: string
