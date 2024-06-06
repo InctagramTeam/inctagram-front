@@ -8,14 +8,12 @@ import Link from 'next/link'
 
 type Props = {
   isMobile?: boolean
-  onlyIcons?: boolean
   links: NavLink[]
+  onlyIcons?: boolean
 }
 
-export const SidebarList = ({ isMobile = false, onlyIcons = false, links }: Props) => {
+export const SidebarList = ({ isMobile = false, links, onlyIcons = false }: Props) => {
   const { isCollapsed } = useLayoutContext()
-
-  console.log(isCollapsed)
 
   const classes = {
     item: cn(isMobile && `w-[24px] h-[24px]`, !isMobile && 'flex'),

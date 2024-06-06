@@ -1,5 +1,8 @@
-import { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
+
 import { cn, getIcon } from '@/shared/lib/utils'
+import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared/types'
+import { Button, CustomButtonProps } from '@/shared/ui/button'
 import {
   Tooltip,
   TooltipContent,
@@ -7,12 +10,10 @@ import {
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
 import { usePathname } from 'next/navigation'
-import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared/types'
-import { Button, CustomButtonProps } from '@/shared/ui/button'
 
 type CustomProps = {
-  onlyIcon?: boolean
   name: string
+  onlyIcon?: boolean
 } & CustomButtonProps
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
@@ -23,7 +24,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
     ref: ElementRef<T>
   ): ReturnComponent => {
-    const { onlyIcon, asComponent, name, startIcon, disabled, className, ...rest } = props
+    const { asComponent, className, disabled, name, onlyIcon, startIcon, ...rest } = props
 
     const pathname = usePathname()
     const isActive = props.href && pathname!.startsWith(props.href)

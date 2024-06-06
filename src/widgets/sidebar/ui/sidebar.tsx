@@ -2,15 +2,15 @@
 
 import React from 'react'
 
+import { LogOutIcon } from '@/shared/assets/icons'
 import { LG_BREAKPOINT, SM_BREAKPOINT } from '@/shared/constants'
 import { useLayoutContext } from '@/shared/layouts'
 import { useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
+import { NavigationElement } from '@/shared/ui/navigation-element'
 import { getBaseLinks, getSidebarLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
-import { NavigationElement } from '@/shared/ui/navigation-element'
-import { LogOutIcon } from '@/shared/assets/icons'
 
 export const Sidebar = (): ReturnComponent => {
   const { isCollapsed } = useLayoutContext()
@@ -48,17 +48,17 @@ export const Sidebar = (): ReturnComponent => {
       <nav className={classes.navigation}>
         {desktop && <ToggleCollapsedButtons />}
         {mobile ? (
-          <SidebarList isMobile onlyIcons links={getBaseLinks()} />
+          <SidebarList isMobile links={getBaseLinks()} onlyIcons />
         ) : (
           <>
             <SidebarList links={getSidebarLinks()} onlyIcons={onlyIcons} />
             <NavigationElement
               className={classes.button}
-              onlyIcon={onlyIcons}
               name={t.button.logOut}
+              onClick={() => {}}
+              onlyIcon={onlyIcons}
               startIcon={<LogOutIcon />}
               variant={'text'}
-              onClick={() => {}}
             />
           </>
         )}

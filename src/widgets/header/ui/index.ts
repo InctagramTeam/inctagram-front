@@ -1,5 +1,5 @@
-export { HeaderMenu } from './header-menu'
 export { AuthButtons } from './auth-buttons'
+export { HeaderMenu } from './header-menu'
 export { Logo } from './logo'
 export { MobileDropdown } from './mobile-dropdown'
 export { NotificationsDropdown } from './notifications-dropdown'
