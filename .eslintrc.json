@@ -1,4 +1,8 @@
 {
   "extends": ["next/core-web-vitals", "@it-incubator/eslint-config"],
-  "rules": { "no-console": ["warn", { "allow": ["warn", "error"] }] }
+  "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-nested-ternary": "off",
+    "react-hooks/exhaustive-deps": "off"
+  }
 }

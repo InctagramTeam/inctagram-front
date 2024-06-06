@@ -1,14 +1,13 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
-import { getLayout } from '@/components/Layout/Layout'
+import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
 
 const Profile = () => {
   return (
-    <>
-      <HeadMeta title={'Profile'} />
+    <PageWrapper title={'Profile | Instagram'}>
       <h1>Profile</h1>
-    </>
+    </PageWrapper>
   )
 }
 
-Profile.getLayout = getLayout
+Profile.getLayout = getBaseAppLayout
 export default Profile

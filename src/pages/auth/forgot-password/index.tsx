@@ -1,14 +1,13 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
-import { getLayout } from '@/components/Layout/Layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
 const ForgotPassword = () => {
   return (
-    <>
-      <HeadMeta title={'Forgot password'} />
+    <PageWrapper paddingTop={'72px'} title={'Forgot password | Instagram'}>
       <h1>ForgotPassword</h1>
-    </>
+    </PageWrapper>
   )
 }
 
-ForgotPassword.getLayout = getLayout
+ForgotPassword.getLayout = getAuthLayout
 export default ForgotPassword

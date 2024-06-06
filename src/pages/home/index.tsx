@@ -1,14 +1,13 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
-import { getLayout } from '@/components/Layout/Layout'
+import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
 
 const Home = () => {
   return (
-    <>
-      <HeadMeta title={'Home'} />
+    <PageWrapper title={'Home | Instagram'}>
       <h1>Home</h1>
-    </>
+    </PageWrapper>
   )
 }
 
-Home.getLayout = getLayout
+Home.getLayout = getBaseAppLayout
 export default Home

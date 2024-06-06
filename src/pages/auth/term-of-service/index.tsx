@@ -1,14 +1,13 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
-import { getLayout } from '@/components/Layout/Layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
 const TermOfService = () => {
   return (
-    <>
-      <HeadMeta title={'TermOfService'} />
+    <PageWrapper paddingTop={'72px'} title={'TermOfService | Instagram'}>
       <h1>TermOfService</h1>
-    </>
+    </PageWrapper>
   )
 }
 
-TermOfService.getLayout = getLayout
+TermOfService.getLayout = getAuthLayout
 export default TermOfService

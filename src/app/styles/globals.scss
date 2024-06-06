@@ -1,0 +1,138 @@
+@import 'modal-animate';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Shad_cn global styles: */
+@layer base {
+  input,
+  button,
+  select,
+  textarea,
+  optgroup,
+  option {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    color: inherit;
+  }
+
+  /* Delete autofill in input: */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 0;
+
+    transition: background-color 5000s ease-in-out 0s;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-fill-color: #8d9094;
+  }
+
+  /* Reset ,browser Input styles */
+  input[type='search']::-webkit-search-cancel-button {
+    display: none;
+  }
+
+  input[type='search']::-webkit-search-decoration {
+    display: none;
+  }
+
+  input[type='search']::-webkit-search-results-button {
+    display: none;
+  }
+
+  input[type='search']::-webkit-search-results-decoration {
+    display: none;
+  }
+
+  input[type='file'],
+  input[type='file']::-webkit-file-upload-button {
+    @apply cursor-pointer;
+  }
+
+  *,
+  *::before,
+  *::after {
+    @apply m-0 box-border border-border p-0;
+  }
+
+  html {
+    @apply h-[400dvh] w-full scrollbar-thin scrollbar-track-Dark-500 scrollbar-thumb-Primary-700;
+  }
+
+  body {
+    @apply m-0 min-h-full w-full overflow-x-hidden bg-Dark-700 p-0
+    font-inter text-regular-text-16 font-main-400 not-italic leading-m-main-24 text-Light-100;
+  }
+
+  a {
+    @apply decoration-0 transition-all duration-150 ease-in-out hover:text-Primary-100;
+  }
+
+  li {
+    @apply list-none;
+  }
+
+  .navbar {
+    @apply flex gap-5;
+  }
+
+  :root {
+    // My vars in APP
+    --header-height: 3.75rem; // 60px
+
+    // Default variables for light theme shad_cn:
+    --background: #fff;
+    --foreground: #373737;
+    --card: #fff;
+    --card-foreground: #373737;
+    --popover: #fff;
+    --popover-foreground: #373737;
+    --primary: #397df6;
+    --primary-foreground: #fafafa;
+    --secondary: #c6f2ff;
+    --secondary-foreground: #302828;
+    --muted: #c6f2ff;
+    --muted-foreground: #8da094;
+    --accent: #c6f2ff;
+    --accent-foreground: #302828;
+    --destructive: #ff3f3f;
+    --destructive-foreground: #c6f2ff;
+    --border: #bad4e4;
+    --input: #bad4e4;
+    --ring: #fff;
+    --radius: 0.5rem;
+  }
+
+  // Default variables for dark theme shad_cn:
+  .dark {
+    --background: #dedede;
+    --foreground: #fafafa;
+    --card: #dedede;
+    --card-foreground: #fafafa;
+    --popover: #dedede;
+    --popover-foreground: #fafafa;
+    --primary: #fafafa;
+    --primary-foreground: #2d2d2d;
+    --secondary: #353535;
+    --secondary-foreground: #fafafa;
+    --muted: #353535;
+    --muted-foreground: #b4b4b4;
+    --accent: #353535;
+    --accent-foreground: #fafafa;
+    --destructive: #f99;
+    --destructive-foreground: #fafafa;
+    --border: #4c4c4c;
+    --input: #353535;
+    --ring: #d3d3d3;
+  }
+}

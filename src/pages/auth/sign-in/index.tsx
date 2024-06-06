@@ -1,14 +1,30 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
-import { getLayout } from '@/components/Layout/Layout'
+import { useRef } from 'react'
 
-const SignIn = () => {
+import { SignInFormValues } from '@/feature/auth/model/utils/validators'
+import { SignInForm } from '@/feature/auth/ui/sign-in-form'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { ReturnComponent } from '@/shared/types'
+import { UseFormRef } from '@/shared/types/form'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
+
+const SignIn = (): ReturnComponent => {
+  const ref = useRef<UseFormRef<SignInFormValues>>(null)
+  const handleSubmitForm = (formData: SignInFormValues) => {
+    console.log(formData)
+  }
+
   return (
-    <>
-      <HeadMeta title={'SignIn'} />
-      <h1>SignIn</h1>
-    </>
+    <PageWrapper paddingTop={'108px'} title={'SignIn | Instagram'}>
+      <SignInForm
+        hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? ''}
+        hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? ''}
+        onSubmit={handleSubmitForm}
+        // disabled={isLoading}
+        ref={ref}
+      />
+    </PageWrapper>
   )
 }
 
-SignIn.getLayout = getLayout
+SignIn.getLayout = getAuthLayout
 export default SignIn

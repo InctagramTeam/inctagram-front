@@ -1,14 +1,13 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
-import { getLayout } from '@/components/Layout/Layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
 const PrivacyPolicy = () => {
   return (
-    <>
-      <HeadMeta title={'PrivacyPolicy'} />
+    <PageWrapper paddingTop={'72px'} title={'PrivacyPolicy | Instagram'}>
       <h1>PrivacyPolicy</h1>
-    </>
+    </PageWrapper>
   )
 }
 
-PrivacyPolicy.getLayout = getLayout
+PrivacyPolicy.getLayout = getAuthLayout
 export default PrivacyPolicy

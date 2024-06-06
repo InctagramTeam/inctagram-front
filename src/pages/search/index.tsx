@@ -1,14 +1,13 @@
-import HeadMeta from '@/components/HeadMeta/HeadMeta'
-import { getLayout } from '@/components/Layout/Layout'
+import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
 
 const Search = () => {
   return (
-    <>
-      <HeadMeta title={'Search'} />
+    <PageWrapper title={'Search | Instagram'}>
       <h1>Search</h1>
-    </>
+    </PageWrapper>
   )
 }
 
-Search.getLayout = getLayout
+Search.getLayout = getBaseAppLayout
 export default Search
