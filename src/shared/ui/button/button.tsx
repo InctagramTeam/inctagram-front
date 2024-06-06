@@ -7,7 +7,7 @@ import { PolymorphComponentPropsWithRef } from '../../types'
 
 type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 
-type CustomProps = {
+export type CustomButtonProps = {
   className?: string
   disabled?: boolean
   endIcon?: ReactNode
@@ -24,7 +24,7 @@ type CustomProps = {
   variant?: ButtonVariant
 }
 
-type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
+type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomButtonProps>
 
 type ButtonComponent = <T extends ElementType = 'button'>(props: Props<T>) => ReactNode
 
