@@ -1,17 +1,18 @@
 import { ReactNode } from 'react'
 
 import { queryClient } from '@/shared/api/query-client'
-import { QueryClientProvider } from '@tanstack/react-query'
+import { HydrationBoundary, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 type Props = {
   children: ReactNode
+  pageProps: Record<string, unknown>
 }
 
-export const AppProvider = ({ children }: Props) => {
+export const AppQueryClientProvider = ({ children, pageProps = {} }: Props) => {
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <HydrationBoundary state={pageProps.dehydratedState}>{children}</HydrationBoundary>
       <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   )

@@ -5,7 +5,7 @@ import { Main } from '@/widgets/main/main'
 import { Sidebar } from '@/widgets/sidebar'
 import { NextPage } from 'next'
 
-import { LayoutContextProvider } from './context/layout-context'
+import { LayoutContextProvider } from './layout-context/layout-context'
 
 export const Layout: NextPage<PropsWithChildren> = ({ children }) => {
   return (

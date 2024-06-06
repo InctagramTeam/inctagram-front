@@ -1,4 +1,5 @@
-export { LayoutContext } from './context/layout-context'
-export { useLayoutContext } from './context/layout-context'
-export { LayoutContextProvider } from './context/layout-context'
+export { LayoutContext } from '@/shared/layouts/layout-context/layout-context'
+export { useLayoutContext } from '@/shared/layouts/layout-context/layout-context'
+export { LayoutContextProvider } from '@/shared/layouts/layout-context/layout-context'
 export { Layout } from './layout'
+export { BaseLayout } from './base-layout/base-layout'

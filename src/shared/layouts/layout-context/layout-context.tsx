@@ -23,7 +23,7 @@ export const useLayoutContext = () => {
   return context
 }
 
-// layout-context-wrapper
+// layout-layout-context-wrapper
 export const LayoutContextProvider = ({ children }: { children: ReactNode }) => {
   const [isCollapsed, setIsCollapsed] = useState(false)
 

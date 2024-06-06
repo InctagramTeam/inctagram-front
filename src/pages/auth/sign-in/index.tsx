@@ -2,10 +2,10 @@ import { useRef } from 'react'
 
 import { SignInFormValues } from '@/feature/auth/model/utils/validators'
 import { SignInForm } from '@/feature/auth/ui/sign-in-form'
-import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
+import { getLayout } from '@/shared/layouts/base-layout/base-layout'
 
 const SignIn = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
