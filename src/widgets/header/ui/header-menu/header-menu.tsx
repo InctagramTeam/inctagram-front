@@ -5,11 +5,12 @@ import { useResponsive } from '@/shared/lib/hooks'
 import { LangSelectSwitcher } from '@/shared/lib/translate'
 import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui/flex'
-
-import { AuthButtons } from '../auth-buttons'
-import { MobileDropdown } from '../mobile-dropdown'
-import { NotificationsDropdown } from '../notifications-dropdown'
-import { NotificationProps } from '../notifications-dropdown-list'
+import {
+  AuthButtons,
+  MobileDropdown,
+  NotificationProps,
+  NotificationsDropdown,
+} from '@/widgets/header/ui'
 
 type Props = {
   isAuth?: boolean
