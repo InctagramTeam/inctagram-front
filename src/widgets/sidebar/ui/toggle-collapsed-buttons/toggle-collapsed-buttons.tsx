@@ -1,5 +1,5 @@
 import { ChevronIcon } from '@/shared/assets/icons'
-import { useLayoutContext } from '@/shared/layouts/context/layout-context'
+import { useLayoutContext } from '@/shared/layouts/layout-context/layout-context'
 import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'

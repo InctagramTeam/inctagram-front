@@ -1,4 +1,4 @@
-import { getLayout } from '@/shared/layouts/layout'
+import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 
 const Favorites = () => {
@@ -9,5 +9,5 @@ const Favorites = () => {
   )
 }
 
-Favorites.getLayout = getLayout
+Favorites.getLayout = getBaseAppLayout
 export default Favorites

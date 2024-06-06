@@ -3,14 +3,12 @@ import { useRef } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators/sign-up-validation-schema'
 import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
-import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
-type Props = {}
-
-const SignUp = ({}: Props): ReturnComponent => {
+const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
 
   const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
@@ -30,5 +28,5 @@ const SignUp = ({}: Props): ReturnComponent => {
   )
 }
 
-SignUp.getLayout = getLayout
+SignUp.getLayout = getAuthLayout
 export default SignUp

@@ -12,7 +12,7 @@ export const en = {
   button: {
     answer: 'Answer',
     back: 'Back',
-    backToHome: 'Back to home',
+    backToHome: 'Back to home-nav-links',
     backToPayment: 'Back to payment',
     backToSignIn: 'Back to Sign In',
     backToSignUp: 'Back to Sign Up',

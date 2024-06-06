@@ -1,5 +1,5 @@
-import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
 
 const Settings = () => {
   return (
@@ -9,5 +9,5 @@ const Settings = () => {
   )
 }
 
-Settings.getLayout = getLayout
+Settings.getLayout = getBaseAppLayout
 export default Settings
