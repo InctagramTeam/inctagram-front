@@ -23,8 +23,9 @@ export const Modal = ({ children, onOpenChange, open, ...rest }: ModalProps) => 
 type ModalContentProps = {
   children?: ReactNode
   classNameOverlay?: string
+  classNameContent?: string
+  classNameChildrenWrapper?: string
   customTitleComponent?: ReactNode
-  padding?: CSSProperties['padding']
   style?: CSSProperties
   title?: string
 } & ComponentPropsWithoutRef<typeof Dialog.Content>
@@ -32,43 +33,44 @@ type ModalContentProps = {
 export const ModalContent = ({
   children,
   classNameOverlay,
-  padding = '12px 0 11px 36px',
   style,
+  classNameContent,
   title = EMPTY_STRING,
+  classNameChildrenWrapper,
   ...rest
 }: ModalContentProps): ReturnComponent => {
-  const styles: CSSProperties = { padding: padding, ...style }
+  const classes = {
+    overlay: clsx(
+      `fixed inset-0 bg-Dark-900/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
+          data-[state=open]:animate-[dialog-overlay-show_200ms]`,
+      classNameOverlay
+    ),
+    content: clsx(
+      `fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
+        bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100
+        data-[state=closed]:animate-[dialog-content-hide_200ms]
+        data-[state=open]:animate-[dialog-content-show_200ms]`,
+      classNameContent
+    ),
+    titleContainer: clsx(
+      'relative flex items-center justify-between px-[24px] py-[12px] border-b border-b-Dark-100'
+    ),
+    title: 'text-xl',
+    close: 'pr-4 text-Light-100 duration-150 hover:text-Primary-300 hover:transition-all',
+    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
+  }
 
   return (
     <Dialog.Portal {...rest}>
-      <Dialog.Overlay
-        className={clsx(
-          `fixed inset-0 bg-Dark-900/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
-          data-[state=open]:animate-[dialog-overlay-show_200ms]`,
-          classNameOverlay
-        )}
-      />
-      <Dialog.Content
-        className={`fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
-        bg-Dark-300 p-8 text-Light-100 shadow-sm ring-1 ring-Dark-100
-        data-[state=closed]:animate-[dialog-content-hide_200ms]
-        data-[state=open]:animate-[dialog-content-show_200ms]`}
-        forceMount
-        style={styles}
-      >
-        <div className={'relative flex items-center justify-between'}>
-          <Dialog.Title className={'border-b border-b-Dark-100 pb-[11px] text-xl'}>
-            {title}
-          </Dialog.Title>
-          <Dialog.Close
-            className={
-              'pr-4 text-Light-100 duration-150 hover:text-Primary-300 hover:transition-all'
-            }
-          >
+      <Dialog.Overlay className={classes.overlay} />
+      <Dialog.Content className={classes.content} forceMount style={style}>
+        <div className={classes.titleContainer}>
+          <Dialog.Title className={classes.title}>{title}</Dialog.Title>
+          <Dialog.Close className={classes.close}>
             <CrossIcon />
           </Dialog.Close>
         </div>
-        <div className={'pt-[18px]'}>{children}</div>
+        <div className={classes.childrenWrapper}>{children}</div>
       </Dialog.Content>
     </Dialog.Portal>
   )
