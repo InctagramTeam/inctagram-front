@@ -112,10 +112,6 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     </Select>
   )
 }
-//   display: flex;
-//   gap: 12px;
-//   align-items: center;
-//   line-height: var(--line-height-m);
 
 const classes = {
   content: `relative z-50 ring-1 ring-t-0 ring-Dark-100 data-[state=open]:ring-Light-100 
