@@ -22,9 +22,9 @@ export const Modal = ({ children, onOpenChange, open, ...rest }: ModalProps) => 
 
 type ModalContentProps = {
   children?: ReactNode
-  classNameOverlay?: string
-  classNameContent?: string
   classNameChildrenWrapper?: string
+  classNameContent?: string
+  classNameOverlay?: string
   customTitleComponent?: ReactNode
   style?: CSSProperties
   title?: string
@@ -32,19 +32,16 @@ type ModalContentProps = {
 
 export const ModalContent = ({
   children,
+  classNameChildrenWrapper,
+  classNameContent,
   classNameOverlay,
   style,
-  classNameContent,
   title = EMPTY_STRING,
-  classNameChildrenWrapper,
   ...rest
 }: ModalContentProps): ReturnComponent => {
   const classes = {
-    overlay: clsx(
-      `fixed inset-0 bg-Dark-900/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
-          data-[state=open]:animate-[dialog-overlay-show_200ms]`,
-      classNameOverlay
-    ),
+    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
+    close: 'pr-4 text-Light-100 duration-150 hover:text-Primary-300 hover:transition-all',
     content: clsx(
       `fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
         bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100
@@ -52,12 +49,15 @@ export const ModalContent = ({
         data-[state=open]:animate-[dialog-content-show_200ms]`,
       classNameContent
     ),
+    overlay: clsx(
+      `fixed inset-0 bg-Dark-900/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
+          data-[state=open]:animate-[dialog-overlay-show_200ms]`,
+      classNameOverlay
+    ),
+    title: 'text-xl',
     titleContainer: clsx(
       'relative flex items-center justify-between px-[24px] py-[12px] border-b border-b-Dark-100'
     ),
-    title: 'text-xl',
-    close: 'pr-4 text-Light-100 duration-150 hover:text-Primary-300 hover:transition-all',
-    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
   }
 
   return (

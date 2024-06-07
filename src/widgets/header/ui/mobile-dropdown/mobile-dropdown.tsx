@@ -1,12 +1,13 @@
+import React from 'react'
+
 import { LogOutIcon, MoreIcon } from '@/shared/assets/icons'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
-import Link from 'next/link'
 import { NavigationElement } from '@/shared/ui/navigation-element'
-import React from 'react'
-import { clsx } from 'clsx'
 import { getMobileDropdownLinks } from '@/widgets/header/model'
+import { clsx } from 'clsx'
+import Link from 'next/link'
 
 type Props = {
   logout?: () => void

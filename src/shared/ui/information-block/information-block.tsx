@@ -1,27 +1,28 @@
-import { Text } from '@/shared/ui/text'
-import { Flex } from '@/shared/ui/flex'
 import { ReactNode } from 'react'
+
+import { Flex } from '@/shared/ui/flex'
+import { Text } from '@/shared/ui/text'
 import { clsx } from 'clsx'
 
 type Props = {
-  title?: string
-  titleClassName?: string
-  text?: ReactNode
-  textClassName?: string
+  action?: ReactNode
   containerClassName?: string
   illustration?: ReactNode
-  action?: ReactNode
   isMobile: boolean
+  text?: ReactNode
+  textClassName?: string
+  title?: string
+  titleClassName?: string
 }
 export const InformationBlock = ({
-  title,
-  text,
-  illustration,
-  titleClassName,
-  textClassName,
-  containerClassName,
   action,
+  containerClassName,
+  illustration,
   isMobile,
+  text,
+  textClassName,
+  title,
+  titleClassName,
 }: Props) => {
   return (
     <Flex direction={'column'} justify={'center'}>
@@ -31,11 +32,11 @@ export const InformationBlock = ({
       >
         {title && (
           <Text
-            className={titleClassName}
             asComponent={'h1'}
-            variant={'H1'}
-            textAlign={'center'}
+            className={titleClassName}
             mb={'15px'}
+            textAlign={'center'}
+            variant={'H1'}
           >
             {title}
           </Text>
@@ -43,11 +44,11 @@ export const InformationBlock = ({
 
         {text && (
           <Text
-            className={textClassName}
             asComponent={'p'}
-            variant={'regular_text_16'}
-            textAlign={'center'}
+            className={textClassName}
             mb={'54px'}
+            textAlign={'center'}
+            variant={'regular_text_16'}
           >
             {text}
           </Text>
