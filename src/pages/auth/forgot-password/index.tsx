@@ -1,5 +1,5 @@
-import { getLayout } from '@/shared/layouts/layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
 const ForgotPassword = () => {
   return (
@@ -9,5 +9,5 @@ const ForgotPassword = () => {
   )
 }
 
-ForgotPassword.getLayout = getLayout
+ForgotPassword.getLayout = getAuthLayout
 export default ForgotPassword

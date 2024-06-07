@@ -1,4 +1,4 @@
-import { getLayout } from '@/shared/layouts/layout'
+import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 
 const Statistics = () => {
@@ -9,5 +9,5 @@ const Statistics = () => {
   )
 }
 
-Statistics.getLayout = getLayout
+Statistics.getLayout = getBaseAppLayout
 export default Statistics

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { ReactNode } from 'react'
 
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 
 type Props = {

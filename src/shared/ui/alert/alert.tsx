@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-import CrossIcon from '@/shared/assets/icons/CrossIcon'
 import { cn } from '@/shared/lib/utils'
 import { useAlert } from '@/shared/ui/alert/hooks'
 import { type VariantProps, cva } from 'class-variance-authority'
 
 type Props = {
+  icon: ReactNode
   text: string
 } & ComponentPropsWithoutRef<'div'>
 
@@ -24,6 +24,7 @@ const alertVariants = cva(
 
 export const Alert = ({
   className,
+  icon,
   text,
   variant,
   ...rest
@@ -56,7 +57,7 @@ export const Alert = ({
         onClick={closeHandler}
         type={'button'}
       >
-        <CrossIcon />
+        {icon}
       </button>
     </div>
   ) : (

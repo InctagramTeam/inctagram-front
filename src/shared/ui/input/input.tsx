@@ -110,13 +110,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     const classNames = {
+      clearInputButton: clsx(
+        `_ClearInput_ unset absolute right-[12px] top-1/2 flex -translate-y-1/2 transform
+                cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
+                focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
+                focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
+        disabled && `cursor-not-allowed text-Dark-100/60`
+      ),
       error: clsx(
-        errorMessage && `_Error_ text-small-text-12 text-Danger-500 mt-1 `,
+        errorMessage && `_Error_ text-small-text-12 !text-Danger-500 mt-1 `,
         divContainerProps?.className
       ),
       input: clsx(
-        `Input relative w-full h-full min-h-[36px] p-[6px_42px_6px_12px] text-regular-text-16 text-Light-900
-        bg-transparent border-none rounded-sm ring-1 px-[40px] shadow-sm shadow-Dark-300 ring-Dark-100 outline-1
+        `Input relative w-full h-full min-h-[36px] p-[6px_12px_6px_12px] text-regular-text-16 text-Light-900
+        bg-transparent border-none rounded-sm ring-1 shadow-sm shadow-Dark-300 ring-Dark-100 outline-1
         outline-Dark-100
         focus:outline-none focus:transition-all duration-150 easy-in-out focus:ring-1
         focus:ring-offset-Primary-500 focus:opacity-60 focus:text-Light-100 focus:shadow-sm focus:shadow-Light-500
@@ -130,7 +137,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         file:border-0 file:bg-transparent file:font-inter disabled:cursor-not-allowed disabled:opacity-50`,
         disabled && `text-Dark-100`,
         [type],
-        type === 'text' || (type === 'email' && `pr-3`)
+        type === 'password' && `pr-[42px]`,
+        type === 'search' && 'px-[42px]'
       ),
       inputWrapper: clsx(`_FieldContainer_ relative w-full text-regular-text-16 text-Light-900`),
       label: clsx(
@@ -149,6 +157,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       `,
         disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
       ),
+      showPasswordButton: clsx(
+        `_ShowPassword_ rounder-[0.25rem] absolute bottom-1/2 right-[12px] top-1/2
+              h-[24px] w-[24px] -translate-y-1/2 transform border-0 bg-transparent
+              p-0 outline-0 ring-0 focus:opacity-60
+              focus:shadow-sm focus:shadow-Primary-500 focus:outline-none
+              focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
+        disabled &&
+          `active:not:disabled:text-Light-100 cursor-not-allowed text-Dark-300 disabled:cursor-not-allowed`
+      ),
     }
 
     return (
@@ -166,7 +183,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className={classNames.inputWrapper}>
           {isSearchField && (
-            <div className={`absolute left-[3%] top-1/4`}>
+            <div aria-hidden className={`absolute left-[3%] top-1/4`}>
               <SearchIcon
                 className={classNames.searchIcon}
                 onClick={() => inputRef.current?.focus()}
@@ -187,15 +204,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           />
           {isRevealPasswordButtonShown && (
             <button
-              className={clsx(
-                `_ShowPassword_ rounder-[0.25rem] absolute bottom-1/2 right-0 top-1/2
-              mr-[12px] h-[20px] w-[20px] -translate-y-1/2 transform cursor-pointer border-0 bg-transparent
-              p-0 outline-0 ring-0 focus:opacity-60
-              focus:shadow-sm focus:shadow-Primary-500 focus:outline-none
-              focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
-                disabled &&
-                  `active:not:disabled:text-Light-100 cursor-not-allowed text-Dark-300 disabled:cursor-not-allowed`
-              )}
+              aria-controls={finalId}
+              aria-label={revealPassword ? 'close password' : 'show password'}
+              aria-pressed={revealPassword}
+              className={classNames.showPasswordButton}
               disabled={disabled}
               onClick={handleToggleShowPassword}
               type={'button'}
@@ -205,13 +217,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           {isClearInputButtonShown && (
             <button
-              className={clsx(
-                `_ClearInput_ unset absolute right-[12px] top-1/2 flex -translate-y-1/2 transform
-                cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
-                focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
-                focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
-                disabled && `cursor-not-allowed text-Dark-100/60`
-              )}
+              aria-controls={finalId}
+              aria-label={'clear field'}
+              className={classNames.clearInputButton}
               disabled={disabled}
               onClick={handleClearInput}
               type={'button'}
@@ -220,7 +228,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </button>
           )}
         </div>
-        <Text className={classNames.error} style={{ color: 'red' }} variant={'error_text_12'}>
+        <Text className={classNames.error} role={'alert'} variant={'error_text_12'}>
           {errorMessage}
         </Text>
       </div>

@@ -4,9 +4,7 @@ import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui/flex'
 import { clsx } from 'clsx'
 
-import { HeaderMenu } from './ui/header-menu'
-import { Logo } from './ui/logo'
-import { NotificationProps } from './ui/notifications-dropdown-list'
+import { HeaderMenu, Logo, NotificationProps } from './ui'
 
 type Props = {
   className?: string
@@ -15,7 +13,7 @@ type Props = {
   notifications?: NotificationProps[]
 }
 
-export const Header = ({ className, ...rest }: Props): ReturnComponent => {
+export const Header = ({ className, ...props }: Props): ReturnComponent => {
   const classes = {
     header: clsx(
       `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,
@@ -28,7 +26,7 @@ export const Header = ({ className, ...rest }: Props): ReturnComponent => {
     <header className={classes.header}>
       <Flex className={classes.wrapper} gap={'20'} items={'center'} justify={'spaceBetween'}>
         <Logo />
-        <HeaderMenu {...rest} />
+        <HeaderMenu {...props} />
       </Flex>
     </header>
   )

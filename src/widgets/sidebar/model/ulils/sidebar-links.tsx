@@ -1,13 +1,13 @@
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { NavLink } from '@/shared/types'
 
-const getBaseLinks = (): NavLink[] => {
+export const getBaseLinks = (): NavLink[] => {
   const { t } = useTranslation()
 
   return [
     {
       disabled: false,
-      href: '/home',
+      href: '/home-nav-links',
       name: t.layout.sidebar.home,
     },
     {
@@ -47,13 +47,7 @@ const getAdditionalDesktopLinks = (): NavLink[] => {
       href: '/favorites',
       name: t.layout.sidebar.favorites,
     },
-    {
-      disabled: true,
-      href: '/log-out',
-      name: t.layout.sidebar.logout,
-    },
   ]
 }
 
 export const getSidebarLinks = (): NavLink[] => [...getBaseLinks(), ...getAdditionalDesktopLinks()]
-export const getMobileLinks = (): NavLink[] => getBaseLinks()
