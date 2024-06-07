@@ -1,6 +1,6 @@
 import { AppRoutes } from '@/shared/constants/routes'
-import { NavLink } from '@/shared/types'
 import { useTranslation } from '@/shared/lib/hooks'
+import { NavLink } from '@/shared/types'
 export const getMobileDropdownLinks = (): NavLink[] => {
   const { t } = useTranslation()
 

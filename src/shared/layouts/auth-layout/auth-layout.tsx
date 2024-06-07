@@ -1,7 +1,8 @@
 import { PropsWithChildren, ReactElement } from 'react'
+
+import { BaseAppLayout, LayoutContextProvider } from '@/shared/layouts'
 import { Header } from '@/widgets/header'
 import { Main } from '@/widgets/main/main'
-import { BaseAppLayout, LayoutContextProvider } from '@/shared/layouts'
 
 type Props = PropsWithChildren
 

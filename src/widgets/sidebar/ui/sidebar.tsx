@@ -15,6 +15,7 @@ import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 export const Sidebar = (): ReturnComponent => {
   const { isCollapsed } = useLayoutContext()
   const { width } = useResponsive()
+  const { t } = useTranslation()
 
   if (width === null) {
     return null
@@ -40,8 +41,6 @@ export const Sidebar = (): ReturnComponent => {
         'max-w-full z-2 bottom-0 right-0 h-[var(--header-height)] w-full border-t-[1px] border-t-Dark-300 pt-4 bg-Dark-700'
     ),
   }
-
-  const { t } = useTranslation()
 
   return (
     <div className={classes.wrapper}>

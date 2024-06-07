@@ -2,16 +2,14 @@ import { useRef } from 'react'
 
 import { SignInFormValues } from '@/feature/auth/model/utils/validators'
 import { SignInForm } from '@/feature/auth/ui/sign-in-form'
+import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 
 const SignIn = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
-  const handleSubmitForm = (formData: SignInFormValues) => {
-    console.log(formData)
-  }
+  const handleSubmitForm = (formData: SignInFormValues) => {}
 
   return (
     <PageWrapper paddingTop={'108px'} title={'SignIn | Instagram'}>
