@@ -30,7 +30,7 @@ export const Main = ({ children }: Props) => {
     main: cn(
       `flex pt-[var(--header-height)] pl-[220px]`,
       (isCollapsed || width < LG_BREAKPOINT) && 'pl-[80px]',
-      width < SM_BREAKPOINT && 'pl-0',
+      (width < SM_BREAKPOINT || !isCollapsed) && 'pl-0',
       inter.variable
     ),
   }
