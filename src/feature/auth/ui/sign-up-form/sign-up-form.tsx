@@ -77,8 +77,8 @@ export const SignUpForm = forwardRef(
         </Text>
         <AppList
           items={[
-            { 'aria-label': 'Sign up with github', href: hrefGithub },
-            { 'aria-label': 'Sign up with google', href: hrefGoogle },
+            { 'aria-label': t.pages.signUp.github, href: hrefGithub },
+            { 'aria-label': t.pages.signUp.google, href: hrefGoogle },
           ]}
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
@@ -138,6 +138,7 @@ export const SignUpForm = forwardRef(
               <Text
                 className={`ml-4 inline-block w-full text-balance text-left`}
                 variant={'small-text-12'}
+                asComponent={'p'}
               >
                 <Translate
                   tags={{

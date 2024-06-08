@@ -3,7 +3,7 @@ import { SignUpBroIllustration } from '@/shared/assets/illustrations'
 import { AuthRoutes, XS_BREAKPOINT } from '@/shared/constants'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useResponsive } from '@/shared/lib/hooks'
+import { useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
@@ -11,6 +11,7 @@ import { InformationBlock } from '@/shared/ui/information-block'
 import Link from 'next/link'
 
 const SignUpCongratulations = (): ReturnComponent => {
+  const { t } = useTranslation()
   const { width } = useResponsive()
 
   if (!width) {
@@ -25,7 +26,11 @@ const SignUpCongratulations = (): ReturnComponent => {
   }
 
   return (
-    <PageWrapper paddingBlock={'35px'} title={'Congratulations! | Instagram'}>
+    <PageWrapper
+      paddingBlock={'35px'}
+      title={t.pages.congratulations.title}
+      description={t.pages.congratulations.metaDescription}
+    >
       <InformationBlock
         action={
           <Button
@@ -34,13 +39,13 @@ const SignUpCongratulations = (): ReturnComponent => {
             fullWidth={isMobile}
             href={AuthRoutes.SIGN_IN}
           >
-            Sign In
+            {t.button.signIn}
           </Button>
         }
-        illustration={<SignUpBroIllustration className={classes.illustration} />}
+        illustration={<SignUpBroIllustration aria-hidden className={classes.illustration} />}
         isMobile={isMobile}
-        text={'Your email has been confirmed'}
-        title={'Congratulations'}
+        text={t.pages.congratulations.text}
+        title={t.pages.congratulations.title}
       />
     </PageWrapper>
   )

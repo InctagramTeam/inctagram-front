@@ -2,13 +2,14 @@ import { TimeManagementIllustration } from '@/shared/assets/illustrations'
 import { XS_BREAKPOINT } from '@/shared/constants'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useResponsive } from '@/shared/lib/hooks'
+import { useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
 import { Button } from '@/shared/ui/button'
 import { InformationBlock } from '@/shared/ui/information-block'
 
 const EmailVerification = () => {
   const { width } = useResponsive()
+  const { t } = useTranslation()
 
   if (!width) {
     return null
@@ -22,7 +23,11 @@ const EmailVerification = () => {
   }
 
   return (
-    <PageWrapper paddingBlock={'35px'} title={'Email verification | Instagram'}>
+    <PageWrapper
+      paddingBlock={'35px'}
+      title={t.pages.verifyEmail.metaTitle}
+      description={t.pages.verifyEmail.metaDescription}
+    >
       <InformationBlock
         action={
           <Button
@@ -34,12 +39,10 @@ const EmailVerification = () => {
             Resend verification link
           </Button>
         }
-        illustration={<TimeManagementIllustration className={classes.illustration} />}
+        illustration={<TimeManagementIllustration aria-hidden className={classes.illustration} />}
         isMobile={isMobile}
-        text={
-          'Looks like the verification link has expired. Not to worry, we can send the link again'
-        }
-        title={'Email verification link expired'}
+        text={t.pages.verifyEmail.text}
+        title={t.pages.verifyEmail.title}
       />
     </PageWrapper>
   )

@@ -80,11 +80,37 @@ export const en = {
       },
       metaDescription:
         'Create an account to start using our services and receive exclusive benefits.',
-      metaTitle: 'Sign Up',
+      metaTitle: 'Sign Up | Instagram',
       modalBtn: 'OK',
+      modalTitle: 'Email sent',
       modalText: 'We have sent a link to confirm your email to ',
       question: 'Do you have an account?',
+      github: 'Register with github',
+      google: 'Register with google',
       title: 'Sign Up',
+    },
+    congratulations: {
+      metaDescription: 'Congratulations! Your email has been confirmed',
+      metaTitle: 'Congratulations | Instagram',
+      title: 'Congratulations!',
+      text: 'Your email has been confirmed',
+    },
+    verifyEmail: {
+      metaDescription:
+        'The verification link has expired. Please verify your email again to start using our services and receive exclusive benefits.',
+      metaTitle: 'Email verification | Instagram',
+      title: 'Email verification link expired',
+      text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
+    },
+    signIn: {
+      metaTitle: 'Sign In | Instagram',
+      metaDescription:
+        'Log in to your account to start using our services and receive exclusive benefits.',
+      title: 'Sign in',
+      link: 'Forgot Password',
+      question: 'Don’t have an account?',
+      github: 'Login with github',
+      google: 'Login with google',
     },
   },
   tabs: {

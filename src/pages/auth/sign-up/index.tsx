@@ -11,17 +11,18 @@ import { Button } from '@/shared/ui/button'
 import { Flex } from '@/shared/ui/flex'
 import { Modal } from '@/shared/ui/modal'
 import { EMPTY_STRING } from '@/shared/constants'
+import { useTranslation } from '@/shared/lib/hooks'
 
 const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
   const [open, setOpen] = useState(true)
-
+  const { t } = useTranslation()
   const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
     // ref?.current?.reset()
   }
 
   return (
-    <PageWrapper title={'SignUp | Instagram'}>
+    <PageWrapper title={t.pages.signUp.metaTitle} description={t.pages.signUp.metaDescription}>
       <SignUpForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
@@ -30,11 +31,14 @@ const SignUp = (): ReturnComponent => {
         ref={ref}
       />
       <Modal onOpenChange={setOpen} open={open}>
-        <Modal.Content classNameContent={'max-w-[378px] w-[90vw]'} title={`Email sent`}>
-          <Flex direction={'column'} gap={'18'}>
-            <p>We have sent a link to confirm your email to epam@epam.com</p>
+        <Modal.Content
+          classNameContent={'max-w-[378px] w-[90vw]'}
+          title={t.pages.signUp.modalTitle}
+        >
+          <Flex direction={'column'} gap={'18'} items={'start'}>
+            <p>{t.pages.signUp.modalText}</p>
             <Button className={'ml-auto px-[36px] py-[6px]'} onClick={() => setOpen(false)}>
-              OK
+              {t.pages.signUp.modalBtn}
             </Button>
           </Flex>
         </Modal.Content>
