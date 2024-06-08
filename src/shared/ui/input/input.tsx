@@ -10,11 +10,11 @@ import {
 
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
 import { EMPTY_STRING } from '@/shared/constants/base'
+import { useTranslation } from '@/shared/lib/hooks'
 import { mergeRefs } from '@/shared/lib/utils/merge-refs'
 import { ReturnComponent } from '@/shared/types'
 import { Text } from '@/shared/ui/text'
 import { clsx } from 'clsx'
-import { useTranslation } from '@/shared/lib/hooks'
 
 export type InputProps = {
   disabled?: boolean

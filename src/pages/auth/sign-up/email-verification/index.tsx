@@ -24,9 +24,9 @@ const EmailVerification = () => {
 
   return (
     <PageWrapper
+      description={t.pages.verifyEmail.metaDescription}
       paddingBlock={'35px'}
       title={t.pages.verifyEmail.metaTitle}
-      description={t.pages.verifyEmail.metaDescription}
     >
       <InformationBlock
         action={

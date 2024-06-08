@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
+import { EMPTY_STRING } from '@/shared/constants'
 import { cn, getIcon } from '@/shared/lib/utils'
 import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared/types'
 import { Button, CustomButtonProps } from '@/shared/ui/button'
@@ -10,7 +11,6 @@ import {
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
 import { usePathname } from 'next/navigation'
-import { EMPTY_STRING } from '@/shared/constants'
 
 type CustomProps = {
   name: string

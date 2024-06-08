@@ -1,7 +1,7 @@
+import { EMPTY_STRING } from '@/shared/constants'
 import { PASSWORD_PATTERN } from '@/shared/constants/regexs'
 import { LocaleType } from 'locales'
 import { z } from 'zod'
-import { EMPTY_STRING } from '@/shared/constants'
 
 export const emailSchema = (t: LocaleType) => {
   return z.string().email({ message: t.validation.emailVerification }).default(EMPTY_STRING)

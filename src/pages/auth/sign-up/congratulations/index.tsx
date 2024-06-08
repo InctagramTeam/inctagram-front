@@ -27,9 +27,9 @@ const SignUpCongratulations = (): ReturnComponent => {
 
   return (
     <PageWrapper
+      description={t.pages.congratulations.metaDescription}
       paddingBlock={'35px'}
       title={t.pages.congratulations.title}
-      description={t.pages.congratulations.metaDescription}
     >
       <InformationBlock
         action={

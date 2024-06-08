@@ -2,11 +2,11 @@
 import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useId } from 'react'
 
 import CheckIcon from '@/shared/assets/icons/CheckIcon'
+import { EMPTY_STRING } from '@/shared/constants'
 import { ReturnComponent } from '@/shared/types'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import * as LabelRadix from '@radix-ui/react-label'
 import clsx from 'clsx'
-import { EMPTY_STRING } from '@/shared/constants'
 
 export type CheckboxProps = {
   checked?: boolean

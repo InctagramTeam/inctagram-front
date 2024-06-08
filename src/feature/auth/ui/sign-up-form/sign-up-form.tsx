@@ -136,9 +136,9 @@ export const SignUpForm = forwardRef(
             disabled={disabled}
             label={
               <Text
+                asComponent={'p'}
                 className={`ml-4 inline-block w-full text-balance text-left`}
                 variant={'small-text-12'}
-                asComponent={'p'}
               >
                 <Translate
                   tags={{

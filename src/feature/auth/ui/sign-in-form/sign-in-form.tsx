@@ -4,6 +4,7 @@ import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from '
 import { useForm } from 'react-hook-form'
 
 import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
+import { EMPTY_STRING } from '@/shared/constants'
 import { AuthRoutes } from '@/shared/constants/routes'
 import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent, UseFormRef } from '@/shared/types'
@@ -16,7 +17,6 @@ import { Text } from '@/shared/ui/text'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import Link from 'next/link'
-import { EMPTY_STRING } from '@/shared/constants'
 
 type Props = {
   className?: string

@@ -2,12 +2,12 @@ import { useRef } from 'react'
 
 import { SignInFormValues } from '@/feature/auth/model/utils/validators'
 import { SignInForm } from '@/feature/auth/ui/sign-in-form'
+import { EMPTY_STRING } from '@/shared/constants'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
-import { EMPTY_STRING } from '@/shared/constants'
-import { useTranslation } from '@/shared/lib/hooks'
 
 const SignIn = (): ReturnComponent => {
   const { t } = useTranslation()
@@ -16,9 +16,9 @@ const SignIn = (): ReturnComponent => {
 
   return (
     <PageWrapper
+      description={t.pages.signIn.metaDescription}
       paddingBlock={'36px'}
       title={t.pages.signIn.metaTitle}
-      description={t.pages.signIn.metaDescription}
     >
       <SignInForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
