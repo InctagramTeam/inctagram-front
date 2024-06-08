@@ -8,27 +8,27 @@ export const getBaseLinks = (): NavLink[] => {
     {
       disabled: false,
       href: '/home-nav-links',
-      name: t.layout.sidebar.home,
+      name: t.links.home,
     },
     {
       disabled: true,
       href: '/create',
-      name: t.layout.sidebar.create,
+      name: t.links.create,
     },
     {
       disabled: false,
       href: '/messenger',
-      name: t.layout.sidebar.messenger,
+      name: t.links.messenger,
     },
     {
       disabled: false,
       href: '/search',
-      name: t.layout.sidebar.search,
+      name: t.links.search,
     },
     {
       disabled: false,
       href: '/profile',
-      name: t.layout.sidebar.profile,
+      name: t.links.profile,
     },
   ]
 }
@@ -40,12 +40,12 @@ const getAdditionalDesktopLinks = (): NavLink[] => {
     {
       disabled: false,
       href: '/statistics',
-      name: t.layout.sidebar.statistics,
+      name: t.links.statistics,
     },
     {
       disabled: false,
       href: '/favorites',
-      name: t.layout.sidebar.favorites,
+      name: t.links.favorites,
     },
   ]
 }

@@ -19,12 +19,10 @@ export const en = {
     createNewPassword: 'Create new password',
     discard: 'Discard',
     done: 'Done',
-    favorites: 'Favorites',
     logOut: 'Log out',
     next: 'Next',
     no: 'No',
     ok: 'OK',
-    profileSettings: 'Profile settings',
     publish: 'Publish',
     resendVerificationLink: 'Resend verification link',
     save: 'Save changes',
@@ -39,6 +37,25 @@ export const en = {
     simple_save: 'Save',
     statistics: 'Statistics',
     yes: 'Yes',
+    clearField: 'clear field',
+    password: {
+      hide: 'hide password',
+      show: 'show password',
+    },
+    notifications: {
+      hide: 'hide notifications',
+      show: 'show notifications',
+    },
+  },
+  links: {
+    create: 'Create',
+    favorites: 'Favorites',
+    home: 'Home',
+    messenger: 'Messenger',
+    profile: 'My profile',
+    search: 'Search',
+    statistics: 'Statistics',
+    profileSettings: 'Profile settings',
   },
   label: {
     userName: 'Username',
@@ -60,15 +77,13 @@ export const en = {
     ru: 'Russian',
   },
   layout: {
-    sidebar: {
-      create: 'Create',
-      favorites: 'Favorites',
-      home: 'Home',
-      logout: 'Log Out',
-      messenger: 'Messenger',
-      profile: 'My profile',
-      search: 'Search',
-      statistics: 'Statistics',
+    alert: {
+      close: 'Close alert',
+      error: 'Error!',
+    },
+    notificationsDropdown: {
+      title: 'Notifications!',
+      alternativeText: 'No notifications yet',
     },
   },
   pages: {

@@ -36,7 +36,7 @@ const EmailVerification = () => {
             fullWidth={isMobile}
             onClick={() => {}}
           >
-            Resend verification link
+            {t.button.resendVerificationLink}
           </Button>
         }
         illustration={<TimeManagementIllustration aria-hidden className={classes.illustration} />}

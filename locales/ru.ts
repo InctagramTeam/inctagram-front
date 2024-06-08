@@ -12,12 +12,10 @@ export const ru: LocaleType = {
     createNewPassword: 'Создать новый пароль',
     discard: 'Отменить',
     done: 'Готово',
-    favorites: 'Избранное',
     logOut: 'Выйти',
     next: 'Далее',
     no: 'Нет',
     ok: 'OK',
-    profileSettings: 'Настройки профиля',
     publish: 'Опубликовать',
     resendVerificationLink: 'Отправить повторное подтверждение',
     save: 'Сохранить изменения',
@@ -32,6 +30,25 @@ export const ru: LocaleType = {
     simple_save: 'Сохранить',
     statistics: 'Статистика',
     yes: 'Да',
+    clearField: 'Очистить поле',
+    password: {
+      hide: 'Скрыть пароль',
+      show: 'Показать пароль',
+    },
+    notifications: {
+      hide: 'Скрыть уведомления',
+      show: 'Показать уведомления',
+    },
+  },
+  links: {
+    create: 'Создать',
+    favorites: 'Избранное',
+    home: 'Главная',
+    messenger: 'Чат',
+    profile: 'Мой профиль',
+    search: 'Поиск',
+    statistics: 'Статистика',
+    profileSettings: 'Настройки профиля',
   },
   label: {
     email: 'Электронная почта',
@@ -53,15 +70,13 @@ export const ru: LocaleType = {
     ru: 'Русский',
   },
   layout: {
-    sidebar: {
-      create: 'Создать',
-      favorites: 'Избранное',
-      home: 'Главная',
-      logout: 'Выйти',
-      messenger: 'Чат',
-      profile: 'Мой профиль',
-      search: 'Поиск',
-      statistics: 'Статистика',
+    alert: {
+      close: 'Закрыть уведомление',
+      error: 'Ошибка!',
+    },
+    notificationsDropdown: {
+      title: 'Уведомления!',
+      alternativeText: 'Уведомлений еще нет',
     },
   },
   pages: {

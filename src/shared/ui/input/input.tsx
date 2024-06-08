@@ -14,6 +14,7 @@ import { mergeRefs } from '@/shared/lib/utils/merge-refs'
 import { ReturnComponent } from '@/shared/types'
 import { Text } from '@/shared/ui/text'
 import { clsx } from 'clsx'
+import { useTranslation } from '@/shared/lib/hooks'
 
 export type InputProps = {
   disabled?: boolean
@@ -64,6 +65,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     /** Так как используем react-hook-form, он работает через рефы, то должны принимать ref */
     forwardedRef
   ): ReturnComponent => {
+    const { t } = useTranslation()
     const generatedId = useId()
     const finalId = id ?? generatedId
 
@@ -205,20 +207,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {isRevealPasswordButtonShown && (
             <button
               aria-controls={finalId}
-              aria-label={revealPassword ? 'close password' : 'show password'}
+              aria-label={revealPassword ? t.button.password.hide : t.button.password.show}
               aria-pressed={revealPassword}
               className={classNames.showPasswordButton}
               disabled={disabled}
               onClick={handleToggleShowPassword}
               type={'button'}
             >
-              {revealPassword ? <EyeOffIcon /> : <EyeIcon />}
+              {revealPassword ? <EyeOffIcon aria-hidden /> : <EyeIcon aria-hidden />}
             </button>
           )}
           {isClearInputButtonShown && (
             <button
               aria-controls={finalId}
-              aria-label={'clear field'}
+              aria-label={t.button.clearField}
               className={classNames.clearInputButton}
               disabled={disabled}
               onClick={handleClearInput}

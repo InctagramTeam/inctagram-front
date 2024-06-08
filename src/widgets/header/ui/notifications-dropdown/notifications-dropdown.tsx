@@ -5,6 +5,9 @@ import { cn } from '@/shared/lib/utils'
 import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { NotificationProps, NotificationsDropdownList } from '@/widgets/header/ui'
+import { useTranslation } from '@/shared/lib/hooks'
+import { ELLIPSIS_STRING } from '@/shared/constants/base'
+import { maxShowNumberNotifications } from '@/widgets/header/model/constants/base'
 
 export type NotificationsDropdownProps = {
   alternativeText?: string
@@ -13,12 +16,14 @@ export type NotificationsDropdownProps = {
   open?: boolean
 }
 
-export const NotificationsDropdown = ({
-  alternativeText = 'Уведомлений еще нет',
-  notifications,
-  onOpenChange,
-  open,
-}: NotificationsDropdownProps) => {
+export const NotificationsDropdown = (props: NotificationsDropdownProps) => {
+  const { t } = useTranslation()
+  const {
+    alternativeText = t.layout.notificationsDropdown.alternativeText,
+    notifications,
+    onOpenChange,
+    open,
+  } = props
   const classes = {
     arrow: `absolute top-0 right-[1rem] w-[1.2rem] h-[0.6rem] translate-y-[-100%] translate-x-[50%]`,
     content: `h-[360px] overflow-y-auto
@@ -38,12 +43,16 @@ export const NotificationsDropdown = ({
   const countNotifications = notifications?.length
 
   const trigger = (
-    <Button aria-label={'notifications'} className={classes.dropdownTrigger} variant={'text'}>
+    <Button
+      aria-label={open ? t.button.notifications.hide : t.button.notifications.show}
+      className={classes.dropdownTrigger}
+      variant={'text'}
+    >
       <>
         {open ? <BellIcon aria-hidden /> : <BellOutlineIcon aria-hidden />}
         {countNotifications && (
           <span className={classes.countNotifications}>
-            {countNotifications < 100 ? countNotifications : '...'}
+            {countNotifications < maxShowNumberNotifications ? countNotifications : ELLIPSIS_STRING}
           </span>
         )}
       </>
@@ -61,7 +70,9 @@ export const NotificationsDropdown = ({
       trigger={trigger}
     >
       <div className={classes.wrapper}>
-        {notifications?.length && <span className={classes.header}>Уведомления!</span>}
+        {notifications?.length && (
+          <span className={classes.header}>{t.layout.notificationsDropdown.title}</span>
+        )}
         <div className={classes.content}>
           <NotificationsDropdownList
             alternativeText={alternativeText}
