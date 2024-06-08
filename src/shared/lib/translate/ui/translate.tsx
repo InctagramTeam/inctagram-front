@@ -1,5 +1,7 @@
 'use client'
-import { FC, Fragment, ReactNode } from 'react'
+import { Fragment, ReactNode } from 'react'
+
+import { EMPTY_STRING } from '@/shared/constants'
 
 const tagsRegex = /(<\d+>[^<>]*<\/\d+>)/
 const openCloseTagRegex = /<(\d+)>([^<>]*)<\/(\d+)>/
@@ -37,6 +39,6 @@ const interpolateTags = (data: TranslateType) => {
       return token
     }
 
-    return <Fragment key={content}>{tags[openTag]?.(content ?? '')}</Fragment>
+    return <Fragment key={content}>{tags[openTag]?.(content ?? EMPTY_STRING)}</Fragment>
   })
 }

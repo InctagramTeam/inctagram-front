@@ -3,7 +3,7 @@ import { PageWrapper } from '@/shared/layouts/page-wrapper'
 
 const TermOfService = () => {
   return (
-    <PageWrapper paddingTop={'72px'} title={'TermOfService | Instagram'}>
+    <PageWrapper paddingBlock={'72px'} title={'TermOfService | Instagram'}>
       <h1>TermOfService</h1>
     </PageWrapper>
   )

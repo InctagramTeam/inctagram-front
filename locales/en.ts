@@ -19,12 +19,10 @@ export const en = {
     createNewPassword: 'Create new password',
     discard: 'Discard',
     done: 'Done',
-    favorites: 'Favorites',
     logOut: 'Log out',
     next: 'Next',
     no: 'No',
     ok: 'OK',
-    profileSettings: 'Profile settings',
     publish: 'Publish',
     resendVerificationLink: 'Resend verification link',
     save: 'Save changes',
@@ -39,6 +37,25 @@ export const en = {
     simple_save: 'Save',
     statistics: 'Statistics',
     yes: 'Yes',
+    clearField: 'clear field',
+    password: {
+      hide: 'hide password',
+      show: 'show password',
+    },
+    notifications: {
+      hide: 'hide notifications',
+      show: 'show notifications',
+    },
+  },
+  links: {
+    create: 'Create',
+    favorites: 'Favorites',
+    home: 'Home',
+    messenger: 'Messenger',
+    profile: 'My profile',
+    search: 'Search',
+    statistics: 'Statistics',
+    profileSettings: 'Profile settings',
   },
   label: {
     userName: 'Username',
@@ -60,15 +77,13 @@ export const en = {
     ru: 'Russian',
   },
   layout: {
-    sidebar: {
-      create: 'Create',
-      favorites: 'Favorites',
-      home: 'Home',
-      logout: 'Log Out',
-      messenger: 'Messenger',
-      profile: 'My profile',
-      search: 'Search',
-      statistics: 'Statistics',
+    alert: {
+      close: 'Close alert',
+      error: 'Error!',
+    },
+    notificationsDropdown: {
+      title: 'Notifications!',
+      alternativeText: 'No notifications yet',
     },
   },
   pages: {
@@ -80,11 +95,37 @@ export const en = {
       },
       metaDescription:
         'Create an account to start using our services and receive exclusive benefits.',
-      metaTitle: 'Sign Up',
+      metaTitle: 'Sign Up | Instagram',
       modalBtn: 'OK',
+      modalTitle: 'Email sent',
       modalText: 'We have sent a link to confirm your email to ',
       question: 'Do you have an account?',
+      github: 'Register with github',
+      google: 'Register with google',
       title: 'Sign Up',
+    },
+    congratulations: {
+      metaDescription: 'Congratulations! Your email has been confirmed',
+      metaTitle: 'Congratulations | Instagram',
+      title: 'Congratulations!',
+      text: 'Your email has been confirmed',
+    },
+    verifyEmail: {
+      metaDescription:
+        'The verification link has expired. Please verify your email again to start using our services and receive exclusive benefits.',
+      metaTitle: 'Email verification | Instagram',
+      title: 'Email verification link expired',
+      text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
+    },
+    signIn: {
+      metaTitle: 'Sign In | Instagram',
+      metaDescription:
+        'Log in to your account to start using our services and receive exclusive benefits.',
+      title: 'Sign in',
+      link: 'Forgot Password',
+      question: 'Don’t have an account?',
+      github: 'Login with github',
+      google: 'Login with google',
     },
   },
   tabs: {

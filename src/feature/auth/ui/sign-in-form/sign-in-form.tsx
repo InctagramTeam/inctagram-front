@@ -4,6 +4,7 @@ import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from '
 import { useForm } from 'react-hook-form'
 
 import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
+import { EMPTY_STRING } from '@/shared/constants'
 import { AuthRoutes } from '@/shared/constants/routes'
 import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent, UseFormRef } from '@/shared/types'
@@ -46,8 +47,8 @@ export const SignInForm = forwardRef(
       setValue,
     } = useForm<SignInFormValues>({
       defaultValues: {
-        email: '',
-        password: '',
+        email: EMPTY_STRING,
+        password: EMPTY_STRING,
       },
       resolver: zodResolver(signInSchema(t)),
     })
@@ -64,13 +65,12 @@ export const SignInForm = forwardRef(
         {...rest}
       >
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
-          Sign In
-          {/*{ t.pages.signIn.title }*/}
+          {t.pages.signIn.title}
         </Text>
         <AppList
           items={[
-            { 'aria-label': 'Sign in with github', href: hrefGithub },
-            { 'aria-label': 'Sign in with github', href: hrefGoogle },
+            { 'aria-label': t.pages.signIn.github, href: hrefGithub },
+            { 'aria-label': t.pages.signIn.google, href: hrefGoogle },
           ]}
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
@@ -107,7 +107,7 @@ export const SignInForm = forwardRef(
             href={AuthRoutes.FORGOT_PASSWORD}
             variant={'text'}
           >
-            Forgot Password
+            {t.pages.signIn.link}
           </Button>
           <Button
             className={classes.button}
@@ -117,7 +117,7 @@ export const SignInForm = forwardRef(
             {t.button.signIn}
           </Button>
           <Text className={`mb-[12px] text-Light-100`} variant={'regular_text_16'}>
-            Don’t have an account?
+            {t.pages.signIn.question}
           </Text>
           <Button
             asComponent={Link}

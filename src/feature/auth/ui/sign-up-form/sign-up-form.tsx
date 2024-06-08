@@ -3,7 +3,7 @@ import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from '
 import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
-import { AuthRoutes, GeneralRoutes } from '@/shared/constants'
+import { AuthRoutes, EMPTY_STRING, GeneralRoutes } from '@/shared/constants'
 import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
@@ -48,10 +48,10 @@ export const SignUpForm = forwardRef(
     } = useForm<SignUpFormValues>({
       /** Значения формы по умолчанию */
       defaultValues: {
-        email: '',
-        password: '',
-        passwordConfirm: '',
-        username: '',
+        email: EMPTY_STRING,
+        password: EMPTY_STRING,
+        passwordConfirm: EMPTY_STRING,
+        username: EMPTY_STRING,
       },
       /** Режим срабатывания подсветки ошибок при изменении полей */
       mode: 'onChange',
@@ -77,8 +77,8 @@ export const SignUpForm = forwardRef(
         </Text>
         <AppList
           items={[
-            { 'aria-label': 'Sign up with github', href: hrefGithub },
-            { 'aria-label': 'Sign up with google', href: hrefGoogle },
+            { 'aria-label': t.pages.signUp.github, href: hrefGithub },
+            { 'aria-label': t.pages.signUp.google, href: hrefGoogle },
           ]}
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
@@ -136,6 +136,7 @@ export const SignUpForm = forwardRef(
             disabled={disabled}
             label={
               <Text
+                asComponent={'p'}
                 className={`ml-4 inline-block w-full text-balance text-left`}
                 variant={'small-text-12'}
               >

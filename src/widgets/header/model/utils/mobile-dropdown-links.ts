@@ -5,8 +5,8 @@ export const getMobileDropdownLinks = (): NavLink[] => {
   const { t } = useTranslation()
 
   return [
-    { href: AppRoutes.PROFILE_SETTINGS, name: t.button.profileSettings },
-    { href: AppRoutes.STATISTICS, name: t.button.statistics },
-    { href: AppRoutes.FAVORITES, name: t.button.favorites },
+    { href: AppRoutes.PROFILE_SETTINGS, name: t.links.profileSettings },
+    { href: AppRoutes.STATISTICS, name: t.links.statistics },
+    { href: AppRoutes.FAVORITES, name: t.links.favorites },
   ]
 }
