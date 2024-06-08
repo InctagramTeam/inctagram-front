@@ -16,6 +16,7 @@ import { Text } from '@/shared/ui/text'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import Link from 'next/link'
+import { EMPTY_STRING } from '@/shared/constants'
 
 type Props = {
   className?: string
@@ -46,8 +47,8 @@ export const SignInForm = forwardRef(
       setValue,
     } = useForm<SignInFormValues>({
       defaultValues: {
-        email: '',
-        password: '',
+        email: EMPTY_STRING,
+        password: EMPTY_STRING,
       },
       resolver: zodResolver(signInSchema(t)),
     })
@@ -70,7 +71,7 @@ export const SignInForm = forwardRef(
         <AppList
           items={[
             { 'aria-label': 'Sign in with github', href: hrefGithub },
-            { 'aria-label': 'Sign in with github', href: hrefGoogle },
+            { 'aria-label': 'Sign in with google', href: hrefGoogle },
           ]}
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>

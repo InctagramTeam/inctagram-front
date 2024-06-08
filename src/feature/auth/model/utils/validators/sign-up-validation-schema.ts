@@ -2,6 +2,7 @@ import { LocaleType } from '@/../locales'
 import { USERNAME_PATTERN } from '@/shared/constants/regexs'
 import { emailSchema, passwordSchema } from '@/shared/lib/utils'
 import { z } from 'zod'
+import { EMPTY_STRING } from '@/shared/constants'
 
 export const signUpSchema = (t: LocaleType) =>
   z
@@ -15,14 +16,14 @@ export const signUpSchema = (t: LocaleType) =>
         }),
       email: emailSchema(t),
       password: passwordSchema(t),
-      passwordConfirm: z.string().default(''),
+      passwordConfirm: z.string().default(EMPTY_STRING),
       username: z
         .string()
         .trim()
         .regex(USERNAME_PATTERN, { message: t.validation.userNameVerification })
         .min(6, t.validation.minLength(6))
         .max(30, t.validation.maxLength(30))
-        .default(''),
+        .default(EMPTY_STRING),
     })
     .refine(data => data.password === data.passwordConfirm && data.passwordConfirm.length > 0, {
       message: t.validation.passwordMismatch,

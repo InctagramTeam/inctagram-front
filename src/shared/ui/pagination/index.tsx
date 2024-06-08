@@ -17,7 +17,6 @@ export type PaginationProps = {
 
 const classNames = {
   container: 'flex gap-[12px]',
-  dots: '',
   icon: 'w-[1rem] h-[1rem]',
   item: 'min-w-[24px] h-[24px] rounded-sm focus:ring focus:ring-Primary-500 hover:bg-Dark-500 outline-none',
   pageButton(selected?: boolean) {
@@ -39,7 +38,7 @@ type PageButtonProps = {
 } & NavigationButtonProps
 
 const Dots = (): ReturnComponent => {
-  return <span className={classNames.dots}>&#8230;</span>
+  return <span>&#8230;</span>
 }
 const PageButton = ({ disabled, onClick, page, selected }: PageButtonProps) => {
   return (

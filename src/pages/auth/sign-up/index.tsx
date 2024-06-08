@@ -10,6 +10,7 @@ import { UseFormRef } from '@/shared/types/form'
 import { Button } from '@/shared/ui/button'
 import { Flex } from '@/shared/ui/flex'
 import { Modal } from '@/shared/ui/modal'
+import { EMPTY_STRING } from '@/shared/constants'
 
 const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
@@ -22,8 +23,8 @@ const SignUp = (): ReturnComponent => {
   return (
     <PageWrapper title={'SignUp | Instagram'}>
       <SignUpForm
-        hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? ''}
-        hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? ''}
+        hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
+        hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
         // disabled={isLoading}
         onSubmit={handleSubmitForm}
         ref={ref}
