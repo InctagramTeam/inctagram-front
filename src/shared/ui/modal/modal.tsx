@@ -41,7 +41,8 @@ export const ModalContent = ({
 }: ModalContentProps): ReturnComponent => {
   const classes = {
     childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
-    close: 'pr-4 text-Light-100 duration-150 hover:text-Primary-300 hover:transition-all',
+    close:
+      'w-[24px] h-[24px] flex items-center justify-center text-Light-100 duration-300 hover:text-Primary-300 hover:transition-all',
     content: clsx(
       `fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
         bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100
