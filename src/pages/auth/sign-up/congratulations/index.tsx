@@ -25,7 +25,7 @@ const SignUpCongratulations = (): ReturnComponent => {
   }
 
   return (
-    <PageWrapper paddingTop={'35px'} title={'Congratulations! | Instagram'}>
+    <PageWrapper paddingBlock={'35px'} title={'Congratulations! | Instagram'}>
       <InformationBlock
         action={
           <Button

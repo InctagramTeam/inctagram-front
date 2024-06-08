@@ -4,7 +4,7 @@ import { HomeNavLinks } from '@/widgets/main'
 
 function HomePage() {
   return (
-    <PageWrapper paddingTop={'24px'} title={'Main | Instagram'}>
+    <PageWrapper paddingBlock={'24px'} title={'Main | Instagram'}>
       <HomeNavLinks />
     </PageWrapper>
   )

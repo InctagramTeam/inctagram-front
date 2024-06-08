@@ -8,7 +8,7 @@ import instagram from 'public/inctagram.png'
 type Props = {
   description?: string
   favicon?: string
-  paddingTop?: CSSProperties['paddingTop']
+  paddingBlock?: CSSProperties['paddingBlock']
   title?: string
 } & ComponentPropsWithoutRef<'section'>
 
@@ -18,19 +18,23 @@ export const PageWrapper = ({
   description,
   favicon,
   /**
-   * Отступ страницы от секции
+   * Отступ страницы по оси y
    * Например: Отступ страницы SingIn от Header
    (по умолчанию для главной странице с local url: http://localhost:3000 --> 24рх,
-   задаем props при отрисовки согласно макета paddingTop = 36рх)
+   задаем props при отрисовки согласно макета paddingBlock = 36рх)
+   такой же отступ будет внизу, чтобы контент не прилипал к границе
    */
-  paddingTop = '24px',
+  paddingBlock = '24px',
   style,
   title,
   ...rest
 }: Props): ReturnComponent => {
   const classesPage = cn(`flex items-center justify-center max-w-[1280px] w-full`, className)
 
-  const styles: CSSProperties = { paddingTop: paddingTop, ...style }
+  const styles: CSSProperties = {
+    paddingBlock: paddingBlock,
+    ...style,
+  }
 
   return (
     <section

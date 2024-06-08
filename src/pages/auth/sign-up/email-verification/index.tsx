@@ -22,7 +22,7 @@ const EmailVerification = () => {
   }
 
   return (
-    <PageWrapper paddingTop={'35px'} title={'Email verification | Instagram'}>
+    <PageWrapper paddingBlock={'35px'} title={'Email verification | Instagram'}>
       <InformationBlock
         action={
           <Button

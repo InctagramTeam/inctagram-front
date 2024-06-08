@@ -12,7 +12,7 @@ const SignIn = (): ReturnComponent => {
   const handleSubmitForm = (formData: SignInFormValues) => {}
 
   return (
-    <PageWrapper paddingTop={'108px'} title={'SignIn | Instagram'}>
+    <PageWrapper paddingBlock={'36px'} title={'SignIn | Instagram'}>
       <SignInForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? ''}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? ''}
