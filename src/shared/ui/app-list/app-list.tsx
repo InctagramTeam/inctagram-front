@@ -12,6 +12,10 @@ export type AppProps = {
   href: string
 } & Parameters<typeof Link>[0]
 
+/**
+ * Компонент AppList используется, чтобы выводить список ссылок с иконками приложений
+ * Например, на страницах sign-in и sign-up, чтобы отобразить иконки сервисов, через которые можно зарегистрироваться / войти
+ */
 export const AppList = ({ className, items }: Props) => {
   const classes = {
     items: cn(`flex gap-[60px] justify-center mb-[1.5rem]`, className),
