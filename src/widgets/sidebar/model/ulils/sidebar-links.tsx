@@ -7,7 +7,7 @@ export const getBaseLinks = (): NavLink[] => {
   return [
     {
       disabled: false,
-      href: '/home-nav-links',
+      href: '/home',
       name: t.layout.sidebar.home,
     },
     {

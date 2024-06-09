@@ -28,7 +28,7 @@ export const Main = ({ children }: Props) => {
 
   const classes = {
     main: cn(
-      `flex pt-[var(--header-height)] pl-[220px]`,
+      `flex min-h-screen pt-[var(--header-height)] pl-[220px]`,
       (isCollapsed || width < LG_BREAKPOINT) && 'pl-[80px]',
       (width < SM_BREAKPOINT || !isCollapsed) && 'pl-0',
       inter.variable
