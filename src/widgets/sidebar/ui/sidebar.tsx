@@ -30,7 +30,7 @@ export const Sidebar = (): ReturnComponent => {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
     navigation: cn(`h-full flex justify-between flex-col items-start`, mobile && 'items-center'),
     wrapper: cn(
-      `w-full fixed shadow-sm`,
+      `w-full fixed top-0 bottom-0 overflow-y-scroll shadow-sm`,
       !mobile &&
         `max-w-[250px] h-[calc(100vh-var(--header-height))] top-[var(--header-height)] pb-[36px] pt-[72px] 
         overflow-y-auto scrollbar-thin scrollbar-thumb-Dark-100 scrollbar-track-Dark-300 scrollbar-thumb-rounded-full

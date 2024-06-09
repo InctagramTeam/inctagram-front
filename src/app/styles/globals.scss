@@ -56,7 +56,7 @@
 
   input[type='file'],
   input[type='file']::-webkit-file-upload-button {
-    @apply cursor-pointer;
+    @apply cursor-pointer focus:text-Primary-100;
   }
 
   *,
