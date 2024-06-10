@@ -38,9 +38,9 @@ export const MobileDropdown = ({ logout }: Props) => {
     <Dropdown.Menu className={classes.menu} trigger={trigger}>
       <div>
         <ul className={classes.items}>
-          {getMobileDropdownLinks().map((link, index) => {
+          {getMobileDropdownLinks(t).map(link => {
             return (
-              <Dropdown.Item className={classes.item} key={index}>
+              <Dropdown.Item className={classes.item} key={link.href}>
                 <li>
                   <NavigationElement
                     asComponent={Link}

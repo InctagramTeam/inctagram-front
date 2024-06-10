@@ -4,7 +4,7 @@ export const MetaNoIndex = ({ title = 'Error' }: { title?: string }) => {
   return (
     <Head>
       <title>{title}</title>
-      <meta name="robots" content="noindex, nofollow" />
+      <meta content={'noindex, nofollow'} name={'robots'} />
     </Head>
   )
 }

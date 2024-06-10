@@ -1,9 +1,7 @@
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { NavLink } from '@/shared/types'
+import { LocaleType } from 'locales'
 
-export const getBaseLinks = (): NavLink[] => {
-  const { t } = useTranslation()
-
+export const getBaseLinks = (t: LocaleType): NavLink[] => {
   return [
     {
       disabled: false,
@@ -33,9 +31,7 @@ export const getBaseLinks = (): NavLink[] => {
   ]
 }
 
-const getAdditionalDesktopLinks = (): NavLink[] => {
-  const { t } = useTranslation()
-
+const getAdditionalDesktopLinks = (t: LocaleType): NavLink[] => {
   return [
     {
       disabled: false,
@@ -50,4 +46,7 @@ const getAdditionalDesktopLinks = (): NavLink[] => {
   ]
 }
 
-export const getSidebarLinks = (): NavLink[] => [...getBaseLinks(), ...getAdditionalDesktopLinks()]
+export const getSidebarLinks = (t: LocaleType): NavLink[] => [
+  ...getBaseLinks(t),
+  ...getAdditionalDesktopLinks(t),
+]

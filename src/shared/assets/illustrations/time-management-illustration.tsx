@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Ref, SVGProps, forwardRef, memo } from 'react'
 
 const TimeManagementIllustration = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (

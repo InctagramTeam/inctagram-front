@@ -1,9 +1,7 @@
 import { AppRoutes } from '@/shared/constants/routes'
-import { useTranslation } from '@/shared/lib/hooks'
 import { NavLink } from '@/shared/types'
-export const getMobileDropdownLinks = (): NavLink[] => {
-  const { t } = useTranslation()
-
+import { LocaleType } from 'locales'
+export const getMobileDropdownLinks = (t: LocaleType): NavLink[] => {
   return [
     { href: AppRoutes.PROFILE_SETTINGS, name: t.links.profileSettings },
     { href: AppRoutes.STATISTICS, name: t.links.statistics },

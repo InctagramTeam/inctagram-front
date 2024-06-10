@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+
 import { Ref, SVGProps, forwardRef, memo } from 'react'
 
 const SignUpBroIllustration = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
