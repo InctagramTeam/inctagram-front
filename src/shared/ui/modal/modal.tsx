@@ -77,9 +77,7 @@ export const ModalContent = ({
   )
 }
 
-/**
- * API кнопки у Modal - делаем как у Dialog.Trigger, ModalContent
- */
+/*** API кнопки у Modal - делаем как у Dialog.Trigger, ModalContent, Dialog.Close */
 Modal.Button = Dialog.Trigger
 Modal.Content = ModalContent
 Modal.Close = Dialog.Close

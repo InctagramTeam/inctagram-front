@@ -18,7 +18,7 @@ export const PageWrapper = ({
   description,
   favicon,
   /**
-   * Отступ страницы по оси y
+   * Отступ страницы по оси "y"
    * Например: Отступ страницы SingIn от Header
    (по умолчанию для главной странице с local url: http://localhost:3000 --> 24рх,
    задаем props при отрисовки согласно макета paddingBlock = 36рх)
