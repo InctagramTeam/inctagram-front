@@ -69,7 +69,7 @@ export const SignUpForm = forwardRef(
       <Card
         {...rest}
         asComponent={'form'}
-        className={clsx('w-full max-w-[380px] p-[1.5rem]', className)}
+        className={clsx('w-full max-w-[380px] self-start p-[1.5rem]', className)}
         onSubmit={handleSubmit(onSubmit)}
       >
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
@@ -123,7 +123,7 @@ export const SignUpForm = forwardRef(
             autoComplete={'new-password'}
             control={control}
             disabled={disabled}
-            errorMessage={errors.passwordConfirm?.message}
+            errorMessage={errors.passwordConfirm?.message?.toString()}
             label={t.label.confirmPassword}
             name={'passwordConfirm'}
             placeholder={t.placeholders.passwordConfirm}
@@ -173,7 +173,7 @@ export const SignUpForm = forwardRef(
         <Flex direction={'column'}>
           <Button
             className={'mb-[18px] text-balance p-[6px]'}
-            disabled={!!Object.keys(errors).length || disabled}
+            // disabled={!!Object.keys(errors).length || disabled}
             fullWidth
           >
             {t.button.signUp}
