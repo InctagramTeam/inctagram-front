@@ -3,18 +3,14 @@ import { EMPTY_STRING } from '@/shared/constants'
 import { USERNAME_PATTERN } from '@/shared/constants/regexs'
 import { emailSchema, passwordSchema } from '@/shared/lib/utils'
 import { z } from 'zod'
-import { passwordConfirmationCheck } from '@/shared/lib/utils/validators'
 
-export const signUpSchema = (t: LocaleType) => {
-  return passwordConfirmationCheck(
-    'password',
-    'passwordConfirm',
-    t.validation.passwordMismatch
-  )(
-    z.object({
+export const signUpSchema = (t: LocaleType) =>
+  z
+    .object({
       accept: z
         .boolean()
         .optional()
+        // пользовательская проверка refine
         .refine(value => value, {
           message: t.validation.required,
         }),
@@ -29,7 +25,9 @@ export const signUpSchema = (t: LocaleType) => {
         .max(30, t.validation.maxLength(30))
         .default(EMPTY_STRING),
     })
-  )
-}
+    .refine(data => data.password === data.passwordConfirm && data.passwordConfirm.length > 0, {
+      message: t.validation.passwordMismatch,
+      path: ['passwordConfirm'],
+    })
 
 export type SignUpFormValues = z.infer<ReturnType<typeof signUpSchema>>
