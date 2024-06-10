@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import { MetaNoIndex } from '@/shared/lib/seo/meta-no-index'
 import { onlyText } from '@/shared/lib/seo/clear-text'
+import { MetaNoIndex } from '@/shared/lib/seo/meta-no-index'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 type Props = {
@@ -22,17 +22,17 @@ export default function HeadMeta({
     <>
       {description ? (
         <Head>
-          <title itemProp="headline">{title}</title>
-          <meta name={'description'} content={onlyText(description, 152)} />
+          <title itemProp={'headline'}>{title}</title>
+          <meta content={onlyText(description, 152)} name={'description'} />
           <meta content={'width=device-width, initial-scale=1'} name={'viewport'} />
           <link href={favicon} rel={'icon'} />
-          <link rel="canonical" href={currentUrl} />
-          <meta property="og:locale" content="en" />
-          <meta property="og:title" content={title} />
-          <meta property="og:url" content={currentUrl} />
-          <meta property="og:image" content={favicon && favicon} />
-          <meta property="og:site_name" content={title} />
-          <meta property="og:description" content={onlyText(description, 197)} />
+          <link href={currentUrl} rel={'canonical'} />
+          <meta content={'en'} property={'og:locale'} />
+          <meta content={title} property={'og:title'} />
+          <meta content={currentUrl} property={'og:url'} />
+          <meta content={favicon && favicon} property={'og:image'} />
+          <meta content={title} property={'og:site_name'} />
+          <meta content={onlyText(description, 197)} property={'og:description'} />
         </Head>
       ) : (
         <MetaNoIndex title={title} />

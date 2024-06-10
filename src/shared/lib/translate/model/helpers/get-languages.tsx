@@ -1,13 +1,11 @@
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
+import { LocaleType } from 'locales'
 
 export type Language = {
   textValue: string
   value: string
 }
 
-export const getLanguages = (): Language[] => {
-  const { t } = useTranslation()
-
+export const getLanguages = (t: LocaleType): Language[] => {
   return [
     {
       textValue: t.lang.en,

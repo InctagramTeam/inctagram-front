@@ -47,10 +47,10 @@ export const Sidebar = (): ReturnComponent => {
       <nav className={classes.navigation}>
         {desktop && <ToggleCollapsedButtons />}
         {mobile ? (
-          <SidebarList isMobile links={getBaseLinks()} onlyIcons />
+          <SidebarList isMobile links={getBaseLinks(t)} onlyIcons />
         ) : (
           <>
-            <SidebarList links={getSidebarLinks()} onlyIcons={onlyIcons} />
+            <SidebarList links={getSidebarLinks(t)} onlyIcons={onlyIcons} />
             <NavigationElement
               className={classes.button}
               name={t.button.logOut}
