@@ -1,10 +1,11 @@
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { ReturnComponent } from '@/shared/types'
-import { useTranslation } from '@/shared/lib/hooks'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { useTranslation } from '@/shared/lib/hooks'
+import { ReturnComponent } from '@/shared/types'
 
 const CreatePassword = (): ReturnComponent => {
   const { t } = useTranslation()
+
   return (
     <PageWrapper
       description={t.pages.createPassword.metaDescription}

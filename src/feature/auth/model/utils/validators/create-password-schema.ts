@@ -1,7 +1,7 @@
+import { EMPTY_STRING } from '@/shared/constants'
+import { passwordSchema } from '@/shared/lib/utils'
 import { LocaleType } from 'locales'
 import { z } from 'zod'
-import { passwordSchema } from '@/shared/lib/utils'
-import { EMPTY_STRING } from '@/shared/constants'
 
 export const createPasswordSchema = (t: LocaleType) =>
   z.object({
