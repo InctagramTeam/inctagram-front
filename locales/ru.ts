@@ -120,6 +120,12 @@ export const ru: LocaleType = {
       github: 'Войти с помощью github',
       google: 'Войти с помощью google',
     },
+    createPassword: {
+      metaTitle: 'Создание нового пароля | Instagram',
+      metaDescription:
+        'Создайте новый надежный пароль для вашего аккаунта. Простой процесс, повышенная безопасность и защита ваших личных данных.',
+      title: 'Создайте новый пароль',
+    },
   },
   tabs: {
     devices: 'Устройства',

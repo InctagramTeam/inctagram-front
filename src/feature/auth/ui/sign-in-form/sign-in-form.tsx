@@ -32,7 +32,7 @@ export const SignInForm = forwardRef(
     const classes = {
       button: `py-[6px] px-[24px] mb-[1.2rem]`,
       forgotLink: `py-[0] ml-auto h-auto text-Light-900 mb-[1.5rem] text-right !text-regular-text-14 bg-transparent`,
-      form: clsx(`max-w-[380px] w-full p-[1.5rem]`, className),
+      form: clsx(`max-w-[380px] w-full p-[1.5rem] self-start`, className),
     }
 
     const { locale, t } = useTranslation()

@@ -127,6 +127,12 @@ export const en = {
       github: 'Login with github',
       google: 'Login with google',
     },
+    createPassword: {
+      metaTitle: 'Create new password | Instagram',
+      metaDescription:
+        'Create a new strong password for your account. Simple process, increased security and protection of your personal data.',
+      title: 'Create New Password',
+    },
   },
   tabs: {
     devices: 'Devices',
