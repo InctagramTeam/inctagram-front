@@ -1,7 +1,8 @@
+import { ComponentPropsWithoutRef } from 'react'
+
+import { CreatePasswordFormValues } from '@/feature/auth/model/utils/validators'
 import { useTranslation } from '@/shared/lib/hooks'
 import { Card } from '@/shared/ui/card'
-import { CreatePasswordFormValues } from '@/feature/auth/model/utils/validators'
-import { ComponentPropsWithoutRef } from 'react'
 import { clsx } from 'clsx'
 
 type Props = {
