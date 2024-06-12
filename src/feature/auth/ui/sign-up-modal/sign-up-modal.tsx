@@ -1,14 +1,14 @@
-import { ReturnComponent } from '@/shared/types'
-import { Modal } from '@/shared/ui/modal'
-import { Flex } from '@/shared/ui/flex'
-import { Button } from '@/shared/ui/button'
 import { useTranslation } from '@/shared/lib/hooks'
+import { ReturnComponent } from '@/shared/types'
+import { Button } from '@/shared/ui/button'
+import { Flex } from '@/shared/ui/flex'
+import { Modal } from '@/shared/ui/modal'
 
 type Props = {
   onOpenChange: (open: boolean) => void
   open: boolean
 }
-export const SignUpModal = ({ open, onOpenChange }: Props): ReturnComponent => {
+export const SignUpModal = ({ onOpenChange, open }: Props): ReturnComponent => {
   const { t } = useTranslation()
 
   return (

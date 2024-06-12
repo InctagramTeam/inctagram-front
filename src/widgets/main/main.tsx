@@ -4,8 +4,8 @@ import { LG_BREAKPOINT, SM_BREAKPOINT } from '@/shared/constants'
 import { useLayoutContext } from '@/shared/layouts/layout-context/layout-context'
 import { useResponsive } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
-import { Inter } from 'next/font/google'
 import { ReturnComponent } from '@/shared/types'
+import { Inter } from 'next/font/google'
 
 const inter = Inter({
   display: 'swap',

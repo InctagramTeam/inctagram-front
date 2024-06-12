@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
 import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
+import { SignUpModal } from '@/feature/auth/ui/sign-up-modal'
 import { EMPTY_STRING } from '@/shared/constants'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
@@ -12,7 +13,6 @@ import { UseFormRef } from '@/shared/types/form'
 import { Button } from '@/shared/ui/button'
 import { Flex } from '@/shared/ui/flex'
 import { Modal } from '@/shared/ui/modal'
-import { SignUpModal } from '@/feature/auth/ui/sign-up-modal'
 
 const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)

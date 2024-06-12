@@ -1,20 +1,20 @@
-import React, { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle } from 'react'
+import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
+import { useForm } from 'react-hook-form'
 
 import {
   CreatePasswordFormValues,
   createPasswordSchema,
 } from '@/feature/auth/model/utils/validators'
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
-import { Card } from '@/shared/ui/card'
-import { clsx } from 'clsx'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { useForm } from 'react-hook-form'
 import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
-import { Text } from '@/shared/ui/text'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
+import { ReturnComponent, UseFormRef } from '@/shared/types'
+import { Button } from '@/shared/ui/button'
+import { Card } from '@/shared/ui/card'
 import { Flex } from '@/shared/ui/flex'
 import { ControlledInput } from '@/shared/ui/input'
-import { Button } from '@/shared/ui/button'
+import { Text } from '@/shared/ui/text'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { clsx } from 'clsx'
 
 type Props = {
   className?: string
@@ -24,7 +24,7 @@ type Props = {
 export const CreatePasswordForm = forwardRef(
   (props: Props, methodsRef: Ref<UseFormRef<CreatePasswordFormValues> | null>): ReturnComponent => {
     const { className, disabled, onSubmit, ...rest } = props
-    const { t, locale } = useTranslation()
+    const { locale, t } = useTranslation()
     const { width } = useResponsive()
 
     const isMobile = width && width < SM_BREAKPOINT
@@ -39,12 +39,12 @@ export const CreatePasswordForm = forwardRef(
 
     const {
       control,
-      handleSubmit,
       formState: { errors },
       getValues,
-      setValue,
+      handleSubmit,
       reset,
       setError,
+      setValue,
     } = useForm<CreatePasswordFormValues>({
       defaultValues: {
         password: EMPTY_STRING,
@@ -66,8 +66,8 @@ export const CreatePasswordForm = forwardRef(
 
     return (
       <Card
-        className={classes.form}
         asComponent={'form'}
+        className={classes.form}
         onSubmit={handleSubmit(onSubmit)}
         {...rest}
       >
@@ -79,30 +79,30 @@ export const CreatePasswordForm = forwardRef(
             aria-invalid={errors.password ? 'true' : 'false'}
             autoComplete={'new-password'}
             control={control}
-            name={'password'}
-            placeholder={t.placeholders.password}
-            label={t.label.password}
-            type={'password'}
-            rules={{ required: true }}
             disabled={disabled}
             errorMessage={errors.password?.message}
+            label={t.label.password}
+            name={'password'}
+            placeholder={t.placeholders.password}
+            rules={{ required: true }}
+            type={'password'}
           />
           <ControlledInput
             aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
             autoComplete={'new-password'}
             control={control}
-            name={'passwordConfirm'}
-            placeholder={t.placeholders.passwordConfirm}
-            label={t.label.confirmPassword}
-            type={'password'}
-            rules={{ required: true }}
             disabled={disabled}
             errorMessage={errors.passwordConfirm?.message}
+            label={t.label.confirmPassword}
+            name={'passwordConfirm'}
+            placeholder={t.placeholders.passwordConfirm}
+            rules={{ required: true }}
+            type={'password'}
           />
         </Flex>
         <Text
-          className={'text-Light-900'}
           asComponent={'p'}
+          className={'text-Light-900'}
           mb={'41px'}
           variant={'regular-text-14'}
         >
@@ -110,9 +110,9 @@ export const CreatePasswordForm = forwardRef(
         </Text>
         <Button
           className={'px-[24px] py-[6px]'}
-          type={'submit'}
           disabled={!!Object.keys(errors).length || disabled}
           fullWidth
+          type={'submit'}
         >
           {t.button.createNewPassword}
         </Button>

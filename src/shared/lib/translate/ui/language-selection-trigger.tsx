@@ -5,10 +5,10 @@ import { EMPTY_STRING } from '@/shared/constants/base'
 import { useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { getLanguages } from '@/shared/lib/translate'
 import { cn } from '@/shared/lib/utils'
+import { ReturnComponent } from '@/shared/types'
 import { SelectTrigger } from '@/shared/ui/select/select'
 import Image from 'next/image'
 import { ChevronIcon } from 'src/shared/assets/icons'
-import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   currentValue?: string
