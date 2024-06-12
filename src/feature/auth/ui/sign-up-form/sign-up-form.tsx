@@ -3,8 +3,8 @@ import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from '
 import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
-import { AuthRoutes, EMPTY_STRING, GeneralRoutes } from '@/shared/constants'
-import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
+import { AuthRoutes, EMPTY_STRING, GeneralRoutes, SM_BREAKPOINT } from '@/shared/constants'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
 import { AppList } from '@/shared/ui/app-list'
@@ -32,6 +32,20 @@ export const SignUpForm = forwardRef(
     const { className, disabled = false, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
 
     const { locale, t } = useTranslation()
+    const { width } = useResponsive()
+
+    const isMobile = width && width < SM_BREAKPOINT
+
+    const classes = {
+      form: clsx(
+        'max-w-[380px] w-full p-[1.5rem] self-start',
+        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        className
+      ),
+      question: 'mb-[12px] text-balance text-Light-100',
+      button: 'mb-[18px] text-balance p-[6px]',
+      agreement: 'ml-4 inline-block w-full text-balance text-left',
+    }
 
     const {
       control,
@@ -69,7 +83,7 @@ export const SignUpForm = forwardRef(
       <Card
         {...rest}
         asComponent={'form'}
-        className={clsx('w-full max-w-[380px] self-start p-[1.5rem]', className)}
+        className={classes.form}
         onSubmit={handleSubmit(onSubmit)}
       >
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
@@ -87,7 +101,7 @@ export const SignUpForm = forwardRef(
             autoComplete={'username'}
             control={control}
             disabled={disabled}
-            errorMessage={errors.username?.message as string}
+            errorMessage={errors.username?.message}
             label={t.label.userName}
             name={'username'}
             placeholder={t.placeholders.username}
@@ -99,7 +113,7 @@ export const SignUpForm = forwardRef(
             autoComplete={'email'}
             control={control}
             disabled={disabled}
-            errorMessage={errors.email?.message?.toString()}
+            errorMessage={errors.email?.message}
             label={t.label.email}
             name={'email'}
             placeholder={t.placeholders.email}
@@ -111,7 +125,7 @@ export const SignUpForm = forwardRef(
             autoComplete={'new-password'}
             control={control}
             disabled={disabled}
-            errorMessage={errors.password?.message?.toString()}
+            errorMessage={errors.password?.message}
             label={t.label.password}
             name={'password'}
             placeholder={t.placeholders.password}
@@ -123,7 +137,7 @@ export const SignUpForm = forwardRef(
             autoComplete={'new-password'}
             control={control}
             disabled={disabled}
-            errorMessage={errors.passwordConfirm?.message?.toString()}
+            errorMessage={errors.passwordConfirm?.message}
             label={t.label.confirmPassword}
             name={'passwordConfirm'}
             placeholder={t.placeholders.passwordConfirm}
@@ -135,11 +149,7 @@ export const SignUpForm = forwardRef(
             control={control}
             disabled={disabled}
             label={
-              <Text
-                asComponent={'p'}
-                className={`ml-4 inline-block w-full text-balance text-left`}
-                variant={'small-text-12'}
-              >
+              <Text asComponent={'p'} className={classes.agreement} variant={'small-text-12'}>
                 <Translate
                   tags={{
                     '1': () => (
@@ -172,13 +182,13 @@ export const SignUpForm = forwardRef(
 
         <Flex direction={'column'}>
           <Button
-            className={'mb-[18px] text-balance p-[6px]'}
-            // disabled={!!Object.keys(errors).length || disabled}
+            className={classes.button}
+            disabled={!!Object.keys(errors).length || disabled}
             fullWidth
           >
             {t.button.signUp}
           </Button>
-          <Text className={`mb-[12px] text-balance text-Light-100`} variant={'regular_text_16'}>
+          <Text className={classes.question} variant={'regular_text_16'}>
             {t.pages.signUp.question}
           </Text>
           <Button

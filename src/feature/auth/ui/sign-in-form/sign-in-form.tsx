@@ -4,9 +4,9 @@ import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from '
 import { useForm } from 'react-hook-form'
 
 import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
-import { EMPTY_STRING } from '@/shared/constants'
+import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
 import { AuthRoutes } from '@/shared/constants/routes'
-import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent, UseFormRef } from '@/shared/types'
 import { AppList } from '@/shared/ui/app-list'
 import { Button } from '@/shared/ui/button'
@@ -29,13 +29,22 @@ type Props = {
 export const SignInForm = forwardRef(
   (props: Props, methodsRef: Ref<UseFormRef<SignInFormValues> | null>): ReturnComponent => {
     const { className, disabled, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
+
+    const { locale, t } = useTranslation()
+    const { width } = useResponsive()
+
+    const isMobile = width && width < SM_BREAKPOINT
+
     const classes = {
       button: `py-[6px] px-[24px] mb-[1.2rem]`,
       forgotLink: `py-[0] ml-auto h-auto text-Light-900 mb-[1.5rem] text-right !text-regular-text-14 bg-transparent`,
-      form: clsx(`max-w-[380px] w-full p-[1.5rem] self-start`, className),
+      form: clsx(
+        'max-w-[380px] w-full p-[1.5rem] self-start',
+        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        className
+      ),
+      question: 'mb-[12px] text-Light-100',
     }
-
-    const { locale, t } = useTranslation()
 
     const {
       control,
@@ -116,7 +125,7 @@ export const SignInForm = forwardRef(
           >
             {t.button.signIn}
           </Button>
-          <Text className={`mb-[12px] text-Light-100`} variant={'regular_text_16'}>
+          <Text className={classes.question} variant={'regular_text_16'}>
             {t.pages.signIn.question}
           </Text>
           <Button
