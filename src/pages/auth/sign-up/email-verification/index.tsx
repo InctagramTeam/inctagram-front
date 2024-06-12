@@ -6,12 +6,13 @@ import { useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
 import { Button } from '@/shared/ui/button'
 import { InformationBlock } from '@/shared/ui/information-block'
+import { ReturnComponent } from '@/shared/types'
 
-const EmailVerification = () => {
+const EmailVerification = (): ReturnComponent => {
   const { width } = useResponsive()
   const { t } = useTranslation()
 
-  if (!width) {
+  if (width === null) {
     return null
   }
 

@@ -8,12 +8,13 @@ import { cn } from '@/shared/lib/utils'
 import { SelectTrigger } from '@/shared/ui/select/select'
 import Image from 'next/image'
 import { ChevronIcon } from 'src/shared/assets/icons'
+import { ReturnComponent } from '@/shared/types'
 
 type Props = {
   currentValue?: string
 }
 
-export const LanguageSelectionTrigger = ({ currentValue }: Props) => {
+export const LanguageSelectionTrigger = ({ currentValue }: Props): ReturnComponent => {
   const { width } = useResponsive()
   const { t } = useTranslation()
   const isDesktop = width && width > MD_BREAKPOINT

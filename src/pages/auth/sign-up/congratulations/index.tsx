@@ -14,7 +14,7 @@ const SignUpCongratulations = (): ReturnComponent => {
   const { t } = useTranslation()
   const { width } = useResponsive()
 
-  if (!width) {
+  if (width === null) {
     return null
   }
 

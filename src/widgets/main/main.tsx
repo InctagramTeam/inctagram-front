@@ -5,6 +5,7 @@ import { useLayoutContext } from '@/shared/layouts/layout-context/layout-context
 import { useResponsive } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
 import { Inter } from 'next/font/google'
+import { ReturnComponent } from '@/shared/types'
 
 const inter = Inter({
   display: 'swap',
@@ -18,12 +19,12 @@ type Props = {
   layoutMainChildren?: ReactNode
 }
 
-export const Main = ({ children }: Props) => {
+export const Main = ({ children }: Props): ReturnComponent => {
   const { isCollapsed } = useLayoutContext()
   const { width } = useResponsive()
 
-  if (!width) {
-    return
+  if (width === null) {
+    return null
   }
 
   const classes = {
