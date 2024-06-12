@@ -2,11 +2,11 @@ import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import CrossIcon from '@/shared/assets/icons/CrossIcon'
 import { EMPTY_STRING } from '@/shared/constants/base'
+import { useTranslation } from '@/shared/lib/hooks'
+import { Text } from '@/shared/ui/text'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
 import { ReturnComponent } from 'src/shared/types'
-import { useTranslation } from '@/shared/lib/hooks'
-import { Text } from '@/shared/ui/text'
 
 type ModalProps = {
   children: ReactNode
@@ -74,7 +74,7 @@ export const ModalContent = ({
           <Dialog.Title asChild>
             <Text className={classes.title}>{title}</Text>
           </Dialog.Title>
-          <Dialog.Close className={classes.close} aria-label={t.button.closeModal}>
+          <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
             <CrossIcon />
           </Dialog.Close>
         </div>

@@ -10,9 +10,6 @@ import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
-import { Button } from '@/shared/ui/button'
-import { Flex } from '@/shared/ui/flex'
-import { Modal } from '@/shared/ui/modal'
 
 const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
