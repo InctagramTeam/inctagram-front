@@ -61,6 +61,7 @@ export const en = {
     userName: 'Username',
     email: 'Email',
     password: 'Password',
+    newPassword: 'New password',
     error: 'Error',
     confirmPassword: 'Confirm password',
   },
@@ -132,6 +133,7 @@ export const en = {
       metaDescription:
         'Create a new strong password for your account. Simple process, increased security and protection of your personal data.',
       title: 'Create New Password',
+      hint: 'Your password must be between 6 and 20 characters',
     },
   },
   tabs: {
