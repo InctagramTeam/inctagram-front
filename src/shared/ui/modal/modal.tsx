@@ -5,6 +5,8 @@ import { EMPTY_STRING } from '@/shared/constants/base'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
 import { ReturnComponent } from 'src/shared/types'
+import { useTranslation } from '@/shared/lib/hooks'
+import { Text } from '@/shared/ui/text'
 
 type ModalProps = {
   children: ReactNode
@@ -39,10 +41,13 @@ export const ModalContent = ({
   title = EMPTY_STRING,
   ...rest
 }: ModalContentProps): ReturnComponent => {
+  const { t } = useTranslation()
+
   const classes = {
     childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
-    close:
-      'w-[24px] h-[24px] flex items-center justify-center text-Light-100 duration-300 hover:text-Primary-300 hover:transition-all',
+    close: `w-[24px] h-[24px] flex items-center justify-center text-Light-100 
+    rounded-[2px] outline-none duration-300 transition-color
+    hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
     content: clsx(
       `fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
         bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100
@@ -66,8 +71,10 @@ export const ModalContent = ({
       <Dialog.Overlay className={classes.overlay} />
       <Dialog.Content className={classes.content} forceMount style={style}>
         <div className={classes.titleContainer}>
-          <Dialog.Title className={classes.title}>{title}</Dialog.Title>
-          <Dialog.Close className={classes.close}>
+          <Dialog.Title asChild>
+            <Text className={classes.title}>{title}</Text>
+          </Dialog.Title>
+          <Dialog.Close className={classes.close} aria-label={t.button.closeModal}>
             <CrossIcon />
           </Dialog.Close>
         </div>

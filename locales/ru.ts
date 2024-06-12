@@ -31,6 +31,7 @@ export const ru: LocaleType = {
     statistics: 'Статистика',
     yes: 'Да',
     clearField: 'Очистить поле',
+    closeModal: 'Закрыть модальное окно',
     password: {
       hide: 'Скрыть пароль',
       show: 'Показать пароль',
