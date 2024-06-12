@@ -9,11 +9,11 @@ export const signUpSchema = (t: LocaleType) =>
     .object({
       accept: z
         .boolean()
-        .optional()
         // пользовательская проверка refine
         .refine(value => value, {
           message: t.validation.required,
-        }),
+        })
+        .optional(),
       email: emailSchema(t),
       password: passwordSchema(t),
       passwordConfirm: z.string().default(EMPTY_STRING),

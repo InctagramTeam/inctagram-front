@@ -31,6 +31,7 @@ export const ru: LocaleType = {
     statistics: 'Статистика',
     yes: 'Да',
     clearField: 'Очистить поле',
+    closeModal: 'Закрыть модальное окно',
     password: {
       hide: 'Скрыть пароль',
       show: 'Показать пароль',
@@ -54,6 +55,7 @@ export const ru: LocaleType = {
     email: 'Электронная почта',
     error: 'Ошибка',
     password: 'Пароль',
+    newPassword: 'Новый пароль',
     userName: 'Имя пользователя',
     confirmPassword: 'Подтвердите пароль',
   },
@@ -125,6 +127,7 @@ export const ru: LocaleType = {
       metaDescription:
         'Создайте новый надежный пароль для вашего аккаунта. Простой процесс, повышенная безопасность и защита ваших личных данных.',
       title: 'Создайте новый пароль',
+      hint: 'Ваш пароль должен содержать от 6 до 20 символов.',
     },
   },
   tabs: {

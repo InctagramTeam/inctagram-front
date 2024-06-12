@@ -160,9 +160,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
       ),
       showPasswordButton: clsx(
-        `_ShowPassword_ rounder-[0.25rem] absolute bottom-1/2 right-[12px] top-1/2
+        `_ShowPassword_ rounder-[0.25rem] duration-300 transition-color text-Light-100 absolute bottom-1/2 right-[12px] top-1/2
               h-[24px] w-[24px] -translate-y-1/2 transform border-0 bg-transparent
-              p-0 outline-0 ring-0 focus:opacity-60
+              p-0 outline-0 ring-0 hover:text-Light-900 focus:opacity-60
               focus:shadow-sm focus:shadow-Primary-500 focus:outline-none
               focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
         disabled &&
