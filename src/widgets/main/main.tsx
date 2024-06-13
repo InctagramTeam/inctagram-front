@@ -4,6 +4,7 @@ import { LG_BREAKPOINT, SM_BREAKPOINT } from '@/shared/constants'
 import { useLayoutContext } from '@/shared/layouts/layout-context/layout-context'
 import { useResponsive } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
+import { ReturnComponent } from '@/shared/types'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({
@@ -18,19 +19,19 @@ type Props = {
   layoutMainChildren?: ReactNode
 }
 
-export const Main = ({ children }: Props) => {
+export const Main = ({ children }: Props): ReturnComponent => {
   const { isCollapsed } = useLayoutContext()
   const { width } = useResponsive()
 
-  if (!width) {
-    return
+  if (width === null) {
+    return null
   }
 
   const classes = {
     main: cn(
-      `flex pt-[var(--header-height)] pl-[220px]`,
+      `flex min-h-screen pt-[var(--header-height)] pl-[220px]`,
       (isCollapsed || width < LG_BREAKPOINT) && 'pl-[80px]',
-      width < SM_BREAKPOINT && 'pl-0',
+      (width < SM_BREAKPOINT || !isCollapsed) && 'pl-0',
       inter.variable
     ),
   }

@@ -1,5 +1,6 @@
 import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
+import { EMPTY_STRING } from '@/shared/constants'
 import { cn, getIcon } from '@/shared/lib/utils'
 import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared/types'
 import { Button, CustomButtonProps } from '@/shared/ui/button'
@@ -19,6 +20,12 @@ type CustomProps = {
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
 
 type NavigationElementComponent = <T extends ElementType = 'button'>(props: Props<T>) => ReactNode
+
+/**
+ * Компонент NavigationElement используется, чтобы выводить какой-то навигационный элемент (ссылку / кнопку) с иконкой
+ * Например, кнопку logout с иконкой
+ * В NavigationElement используется кастомный компонент Button, который является полиморфным и принимает props asComponent → и этот компонент тоже полиморфный
+ */
 export const NavigationElement: NavigationElementComponent = forwardRef(
   <T extends ElementType = 'button'>(
     props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
@@ -51,7 +58,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
           <TooltipTrigger asChild>
             {/*@ts-expect-error TS2322*/}
             <Button
-              aria-label={onlyIcon ? name : ''}
+              aria-label={onlyIcon ? name : EMPTY_STRING}
               asComponent={asComponent || 'button'}
               className={classes.link}
               disabled={disabled}

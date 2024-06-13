@@ -74,13 +74,10 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
       >
         <SelectValue placeholder={placeholder} />
         <ChevronIcon
-          className={cn(
-            'chevron-up rotate-180',
-            variant === 'pagination' ? '[h-16px] w-[16px]' : ''
-          )}
+          className={cn('chevron-up rotate-180', variant === 'pagination' && '[h-16px] w-[16px]')}
         />
         <ChevronIcon
-          className={cn('chevron-down', variant === 'pagination' ? '[h-16px] w-[16px]' : '')}
+          className={cn('chevron-down', variant === 'pagination' && '[h-16px] w-[16px]')}
         />
       </SelectTrigger>
       <SelectContent

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { MD_BREAKPOINT } from '@/shared/constants'
 import { EMPTY_STRING } from '@/shared/constants/base'
-import { useResponsive } from '@/shared/lib/hooks'
+import { useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { getLanguages } from '@/shared/lib/translate'
 import { cn } from '@/shared/lib/utils'
 import { SelectItem } from '@/shared/ui/select/select'
@@ -10,6 +10,7 @@ import Image from 'next/image'
 
 export const LanguageSelectionList = () => {
   const { width } = useResponsive()
+  const { t } = useTranslation()
   const isDesktop = width && width > MD_BREAKPOINT
   const isMobile = !isDesktop
 
@@ -26,7 +27,7 @@ export const LanguageSelectionList = () => {
 
   return (
     <>
-      {getLanguages().map(item => (
+      {getLanguages(t).map(item => (
         <SelectItem className={classes.item} key={item.value} {...item}>
           <div className={classes.itemInner}>
             <Image

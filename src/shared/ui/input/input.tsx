@@ -10,6 +10,7 @@ import {
 
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
 import { EMPTY_STRING } from '@/shared/constants/base'
+import { useTranslation } from '@/shared/lib/hooks'
 import { mergeRefs } from '@/shared/lib/utils/merge-refs'
 import { ReturnComponent } from '@/shared/types'
 import { Text } from '@/shared/ui/text'
@@ -64,6 +65,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     /** Так как используем react-hook-form, он работает через рефы, то должны принимать ref */
     forwardedRef
   ): ReturnComponent => {
+    const { t } = useTranslation()
     const generatedId = useId()
     const finalId = id ?? generatedId
 
@@ -158,9 +160,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
       ),
       showPasswordButton: clsx(
-        `_ShowPassword_ rounder-[0.25rem] absolute bottom-1/2 right-[12px] top-1/2
+        `_ShowPassword_ rounder-[0.25rem] duration-300 transition-color text-Light-100 absolute bottom-1/2 right-[12px] top-1/2
               h-[24px] w-[24px] -translate-y-1/2 transform border-0 bg-transparent
-              p-0 outline-0 ring-0 focus:opacity-60
+              p-0 outline-0 ring-0 hover:text-Light-900 focus:opacity-60
               focus:shadow-sm focus:shadow-Primary-500 focus:outline-none
               focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
         disabled &&
@@ -205,20 +207,20 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {isRevealPasswordButtonShown && (
             <button
               aria-controls={finalId}
-              aria-label={revealPassword ? 'close password' : 'show password'}
+              aria-label={revealPassword ? t.button.password.hide : t.button.password.show}
               aria-pressed={revealPassword}
               className={classNames.showPasswordButton}
               disabled={disabled}
               onClick={handleToggleShowPassword}
               type={'button'}
             >
-              {revealPassword ? <EyeOffIcon /> : <EyeIcon />}
+              {revealPassword ? <EyeOffIcon aria-hidden /> : <EyeIcon aria-hidden />}
             </button>
           )}
           {isClearInputButtonShown && (
             <button
               aria-controls={finalId}
-              aria-label={'clear field'}
+              aria-label={t.button.clearField}
               className={classNames.clearInputButton}
               disabled={disabled}
               onClick={handleClearInput}

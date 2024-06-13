@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
+import { useTranslation } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
 import { useAlert } from '@/shared/ui/alert/hooks'
 import { type VariantProps, cva } from 'class-variance-authority'
@@ -29,6 +30,7 @@ export const Alert = ({
   variant,
   ...rest
 }: Props & VariantProps<typeof alertVariants>) => {
+  const { t } = useTranslation()
   const classes = {
     closeButton: cn(
       `flex justify-center items-center absolute w-[1.5rem] h-[1.5rem] right-[1.5rem] top-[0.8rem]`,
@@ -49,10 +51,10 @@ export const Alert = ({
       role={'alert'}
       {...rest}
     >
-      {variant === 'danger' && <span className={classes.error}>Error! </span>}
+      {variant === 'danger' && <span className={classes.error}>{t.layout.alert.error}</span>}
       {text}
       <button
-        aria-label={'Close alert'}
+        aria-label={t.layout.alert.close}
         className={classes.closeButton}
         onClick={closeHandler}
         type={'button'}

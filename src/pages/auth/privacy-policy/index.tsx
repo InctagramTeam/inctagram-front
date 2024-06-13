@@ -1,9 +1,9 @@
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
+import { PageWrapper } from '@/shared/layouts/page-wrapper'
 
 const PrivacyPolicy = () => {
   return (
-    <PageWrapper paddingTop={'72px'} title={'PrivacyPolicy | Instagram'}>
+    <PageWrapper paddingBlock={'72px'} title={'PrivacyPolicy | Instagram'}>
       <h1>PrivacyPolicy</h1>
     </PageWrapper>
   )

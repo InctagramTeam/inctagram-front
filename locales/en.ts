@@ -19,12 +19,10 @@ export const en = {
     createNewPassword: 'Create new password',
     discard: 'Discard',
     done: 'Done',
-    favorites: 'Favorites',
     logOut: 'Log out',
     next: 'Next',
     no: 'No',
     ok: 'OK',
-    profileSettings: 'Profile settings',
     publish: 'Publish',
     resendVerificationLink: 'Resend verification link',
     save: 'Save changes',
@@ -39,11 +37,32 @@ export const en = {
     simple_save: 'Save',
     statistics: 'Statistics',
     yes: 'Yes',
+    clearField: 'clear field',
+    closeModal: 'close modal',
+    password: {
+      hide: 'hide password',
+      show: 'show password',
+    },
+    notifications: {
+      hide: 'hide notifications',
+      show: 'show notifications',
+    },
+  },
+  links: {
+    create: 'Create',
+    favorites: 'Favorites',
+    home: 'Home',
+    messenger: 'Messenger',
+    profile: 'My profile',
+    search: 'Search',
+    statistics: 'Statistics',
+    profileSettings: 'Profile settings',
   },
   label: {
     userName: 'Username',
     email: 'Email',
     password: 'Password',
+    newPassword: 'New password',
     error: 'Error',
     confirmPassword: 'Confirm password',
   },
@@ -60,15 +79,13 @@ export const en = {
     ru: 'Russian',
   },
   layout: {
-    sidebar: {
-      create: 'Create',
-      favorites: 'Favorites',
-      home: 'Home',
-      logout: 'Log Out',
-      messenger: 'Messenger',
-      profile: 'My profile',
-      search: 'Search',
-      statistics: 'Statistics',
+    alert: {
+      close: 'Close alert',
+      error: 'Error!',
+    },
+    notificationsDropdown: {
+      title: 'Notifications!',
+      alternativeText: 'No notifications yet',
     },
   },
   pages: {
@@ -80,11 +97,52 @@ export const en = {
       },
       metaDescription:
         'Create an account to start using our services and receive exclusive benefits.',
-      metaTitle: 'Sign Up',
+      metaTitle: 'Sign Up | Instagram',
       modalBtn: 'OK',
+      modalTitle: 'Email sent',
       modalText: 'We have sent a link to confirm your email to ',
       question: 'Do you have an account?',
+      github: 'Register with github',
+      google: 'Register with google',
       title: 'Sign Up',
+    },
+    congratulations: {
+      metaDescription: 'Congratulations! Your email has been confirmed',
+      metaTitle: 'Congratulations | Instagram',
+      title: 'Congratulations!',
+      text: 'Your email has been confirmed',
+    },
+    verifyEmail: {
+      metaDescription:
+        'The verification link has expired. Please verify your email again to start using our services and receive exclusive benefits.',
+      metaTitle: 'Email verification | Instagram',
+      title: 'Email verification link expired',
+      text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
+    },
+    signIn: {
+      metaTitle: 'Sign In | Instagram',
+      metaDescription:
+        'Log in to your account to start using our services and receive exclusive benefits.',
+      title: 'Sign in',
+      link: 'Forgot Password',
+      question: 'Don’t have an account?',
+      github: 'Login with github',
+      google: 'Login with google',
+    },
+    createPassword: {
+      metaTitle: 'Create new password | Instagram',
+      metaDescription:
+        'Create a new strong password for your account. Simple process, increased security and protection of your personal data.',
+      title: 'Create New Password',
+      hint: 'Your password must be between 6 and 20 characters',
+    },
+    forgotPassword: {
+      metaTitle: 'Forgot password | Instagram',
+      metaDescription:
+        'Having trouble logging in? Recover access to your account using our simple and secure password reset process. Get started now and get back to your important business without delays',
+      title: 'Forgot Password',
+      hint: 'Enter your email address and we will send you further instructions ',
+      sent: 'The link has been sent by email. If you don’t receive an email send link again',
     },
   },
   tabs: {
@@ -101,6 +159,7 @@ export const en = {
     passwordVerification:
       'The password must contain at least 1 capital letter, a special character and a number',
     passwordMismatch: 'The passwords must match',
+    recaptcha: 'Please verify that you are not a robot',
     userNameVerification:
       'Username can contain only letters "a-z" (uppercase and lowercase), numbers, and the characters "_" and "-"',
   },

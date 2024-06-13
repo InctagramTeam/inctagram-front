@@ -2,9 +2,10 @@ import * as React from 'react'
 
 import { MD_BREAKPOINT } from '@/shared/constants'
 import { EMPTY_STRING } from '@/shared/constants/base'
-import { useResponsive } from '@/shared/lib/hooks'
+import { useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { getLanguages } from '@/shared/lib/translate'
 import { cn } from '@/shared/lib/utils'
+import { ReturnComponent } from '@/shared/types'
 import { SelectTrigger } from '@/shared/ui/select/select'
 import Image from 'next/image'
 import { ChevronIcon } from 'src/shared/assets/icons'
@@ -13,12 +14,13 @@ type Props = {
   currentValue?: string
 }
 
-export const LanguageSelectionTrigger = ({ currentValue }: Props) => {
+export const LanguageSelectionTrigger = ({ currentValue }: Props): ReturnComponent => {
   const { width } = useResponsive()
+  const { t } = useTranslation()
   const isDesktop = width && width > MD_BREAKPOINT
   const isMobile = !isDesktop
 
-  const currentTextValue = getLanguages().find(item => item.value === currentValue)?.textValue
+  const currentTextValue = getLanguages(t).find(item => item.value === currentValue)?.textValue
 
   const classes = {
     flag: 'w-[20px] h-[20px] object-contain',

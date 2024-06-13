@@ -3,8 +3,8 @@ import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from '
 import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
-import { AuthRoutes, GeneralRoutes } from '@/shared/constants'
-import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
+import { AuthRoutes, EMPTY_STRING, GeneralRoutes, SM_BREAKPOINT } from '@/shared/constants'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
 import { AppList } from '@/shared/ui/app-list'
@@ -32,6 +32,20 @@ export const SignUpForm = forwardRef(
     const { className, disabled = false, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
 
     const { locale, t } = useTranslation()
+    const { width } = useResponsive()
+
+    const isMobile = width && width < SM_BREAKPOINT
+
+    const classes = {
+      agreement: 'ml-4 inline-block w-full text-balance text-left',
+      button: 'mb-[18px] text-balance p-[6px]',
+      form: clsx(
+        'max-w-[380px] w-full p-[1.5rem] self-start',
+        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        className
+      ),
+      question: 'mb-[12px] text-balance text-Light-100',
+    }
 
     const {
       control,
@@ -48,10 +62,10 @@ export const SignUpForm = forwardRef(
     } = useForm<SignUpFormValues>({
       /** Значения формы по умолчанию */
       defaultValues: {
-        email: '',
-        password: '',
-        passwordConfirm: '',
-        username: '',
+        email: EMPTY_STRING,
+        password: EMPTY_STRING,
+        passwordConfirm: EMPTY_STRING,
+        username: EMPTY_STRING,
       },
       /** Режим срабатывания подсветки ошибок при изменении полей */
       mode: 'onChange',
@@ -69,7 +83,7 @@ export const SignUpForm = forwardRef(
       <Card
         {...rest}
         asComponent={'form'}
-        className={clsx('w-full max-w-[380px] p-[1.5rem]', className)}
+        className={classes.form}
         onSubmit={handleSubmit(onSubmit)}
       >
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
@@ -77,8 +91,8 @@ export const SignUpForm = forwardRef(
         </Text>
         <AppList
           items={[
-            { 'aria-label': 'Sign up with github', href: hrefGithub },
-            { 'aria-label': 'Sign up with google', href: hrefGoogle },
+            { 'aria-label': t.pages.signUp.github, href: hrefGithub },
+            { 'aria-label': t.pages.signUp.google, href: hrefGoogle },
           ]}
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
@@ -135,10 +149,7 @@ export const SignUpForm = forwardRef(
             control={control}
             disabled={disabled}
             label={
-              <Text
-                className={`ml-4 inline-block w-full text-balance text-left`}
-                variant={'small-text-12'}
-              >
+              <Text asComponent={'p'} className={classes.agreement} variant={'small-text-12'}>
                 <Translate
                   tags={{
                     '1': () => (
@@ -171,13 +182,13 @@ export const SignUpForm = forwardRef(
 
         <Flex direction={'column'}>
           <Button
-            className={'mb-[18px] text-balance p-[6px]'}
+            className={classes.button}
             disabled={!!Object.keys(errors).length || disabled}
             fullWidth
           >
             {t.button.signUp}
           </Button>
-          <Text className={`mb-[12px] text-balance text-Light-100`} variant={'regular_text_16'}>
+          <Text className={classes.question} variant={'regular_text_16'}>
             {t.pages.signUp.question}
           </Text>
           <Button

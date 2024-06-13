@@ -4,8 +4,9 @@ import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from '
 import { useForm } from 'react-hook-form'
 
 import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
+import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
 import { AuthRoutes } from '@/shared/constants/routes'
-import { useFormRevalidateWithLocale, useTranslation } from '@/shared/lib/hooks'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent, UseFormRef } from '@/shared/types'
 import { AppList } from '@/shared/ui/app-list'
 import { Button } from '@/shared/ui/button'
@@ -28,13 +29,22 @@ type Props = {
 export const SignInForm = forwardRef(
   (props: Props, methodsRef: Ref<UseFormRef<SignInFormValues> | null>): ReturnComponent => {
     const { className, disabled, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
+
+    const { locale, t } = useTranslation()
+    const { width } = useResponsive()
+
+    const isMobile = width && width < SM_BREAKPOINT
+
     const classes = {
       button: `py-[6px] px-[24px] mb-[1.2rem]`,
       forgotLink: `py-[0] ml-auto h-auto text-Light-900 mb-[1.5rem] text-right !text-regular-text-14 bg-transparent`,
-      form: clsx(`max-w-[380px] w-full p-[1.5rem]`, className),
+      form: clsx(
+        'max-w-[380px] w-full p-[1.5rem] self-start',
+        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        className
+      ),
+      question: 'mb-[12px] text-Light-100',
     }
-
-    const { locale, t } = useTranslation()
 
     const {
       control,
@@ -46,8 +56,8 @@ export const SignInForm = forwardRef(
       setValue,
     } = useForm<SignInFormValues>({
       defaultValues: {
-        email: '',
-        password: '',
+        email: EMPTY_STRING,
+        password: EMPTY_STRING,
       },
       resolver: zodResolver(signInSchema(t)),
     })
@@ -64,13 +74,12 @@ export const SignInForm = forwardRef(
         {...rest}
       >
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
-          Sign In
-          {/*{ t.pages.signIn.title }*/}
+          {t.pages.signIn.title}
         </Text>
         <AppList
           items={[
-            { 'aria-label': 'Sign in with github', href: hrefGithub },
-            { 'aria-label': 'Sign in with github', href: hrefGoogle },
+            { 'aria-label': t.pages.signIn.github, href: hrefGithub },
+            { 'aria-label': t.pages.signIn.google, href: hrefGoogle },
           ]}
         />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
@@ -107,7 +116,7 @@ export const SignInForm = forwardRef(
             href={AuthRoutes.FORGOT_PASSWORD}
             variant={'text'}
           >
-            Forgot Password
+            {t.pages.signIn.link}
           </Button>
           <Button
             className={classes.button}
@@ -116,8 +125,8 @@ export const SignInForm = forwardRef(
           >
             {t.button.signIn}
           </Button>
-          <Text className={`mb-[12px] text-Light-100`} variant={'regular_text_16'}>
-            Don’t have an account?
+          <Text className={classes.question} variant={'regular_text_16'}>
+            {t.pages.signIn.question}
           </Text>
           <Button
             asComponent={Link}

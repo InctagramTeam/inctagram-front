@@ -15,6 +15,7 @@ import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 export const Sidebar = (): ReturnComponent => {
   const { isCollapsed } = useLayoutContext()
   const { width } = useResponsive()
+  const { t } = useTranslation()
 
   if (width === null) {
     return null
@@ -27,9 +28,9 @@ export const Sidebar = (): ReturnComponent => {
 
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
-    navigation: cn(`h-full flex justify-between flex-col`, mobile && 'items-center'),
+    navigation: cn(`h-full flex justify-between flex-col items-start`, mobile && 'items-center'),
     wrapper: cn(
-      `w-full fixed shadow-sm`,
+      `w-full fixed top-0 bottom-0 overflow-y-scroll shadow-sm`,
       !mobile &&
         `max-w-[250px] h-[calc(100vh-var(--header-height))] top-[var(--header-height)] pb-[36px] pt-[72px] 
         overflow-y-auto scrollbar-thin scrollbar-thumb-Dark-100 scrollbar-track-Dark-300 scrollbar-thumb-rounded-full
@@ -41,24 +42,21 @@ export const Sidebar = (): ReturnComponent => {
     ),
   }
 
-  const { t } = useTranslation()
-
   return (
     <div className={classes.wrapper}>
       <nav className={classes.navigation}>
         {desktop && <ToggleCollapsedButtons />}
         {mobile ? (
-          <SidebarList isMobile links={getBaseLinks()} onlyIcons />
+          <SidebarList isMobile links={getBaseLinks(t)} onlyIcons />
         ) : (
           <>
-            <SidebarList links={getSidebarLinks()} onlyIcons={onlyIcons} />
+            <SidebarList links={getSidebarLinks(t)} onlyIcons={onlyIcons} />
             <NavigationElement
               className={classes.button}
               name={t.button.logOut}
               onClick={() => {}}
               onlyIcon={onlyIcons}
               startIcon={<LogOutIcon />}
-              variant={'text'}
             />
           </>
         )}

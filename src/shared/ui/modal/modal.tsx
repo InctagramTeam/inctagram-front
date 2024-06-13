@@ -2,6 +2,8 @@ import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import CrossIcon from '@/shared/assets/icons/CrossIcon'
 import { EMPTY_STRING } from '@/shared/constants/base'
+import { useTranslation } from '@/shared/lib/hooks'
+import { Text } from '@/shared/ui/text'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
 import { ReturnComponent } from 'src/shared/types'
@@ -22,61 +24,67 @@ export const Modal = ({ children, onOpenChange, open, ...rest }: ModalProps) => 
 
 type ModalContentProps = {
   children?: ReactNode
+  classNameChildrenWrapper?: string
+  classNameContent?: string
   classNameOverlay?: string
   customTitleComponent?: ReactNode
-  padding?: CSSProperties['padding']
   style?: CSSProperties
   title?: string
 } & ComponentPropsWithoutRef<typeof Dialog.Content>
 
 export const ModalContent = ({
   children,
+  classNameChildrenWrapper,
+  classNameContent,
   classNameOverlay,
-  padding = '12px 0 11px 36px',
   style,
   title = EMPTY_STRING,
   ...rest
 }: ModalContentProps): ReturnComponent => {
-  const styles: CSSProperties = { padding: padding, ...style }
+  const { t } = useTranslation()
+
+  const classes = {
+    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
+    close: `w-[24px] h-[24px] flex items-center justify-center text-Light-100 
+    rounded-[2px] outline-none duration-300 transition-color
+    hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
+    content: clsx(
+      `fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
+        bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100
+        data-[state=closed]:animate-[dialog-content-hide_200ms]
+        data-[state=open]:animate-[dialog-content-show_200ms]`,
+      classNameContent
+    ),
+    overlay: clsx(
+      `fixed inset-0 bg-Dark-900/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
+          data-[state=open]:animate-[dialog-overlay-show_200ms]`,
+      classNameOverlay
+    ),
+    title: 'text-xl',
+    titleContainer: clsx(
+      'relative flex items-center justify-between px-[24px] py-[12px] border-b border-b-Dark-100'
+    ),
+  }
 
   return (
     <Dialog.Portal {...rest}>
-      <Dialog.Overlay
-        className={clsx(
-          `fixed inset-0 bg-Dark-900/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
-          data-[state=open]:animate-[dialog-overlay-show_200ms]`,
-          classNameOverlay
-        )}
-      />
-      <Dialog.Content
-        className={`fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
-        bg-Dark-300 p-8 text-Light-100 shadow-sm ring-1 ring-Dark-100
-        data-[state=closed]:animate-[dialog-content-hide_200ms]
-        data-[state=open]:animate-[dialog-content-show_200ms]`}
-        forceMount
-        style={styles}
-      >
-        <div className={'relative flex items-center justify-between'}>
-          <Dialog.Title className={'border-b border-b-Dark-100 pb-[11px] text-xl'}>
-            {title}
+      <Dialog.Overlay className={classes.overlay} />
+      <Dialog.Content className={classes.content} forceMount style={style}>
+        <div className={classes.titleContainer}>
+          <Dialog.Title asChild>
+            <Text className={classes.title}>{title}</Text>
           </Dialog.Title>
-          <Dialog.Close
-            className={
-              'pr-4 text-Light-100 duration-150 hover:text-Primary-300 hover:transition-all'
-            }
-          >
+          <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
             <CrossIcon />
           </Dialog.Close>
         </div>
-        <div className={'pt-[18px]'}>{children}</div>
+        <div className={classes.childrenWrapper}>{children}</div>
       </Dialog.Content>
     </Dialog.Portal>
   )
 }
 
-/**
- * API кнопки у Modal - делаем как у Dialog.Trigger, ModalContent
- */
+/*** API кнопки у Modal - делаем как у Dialog.Trigger, ModalContent, Dialog.Close */
 Modal.Button = Dialog.Trigger
 Modal.Content = ModalContent
 Modal.Close = Dialog.Close
