@@ -2,15 +2,15 @@ import { useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
 import { Flex } from '@/shared/ui/flex'
-import { Text } from '@/shared/ui/text'
 import { Modal } from '@/shared/ui/modal'
+import { Text } from '@/shared/ui/text'
 
 type Props = {
+  email: string
   onOpenChange: (open: boolean) => void
   open: boolean
-  email: string
 }
-export const SentEmailModal = ({ onOpenChange, open, email }: Props): ReturnComponent => {
+export const SentEmailModal = ({ email, onOpenChange, open }: Props): ReturnComponent => {
   const { t } = useTranslation()
 
   return (

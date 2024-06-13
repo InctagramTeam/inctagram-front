@@ -3,13 +3,13 @@ import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
 import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
-import { SentEmailModal } from 'src/feature/auth/ui/sent-email-modal'
 import { EMPTY_STRING } from '@/shared/constants'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
+import { SentEmailModal } from 'src/feature/auth/ui/sent-email-modal'
 
 const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
@@ -28,7 +28,7 @@ const SignUp = (): ReturnComponent => {
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <SentEmailModal onOpenChange={setOpen} open={open} email={'example@gmail.com'} />
+      <SentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
     </PageWrapper>
   )
 }
