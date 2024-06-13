@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
 import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
-import { SignUpModal } from '@/feature/auth/ui/sign-up-modal'
+import { SentEmailModal } from 'src/feature/auth/ui/sent-email-modal'
 import { EMPTY_STRING } from '@/shared/constants'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
@@ -28,7 +28,7 @@ const SignUp = (): ReturnComponent => {
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <SignUpModal onOpenChange={setOpen} open={open} />
+      <SentEmailModal onOpenChange={setOpen} open={open} email={'example@gmail.com'} />
     </PageWrapper>
   )
 }
