@@ -136,6 +136,14 @@ export const en = {
       title: 'Create New Password',
       hint: 'Your password must be between 6 and 20 characters',
     },
+    forgotPassword: {
+      metaTitle: 'Forgot password | Instagram',
+      metaDescription:
+        'Having trouble logging in? Recover access to your account using our simple and secure password reset process. Get started now and get back to your important business without delays',
+      title: 'Forgot Password',
+      hint: 'Enter your email address and we will send you further instructions ',
+      sent: 'The link has been sent by email. If you don’t receive an email send link again',
+    },
   },
   tabs: {
     devices: 'Devices',
@@ -151,6 +159,7 @@ export const en = {
     passwordVerification:
       'The password must contain at least 1 capital letter, a special character and a number',
     passwordMismatch: 'The passwords must match',
+    recaptcha: 'Please verify that you are not a robot',
     userNameVerification:
       'Username can contain only letters "a-z" (uppercase and lowercase), numbers, and the characters "_" and "-"',
   },

@@ -1,41 +1,34 @@
 import { create } from 'zustand'
-// @ts-expect-error
-import { devtools } from 'zustand/middleware/devtools'
-// @ts-expect-error
-import { persist } from 'zustand/middleware/persist'
+import { devtools, persist } from 'zustand/middleware'
 
 type Post = Record<string, any>
 
 type StoreType = {
-  createPost: (newPost: string) => void
+  createPost: (newPost: Post) => void
   posts: Post[]
   removePost: (id: string) => void
-  updatePost: (id: string, post: string) => void
+  updatePost: (id: string, post: Post) => void
 }
-
-/** set() - обновляет объект начального стейта по ключу
- * get() - получение "инишл" стейта
- * usePosts - вызываем в компоненте..
- * */
 export const usePosts = create<StoreType>(
   devtools(
-    persist((set: (state: Record<string, any>) => void, get: StoreType) => ({
-      /** Операции (методы) для изменения данных (стейта): */
-      createPost: (newPost: Post) => {
-        set((state: Record<string, any>) => {
-          // добавляем в стейт новый пост
-          return { posts: [...state.posts, { id: new Date().getDate(), newPost }] }
-        })
-      },
-      error: null,
-      loading: false,
-      /** "Инишл стейт": */
-      posts: [],
-      removePost: (id: string) => {},
-      updatePost: (id: string, post: string) => {
-        const posts = get.posts
-        // console.log(posts);
-      },
-    }))
-  )
+    persist<StoreType>(
+      (set, get) => ({
+        createPost: (newPost: Post) => {
+          set(state => ({ posts: [...state.posts, { ...newPost, id: new Date().toISOString() }] }))
+        },
+        posts: [],
+        removePost: (id: string) => {
+          set(state => ({ posts: state.posts.filter(post => post.id !== id) }))
+        },
+        updatePost: (id: string, updatedPost: Post) => {
+          set(state => ({
+            posts: state.posts.map(post => (post.id === id ? { ...post, ...updatedPost } : post)),
+          }))
+        },
+      }),
+      {
+        name: 'post-storage', // имя для localStorage
+      }
+    )
+  ) as unknown as () => StoreType
 )

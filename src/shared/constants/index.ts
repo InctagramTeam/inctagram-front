@@ -1,4 +1,4 @@
-export { EMPTY_STRING } from './base'
+export { ELLIPSIS_STRING, EMPTY_STRING, RECAPTCHA_PUBLIK_KEY } from './base'
 
 export {
   LG_BREAKPOINT,
