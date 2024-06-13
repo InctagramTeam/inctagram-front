@@ -4,9 +4,12 @@ import { RECAPTCHA_PUBLIK_KEY } from '@/shared/constants'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import Script from 'next/script'
+import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
+import { useState } from 'react'
 
 const ForgotPassword = () => {
   const { handleSubmitForm, recaptchaChangeHandler, recaptchaRef, ref, t } = useForgotPassword()
+  const [open, setOpen] = useState(true)
 
   return (
     <>
@@ -24,6 +27,7 @@ const ForgotPassword = () => {
           // isSent={}
           ref={ref}
         />
+        <SentEmailModal onOpenChange={setOpen} open={open} email={'example@gmail.com'} />
       </PageWrapper>
     </>
   )
