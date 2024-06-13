@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react'
-import { UseFormRef } from '@/shared/types'
-import { ForgotPasswordFormValues } from '@/feature/auth/model/utils/validators'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { useTranslation } from '@/shared/lib/hooks'
 import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
+
+import { ForgotPasswordFormValues } from '@/feature/auth/model/utils/validators'
+import { useTranslation } from '@/shared/lib/hooks'
+import { UseFormRef } from '@/shared/types'
 
 type ForgotPasswordFormRef = UseFormRef<
   ForgotPasswordFormValues,
@@ -16,7 +17,7 @@ export const useForgotPassword = () => {
   const { t } = useTranslation()
   const ref = useRef<ForgotPasswordFormRef>(null)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
-  const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null)
+  const [recaptchaValue, setRecaptchaValue] = useState<null | string>(null)
   const handleSubmitForm = (formData: ForgotPasswordFormValues) => {
     setRecaptchaValue(recaptchaRef.current?.getValue() ?? null)
 
@@ -24,13 +25,13 @@ export const useForgotPassword = () => {
       ref?.current?.clearErrors?.('recaptcha')
     } else {
       ref?.current?.setError('recaptcha', {
-        type: 'onChange',
         message: t.validation.recaptcha,
+        type: 'onChange',
       })
     }
   }
 
-  const recaptchaChangeHandler = (value: string | null) => {
+  const recaptchaChangeHandler = (value: null | string) => {
     if (value) {
       setRecaptchaValue(value)
       ref?.current?.clearErrors('recaptcha')
@@ -38,5 +39,5 @@ export const useForgotPassword = () => {
     }
   }
 
-  return { t, ref, recaptchaRef, recaptchaChangeHandler, handleSubmitForm }
+  return { handleSubmitForm, recaptchaChangeHandler, recaptchaRef, ref, t }
 }

@@ -1,35 +1,36 @@
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { AuthRoutes, EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
 import React, {
   ComponentPropsWithoutRef,
-  forwardRef,
   Ref,
   RefObject,
+  forwardRef,
   useImperativeHandle,
 } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { useForm } from 'react-hook-form'
+
 import {
   ForgotPasswordFormValues,
   forgotPasswordSchema,
 } from '@/feature/auth/model/utils/validators'
-import { Card } from '@/shared/ui/card'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Text } from '@/shared/ui/text'
-import { ControlledInput } from '@/shared/ui/input'
+import { AuthRoutes, EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
+import { ReturnComponent, UseFormRef } from '@/shared/types'
 import { Button } from '@/shared/ui/button'
+import { Card } from '@/shared/ui/card'
+import { ControlledInput } from '@/shared/ui/input'
 import { Recaptcha } from '@/shared/ui/recaptcha/recaptcha'
+import { Text } from '@/shared/ui/text'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import Link from 'next/link'
-import ReCAPTCHA from 'react-google-recaptcha'
 
 type Props = {
-  disabled?: boolean
   className?: string
-  onSubmit: (formData: ForgotPasswordFormValues) => void
-  recaptchaRef: RefObject<ReCAPTCHA>
-  recaptchaChangeHandler: (value: string | null) => void
+  disabled?: boolean
   isSent?: boolean
+  onSubmit: (formData: ForgotPasswordFormValues) => void
+  recaptchaChangeHandler: (value: null | string) => void
+  recaptchaRef: RefObject<ReCAPTCHA>
 } & Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'>
 
 export const ForgotPasswordForm = forwardRef(
@@ -38,42 +39,42 @@ export const ForgotPasswordForm = forwardRef(
       className,
       disabled,
       isSent = false,
-      recaptchaRef,
-      recaptchaChangeHandler,
       onSubmit,
+      recaptchaChangeHandler,
+      recaptchaRef,
       ...rest
     } = props
-    const { t, locale } = useTranslation()
+    const { locale, t } = useTranslation()
     const { width } = useResponsive()
     const isMobile = width && width < SM_BREAKPOINT
 
     const classes = {
+      button: 'mb-[30px] px-[24px] py-[6px]',
       form: clsx(
         'max-w-[380px] w-full p-[1.5rem] pb-[20px] self-start',
         isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
         className
       ),
       hint: clsx('text-Light-900', isSent ? 'mb-[24px]' : 'mb-[17px]'),
-      button: 'mb-[30px] px-[24px] py-[6px]',
       link: 'mx-auto mb-[22px] !flex w-max',
     }
 
     const {
+      clearErrors,
       control,
       formState: { errors },
-      setError,
-      setValue,
       getValues,
       handleSubmit,
       reset,
-      clearErrors,
+      setError,
+      setValue,
     } = useForm<ForgotPasswordFormValues>({
       defaultValues: { email: EMPTY_STRING },
       mode: 'onChange',
       resolver: zodResolver(forgotPasswordSchema(t)),
     })
 
-    useImperativeHandle(methodsRef, () => ({ reset, setError, clearErrors, setValue }))
+    useImperativeHandle(methodsRef, () => ({ clearErrors, reset, setError, setValue }))
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
     return (
@@ -87,23 +88,23 @@ export const ForgotPasswordForm = forwardRef(
           {t.pages.forgotPassword.title}
         </Text>
         <ControlledInput
-          className={'mb-[7px]'}
           aria-describedby={'forgot-password-email-instructions'}
           aria-invalid={errors.email ? 'true' : 'false'}
+          autoComplete={'email'}
+          className={'mb-[7px]'}
           control={control}
-          name={'email'}
-          type={'email'}
+          disabled={disabled}
+          errorMessage={errors.email?.message}
           label={t.label.email}
+          name={'email'}
           placeholder={t.placeholders.email}
           rules={{ required: true }}
-          errorMessage={errors.email?.message}
-          disabled={disabled}
-          autoComplete={'email'}
+          type={'email'}
         />
         <Text
-          id={'forgot-password-email-instructions'}
           asComponent={'p'}
           className={classes.hint}
+          id={'forgot-password-email-instructions'}
           variant={'regular-text-14'}
         >
           {t.pages.forgotPassword.hint}
@@ -111,8 +112,8 @@ export const ForgotPasswordForm = forwardRef(
 
         {isSent && (
           <Text
-            id={'forgot-password-email-instructions'}
             asComponent={'p'}
+            id={'forgot-password-email-instructions'}
             mb={'18px'}
             variant={'regular-text-14'}
           >
@@ -137,9 +138,9 @@ export const ForgotPasswordForm = forwardRef(
           {t.button.backToSignIn}
         </Button>
         <Recaptcha
-          ref={recaptchaRef}
           errorMessage={errors?.recaptcha?.message}
           onChange={recaptchaChangeHandler}
+          ref={recaptchaRef}
           wrapperClassName={'mx-auto'}
         />
       </Card>

@@ -1,6 +1,6 @@
+import { emailSchema } from '@/shared/lib/utils'
 import { LocaleType } from 'locales'
 import { z } from 'zod'
-import { emailSchema } from '@/shared/lib/utils'
 
 export const forgotPasswordSchema = (t: LocaleType) =>
   z.object({

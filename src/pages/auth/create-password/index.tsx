@@ -6,8 +6,6 @@ import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
 import { useTranslation } from '@/shared/lib/hooks'
 import { ReturnComponent, UseFormRef } from '@/shared/types'
-import Head from 'next/head'
-import { RECAPTCHA_PUBLIK_KEY } from '@/shared/constants'
 
 const CreatePassword = (): ReturnComponent => {
   const { t } = useTranslation()
