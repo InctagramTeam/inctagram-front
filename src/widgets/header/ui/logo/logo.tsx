@@ -3,7 +3,10 @@ import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import Image from 'next/image'
 import Link from 'next/link'
+import { AppRoutes } from '@/shared/constants'
+import { useTranslation } from '@/shared/lib/hooks'
 export const Logo = (): ReturnComponent => {
+  const { t } = useTranslation()
   const classes = {
     img: `w-full h-full object-contain`,
     link: cn(
@@ -14,8 +17,8 @@ export const Logo = (): ReturnComponent => {
   }
 
   return (
-    <Link className={classes.link} href={'/home-nav-links'}>
-      <Image alt={'Logo'} className={classes.img} height={36} src={logo} width={128} />
+    <Link className={classes.link} href={AppRoutes.HOME}>
+      <Image alt={t.layout.logo} className={classes.img} height={36} src={logo} width={128} />
     </Link>
   )
 }

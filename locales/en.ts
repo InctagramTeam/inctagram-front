@@ -87,6 +87,7 @@ export const en = {
       title: 'Notifications!',
       alternativeText: 'No notifications yet',
     },
+    logo: 'Logo Inctagram',
   },
   pages: {
     signUp: {

@@ -80,6 +80,7 @@ export const ru: LocaleType = {
       title: 'Уведомления!',
       alternativeText: 'Уведомлений еще нет',
     },
+    logo: 'Логотип Inctagram',
   },
   pages: {
     signUp: {
