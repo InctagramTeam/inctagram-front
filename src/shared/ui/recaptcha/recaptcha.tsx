@@ -7,7 +7,7 @@ import { Flex } from '@/shared/ui/flex'
 import { Text } from '@/shared/ui/text'
 import { clsx } from 'clsx'
 
-type RecaptchaProps = {
+type Props = {
   badge?: 'bottomleft' | 'bottomright' | 'inline'
   errorMessage?: string
   onChange: (value: null | string) => void
@@ -18,7 +18,7 @@ type RecaptchaProps = {
   wrapperClassName?: string
 }
 
-export const Recaptcha = forwardRef<ReCAPTCHA, RecaptchaProps>(
+export const Recaptcha = forwardRef<ReCAPTCHA, Props>(
   ({ errorMessage, theme = 'dark', wrapperClassName, ...rest }, ref): ReturnComponent => {
     const classes = {
       errorMessage: 'text-[10px] !text-Danger-500',
