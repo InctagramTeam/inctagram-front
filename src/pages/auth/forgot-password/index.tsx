@@ -1,16 +1,51 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
+import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
+import { ForgotPasswordFormValues } from '@/feature/auth/model/utils/validators'
 import { ForgotPasswordForm } from '@/feature/auth/ui/forgot-password-form'
 import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
-import { useForgotPassword } from '@/pages/auth/forgot-password/hooks'
 import { RECAPTCHA_PUBLIK_KEY } from '@/shared/constants'
 import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
 import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { useTranslation } from '@/shared/lib/hooks'
+import { UseFormRef } from '@/shared/types'
 import Script from 'next/script'
 
+type ForgotPasswordFormRef = UseFormRef<
+  ForgotPasswordFormValues,
+  {
+    clearErrors: UseFormClearErrors<ForgotPasswordFormValues>
+    setValue: UseFormSetValue<ForgotPasswordFormValues>
+  }
+>
+
 const ForgotPassword = () => {
-  const { handleSubmitForm, recaptchaChangeHandler, recaptchaRef, ref, t } = useForgotPassword()
+  const { t } = useTranslation()
   const [open, setOpen] = useState(true)
+  const ref = useRef<ForgotPasswordFormRef>(null)
+  const recaptchaRef = useRef<ReCAPTCHA>(null)
+  const [recaptchaValue, setRecaptchaValue] = useState<null | string>(null)
+  const handleSubmitForm = (formData: ForgotPasswordFormValues) => {
+    setRecaptchaValue(recaptchaRef.current?.getValue() ?? null)
+
+    if (recaptchaValue) {
+      ref?.current?.clearErrors?.('recaptcha')
+    } else {
+      ref?.current?.setError('recaptcha', {
+        message: t.validation.recaptcha,
+        type: 'onChange',
+      })
+    }
+  }
+
+  const recaptchaChangeHandler = (value: null | string) => {
+    if (value) {
+      setRecaptchaValue(value)
+      ref?.current?.clearErrors('recaptcha')
+      ref?.current?.setValue('recaptcha', true)
+    }
+  }
 
   return (
     <>
