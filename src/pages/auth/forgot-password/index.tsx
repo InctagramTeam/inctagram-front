@@ -59,6 +59,7 @@ const ForgotPassword = () => {
           onSubmit={handleSubmitForm}
           recaptchaChangeHandler={recaptchaChangeHandler}
           recaptchaRef={recaptchaRef}
+          // disabled={}
           // isSent={}
           ref={ref}
         />
