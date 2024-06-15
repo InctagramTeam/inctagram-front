@@ -3,9 +3,8 @@
 import * as React from 'react'
 import { ReactNode } from 'react'
 
+import { ReturnComponent, cn } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
-import { cn } from '@/shared/lib/utils'
-import { ReturnComponent } from '@/shared/types'
 import * as SelectRadix from '@radix-ui/react-select'
 
 import { SelectContent, SelectItem, SelectLabel, SelectTrigger } from './'

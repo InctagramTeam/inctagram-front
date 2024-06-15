@@ -1,6 +1,6 @@
 import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useId } from 'react'
 
-import { cn, ReturnComponent, Text } from '@/shared'
+import { ReturnComponent, Text, cn } from '@/shared'
 
 export type TextareaProps = {
   containerClassName?: string
@@ -65,7 +65,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...rest}
         />
         {errorMessage && (
-          <Text className={classes.error} role={'alert'} id={errorId}>
+          <Text className={classes.error} id={errorId} role={'alert'}>
             {errorMessage}
           </Text>
         )}

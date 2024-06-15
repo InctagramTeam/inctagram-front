@@ -100,8 +100,8 @@ export const CreatePasswordForm = forwardRef(
         <Text
           asComponent={'p'}
           className={'text-Light-900'}
-          mb={'41px'}
           id={'create-password-email-instructions'}
+          mb={'41px'}
           variant={'regular-text-14'}
         >
           {t.pages.createPassword.hint}

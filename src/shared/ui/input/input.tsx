@@ -8,11 +8,8 @@ import {
   useState,
 } from 'react'
 
+import { EMPTY_STRING, ReturnComponent, Text, mergeRefs, useTranslation } from '@/shared'
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
-import { EMPTY_STRING } from '@/shared/constants'
-import { mergeRefs, useTranslation } from '@/shared/lib'
-import { ReturnComponent } from '@/shared/types'
-import { Text } from '@/shared/ui'
 import { clsx } from 'clsx'
 
 export type InputProps = {
@@ -195,8 +192,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             {...rest}
             {...inputProps}
-            className={classNames.input}
             aria-describedby={errorId}
+            className={classNames.input}
             disabled={disabled}
             id={finalId}
             onChange={handleChange}
@@ -231,7 +228,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </button>
           )}
         </div>
-        <Text className={classNames.error} role={'alert'} id={errorId} variant={'error_text_12'}>
+        <Text className={classNames.error} id={errorId} role={'alert'} variant={'error_text_12'}>
           {errorMessage}
         </Text>
       </div>
