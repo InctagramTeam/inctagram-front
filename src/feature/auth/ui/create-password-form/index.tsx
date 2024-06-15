@@ -72,6 +72,7 @@ export const CreatePasswordForm = forwardRef(
         </Text>
         <Flex direction={'column'} gap={'24'} mb={'7px'}>
           <ControlledInput
+            aria-describedby={'create-password-email-instructions'}
             aria-invalid={errors.password ? 'true' : 'false'}
             autoComplete={'new-password'}
             control={control}
@@ -100,6 +101,7 @@ export const CreatePasswordForm = forwardRef(
           asComponent={'p'}
           className={'text-Light-900'}
           mb={'41px'}
+          id={'create-password-email-instructions'}
           variant={'regular-text-14'}
         >
           {t.pages.createPassword.hint}
