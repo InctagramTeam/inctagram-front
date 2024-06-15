@@ -4,12 +4,10 @@ import { useRef, useState } from 'react'
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
 import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
 import { EMPTY_STRING } from '@/shared/constants'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useTranslation } from '@/shared/lib/hooks'
-import { ReturnComponent } from '@/shared/types'
-import { UseFormRef } from '@/shared/types/form'
-import { SentEmailModal } from 'src/feature/auth/ui/sent-email-modal'
+import { getAuthLayout, PageWrapper } from '@/shared/layouts'
+import { useTranslation } from '@/shared/lib'
+import { ReturnComponent, UseFormRef } from '@/shared/types'
+import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
 
 const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)

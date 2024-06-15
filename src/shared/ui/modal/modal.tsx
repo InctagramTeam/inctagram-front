@@ -1,12 +1,12 @@
 import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
 
-import CrossIcon from '@/shared/assets/icons/CrossIcon'
-import { EMPTY_STRING } from '@/shared/constants/base'
-import { useTranslation } from '@/shared/lib/hooks'
-import { Text } from '@/shared/ui/text'
+import { CrossIcon } from '@/shared/assets/icons'
+import { EMPTY_STRING } from '@/shared/constants'
+import { useTranslation } from '@/shared/lib'
+import { Text } from '@/shared/ui'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
-import { ReturnComponent } from 'src/shared/types'
+import { ReturnComponent } from '@/shared/types'
 
 type ModalProps = {
   children: ReactNode

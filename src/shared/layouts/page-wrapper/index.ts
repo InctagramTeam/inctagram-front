@@ -1,1 +1,1 @@
-export * from '@/shared/layouts/page-wrapper/page-wrapper'
+export { PageWrapper } from './page-wrapper'

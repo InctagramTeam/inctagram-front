@@ -39,6 +39,7 @@ export const en = {
     yes: 'Yes',
     clearField: 'clear field',
     closeModal: 'close modal',
+    close: 'close',
     password: {
       hide: 'hide password',
       show: 'show password',

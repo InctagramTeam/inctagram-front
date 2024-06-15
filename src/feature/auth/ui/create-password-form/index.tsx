@@ -6,13 +6,9 @@ import {
   createPasswordSchema,
 } from '@/feature/auth/model/utils/validators'
 import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib'
 import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { Flex } from '@/shared/ui/flex'
-import { ControlledInput } from '@/shared/ui/input'
-import { Text } from '@/shared/ui/text'
+import { Button, Card, Flex, ControlledInput, Text } from '@/shared/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 

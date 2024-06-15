@@ -1,12 +1,5 @@
 import { CSSProperties, ComponentPropsWithoutRef, ReactNode, forwardRef } from 'react'
-
-import { Text } from '@/shared/ui/text'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/shared/ui/tooltip/tooltip'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, Text } from '@/shared/ui'
 import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
 import { ReturnComponent } from 'src/shared/types'

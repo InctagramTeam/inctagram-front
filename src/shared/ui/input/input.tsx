@@ -9,11 +9,10 @@ import {
 } from 'react'
 
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
-import { EMPTY_STRING } from '@/shared/constants/base'
-import { useTranslation } from '@/shared/lib/hooks'
-import { mergeRefs } from '@/shared/lib/utils/merge-refs'
+import { EMPTY_STRING } from '@/shared/constants'
+import { useTranslation, mergeRefs } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
-import { Text } from '@/shared/ui/text'
+import { Text } from '@/shared/ui'
 import { clsx } from 'clsx'
 
 export type InputProps = {

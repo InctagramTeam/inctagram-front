@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
+import { Button } from '@/shared/ui'
 import { clsx } from 'clsx'
 
 type ErrorPageProps = {

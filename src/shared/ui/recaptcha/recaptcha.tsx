@@ -3,8 +3,7 @@ import ReCAPTCHA from 'react-google-recaptcha'
 
 import { RECAPTCHA_PUBLIK_KEY } from '@/shared/constants'
 import { ReturnComponent } from '@/shared/types'
-import { Flex } from '@/shared/ui/flex'
-import { Text } from '@/shared/ui/text'
+import { Flex, Text } from '@/shared/ui'
 import { clsx } from 'clsx'
 
 type Props = {

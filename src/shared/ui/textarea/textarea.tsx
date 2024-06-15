@@ -1,6 +1,6 @@
 import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useId } from 'react'
 
-import { cn } from '@/shared/lib/utils/merge-cn'
+import { cn } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 
 export type TextareaProps = {

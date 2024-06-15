@@ -1,5 +1,4 @@
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { getAuthLayout, PageWrapper } from '@/shared/layouts'
 
 const TermOfService = () => {
   return (

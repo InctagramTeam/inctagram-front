@@ -4,20 +4,13 @@ import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
 import { AuthRoutes, EMPTY_STRING, GeneralRoutes, SM_BREAKPOINT } from '@/shared/constants'
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation, Translate } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { UseFormRef } from '@/shared/types/form'
-import { AppList } from '@/shared/ui/app-list'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { ControlledCheckbox } from '@/shared/ui/checkbox'
-import { Flex } from '@/shared/ui/flex'
-import { ControlledInput } from '@/shared/ui/input'
-import { Text } from '@/shared/ui/text'
+import { AppList, Button, Card, ControlledInput, Flex, Text, ControlledCheckbox } from '@/shared/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import Link from 'next/link'
-import { Translate } from 'src/shared/lib/translate'
 
 type Props = {
   className?: string
