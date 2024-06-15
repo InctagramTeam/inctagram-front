@@ -1,5 +1,4 @@
-import { onlyText } from '@/shared/lib/seo/clear-text'
-import { MetaNoIndex } from '@/shared/lib/seo/meta-no-index'
+import { MetaNoIndex, onlyText } from '@/shared/lib'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 

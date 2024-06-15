@@ -1,7 +1,7 @@
 'use client'
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
-import { Input, InputProps } from '@/shared/ui/input/input'
+import { Input, InputProps } from '@/shared/ui'
 
 type Props<T extends FieldValues> = Omit<InputProps, 'id' | 'onChange' | 'value'> &
   UseControllerProps<T>

@@ -1,12 +1,17 @@
+import React from 'react'
+
+import {
+  Button,
+  InformationBlock,
+  PageWrapper,
+  ReturnComponent,
+  XS_BREAKPOINT,
+  cn,
+  getAuthLayout,
+  useResponsive,
+  useTranslation,
+} from '@/shared'
 import { TimeManagementIllustration } from '@/shared/assets/illustrations'
-import { XS_BREAKPOINT } from '@/shared/constants'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useResponsive, useTranslation } from '@/shared/lib/hooks'
-import { cn } from '@/shared/lib/utils'
-import { ReturnComponent } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
-import { InformationBlock } from '@/shared/ui/information-block'
 
 const EmailVerification = (): ReturnComponent => {
   const { width } = useResponsive()

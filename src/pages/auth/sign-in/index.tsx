@@ -2,12 +2,14 @@ import { useRef } from 'react'
 
 import { SignInFormValues } from '@/feature/auth/model/utils/validators'
 import { SignInForm } from '@/feature/auth/ui/sign-in-form'
-import { EMPTY_STRING } from '@/shared/constants'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useTranslation } from '@/shared/lib/hooks'
-import { ReturnComponent } from '@/shared/types'
-import { UseFormRef } from '@/shared/types/form'
+import {
+  EMPTY_STRING,
+  PageWrapper,
+  ReturnComponent,
+  UseFormRef,
+  getAuthLayout,
+  useTranslation,
+} from '@/shared'
 
 const SignIn = (): ReturnComponent => {
   const { t } = useTranslation()

@@ -1,12 +1,9 @@
 import * as React from 'react'
 
-import { MD_BREAKPOINT } from '@/shared/constants'
-import { EMPTY_STRING } from '@/shared/constants/base'
-import { useResponsive, useTranslation } from '@/shared/lib/hooks'
-import { getLanguages } from '@/shared/lib/translate'
-import { cn } from '@/shared/lib/utils'
+import { EMPTY_STRING, MD_BREAKPOINT } from '@/shared/constants'
+import { cn, getLanguages, useResponsive, useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
-import { SelectTrigger } from '@/shared/ui/select/select'
+import { SelectTrigger } from '@/shared/ui'
 import Image from 'next/image'
 import { ChevronIcon } from 'src/shared/assets/icons'
 

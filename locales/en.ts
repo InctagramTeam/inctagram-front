@@ -39,6 +39,7 @@ export const en = {
     yes: 'Yes',
     clearField: 'clear field',
     closeModal: 'close modal',
+    close: 'close',
     password: {
       hide: 'hide password',
       show: 'show password',
@@ -87,6 +88,7 @@ export const en = {
       title: 'Notifications!',
       alternativeText: 'No notifications yet',
     },
+    logo: 'Logo Inctagram',
   },
   pages: {
     signUp: {

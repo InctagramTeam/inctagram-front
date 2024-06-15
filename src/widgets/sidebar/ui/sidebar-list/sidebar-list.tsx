@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useLayoutContext } from '@/shared/layouts'
-import { cn } from '@/shared/lib/utils'
+import { cn, getIcon } from '@/shared/lib/utils'
 import { NavLink } from '@/shared/types'
 import { NavigationElement } from '@/shared/ui/navigation-element/navigation-element'
 import Link from 'next/link'
@@ -31,7 +31,17 @@ export const SidebarList = ({ isMobile = false, links, onlyIcons = false }: Prop
       {links.map(link => {
         return (
           <li className={classes.item} key={link.href}>
-            <NavigationElement asComponent={Link} onlyIcon={onlyIcons} {...link} />
+            {link.disabled ? (
+              <NavigationElement
+                asComponent={'span'}
+                disabled={link.disabled}
+                name={link.name}
+                onlyIcon={onlyIcons}
+                startIcon={getIcon(link.href, false)}
+              />
+            ) : (
+              <NavigationElement asComponent={Link} onlyIcon={onlyIcons} {...link} />
+            )}
           </li>
         )
       })}

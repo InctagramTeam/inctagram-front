@@ -1,8 +1,7 @@
 import * as React from 'react'
 
 import { LG_BREAKPOINT } from '@/shared/constants'
-import { useResponsive } from '@/shared/lib/hooks'
-import { LangSelectSwitcher } from '@/shared/lib/translate'
+import { LangSelectSwitcher, useResponsive } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui/flex'
 import {

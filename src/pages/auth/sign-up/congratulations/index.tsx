@@ -1,13 +1,17 @@
 'use client'
+import {
+  AuthRoutes,
+  Button,
+  InformationBlock,
+  PageWrapper,
+  ReturnComponent,
+  XS_BREAKPOINT,
+  cn,
+  getAuthLayout,
+  useResponsive,
+  useTranslation,
+} from '@/shared'
 import { SignUpBroIllustration } from '@/shared/assets/illustrations'
-import { AuthRoutes, XS_BREAKPOINT } from '@/shared/constants'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useResponsive, useTranslation } from '@/shared/lib/hooks'
-import { cn } from '@/shared/lib/utils'
-import { ReturnComponent } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
-import { InformationBlock } from '@/shared/ui/information-block'
 import Link from 'next/link'
 
 const SignUpCongratulations = (): ReturnComponent => {

@@ -5,11 +5,13 @@ import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 import { ForgotPasswordFormValues } from '@/feature/auth/model/utils/validators'
 import { ForgotPasswordForm } from '@/feature/auth/ui/forgot-password-form'
 import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
-import { RECAPTCHA_PUBLIK_KEY } from '@/shared/constants'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useTranslation } from '@/shared/lib/hooks'
-import { UseFormRef } from '@/shared/types'
+import {
+  PageWrapper,
+  RECAPTCHA_PUBLIK_KEY,
+  UseFormRef,
+  getAuthLayout,
+  useTranslation,
+} from '@/shared'
 import Script from 'next/script'
 
 type ForgotPasswordFormRef = UseFormRef<
@@ -59,6 +61,7 @@ const ForgotPassword = () => {
           onSubmit={handleSubmitForm}
           recaptchaChangeHandler={recaptchaChangeHandler}
           recaptchaRef={recaptchaRef}
+          // disabled={}
           // isSent={}
           ref={ref}
         />

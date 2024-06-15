@@ -1,11 +1,8 @@
 import * as React from 'react'
 import { ChangeEvent, forwardRef, useId } from 'react'
 
+import { Button, Popover, PopoverContent, PopoverTrigger, ReturnComponent, cn } from '@/shared'
 import { CalendarIcon, CalendarOutlineIcon } from '@/shared/assets/icons'
-import { cn } from '@/shared/lib/utils/merge-cn'
-import { ReturnComponent } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from '@/shared/ui/popover/popover'
 
 import { Calendar, CalendarProps } from './calendar'
 

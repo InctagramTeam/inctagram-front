@@ -1,9 +1,6 @@
-import { useTranslation } from '@/shared/lib/hooks'
+import { useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
-import { Flex } from '@/shared/ui/flex'
-import { Modal } from '@/shared/ui/modal'
-import { Text } from '@/shared/ui/text'
+import { Button, Flex, Modal, Text } from '@/shared/ui'
 
 type Props = {
   email: string

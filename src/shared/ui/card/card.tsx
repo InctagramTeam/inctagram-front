@@ -9,7 +9,7 @@ import {
   forwardRef,
 } from 'react'
 
-import { cn } from '@/shared/lib/utils'
+import { cn } from '@/shared/lib'
 import { PolymorphComponentPropsWithRef } from '@/shared/types'
 import clsx from 'clsx'
 

@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from 'react'
 
 // type
-export type Props = {
+type Props = {
   isCollapsed?: boolean
   toggleSidebar?: () => void
 }

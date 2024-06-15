@@ -1,13 +1,9 @@
 import { forwardRef } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
-
-import { RECAPTCHA_PUBLIK_KEY } from '@/shared/constants'
-import { ReturnComponent } from '@/shared/types'
-import { Flex } from '@/shared/ui/flex'
-import { Text } from '@/shared/ui/text'
+import { RECAPTCHA_PUBLIK_KEY, Flex, Text, ReturnComponent } from '@/shared'
 import { clsx } from 'clsx'
 
-type RecaptchaProps = {
+type Props = {
   badge?: 'bottomleft' | 'bottomright' | 'inline'
   errorMessage?: string
   onChange: (value: null | string) => void
@@ -18,7 +14,7 @@ type RecaptchaProps = {
   wrapperClassName?: string
 }
 
-export const Recaptcha = forwardRef<ReCAPTCHA, RecaptchaProps>(
+export const Recaptcha = forwardRef<ReCAPTCHA, Props>(
   ({ errorMessage, theme = 'dark', wrapperClassName, ...rest }, ref): ReturnComponent => {
     const classes = {
       errorMessage: 'text-[10px] !text-Danger-500',

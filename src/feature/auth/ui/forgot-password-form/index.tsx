@@ -12,14 +12,21 @@ import {
   ForgotPasswordFormValues,
   forgotPasswordSchema,
 } from '@/feature/auth/model/utils/validators'
-import { AuthRoutes, EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { ControlledInput } from '@/shared/ui/input'
-import { Recaptcha } from '@/shared/ui/recaptcha/recaptcha'
-import { Text } from '@/shared/ui/text'
+import {
+  AuthRoutes,
+  Button,
+  Card,
+  ControlledInput,
+  EMPTY_STRING,
+  Recaptcha,
+  ReturnComponent,
+  SM_BREAKPOINT,
+  Text,
+  UseFormRef,
+  useFormRevalidateWithLocale,
+  useResponsive,
+  useTranslation,
+} from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import Link from 'next/link'

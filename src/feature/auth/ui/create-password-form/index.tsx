@@ -6,13 +6,9 @@ import {
   createPasswordSchema,
 } from '@/feature/auth/model/utils/validators'
 import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
+import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib'
 import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { Flex } from '@/shared/ui/flex'
-import { ControlledInput } from '@/shared/ui/input'
-import { Text } from '@/shared/ui/text'
+import { Button, Card, ControlledInput, Flex, Text } from '@/shared/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 
@@ -76,6 +72,7 @@ export const CreatePasswordForm = forwardRef(
         </Text>
         <Flex direction={'column'} gap={'24'} mb={'7px'}>
           <ControlledInput
+            aria-describedby={'create-password-email-instructions'}
             aria-invalid={errors.password ? 'true' : 'false'}
             autoComplete={'new-password'}
             control={control}
@@ -103,6 +100,7 @@ export const CreatePasswordForm = forwardRef(
         <Text
           asComponent={'p'}
           className={'text-Light-900'}
+          id={'create-password-email-instructions'}
           mb={'41px'}
           variant={'regular-text-14'}
         >

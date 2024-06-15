@@ -1,27 +1,17 @@
-import React, { ComponentPropsWithoutRef, ReactNode, forwardRef, useRef } from 'react'
+import React, { ReactNode } from 'react'
 
-import { cn } from '@/shared/lib/utils/merge-cn'
+import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import * as Tabs from '@radix-ui/react-tabs'
 
-/** Стили для активного и неактивного состояния табов */
-const baseClasses = `w-full h-fit bg-transparent text-nowrap font-H3-16 border-b-2 
-data-[state='active']:text-Primary-500 data-[state='active']:border-b-Primary-500 disabled:data-[state='active']:text-Primary-900 disabled:data-[state='active']:border-b-Primary-900 hover:data-[state='active']:bg-Primary-900 hover:data-[state='active']:bg-opacity-15 active:data-[state='active']:bg-Primary-100 active:data-[state='active']:bg-opacity-15 active:data-[state='active']:outline-none focus-visible:data-[state='active']:outline-none focus-visible:data-[state='active']:ring-2 focus-visible:data-[state='active']:rounded-sm focus-visible:data-[state='active']:ring-Primary-300
-
-data-[state='inactive']:text-Dark-100 data-[state='inactive']:border-b-Dark-100 disabled:data-[state='inactive']:text-Dark-300 disabled:data-[state='inactive']:border-b-Dark-300 focus-visible:data-[state='inactive']:outline-none focus-visible:data-[state='inactive']:ring-2 focus-visible:data-[state='inactive']:rounded-sm focus-visible:data-[state='inactive']:ring-Primary-300 hover:data-[state='inactive']:bg-Primary-900 hover:data-[state='inactive']:bg-opacity-15 active:data-[state='inactive']:bg-Primary-100 active:data-[state='inactive']:bg-opacity-15 active:data-[state='inactive']:outline-none active:ring-0`
-
-const sizes = {
-  base: `py-[6px] px-[7px] sm:px-[24px]`,
-}
-
-export type Tab = {
+type Tab = {
   disabled?: boolean
   title: string
   /** Уникальное значение, которое связывает триггер с содержимым.  */
   value: string
 }
 
-type TabsProps = {
+type Props = {
   ariaLabel?: string
   children?: ReactNode
   defaultValue?: string
@@ -39,7 +29,17 @@ type TabsProps = {
   value?: string
 }
 
-export const TabSwitcher = (props: TabsProps): ReturnComponent => {
+/** Стили для активного и неактивного состояния табов */
+const baseClasses = `w-full h-fit bg-transparent text-nowrap font-H3-16 border-b-2 
+data-[state='active']:text-Primary-500 data-[state='active']:border-b-Primary-500 disabled:data-[state='active']:text-Primary-900 disabled:data-[state='active']:border-b-Primary-900 hover:data-[state='active']:bg-Primary-900 hover:data-[state='active']:bg-opacity-15 active:data-[state='active']:bg-Primary-100 active:data-[state='active']:bg-opacity-15 active:data-[state='active']:outline-none focus-visible:data-[state='active']:outline-none focus-visible:data-[state='active']:ring-2 focus-visible:data-[state='active']:rounded-sm focus-visible:data-[state='active']:ring-Primary-300
+
+data-[state='inactive']:text-Dark-100 data-[state='inactive']:border-b-Dark-100 disabled:data-[state='inactive']:text-Dark-300 disabled:data-[state='inactive']:border-b-Dark-300 focus-visible:data-[state='inactive']:outline-none focus-visible:data-[state='inactive']:ring-2 focus-visible:data-[state='inactive']:rounded-sm focus-visible:data-[state='inactive']:ring-Primary-300 hover:data-[state='inactive']:bg-Primary-900 hover:data-[state='inactive']:bg-opacity-15 active:data-[state='inactive']:bg-Primary-100 active:data-[state='inactive']:bg-opacity-15 active:data-[state='inactive']:outline-none active:ring-0`
+
+const sizes = {
+  base: `py-[6px] px-[7px] sm:px-[24px]`,
+}
+
+export const TabSwitcher = (props: Props): ReturnComponent => {
   const {
     ariaLabel,
     children,
@@ -84,17 +84,4 @@ export const TabSwitcher = (props: TabsProps): ReturnComponent => {
   )
 }
 
-export type TabContentProps = {
-  children: ReactNode
-  className?: string
-  /** Уникальное значение, которое связывает триггер с содержимым.  */
-  value: string
-}
-
-export const TabContent = ({ children, className, value }: TabContentProps): ReturnComponent => {
-  return (
-    <Tabs.Content className={className} value={value}>
-      {children}
-    </Tabs.Content>
-  )
-}
+TabSwitcher.displayName = Tabs.List.displayName

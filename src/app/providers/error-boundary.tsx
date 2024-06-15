@@ -1,6 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode, Suspense } from 'react'
 
-import { EMPTY_STRING } from '@/shared/constants/base'
+import { EMPTY_STRING } from '@/shared/constants'
 import { Error } from '@/widgets/error-boundary'
 
 interface ErrorBoundaryProps {

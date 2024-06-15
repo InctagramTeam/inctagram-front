@@ -1,13 +1,10 @@
 import * as React from 'react'
 
 import { MD_BREAKPOINT } from '@/shared/constants'
-import { useResponsive } from '@/shared/lib/hooks'
-import { useLangSwitcher } from '@/shared/lib/translate/model/hooks/use-lang-switcher'
-import { LanguageSelectionList } from '@/shared/lib/translate/ui/language-selection-list'
-import { cn } from '@/shared/lib/utils'
-import { Select, SelectContent } from '@/shared/ui/select/select'
+import { LanguageSelectionList, cn, useLangSwitcher, useResponsive } from '@/shared/lib'
+import { Select, SelectContent } from '@/shared/ui'
 
-import { LanguageSelectionTrigger } from './language-selection-trigger'
+import { LanguageSelectionTrigger } from './'
 
 export const LanguageSelection = () => {
   const { changeLocale, defaultLocale, locale } = useLangSwitcher()

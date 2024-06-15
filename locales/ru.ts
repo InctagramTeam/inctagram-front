@@ -32,6 +32,7 @@ export const ru: LocaleType = {
     yes: 'Да',
     clearField: 'Очистить поле',
     closeModal: 'Закрыть модальное окно',
+    close: 'Закрыть',
     password: {
       hide: 'Скрыть пароль',
       show: 'Показать пароль',
@@ -80,6 +81,7 @@ export const ru: LocaleType = {
       title: 'Уведомления!',
       alternativeText: 'Уведомлений еще нет',
     },
+    logo: 'Логотип Inctagram',
   },
   pages: {
     signUp: {

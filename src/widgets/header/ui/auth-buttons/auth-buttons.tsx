@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-import { AuthRoutes } from '@/shared/constants/routes'
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
-import { ReturnComponent } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
+import { AuthRoutes, Button, ReturnComponent, useTranslation } from '@/shared'
 import Link from 'next/link'
 
 export const AuthButtons = (): ReturnComponent => {

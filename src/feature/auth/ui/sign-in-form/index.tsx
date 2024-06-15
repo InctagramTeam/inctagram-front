@@ -4,16 +4,22 @@ import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from '
 import { useForm } from 'react-hook-form'
 
 import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
-import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
-import { AuthRoutes } from '@/shared/constants/routes'
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { AppList } from '@/shared/ui/app-list'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { Flex } from '@/shared/ui/flex'
-import { ControlledInput } from '@/shared/ui/input'
-import { Text } from '@/shared/ui/text'
+import {
+  AppList,
+  AuthRoutes,
+  Button,
+  Card,
+  ControlledInput,
+  EMPTY_STRING,
+  Flex,
+  ReturnComponent,
+  SM_BREAKPOINT,
+  Text,
+  UseFormRef,
+  useFormRevalidateWithLocale,
+  useResponsive,
+  useTranslation,
+} from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 import Link from 'next/link'

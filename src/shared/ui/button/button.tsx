@@ -1,9 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
-import { ReturnComponent } from '@/shared/types'
+import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared'
 import clsx from 'clsx'
-
-import { PolymorphComponentPropsWithRef } from '../../types'
 
 type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 

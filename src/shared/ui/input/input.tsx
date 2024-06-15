@@ -8,12 +8,8 @@ import {
   useState,
 } from 'react'
 
+import { EMPTY_STRING, ReturnComponent, Text, mergeRefs, useTranslation } from '@/shared'
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
-import { EMPTY_STRING } from '@/shared/constants/base'
-import { useTranslation } from '@/shared/lib/hooks'
-import { mergeRefs } from '@/shared/lib/utils/merge-refs'
-import { ReturnComponent } from '@/shared/types'
-import { Text } from '@/shared/ui/text'
 import { clsx } from 'clsx'
 
 export type InputProps = {
@@ -68,6 +64,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const { t } = useTranslation()
     const generatedId = useId()
     const finalId = id ?? generatedId
+    const errorId = `${finalId}-error`
 
     /** Чтобы получить доступ к инпуту: inputRef */
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
@@ -195,6 +192,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             {...rest}
             {...inputProps}
+            aria-describedby={errorId}
             className={classNames.input}
             disabled={disabled}
             id={finalId}
@@ -230,7 +228,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </button>
           )}
         </div>
-        <Text className={classNames.error} role={'alert'} variant={'error_text_12'}>
+        <Text className={classNames.error} id={errorId} role={'alert'} variant={'error_text_12'}>
           {errorMessage}
         </Text>
       </div>

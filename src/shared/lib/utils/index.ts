@@ -1,4 +1,5 @@
 export { getIcon } from './getIcon'
+export { getStoreLocal } from './local-storage'
 export { cn } from './merge-cn'
 export { mergeRefs } from './merge-refs'
 export { emailSchema, passwordSchema } from './validators'

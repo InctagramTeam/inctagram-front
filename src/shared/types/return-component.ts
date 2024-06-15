@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
 
-import { Nullable } from 'src/shared/types/nullable'
+import { Nullable } from '@/shared/types'
 
 export type ReturnComponent = Nullable<ReactElement>

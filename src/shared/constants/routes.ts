@@ -16,7 +16,7 @@ export const GeneralRoutes = {
 export const AppRoutes = {
   CREATE_POST: '/create',
   FAVORITES: '/favorites',
-  HOME: '/home-nav-links',
+  HOME: '/home',
   MAIN: '/',
   MESSENGER: '/messenger',
   PROFILE: '/profile',
