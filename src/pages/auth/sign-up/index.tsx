@@ -3,7 +3,7 @@ import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
 import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
-import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
+import { SignUpForm } from '@/feature/auth/ui/sign-up-form'
 import {
   EMPTY_STRING,
   PageWrapper,

@@ -1,7 +1,5 @@
 import { LocaleType } from '@/../locales'
-import { EMPTY_STRING } from '@/shared/constants'
-import { USERNAME_PATTERN } from '@/shared/constants/regexs'
-import { emailSchema, passwordSchema } from '@/shared/lib/utils'
+import { EMPTY_STRING, USERNAME_PATTERN, emailSchema, passwordSchema } from '@/shared'
 import { z } from 'zod'
 
 export const signUpSchema = (t: LocaleType) =>

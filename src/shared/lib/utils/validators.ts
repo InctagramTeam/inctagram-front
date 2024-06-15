@@ -1,5 +1,4 @@
-import { EMPTY_STRING } from '@/shared/constants'
-import { PASSWORD_PATTERN } from '@/shared/constants/regexs'
+import { EMPTY_STRING, PASSWORD_PATTERN } from '@/shared'
 import { LocaleType } from 'locales'
 import { z } from 'zod'
 
