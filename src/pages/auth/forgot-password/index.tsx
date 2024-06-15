@@ -5,10 +5,13 @@ import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 import { ForgotPasswordFormValues } from '@/feature/auth/model/utils/validators'
 import { ForgotPasswordForm } from '@/feature/auth/ui/forgot-password-form'
 import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
-import { RECAPTCHA_PUBLIK_KEY } from '@/shared/constants'
-import { getAuthLayout, PageWrapper } from '@/shared/layouts'
-import { useTranslation } from '@/shared/lib'
-import { UseFormRef } from '@/shared/types'
+import {
+  RECAPTCHA_PUBLIK_KEY,
+  getAuthLayout,
+  PageWrapper,
+  useTranslation,
+  UseFormRef,
+} from '@/shared'
 import Script from 'next/script'
 
 type ForgotPasswordFormRef = UseFormRef<

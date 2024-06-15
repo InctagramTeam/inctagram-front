@@ -1,10 +1,16 @@
+import {
+  Button,
+  cn,
+  getAuthLayout,
+  InformationBlock,
+  PageWrapper,
+  ReturnComponent,
+  useResponsive,
+  useTranslation,
+  XS_BREAKPOINT,
+} from '@/shared'
 import { TimeManagementIllustration } from '@/shared/assets/illustrations'
-import { XS_BREAKPOINT } from '@/shared/constants'
-import { getAuthLayout, PageWrapper } from '@/shared/layouts'
-import { cn } from '@/shared/lib/utils'
-import { ReturnComponent } from '@/shared/types'
-import { Button, InformationBlock } from '@/shared/ui'
-import { useResponsive, useTranslation } from '@/shared/lib'
+import React from 'react'
 
 const EmailVerification = (): ReturnComponent => {
   const { width } = useResponsive()

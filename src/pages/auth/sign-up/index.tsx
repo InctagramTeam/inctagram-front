@@ -3,10 +3,14 @@ import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
 import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
-import { EMPTY_STRING } from '@/shared/constants'
-import { getAuthLayout, PageWrapper } from '@/shared/layouts'
-import { useTranslation } from '@/shared/lib'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
+import {
+  EMPTY_STRING,
+  getAuthLayout,
+  PageWrapper,
+  useTranslation,
+  ReturnComponent,
+  UseFormRef,
+} from '@/shared'
 import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
 
 const SignUp = (): ReturnComponent => {

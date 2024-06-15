@@ -1,11 +1,7 @@
-import { useRef } from 'react'
-
+import React, { useRef } from 'react'
+import { getAuthLayout, PageWrapper, ReturnComponent, UseFormRef, useTranslation } from '@/shared'
 import { CreatePasswordFormValues } from '@/feature/auth/model/utils/validators'
 import { CreatePasswordForm } from '@/feature/auth/ui/create-password-form'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useTranslation } from '@/shared/lib/hooks'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
 
 const CreatePassword = (): ReturnComponent => {
   const { t } = useTranslation()
