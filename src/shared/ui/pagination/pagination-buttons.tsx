@@ -1,4 +1,5 @@
 import { ReturnComponent } from '@/shared/types'
+
 import { PageButton } from './page-button'
 
 type Props = {

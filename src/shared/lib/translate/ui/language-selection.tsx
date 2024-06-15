@@ -1,8 +1,9 @@
 import * as React from 'react'
 
 import { MD_BREAKPOINT } from '@/shared/constants'
-import { useResponsive, useLangSwitcher, LanguageSelectionList, cn } from '@/shared/lib'
+import { LanguageSelectionList, cn, useLangSwitcher, useResponsive } from '@/shared/lib'
 import { Select, SelectContent } from '@/shared/ui'
+
 import { LanguageSelectionTrigger } from './'
 
 export const LanguageSelection = () => {

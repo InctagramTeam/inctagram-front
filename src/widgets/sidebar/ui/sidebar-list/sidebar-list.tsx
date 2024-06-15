@@ -34,10 +34,10 @@ export const SidebarList = ({ isMobile = false, links, onlyIcons = false }: Prop
             {link.disabled ? (
               <NavigationElement
                 asComponent={'span'}
-                onlyIcon={onlyIcons}
-                startIcon={getIcon(link.href, false)}
                 disabled={link.disabled}
                 name={link.name}
+                onlyIcon={onlyIcons}
+                startIcon={getIcon(link.href, false)}
               />
             ) : (
               <NavigationElement asComponent={Link} onlyIcon={onlyIcons} {...link} />

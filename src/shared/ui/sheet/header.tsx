@@ -1,6 +1,7 @@
 import * as React from 'react'
-import { clsx } from 'clsx'
+
 import { ReturnComponent } from '@/shared/types'
+import { clsx } from 'clsx'
 export const SheetHeader = ({
   className,
   ...props

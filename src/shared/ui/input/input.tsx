@@ -10,7 +10,7 @@ import {
 
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
 import { EMPTY_STRING } from '@/shared/constants'
-import { useTranslation, mergeRefs } from '@/shared/lib'
+import { mergeRefs, useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { Text } from '@/shared/ui'
 import { clsx } from 'clsx'

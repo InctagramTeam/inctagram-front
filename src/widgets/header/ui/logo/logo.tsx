@@ -1,10 +1,10 @@
 import logo from '@/shared/assets/images/logo.svg'
+import { AppRoutes } from '@/shared/constants'
+import { useTranslation } from '@/shared/lib/hooks'
 import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import Image from 'next/image'
 import Link from 'next/link'
-import { AppRoutes } from '@/shared/constants'
-import { useTranslation } from '@/shared/lib/hooks'
 export const Logo = (): ReturnComponent => {
   const { t } = useTranslation()
   const classes = {

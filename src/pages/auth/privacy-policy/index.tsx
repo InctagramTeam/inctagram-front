@@ -1,4 +1,4 @@
-import { getAuthLayout, PageWrapper } from '@/shared'
+import { PageWrapper, getAuthLayout } from '@/shared'
 
 const PrivacyPolicy = () => {
   return (

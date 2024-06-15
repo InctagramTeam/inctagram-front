@@ -3,10 +3,10 @@ import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
 import { CrossIcon } from '@/shared/assets/icons'
 import { EMPTY_STRING } from '@/shared/constants'
 import { useTranslation } from '@/shared/lib'
+import { ReturnComponent } from '@/shared/types'
 import { Text } from '@/shared/ui'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
-import { ReturnComponent } from '@/shared/types'
 
 type ModalProps = {
   children: ReactNode

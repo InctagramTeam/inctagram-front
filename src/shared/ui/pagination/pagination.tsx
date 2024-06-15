@@ -1,9 +1,9 @@
 import { ReturnComponent } from '@/shared/types'
 
 import { usePagination } from './hooks'
-import { PerPageSelect } from './per-page-select'
-import { MainPaginationButtons } from './pagination-buttons'
 import { NavigationButton } from './navigation-button'
+import { MainPaginationButtons } from './pagination-buttons'
+import { PerPageSelect } from './per-page-select'
 
 type Props = {
   count: number

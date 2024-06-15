@@ -1,2 +1,2 @@
 export { getLanguages, useLangSwitcher } from './model'
-export { LangSelectSwitcher, Translate, LanguageSelectionList } from './ui'
+export { LangSelectSwitcher, LanguageSelectionList, Translate } from './ui'

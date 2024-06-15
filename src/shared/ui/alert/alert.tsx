@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-import { useTranslation, cn } from '@/shared/lib'
-import { useAlert } from './hooks'
+import { cn, useTranslation } from '@/shared/lib'
 import { type VariantProps, cva } from 'class-variance-authority'
+
+import { useAlert } from './hooks'
 
 type Props = {
   icon: ReactNode

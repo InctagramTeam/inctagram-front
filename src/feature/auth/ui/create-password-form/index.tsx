@@ -8,7 +8,7 @@ import {
 import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
 import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib'
 import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { Button, Card, Flex, ControlledInput, Text } from '@/shared/ui'
+import { Button, Card, ControlledInput, Flex, Text } from '@/shared/ui'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 

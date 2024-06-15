@@ -1,6 +1,7 @@
-import { NavigationButtonProps } from './navigation-button'
 import { ReturnComponent } from '@/shared/types'
 import { clsx } from 'clsx'
+
+import { NavigationButtonProps } from './navigation-button'
 
 type Props = {
   page: number

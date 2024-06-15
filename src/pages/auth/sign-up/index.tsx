@@ -2,16 +2,16 @@
 import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
+import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
 import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
 import {
   EMPTY_STRING,
-  getAuthLayout,
   PageWrapper,
-  useTranslation,
   ReturnComponent,
   UseFormRef,
+  getAuthLayout,
+  useTranslation,
 } from '@/shared'
-import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
 
 const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)

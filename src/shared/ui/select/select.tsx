@@ -7,6 +7,7 @@ import { ChevronIcon } from '@/shared/assets/icons'
 import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import * as SelectRadix from '@radix-ui/react-select'
+
 import { SelectContent, SelectItem, SelectLabel, SelectTrigger } from './'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
@@ -57,17 +58,17 @@ const SelectBox = (props: Props): ReturnComponent => {
   } = props
 
   const classes = {
-    trigger: cn(
-      variant === 'pagination'
-        ? 'w-[50px] justify-center gap-[1px] py-0 pl-[6px] pr-[1px]'
-        : 'w-[210px]'
-    ),
     chevron: cn(variant === 'pagination' && '[h-16px] w-[16px]'),
     content: cn(variant === 'pagination' ? 'w-[50px]' : 'w-full'),
     item: cn(variant === 'pagination' ? 'w-[50px]' : 'w-[210px]'),
     text: cn(
       `flex items-center gap-[12px] text-regular-text-14`,
       variant === 'pagination' && `leading-3`
+    ),
+    trigger: cn(
+      variant === 'pagination'
+        ? 'w-[50px] justify-center gap-[1px] py-0 pl-[6px] pr-[1px]'
+        : 'w-[210px]'
     ),
   }
 

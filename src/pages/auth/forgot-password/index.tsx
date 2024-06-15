@@ -6,11 +6,11 @@ import { ForgotPasswordFormValues } from '@/feature/auth/model/utils/validators'
 import { ForgotPasswordForm } from '@/feature/auth/ui/forgot-password-form'
 import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
 import {
-  RECAPTCHA_PUBLIK_KEY,
-  getAuthLayout,
   PageWrapper,
-  useTranslation,
+  RECAPTCHA_PUBLIK_KEY,
   UseFormRef,
+  getAuthLayout,
+  useTranslation,
 } from '@/shared'
 import Script from 'next/script'
 

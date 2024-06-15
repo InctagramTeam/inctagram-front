@@ -1,6 +1,6 @@
+import { AppRoutes } from '@/shared/constants'
 import { NavLink } from '@/shared/types'
 import { LocaleType } from 'locales'
-import { AppRoutes } from '@/shared/constants'
 
 export const getBaseLinks = (t: LocaleType): NavLink[] => {
   return [

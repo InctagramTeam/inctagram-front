@@ -1,7 +1,8 @@
-import { ReturnComponent } from '@/shared/types'
-import { cn } from '@/shared/lib/utils'
-import * as Tabs from '@radix-ui/react-tabs'
 import React, { ReactNode } from 'react'
+
+import { cn } from '@/shared/lib/utils'
+import { ReturnComponent } from '@/shared/types'
+import * as Tabs from '@radix-ui/react-tabs'
 
 type Tab = {
   disabled?: boolean

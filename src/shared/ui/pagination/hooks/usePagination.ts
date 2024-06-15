@@ -1,4 +1,5 @@
 import { useCallback, useMemo } from 'react'
+
 import { ELLIPSIS_STRING } from '@/shared/constants'
 
 // original code: https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/
@@ -20,7 +21,7 @@ type UsePaginationParamType = {
   siblings?: number
 }
 
-type PaginationRange = (typeof ELLIPSIS_STRING | number)[]
+type PaginationRange = (number | typeof ELLIPSIS_STRING)[]
 
 export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePaginationParamType) => {
   const paginationRange = useMemo(() => {

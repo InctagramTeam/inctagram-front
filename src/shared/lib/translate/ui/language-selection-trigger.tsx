@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { MD_BREAKPOINT, EMPTY_STRING } from '@/shared/constants'
-import { useResponsive, useTranslation, getLanguages, cn } from '@/shared/lib'
+import { EMPTY_STRING, MD_BREAKPOINT } from '@/shared/constants'
+import { cn, getLanguages, useResponsive, useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { SelectTrigger } from '@/shared/ui'
 import Image from 'next/image'

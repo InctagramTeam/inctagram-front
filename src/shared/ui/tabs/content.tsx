@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react'
+
 import { ReturnComponent } from '@/shared/types'
 import * as Tabs from '@radix-ui/react-tabs'
 

@@ -1,7 +1,8 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
-import * as SelectRadix from '@radix-ui/react-select'
-import { cn } from '@/shared/lib/utils'
 import * as React from 'react'
+
+import { cn } from '@/shared/lib/utils'
+import * as SelectRadix from '@radix-ui/react-select'
 
 export const SelectItem = forwardRef<
   ElementRef<typeof SelectRadix.Item>,

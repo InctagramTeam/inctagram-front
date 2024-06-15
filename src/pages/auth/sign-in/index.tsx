@@ -4,11 +4,11 @@ import { SignInFormValues } from '@/feature/auth/model/utils/validators'
 import { SignInForm } from '@/feature/auth/ui/sign-in-form'
 import {
   EMPTY_STRING,
-  getAuthLayout,
   PageWrapper,
-  useTranslation,
   ReturnComponent,
   UseFormRef,
+  getAuthLayout,
+  useTranslation,
 } from '@/shared'
 
 const SignIn = (): ReturnComponent => {

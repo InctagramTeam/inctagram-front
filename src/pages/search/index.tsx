@@ -1,4 +1,4 @@
-import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
+import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
 
 const Search = () => {
   return (

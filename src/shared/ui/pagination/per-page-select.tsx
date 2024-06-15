@@ -1,5 +1,5 @@
-import { SelectBox } from '@/shared/ui/select/select'
 import { ReturnComponent } from '@/shared/types'
+import { SelectBox } from '@/shared/ui/select/select'
 
 type Props = {
   onPerPageChange: (itemPerPage: number | string) => void

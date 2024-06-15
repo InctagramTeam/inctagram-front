@@ -1,7 +1,8 @@
 import * as React from 'react'
+
+import { ReturnComponent } from '@/shared/types'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
-import { ReturnComponent } from '@/shared/types'
 
 export const SheetDescription = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Description>,
