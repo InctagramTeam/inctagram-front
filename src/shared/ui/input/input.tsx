@@ -67,6 +67,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const { t } = useTranslation()
     const generatedId = useId()
     const finalId = id ?? generatedId
+    const errorId = `${finalId}-error`
 
     /** Чтобы получить доступ к инпуту: inputRef */
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
@@ -195,6 +196,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...rest}
             {...inputProps}
             className={classNames.input}
+            aria-describedby={errorId}
             disabled={disabled}
             id={finalId}
             onChange={handleChange}
@@ -229,7 +231,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </button>
           )}
         </div>
-        <Text className={classNames.error} role={'alert'} variant={'error_text_12'}>
+        <Text className={classNames.error} role={'alert'} id={errorId} variant={'error_text_12'}>
           {errorMessage}
         </Text>
       </div>

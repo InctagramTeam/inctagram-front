@@ -1,7 +1,6 @@
 import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useId } from 'react'
 
-import { cn } from '@/shared/lib'
-import { ReturnComponent } from '@/shared/types'
+import { cn, ReturnComponent, Text } from '@/shared'
 
 export type TextareaProps = {
   containerClassName?: string
@@ -42,6 +41,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const generatedId = useId()
     const finalId = id ?? generatedId
+    const errorId = `${finalId}-error`
 
     const changeValueHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
       onChange?.(e)
@@ -56,6 +56,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </label>
         )}
         <textarea
+          aria-describedby={errorId}
           className={classes.textarea}
           disabled={disabled}
           id={finalId}
@@ -63,7 +64,11 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           {...rest}
         />
-        {errorMessage && <span className={classes.error}> {errorMessage} </span>}
+        {errorMessage && (
+          <Text className={classes.error} role={'alert'} id={errorId}>
+            {errorMessage}
+          </Text>
+        )}
       </div>
     )
   }
