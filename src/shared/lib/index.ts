@@ -7,4 +7,4 @@ export {
   getLanguages,
   useLangSwitcher,
 } from './translate'
-export { cn, emailSchema, mergeRefs, passwordSchema } from './utils'
+export { cn, emailSchema, mergeRefs, passwordSchema, getIcon, debounce, throttle } from './utils'

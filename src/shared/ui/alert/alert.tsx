@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { ComponentPropsWithoutRef, ReactNode } from 'react'
 
-import { cn, useTranslation } from '@/shared/lib'
+import { cn, useTranslation } from '@/shared'
 import { type VariantProps, cva } from 'class-variance-authority'
 
 import { useAlert } from './hooks'

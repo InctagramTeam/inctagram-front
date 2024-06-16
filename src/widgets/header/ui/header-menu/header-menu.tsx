@@ -10,6 +10,7 @@ import {
   NotificationProps,
   NotificationsDropdown,
 } from '@/widgets/header/ui'
+import { useThrottle } from '@/shared/lib/utils/throttle'
 
 type Props = {
   isAuth?: boolean
@@ -18,6 +19,8 @@ type Props = {
 }
 export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComponent => {
   const { width } = useResponsive()
+
+  console.log('HeaderMenu')
 
   if (width === null) {
     return null
