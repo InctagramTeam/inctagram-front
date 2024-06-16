@@ -14,6 +14,8 @@ type Props = {
 }
 
 export const Header = ({ className, ...props }: Props): ReturnComponent => {
+  console.log('HeaderMenu')
+
   const classes = {
     header: clsx(
       `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,

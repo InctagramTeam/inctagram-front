@@ -1,7 +1,7 @@
 'use client'
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
-import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
+import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox'
 
 /** Исключили:
  - rules: правила валидации react-hook-form -> используем валидатор Zod

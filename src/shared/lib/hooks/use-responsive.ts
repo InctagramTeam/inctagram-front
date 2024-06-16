@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
+import { throttle } from '@/shared'
 
-export const useResponsive = () => {
+export const useResponsive = (delay = 1000) => {
   const [width, setWidth] = useState<null | number>(null)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    setWidth(window.innerWidth)
+    const throttledHandleResize = throttle(() => {
       setWidth(window.innerWidth)
-      const handleWindowResize = () => setWidth(window.innerWidth)
+    }, delay)
 
-      window.addEventListener('resize', handleWindowResize)
-
-      return () => window.removeEventListener('resize', handleWindowResize)
-    }
+    window.addEventListener('resize', throttledHandleResize)
+    return () => window.removeEventListener('resize', throttledHandleResize)
   }, [])
 
   return { width }

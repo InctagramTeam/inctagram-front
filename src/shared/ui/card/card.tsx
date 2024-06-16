@@ -9,8 +9,7 @@ import {
   forwardRef,
 } from 'react'
 
-import { cn } from '@/shared/lib'
-import { PolymorphComponentPropsWithRef } from '@/shared/types'
+import { cn, PolymorphComponentPropsWithRef } from '@/shared'
 import clsx from 'clsx'
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, ComponentPropsWithoutRef<T>>

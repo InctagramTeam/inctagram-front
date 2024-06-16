@@ -1,6 +1,6 @@
 'use client'
 
-import { cn, getIcon } from '@/shared/lib/utils'
+import { cn, getIcon } from '@/shared'
 import Link from 'next/link'
 
 type Props = {
