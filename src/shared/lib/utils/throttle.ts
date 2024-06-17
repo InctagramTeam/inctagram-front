@@ -13,6 +13,7 @@ export function throttle<T extends (...args: unknown[]) => unknown>(
   return function (this: ThisParameterType<T>, ...args: Parameters<T>): void {
     /** Сохраняем контекст вызова, чтобы использовать внутри setTimeout */
     const context = this
+
     if (!lastRan) {
       /** Если переданная функция (func) еще не вызывалась
        * то делаем вызов и запоминаем время */

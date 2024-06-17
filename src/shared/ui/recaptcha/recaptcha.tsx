@@ -1,6 +1,7 @@
 import { forwardRef } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
-import { RECAPTCHA_PUBLIK_KEY, Flex, Text, ReturnComponent } from '@/shared'
+
+import { Flex, RECAPTCHA_PUBLIK_KEY, ReturnComponent, Text } from '@/shared'
 import { clsx } from 'clsx'
 
 type Props = {

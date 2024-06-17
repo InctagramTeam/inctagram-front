@@ -10,7 +10,6 @@ import {
   NotificationProps,
   NotificationsDropdown,
 } from '@/widgets/header/ui'
-import { useThrottle } from '@/shared/lib/utils/throttle'
 
 type Props = {
   isAuth?: boolean

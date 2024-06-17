@@ -3,15 +3,20 @@ import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
 import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
-import { SignUpForm } from '@/feature/auth/ui/sign-up-form'
 import {
   EMPTY_STRING,
+  getAuthLayout,
   PageWrapper,
   ReturnComponent,
   UseFormRef,
-  getAuthLayout,
   useTranslation,
 } from '@/shared'
+import dynamic from 'next/dynamic'
+
+
+const SignUpForm = dynamic(
+  import('@/feature/auth/ui/sign-up-form').then(module => module.SignUpForm)
+)
 
 const SignUp = (): ReturnComponent => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)

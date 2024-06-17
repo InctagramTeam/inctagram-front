@@ -8,7 +8,7 @@
 export function debounce<T extends (...args: unknown[]) => void>(
   func: T,
   delay: number
-): { debouncedFunction: (...args: Parameters<T>) => void; cancel: () => void } {
+): { cancel: () => void; debouncedFunction: (...args: Parameters<T>) => void } {
   let timeoutId: ReturnType<typeof setTimeout> | null = null
 
   const debouncedFunction = function (...args: Parameters<T>): void {
@@ -27,7 +27,7 @@ export function debounce<T extends (...args: unknown[]) => void>(
     }
   }
 
-  return { debouncedFunction, cancel }
+  return { cancel, debouncedFunction }
 }
 
 /**
