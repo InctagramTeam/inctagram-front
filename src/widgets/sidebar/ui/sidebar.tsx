@@ -8,7 +8,7 @@ import { useLayoutContext } from '@/shared/layouts'
 import { cn, useResponsive, useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { NavigationElement } from '@/shared/ui'
-import { getBaseLinks, getSidebarLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
+import { getBaseLinks, getSidebarLinks } from '../model/ulils/sidebar-links'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 
 export const Sidebar = (): ReturnComponent => {
@@ -24,6 +24,9 @@ export const Sidebar = (): ReturnComponent => {
   const mobile = width < SM_BREAKPOINT
   const desktop = width > LG_BREAKPOINT
   const onlyIcons = tablet || isCollapsed
+
+  const mobileSidebarLinks = getBaseLinks(t)
+  const sidebarLinks = getSidebarLinks(t)
 
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
@@ -46,14 +49,13 @@ export const Sidebar = (): ReturnComponent => {
       <nav className={classes.navigation}>
         {desktop && <ToggleCollapsedButtons />}
         {mobile ? (
-          <SidebarList isMobile links={getBaseLinks(t)} onlyIcons />
+          <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
         ) : (
           <>
-            <SidebarList links={getSidebarLinks(t)} onlyIcons={onlyIcons} />
+            <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
             <NavigationElement
               className={classes.button}
               name={t.button.logOut}
-              onClick={() => {}}
               onlyIcon={onlyIcons}
               startIcon={<LogOutIcon />}
             />

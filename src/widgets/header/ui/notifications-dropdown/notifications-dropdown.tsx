@@ -8,6 +8,7 @@ import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { maxShowNumberNotifications } from '@/widgets/header/model/constants/base'
 import { NotificationProps, NotificationsDropdownList } from '@/widgets/header/ui'
+import { memo } from 'react'
 
 export type NotificationsDropdownProps = {
   alternativeText?: string
@@ -16,7 +17,7 @@ export type NotificationsDropdownProps = {
   open?: boolean
 }
 
-export const NotificationsDropdown = (props: NotificationsDropdownProps) => {
+export const NotificationsDropdown = memo((props: NotificationsDropdownProps) => {
   const { t } = useTranslation()
   const {
     alternativeText = t.layout.notificationsDropdown.alternativeText,
@@ -82,6 +83,6 @@ export const NotificationsDropdown = (props: NotificationsDropdownProps) => {
       </div>
     </Dropdown.Menu>
   )
-}
+})
 
 NotificationsDropdown.displayName = 'NotificationsDropdown'

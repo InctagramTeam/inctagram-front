@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   AuthButtons,
   MobileDropdown,
@@ -7,17 +6,16 @@ import {
 } from '@/widgets/header/ui'
 import { Flex, LG_BREAKPOINT, ReturnComponent, useResponsive, useTranslation } from '@/shared'
 import { getLanguages, LangSelectSwitcher } from '@/feature/translate'
+import { memo } from 'react'
 
 type Props = {
   isAuth?: boolean
   logout?: () => void
   notifications?: NotificationProps[]
 }
-export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComponent => {
+export const HeaderMenu = memo(({ isAuth, logout, notifications }: Props): ReturnComponent => {
   const { width } = useResponsive()
   const { t } = useTranslation()
-
-  console.log('HeaderMenu')
 
   if (width === null) {
     return null
@@ -40,4 +38,4 @@ export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComp
       {!isDesktop && <MobileDropdown logout={logout} />}
     </Flex>
   )
-}
+})

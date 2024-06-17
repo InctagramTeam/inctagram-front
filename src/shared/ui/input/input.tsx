@@ -62,6 +62,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     forwardedRef
   ): ReturnComponent => {
     const { t } = useTranslation()
+
     const generatedId = useId()
     const finalId = id ?? generatedId
     const errorId = `${finalId}-error`
@@ -69,7 +70,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     /** Чтобы получить доступ к инпуту: inputRef */
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
 
-    /** Чтобы передать несколько ссылок (ref) на инпут нужно их скомбинировать в finalRef */
+    /** Чтобы передать несколько ссылок (ref-ов) на инпут нужно их скомбинировать в finalRef */
     const finalRef = mergeRefs([forwardedRef, inputRef])
 
     const [revealPassword, setRevealPassword] = useState(false)

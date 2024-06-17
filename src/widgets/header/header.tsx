@@ -1,21 +1,15 @@
-import * as React from 'react'
-
 import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui'
 import { clsx } from 'clsx'
 
-import { HeaderMenu, Logo, NotificationProps } from './ui'
+import { HeaderMenu, Logo } from './ui'
+import { memo } from 'react'
 
 type Props = {
   className?: string
-  isAuth?: boolean
-  logout?: () => void
-  notifications?: NotificationProps[]
 }
 
-export const Header = ({ className, ...props }: Props): ReturnComponent => {
-  console.log('HeaderMenu')
-
+export const Header = memo(({ className, ...props }: Props): ReturnComponent => {
   const classes = {
     header: clsx(
       `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,
@@ -32,4 +26,4 @@ export const Header = ({ className, ...props }: Props): ReturnComponent => {
       </Flex>
     </header>
   )
-}
+})

@@ -1,11 +1,11 @@
 import * as React from 'react'
 
 import { EMPTY_STRING, MD_BREAKPOINT } from '@/shared/constants'
-import { cn, getLanguages, useResponsive, useTranslation } from '@/shared/lib'
+import { cn } from '@/shared/lib'
 import { SelectItem } from '@/shared/ui'
 import Image from 'next/image'
 import { Nullable } from '@/shared'
-import { Language } from '@/shared/lib/translate/model/helpers/get-languages'
+import { Language } from '@/feature/translate/model/helpers/get-languages'
 
 type Props = {
   sidebarItems: Language[]
