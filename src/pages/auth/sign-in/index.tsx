@@ -11,7 +11,6 @@ import {
 } from '@/shared'
 import dynamic from 'next/dynamic'
 
-
 const SignInForm = dynamic(
   import('@/feature/auth/ui/sign-in-form').then(module => module.SignInForm)
 )

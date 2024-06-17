@@ -13,7 +13,6 @@ import {
 } from '@/shared'
 import dynamic from 'next/dynamic'
 
-
 const SignUpForm = dynamic(
   import('@/feature/auth/ui/sign-up-form').then(module => module.SignUpForm)
 )
