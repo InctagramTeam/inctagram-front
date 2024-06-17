@@ -2,7 +2,6 @@
 import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
-import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
 import {
   EMPTY_STRING,
   getAuthLayout,
@@ -12,9 +11,10 @@ import {
   useTranslation,
 } from '@/shared'
 import dynamic from 'next/dynamic'
+import { SignUpForm } from '@/feature/auth'
 
-const SignUpForm = dynamic(
-  import('@/feature/auth/ui/sign-up-form').then(module => module.SignUpForm)
+const SentEmailModal = dynamic(
+  import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
 )
 
 const SignUp = (): ReturnComponent => {

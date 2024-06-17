@@ -9,11 +9,7 @@ import {
   UseFormRef,
   useTranslation,
 } from '@/shared'
-import dynamic from 'next/dynamic'
-
-const SignInForm = dynamic(
-  import('@/feature/auth/ui/sign-in-form').then(module => module.SignInForm)
-)
+import { SignInForm } from '@/feature/auth'
 
 const SignIn = (): ReturnComponent => {
   const { t } = useTranslation()
