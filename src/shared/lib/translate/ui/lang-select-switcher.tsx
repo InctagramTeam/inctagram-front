@@ -1,7 +1,14 @@
 import * as React from 'react'
 
 import { LanguageSelection } from './language-selection'
+import { Nullable } from '@/shared'
+import { Language } from '@/shared/lib/translate/model/helpers/get-languages'
 
-export const LangSelectSwitcher = () => {
-  return <LanguageSelection />
+type Props = {
+  sidebarItems: Language[]
+  width: Nullable<number>
+}
+
+export const LangSelectSwitcher = ({ width, sidebarItems }: Props) => {
+  return <LanguageSelection width={width} sidebarItems={sidebarItems} />
 }

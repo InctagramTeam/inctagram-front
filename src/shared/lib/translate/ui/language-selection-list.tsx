@@ -4,10 +4,15 @@ import { EMPTY_STRING, MD_BREAKPOINT } from '@/shared/constants'
 import { cn, getLanguages, useResponsive, useTranslation } from '@/shared/lib'
 import { SelectItem } from '@/shared/ui'
 import Image from 'next/image'
+import { Nullable } from '@/shared'
+import { Language } from '@/shared/lib/translate/model/helpers/get-languages'
 
-export const LanguageSelectionList = () => {
-  const { width } = useResponsive()
-  const { t } = useTranslation()
+type Props = {
+  sidebarItems: Language[]
+  width: Nullable<number>
+}
+
+export const LanguageSelectionList = ({ width, sidebarItems }: Props) => {
   const isDesktop = width && width > MD_BREAKPOINT
   const isMobile = !isDesktop
 
@@ -24,7 +29,7 @@ export const LanguageSelectionList = () => {
 
   return (
     <>
-      {getLanguages(t).map(item => (
+      {sidebarItems.map(item => (
         <SelectItem className={classes.item} key={item.value} {...item}>
           <div className={classes.itemInner}>
             <Image

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { LG_BREAKPOINT } from '@/shared/constants'
-import { LangSelectSwitcher, useResponsive } from '@/shared/lib'
+import { getLanguages, LangSelectSwitcher, useResponsive, useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui/flex'
 import {
@@ -18,6 +18,7 @@ type Props = {
 }
 export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComponent => {
   const { width } = useResponsive()
+  const { t } = useTranslation()
 
   console.log('HeaderMenu')
 
@@ -26,13 +27,14 @@ export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComp
   }
 
   const isDesktop = width > LG_BREAKPOINT
+  const sidebarItems = getLanguages(t)
 
   return (
     <Flex gap={'40'}>
       {isDesktop && <NotificationsDropdown notifications={notifications} />}
 
       {/* Селект для смены языка в Арр */}
-      <LangSelectSwitcher />
+      <LangSelectSwitcher width={width} sidebarItems={sidebarItems} />
       {isDesktop && !isAuth && (
         <Flex className={'flex-nowrap'} gap={'24'}>
           <AuthButtons />
