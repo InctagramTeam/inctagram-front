@@ -6,7 +6,7 @@ import { Select, SelectContent } from '@/shared/ui'
 
 import { LanguageSelectionTrigger } from './'
 import { Nullable } from '@/shared'
-import { Language } from '@/shared/lib/translate/model/helpers/get-languages'
+import { Language } from '@/feature/translate/model/helpers/get-languages'
 
 type Props = {
   sidebarItems: Language[]

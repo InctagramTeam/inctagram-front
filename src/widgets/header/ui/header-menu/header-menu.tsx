@@ -1,15 +1,12 @@
 import * as React from 'react'
-
-import { LG_BREAKPOINT } from '@/shared/constants'
-import { getLanguages, LangSelectSwitcher, useResponsive, useTranslation } from '@/shared/lib'
-import { ReturnComponent } from '@/shared/types'
-import { Flex } from '@/shared/ui/flex'
 import {
   AuthButtons,
   MobileDropdown,
   NotificationProps,
   NotificationsDropdown,
 } from '@/widgets/header/ui'
+import { Flex, LG_BREAKPOINT, ReturnComponent, useResponsive, useTranslation } from '@/shared'
+import { getLanguages, LangSelectSwitcher } from '@/feature/translate'
 
 type Props = {
   isAuth?: boolean

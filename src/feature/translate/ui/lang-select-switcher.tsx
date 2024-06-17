@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { LanguageSelection } from './language-selection'
 import { Nullable } from '@/shared'
-import { Language } from '@/shared/lib/translate/model/helpers/get-languages'
+import { Language } from '@/feature/translate/model/helpers/get-languages'
 
 type Props = {
   sidebarItems: Language[]
