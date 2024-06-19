@@ -48,6 +48,7 @@ export const Sidebar = (): ReturnComponent => {
     }
 
     if (mobile) return <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
+
     return (
       <>
         <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
