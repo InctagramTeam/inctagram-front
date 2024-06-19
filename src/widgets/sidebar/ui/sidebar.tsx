@@ -3,30 +3,17 @@
 import React from 'react'
 
 import { LogOutIcon } from '@/shared/assets/icons'
-import { LG_BREAKPOINT, SM_BREAKPOINT } from '@/shared/constants'
-import { useLayoutContext } from '@/shared/layouts'
-import { cn, useResponsive, useTranslation } from '@/shared/lib'
+import { cn } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { NavigationElement } from '@/shared/ui'
-import { getBaseLinks, getSidebarLinks } from '../model/ulils/sidebar-links'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
+import { useBreakpointMode } from '../model/hooks/use-breakpoin-mode'
 
 export const Sidebar = (): ReturnComponent => {
-  const { isCollapsed } = useLayoutContext()
-  const { width } = useResponsive()
-  const { t } = useTranslation()
+  const { width, isCollapsed, t, mobile, desktop, onlyIcons, mobileSidebarLinks, sidebarLinks } =
+    useBreakpointMode()
 
-  if (width === null) {
-    return null
-  }
-
-  const tablet = width > SM_BREAKPOINT && width < LG_BREAKPOINT
-  const mobile = width < SM_BREAKPOINT
-  const desktop = width > LG_BREAKPOINT
-  const onlyIcons = tablet || isCollapsed
-
-  const mobileSidebarLinks = getBaseLinks(t)
-  const sidebarLinks = getSidebarLinks(t)
+  if (width === null) return null
 
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
@@ -44,26 +31,40 @@ export const Sidebar = (): ReturnComponent => {
     ),
   }
 
+  const displayModeSidebar = () => {
+    if (desktop) {
+      return (
+        <>
+          <ToggleCollapsedButtons />
+          <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
+          <NavigationElement
+            className={classes.button}
+            name={t.button.logOut}
+            onlyIcon={onlyIcons}
+            startIcon={<LogOutIcon />}
+          />
+        </>
+      )
+    }
+
+    if (mobile) return <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
+
+    return (
+      <>
+        <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
+        <NavigationElement
+          className={classes.button}
+          name={t.button.logOut}
+          onlyIcon={onlyIcons}
+          startIcon={<LogOutIcon />}
+        />
+      </>
+    )
+  }
+
   return (
     <div className={classes.wrapper}>
-      <nav className={classes.navigation}>
-        {desktop && <ToggleCollapsedButtons />}
-        {mobile ? (
-          <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
-        ) : (
-          <>
-            <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
-            <NavigationElement
-              className={classes.button}
-              name={t.button.logOut}
-              onlyIcon={onlyIcons}
-              startIcon={<LogOutIcon />}
-            />
-          </>
-        )}
-      </nav>
+      <nav className={classes.navigation}>{displayModeSidebar()}</nav>
     </div>
   )
 }
-
-Sidebar.displayName = 'Sidebar'
