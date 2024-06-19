@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { memo } from 'react'
 
 import { EMPTY_STRING, MD_BREAKPOINT } from '@/shared/constants'
 import { cn } from '@/shared/lib'
@@ -12,7 +13,7 @@ type Props = {
   width: Nullable<number>
 }
 
-export const LanguageSelectionList = ({ width, sidebarItems }: Props) => {
+export const LanguageSelectionList = memo(({ width, sidebarItems }: Props) => {
   const isDesktop = width && width > MD_BREAKPOINT
   const isMobile = !isDesktop
 
@@ -47,4 +48,4 @@ export const LanguageSelectionList = ({ width, sidebarItems }: Props) => {
       ))}
     </>
   )
-}
+})
