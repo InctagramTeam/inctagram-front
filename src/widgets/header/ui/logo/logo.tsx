@@ -5,6 +5,7 @@ import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
 import Image from 'next/image'
 import Link from 'next/link'
+
 export const Logo = (): ReturnComponent => {
   const { t } = useTranslation()
   const classes = {
@@ -18,7 +19,14 @@ export const Logo = (): ReturnComponent => {
 
   return (
     <Link className={classes.link} href={AppRoutes.HOME}>
-      <Image alt={t.layout.logo} className={classes.img} height={36} src={logo} width={128} />
+      <Image
+        alt={t.layout.logo}
+        className={classes.img}
+        height={36}
+        src={logo}
+        width={128}
+        priority
+      />
     </Link>
   )
 }

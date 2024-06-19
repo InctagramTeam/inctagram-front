@@ -2,8 +2,8 @@ import { ReturnComponent } from '@/shared/types'
 import { Flex } from '@/shared/ui'
 import { clsx } from 'clsx'
 
-import { HeaderMenu, Logo } from './ui'
 import { memo } from 'react'
+import { HeaderMenu, Logo } from '@/widgets/header/ui'
 
 type Props = {
   className?: string

@@ -33,6 +33,7 @@ export const LanguageSelectionList = ({ width, sidebarItems }: Props) => {
         <SelectItem className={classes.item} key={item.value} {...item}>
           <div className={classes.itemInner}>
             <Image
+              priority
               alt={item.textValue ?? EMPTY_STRING}
               aria-hidden
               className={classes.flag}
