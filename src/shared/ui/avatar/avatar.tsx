@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from 'react'
+import React, { CSSProperties, forwardRef, useState } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { Nullable, ReturnComponent } from '@/shared'
@@ -13,20 +13,15 @@ type Props = {
   wrapperSize?: number
 }
 
-export const Avatar = ({
-  avatarUrl,
-  circle,
-  className,
-  iconSize = 48,
-  style,
-  wrapperSize = 300,
-}: Props): ReturnComponent => {
+const Avatar = forwardRef<HTMLDivElement, Props>((props, ref): ReturnComponent => {
+  const { avatarUrl, circle, className, iconSize = 48, style, wrapperSize = 204, ...rest } = props
+
   const [imageError, setImageError] = useState(false)
 
   return avatarUrl && !imageError ? (
     <Image
       alt="avatar"
-      className={className}
+      className={``}
       height={wrapperSize}
       onError={() => setImageError(true)}
       priority
@@ -39,6 +34,8 @@ export const Avatar = ({
     />
   ) : (
     <div
+      {...rest}
+      ref={ref}
       className={clsx(
         `flex shrink-0 items-center justify-center rounded-[2px] bg-Dark-500`,
         className
@@ -58,4 +55,8 @@ export const Avatar = ({
       />
     </div>
   )
-}
+})
+
+Avatar.displayName = 'Avatar'
+
+export default Avatar
