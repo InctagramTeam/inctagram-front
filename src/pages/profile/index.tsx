@@ -22,7 +22,9 @@ const Profile = () => {
             />
           </div>
           <div className={`_Profile-statistics-block_ w-full max-w-[726px] pl-[38px] `}>
-            <Flex className={`Header_ flex w-full justify-between gap-[100px] p-[0_0_20px_38px]`}>
+            <Flex
+              className={`Header_ flex w-full items-center justify-between gap-[100px] p-[0_0_20px_38px]`}
+            >
               <Text asComponent="h2" variant="H1">
                 URL_Profile
               </Text>
@@ -33,13 +35,16 @@ const Profile = () => {
             <Flex className={`_Followers-block_ w-full max-w-[396px]`}>
               <ul className={`_Followers-block-list_ flex w-full gap-[100px]`}>
                 <li className={`flex flex-col items-center`}>
-                  <span>2 218</span> {t.pages.profile.following}
+                  <span className={`inline-block w-full text-left`}>2218</span>
+                  <span>{t.pages.profile.following}</span>
                 </li>
                 <li className={`flex flex-col items-center`}>
-                  <span>2218 </span> {t.pages.profile.followers}
+                  <span className={`inline-block w-full text-left`}>2218</span>
+                  <span>{t.pages.profile.followers}</span>
                 </li>
                 <li className={`flex flex-col items-center`}>
-                  <span>2 764</span> {t.pages.profile.publications}
+                  <span className={`inline-block w-full text-left`}>2764</span>
+                  <span>{t.pages.profile.publications}</span>
                 </li>
               </ul>
             </Flex>
