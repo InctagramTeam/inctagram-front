@@ -2,9 +2,7 @@ import { useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
-import { ForgotPasswordFormValues } from '@/feature/auth/model/utils/validators'
-import { ForgotPasswordForm } from '@/feature/auth/ui/forgot-password-form'
-import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
+import { ForgotPasswordFormValues, ForgotPasswordForm, SentEmailModal } from '@/feature'
 import {
   PageWrapper,
   RECAPTCHA_PUBLIK_KEY,

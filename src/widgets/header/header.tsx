@@ -1,5 +1,4 @@
-import { ReturnComponent } from '@/shared/types'
-import { Flex } from '@/shared/ui'
+import { ReturnComponent, Flex } from '@/shared'
 import { clsx } from 'clsx'
 
 import { memo } from 'react'

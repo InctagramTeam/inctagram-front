@@ -1,4 +1,4 @@
-import { NotificationProps } from '../notifications-dropdown-list'
+import { NotificationProps } from '@/widgets/header/ui'
 import { LG_BREAKPOINT, ReturnComponent, useResponsive, useTranslation } from '@/shared'
 import { getLanguages } from '@/feature/translate'
 import { memo } from 'react'

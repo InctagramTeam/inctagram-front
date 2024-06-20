@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 
-import { CreateNewPasswordFormValues } from '@/feature/auth/model/utils/validators'
-import { CreatePasswordForm } from '@/feature/auth/ui/create-password-form'
+import { CreateNewPasswordFormValues, CreatePasswordForm } from '@/feature'
 import { PageWrapper, ReturnComponent, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
 
 const CreateNewPassword = (): ReturnComponent => {

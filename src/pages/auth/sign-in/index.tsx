@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import { SignInFormValues } from '@/feature/auth/model/utils/validators'
+import { SignInFormValues, SignInForm } from '@/feature'
 import {
   EMPTY_STRING,
   getAuthLayout,
@@ -9,7 +9,6 @@ import {
   UseFormRef,
   useTranslation,
 } from '@/shared'
-import { SignInForm } from '@/feature/auth'
 
 const SignIn = (): ReturnComponent => {
   const { t } = useTranslation()

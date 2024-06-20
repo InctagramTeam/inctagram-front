@@ -1,13 +1,8 @@
 import { instance } from '@/shared/api/axios-instance'
-import axios, { AxiosResponse } from 'axios'
+import { AxiosResponse } from 'axios'
 
-import {
-  SignInRequest,
-  SignInResponse,
-  SignUpRequest,
-  SignUpResponse,
-} from '../model/types/auth.types'
-import { getContentType } from '../model/utils/get-content-type/get-content-type'
+import { SignInRequest, SignInResponse, SignUpRequest, SignUpResponse } from '@/feature/auth/model'
+import { getContentType } from '@/feature/auth/model'
 
 // Todo --> AuthService
 export const AuthService = {
