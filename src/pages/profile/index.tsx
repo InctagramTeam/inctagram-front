@@ -11,8 +11,8 @@ const Profile = () => {
     <PageWrapper title={'User | Instagram'} paddingBlock={'36px'}>
       <section className={`_Profile_ w-full pl-6`}>
         <div className={`_Profile-top_ flex w-full justify-start`}>
-          <div className={`_Avatar-photo_ h-[160px] w-[160px]`}>
-            <UserAvatar classname={`w-[200px] h-[200px]`} />
+          <div className={`_Avatar-photo_ min-h-[160px] max-w-[160px]`}>
+            <UserAvatar classname={`w-full min-w-[200px] min-h-[200px]`} />
           </div>
           <div className={`_Profile-statistics-block_ ml-[36px] w-full max-w-[744px] pl-[36px]`}>
             <Flex
@@ -61,10 +61,11 @@ const Profile = () => {
           </div>
         </div>
         <ul
-          className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-x-2  `}
+          className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-x-2`}
         >
-          <li className="photo-item max-w-[234px]">
+          <li className="photo-item max-w-[234px] overflow-hidden">
             <Image
+              className={`contain-content`}
               alt={`photo` ?? EMPTY_STRING}
               aria-hidden
               height={228}
@@ -72,8 +73,9 @@ const Profile = () => {
               width={234}
             />
           </li>
-          <li className="photo-item max-w-[234px]">
+          <li className="photo-item max-w-[234px] overflow-hidden">
             <Image
+              className={`contain-content`}
               alt={`photo` ?? EMPTY_STRING}
               aria-hidden
               height={228}
@@ -81,8 +83,9 @@ const Profile = () => {
               width={234}
             />
           </li>
-          <li className="photo-item max-w-[234px]">
+          <li className="photo-item max-w-[234px] overflow-hidden">
             <Image
+              className={`bg-cover`}
               alt={`photo` ?? EMPTY_STRING}
               aria-hidden
               height={228}
@@ -90,8 +93,9 @@ const Profile = () => {
               width={234}
             />
           </li>
-          <li className="photo-item max-w-[234px]">
+          <li className="photo-item max-w-[234px] overflow-hidden">
             <Image
+              className={`bg-cover`}
               alt={`photo` ?? EMPTY_STRING}
               aria-hidden
               height={228}
@@ -99,38 +103,42 @@ const Profile = () => {
               width={234}
             />
           </li>
-          <li className="photo-item max-w-[234px]">
+          <li className="photo-item max-w-[234px] overflow-hidden">
             <Image
+              className={`bg-cover`}
               alt={`photo` ?? EMPTY_STRING}
               aria-hidden
-              height={228}
+              height={72}
               src={`/man.png`}
               width={234}
             />
           </li>
-          <li className="photo-item max-w-[234px]">
+          <li className="photo-item max-w-[234px] overflow-hidden">
             <Image
+              className={`bg-cover`}
               alt={`photo` ?? EMPTY_STRING}
               aria-hidden
-              height={228}
+              height={72}
               src={`/man.png`}
               width={234}
             />
           </li>
-          <li className="photo-item max-w-[234px]">
+          <li className="photo-item max-w-[234px] overflow-hidden">
             <Image
+              className={`bg-cover`}
               alt={`photo` ?? EMPTY_STRING}
               aria-hidden
-              height={228}
+              height={72}
               src={`/man.png`}
               width={234}
             />
           </li>
-          <li className="photo-item max-w-[234px]">
+          <li className="photo-item -z-1 max-w-[234px] overflow-hidden">
             <Image
+              className={`bg-cover`}
               alt={`photo` ?? EMPTY_STRING}
               aria-hidden
-              height={228}
+              height={72}
               src={`/man.png`}
               width={234}
             />
