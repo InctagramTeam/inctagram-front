@@ -108,6 +108,28 @@ export const en = {
       google: 'Register with google',
       title: 'Sign Up',
     },
+    signIn: {
+      metaTitle: 'Sign In | Instagram',
+      metaDescription:
+        'Log in to your account to start using our services and receive exclusive benefits.',
+      title: 'Sign in',
+      link: 'Forgot Password',
+      question: 'Don’t have an account?',
+      github: 'Login with github',
+      google: 'Login with google',
+    },
+    profile: {
+      addProfilePhoto: 'Add a Profile Photo',
+      deletePhoto: 'Delete Photo',
+      deleteProfilePhoto: 'Are you sure you want to delete the photo?',
+      followers: 'Followers',
+      following: 'Following',
+      logOutConfirmation: 'Are you really want to log out of your account',
+      metaDescription:
+        'Discover detailed information about users, their interests, skills and experience.',
+      metaTitle: 'Profile',
+      publications: 'Publications',
+    },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',
       metaTitle: 'Congratulations | Instagram',
@@ -121,16 +143,7 @@ export const en = {
       title: 'Email verification link expired',
       text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
     },
-    signIn: {
-      metaTitle: 'Sign In | Instagram',
-      metaDescription:
-        'Log in to your account to start using our services and receive exclusive benefits.',
-      title: 'Sign in',
-      link: 'Forgot Password',
-      question: 'Don’t have an account?',
-      github: 'Login with github',
-      google: 'Login with google',
-    },
+
     createPassword: {
       metaTitle: 'Create new password | Instagram',
       metaDescription:

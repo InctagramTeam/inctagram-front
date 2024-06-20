@@ -101,6 +101,28 @@ export const ru: LocaleType = {
       google: 'Зарегистрироваться с помощью google',
       title: 'Регистрация',
     },
+    signIn: {
+      metaTitle: 'Вход | Instagram',
+      metaDescription:
+        'Войдите в учетную запись, чтобы начать пользоваться нашими услугами и получать эксклюзивные преимущества.',
+      title: 'Войти',
+      link: 'Забыл-(а) пароль',
+      question: 'Еще нет аккаунта?',
+      github: 'Войти с помощью github',
+      google: 'Войти с помощью google',
+    },
+    profile: {
+      addProfilePhoto: 'Добавить фото',
+      deletePhoto: 'Удалить фото',
+      deleteProfilePhoto: 'Вы уверены, что хотите удалить фотографию?',
+      followers: 'Подписчики',
+      following: 'Подписки',
+      logOutConfirmation: 'Вы действительно хотите выйти из своего аккаунта',
+      metaDescription:
+        'Откройте для себя подробную информацию о пользователях, их интересах, навыках и опыте.',
+      metaTitle: 'Профиль',
+      publications: 'Публикации',
+    },
     congratulations: {
       metaDescription: 'Поздравляем! Ваша почта была подтверждена',
       metaTitle: 'Поздравляем | Instagram',
@@ -114,16 +136,7 @@ export const ru: LocaleType = {
       title: 'Ссылка для подтверждения по электронной почте устарела',
       text: 'Похоже, срок действия ссылки для проверки истек. Не волнуйтесь, мы можем отправить ссылку еще раз',
     },
-    signIn: {
-      metaTitle: 'Вход | Instagram',
-      metaDescription:
-        'Войдите в учетную запись, чтобы начать пользоваться нашими услугами и получать эксклюзивные преимущества.',
-      title: 'Войти',
-      link: 'Забыл-(а) пароль',
-      question: 'Еще нет аккаунта?',
-      github: 'Войти с помощью github',
-      google: 'Войти с помощью google',
-    },
+
     createPassword: {
       metaTitle: 'Создание нового пароля | Instagram',
       metaDescription:
