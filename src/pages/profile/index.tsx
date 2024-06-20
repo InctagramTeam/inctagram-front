@@ -1,16 +1,16 @@
 import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import { Text } from '@/shared/ui/text'
 import Avatar from '@/shared/ui/avatar/avatar'
-import { Button, Flex, useTranslation } from '@/shared'
-import Link from 'next/link'
+import { Button, EMPTY_STRING, Flex, useTranslation } from '@/shared'
+import Image from 'next/image'
 
 const Profile = () => {
   const { t } = useTranslation()
 
   return (
     <PageWrapper title={'User | Instagram'} paddingBlock={'36px'}>
-      <div className={`_Profile_ w-full`}>
-        <div className={`_Profile-top_ ] flex w-full`}>
+      <section className={`_Profile_ w-full pl-6`}>
+        <div className={`_Profile-top_ flex w-full`}>
           <div className={`_Avatar-photo_ h-[160px] w-[160px]`}>
             {/* todo: not hardcode avatarUrl */}
             <Avatar
@@ -25,7 +25,7 @@ const Profile = () => {
             <Flex
               className={`Header_ flex w-full items-center justify-between gap-[100px] p-[0_0_20px_38px]`}
             >
-              <Text asComponent="h2" variant="H1">
+              <Text className={`title`} asComponent="h2" variant="H1">
                 URL_Profile
               </Text>
               <Button variant={'secondary'} className={`px-6 py-[6px]`}>
@@ -58,8 +58,8 @@ const Profile = () => {
                 exercitation ullamco
               </Text>
               <Text
-                asComponent={`span`}
-                className={`pl-1.5 text-Primary-500 underline`}
+                asComponent={`a`}
+                className={`pl-1.5 text-Primary-500 underline hover:cursor-pointer`}
                 variant={'regular_text_16'}
               >
                 laboris nisi ut aliquip ex ea commodo consequat.
@@ -67,11 +67,94 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className={`profile-bottom-gallery_ grid`}></div>
-      </div>
+        <ul
+          className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-x-2  `}
+        >
+          <li className="photo-item max-w-[234px]">
+            <Image
+              alt={`photo` ?? EMPTY_STRING}
+              aria-hidden
+              height={228}
+              src={`/man.png`}
+              width={234}
+            />
+          </li>
+          <li className="photo-item max-w-[234px]">
+            <Image
+              alt={`photo` ?? EMPTY_STRING}
+              aria-hidden
+              height={228}
+              src={`/man.png`}
+              width={234}
+            />
+          </li>
+          <li className="photo-item max-w-[234px]">
+            <Image
+              alt={`photo` ?? EMPTY_STRING}
+              aria-hidden
+              height={228}
+              src={`/man.png`}
+              width={234}
+            />
+          </li>
+          <li className="photo-item max-w-[234px]">
+            <Image
+              alt={`photo` ?? EMPTY_STRING}
+              aria-hidden
+              height={228}
+              src={`/man.png`}
+              width={234}
+            />
+          </li>
+          <li className="photo-item max-w-[234px]">
+            <Image
+              alt={`photo` ?? EMPTY_STRING}
+              aria-hidden
+              height={228}
+              src={`/man.png`}
+              width={234}
+            />
+          </li>
+          <li className="photo-item max-w-[234px]">
+            <Image
+              alt={`photo` ?? EMPTY_STRING}
+              aria-hidden
+              height={228}
+              src={`/man.png`}
+              width={234}
+            />
+          </li>
+          <li className="photo-item max-w-[234px]">
+            <Image
+              alt={`photo` ?? EMPTY_STRING}
+              aria-hidden
+              height={228}
+              src={`/man.png`}
+              width={234}
+            />
+          </li>
+          <li className="photo-item max-w-[234px]">
+            <Image
+              alt={`photo` ?? EMPTY_STRING}
+              aria-hidden
+              height={228}
+              src={`/man.png`}
+              width={234}
+            />
+          </li>
+        </ul>
+      </section>
     </PageWrapper>
   )
 }
+//  <Image
+//           alt={currentTextValue ?? EMPTY_STRING}
+//           aria-hidden
+//           className={classes.flag}
+//           height={24}
+//           src={`/flags/${currentValue}.png`}
+//           width={24}
+//         />
 
 Profile.getLayout = getBaseAppLayout
 export default Profile
