@@ -1,4 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from 'src/shared/ui/avatar/avatar'
+import { Avatar } from '@/shared/ui/avatar'
+import { AvatarFallback, AvatarImage } from '@/shared/ui/avatar/avatar'
 
 export const UserAvatar = ({ classname }: { classname?: string }) => {
   return (

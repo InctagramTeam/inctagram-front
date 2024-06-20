@@ -1,7 +1,7 @@
 import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
-import { UserAvatar } from './ui/user-avatar/user-avatar'
-import { ProfileFollowerInfo } from '@/pages/profile/ui/profile-followers-info/profile-follower-info'
-import { ProfilePhotos } from '@/pages/profile/ui/profile-photos/profile-photos'
+import { UserAvatar } from '@/pages/profile/my-profile/ui/user-avatar/user-avatar'
+import { ProfileFollowerInfo } from '@/pages/profile/my-profile/ui/profile-followers-info/profile-follower-info'
+import { ProfilePhotos } from '@/pages/profile/my-profile/ui/profile-photos/profile-photos'
 
 const Profile = () => {
   return (
