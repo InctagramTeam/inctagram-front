@@ -1,12 +1,8 @@
-import {
-  AuthButtons,
-  MobileDropdown,
-  NotificationProps,
-  NotificationsDropdown,
-} from '@/widgets/header/ui'
-import { Flex, LG_BREAKPOINT, ReturnComponent, useResponsive, useTranslation } from '@/shared'
-import { getLanguages, LangSelectSwitcher } from '@/feature/translate'
+import { NotificationProps } from '../notifications-dropdown-list'
+import { LG_BREAKPOINT, ReturnComponent, useResponsive, useTranslation } from '@/shared'
+import { getLanguages } from '@/feature/translate'
 import { memo } from 'react'
+import { HeaderMenuContent } from '../header-menu-content'
 
 type Props = {
   isAuth?: boolean
@@ -25,17 +21,14 @@ export const HeaderMenu = memo(({ isAuth, logout, notifications }: Props): Retur
   const sidebarItems = getLanguages(t)
 
   return (
-    <Flex gap={'40'}>
-      {isDesktop && <NotificationsDropdown notifications={notifications} />}
-
-      {/* Селект для смены языка в Арр */}
-      <LangSelectSwitcher width={width} sidebarItems={sidebarItems} />
-      {isDesktop && !isAuth && (
-        <Flex className={'flex-nowrap'} gap={'24'}>
-          <AuthButtons />
-        </Flex>
-      )}
-      {!isDesktop && <MobileDropdown logout={logout} />}
-    </Flex>
+    <HeaderMenuContent
+      isDesktop={isDesktop}
+      notifications={notifications}
+      sidebarItems={sidebarItems}
+      isAuth={isAuth}
+      logout={logout}
+      width={width}
+      t={t}
+    />
   )
 })

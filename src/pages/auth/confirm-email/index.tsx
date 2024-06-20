@@ -13,7 +13,7 @@ import {
 } from '@/shared'
 import { TimeManagementIllustration } from '@/shared/assets/illustrations'
 
-const EmailVerification = (): ReturnComponent => {
+const ConfirmEmail = (): ReturnComponent => {
   const { width } = useResponsive()
   const { t } = useTranslation()
 
@@ -54,5 +54,5 @@ const EmailVerification = (): ReturnComponent => {
   )
 }
 
-EmailVerification.getLayout = getAuthLayout
-export default EmailVerification
+ConfirmEmail.getLayout = getAuthLayout
+export default ConfirmEmail

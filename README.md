@@ -1,8 +1,12 @@
 ### Запуск проекта:
+1. Клонируйте репозиторий: `git clone https://github.com/InctagramTeam/inctagram-front`.
+2. Перейдите в каталог проекта: `cd inctagram`.
+3. Установите зависимости: `npm install`.
+4. Запустите сервер разработки: `npm run dev`.
 
-```
-- npm install - устанавливаем зависимости
-- npm run build:production - деплой проекта
+Приложение будет доступно по адресу `http://localhost:3000`.
+
+5. Откройте [http://localhost:3000](http://localhost:3000) в браузере, чтобы получить доступ к приложению.
 ```
 ---
 
@@ -12,6 +16,12 @@
 Проект написан в соответствии с методологией Feature sliced design (FSD)
 
 Ссылка на документацию - [feature sliced design] -> (https://feature-sliced.design/docs/get-started/tutorial)
+
+/app              
+├── /features     
+├── /pages        
+├── /shared     
+└── /widgets      
 
 Слои:
 - app - самый главный вышестоящий слой
@@ -68,3 +78,4 @@
 хотим контролировать и control. Нужен для случаев когда есть контролирующие элементы (инпут, чекбокс и тд.),
 которые не принимают в себя ref нативного элемента, например при использовании Radix компонента Checkbox.Root
 ```
+

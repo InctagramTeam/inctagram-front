@@ -1,5 +1,5 @@
 export { createPasswordSchema } from './create-password-schema'
-export type { CreatePasswordFormValues } from './create-password-schema'
+export type { CreateNewPasswordFormValues } from './create-password-schema'
 export type { ForgotPasswordFormValues } from './forgot-password-schema'
 export { forgotPasswordSchema } from './forgot-password-schema'
 export { signInSchema } from './sign-in-validation-schema'

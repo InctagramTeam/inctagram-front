@@ -2,7 +2,7 @@ import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle }
 import { useForm } from 'react-hook-form'
 
 import {
-  CreatePasswordFormValues,
+  CreateNewPasswordFormValues,
   createPasswordSchema,
 } from '@/feature/auth/model/utils/validators'
 import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
@@ -15,10 +15,13 @@ import { clsx } from 'clsx'
 type Props = {
   className?: string
   disabled?: boolean
-  onSubmit: (formData: CreatePasswordFormValues) => void
+  onSubmit: (formData: CreateNewPasswordFormValues) => void
 } & Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'>
 export const CreatePasswordForm = forwardRef(
-  (props: Props, methodsRef: Ref<UseFormRef<CreatePasswordFormValues> | null>): ReturnComponent => {
+  (
+    props: Props,
+    methodsRef: Ref<UseFormRef<CreateNewPasswordFormValues> | null>
+  ): ReturnComponent => {
     const { className, disabled, onSubmit, ...rest } = props
     const { locale, t } = useTranslation()
     const { width } = useResponsive()
@@ -41,7 +44,7 @@ export const CreatePasswordForm = forwardRef(
       reset,
       setError,
       setValue,
-    } = useForm<CreatePasswordFormValues>({
+    } = useForm<CreateNewPasswordFormValues>({
       defaultValues: {
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
@@ -72,7 +75,7 @@ export const CreatePasswordForm = forwardRef(
         </Text>
         <Flex direction={'column'} gap={'24'} mb={'7px'}>
           <ControlledInput
-            aria-describedby={'create-password-email-instructions'}
+            aria-describedby={'create-new-password-email-instructions'}
             aria-invalid={errors.password ? 'true' : 'false'}
             autoComplete={'new-password'}
             control={control}
@@ -100,7 +103,7 @@ export const CreatePasswordForm = forwardRef(
         <Text
           asComponent={'p'}
           className={'text-Light-900'}
-          id={'create-password-email-instructions'}
+          id={'create-new-password-email-instructions'}
           mb={'41px'}
           variant={'regular-text-14'}
         >

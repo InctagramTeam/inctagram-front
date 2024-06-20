@@ -10,9 +10,12 @@ import { ReturnComponent } from '@/shared'
 
 /** Общий Лайаут для всех страниц */
 export const BaseAppLayout: NextPage<PropsWithChildren> = ({ children }): ReturnComponent => {
+  /* const { data: meData } = useMeQuery() */ // авторизован ли я?
+  const isAuth = false
+
   return (
     <>
-      <Header />
+      <Header isAuth={isAuth} />
       <Sidebar />
       <Main>{children}</Main>
     </>

@@ -1,13 +1,15 @@
 import React, { useRef } from 'react'
 
-import { CreatePasswordFormValues } from '@/feature/auth/model/utils/validators'
+import { CreateNewPasswordFormValues } from '@/feature/auth/model/utils/validators'
 import { CreatePasswordForm } from '@/feature/auth/ui/create-password-form'
 import { PageWrapper, ReturnComponent, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
 
-const CreatePassword = (): ReturnComponent => {
+const CreateNewPassword = (): ReturnComponent => {
   const { t } = useTranslation()
-  const ref = useRef<UseFormRef<CreatePasswordFormValues>>(null)
-  const handleSubmitForm = (formData: CreatePasswordFormValues) => {}
+
+  const ref = useRef<UseFormRef<CreateNewPasswordFormValues>>(null)
+
+  const handleSubmitForm = (formData: CreateNewPasswordFormValues) => {}
 
   return (
     <PageWrapper
@@ -20,5 +22,5 @@ const CreatePassword = (): ReturnComponent => {
   )
 }
 
-CreatePassword.getLayout = getAuthLayout
-export default CreatePassword
+CreateNewPassword.getLayout = getAuthLayout
+export default CreateNewPassword
