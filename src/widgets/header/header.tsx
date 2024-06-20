@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { ReturnComponent } from '@/shared/types'
-import { Flex } from '@/shared/ui'
+import { ReturnComponent, Flex } from '@/shared'
 import { clsx } from 'clsx'
 
 import { HeaderMenu, Logo, NotificationProps } from './ui'

@@ -1,16 +1,12 @@
 import * as React from 'react'
 
-import { LG_BREAKPOINT } from '@/shared/constants'
-import { LangSelectSwitcher, useResponsive } from '@/shared/lib'
-import { ReturnComponent } from '@/shared/types'
-import { Flex } from '@/shared/ui/flex'
+import { LangSelectSwitcher, useResponsive, LG_BREAKPOINT, ReturnComponent, Flex } from '@/shared'
 import {
   AuthButtons,
   MobileDropdown,
   NotificationProps,
   NotificationsDropdown,
 } from '@/widgets/header/ui'
-import { useThrottle } from '@/shared/lib/utils/throttle'
 
 type Props = {
   isAuth?: boolean
@@ -19,8 +15,6 @@ type Props = {
 }
 export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComponent => {
   const { width } = useResponsive()
-
-  console.log('HeaderMenu')
 
   if (width === null) {
     return null
@@ -31,7 +25,6 @@ export const HeaderMenu = ({ isAuth, logout, notifications }: Props): ReturnComp
   return (
     <Flex gap={'40'}>
       {isDesktop && <NotificationsDropdown notifications={notifications} />}
-
       {/* Селект для смены языка в Арр */}
       <LangSelectSwitcher />
       {isDesktop && !isAuth && (
