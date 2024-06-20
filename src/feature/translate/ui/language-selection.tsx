@@ -5,11 +5,18 @@ import { LanguageSelectionList, cn, useLangSwitcher, useResponsive } from '@/sha
 import { Select, SelectContent } from '@/shared/ui'
 
 import { LanguageSelectionTrigger } from './'
+import { Nullable } from '@/shared'
+import { Language } from '@/feature/translate/model/helpers/get-languages'
+import { memo } from 'react'
 
-export const LanguageSelection = () => {
+type Props = {
+  sidebarItems: Language[]
+  width: Nullable<number>
+}
+
+export const LanguageSelection = memo(({ width, sidebarItems }: Props) => {
   const { changeLocale, defaultLocale, locale } = useLangSwitcher()
 
-  const { width } = useResponsive()
   const isDesktop = width && width > MD_BREAKPOINT
   const isMobile = !isDesktop
 
@@ -35,8 +42,8 @@ export const LanguageSelection = () => {
     <Select onValueChange={changeLocale} value={value}>
       <LanguageSelectionTrigger currentValue={value} />
       <SelectContent className={classes.content}>
-        <LanguageSelectionList />
+        <LanguageSelectionList width={width} sidebarItems={sidebarItems} />
       </SelectContent>
     </Select>
   )
-}
+})

@@ -6,5 +6,5 @@ export {
   Translate,
   getLanguages,
   useLangSwitcher,
-} from './translate'
-export { cn, emailSchema, mergeRefs, passwordSchema, getIcon, debounce, throttle } from './utils'
+} from '../../feature/translate'
+export { cn, debounce, emailSchema, getIcon, mergeRefs, passwordSchema, throttle } from './utils'

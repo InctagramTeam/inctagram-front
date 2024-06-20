@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { memo } from 'react'
 
 import { EMPTY_STRING, MD_BREAKPOINT } from '@/shared/constants'
 import { cn, getLanguages, useResponsive, useTranslation } from '@/shared/lib'
@@ -11,7 +12,7 @@ type Props = {
   currentValue?: string
 }
 
-export const LanguageSelectionTrigger = ({ currentValue }: Props): ReturnComponent => {
+export const LanguageSelectionTrigger = memo(({ currentValue }: Props): ReturnComponent => {
   const { width } = useResponsive()
   const { t } = useTranslation()
   const isDesktop = width && width > MD_BREAKPOINT
@@ -52,4 +53,4 @@ export const LanguageSelectionTrigger = ({ currentValue }: Props): ReturnCompone
       <ChevronIcon aria-hidden className={classes.icon} />
     </SelectTrigger>
   )
-}
+})

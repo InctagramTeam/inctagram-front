@@ -1,8 +1,8 @@
 'use client'
 import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useId } from 'react'
 
-import CheckIcon from '@/shared/assets/icons/CheckIcon'
 import { EMPTY_STRING, ReturnComponent } from '@/shared'
+import CheckIcon from '@/shared/assets/icons/CheckIcon'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import * as LabelRadix from '@radix-ui/react-label'
 import clsx from 'clsx'

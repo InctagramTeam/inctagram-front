@@ -56,7 +56,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
       <TooltipProvider>
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
-            {/*@ts-expect-error TS2322*/}
+            {/* @ts-expect-error TS2322 */}
             <Button
               aria-label={onlyIcon ? name : EMPTY_STRING}
               asComponent={asComponent || 'button'}

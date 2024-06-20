@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import { throttle } from '@/shared'
 
 export const useResponsive = (delay = 1000) => {
@@ -11,6 +12,7 @@ export const useResponsive = (delay = 1000) => {
     }, delay)
 
     window.addEventListener('resize', throttledHandleResize)
+
     return () => window.removeEventListener('resize', throttledHandleResize)
   }, [])
 

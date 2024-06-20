@@ -29,24 +29,23 @@ export const PageWrapper = ({
   title,
   ...rest
 }: Props): ReturnComponent => {
-  const classesPage = cn(`flex justify-center max-w-[1280px] w-full`, className)
-
   const styles: CSSProperties = {
     paddingBlock: paddingBlock,
     ...style,
   }
 
   return (
-    <section
+    <div
       className={cn(
-        `_Section_ mx-auto min-h-full w-full max-w-[1280px] p-[0_15px] focus-visible:outline-none`,
-        classesPage
+        `_Section_ mx-auto flex min-h-full w-full max-w-[1280px] justify-center p-[0_15px] focus-visible:outline-none`,
+        className,
+        paddingBlock
       )}
       style={styles}
       {...rest}
     >
       <HeadMeta description={description} favicon={instagram.src} title={title} />
       {children}
-    </section>
+    </div>
   )
 }
