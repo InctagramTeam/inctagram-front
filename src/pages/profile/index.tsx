@@ -1,8 +1,8 @@
 import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import { Text } from '@/shared/ui/text'
-import Avatar from '@/shared/ui/avatar/avatar'
 import { Button, EMPTY_STRING, Flex, useTranslation } from '@/shared'
 import Image from 'next/image'
+import { UserAvatar } from '@/entities/ui/user'
 
 const Profile = () => {
   const { t } = useTranslation()
@@ -10,20 +10,13 @@ const Profile = () => {
   return (
     <PageWrapper title={'User | Instagram'} paddingBlock={'36px'}>
       <section className={`_Profile_ w-full pl-6`}>
-        <div className={`_Profile-top_ flex w-full`}>
+        <div className={`_Profile-top_ flex w-full justify-start`}>
           <div className={`_Avatar-photo_ h-[160px] w-[160px]`}>
-            {/* todo: not hardcode avatarUrl */}
-            <Avatar
-              avatarUrl={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAgfxEvMOnkyKFQ4qc5Po77Rmoi99154CXJ9LyMonLJ7TG72Vpcj07b2B9Nw1UxWtRJcc&usqp=CAU`}
-              circle
-              /* todo: styles img */
-              className={`object-cover]`}
-              wrapperSize={200}
-            />
+            <UserAvatar classname={`w-[200px] h-[200px]`} />
           </div>
-          <div className={`_Profile-statistics-block_ w-full max-w-[726px] pl-[38px] `}>
+          <div className={`_Profile-statistics-block_ ml-[36px] w-full max-w-[744px] pl-[36px]`}>
             <Flex
-              className={`Header_ flex w-full items-center justify-between gap-[100px] p-[0_0_20px_38px]`}
+              className={`Header_ flex w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}
             >
               <Text className={`title`} asComponent="h2" variant="H1">
                 URL_Profile

@@ -1,62 +1,46 @@
-import React, { CSSProperties, forwardRef, useState } from 'react'
-import clsx from 'clsx'
-import Image from 'next/image'
-import { Nullable, ReturnComponent } from '@/shared'
-import ImageIcon from '@/shared/assets/icons/ImageIcon'
+'use client'
 
-type Props = {
-  avatarUrl?: Nullable<string>
-  circle?: boolean
-  className?: string
-  iconSize?: number
-  style?: CSSProperties
-  wrapperSize?: number
-}
+import * as React from 'react'
+import * as AvatarPrimitive from '@radix-ui/react-avatar'
+import { cn } from '@/shared'
 
-const Avatar = forwardRef<HTMLDivElement, Props>((props, ref): ReturnComponent => {
-  const { avatarUrl, circle, className, iconSize = 48, style, wrapperSize = 204, ...rest } = props
+const Avatar = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Root
+    ref={ref}
+    className={cn('relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full', className)}
+    {...props}
+  />
+))
+Avatar.displayName = AvatarPrimitive.Root.displayName
 
-  const [imageError, setImageError] = useState(false)
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Image
+    ref={ref}
+    className={cn('aspect-square h-full w-full', className)}
+    {...props}
+  />
+))
+AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
-  return avatarUrl && !imageError ? (
-    <Image
-      alt="avatar"
-      className={``}
-      height={wrapperSize}
-      onError={() => setImageError(true)}
-      priority
-      src={avatarUrl}
-      style={{
-        borderRadius: circle ? '50%' : '',
-        ...style,
-      }}
-      width={wrapperSize}
-    />
-  ) : (
-    <div
-      {...rest}
-      ref={ref}
-      className={clsx(
-        `flex shrink-0 items-center justify-center rounded-[2px] bg-Dark-500`,
-        className
-      )}
-      style={{
-        borderRadius: circle ? '50%' : '',
-        height: `${wrapperSize}px`,
-        width: `${wrapperSize}px`,
-        ...style,
-      }}
-    >
-      <ImageIcon
-        style={{
-          height: `${iconSize}px`,
-          width: `${iconSize}px`,
-        }}
-      />
-    </div>
-  )
-})
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Fallback
+    ref={ref}
+    className={cn(
+      'flex h-full w-full items-center justify-center rounded-full bg-muted',
+      className
+    )}
+    {...props}
+  />
+))
+AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
 
-Avatar.displayName = 'Avatar'
-
-export default Avatar
+export { Avatar, AvatarImage, AvatarFallback }
