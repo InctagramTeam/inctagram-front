@@ -1,18 +1,21 @@
 import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import { Text } from '@/shared/ui/text'
 import Avatar from '@/shared/ui/avatar/avatar'
-import { Button, Flex } from '@/shared'
+import { Button, Flex, useTranslation } from '@/shared'
 
 const Profile = () => {
+  const { t } = useTranslation()
+
   return (
     <PageWrapper title={'User | Instagram'} paddingBlock={'36px'}>
       <div className={`_Profile_ w-full`}>
         <div className={`_Profile-top_ ] flex w-full`}>
           <div className={`_Avatar-photo_ h-[160px] w-[160px]`}>
-            {/* todo work style images */}
+            {/* todo: not hardcode avatarUrl */}
             <Avatar
               avatarUrl={`https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAgfxEvMOnkyKFQ4qc5Po77Rmoi99154CXJ9LyMonLJ7TG72Vpcj07b2B9Nw1UxWtRJcc&usqp=CAU`}
               circle
+              /* todo: styles img */
               className={`object-cover]`}
               wrapperSize={200}
             />
@@ -26,19 +29,18 @@ const Profile = () => {
                 Profile Settings
               </Button>
             </Flex>
-            <Flex className={`_Followers-block_ flex w-full max-w-[396px] gap-[100px]`}>
-              <div>
-                <p>2218</p>
-                <p>Following</p>
-              </div>
-              <div>
-                <p>2358</p>
-                <p>Followers</p>
-              </div>
-              <div>
-                <p>2764</p>
-                <p>Publications</p>
-              </div>
+            <Flex className={`_Followers-block_ w-full max-w-[396px]`}>
+              <ul className={`flex w-full gap-[100px]`}>
+                <li className={`flex flex-col items-center`}>
+                  <span>2 218</span> {t.pages.profile.following}
+                </li>
+                <li className={`flex flex-col items-center`}>
+                  <span>2218 </span> {t.pages.profile.followers}
+                </li>
+                <li className={`flex flex-col items-center`}>
+                  <span>2 764</span> {t.pages.profile.publications}
+                </li>
+              </ul>
             </Flex>
             <p className={`_Profile-statistics-block_description_ pb-[53px] pt-[23px]`}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
