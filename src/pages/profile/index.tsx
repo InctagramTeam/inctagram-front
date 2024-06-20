@@ -1,6 +1,6 @@
 import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import { Text } from '@/shared/ui/text'
-import { AppRoutes, Button, EMPTY_STRING, Flex, useTranslation } from '@/shared'
+import { Button, EMPTY_STRING, Flex, useTranslation } from '@/shared'
 import Image from 'next/image'
 import { UserAvatar } from '@/entities/ui/user'
 import Link from 'next/link'
@@ -159,14 +159,6 @@ const Profile = () => {
     </PageWrapper>
   )
 }
-//  <Image
-//           alt={currentTextValue ?? EMPTY_STRING}
-//           aria-hidden
-//           className={classes.flag}
-//           height={24}
-//           src={`/flags/${currentValue}.png`}
-//           width={24}
-//         />
 
 Profile.getLayout = getBaseAppLayout
 export default Profile
