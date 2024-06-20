@@ -1,8 +1,9 @@
 import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import { Text } from '@/shared/ui/text'
-import { Button, EMPTY_STRING, Flex, useTranslation } from '@/shared'
+import { AppRoutes, Button, EMPTY_STRING, Flex, useTranslation } from '@/shared'
 import Image from 'next/image'
 import { UserAvatar } from '@/entities/ui/user'
+import Link from 'next/link'
 
 const Profile = () => {
   const { t } = useTranslation()
@@ -21,7 +22,17 @@ const Profile = () => {
               <Text className={`title`} asComponent="h2" variant="H1">
                 URL_Profile
               </Text>
-              <Button variant={'secondary'} className={`px-6 py-[6px]`}>
+              <Button
+                href={
+                  {
+                    // todo: данные с сервера для редиректа на страницу настроек конкретного профиля
+                    // pathname: AppRoutes.PROFILE + `/${data?.id}/settings`,
+                  }
+                }
+                asComponent={Link}
+                variant={'secondary'}
+                className={`px-6 py-[6px]`}
+              >
                 Profile Settings
               </Button>
             </Flex>
