@@ -1,19 +1,19 @@
 import * as React from 'react'
 import { memo } from 'react'
 
+import { Language } from '@/feature/translate/model/helpers/get-languages'
+import { Nullable } from '@/shared'
 import { EMPTY_STRING, MD_BREAKPOINT } from '@/shared/constants'
 import { cn } from '@/shared/lib'
 import { SelectItem } from '@/shared/ui'
 import Image from 'next/image'
-import { Nullable } from '@/shared'
-import { Language } from '@/feature/translate/model/helpers/get-languages'
 
 type Props = {
   sidebarItems: Language[]
   width: Nullable<number>
 }
 
-export const LanguageSelectionList = memo(({ width, sidebarItems }: Props) => {
+export const LanguageSelectionList = memo(({ sidebarItems, width }: Props) => {
   const isDesktop = width && width > MD_BREAKPOINT
   const isMobile = !isDesktop
 
@@ -34,11 +34,11 @@ export const LanguageSelectionList = memo(({ width, sidebarItems }: Props) => {
         <SelectItem className={classes.item} key={item.value} {...item}>
           <div className={classes.itemInner}>
             <Image
-              priority
               alt={item.textValue ?? EMPTY_STRING}
               aria-hidden
               className={classes.flag}
               height={20}
+              priority
               src={`/flags/${item.value}.png`}
               width={20}
             />

@@ -7,13 +7,16 @@ import { cn } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { NavigationElement } from '@/shared/ui'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
+
 import { useBreakpointMode } from '../model/hooks/use-breakpoin-mode'
 
 export const Sidebar = (): ReturnComponent => {
-  const { width, isCollapsed, t, mobile, desktop, onlyIcons, mobileSidebarLinks, sidebarLinks } =
+  const { desktop, isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t, width } =
     useBreakpointMode()
 
-  if (width === null) return null
+  if (width === null) {
+    return null
+  }
 
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
@@ -47,7 +50,9 @@ export const Sidebar = (): ReturnComponent => {
       )
     }
 
-    if (mobile) return <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
+    if (mobile) {
+      return <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
+    }
 
     return (
       <>

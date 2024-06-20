@@ -1,84 +1,84 @@
-import Image from 'next/image'
 import { EMPTY_STRING } from '@/shared'
+import Image from 'next/image'
 
 export const ProfilePhotos = () => {
   return (
     <>
-      <li className="photo-item max-w-[234px] overflow-hidden">
+      <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
+          alt={`photo` ?? EMPTY_STRING}
+          aria-hidden
           className={`contain-content`}
-          alt={`photo` ?? EMPTY_STRING}
-          aria-hidden
           height={228}
           src={`/man.png`}
           width={234}
         />
       </li>
-      <li className="photo-item max-w-[234px] overflow-hidden">
+      <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
+          alt={`photo` ?? EMPTY_STRING}
+          aria-hidden
           className={`contain-content`}
-          alt={`photo` ?? EMPTY_STRING}
-          aria-hidden
           height={228}
           src={`/man.png`}
           width={234}
         />
       </li>
-      <li className="photo-item max-w-[234px] overflow-hidden">
+      <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
-          className={`bg-cover`}
           alt={`photo` ?? EMPTY_STRING}
           aria-hidden
+          className={`bg-cover`}
           height={228}
           src={`/man.png`}
           width={234}
         />
       </li>
-      <li className="photo-item max-w-[234px] overflow-hidden">
+      <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
-          className={`bg-cover`}
           alt={`photo` ?? EMPTY_STRING}
           aria-hidden
+          className={`bg-cover`}
           height={228}
           src={`/man.png`}
           width={234}
         />
       </li>
-      <li className="photo-item max-w-[234px] overflow-hidden">
+      <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
-          className={`bg-cover`}
           alt={`photo` ?? EMPTY_STRING}
           aria-hidden
+          className={`bg-cover`}
           height={72}
           src={`/man.png`}
           width={234}
         />
       </li>
-      <li className="photo-item max-w-[234px] overflow-hidden">
+      <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
-          className={`bg-cover`}
           alt={`photo` ?? EMPTY_STRING}
           aria-hidden
+          className={`bg-cover`}
           height={72}
           src={`/man.png`}
           width={234}
         />
       </li>
-      <li className="photo-item max-w-[234px] overflow-hidden">
+      <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
-          className={`bg-cover`}
           alt={`photo` ?? EMPTY_STRING}
           aria-hidden
+          className={`bg-cover`}
           height={72}
           src={`/man.png`}
           width={234}
         />
       </li>
-      <li className="photo-item -z-1 max-w-[234px] overflow-hidden">
+      <li className={'photo-item -z-1 max-w-[234px] overflow-hidden'}>
         <Image
-          className={`bg-cover`}
           alt={`photo` ?? EMPTY_STRING}
           aria-hidden
+          className={`bg-cover`}
           height={72}
           src={`/man.png`}
           width={234}

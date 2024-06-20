@@ -1,9 +1,10 @@
 import { PropsWithChildren, ReactElement } from 'react'
 
-import { LayoutContextProvider } from '../layout-context'
 import { Header } from '@/widgets/header'
 import { Main } from '@/widgets/main/main'
+
 import { ReturnComponent } from '../../types'
+import { LayoutContextProvider } from '../layout-context'
 
 type Props = PropsWithChildren
 

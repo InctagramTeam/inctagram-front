@@ -1,20 +1,20 @@
 import * as React from 'react'
+import { memo } from 'react'
 
+import { Language } from '@/feature/translate/model/helpers/get-languages'
+import { Nullable } from '@/shared'
 import { MD_BREAKPOINT } from '@/shared/constants'
 import { LanguageSelectionList, cn, useLangSwitcher, useResponsive } from '@/shared/lib'
 import { Select, SelectContent } from '@/shared/ui'
 
 import { LanguageSelectionTrigger } from './'
-import { Nullable } from '@/shared'
-import { Language } from '@/feature/translate/model/helpers/get-languages'
-import { memo } from 'react'
 
 type Props = {
   sidebarItems: Language[]
   width: Nullable<number>
 }
 
-export const LanguageSelection = memo(({ width, sidebarItems }: Props) => {
+export const LanguageSelection = memo(({ sidebarItems, width }: Props) => {
   const { changeLocale, defaultLocale, locale } = useLangSwitcher()
 
   const isDesktop = width && width > MD_BREAKPOINT
@@ -42,7 +42,7 @@ export const LanguageSelection = memo(({ width, sidebarItems }: Props) => {
     <Select onValueChange={changeLocale} value={value}>
       <LanguageSelectionTrigger currentValue={value} />
       <SelectContent className={classes.content}>
-        <LanguageSelectionList width={width} sidebarItems={sidebarItems} />
+        <LanguageSelectionList sidebarItems={sidebarItems} width={width} />
       </SelectContent>
     </Select>
   )

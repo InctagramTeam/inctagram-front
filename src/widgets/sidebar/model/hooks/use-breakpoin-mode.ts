@@ -21,13 +21,13 @@ export const useBreakpointMode = () => {
   const sidebarLinks = getSidebarLinks(t)
 
   return {
-    width,
-    isCollapsed,
-    t,
-    mobile,
     desktop,
-    onlyIcons,
+    isCollapsed,
+    mobile,
     mobileSidebarLinks,
+    onlyIcons,
     sidebarLinks,
+    t,
+    width,
   }
 }

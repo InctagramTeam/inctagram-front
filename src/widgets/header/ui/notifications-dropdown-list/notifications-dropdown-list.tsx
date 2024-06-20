@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { memo, ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 

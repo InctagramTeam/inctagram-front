@@ -143,7 +143,6 @@ export const en = {
       title: 'Email verification link expired',
       text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
     },
-
     createPassword: {
       metaTitle: 'Create new password | Instagram',
       metaDescription:
@@ -158,6 +157,17 @@ export const en = {
       title: 'Forgot Password',
       hint: 'Enter your email address and we will send you further instructions ',
       sent: 'The link has been sent by email. If you don’t receive an email send link again',
+    },
+    privacyPolice: {
+      metaDescription:
+        'Please read our Privacy Policy to learn how we collect, use and protect your personal information. We are committed to keeping your data secure and upholding your right to privacy.',
+      metaTitle: 'Privacy Policy | Instagram',
+    },
+    termsOfService: {
+      metaDescription:
+        'Please review our Terms of Service to understand your rights and responsibilities when using our services. We are committed to transparency and fair dealings so that' +
+        ' you can use our site with confidence.',
+      metaTitle: 'Terms of service | Instagram',
     },
   },
   tabs: {

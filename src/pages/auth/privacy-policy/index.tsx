@@ -1,8 +1,14 @@
-import { PageWrapper, getAuthLayout } from '@/shared'
+import { PageWrapper, getAuthLayout, useTranslation } from '@/shared'
 
 const PrivacyPolicy = () => {
+  const { t } = useTranslation()
+
   return (
-    <PageWrapper paddingBlock={'72px'} title={'PrivacyPolicy | Instagram'}>
+    <PageWrapper
+      description={t.pages.privacyPolice.metaDescription}
+      paddingBlock={'72px'}
+      title={t.pages.privacyPolice.metaTitle}
+    >
       <h1>PrivacyPolicy</h1>
     </PageWrapper>
   )

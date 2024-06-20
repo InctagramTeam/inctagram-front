@@ -182,6 +182,8 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
       gap && gapClasses[gap],
     ]
 
+    console.log('flex')
+
     return (
       <div
         {...rest}
@@ -196,4 +198,5 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
 )
 
 Flex.displayName = 'Flex'
+
 export { Flex }
