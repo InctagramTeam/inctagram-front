@@ -1,12 +1,12 @@
 import { PropsWithChildren, ReactElement } from 'react'
 
+import { ReturnComponent } from '@/shared'
 import { Header } from '@/widgets/header'
 import { Main } from '@/widgets/main/main'
 import { Sidebar } from '@/widgets/sidebar'
 import { NextPage } from 'next'
 
 import { LayoutContextProvider } from './layout-context/layout-context'
-import { ReturnComponent } from '@/shared'
 
 /** Общий Лайаут для всех страниц */
 export const BaseAppLayout: NextPage<PropsWithChildren> = ({ children }): ReturnComponent => {

@@ -1,7 +1,9 @@
-import { NotificationProps } from '@/widgets/header/ui'
-import { LG_BREAKPOINT, ReturnComponent, useResponsive, useTranslation } from '@/shared'
-import { getLanguages } from '@/feature/translate'
 import { memo } from 'react'
+
+import { getLanguages } from '@/feature/translate'
+import { LG_BREAKPOINT, ReturnComponent, useResponsive, useTranslation } from '@/shared'
+import { NotificationProps } from '@/widgets/header/ui'
+
 import { HeaderMenuContent } from '../header-menu-content'
 
 type Props = {
@@ -22,13 +24,13 @@ export const HeaderMenu = memo(({ isAuth, logout, notifications }: Props): Retur
 
   return (
     <HeaderMenuContent
+      isAuth={isAuth}
       isDesktop={isDesktop}
+      logout={logout}
       notifications={notifications}
       sidebarItems={sidebarItems}
-      isAuth={isAuth}
-      logout={logout}
-      width={width}
       t={t}
+      width={width}
     />
   )
 })

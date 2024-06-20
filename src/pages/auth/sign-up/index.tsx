@@ -1,13 +1,13 @@
 'use client'
 import { useRef, useState } from 'react'
 
-import { SignUpFormValues, SignUpForm } from '@/feature'
+import { SignUpForm, SignUpFormValues } from '@/feature'
 import {
   EMPTY_STRING,
-  getAuthLayout,
   PageWrapper,
   ReturnComponent,
   UseFormRef,
+  getAuthLayout,
   useTranslation,
 } from '@/shared'
 import dynamic from 'next/dynamic'

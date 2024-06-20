@@ -5,9 +5,9 @@ const PrivacyPolicy = () => {
 
   return (
     <PageWrapper
+      description={t.pages.privacyPolice.metaDescription}
       paddingBlock={'72px'}
       title={t.pages.privacyPolice.metaTitle}
-      description={t.pages.privacyPolice.metaDescription}
     >
       <h1>PrivacyPolicy</h1>
     </PageWrapper>

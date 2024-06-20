@@ -1,5 +1,6 @@
-import { cn } from '@/shared'
 import { HTMLAttributes } from 'react'
+
+import { cn } from '@/shared'
 
 function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return <div {...props} className={cn('animate-pulse rounded-md bg-muted', className)} />

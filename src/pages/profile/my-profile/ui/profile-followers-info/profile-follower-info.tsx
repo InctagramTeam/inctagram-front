@@ -1,4 +1,5 @@
 import { useTranslation } from '@/shared'
+
 import { FollowersInfoHeader } from './followers-info-header/followers-info-header'
 import { ProfileInfoDescription } from './profile-info-description/profile-info-description'
 

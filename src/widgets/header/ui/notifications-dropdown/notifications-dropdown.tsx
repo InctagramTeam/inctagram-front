@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { memo } from 'react'
 
 import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
 import { ELLIPSIS_STRING } from '@/shared/constants/base'
@@ -8,7 +9,6 @@ import { Button } from '@/shared/ui/button'
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { maxShowNumberNotifications } from '@/widgets/header/model/constants/base'
 import { NotificationProps, NotificationsDropdownList } from '@/widgets/header/ui'
-import { memo } from 'react'
 
 export type NotificationsDropdownProps = {
   alternativeText?: string

@@ -23,9 +23,9 @@ export const Logo = (): ReturnComponent => {
         alt={t.layout.logo}
         className={classes.img}
         height={36}
+        priority
         src={logo}
         width={128}
-        priority
       />
     </Link>
   )

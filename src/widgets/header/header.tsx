@@ -1,8 +1,8 @@
-import { ReturnComponent, Flex } from '@/shared'
-import { clsx } from 'clsx'
-
 import { memo } from 'react'
+
+import { Flex, ReturnComponent } from '@/shared'
 import { HeaderMenu, Logo, NotificationProps } from '@/widgets/header/ui'
+import { clsx } from 'clsx'
 
 type Props = {
   className?: string

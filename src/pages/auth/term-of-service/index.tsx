@@ -5,9 +5,9 @@ const TermOfService = () => {
 
   return (
     <PageWrapper
+      description={t.pages.termsOfService.metaDescription}
       paddingBlock={'72px'}
       title={t.pages.termsOfService.metaTitle}
-      description={t.pages.termsOfService.metaDescription}
     >
       <h1>TermOfService</h1>
     </PageWrapper>
