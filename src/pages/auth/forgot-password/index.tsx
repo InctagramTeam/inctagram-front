@@ -20,7 +20,7 @@ type ForgotPasswordFormRef = UseFormRef<
   }
 >
 
-const ForgotPassword = () => {
+const ForgotPasswordPage = () => {
   const { t } = useTranslation()
   const [open, setOpen] = useState(true)
   const ref = useRef<ForgotPasswordFormRef>(null)
@@ -70,5 +70,5 @@ const ForgotPassword = () => {
   )
 }
 
-ForgotPassword.getLayout = getAuthLayout
-export default ForgotPassword
+ForgotPasswordPage.getLayout = getAuthLayout
+export default ForgotPasswordPage

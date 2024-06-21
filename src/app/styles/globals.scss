@@ -136,3 +136,14 @@
     --ring: #d3d3d3;
   }
 }
+
+// Custom global my tailwind classes:
+
+/** Центрирует блок -> пишем короткий класс CENTER вместо: flex justify-center items-center
+- пример: className={'CENTER mx-auto p-[0_15px] focus-visible:outline-none'}
+ */
+@layer components {
+  .CENTER {
+    @apply flex items-center justify-center;
+  }
+}

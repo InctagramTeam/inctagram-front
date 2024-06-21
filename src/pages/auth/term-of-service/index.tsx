@@ -1,6 +1,6 @@
 import { PageWrapper, getAuthLayout, useTranslation } from '@/shared'
 
-const TermOfService = () => {
+const TermOfServicePage = () => {
   const { t } = useTranslation()
 
   return (
@@ -14,5 +14,5 @@ const TermOfService = () => {
   )
 }
 
-TermOfService.getLayout = getAuthLayout
-export default TermOfService
+TermOfServicePage.getLayout = getAuthLayout
+export default TermOfServicePage
