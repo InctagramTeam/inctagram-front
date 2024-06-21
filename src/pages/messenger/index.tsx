@@ -1,6 +1,6 @@
 import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
 
-const Messenger = () => {
+const MessengerPage = () => {
   return (
     <PageWrapper title={'Messenger | Instagram'}>
       <h1>Messenger</h1>
@@ -8,5 +8,5 @@ const Messenger = () => {
   )
 }
 
-Messenger.getLayout = getBaseAppLayout
-export default Messenger
+MessengerPage.getLayout = getBaseAppLayout
+export default MessengerPage

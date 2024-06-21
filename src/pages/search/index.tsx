@@ -1,6 +1,6 @@
 import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
 
-const Search = () => {
+const SearchPage = () => {
   return (
     <PageWrapper title={'Search | Instagram'}>
       <h1>Search</h1>
@@ -8,5 +8,5 @@ const Search = () => {
   )
 }
 
-Search.getLayout = getBaseAppLayout
-export default Search
+SearchPage.getLayout = getBaseAppLayout
+export default SearchPage

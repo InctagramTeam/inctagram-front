@@ -1,6 +1,6 @@
 import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
 
-const Statistics = () => {
+const StatisticPage = () => {
   return (
     <PageWrapper title={'Statistics | Instagram'}>
       <h1>Statistics</h1>
@@ -8,5 +8,5 @@ const Statistics = () => {
   )
 }
 
-Statistics.getLayout = getBaseAppLayout
-export default Statistics
+StatisticPage.getLayout = getBaseAppLayout
+export default StatisticPage
