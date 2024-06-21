@@ -175,6 +175,8 @@ export const en = {
       metaTitle: 'Search users | Instagram',
       title: 'Search',
       requests: 'Recent requests',
+      empty: 'Oops! This place looks empty!',
+      noRequests: 'No recent requests',
     },
   },
   tabs: {

@@ -167,6 +167,8 @@ export const ru: LocaleType = {
       metaTitle: 'Поиск пользователей | Instagram',
       title: 'Поиск',
       requests: 'Последние запросы',
+      empty: 'Упс! Это место выглядит пустым!',
+      noRequests: 'Нет недавних запросов',
     },
   },
   tabs: {
