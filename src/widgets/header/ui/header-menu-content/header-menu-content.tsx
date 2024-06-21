@@ -15,7 +15,7 @@ const renderNotificationsDropdown = (isDesktop: boolean, notifications?: Notific
   return <NotificationsDropdown notifications={notifications} />
 }
 
-/** Render-function */
+/** Render-functions */
 const renderLangSelectSwitcher = (width: number, sidebarItems: ReturnType<typeof getLanguages>) => {
   return <LangSelectSwitcher sidebarItems={sidebarItems} width={width} />
 }

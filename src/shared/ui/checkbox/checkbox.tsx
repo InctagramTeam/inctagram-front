@@ -85,9 +85,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
           ref={ref}
           required={required}
         >
-          <CheckboxRadix.Indicator
-            className={`_indicator_ CENTER data-[disabled]:cursor-default`}
-          >
+          <CheckboxRadix.Indicator className={`_indicator_ CENTER data-[disabled]:cursor-default`}>
             <CheckIcon
               className={
                 disabled

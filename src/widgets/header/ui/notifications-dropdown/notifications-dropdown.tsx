@@ -19,6 +19,7 @@ export type NotificationsDropdownProps = {
 
 export const NotificationsDropdown = memo((props: NotificationsDropdownProps) => {
   const { t } = useTranslation()
+
   const {
     alternativeText = t.layout.notificationsDropdown.alternativeText,
     notifications,
