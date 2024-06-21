@@ -1,4 +1,4 @@
-import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
+import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import { HomeNavLinks } from '@/widgets/main'
 
 function HomePage() {

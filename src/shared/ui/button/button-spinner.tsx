@@ -1,4 +1,4 @@
-export function ModalButtonSpinner({ className, ...rest }: any) {
+export function ButtonSpinner({ className, ...rest }: any) {
   return (
     <svg
       viewBox={'0 0 27 27'}

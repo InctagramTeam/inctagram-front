@@ -3,25 +3,19 @@ import { ProfilePhotos } from '@/pages/profile/my-profile/ui/profile-photos/prof
 import { UserAvatar } from '@/pages/profile/my-profile/ui/user-avatar/user-avatar'
 import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
 
-const Profile = () => {
+const ProfilePage = () => {
   return (
     <PageWrapper paddingBlock={'36px'} title={'User | Instagram'}>
       <section className={`_Profile_ w-full pl-6`}>
         <div className={`_Profile-top_ flex w-full justify-start pb-[50px]`}>
-          <div className={`_Avatar-photo_ min-h-[160px] max-w-[160px]`}>
-            <UserAvatar classname={`w-full min-w-[200px] min-h-[200px]`} />
-          </div>
+          <UserAvatar classname={`w-full min-w-[200px] min-h-[200px]`} />
           <ProfileFollowerInfo />
         </div>
-        <ul
-          className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-x-2`}
-        >
-          <ProfilePhotos />
-        </ul>
+        <ProfilePhotos />
       </section>
     </PageWrapper>
   )
 }
 
-Profile.getLayout = getBaseAppLayout
-export default Profile
+ProfilePage.getLayout = getBaseAppLayout
+export default ProfilePage

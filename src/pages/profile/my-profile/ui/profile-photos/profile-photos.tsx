@@ -3,7 +3,9 @@ import Image from 'next/image'
 
 export const ProfilePhotos = () => {
   return (
-    <>
+    <ul
+      className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-x-2`}
+    >
       <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
           alt={`photo` ?? EMPTY_STRING}
@@ -84,6 +86,6 @@ export const ProfilePhotos = () => {
           width={234}
         />
       </li>
-    </>
+    </ul>
   )
 }

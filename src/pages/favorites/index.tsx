@@ -1,6 +1,6 @@
 import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
 
-const Favorites = () => {
+const FavoritesPage = () => {
   return (
     <PageWrapper paddingBlock={'72px'} title={'Favorites | Instagram'}>
       <h1>Favorites</h1>
@@ -8,5 +8,5 @@ const Favorites = () => {
   )
 }
 
-Favorites.getLayout = getBaseAppLayout
-export default Favorites
+FavoritesPage.getLayout = getBaseAppLayout
+export default FavoritesPage
