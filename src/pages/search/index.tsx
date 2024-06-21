@@ -1,12 +1,19 @@
-import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
+import { SearchUsers } from '@/feature'
+import { PageWrapper, getBaseAppLayout, useTranslation } from '@/shared'
 
-const SearchPage = () => {
+const Search = () => {
+  const { t } = useTranslation()
+
   return (
-    <PageWrapper title={'Search | Instagram'}>
-      <h1>Search</h1>
+    <PageWrapper
+      description={t.pages.search.metaDescription}
+      paddingBlock={'35px'}
+      title={t.pages.search.metaTitle}
+    >
+      <SearchUsers />
     </PageWrapper>
   )
 }
 
-SearchPage.getLayout = getBaseAppLayout
-export default SearchPage
+Search.getLayout = getBaseAppLayout
+export default Search

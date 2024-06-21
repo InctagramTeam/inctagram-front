@@ -85,6 +85,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange?.(e)
       onValueChange?.(e.target.value)
     }
+
     /**
      * Вызывается при нажатии на кнопку для показа/скрытия пароля.
      * Она инвертирует состояние revealPassword, указывающее, должен ли пароль быть видимым.
@@ -92,6 +93,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     function handleToggleShowPassword() {
       setRevealPassword((prevState: boolean) => !prevState)
     }
+
     /**
      * Вызывается при нажатии на кнопку ("Х") для очистки введенных данных в инпуте
      * Она сначала вызывает переданный колбэк onClearInput, если он был передан, а затем
@@ -149,13 +151,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       ),
       root: clsx(`_Root_  w-full min-w-[200px] text-regular-text-16 text-Light-900`, className),
       searchIcon: clsx(
-        `_LeadingIcon_ absolute text-Light-900 top-1/2 bottom-1/2 -left-3 transform -translate-t-1/2
-      w-[20px] h-[20px] ml-[12px] p-0 bg-transparent border-o outline-0 ring-0
-      focus-visible:text-Light-100 focus-visible:outline focus-visible:outline-2
-      focus-visible:outline-Primary-50
-      active:not:disabled:text-Light-100
-      `,
-        disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
+        `_LeadingIcon_ text-Light-900 w-[20px] h-[20px] ring-0`,
+        disabled && `text-Dark-300`
       ),
       showPasswordButton: clsx(
         `_ShowPassword_ rounder-[0.25rem] duration-300 transition-color text-Light-100 absolute bottom-1/2 right-[12px] top-1/2
@@ -183,7 +180,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className={classNames.inputWrapper}>
           {isSearchField && (
-            <div aria-hidden className={`absolute left-[3%] top-1/4`}>
+            <div aria-hidden className={`absolute left-[0.7rem] top-1/4 h-[20px] w-[20px]`}>
               <SearchIcon
                 className={classNames.searchIcon}
                 onClick={() => inputRef.current?.focus()}

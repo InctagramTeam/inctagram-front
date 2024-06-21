@@ -7,13 +7,13 @@ import {
   AppList,
   AuthRoutes,
   Button,
+  ButtonSpinner,
   Card,
   ControlledCheckbox,
   ControlledInput,
   EMPTY_STRING,
   Flex,
   GeneralRoutes,
-  ButtonSpinner,
   ReturnComponent,
   SM_BREAKPOINT,
   Text,
@@ -190,12 +190,14 @@ export const SignUpForm = forwardRef(
 
         <Flex direction={'column'}>
           <Button
-            type={'submit'}
             className={classes.button}
             disabled={useForm().formState.isSubmitting}
             fullWidth
+            type={'submit'}
           >
-            {useForm().formState.isSubmitting && <ButtonSpinner className="h-4 w-4 animate-spin" />}
+            {useForm().formState.isSubmitting && (
+              <ButtonSpinner className={'h-4 w-4 animate-spin'} />
+            )}
             {t.button.signUp}
           </Button>
           <Text className={classes.question} variant={'regular_text_16'}>
