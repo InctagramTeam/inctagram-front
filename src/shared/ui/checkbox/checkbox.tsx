@@ -86,7 +86,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
           required={required}
         >
           <CheckboxRadix.Indicator
-            className={`_indicator_ flex items-center justify-center data-[disabled]:cursor-default`}
+            className={`_indicator_ CENTER data-[disabled]:cursor-default`}
           >
             <CheckIcon
               className={
