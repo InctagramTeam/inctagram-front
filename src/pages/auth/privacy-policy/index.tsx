@@ -1,6 +1,6 @@
 import { PageWrapper, getAuthLayout, useTranslation } from '@/shared'
 
-const PrivacyPolicy = () => {
+const PrivacyPolicyPage = () => {
   const { t } = useTranslation()
 
   return (
@@ -14,5 +14,5 @@ const PrivacyPolicy = () => {
   )
 }
 
-PrivacyPolicy.getLayout = getAuthLayout
-export default PrivacyPolicy
+PrivacyPolicyPage.getLayout = getAuthLayout
+export default PrivacyPolicyPage

@@ -10,7 +10,7 @@ import {
   useTranslation,
 } from '@/shared'
 
-const SignIn = (): ReturnComponent => {
+const SignInPge = (): ReturnComponent => {
   const { t } = useTranslation()
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
   const handleSubmitForm = (formData: SignInFormValues) => {}
@@ -32,5 +32,5 @@ const SignIn = (): ReturnComponent => {
   )
 }
 
-SignIn.getLayout = getAuthLayout
-export default SignIn
+SignInPge.getLayout = getAuthLayout
+export default SignInPge

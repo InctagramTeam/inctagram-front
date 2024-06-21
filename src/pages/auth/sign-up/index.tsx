@@ -16,7 +16,7 @@ const SentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
 )
 
-const SignUp = () => {
+const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
   const [open, setOpen] = useState(true)
   const { t } = useTranslation()
@@ -64,5 +64,5 @@ const SignUp = () => {
   )
 }
 
-SignUp.getLayout = getAuthLayout
-export default SignUp
+SignUpPage.getLayout = getAuthLayout
+export default SignUpPage
