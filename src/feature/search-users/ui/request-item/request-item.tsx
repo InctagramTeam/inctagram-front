@@ -1,9 +1,9 @@
+import { RequestItemProps } from '@/feature/search-users/model'
 import { Flex, ReturnComponent, Text } from '@/shared'
 import { Avatar } from '@/shared/ui/avatar'
 import { AvatarFallback, AvatarImage } from '@/shared/ui/avatar/avatar'
-import { RequestItemProps } from '@/feature/search-users/model'
 
-export const RequestItem = ({ ava, nickname, name }: RequestItemProps): ReturnComponent => {
+export const RequestItem = ({ ava, name, nickname }: RequestItemProps): ReturnComponent => {
   return (
     <Flex gap={'12'}>
       <Avatar className={'h-[3rem] w-[3rem]'}>
@@ -11,10 +11,10 @@ export const RequestItem = ({ ava, nickname, name }: RequestItemProps): ReturnCo
         <AvatarFallback>USER</AvatarFallback>
       </Avatar>
       <div>
-        <Text variant={'bold_text_14'} className={'block underline'}>
+        <Text className={'block underline'} variant={'bold_text_14'}>
           {nickname}
         </Text>
-        <Text variant={'regular-text-14'} className={'block text-Light-900'}>
+        <Text className={'block text-Light-900'} variant={'regular-text-14'}>
           {name}
         </Text>
       </div>

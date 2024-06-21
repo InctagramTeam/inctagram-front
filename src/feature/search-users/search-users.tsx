@@ -1,7 +1,8 @@
-import { Input, ReturnComponent, Text, useTranslation } from '@/shared'
 import { ChangeEvent, useState } from 'react'
-import { RequestResult } from '@/feature/search-users/ui'
+
 import { requests } from '@/feature/search-users/model'
+import { RequestResult } from '@/feature/search-users/ui'
+import { Input, ReturnComponent, Text, useTranslation } from '@/shared'
 
 export const SearchUsers = (): ReturnComponent => {
   const { t } = useTranslation()
@@ -10,20 +11,20 @@ export const SearchUsers = (): ReturnComponent => {
 
   return (
     <div className={'block w-full'}>
-      <Text asComponent={'h1'} variant={'H1'} mb={'13px'}>
+      <Text asComponent={'h1'} mb={'13px'} variant={'H1'}>
         {t.pages.search.title}
       </Text>
       <Input
-        type={'search'}
-        placeholder={'Search'}
-        name={'search'}
-        label={'Enter name of user'}
-        value={value}
-        onChange={changeValueHandler}
-        labelProps={{ className: 'sr-only' }}
         className={'mb-[30px]'}
+        label={'Enter name of user'}
+        labelProps={{ className: 'sr-only' }}
+        name={'search'}
+        onChange={changeValueHandler}
+        placeholder={'Search'}
+        type={'search'}
+        value={value}
       />
-      <Text asComponent={'h2'} variant={'bold_text_16'} mb={'17px'}>
+      <Text asComponent={'h2'} mb={'17px'} variant={'bold_text_16'}>
         {t.pages.search.requests}
       </Text>
       <RequestResult items={requests} />

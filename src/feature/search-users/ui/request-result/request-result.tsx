@@ -1,6 +1,6 @@
-import { ReturnComponent } from '@/shared'
 import { RequestListProps } from '@/feature/search-users/model'
-import { RequestList, RequestEmpty } from '@/feature/search-users/ui'
+import { RequestEmpty, RequestList } from '@/feature/search-users/ui'
+import { ReturnComponent } from '@/shared'
 
 export const RequestResult = ({ items }: RequestListProps): ReturnComponent => {
   return <> {items.length ? <RequestList items={items} /> : <RequestEmpty />} </>

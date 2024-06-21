@@ -1,7 +1,7 @@
 export type RequestItemProps = {
   ava: string
-  nickname: string
   name: string
+  nickname: string
 }
 
 export type RequestListProps = {

@@ -1,6 +1,6 @@
-import { ReturnComponent } from '@/shared'
-import { RequestItem } from '@/feature/search-users/ui'
 import { RequestListProps } from '@/feature/search-users/model'
+import { RequestItem } from '@/feature/search-users/ui'
+import { ReturnComponent } from '@/shared'
 
 export const RequestList = ({ items }: RequestListProps): ReturnComponent => {
   return (

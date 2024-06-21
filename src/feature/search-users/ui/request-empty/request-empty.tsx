@@ -10,10 +10,10 @@ export const RequestEmpty = (): ReturnComponent => {
 
   return (
     <div className={'mt-[84px]'}>
-      <Text variant={'bold_text_14'} asComponent={'h2'} className={clsx(classes.text, 'mb-[6px]')}>
+      <Text asComponent={'h2'} className={clsx(classes.text, 'mb-[6px]')} variant={'bold_text_14'}>
         {t.pages.search.empty}
       </Text>
-      <Text variant={'small-text-12'} className={classes.text}>
+      <Text className={classes.text} variant={'small-text-12'}>
         {t.pages.search.noRequests}
       </Text>
     </div>
