@@ -169,6 +169,13 @@ export const en = {
         ' you can use our site with confidence.',
       metaTitle: 'Terms of service | Instagram',
     },
+    search: {
+      metaDescription:
+        'Use our convenient search to find interesting people in our social network. Discover new acquaintances, communicate and establish connections, expanding your social circle',
+      metaTitle: 'Search users | Instagram',
+      title: 'Search',
+      requests: 'Recent requests',
+    },
   },
   tabs: {
     devices: 'Devices',
