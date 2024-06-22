@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export const HomeNavLinks = () => {
+export const Navigations = () => {
   return (
     <nav className={'navbar'}>
       <Link href={'/home'}>Home</Link>

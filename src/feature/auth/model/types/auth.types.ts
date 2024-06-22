@@ -1,3 +1,4 @@
+// ----------------------
 /** Me запрос -- url: '/auth/me' */
 export type MeResponse = {
   email: string

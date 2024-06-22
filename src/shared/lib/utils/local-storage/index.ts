@@ -1,1 +1,0 @@
-export { getStoreLocal } from './localStorage'

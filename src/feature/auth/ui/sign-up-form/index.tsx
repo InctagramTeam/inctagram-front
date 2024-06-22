@@ -87,6 +87,8 @@ export const SignUpForm = forwardRef(
 
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
+    const isSubmitting = useForm().formState.isSubmitting
+
     return (
       <Card
         {...rest}
@@ -189,15 +191,8 @@ export const SignUpForm = forwardRef(
         </Flex>
 
         <Flex direction={'column'}>
-          <Button
-            className={classes.button}
-            disabled={useForm().formState.isSubmitting}
-            fullWidth
-            type={'submit'}
-          >
-            {useForm().formState.isSubmitting && (
-              <ButtonSpinner className={'h-4 w-4 animate-spin'} />
-            )}
+          <Button className={classes.button} disabled={isSubmitting} fullWidth type={'submit'}>
+            {isSubmitting && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
             {t.button.signUp}
           </Button>
           <Text className={classes.question} variant={'regular_text_16'}>

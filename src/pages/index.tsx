@@ -1,10 +1,10 @@
 import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
-import { HomeNavLinks } from '@/widgets/main'
+import { Navigations } from '@/widgets/main'
 
 function HomePage() {
   return (
     <PageWrapper paddingBlock={'24px'} title={'Main | Instagram'}>
-      <HomeNavLinks />
+      <Navigations />
     </PageWrapper>
   )
 }

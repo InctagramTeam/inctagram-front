@@ -1,3 +1,3 @@
 export * from './model'
-export * from './services'
+export * from './api'
 export * from './ui'
