@@ -1,13 +1,12 @@
 import { getContentType, SignUpRequest } from '@/feature'
 import { instance } from '@/shared/api/axios-instance'
 import { AxiosResponse } from 'axios'
-import { saveToStorage } from '@/shared/lib/utils/locale-storage/save-to-local-storage/save-to-storage'
 import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user-interface'
-import { removeTokensStorage } from '@/shared/lib/utils/locale-storage/remove-tokens-storage/remove-tokens-storage'
 import Cookies from 'js-cookie'
+import { removeFromStorage, saveTokenStorage } from '@/shared/api/auth-token.service'
 
-/* Todo --> AuthService */
-export const AuthService = {
+/* Todo --> AuthApi */
+export const AuthApi = {
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken')
 
@@ -18,7 +17,7 @@ export const AuthService = {
     )
 
     if (response.data.accessToken) {
-      saveToStorage(response?.data)
+      saveTokenStorage(response?.data as any)
     }
 
     return response
@@ -41,13 +40,13 @@ export const AuthService = {
     )
 
     if (response.data.accessToken) {
-      saveToStorage(response?.data)
+      saveTokenStorage(response?.data as any)
     }
 
     return response
   },
   async logout() {
-    removeTokensStorage()
+    removeFromStorage()
     localStorage.removeItem('user')
   },
 }

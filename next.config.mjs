@@ -4,7 +4,7 @@ const nextConfig = {
   },
   poweredByHeader: false,
   env: {
-    NEXT_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    API_URL: process.env.NEXT_PUBLIC_API_URL,
     BACKEND_API_URL: process.env.NEXT_PUBLIC_BACKEND_API,
     GITHUB_OAUTH2_URL: process.env.NEXT_PUBLIC_GITHUB_OAUTH2,
     GOOGLE_OAUTH2_URL: process.env.NEXT_PUBLIC_GOOGLE_OAUTH2,

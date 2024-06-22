@@ -1,16 +1,6 @@
-export interface IUserState {
-  id?: string
-  email: string
-  isAdmin: boolean
-}
-
-export interface IUserInitialState {
-  user: IUserState | null
-  isLoading?: boolean
-}
-
 export interface IUser {
   id?: string
+  userName: string
   email: string
   password: string
   isAdmin?: boolean
@@ -18,7 +8,7 @@ export interface IUser {
 
 export interface ITokens {
   accessToken: string
-  refreshToken: string
+  refreshToken?: string
 }
 
 // отправляем в параметрах на сервер

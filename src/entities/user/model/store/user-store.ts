@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { IUser } from '@/entities/user/model/types/user-interface'
-import { getStoreLocalStorage } from '@/shared/lib/utils/locale-storage/get-local-storage/get-local-storage'
+import { getStoreLocalStorage } from '@/shared/lib/utils/locale-storage/get-local-storage'
 
 interface IUserStoreType {
   user: IUser | null
