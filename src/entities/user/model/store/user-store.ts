@@ -1,14 +1,14 @@
-import { create } from 'zustand'
 import { IUser } from '@/entities/user/model/types/user-interface'
 import { getStoreLocalStorage } from '@/shared/lib/utils/locale-storage/get-local-storage'
+import { create } from 'zustand'
 
 interface IUserStoreType {
-  user: IUser | null
   isLoading?: boolean
+  user: IUser | null
 }
 
 export const useUser = create<IUserStoreType>((set, get) => ({
+  isLoading: false,
   // initialState
   user: getStoreLocalStorage('user'),
-  isLoading: false,
 }))

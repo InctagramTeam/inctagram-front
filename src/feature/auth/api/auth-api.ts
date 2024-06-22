@@ -1,9 +1,9 @@
-import { getContentType, SignUpRequest } from '@/feature'
+import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user-interface'
+import { SignUpRequest, getContentType } from '@/feature'
+import { removeFromStorage, saveTokenStorage } from '@/shared/api/auth-token.service'
 import { instance } from '@/shared/api/axios-instance'
 import { AxiosResponse } from 'axios'
-import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user-interface'
 import Cookies from 'js-cookie'
-import { removeFromStorage, saveTokenStorage } from '@/shared/api/auth-token.service'
 
 /* Todo --> AuthApi */
 export const AuthApi = {
@@ -23,6 +23,10 @@ export const AuthApi = {
     return response
   },
 
+  async logout() {
+    removeFromStorage()
+    localStorage.removeItem('user')
+  },
   async signUp(userName: string, email: string, password: string) {
     //
     return await instance.post<null, AxiosResponse<IAuthResponse>, SignUpRequest>(
@@ -44,9 +48,5 @@ export const AuthApi = {
     }
 
     return response
-  },
-  async logout() {
-    removeFromStorage()
-    localStorage.removeItem('user')
   },
 }

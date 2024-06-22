@@ -1,5 +1,5 @@
-import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import { UserProfile } from '@/pages/my-profile/ui/user-profile/user-profile'
+import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
 
 const MyProfilePage = () => {
   return (

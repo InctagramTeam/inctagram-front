@@ -7,14 +7,15 @@ export const Tokens = {
 
 export const getAccessToken = () => {
   const accessToken = Cookies.get(Tokens.ACCESS_TOKEN)
+
   return accessToken || null
 }
 
 export const saveTokenStorage = (accessToken: string) => {
   Cookies.set(Tokens.ACCESS_TOKEN, accessToken, {
     domain: 'localhost',
-    sameSite: 'strict',
     expires: 1,
+    sameSite: 'strict',
   })
 }
 

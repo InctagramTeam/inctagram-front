@@ -1,6 +1,6 @@
-import { UserAvatar } from '@/pages/my-profile/ui/user-avatar/user-avatar'
 import { ProfileFollowerInfo } from '@/pages/my-profile/ui/profile-followers-info/profile-follower-info'
 import { ProfilePhotos } from '@/pages/my-profile/ui/profile-photos/profile-photos'
+import { UserAvatar } from '@/pages/my-profile/ui/user-avatar/user-avatar'
 
 export const UserProfile = () => {
   return (

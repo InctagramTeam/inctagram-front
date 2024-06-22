@@ -1,9 +1,9 @@
 export interface IUser {
-  id?: string
-  userName: string
   email: string
-  password: string
+  id?: string
   isAdmin?: boolean
+  password: string
+  userName: string
 }
 
 export interface ITokens {
@@ -20,7 +20,7 @@ export interface IEmailPassword {
 
 // получаем данные с сервера
 export interface IAuthResponse extends ITokens {
-  user: IUser & {
+  user: {
     isAdmin?: boolean
-  }
+  } & IUser
 }
