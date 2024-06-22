@@ -1,7 +1,9 @@
-import { Button, Flex, Text } from '@/shared'
+import { Button, Flex, Text, useTranslation } from '@/shared'
 import Link from 'next/link'
 
 export const FollowersInfoHeader = () => {
+  const { t } = useTranslation()
+
   return (
     <Flex
       className={`Header_ flex w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}
