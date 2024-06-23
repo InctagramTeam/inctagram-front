@@ -9,7 +9,7 @@ type Props = {
 export const UserAvatar = ({ userName, className, src }: Props): ReturnComponent => {
   return (
     <Avatar className={className}>
-      <AvatarImage alt={'user-avatar'} src={'src'} />
+      <AvatarImage alt={'user-avatar'} src={src} />
       <AvatarFallback className={'bg-Light-900'}>{userName?.[0] || 'U'}</AvatarFallback>
     </Avatar>
   )
