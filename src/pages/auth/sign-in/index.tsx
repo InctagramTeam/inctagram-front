@@ -1,14 +1,19 @@
 import { useRef } from 'react'
 
-import { SignInForm, SignInFormValues } from '@/feature'
+import { SignInFormValues } from '@/feature'
 import {
   EMPTY_STRING,
+  getAuthLayout,
   PageWrapper,
   ReturnComponent,
   UseFormRef,
-  getAuthLayout,
   useTranslation,
 } from '@/shared'
+import dynamic from 'next/dynamic'
+
+const DynamicSignInForm = dynamic(
+  import('../../../feature/auth/ui/sign-in-form').then(module => module.SignInForm)
+)
 
 const SignInPge = (): ReturnComponent => {
   const { t } = useTranslation()
@@ -21,7 +26,7 @@ const SignInPge = (): ReturnComponent => {
       paddingBlock={'36px'}
       title={t.pages.signIn.metaTitle}
     >
-      <SignInForm
+      <DynamicSignInForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
         onSubmit={handleSubmitForm}

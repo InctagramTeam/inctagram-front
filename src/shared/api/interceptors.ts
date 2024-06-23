@@ -1,8 +1,8 @@
-import { AuthApi } from '@/feature'
 import { errorCatch } from '@/shared/lib/utils/error-catch'
 import axios, { type CreateAxiosDefaults } from 'axios'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import Cookies from 'js-cookie'
+import authApi from '@/feature/auth/api/auth-api'
 
 const options: CreateAxiosDefaults = {
   baseURL: process.env.BACKEND_API_URL, //https://app.incubatogram.org/api/v1,
@@ -39,7 +39,7 @@ axiosWithAuth.interceptors.response.use(
     ) {
       originalRequest._isRetry = true
       try {
-        await AuthApi.getNewTokens()
+        await authApi.getNewTokens()
 
         return axiosWithAuth.request(originalRequest)
       } catch (error) {

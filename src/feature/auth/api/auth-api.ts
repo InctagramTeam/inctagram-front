@@ -6,7 +6,7 @@ import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import { removeTokensStorage, saveToStorage } from '@/feature/auth/model/utils/auth.helper'
 
 /* Todo --> AuthApi */
-export const AuthApi = {
+export class AuthApi {
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken')
 
@@ -21,12 +21,13 @@ export const AuthApi = {
     }
 
     return response
-  },
+  }
 
   async logout() {
     removeTokensStorage()
     localStorage?.removeItem('user')
-  },
+  }
+
   async signUp(userName: string, email: string, password: string) {
     const response = await axiosNotAuthorized.post<
       null,
@@ -39,7 +40,7 @@ export const AuthApi = {
     }
 
     return response
-  },
+  }
 
   async singIn(email: string, password: string) {
     const response = await axiosNotAuthorized.post<
@@ -56,5 +57,8 @@ export const AuthApi = {
     }
 
     return response
-  },
+  }
 }
+
+const authApi = new AuthApi()
+export default authApi
