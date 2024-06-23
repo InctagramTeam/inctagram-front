@@ -1,9 +1,11 @@
 export interface IUser {
-  email: string
   id?: string
   isAdmin?: boolean
+  email?: string
   password: string
   userName: string
+  isLoading?: string
+  error?: string
 }
 
 export interface ITokens {
