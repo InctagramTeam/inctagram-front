@@ -1,15 +1,10 @@
 import { RequestItemProps } from '@/feature/search-users/model'
-import { Flex, ReturnComponent, Text } from '@/shared'
-import { Avatar } from '@/shared/ui/avatar'
-import { AvatarFallback, AvatarImage } from '@/shared/ui/avatar/avatar'
+import { Flex, ReturnComponent, Text, UserAvatar } from '@/shared'
 
 export const RequestItem = ({ ava, name, nickname }: RequestItemProps): ReturnComponent => {
   return (
     <Flex gap={'12'}>
-      <Avatar className={'h-[3rem] w-[3rem]'}>
-        <AvatarImage alt={'user-avatar'} src={ava} />
-        <AvatarFallback>USER</AvatarFallback>
-      </Avatar>
+      <UserAvatar src={ava} userName={name} className={'h-[3rem] w-[3rem]'} />
       <div>
         <Text className={'block underline'} variant={'bold_text_14'}>
           {nickname}
