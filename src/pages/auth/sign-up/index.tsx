@@ -2,12 +2,15 @@
 
 import { useRef, useState } from 'react'
 
-import { SignUpForm, SignUpFormValues } from '@/feature'
-import { EMPTY_STRING, PageWrapper, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
+import { SignUpFormValues } from '@/feature'
+import { EMPTY_STRING, getAuthLayout, PageWrapper, UseFormRef, useTranslation } from '@/shared'
 import dynamic from 'next/dynamic'
 
 const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
+)
+const DynamicSignUpForm = dynamic(
+  import('../../../feature/auth/ui/sign-up-form/sign-up-form').then(module => module.SignUpForm)
 )
 
 const SignUpPage = () => {
@@ -45,7 +48,7 @@ const SignUpPage = () => {
 
   return (
     <PageWrapper description={t.pages.signUp.metaDescription} title={t.pages.signUp.metaTitle}>
-      <SignUpForm
+      <DynamicSignUpForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
         // disabled={isLoading}
