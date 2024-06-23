@@ -6,21 +6,28 @@ export interface IUser {
   userName: string
   isLoading?: string
   error?: string
+  avatar?: string
+  roles?: 'ADMIN' | 'USER' | 'MANAGER'
+}
+
+export interface IUserSchema {
+  authData?: IUser
+  _inited: boolean
 }
 
 export interface ITokens {
   accessToken: string
   refreshToken?: string
 }
-
-// отправляем в параметрах на сервер
+// todo:
+// отправляем в параметрах на сервер?
 export interface IEmailPassword {
   email: string
   password: string
   rememberMe?: boolean
 }
 
-// получаем данные с сервера
+// получаем данные с сервера?
 export interface IAuthResponse extends ITokens {
   user: {
     isAdmin?: boolean

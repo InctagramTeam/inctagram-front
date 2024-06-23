@@ -1,8 +1,8 @@
-import { ProfileFollowerInfo } from '@/pages/my-profile/ui/profile-followers-info/profile-follower-info'
-import { ProfilePhotos } from '@/pages/my-profile/ui/profile-photos/profile-photos'
-import { UserAvatar } from '@/pages/my-profile/ui/user-avatar/user-avatar'
+import { UserAvatar } from '../user-avatar/user-avatar'
+import { ProfileFollowerInfo } from '../profile-followers-info/profile-follower-info'
+import { ProfilePhotos } from '../profile-photos/profile-photos'
 
-export const UserProfile = () => {
+export const ProfileCard = () => {
   return (
     <section className={`_Profile_ w-full pl-6`}>
       <div className={`_Profile-top_ flex w-full justify-start pb-[50px]`}>

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 import { useUser } from '@/entities/user'
-import { TypeComponentAuthFields } from '@/app/providers/model/type/role-type'
+import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
 
 /** Пример использования:
  * указываем страницы её роль: MyProfilePage.isOnlyUser = true (см.файл страницы my-profile)

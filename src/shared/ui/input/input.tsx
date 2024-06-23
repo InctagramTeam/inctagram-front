@@ -22,7 +22,7 @@ export type InputProps = {
    *   divContainerProps={{ className: `text-blue-700` }}
    *   className={`w-full max-w-[330px]`} --> стили зададаться для:<div {...divContainerProps} className={classNames.root}>
    *   label={'Username'}
-   *   type={'text'}
+   *   types={'text'}
    * />
    */
   divContainerProps?: ComponentProps<'div'>
@@ -236,7 +236,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
 /**
  * Для определения конечного типа инпута в компоненте Input. Она принимает два аргумента:
- * type (тип инпута) и showPassword (флаг, указывающий, должен ли пароль быть видимым).
+ * types (тип инпута) и showPassword (флаг, указывающий, должен ли пароль быть видимым).
  * Если тип инпута равен 'password' и пароль должен быть видимым (showPassword === true),
  * функция возвращает 'text', в противном случае она возвращает исходный тип инпута.
  * Это позволяет динамически изменять тип инпута для отображения или скрытия введенного текста в поле пароля

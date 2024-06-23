@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useState } from 'react'
 
-// type
+// types
 type Props = {
   isCollapsed?: boolean
   isAuth?: boolean

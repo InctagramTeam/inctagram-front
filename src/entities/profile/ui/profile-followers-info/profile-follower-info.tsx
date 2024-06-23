@@ -1,7 +1,7 @@
 import { useTranslation } from '@/shared'
 
-import { FollowersInfoHeader } from './followers-info-header/followers-info-header'
-import { ProfileInfoDescription } from './profile-info-description/profile-info-description'
+import { FollowersInfoHeader } from '@/entities/profile/ui/followers-info-header/followers-info-header'
+import { ProfileInfoDescription } from '@/entities/profile/ui/profile-info-description/profile-info-description'
 
 export const ProfileFollowerInfo = () => {
   return (

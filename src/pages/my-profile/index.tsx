@@ -1,13 +1,13 @@
 import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import dynamic from 'next/dynamic'
 
-const DynamicUserProfile = dynamic(
-  import('../my-profile/ui/user-profile/user-profile').then(module => module.UserProfile)
+const DynamicProfileCard = dynamic(
+  import('@/entities/profile/ui/profile-card/profile-card').then(module => module.ProfileCard)
 )
 const MyProfilePage = () => {
   return (
     <PageWrapper paddingBlock={'36px'} title={'User | Instagram'}>
-      <DynamicUserProfile />
+      <DynamicProfileCard />
     </PageWrapper>
   )
 }

@@ -9,7 +9,7 @@ import { useLoader } from '@/shared/lib/hooks'
 import '@/app/styles/globals.scss'
 import '@/app/styles/nprogress.scss'
 import AuthProvider from '@/app/providers/ui/auth-provider/auth-provider'
-import { TypeComponentAuthFields } from '@/app/providers/model/type/role-type'
+import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
 
 export type NextPageWithLayout<P = {}, IP = P> = {
   getLayout?: (page: ReactElement) => ReactNode

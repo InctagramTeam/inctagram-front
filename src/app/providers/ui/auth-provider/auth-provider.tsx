@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { TypeComponentAuthFields } from '../../model/type/role-type'
+import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
 import { ReactNode, useEffect } from 'react'
 import { useUser } from '@/entities/user'
 
