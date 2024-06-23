@@ -1,4 +1,4 @@
-import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user-interface'
+import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user'
 import { SignUpRequest, getContentType } from '@/feature'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'

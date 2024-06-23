@@ -29,6 +29,7 @@ export type InputProps = {
   errorMessage?: string
   inputProps?: ComponentProps<'input'>
   label?: string
+  readonly?: boolean
   labelProps?: ComponentProps<'label'>
   /** Обратный вызов, который вызывается при нажатии на кнопку очистки
    * Если не указан, очищает внутреннее значение через ref и вызывает onValueChange с пустой строкой
@@ -48,6 +49,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       divContainerProps = {},
       errorMessage = EMPTY_STRING,
       id,
+      readonly = false,
       inputProps = {},
       label = EMPTY_STRING,
       labelProps = {},
@@ -114,9 +116,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const classNames = {
       clearInputButton: clsx(
         `_ClearInput_ unset absolute right-[12px] top-1/2 flex -translate-y-1/2 transform
-                cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
-                focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
-                focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
+         cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
+         focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
+         focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
         disabled && `cursor-not-allowed text-Dark-100/60`
       ),
       error: clsx(
@@ -139,6 +141,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         file:border-0 file:bg-transparent file:font-inter disabled:cursor-not-allowed disabled:opacity-50`,
         disabled && `text-Dark-100`,
         [type],
+        readonly && `opacity-5`,
         type === 'password' && `pr-[42px]`,
         type === 'search' && 'px-[42px]'
       ),
@@ -194,6 +197,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={classNames.input}
             disabled={disabled}
             id={finalId}
+            readOnly={readonly}
             onChange={handleChange}
             placeholder={placeholder}
             ref={finalRef}

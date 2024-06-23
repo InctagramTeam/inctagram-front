@@ -1,4 +1,4 @@
-type Profile = {
+export type Profile = {
   // поля с сервака (БД)
 }
 

@@ -1,7 +1,10 @@
+'use client'
+
 import { EMPTY_STRING } from '@/shared'
 import Image from 'next/image'
+import { memo } from 'react'
 
-export const ProfilePhotos = () => {
+export const ProfilePhotos = memo(() => {
   return (
     <ul
       className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-x-2`}
@@ -88,4 +91,4 @@ export const ProfilePhotos = () => {
       </li>
     </ul>
   )
-}
+})

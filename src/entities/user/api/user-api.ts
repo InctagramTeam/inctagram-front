@@ -1,4 +1,4 @@
-import { IUser } from '../model/types/user-interface'
+import { IUser } from 'src/entities/user/model/types/user'
 
 export interface IProfileResponse {
   statistics: {

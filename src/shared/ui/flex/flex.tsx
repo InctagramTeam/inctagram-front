@@ -111,7 +111,7 @@ const gapClasses: Record<FlexGapType, string> = {
 type DivPropsType = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
 export interface FlexProps extends DivPropsType {
-  children: ReactNode
+  children: ReactNode | any
   className?: string
   direction?: FlexDirectionType
   gap?: FlexGapType
