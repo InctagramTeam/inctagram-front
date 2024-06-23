@@ -1,11 +1,12 @@
 'use client'
+
 import { useRef, useState } from 'react'
 
 import { SignUpForm, SignUpFormValues } from '@/feature'
 import { EMPTY_STRING, PageWrapper, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
 import dynamic from 'next/dynamic'
 
-const SentEmailModal = dynamic(
+const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
 )
 
@@ -51,7 +52,7 @@ const SignUpPage = () => {
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <SentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
+      <DynamicSentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
     </PageWrapper>
   )
 }

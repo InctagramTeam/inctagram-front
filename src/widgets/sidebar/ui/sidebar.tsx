@@ -10,7 +10,7 @@ import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 
 import { useBreakpointMode } from '../model/hooks/use-breakpoin-mode'
 
-export const Sidebar = (): ReturnComponent => {
+export const Sidebar = ({ isAuth }: { isAuth: boolean }): ReturnComponent => {
   const { desktop, isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t, width } =
     useBreakpointMode()
 
@@ -40,12 +40,14 @@ export const Sidebar = (): ReturnComponent => {
         <>
           <ToggleCollapsedButtons />
           <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
-          <NavigationElement
-            className={classes.button}
-            name={t.button.logOut}
-            onlyIcon={onlyIcons}
-            startIcon={<LogOutIcon />}
-          />
+          {isAuth && (
+            <NavigationElement
+              className={classes.button}
+              name={t.button.logOut}
+              onlyIcon={onlyIcons}
+              startIcon={<LogOutIcon />}
+            />
+          )}
         </>
       )
     }

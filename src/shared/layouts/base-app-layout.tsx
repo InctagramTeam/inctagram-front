@@ -6,17 +6,17 @@ import { Main } from '@/widgets/main/main'
 import { Sidebar } from '@/widgets/sidebar'
 import { NextPage } from 'next'
 
-import { LayoutContextProvider } from './layout-context/layout-context'
+import { LayoutContextProvider } from '@/shared/lib/context/layout-context/layout-context'
 
 /** Общий Лайаут для всех страниц */
 export const BaseAppLayout: NextPage<PropsWithChildren> = ({ children }): ReturnComponent => {
   /* const { data: meData } = useMeQuery() */ // авторизован ли я?
-  const isAuth = false
+  const isAuth = true
 
   return (
     <>
       <Header isAuth={isAuth} />
-      <Sidebar />
+      <Sidebar isAuth={isAuth} />
       <Main>{children}</Main>
     </>
   )
