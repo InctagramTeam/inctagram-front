@@ -29,9 +29,9 @@ export const SearchUsers = (): ReturnComponent => {
     <div className={'block w-full'}>
       <Text
         asComponent={'h1'}
+        className={isMobile ? 'sr-only' : undefined}
         mb={'13px'}
         variant={'H1'}
-        className={isMobile ? 'sr-only' : undefined}
       >
         {t.pages.search.title}
       </Text>

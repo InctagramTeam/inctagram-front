@@ -3,19 +3,20 @@ import { useRef } from 'react'
 import { SignInForm, SignInFormValues } from '@/feature'
 import {
   EMPTY_STRING,
+  MD_BREAKPOINT,
   PageWrapper,
   ReturnComponent,
   UseFormRef,
   getAuthLayout,
-  useTranslation,
-  MD_BREAKPOINT,
   useResponsive,
+  useTranslation,
 } from '@/shared'
 
 const SignInPge = (): ReturnComponent => {
   const { width } = useResponsive()
   const { t } = useTranslation()
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
+
   if (width === null) {
     return null
   }

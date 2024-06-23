@@ -4,12 +4,12 @@ import { useRef, useState } from 'react'
 import { SignUpForm, SignUpFormValues } from '@/feature'
 import {
   EMPTY_STRING,
+  MD_BREAKPOINT,
   PageWrapper,
   UseFormRef,
   getAuthLayout,
-  useTranslation,
-  MD_BREAKPOINT,
   useResponsive,
+  useTranslation,
 } from '@/shared'
 import dynamic from 'next/dynamic'
 
@@ -59,8 +59,8 @@ const SignUpPage = () => {
 
   return (
     <PageWrapper
-      paddingBlock={isMobile ? '24px' : '16px'}
       description={t.pages.signUp.metaDescription}
+      paddingBlock={isMobile ? '24px' : '16px'}
       title={t.pages.signUp.metaTitle}
     >
       <SignUpForm

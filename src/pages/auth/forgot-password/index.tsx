@@ -4,14 +4,14 @@ import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
 import { ForgotPasswordForm, ForgotPasswordFormValues, SentEmailModal } from '@/feature'
 import {
+  MD_BREAKPOINT,
   PageWrapper,
   RECAPTCHA_PUBLIK_KEY,
+  ReturnComponent,
   UseFormRef,
   getAuthLayout,
-  useTranslation,
-  MD_BREAKPOINT,
   useResponsive,
-  ReturnComponent,
+  useTranslation,
 } from '@/shared'
 import Script from 'next/script'
 

@@ -2,12 +2,12 @@
 
 import { SearchUsers } from '@/feature'
 import {
-  PageWrapper,
-  getBaseAppLayout,
-  useTranslation,
   MD_BREAKPOINT,
-  useResponsive,
+  PageWrapper,
   ReturnComponent,
+  getBaseAppLayout,
+  useResponsive,
+  useTranslation,
 } from '@/shared'
 
 const Search = (): ReturnComponent => {

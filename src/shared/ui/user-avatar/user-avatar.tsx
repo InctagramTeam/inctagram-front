@@ -1,12 +1,11 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/shared'
-import { ReturnComponent } from '@/shared'
+import { Avatar, AvatarFallback, AvatarImage, ReturnComponent } from '@/shared'
 
 type Props = {
   className?: string
   src?: string
   userName?: string
 }
-export const UserAvatar = ({ userName, className, src }: Props): ReturnComponent => {
+export const UserAvatar = ({ className, src, userName }: Props): ReturnComponent => {
   return (
     <Avatar className={className}>
       <AvatarImage alt={'user-avatar'} src={src} />

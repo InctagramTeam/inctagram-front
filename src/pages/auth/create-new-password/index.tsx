@@ -2,13 +2,13 @@ import React, { useRef } from 'react'
 
 import { CreateNewPasswordFormValues, CreatePasswordForm } from '@/feature'
 import {
+  MD_BREAKPOINT,
   PageWrapper,
   ReturnComponent,
   UseFormRef,
   getAuthLayout,
-  useTranslation,
   useResponsive,
-  MD_BREAKPOINT,
+  useTranslation,
 } from '@/shared'
 
 const CreateNewPasswordPage = (): ReturnComponent => {
