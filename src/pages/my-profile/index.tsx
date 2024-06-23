@@ -10,4 +10,6 @@ const MyProfilePage = () => {
 }
 
 MyProfilePage.getLayout = getBaseAppLayout
+// MyProfilePage.isOnlyUser = true
+
 export default MyProfilePage
