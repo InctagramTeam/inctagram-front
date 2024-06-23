@@ -10,7 +10,7 @@ export const AuthApi = {
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken')
 
-    const response = await axiosWithAuth.post<null, AxiosResponse<IAuthResponse>, any>(
+    const response = await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, any>(
       `auth/update-token`,
       { refreshToken },
       { headers: getContentType() }

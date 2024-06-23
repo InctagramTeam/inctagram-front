@@ -2,6 +2,7 @@ import { AuthApi } from '@/feature'
 import { errorCatch } from '@/shared/lib/utils/error-catch'
 import axios, { type CreateAxiosDefaults } from 'axios'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
+import Cookies from 'js-cookie'
 
 const options: CreateAxiosDefaults = {
   baseURL: process.env.BACKEND_API_URL, //https://app.incubatogram.org/api/v1,
@@ -18,11 +19,8 @@ const axiosNotAuthorized = axios.create(options) // axios без авториз�
 const axiosWithAuth = axios.create(options)
 
 axiosWithAuth.interceptors.request.use(config => {
-  const accessToken = getAccessToken()
-
-  if (config?.headers && accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
-  }
+  const accessToken = Cookies.get('accessToken')
+  if (config.headers && accessToken) config.headers.Authorization = `Bearer ${accessToken}`
 
   return config
 })
