@@ -1,19 +1,33 @@
 import React, { useRef } from 'react'
 
 import { CreateNewPasswordFormValues, CreatePasswordForm } from '@/feature'
-import { PageWrapper, ReturnComponent, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
+import {
+  PageWrapper,
+  ReturnComponent,
+  UseFormRef,
+  getAuthLayout,
+  useTranslation,
+  useResponsive,
+  MD_BREAKPOINT,
+} from '@/shared'
 
 const CreateNewPasswordPage = (): ReturnComponent => {
+  const { width } = useResponsive()
   const { t } = useTranslation()
 
   const ref = useRef<UseFormRef<CreateNewPasswordFormValues>>(null)
 
+  if (width === null) {
+    return null
+  }
+
+  const isMobile = width < MD_BREAKPOINT
   const handleSubmitForm = (formData: CreateNewPasswordFormValues) => {}
 
   return (
     <PageWrapper
       description={t.pages.createPassword.metaDescription}
-      paddingBlock={'60px'}
+      paddingBlock={isMobile ? '12px' : '60px'}
       title={t.pages.createPassword.metaTitle}
     >
       <CreatePasswordForm disabled={false} onSubmit={handleSubmitForm} ref={ref} />

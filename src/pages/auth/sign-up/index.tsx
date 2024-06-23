@@ -2,7 +2,15 @@
 import { useRef, useState } from 'react'
 
 import { SignUpForm, SignUpFormValues } from '@/feature'
-import { EMPTY_STRING, PageWrapper, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
+import {
+  EMPTY_STRING,
+  PageWrapper,
+  UseFormRef,
+  getAuthLayout,
+  useTranslation,
+  MD_BREAKPOINT,
+  useResponsive,
+} from '@/shared'
 import dynamic from 'next/dynamic'
 
 const SentEmailModal = dynamic(
@@ -13,6 +21,13 @@ const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
   const [open, setOpen] = useState(true)
   const { t } = useTranslation()
+  const { width } = useResponsive()
+
+  if (width === null) {
+    return null
+  }
+
+  const isMobile = width < MD_BREAKPOINT
 
   const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
     /*  signUp(formData)
@@ -43,7 +58,11 @@ const SignUpPage = () => {
   }
 
   return (
-    <PageWrapper description={t.pages.signUp.metaDescription} title={t.pages.signUp.metaTitle}>
+    <PageWrapper
+      paddingBlock={isMobile ? '24px' : '16px'}
+      description={t.pages.signUp.metaDescription}
+      title={t.pages.signUp.metaTitle}
+    >
       <SignUpForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}

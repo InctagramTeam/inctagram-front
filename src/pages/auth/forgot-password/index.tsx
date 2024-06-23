@@ -9,6 +9,9 @@ import {
   UseFormRef,
   getAuthLayout,
   useTranslation,
+  MD_BREAKPOINT,
+  useResponsive,
+  ReturnComponent,
 } from '@/shared'
 import Script from 'next/script'
 
@@ -20,13 +23,19 @@ type ForgotPasswordFormRef = UseFormRef<
   }
 >
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage = (): ReturnComponent => {
+  const { width } = useResponsive()
   const { t } = useTranslation()
   const [open, setOpen] = useState(true)
   const ref = useRef<ForgotPasswordFormRef>(null)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const [recaptchaValue, setRecaptchaValue] = useState<null | string>(null)
 
+  if (width === null) {
+    return null
+  }
+
+  const isMobile = width < MD_BREAKPOINT
   const handleSubmitForm = (formData: ForgotPasswordFormValues) => {
     setRecaptchaValue(recaptchaRef.current?.getValue() ?? null)
 
@@ -53,7 +62,7 @@ const ForgotPasswordPage = () => {
       <Script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_PUBLIK_KEY}`} />
       <PageWrapper
         description={t.pages.forgotPassword.metaDescription}
-        paddingBlock={'72px'}
+        paddingBlock={isMobile ? '12px' : '72px'}
         title={t.pages.forgotPassword.metaTitle}
       >
         <ForgotPasswordForm

@@ -31,7 +31,7 @@ const ConfirmEmailPage = (): ReturnComponent => {
   return (
     <PageWrapper
       description={t.pages.verifyEmail.metaDescription}
-      paddingBlock={'35px'}
+      paddingBlock={isMobile ? '12px' : '35px'}
       title={t.pages.verifyEmail.metaTitle}
     >
       <InformationBlock

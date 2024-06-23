@@ -32,7 +32,7 @@ const SignUpCongratulations = (): ReturnComponent => {
   return (
     <PageWrapper
       description={t.pages.congratulations.metaDescription}
-      paddingBlock={'35px'}
+      paddingBlock={isMobile ? '16px' : '36px'}
       title={t.pages.congratulations.title}
     >
       <InformationBlock

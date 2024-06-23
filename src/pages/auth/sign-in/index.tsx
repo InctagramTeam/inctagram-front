@@ -8,17 +8,25 @@ import {
   UseFormRef,
   getAuthLayout,
   useTranslation,
+  MD_BREAKPOINT,
+  useResponsive,
 } from '@/shared'
 
 const SignInPge = (): ReturnComponent => {
+  const { width } = useResponsive()
   const { t } = useTranslation()
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
+  if (width === null) {
+    return null
+  }
+
+  const isMobile = width < MD_BREAKPOINT
   const handleSubmitForm = (formData: SignInFormValues) => {}
 
   return (
     <PageWrapper
       description={t.pages.signIn.metaDescription}
-      paddingBlock={'36px'}
+      paddingBlock={isMobile ? '12px' : '36px'}
       title={t.pages.signIn.metaTitle}
     >
       <SignInForm
