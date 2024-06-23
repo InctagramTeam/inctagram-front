@@ -24,18 +24,12 @@ type ForgotPasswordFormRef = UseFormRef<
 >
 
 const ForgotPasswordPage = (): ReturnComponent => {
-  const { width } = useResponsive()
+  const { xs } = useResponsive()
   const { t } = useTranslation()
   const [open, setOpen] = useState(true)
   const ref = useRef<ForgotPasswordFormRef>(null)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const [recaptchaValue, setRecaptchaValue] = useState<null | string>(null)
-
-  if (width === null) {
-    return null
-  }
-
-  const isMobile = width < MD_BREAKPOINT
   const handleSubmitForm = (formData: ForgotPasswordFormValues) => {
     setRecaptchaValue(recaptchaRef.current?.getValue() ?? null)
 
@@ -49,7 +43,7 @@ const ForgotPasswordPage = (): ReturnComponent => {
     }
   }
 
-  const recaptchaChangeHandler = (value: null | string) => {
+  const recaptchaChangeHandler = (value: string | null) => {
     if (value) {
       setRecaptchaValue(value)
       ref?.current?.clearErrors('recaptcha')
@@ -62,7 +56,7 @@ const ForgotPasswordPage = (): ReturnComponent => {
       <Script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_PUBLIK_KEY}`} />
       <PageWrapper
         description={t.pages.forgotPassword.metaDescription}
-        paddingBlock={isMobile ? '12px' : '72px'}
+        paddingBlock={xs ? '12px' : '72px'}
         title={t.pages.forgotPassword.metaTitle}
       >
         <ForgotPasswordForm

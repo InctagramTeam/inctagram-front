@@ -4,7 +4,6 @@ import { useRef, useState } from 'react'
 import { SignUpForm, SignUpFormValues } from '@/feature'
 import {
   EMPTY_STRING,
-  MD_BREAKPOINT,
   PageWrapper,
   UseFormRef,
   getAuthLayout,
@@ -21,13 +20,7 @@ const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
   const [open, setOpen] = useState(true)
   const { t } = useTranslation()
-  const { width } = useResponsive()
-
-  if (width === null) {
-    return null
-  }
-
-  const isMobile = width < MD_BREAKPOINT
+  const { xs } = useResponsive()
 
   const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
     /*  signUp(formData)
@@ -60,7 +53,7 @@ const SignUpPage = () => {
   return (
     <PageWrapper
       description={t.pages.signUp.metaDescription}
-      paddingBlock={isMobile ? '24px' : '16px'}
+      paddingBlock={xs ? '24px' : '16px'}
       title={t.pages.signUp.metaTitle}
     >
       <SignUpForm

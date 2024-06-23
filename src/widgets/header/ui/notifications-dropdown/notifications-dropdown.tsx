@@ -51,7 +51,8 @@ export const NotificationsDropdown = memo((props: NotificationsDropdownProps) =>
       variant={'text'}
     >
       <>
-        {open ? <BellIcon aria-hidden /> : <BellOutlineIcon aria-hidden />}
+        <BellIcon aria-hidden />
+        {/*{open ? <BellIcon aria-hidden /> : <BellOutlineIcon aria-hidden />}*/}
         {countNotifications && (
           <span className={classes.countNotifications}>
             {countNotifications < maxShowNumberNotifications ? countNotifications : ELLIPSIS_STRING}

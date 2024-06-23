@@ -1,3 +1,12 @@
+export const Breakpoints = {
+  XL2: 1536,
+  XL: 1280,
+  LG: 1024,
+  MD: 768,
+  SM: 640,
+  XS: 360,
+}
+
 export const XL2_BREAKPOINT = 1536
 export const XL_BREAKPOINT = 1280
 export const LG_BREAKPOINT = 1024

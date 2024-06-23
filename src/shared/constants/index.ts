@@ -7,6 +7,7 @@ export {
   XL_BREAKPOINT,
   XL2_BREAKPOINT,
   XS_BREAKPOINT,
+  Breakpoints,
 } from './breakpoints'
 
 export { PASSWORD_PATTERN, USERNAME_PATTERN } from './regexs'

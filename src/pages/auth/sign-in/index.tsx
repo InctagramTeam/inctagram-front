@@ -3,31 +3,24 @@ import { useRef } from 'react'
 import { SignInForm, SignInFormValues } from '@/feature'
 import {
   EMPTY_STRING,
-  MD_BREAKPOINT,
+  getAuthLayout,
   PageWrapper,
   ReturnComponent,
   UseFormRef,
-  getAuthLayout,
   useResponsive,
   useTranslation,
 } from '@/shared'
 
 const SignInPge = (): ReturnComponent => {
-  const { width } = useResponsive()
+  const { sm } = useResponsive()
   const { t } = useTranslation()
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
-
-  if (width === null) {
-    return null
-  }
-
-  const isMobile = width < MD_BREAKPOINT
   const handleSubmitForm = (formData: SignInFormValues) => {}
 
   return (
     <PageWrapper
       description={t.pages.signIn.metaDescription}
-      paddingBlock={isMobile ? '12px' : '36px'}
+      paddingBlock={sm ? '12px' : '36px'}
       title={t.pages.signIn.metaTitle}
     >
       <SignInForm

@@ -15,10 +15,6 @@ export const HeaderMenu = memo(({ isAuth, logout, notifications }: Props): Retur
   const { width } = useResponsive()
   const { t } = useTranslation()
 
-  if (width === null) {
-    return null
-  }
-
   const isDesktop = width > LG_BREAKPOINT
   const sidebarItems = getLanguages(t)
 

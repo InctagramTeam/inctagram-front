@@ -7,11 +7,7 @@ import React, {
 } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
-
-import {
-  ForgotPasswordFormValues,
-  forgotPasswordSchema,
-} from '@/feature/auth/model/utils/validators'
+import { ForgotPasswordFormValues, forgotPasswordSchema } from '@/feature'
 import {
   AuthRoutes,
   Button,
@@ -20,7 +16,6 @@ import {
   EMPTY_STRING,
   Recaptcha,
   ReturnComponent,
-  SM_BREAKPOINT,
   Text,
   UseFormRef,
   useFormRevalidateWithLocale,
@@ -52,14 +47,13 @@ export const ForgotPasswordForm = forwardRef(
       ...rest
     } = props
     const { locale, t } = useTranslation()
-    const { width } = useResponsive()
-    const isMobile = width && width < SM_BREAKPOINT
+    const { xs } = useResponsive()
 
     const classes = {
       button: 'mb-[30px] px-[24px] py-[6px]',
       form: clsx(
         'max-w-[380px] w-full p-[1.5rem] pb-[20px] self-start',
-        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        xs && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
         className
       ),
       hint: clsx('text-Light-900', isSent ? 'mb-[24px]' : 'mb-[17px]'),

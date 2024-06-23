@@ -5,7 +5,6 @@ import {
   InformationBlock,
   PageWrapper,
   ReturnComponent,
-  XS_BREAKPOINT,
   cn,
   getAuthLayout,
   useResponsive,
@@ -16,23 +15,17 @@ import Link from 'next/link'
 
 const SignUpCongratulations = (): ReturnComponent => {
   const { t } = useTranslation()
-  const { width } = useResponsive()
-
-  if (width === null) {
-    return null
-  }
-
-  const isMobile = width < XS_BREAKPOINT
+  const { xs } = useResponsive()
 
   const classes = {
-    button: cn('py-[6px]', !isMobile && 'mb-[72px] px-[60px]', isMobile && 'order-1 px-[20px]'),
-    illustration: cn('max-w-[432px] w-full h-[300px]', isMobile && 'h-[230px] mb-[48px]'),
+    button: cn('py-[6px]', !xs && 'mb-[72px] px-[60px]', xs && 'order-1 px-[20px]'),
+    illustration: cn('max-w-[432px] w-full h-[300px]', xs && 'h-[230px] mb-[48px]'),
   }
 
   return (
     <PageWrapper
       description={t.pages.congratulations.metaDescription}
-      paddingBlock={isMobile ? '16px' : '36px'}
+      paddingBlock={xs ? '16px' : '36px'}
       title={t.pages.congratulations.title}
     >
       <InformationBlock
@@ -40,14 +33,14 @@ const SignUpCongratulations = (): ReturnComponent => {
           <Button
             asComponent={Link}
             className={classes.button}
-            fullWidth={isMobile}
+            fullWidth={xs}
             href={AuthRoutes.SIGN_IN}
           >
             {t.button.signIn}
           </Button>
         }
         illustration={<SignUpBroIllustration aria-hidden className={classes.illustration} />}
-        isMobile={isMobile}
+        isMobile={xs}
         text={t.pages.congratulations.text}
         title={t.pages.congratulations.title}
       />

@@ -40,16 +40,14 @@ export const SignUpForm = forwardRef(
     const { className, disabled = false, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
 
     const { locale, t } = useTranslation()
-    const { width } = useResponsive()
-
-    const isMobile = width && width < SM_BREAKPOINT
+    const { xs } = useResponsive()
 
     const classes = {
       agreement: 'ml-4 inline-block w-full text-balance text-left',
       button: 'mb-[18px] text-balance p-[6px]',
       form: clsx(
         'max-w-[380px] w-full p-[1.5rem] self-start',
-        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        xs && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
         className
       ),
       question: 'mb-[12px] text-balance text-Light-100',

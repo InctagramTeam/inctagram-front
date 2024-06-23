@@ -182,8 +182,6 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
       gap && gapClasses[gap],
     ]
 
-    console.log('flex')
-
     return (
       <div
         {...rest}
