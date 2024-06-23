@@ -1,7 +1,7 @@
 import { AuthApi } from '@/feature'
-import { getAccessToken, removeFromStorage } from '@/shared/api/auth-token.service'
 import { errorCatch } from '@/shared/lib/utils/error-catch'
 import axios, { type CreateAxiosDefaults } from 'axios'
+import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 
 const options: CreateAxiosDefaults = {
   baseURL: process.env.BACKEND_API_URL, //https://app.incubatogram.org/api/v1,
@@ -46,7 +46,7 @@ axiosWithAuth.interceptors.response.use(
         return axiosWithAuth.request(originalRequest)
       } catch (error) {
         if (errorCatch(error) === 'jwt expired') {
-          removeFromStorage()
+          removeTokensStorage()
         }
       }
     }
