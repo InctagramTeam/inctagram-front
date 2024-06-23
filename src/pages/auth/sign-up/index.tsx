@@ -2,14 +2,7 @@
 import { useRef, useState } from 'react'
 
 import { SignUpForm, SignUpFormValues } from '@/feature'
-import {
-  EMPTY_STRING,
-  PageWrapper,
-  ReturnComponent,
-  UseFormRef,
-  getAuthLayout,
-  useTranslation,
-} from '@/shared'
+import { EMPTY_STRING, PageWrapper, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
 import dynamic from 'next/dynamic'
 
 const SentEmailModal = dynamic(
@@ -21,28 +14,27 @@ const SignUpPage = () => {
   const [open, setOpen] = useState(true)
   const { t } = useTranslation()
 
-  const handleSubmitForm = async ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
-    // ref?.current?.reset()
-    /* signUp(formData)
-      .then(res => res.data)
-      .then(data => {
+  const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
+    /*  signUp(formData)
+      .then(() => {
         setOpen(true)
         toast({
           variant: 'default',
           title: 'Congratulations! you are successfully registered.',
           description: 'Please! Go through the login procedure to use the application.',
         })
+        ref?.current?.reset()
+        navigate(ROUTES.signIn)
       })
-      .catch(error => {
-        console.log(error)
+      .catch(() => {
+        // console.log(error)
 
         toast({
           variant: 'destructive',
           title: 'Error registration!',
           description: 'Please! Try again.',
         })
-      })
-  } */
+      })  */
   }
 
   const handleChangeOpen = (open: boolean) => {

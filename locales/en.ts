@@ -97,8 +97,7 @@ export const en = {
         privacy: 'Privacy Policy',
         terms: 'Terms of Service',
       },
-      metaDescription:
-        'Create an account to start using our services and receive exclusive benefits.',
+      metaDescription: 'Create an account to start using our api and receive exclusive benefits.',
       metaTitle: 'Sign Up | Instagram',
       modalBtn: 'OK',
       modalTitle: 'Email sent',
@@ -111,7 +110,7 @@ export const en = {
     signIn: {
       metaTitle: 'Sign In | Instagram',
       metaDescription:
-        'Log in to your account to start using our services and receive exclusive benefits.',
+        'Log in to your account to start using our api and receive exclusive benefits.',
       title: 'Sign in',
       link: 'Forgot Password',
       question: 'Don’t have an account?',
@@ -138,7 +137,7 @@ export const en = {
     },
     verifyEmail: {
       metaDescription:
-        'The verification link has expired. Please verify your email again to start using our services and receive exclusive benefits.',
+        'The verification link has expired. Please verify your email again to start using our api and receive exclusive benefits.',
       metaTitle: 'Email verification | Instagram',
       title: 'Email verification link expired',
       text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
@@ -165,7 +164,7 @@ export const en = {
     },
     termsOfService: {
       metaDescription:
-        'Please review our Terms of Service to understand your rights and responsibilities when using our services. We are committed to transparency and fair dealings so that' +
+        'Please review our Terms of Service to understand your rights and responsibilities when using our api. We are committed to transparency and fair dealings so that' +
         ' you can use our site with confidence.',
       metaTitle: 'Terms of service | Instagram',
     },
