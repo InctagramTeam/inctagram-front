@@ -1,9 +1,29 @@
-import { HTMLAttributes } from 'react'
+import { CSSProperties, HTMLAttributes, useMemo } from 'react'
 
 import { cn } from '@/shared'
 
-function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div {...props} className={cn('animate-pulse rounded-md bg-Dark-500', className)} />
+interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
+  height?: string | number
+  width?: string | number
+  border?: string
+}
+
+function Skeleton({ className, height, width, border, ...props }: SkeletonProps) {
+  const styles: CSSProperties = useMemo(() => {
+    return {
+      width,
+      height,
+      borderRadius: border || '50%',
+    }
+  }, [border, height, width])
+
+  return (
+    <div
+      {...props}
+      className={cn('animate-pulse rounded-md bg-Dark-500', className)}
+      style={styles}
+    />
+  )
 }
 
 export { Skeleton }
