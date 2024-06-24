@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 
 import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
 import {
-  AppList,
+  AppLinksList,
   AuthRoutes,
   Button,
   Card,
@@ -82,7 +82,7 @@ export const SignInForm = forwardRef(
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
           {t.pages.signIn.title}
         </Text>
-        <AppList
+        <AppLinksList
           items={[
             { 'aria-label': t.pages.signIn.github, href: hrefGithub },
             { 'aria-label': t.pages.signIn.google, href: hrefGoogle },

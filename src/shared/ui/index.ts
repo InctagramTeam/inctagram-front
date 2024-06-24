@@ -1,5 +1,5 @@
 export { Alert } from './alert'
-export { AppList } from './app-list'
+export { AppLinksList } from './app-links-list'
 export { Button } from './button'
 export type { CustomButtonProps } from './button'
 export { Card } from './card'

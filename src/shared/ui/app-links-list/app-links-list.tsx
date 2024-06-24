@@ -16,10 +16,10 @@ export type AppProps = {
  * Компонент AppList используется, чтобы выводить список ссылок с иконками приложений
  * Например, на страницах sign-in и sign-up, чтобы отобразить иконки сервисов, через которые можно зарегистрироваться / войти
  */
-export const AppList = ({ className, items }: Props) => {
+export const AppLinksList = ({ className, items }: Props) => {
   const classes = {
     items: cn(`flex gap-[60px] justify-center mb-[1.5rem]`, className),
-    link: `block outline-none rounded-[2px] duration-300
+    link: `block outline-none rounded-[2px] duration-150
     hover:text-Light-100 hover:translate-y-[-5px]
     active:opacity-70 focus-visible:ring-2`,
   }

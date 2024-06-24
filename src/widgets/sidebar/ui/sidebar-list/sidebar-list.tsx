@@ -1,10 +1,8 @@
-import React from 'react'
-
 import { useLayoutContext } from '@/shared/layouts'
 import { cn, getIcon } from '@/shared/lib/utils'
 import { NavLink } from '@/shared/types'
 import { NavigationElement } from '@/shared/ui/navigation-element/navigation-element'
-import Link from 'next/link'
+import { AppLink } from '@/shared/ui/app-link/app-link'
 
 type Props = {
   isMobile?: boolean
@@ -40,7 +38,7 @@ export const SidebarList = ({ isMobile = false, links, onlyIcons = false }: Prop
                 startIcon={getIcon(link.href, false)}
               />
             ) : (
-              <NavigationElement asComponent={Link} onlyIcon={onlyIcons} {...link} />
+              <NavigationElement asComponent={AppLink} onlyIcon={onlyIcons} {...link} />
             )}
           </li>
         )
