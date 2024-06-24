@@ -2,11 +2,11 @@
 
 import { Profile } from '../../model/types/profile'
 import { memo } from 'react'
-import { useToast } from '@/shared/ui/toast/use-toast'
 import { ProfileCardSkeleton } from '../profile-card-skeleton'
 import { ProfileFollowerInfoBlock } from '../profile-followers-info'
 import { ProfilePhotos } from '../profile-photos'
 import { UserAvatar } from '../user-avatar'
+import { Text } from '@/shared'
 
 type ProfileCardProps = {
   className?: string
@@ -17,20 +17,18 @@ type ProfileCardProps = {
 }
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
-  const { data, isLoading, isError } = props
-
-  const { toast } = useToast()
+  let { data, isLoading, isError } = props
 
   if (isLoading) {
     return <ProfileCardSkeleton />
   }
 
   if (isError) {
-    toast({
-      variant: 'destructive',
-      title: 'Произошла непредвиденная ошибка.',
-      description: 'TПерезагрузите страницу.',
-    })
+    return (
+      <Text className={`text-red-600`} variant={'regular_text_16'}>
+        Произошла ошибка. Попробуйте обновить страницу
+      </Text>
+    )
   }
 
   return (
