@@ -1,8 +1,8 @@
 import { SearchUsers } from '@/feature'
 import {
-  getBaseAppLayout,
   PageWrapper,
   ReturnComponent,
+  getBaseAppLayout,
   useResponsive,
   useTranslation,
 } from '@/shared'

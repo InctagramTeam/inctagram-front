@@ -2,10 +2,10 @@ import React, { useRef } from 'react'
 
 import { CreateNewPasswordFormValues, CreatePasswordForm } from '@/feature'
 import {
-  getAuthLayout,
   PageWrapper,
   ReturnComponent,
   UseFormRef,
+  getAuthLayout,
   useResponsive,
   useTranslation,
 } from '@/shared'

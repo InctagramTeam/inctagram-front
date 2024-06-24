@@ -10,7 +10,9 @@ export const useResponsive = (delay = 1000) => {
     const throttledHandleResize = throttle(() => {
       setWidth(window.innerWidth)
     }, delay)
+
     window.addEventListener('resize', throttledHandleResize)
+
     return () => window.removeEventListener('resize', throttledHandleResize)
   }, [])
 
@@ -21,5 +23,5 @@ export const useResponsive = (delay = 1000) => {
   const sm = width < Breakpoints.MD
   const xs = width < Breakpoints.SM
 
-  return { width, md, xl, lg, xs, sm, xl2 }
+  return { lg, md, sm, xl, xl2, xs }
 }

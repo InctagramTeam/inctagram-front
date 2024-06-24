@@ -3,15 +3,15 @@ import { memo } from 'react'
 
 import {
   EMPTY_STRING,
+  ReturnComponent,
   SelectTrigger,
   cn,
   getLanguages,
   useResponsive,
   useTranslation,
-  ReturnComponent,
 } from '@/shared'
-import Image from 'next/image'
 import { ChevronIcon } from '@/shared/assets/icons'
+import Image from 'next/image'
 
 type Props = {
   currentValue?: string

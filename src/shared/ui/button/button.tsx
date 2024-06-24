@@ -3,15 +3,6 @@ import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRe
 import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared'
 import clsx from 'clsx'
 
-const ButtonVariant2 = {
-  destructive: 'destructive',
-  link: 'link',
-  outline: 'outline',
-  primary: 'primary',
-  secondary: 'secondary',
-  text: 'text',
-} as const
-
 type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 
 export type CustomButtonProps = {

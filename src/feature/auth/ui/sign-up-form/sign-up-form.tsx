@@ -15,7 +15,6 @@ import {
   Flex,
   GeneralRoutes,
   ReturnComponent,
-  SM_BREAKPOINT,
   Text,
   Translate,
   UseFormRef,

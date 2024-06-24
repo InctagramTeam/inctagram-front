@@ -2,28 +2,23 @@ import * as React from 'react'
 import { memo } from 'react'
 
 import { Language } from '@/feature/translate/model/helpers/get-languages'
-import { Nullable } from '@/shared'
-import { EMPTY_STRING, MD_BREAKPOINT } from '@/shared/constants'
-import { cn } from '@/shared/lib'
-import { SelectItem } from '@/shared/ui'
+import { EMPTY_STRING, SelectItem, cn, useResponsive } from '@/shared'
 import Image from 'next/image'
 
 type Props = {
   sidebarItems: Language[]
-  width: Nullable<number>
 }
 
-export const LanguageSelectionList = memo(({ sidebarItems, width }: Props) => {
-  const isDesktop = width && width > MD_BREAKPOINT
-  const isMobile = !isDesktop
+export const LanguageSelectionList = memo(({ sidebarItems }: Props) => {
+  const { sm } = useResponsive()
 
   const classes = {
     flag: 'w-[20px] h-[20px] object-contain',
     item: cn(
       `flex gap-[12px] h-auto px-[12px] py-[6px] cursor-pointer transition-colors duration-300 
     hover:!text-Primary-500 hover:bg-Dark-300`,
-      !isMobile && ``,
-      isMobile && 'max-w-max'
+      !sm && ``,
+      sm && 'max-w-max'
     ),
     itemInner: 'flex gap-[12px] text-inherit',
   }
@@ -42,7 +37,7 @@ export const LanguageSelectionList = memo(({ sidebarItems, width }: Props) => {
               src={`/flags/${item.value}.png`}
               width={20}
             />
-            {!isMobile && item.textValue}
+            {!sm && item.textValue}
           </div>
         </SelectItem>
       ))}

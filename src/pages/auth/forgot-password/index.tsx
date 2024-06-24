@@ -43,7 +43,7 @@ const ForgotPasswordPage = (): ReturnComponent => {
     }
   }
 
-  const recaptchaChangeHandler = (value: string | null) => {
+  const recaptchaChangeHandler = (value: null | string) => {
     if (value) {
       setRecaptchaValue(value)
       ref?.current?.clearErrors('recaptcha')

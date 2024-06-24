@@ -2,21 +2,14 @@
 
 import React from 'react'
 
+import { NavigationElement, ReturnComponent, cn } from '@/shared'
 import { LogOutIcon } from '@/shared/assets/icons'
-import { cn } from '@/shared/lib'
-import { ReturnComponent } from '@/shared/types'
-import { NavigationElement } from '@/shared/ui'
+import { useBreakpointMode } from '@/widgets/sidebar/model'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 
-import { useBreakpointMode } from '../model/hooks/use-breakpoin-mode'
-
 export const Sidebar = (): ReturnComponent => {
-  const { desktop, isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t, width } =
+  const { desktop, isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t } =
     useBreakpointMode()
-
-  if (width === null) {
-    return null
-  }
 
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),

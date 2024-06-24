@@ -1,12 +1,8 @@
 import * as React from 'react'
 import { memo } from 'react'
 
+import { Button, Dropdown, ELLIPSIS_STRING, cn, useTranslation } from '@/shared'
 import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
-import { ELLIPSIS_STRING } from '@/shared/constants/base'
-import { useTranslation } from '@/shared/lib/hooks'
-import { cn } from '@/shared/lib/utils'
-import { Button } from '@/shared/ui/button'
-import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { maxShowNumberNotifications } from '@/widgets/header/model/constants/base'
 import { NotificationProps, NotificationsDropdownList } from '@/widgets/header/ui'
 
@@ -51,8 +47,7 @@ export const NotificationsDropdown = memo((props: NotificationsDropdownProps) =>
       variant={'text'}
     >
       <>
-        <BellIcon aria-hidden />
-        {/*{open ? <BellIcon aria-hidden /> : <BellOutlineIcon aria-hidden />}*/}
+        {open ? <BellIcon aria-hidden /> : <BellOutlineIcon aria-hidden />}
         {countNotifications && (
           <span className={classes.countNotifications}>
             {countNotifications < maxShowNumberNotifications ? countNotifications : ELLIPSIS_STRING}

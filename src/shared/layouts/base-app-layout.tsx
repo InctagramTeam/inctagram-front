@@ -1,6 +1,6 @@
 import { PropsWithChildren, ReactElement } from 'react'
 
-import { ReturnComponent, LayoutContextProvider } from '@/shared'
+import { LayoutContextProvider, ReturnComponent } from '@/shared'
 import { Header, Main, Sidebar } from '@/widgets'
 import { NextPage } from 'next'
 
