@@ -11,7 +11,7 @@ const MyProfilePage = () => {
       <DynamicProfileCard
         data={{ firstname: 'Alex', lastname: 'Pupkin' }}
         isLoading={false}
-        isError={true}
+        isError={false}
       />
     </PageWrapper>
   )

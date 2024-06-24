@@ -5,22 +5,31 @@ import { cn } from '@/shared'
 interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
   height?: string | number
   width?: string | number
+  /** если высота === ширине и border=`50%`, то аватарк круглая */
   border?: string
+  circle?: boolean
+  maxWidth?: boolean
 }
 
-function Skeleton({ className, height, width, border, ...props }: SkeletonProps) {
+function Skeleton({ className, height, width, border, circle, maxWidth, ...props }: SkeletonProps) {
   const styles: CSSProperties = useMemo(() => {
     return {
       width,
       height,
-      borderRadius: border || '50%',
+      borderRadius: border,
     }
   }, [border, height, width])
 
   return (
     <div
       {...props}
-      className={cn('animate-pulse rounded-md bg-Dark-500', className)}
+      className={cn(
+        'animate-pulse rounded-md bg-Dark-500',
+        className,
+        circle && width === height && `rounded-full`,
+        !circle && 'rounded-xl',
+        maxWidth && `w-full`
+      )}
       style={styles}
     />
   )

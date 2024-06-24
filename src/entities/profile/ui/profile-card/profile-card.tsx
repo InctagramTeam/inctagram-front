@@ -25,8 +25,9 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 
   if (isError) {
     return (
-      <Text className={`text-red-600`} variant={'regular_text_16'}>
-        Произошла ошибка. Попробуйте обновить страницу
+      <Text className={`text-red-600`} variant={'H2'} textAlign={'center'}>
+        {/* todo: translate later */}
+        Произошла ошибка при загрузке профиля. Попробуйте обновить страницу
       </Text>
     )
   }
