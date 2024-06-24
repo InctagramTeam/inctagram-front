@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
 import {
-  AppList,
+  AppLinksList,
   AuthRoutes,
   Button,
   ButtonSpinner,
@@ -25,7 +25,7 @@ import {
 } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
-import Link from 'next/link'
+import { AppLink } from '@/shared/ui/app-link/app-link'
 
 type Props = {
   className?: string
@@ -99,7 +99,7 @@ export const SignUpForm = forwardRef(
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
           {t.pages.signUp.title}
         </Text>
-        <AppList
+        <AppLinksList
           items={[
             { 'aria-label': t.pages.signUp.github, href: hrefGithub },
             { 'aria-label': t.pages.signUp.google, href: hrefGoogle },
@@ -164,7 +164,7 @@ export const SignUpForm = forwardRef(
                   tags={{
                     '1': () => (
                       <Text
-                        asComponent={Link}
+                        asComponent={AppLink}
                         href={{ pathname: GeneralRoutes.TERMS, query: { sender: 'signup' } }}
                         variant={'small-link_12'}
                       >
@@ -173,7 +173,7 @@ export const SignUpForm = forwardRef(
                     ),
                     '2': () => (
                       <Text
-                        asComponent={Link}
+                        asComponent={AppLink}
                         className={`text-balance`}
                         href={{ pathname: GeneralRoutes.PRIVACY, query: { sender: 'signup' } }}
                         variant={'small-link_12'}
@@ -199,7 +199,7 @@ export const SignUpForm = forwardRef(
             {t.pages.signUp.question}
           </Text>
           <Button
-            asComponent={Link}
+            asComponent={AppLink}
             className={`m-[0] text-balance`}
             href={AuthRoutes.SIGN_IN}
             variant={'link'}

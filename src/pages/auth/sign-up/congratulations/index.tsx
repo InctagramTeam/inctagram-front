@@ -13,6 +13,7 @@ import {
 } from '@/shared'
 import { SignUpBroIllustration } from '@/shared/assets/illustrations'
 import Link from 'next/link'
+import { AppLink } from '@/shared/ui/app-link/app-link'
 
 const SignUpCongratulations = (): ReturnComponent => {
   const { t } = useTranslation()
@@ -38,7 +39,7 @@ const SignUpCongratulations = (): ReturnComponent => {
       <InformationBlock
         action={
           <Button
-            asComponent={Link}
+            asComponent={AppLink}
             className={classes.button}
             fullWidth={isMobile}
             href={AuthRoutes.SIGN_IN}
