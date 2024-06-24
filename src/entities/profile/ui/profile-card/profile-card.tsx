@@ -1,11 +1,12 @@
 'use client'
-import { UserAvatar } from '../user-avatar/user-avatar'
-import { ProfileFollowerInfoBlock } from 'src/entities/profile/ui/profile-followers-info/profile-follower-info-block'
-import { ProfilePhotos } from '../profile-photos/profile-photos'
-import { Profile } from '@/entities/profile/model/types/profile'
+
+import { Profile } from '../../model/types/profile'
 import { memo } from 'react'
-import { ProfileCardSkeleton } from '@/entities/profile/ui/profile-card-skeleton/profile-card-skeleton'
 import { useToast } from '@/shared/ui/toast/use-toast'
+import { ProfileCardSkeleton } from '../profile-card-skeleton'
+import { ProfileFollowerInfoBlock } from '../profile-followers-info'
+import { ProfilePhotos } from '../profile-photos'
+import { UserAvatar } from '../user-avatar'
 
 type ProfileCardProps = {
   className?: string
