@@ -1,8 +1,9 @@
 'use client'
-import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode, useMemo } from 'react'
 
 import { ReturnComponent } from '@/shared'
 import { clsx } from 'clsx'
+import { Undefinable } from '@/shared/types/undefinable'
 
 export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'
 export type TextAlign = 'center' | 'left' | 'right'
@@ -108,16 +109,18 @@ export function Text<T extends ElementType = 'span'>({
     className
   )
 
-  const styles = {
-    ...(mr && { marginRight: mr }),
-    ...(ml && { marginLeft: ml }),
-    ...(mt && { marginTop: mt }),
-    ...(mb && { marginBottom: mb }),
-    ...(mx && { marginLeft: mx, marginRight: mx }),
-    ...(my && { marginBottom: my, marginTop: my }),
-    ...(color && { color }),
-    ...style,
-  }
+  const styles = useMemo<Undefinable<CSSProperties>>(() => {
+    return {
+      ...(mr && { marginRight: mr }),
+      ...(ml && { marginLeft: ml }),
+      ...(mt && { marginTop: mt }),
+      ...(mb && { marginBottom: mb }),
+      ...(mx && { marginLeft: mx, marginRight: mx }),
+      ...(my && { marginBottom: my, marginTop: my }),
+      ...(color && { color }),
+      ...style,
+    }
+  }, [])
 
   const Component = asComponent || 'span'
 

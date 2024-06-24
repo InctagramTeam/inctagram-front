@@ -7,10 +7,12 @@ import {
   HTMLAttributes,
   ReactNode,
   forwardRef,
+  useMemo,
 } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
 import { clsx } from 'clsx'
+import { Undefinable } from '@/shared/types/undefinable'
 
 // types
 type FlexJustifyContent =
@@ -158,19 +160,21 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
       ...rest
     } = props
 
-    const styles = {
-      ...style,
-      ...(mr && { marginRight: mr }),
-      ...(ml && { marginLeft: ml }),
-      ...(mt && { marginTop: mt }),
-      ...(mb && { marginBottom: mb }),
-      ...(mx && { marginLeft: mx, marginRight: mx }),
-      ...(my && { marginBottom: my, marginTop: my }),
-      ...(m && { margin: m }),
-      ...(p && { padding: p }),
-      ...(width && { width: width }),
-      ...(max && { max: max }),
-    }
+    const styles = useMemo<Undefinable<CSSProperties>>(() => {
+      return {
+        ...style,
+        ...(mr && { marginRight: mr }),
+        ...(ml && { marginLeft: ml }),
+        ...(mt && { marginTop: mt }),
+        ...(mb && { marginBottom: mb }),
+        ...(mx && { marginLeft: mx, marginRight: mx }),
+        ...(my && { marginBottom: my, marginTop: my }),
+        ...(m && { margin: m }),
+        ...(p && { padding: p }),
+        ...(width && { width: width }),
+        ...(max && { max: max }),
+      }
+    }, [mr, ml, mt, mb, mx, my, m, p, width, max])
 
     const classes = [
       className,

@@ -8,7 +8,11 @@ const MyProfilePage = () => {
   return (
     <PageWrapper paddingBlock={'36px'} title={'User | Instagram'}>
       {/* todo: data for profile */}
-      <DynamicProfileCard data={{ data: 'Данные с сервера' }} isLoading={false} isError={true} />
+      <DynamicProfileCard
+        data={{ firstname: 'Alex', lastname: 'Pupkin' }}
+        isLoading={false}
+        isError={true}
+      />
     </PageWrapper>
   )
 }

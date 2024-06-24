@@ -29,12 +29,14 @@ export type InputProps = {
   errorMessage?: string
   inputProps?: ComponentProps<'input'>
   label?: string
+  /** Флаг: чтобы не появлялся курсор на инпуте, сделать для чтения, например пока не нажали на кнопку чтобы фокус в инпуте не появлялся (был не активен) */
   readonly?: boolean
   labelProps?: ComponentProps<'label'>
   /** Обратный вызов, который вызывается при нажатии на кнопку очистки
    * Если не указан, очищает внутреннее значение через ref и вызывает onValueChange с пустой строкой
    */
   onClearInput?: () => void
+  /** наверх отдаем ни event, а значение */
   onValueChange?: (value: string) => void
   /** Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы, которые мы можем передать в нативный элемент,
    * т.e html тег, то мы используем тип ComponentPropsWithoutRef<‘input’> и в дженерике указываем для какого именно тэга

@@ -16,7 +16,7 @@ type ProfileCardProps = {
 }
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
-  const { data, className, isLoading, isError, readonly } = props
+  const { data, isLoading, isError } = props
 
   const { toast } = useToast()
 
