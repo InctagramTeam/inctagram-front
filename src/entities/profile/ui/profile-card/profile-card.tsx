@@ -1,11 +1,12 @@
 'use client'
-import { UserAvatar } from '../user-avatar/user-avatar'
-import { ProfileFollowerInfoBlock } from 'src/entities/profile/ui/profile-followers-info/profile-follower-info-block'
-import { ProfilePhotos } from '../profile-photos/profile-photos'
-import { Profile } from '@/entities/profile/model/types/profile'
+
+import { Profile } from '../../model/types/profile'
 import { memo } from 'react'
-import { ProfileCardSkeleton } from '@/entities/profile/ui/profile-card-skeleton/profile-card-skeleton'
-import { useToast } from '@/shared/ui/toast/use-toast'
+import { ProfileCardSkeleton } from '../profile-card-skeleton'
+import { ProfileFollowerInfoBlock } from '../profile-followers-info'
+import { ProfilePhotos } from '../profile-photos'
+import { UserAvatar } from '../user-avatar'
+import { Text } from '@/shared'
 
 type ProfileCardProps = {
   className?: string
@@ -16,20 +17,19 @@ type ProfileCardProps = {
 }
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
-  const { data, isLoading, isError } = props
-
-  const { toast } = useToast()
+  let { data, isLoading, isError } = props
 
   if (isLoading) {
     return <ProfileCardSkeleton />
   }
 
   if (isError) {
-    toast({
-      variant: 'destructive',
-      title: 'Произошла непредвиденная ошибка.',
-      description: 'TПерезагрузите страницу.',
-    })
+    return (
+      <Text className={`text-red-600`} variant={'H2'} textAlign={'center'}>
+        {/* todo: translate later */}
+        Произошла ошибка при загрузке профиля. Попробуйте обновить страницу
+      </Text>
+    )
   }
 
   return (
