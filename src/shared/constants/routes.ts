@@ -19,7 +19,7 @@ export const AppRoutes = {
   HOME: '/home',
   MAIN: '/',
   MESSENGER: '/messenger',
-  PROFILE: '/my-profile/:id',
+  PROFILE: '/my-profile/',
   PROFILE_SETTINGS: '/settings',
   PUBLIC_PROFILE: '/public-profile',
   SEARCH: '/search',
