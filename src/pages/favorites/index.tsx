@@ -1,4 +1,5 @@
-import { PageWrapper, getBaseAppLayout } from '@/shared/layouts'
+import { getBaseAppLayout } from '@/shared/layouts'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 const FavoritesPage = () => {
   return (

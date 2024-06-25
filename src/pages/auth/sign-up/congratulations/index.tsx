@@ -2,18 +2,17 @@
 import {
   AuthRoutes,
   Button,
-  InformationBlock,
-  PageWrapper,
-  ReturnComponent,
-  XS_BREAKPOINT,
   cn,
   getAuthLayout,
+  InformationBlock,
+  ReturnComponent,
   useResponsive,
   useTranslation,
+  XS_BREAKPOINT,
 } from '@/shared'
 import { SignUpBroIllustration } from '@/shared/assets/illustrations'
-import Link from 'next/link'
 import { AppLink } from '@/shared/ui/app-link/app-link'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 const SignUpCongratulations = (): ReturnComponent => {
   const { t } = useTranslation()

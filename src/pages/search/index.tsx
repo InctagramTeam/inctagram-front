@@ -1,5 +1,6 @@
 import { SearchUsers } from '@/feature'
-import { PageWrapper, getBaseAppLayout, useTranslation } from '@/shared'
+import { getBaseAppLayout, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 const Search = () => {
   const { t } = useTranslation()

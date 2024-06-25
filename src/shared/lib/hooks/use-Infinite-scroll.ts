@@ -16,9 +16,11 @@ export function useInfiniteScroll({ callback, wrapperRef, triggerRef }: UseInfin
   const observer = useRef<IntersectionObserver | null>(null)
 
   useEffect(() => {
-    /** будем передавать в качестве wrapperRe нашу страницу (page)  */
-    const wrapperElement = wrapperRef?.current || null
-    const triggerElement = triggerRef.current
+    /** будем передавать в качестве wrapperRef нашу страницу (page)
+     * wrapperElement и triggerElement замкнём в колбеке эффекта чтобы они никогда не были === null
+     * */
+    const wrapperElement = wrapperRef?.current ?? null
+    const triggerElement = triggerRef.current ?? null
 
     /** колбек вызывается когда пересекли тот или иной элемент */
     if (callback) {
@@ -39,6 +41,7 @@ export function useInfiniteScroll({ callback, wrapperRef, triggerRef }: UseInfin
       observer.current.observe(triggerElement)
     }
 
+    /** отписываемся от события */
     return () => {
       if (observer.current && triggerElement) {
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -5,4 +5,3 @@ export {
   LayoutContextProvider,
   useLayoutContext,
 } from '../lib/context/layout-context'
-export { PageWrapper } from './page-wrapper'

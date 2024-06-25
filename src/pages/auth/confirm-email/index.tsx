@@ -2,16 +2,16 @@ import React from 'react'
 
 import {
   Button,
-  InformationBlock,
-  PageWrapper,
-  ReturnComponent,
-  XS_BREAKPOINT,
   cn,
   getAuthLayout,
+  InformationBlock,
+  ReturnComponent,
   useResponsive,
   useTranslation,
+  XS_BREAKPOINT,
 } from '@/shared'
 import { TimeManagementIllustration } from '@/shared/assets/illustrations'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 const ConfirmEmailPage = (): ReturnComponent => {
   const { width } = useResponsive()

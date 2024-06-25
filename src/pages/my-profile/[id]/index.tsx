@@ -1,5 +1,6 @@
-import { getBaseAppLayout, PageWrapper } from '@/shared/layouts'
 import dynamic from 'next/dynamic'
+import { PageWrapper } from '@/widgets/page-wrapper'
+import { getBaseAppLayout } from '@/shared'
 
 const DynamicProfileCard = dynamic(
   import('@/entities/profile/ui/profile-card/profile-card').then(module => module.ProfileCard)
