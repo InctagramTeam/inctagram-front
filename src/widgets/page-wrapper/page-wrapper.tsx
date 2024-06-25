@@ -32,7 +32,8 @@ export const PageWrapper = ({
   description,
   favicon,
   /**
-   * Отступ страницы по оси "y". Например: Отступ страницы SingIn от Header (по умолчанию для главной странице с local url: http://localhost:3000 --> 24рх,
+   * Отступ обёртки над страницей (PageWrapper) по оси "y". Например: Отступ страницы SingIn от Header
+   * (по умолчанию для главной странице с local url: http://localhost:3000 --> 24рх,
    задаем props при отрисовки согласно макета paddingBlock = 36рх) такой же отступ будет внизу, чтобы контент не прилипал к границе
    */
   paddingBlock = '24px',
@@ -70,7 +71,7 @@ export const PageWrapper = ({
     >
       <HeadMeta description={description} favicon={instagram.src} title={title} />
       {children}
-      <div ref={triggerRef}></div>
+      {onScrollEnd ? <div className={`m-[10px] h-[20px]`} ref={triggerRef}></div> : null}
     </section>
   )
 }
