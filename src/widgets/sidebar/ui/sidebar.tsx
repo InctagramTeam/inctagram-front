@@ -8,14 +8,14 @@ import { useBreakpointMode } from '@/widgets/sidebar/model'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 
 export const Sidebar = (): ReturnComponent => {
-  const { desktop, isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t } =
+  const { tablet, isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t } =
     useBreakpointMode()
 
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
     navigation: cn(`h-full flex justify-between flex-col items-start`, mobile && 'items-center'),
     wrapper: cn(
-      `w-full fixed top-0 bottom-0 overflow-y-scroll shadow-sm`,
+      `w-full fixed bottom-0 overflow-y-scroll shadow-sm`,
       !mobile &&
         `max-w-[250px] h-[calc(100vh-var(--header-height))] top-[var(--header-height)] pb-[36px] pt-[72px] 
         overflow-y-auto scrollbar-thin scrollbar-thumb-Dark-100 scrollbar-track-Dark-300 scrollbar-thumb-rounded-full
@@ -28,10 +28,13 @@ export const Sidebar = (): ReturnComponent => {
   }
 
   const displayModeSidebar = () => {
-    if (desktop) {
+    if (mobile) {
+      return <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
+    }
+
+    if (tablet) {
       return (
         <>
-          <ToggleCollapsedButtons />
           <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
           <NavigationElement
             className={classes.button}
@@ -43,12 +46,9 @@ export const Sidebar = (): ReturnComponent => {
       )
     }
 
-    if (mobile) {
-      return <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
-    }
-
     return (
       <>
+        <ToggleCollapsedButtons />
         <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
         <NavigationElement
           className={classes.button}

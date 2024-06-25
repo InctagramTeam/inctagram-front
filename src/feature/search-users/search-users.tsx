@@ -1,3 +1,5 @@
+'use client'
+
 import { ChangeEvent, useState } from 'react'
 
 import { requests } from '@/feature/search-users/model'
@@ -5,7 +7,6 @@ import { RequestResult } from '@/feature/search-users/ui'
 import { EMPTY_STRING, Input, ReturnComponent, Text, useResponsive, useTranslation } from '@/shared'
 
 export const SearchUsers = (): ReturnComponent => {
-  console.log('SearchUsers')
   const { sm } = useResponsive()
   const { t } = useTranslation()
   const [value, setValue] = useState(EMPTY_STRING)
