@@ -1,11 +1,11 @@
 /**
- * Функция debounce первым аргументов принимает функцию, а вторым время (в ms)
+ * Функция useDebounce первым аргументов принимает функцию, а вторым время (в ms)
  * переднная функция будет вызываться не раньше указанного промежутка времени
  * после последнего вызова.
  * Возвращает объект с заторможенной функцией и функцией отмены.
  * */
 
-export function debounce<T extends (...args: unknown[]) => void>(
+export function useDebounce<T extends (...args: unknown[]) => void>(
   func: T,
   delay: number
 ): { cancel: () => void; debouncedFunction: (...args: Parameters<T>) => void } {
@@ -36,7 +36,7 @@ export function debounce<T extends (...args: unknown[]) => void>(
  *   console.log(`Сохранение данных: ${inputValue}`);
  * }
  *
- * const { debouncedFunction, cancel } = debounce(saveInput, 1000);
+ * const { debouncedFunction, cancel } = useDebounce(saveInput, 1000);
  * function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
  *   debouncedFunction(event.target.value);
  * }

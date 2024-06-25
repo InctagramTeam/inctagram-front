@@ -1,5 +1,5 @@
 'use client'
-import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
+import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
@@ -88,6 +88,13 @@ export const SignUpForm = forwardRef(
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
     const isSubmitting = useForm().formState.isSubmitting
+    const appLinksList = useMemo(
+      () => [
+        { 'aria-label': t.pages.signUp.github, href: hrefGithub },
+        { 'aria-label': t.pages.signUp.google, href: hrefGoogle },
+      ],
+      [hrefGithub, hrefGoogle]
+    )
 
     return (
       <Card
@@ -99,12 +106,7 @@ export const SignUpForm = forwardRef(
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
           {t.pages.signUp.title}
         </Text>
-        <AppLinksList
-          items={[
-            { 'aria-label': t.pages.signUp.github, href: hrefGithub },
-            { 'aria-label': t.pages.signUp.google, href: hrefGoogle },
-          ]}
-        />
+        <AppLinksList items={appLinksList} />
         <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
           <ControlledInput
             aria-invalid={errors.username ? 'true' : 'false'}

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 
-import { throttle } from '@/shared'
+import { useThrottle } from '@/shared'
 
 export const useResponsive = (delay = 1000) => {
   const [width, setWidth] = useState<null | number>(null)
 
   useEffect(() => {
     setWidth(window.innerWidth)
-    const throttledHandleResize = throttle(() => {
+    const throttledHandleResize = useThrottle(() => {
       setWidth(window.innerWidth)
     }, delay)
 

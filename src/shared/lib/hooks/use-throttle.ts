@@ -1,9 +1,9 @@
 /**
- * Функция throttle первым аргументов принимает функцию, а вторым время (в ms)
+ * Функция useThrottle первым аргументов принимает функцию, а вторым время (в ms)
  * переднная функция будет вызываться не раньше указанного промежутка времени
  * */
 
-export function throttle<T extends (...args: unknown[]) => unknown>(
+export function useThrottle<T extends (...args: unknown[]) => unknown>(
   func: T,
   delay: number = 1000
 ): (...args: Parameters<T>) => void {
@@ -41,6 +41,6 @@ export function throttle<T extends (...args: unknown[]) => unknown>(
  * function onScroll(event: Event) {
  *   console.log('Прокрутка окна');
  * }
- * const throttledOnScroll = throttle(onScroll, 500);
+ * const throttledOnScroll = useThrottle(onScroll, 500);
  * window.addEventListener('scroll', throttledOnScroll);
  * */

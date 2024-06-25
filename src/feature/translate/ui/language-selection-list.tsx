@@ -28,24 +28,28 @@ export const LanguageSelectionList = memo(({ sidebarItems, width }: Props) => {
     itemInner: 'flex gap-[12px] text-inherit',
   }
 
-  return (
-    <>
-      {sidebarItems.map(item => (
-        <SelectItem className={classes.item} key={item.value} {...item}>
-          <div className={classes.itemInner}>
-            <Image
-              alt={item.textValue ?? EMPTY_STRING}
-              aria-hidden
-              className={classes.flag}
-              height={20}
-              priority
-              src={`/flags/${item.value}.png`}
-              width={20}
-            />
-            {!isMobile && item.textValue}
-          </div>
-        </SelectItem>
-      ))}
-    </>
-  )
+  const renderSidebarItem = (item: Language) => {
+    const notMobileSize = !isMobile && item.textValue
+    const altText = item.textValue ?? EMPTY_STRING
+    const imagePath = `/flags/${item.value}.png`
+
+    return (
+      <SelectItem className={classes.item} key={item.value} {...item}>
+        <div className={classes.itemInner}>
+          <Image
+            alt={altText}
+            aria-hidden
+            className={classes.flag}
+            height={20}
+            priority
+            src={imagePath}
+            width={20}
+          />
+          {notMobileSize}
+        </div>
+      </SelectItem>
+    )
+  }
+
+  return <>{sidebarItems.map(renderSidebarItem)}</>
 })

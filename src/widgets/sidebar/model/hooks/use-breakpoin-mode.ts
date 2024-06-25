@@ -5,7 +5,8 @@ import {
   useResponsive,
   useTranslation,
 } from '@/shared'
-import { getBaseLinks, getSidebarLinks } from '@/widgets/sidebar/model/ulils/sidebar-links'
+import { getBaseLinks, getSidebarLinks } from '../ulils/sidebar-links'
+import { useMemo } from 'react'
 
 export const useBreakpointMode = () => {
   const { isCollapsed } = useLayoutContext()
@@ -17,8 +18,12 @@ export const useBreakpointMode = () => {
   const desktop = width && width > LG_BREAKPOINT
   const onlyIcons = tablet || isCollapsed
 
-  const mobileSidebarLinks = getBaseLinks(t)
-  const sidebarLinks = getSidebarLinks(t)
+  const mobileSidebarLinks = useMemo(() => {
+    return getBaseLinks(t)
+  }, [t])
+  const sidebarLinks = useMemo(() => {
+    return getSidebarLinks(t)
+  }, [t])
 
   return {
     desktop,
