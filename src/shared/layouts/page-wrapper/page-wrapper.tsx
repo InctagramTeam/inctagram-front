@@ -1,4 +1,4 @@
-import { CSSProperties, ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react'
 
 import HeadMeta from '@/shared/lib/seo/head-meta'
 import { cn } from '@/shared/lib/utils/merge-cn'
@@ -8,10 +8,13 @@ import instagram from 'public/inctagram.png'
 type Props = {
   description?: string
   favicon?: string
+  className?: string
+  children: ReactNode
   paddingBlock?: CSSProperties['paddingBlock']
   title?: string
 } & ComponentPropsWithoutRef<'section'>
 
+/** Оборачиваем все страницы в проекте */
 export const PageWrapper = ({
   children,
   className,
