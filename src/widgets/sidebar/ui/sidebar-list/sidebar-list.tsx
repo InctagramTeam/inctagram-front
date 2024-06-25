@@ -1,9 +1,10 @@
+import { memo, useMemo } from 'react'
+
+import { NavigationElement } from '@/shared'
 import { useLayoutContext } from '@/shared/layouts'
 import { cn, getIcon } from '@/shared/lib/utils'
 import { NavLink } from '@/shared/types'
 import { AppLink } from '@/shared/ui/app-link/app-link'
-import { memo, useMemo } from 'react'
-import { NavigationElement } from '@/shared'
 
 type Props = {
   isMobile?: boolean
@@ -42,6 +43,7 @@ export const SidebarList = memo(({ isMobile = false, links, onlyIcons = false }:
         </li>
       )
     }
+
     return (
       <li className={classes.item} key={link.href}>
         <NavigationElement asComponent={AppLink} onlyIcon={onlyIcons} {...link} />

@@ -7,8 +7,11 @@ import { LogOutIcon } from '@/shared/assets/icons'
 import { useBreakpointMode } from '@/widgets/sidebar/model'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 
-export const Sidebar = (): ReturnComponent => {
-  const { tablet, isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t } =
+type Props = {
+  isAuth: boolean
+}
+export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
+  const { isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t, tablet } =
     useBreakpointMode()
 
   const classes = {
@@ -36,12 +39,14 @@ export const Sidebar = (): ReturnComponent => {
       return (
         <>
           <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
-          <NavigationElement
-            className={classes.button}
-            name={t.button.logOut}
-            onlyIcon={onlyIcons}
-            startIcon={<LogOutIcon />}
-          />
+          {isAuth && (
+            <NavigationElement
+              className={classes.button}
+              name={t.button.logOut}
+              onlyIcon={onlyIcons}
+              startIcon={<LogOutIcon />}
+            />
+          )}
         </>
       )
     }
@@ -50,12 +55,14 @@ export const Sidebar = (): ReturnComponent => {
       <>
         <ToggleCollapsedButtons />
         <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
-        <NavigationElement
-          className={classes.button}
-          name={t.button.logOut}
-          onlyIcon={onlyIcons}
-          startIcon={<LogOutIcon />}
-        />
+        {isAuth && (
+          <NavigationElement
+            className={classes.button}
+            name={t.button.logOut}
+            onlyIcon={onlyIcons}
+            startIcon={<LogOutIcon />}
+          />
+        )}
       </>
     )
   }

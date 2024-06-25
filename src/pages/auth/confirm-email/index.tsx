@@ -3,7 +3,6 @@ import React from 'react'
 import {
   Button,
   InformationBlock,
-  PageWrapper,
   ReturnComponent,
   cn,
   getAuthLayout,
@@ -11,6 +10,7 @@ import {
   useTranslation,
 } from '@/shared'
 import { TimeManagementIllustration } from '@/shared/assets/illustrations'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 const ConfirmEmailPage = (): ReturnComponent => {
   const { xs } = useResponsive()

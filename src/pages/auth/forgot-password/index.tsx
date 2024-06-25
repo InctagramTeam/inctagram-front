@@ -4,8 +4,6 @@ import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
 import { ForgotPasswordForm, ForgotPasswordFormValues, SentEmailModal } from '@/feature'
 import {
-  MD_BREAKPOINT,
-  PageWrapper,
   RECAPTCHA_PUBLIK_KEY,
   ReturnComponent,
   UseFormRef,
@@ -13,6 +11,7 @@ import {
   useResponsive,
   useTranslation,
 } from '@/shared'
+import { PageWrapper } from '@/widgets/page-wrapper'
 import Script from 'next/script'
 
 type ForgotPasswordFormRef = UseFormRef<

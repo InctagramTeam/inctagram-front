@@ -1,18 +1,18 @@
 export interface IUser {
+  avatar?: string
+  email?: string
+  error?: string
   id?: string
   isAdmin?: boolean
-  email?: string
-  password: string
-  userName: string
   isLoading?: string
-  error?: string
-  avatar?: string
-  roles?: 'ADMIN' | 'USER' | 'MANAGER'
+  password: string
+  roles?: 'ADMIN' | 'MANAGER' | 'USER'
+  userName: string
 }
 
 export interface IUserSchema {
-  authData?: IUser
   _inited: boolean
+  authData?: IUser
 }
 
 export interface ITokens {

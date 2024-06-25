@@ -3,20 +3,20 @@ import { CSSProperties, HTMLAttributes, useMemo } from 'react'
 import { cn } from '@/shared'
 
 interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
-  height?: string | number
-  width?: string | number
   /** если высота === ширине и border=`50%`, то аватарк круглая */
   border?: string
   circle?: boolean
+  height?: number | string
   maxWidth?: boolean
+  width?: number | string
 }
 
-function Skeleton({ className, height, width, border, circle, maxWidth, ...props }: SkeletonProps) {
+function Skeleton({ border, circle, className, height, maxWidth, width, ...props }: SkeletonProps) {
   const styles: CSSProperties = useMemo(() => {
     return {
-      width,
-      height,
       borderRadius: border,
+      height,
+      width,
     }
   }, [border, height, width])
 

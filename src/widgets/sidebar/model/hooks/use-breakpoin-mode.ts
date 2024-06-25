@@ -1,3 +1,5 @@
+import { useMemo } from 'react'
+
 import { useLayoutContext, useResponsive, useTranslation } from '@/shared'
 import { getBaseLinks, getSidebarLinks } from '@/widgets/sidebar/model'
 
@@ -11,16 +13,20 @@ export const useBreakpointMode = () => {
 
   const onlyIcons = tablet || isCollapsed
 
-  const mobileSidebarLinks = getBaseLinks(t)
-  const sidebarLinks = getSidebarLinks(t)
+  const mobileSidebarLinks = useMemo(() => {
+    return getBaseLinks(t)
+  }, [t])
+  const sidebarLinks = useMemo(() => {
+    return getSidebarLinks(t)
+  }, [t])
 
   return {
     isCollapsed,
     mobile,
-    tablet,
     mobileSidebarLinks,
     onlyIcons,
     sidebarLinks,
     t,
+    tablet,
   }
 }

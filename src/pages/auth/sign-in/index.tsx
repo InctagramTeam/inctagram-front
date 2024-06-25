@@ -3,13 +3,13 @@ import { useRef } from 'react'
 import { SignInForm, SignInFormValues } from '@/feature'
 import {
   EMPTY_STRING,
-  PageWrapper,
   ReturnComponent,
   UseFormRef,
   getAuthLayout,
   useResponsive,
   useTranslation,
 } from '@/shared'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 const SignInPge = (): ReturnComponent => {
   const { sm } = useResponsive()

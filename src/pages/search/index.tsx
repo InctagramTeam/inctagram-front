@@ -1,11 +1,6 @@
 import { SearchUsers } from '@/feature'
-import {
-  PageWrapper,
-  ReturnComponent,
-  getBaseAppLayout,
-  useResponsive,
-  useTranslation,
-} from '@/shared'
+import { ReturnComponent, getBaseAppLayout, useResponsive, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 const Search = (): ReturnComponent => {
   const { xs } = useResponsive()

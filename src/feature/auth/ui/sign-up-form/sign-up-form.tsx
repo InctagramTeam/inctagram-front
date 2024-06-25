@@ -22,9 +22,9 @@ import {
   useResponsive,
   useTranslation,
 } from '@/shared'
+import { AppLink } from '@/shared/ui/app-link/app-link'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
-import { AppLink } from '@/shared/ui/app-link/app-link'
 
 type Props = {
   className?: string
@@ -164,7 +164,8 @@ export const SignUpForm = forwardRef(
                     '1': () => (
                       <Text
                         asComponent={AppLink}
-                        href={{ pathname: GeneralRoutes.TERMS, query: { sender: 'signup' } }}
+                        href={''}
+                        // todo: href={{ pathname: GeneralRoutes.TERMS, query: { sender: 'signup' } }}
                         variant={'small-link_12'}
                       >
                         {t.pages.signUp.agreement.terms}
@@ -174,7 +175,8 @@ export const SignUpForm = forwardRef(
                       <Text
                         asComponent={AppLink}
                         className={`text-balance`}
-                        href={{ pathname: GeneralRoutes.PRIVACY, query: { sender: 'signup' } }}
+                        href={''}
+                        // todo: href={{ pathname: GeneralRoutes.PRIVACY, query: { sender: 'signup' } }}
                         variant={'small-link_12'}
                       >
                         {t.pages.signUp.agreement.privacy}

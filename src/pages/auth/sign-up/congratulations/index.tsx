@@ -3,7 +3,6 @@ import {
   AuthRoutes,
   Button,
   InformationBlock,
-  PageWrapper,
   ReturnComponent,
   cn,
   getAuthLayout,
@@ -11,6 +10,7 @@ import {
   useTranslation,
 } from '@/shared'
 import { SignUpBroIllustration } from '@/shared/assets/illustrations'
+import { PageWrapper } from '@/widgets/page-wrapper'
 import Link from 'next/link'
 
 const SignUpCongratulations = (): ReturnComponent => {

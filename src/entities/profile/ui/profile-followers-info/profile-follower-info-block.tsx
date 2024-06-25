@@ -1,8 +1,9 @@
 'use client'
 
+import { memo } from 'react'
+
 import { FollowersInfoHeader } from '@/entities/profile/ui/followers-info-header/followers-info-header'
 import { ProfileInfoDescription } from '@/entities/profile/ui/profile-info-description/profile-info-description'
-import { memo } from 'react'
 
 export const ProfileFollowerInfoBlock = memo(() => {
   return (

@@ -29,8 +29,6 @@ export type InputProps = {
   errorMessage?: string
   inputProps?: ComponentProps<'input'>
   label?: string
-  /** Флаг: чтобы не появлялся курсор на инпуте, сделать для чтения, например пока не нажали на кнопку чтобы фокус в инпуте не появлялся (был не активен) */
-  readonly?: boolean
   labelProps?: ComponentProps<'label'>
   /** Обратный вызов, который вызывается при нажатии на кнопку очистки
    * Если не указан, очищает внутреннее значение через ref и вызывает onValueChange с пустой строкой
@@ -38,6 +36,8 @@ export type InputProps = {
   onClearInput?: () => void
   /** наверх отдаем ни event, а значение */
   onValueChange?: (value: string) => void
+  /** Флаг: чтобы не появлялся курсор на инпуте, сделать для чтения, например пока не нажали на кнопку чтобы фокус в инпуте не появлялся (был не активен) */
+  readonly?: boolean
   /** Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы, которые мы можем передать в нативный элемент,
    * т.e html тег, то мы используем тип ComponentPropsWithoutRef<‘input’> и в дженерике указываем для какого именно тэга
    */
@@ -51,7 +51,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       divContainerProps = {},
       errorMessage = EMPTY_STRING,
       id,
-      readonly = false,
       inputProps = {},
       label = EMPTY_STRING,
       labelProps = {},
@@ -59,6 +58,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onClearInput,
       onValueChange,
       placeholder,
+      readonly = false,
       type = 'search',
       ...rest
     },
@@ -199,9 +199,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={classNames.input}
             disabled={disabled}
             id={finalId}
-            readOnly={readonly}
             onChange={handleChange}
             placeholder={placeholder}
+            readOnly={readonly}
             ref={finalRef}
             type={finalType}
             value={rest.value}

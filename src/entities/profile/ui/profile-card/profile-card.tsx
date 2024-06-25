@@ -1,23 +1,25 @@
 'use client'
 
-import { Profile } from '../../model/types/profile'
 import { memo } from 'react'
+
+import { Text } from '@/shared'
+
+import { Profile } from '../../model/types/profile'
 import { ProfileCardSkeleton } from '../profile-card-skeleton'
 import { ProfileFollowerInfoBlock } from '../profile-followers-info'
 import { ProfilePhotos } from '../profile-photos'
 import { UserAvatar } from '../user-avatar'
-import { Text } from '@/shared'
 
 type ProfileCardProps = {
   className?: string
   data?: Profile
-  isLoading?: boolean
   isError?: boolean
+  isLoading?: boolean
   readonly?: boolean
 }
 
 export const ProfileCard = memo((props: ProfileCardProps) => {
-  let { data, isLoading, isError } = props
+  const { data, isError, isLoading } = props
 
   if (isLoading) {
     return <ProfileCardSkeleton />
@@ -25,7 +27,7 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
 
   if (isError) {
     return (
-      <Text className={`text-red-600`} variant={'H2'} textAlign={'center'}>
+      <Text className={`text-red-600`} textAlign={'center'} variant={'H2'}>
         {/* todo: translate later */}
         Произошла ошибка при загрузке профиля. Попробуйте обновить страницу
       </Text>

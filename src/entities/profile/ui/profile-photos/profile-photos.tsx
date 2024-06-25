@@ -1,8 +1,9 @@
 'use client'
 
+import { memo } from 'react'
+
 import { EMPTY_STRING } from '@/shared'
 import Image from 'next/image'
-import { memo } from 'react'
 
 export const ProfilePhotos = memo(() => {
   return (
