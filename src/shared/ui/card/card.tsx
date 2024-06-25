@@ -52,7 +52,7 @@ export const Card: CardComponent = memo(
           className={clsx(
             `rounded-[2px] border-[1px] border-Dark-300 bg-Dark-500 shadow-sm shadow-Dark-300 transition-all duration-150 hover:scale-[1.02]`,
             className,
-            variant === 'outlined' && `border-none outline-none ring-0`,
+            variant === 'outlined' && `bg-Light-100 shadow-md`,
             variant === 'light' && `border-[1px] border-Light-900 bg-Light-700 shadow-Light-700`,
             border === 'round' && `rounded-full`,
             border === 'partial' && `rounded-lg`,

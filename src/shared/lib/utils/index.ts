@@ -1,4 +1,4 @@
-export { useDebounce } from '@/shared/lib/hooks/use-debounce'
+export { debounce } from '@/shared/lib/utils/debounce'
 export { getIcon } from './getIcon'
 export { cn } from './merge-cn'
 export { mergeRefs } from './merge-refs'
