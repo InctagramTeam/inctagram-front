@@ -1,4 +1,4 @@
-import { IUser } from '@/entities/user/model/types/user-interface'
+import { IUser } from '@/entities/user/model/types/user'
 import { getStoreLocalStorage } from '@/shared/lib/utils/locale-storage/get-local-storage'
 import { create } from 'zustand'
 

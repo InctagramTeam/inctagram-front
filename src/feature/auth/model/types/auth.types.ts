@@ -1,3 +1,11 @@
+export interface RegisterSchema {
+  userName: string
+  password: string
+  isLoading?: boolean
+  rememberMe?: boolean
+  error?: string
+}
+
 // ----------------------
 /** Me запрос -- url: '/auth/me' */
 export type MeResponse = {

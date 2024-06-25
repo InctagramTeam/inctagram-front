@@ -1,4 +1,5 @@
-import { PageWrapper, getAuthLayout, useTranslation } from '@/shared'
+import { getAuthLayout, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 const TermOfServicePage = () => {
   const { t } = useTranslation()

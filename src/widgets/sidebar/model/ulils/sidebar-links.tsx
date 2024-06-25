@@ -14,7 +14,7 @@ export const getBaseLinks = (t: LocaleType): NavLink[] => {
       name: t.links.create,
     },
     {
-      disabled: true,
+      disabled: false,
       href: AppRoutes.MESSENGER,
       name: t.links.messenger,
     },

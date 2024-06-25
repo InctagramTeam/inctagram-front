@@ -1,11 +1,29 @@
 'use client'
-import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, CSSProperties, ElementType, ReactNode, useMemo } from 'react'
 
-import { ReturnComponent } from '@/shared'
+import { ReturnComponent } from '../../types'
 import { clsx } from 'clsx'
+import { Undefinable } from '../../types/undefinable'
 
 export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'
 export type TextAlign = 'center' | 'left' | 'right'
+export type TextVariant =
+  | 'H1' // 20px;
+  | 'H2' // 18px;
+  | 'H3' // 16px;
+  | 'Large' // 26px;
+  | 'bold_text_14'
+  | 'bold_text_16'
+  | 'error_text_12'
+  | 'inline_code'
+  | 'medium-text-14'
+  | 'muted_text'
+  | 'regular_text_16' // 16px - BASE FONT;
+  | 'regular-link_14'
+  | 'regular-text-14'
+  | 'semi-bold_small_text_12'
+  | 'small-link_12'
+  | 'small-text-12'
 
 interface TextProps<T extends ElementType> {
   asComponent?: T
@@ -17,29 +35,12 @@ interface TextProps<T extends ElementType> {
   mt?: CSSProperties['marginTop']
   mx?: CSSProperties['marginRight']
   my?: CSSProperties['marginLeft']
-  /**
-   * Пример использования с props "as": Текст будет ссылкой:
-   * <Text as={AppLink} to={'main/auth/sign-in'} variant="subtitle1" className={s.name}>Привет!</Text>
-   */
+  /** Пример использования с props "as": Текст будет ссылкой: <Text as={AppLink} to={'main/auth/sign-in'} variant="subtitle1" className={s.name}>Привет!</Text> */
   textAlign?: TextAlign
   textColor?: TextColor
-  variant?:
-    | 'H1' // 20px;
-    | 'H2' // 18px;
-    | 'H3' // 16px;
-    | 'Large' // 26px;
-    | 'bold_text_14'
-    | 'bold_text_16'
-    | 'error_text_12'
-    | 'inline_code'
-    | 'medium-text-14'
-    | 'muted_text'
-    | 'regular_text_16' // 16px - BASE FONT;
-    | 'regular-link_14'
-    | 'regular-text-14'
-    | 'semi-bold_small_text_12'
-    | 'small-link_12'
-    | 'small-text-12'
+  variant?: TextVariant
+  bold?: boolean
+  title?: string
 }
 
 export function Text<T extends ElementType = 'span'>({
@@ -47,6 +48,7 @@ export function Text<T extends ElementType = 'span'>({
   children,
   className,
   color,
+  bold,
   /** mb, ml, mr, mt, mx, my - Внешние отступы (маржины) Text от соседних элементов */
   mb,
   ml,
@@ -54,16 +56,14 @@ export function Text<T extends ElementType = 'span'>({
   mt,
   mx,
   my,
-  /**
-   * style - для передачи цвета текста пропсом при отрисовки компонента Text
-   * Пример использования: <Text variant={'Large'} style={{color: "green"}}>Some text</Text>
-   */
+  /** style - для передачи цвета текста пропсом при отрисовки компонента Text: Пример использования: <Text variant={'Large'} style={{color: "green"}}>Some text</Text> */
   style,
   /** Выравнивание текста */
   textAlign = 'left',
   textColor = 'primary',
   /** Задаёт шрифт + размер + межстрочный интервал текста */
   variant = 'regular_text_16',
+  title,
   ...rest
 }: Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>> & TextProps<T>): ReturnComponent {
   const textClasses = clsx(
@@ -87,9 +87,7 @@ export function Text<T extends ElementType = 'span'>({
       `text-small-text-12 text-Danger-500 hover:text-Danger-300 hover:transition-colors duration ease-in-out`,
     variant === 'muted_text' &&
       `text-md text-muted-foreground hover:text-gray-100 hover:transition-colors duration-150 ease-in-out`,
-    /**
-     * Текст с "фоновой" обводкой
-     */
+    /** Текст с "фоновой" обводкой */
     variant === 'inline_code' &&
       `text-xs-small-12 text-Danger-500 hover:text-Danger-300 hover:transition-colors duration-150 ease-in-out`,
 
@@ -105,21 +103,24 @@ export function Text<T extends ElementType = 'span'>({
     textAlign === 'center' && `text-center`,
     textAlign === 'left' && `text-left`,
     textAlign === 'right' && `text-right`,
-    className
+    className,
+    bold && `font-bold`
   )
 
-  const styles = {
-    ...(mr && { marginRight: mr }),
-    ...(ml && { marginLeft: ml }),
-    ...(mt && { marginTop: mt }),
-    ...(mb && { marginBottom: mb }),
-    ...(mx && { marginLeft: mx, marginRight: mx }),
-    ...(my && { marginBottom: my, marginTop: my }),
-    ...(color && { color }),
-    ...style,
-  }
+  const styles = useMemo<Undefinable<CSSProperties>>(() => {
+    return {
+      ...(mr && { marginRight: mr }),
+      ...(ml && { marginLeft: ml }),
+      ...(mt && { marginTop: mt }),
+      ...(mb && { marginBottom: mb }),
+      ...(mx && { marginLeft: mx, marginRight: mx }),
+      ...(my && { marginBottom: my, marginTop: my }),
+      ...(color && { color }),
+      ...style,
+    }
+  }, [mr, ml, mt, mb, mx, my, color])
 
-  const Component = asComponent || 'span'
+  const TextComponent = asComponent || 'span'
 
   return (
     <>
@@ -132,9 +133,9 @@ export function Text<T extends ElementType = 'span'>({
           {children}
         </code>
       ) : (
-        <Component {...rest} className={textClasses} style={styles}>
+        <TextComponent {...rest} className={textClasses} style={styles}>
           {children}
-        </Component>
+        </TextComponent>
       )}
     </>
   )

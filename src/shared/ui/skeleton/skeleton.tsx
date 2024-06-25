@@ -1,9 +1,38 @@
-import { HTMLAttributes } from 'react'
+import { CSSProperties, HTMLAttributes, useMemo } from 'react'
 
 import { cn } from '@/shared'
 
-function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div {...props} className={cn('animate-pulse rounded-md bg-muted', className)} />
+interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
+  height?: string | number
+  width?: string | number
+  /** если высота === ширине и border=`50%`, то аватарк круглая */
+  border?: string
+  circle?: boolean
+  maxWidth?: boolean
+}
+
+function Skeleton({ className, height, width, border, circle, maxWidth, ...props }: SkeletonProps) {
+  const styles: CSSProperties = useMemo(() => {
+    return {
+      width,
+      height,
+      borderRadius: border,
+    }
+  }, [border, height, width])
+
+  return (
+    <div
+      {...props}
+      className={cn(
+        'animate-pulse rounded-md bg-Dark-500',
+        className,
+        circle && width === height && `rounded-full`,
+        !circle && 'rounded-xl',
+        maxWidth && `w-full`
+      )}
+      style={styles}
+    />
+  )
 }
 
 export { Skeleton }

@@ -22,18 +22,21 @@ export type InputProps = {
    *   divContainerProps={{ className: `text-blue-700` }}
    *   className={`w-full max-w-[330px]`} --> стили зададаться для:<div {...divContainerProps} className={classNames.root}>
    *   label={'Username'}
-   *   type={'text'}
+   *   types={'text'}
    * />
    */
   divContainerProps?: ComponentProps<'div'>
   errorMessage?: string
   inputProps?: ComponentProps<'input'>
   label?: string
+  /** Флаг: чтобы не появлялся курсор на инпуте, сделать для чтения, например пока не нажали на кнопку чтобы фокус в инпуте не появлялся (был не активен) */
+  readonly?: boolean
   labelProps?: ComponentProps<'label'>
   /** Обратный вызов, который вызывается при нажатии на кнопку очистки
    * Если не указан, очищает внутреннее значение через ref и вызывает onValueChange с пустой строкой
    */
   onClearInput?: () => void
+  /** наверх отдаем ни event, а значение */
   onValueChange?: (value: string) => void
   /** Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы, которые мы можем передать в нативный элемент,
    * т.e html тег, то мы используем тип ComponentPropsWithoutRef<‘input’> и в дженерике указываем для какого именно тэга
@@ -48,6 +51,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       divContainerProps = {},
       errorMessage = EMPTY_STRING,
       id,
+      readonly = false,
       inputProps = {},
       label = EMPTY_STRING,
       labelProps = {},
@@ -114,9 +118,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const classNames = {
       clearInputButton: clsx(
         `_ClearInput_ unset absolute right-[12px] top-1/2 flex -translate-y-1/2 transform
-                cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
-                focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
-                focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
+         cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
+         focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
+         focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
         disabled && `cursor-not-allowed text-Dark-100/60`
       ),
       error: clsx(
@@ -139,6 +143,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         file:border-0 file:bg-transparent file:font-inter disabled:cursor-not-allowed disabled:opacity-50`,
         disabled && `text-Dark-100`,
         [type],
+        readonly && `opacity-5`,
         type === 'password' && `pr-[42px]`,
         type === 'search' && 'px-[42px]'
       ),
@@ -194,6 +199,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={classNames.input}
             disabled={disabled}
             id={finalId}
+            readOnly={readonly}
             onChange={handleChange}
             placeholder={placeholder}
             ref={finalRef}
@@ -236,7 +242,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
 /**
  * Для определения конечного типа инпута в компоненте Input. Она принимает два аргумента:
- * type (тип инпута) и showPassword (флаг, указывающий, должен ли пароль быть видимым).
+ * types (тип инпута) и showPassword (флаг, указывающий, должен ли пароль быть видимым).
  * Если тип инпута равен 'password' и пароль должен быть видимым (showPassword === true),
  * функция возвращает 'text', в противном случае она возвращает исходный тип инпута.
  * Это позволяет динамически изменять тип инпута для отображения или скрытия введенного текста в поле пароля

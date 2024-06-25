@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef, ReactNode } from 'react'
 
 import { EMPTY_STRING } from '@/shared/constants'
 import { cn, getIcon } from '@/shared/lib/utils'
@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 type CustomProps = {
   name: string
@@ -34,7 +35,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     const { asComponent, className, disabled, name, onlyIcon, startIcon, ...rest } = props
 
     const pathname = usePathname()
-    const isActive = props.href && pathname!.startsWith(props.href)
+    const isActive = props.href && pathname?.startsWith(props.href)
 
     const classes = {
       content:
@@ -56,17 +57,17 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
       <TooltipProvider>
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
-            {/* @ts-expect-error TS2322 */}
             <Button
+              href={''}
               aria-label={onlyIcon ? name : EMPTY_STRING}
-              asComponent={asComponent || 'button'}
+              asComponent={Link || 'button'}
               className={classes.link}
               disabled={disabled}
               ref={ref}
               startIcon={
                 (props.href || startIcon) && (
                   <span aria-hidden className={classes.icon}>
-                    {props.href ? getIcon(props.href, isActive) : startIcon}
+                    {props.href ? getIcon(props.href, isActive as boolean) : startIcon}
                   </span>
                 )
               }
