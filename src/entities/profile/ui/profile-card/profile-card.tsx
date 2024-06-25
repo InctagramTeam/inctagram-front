@@ -33,12 +33,12 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
   }
 
   return (
-    <section className={`_Profile_ w-full pl-6`}>
+    <div className={`_Profile_ w-full pl-6`}>
       <div className={`_Profile-top_ flex w-full justify-start pb-[50px]`}>
         <UserAvatar className={`min-h-[200px] w-full min-w-[200px]`} />
         <ProfileFollowerInfoBlock />
       </div>
       <ProfilePhotos />
-    </section>
+    </div>
   )
 })

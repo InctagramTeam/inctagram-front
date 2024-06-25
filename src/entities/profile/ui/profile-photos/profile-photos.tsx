@@ -6,7 +6,6 @@ import { memo } from 'react'
 
 export const ProfilePhotos = memo(() => {
   return (
-    // className={`profile-bottom-gallery_ grid grid-cols-[repeat(auto-fit,minmax(228px,1fr))] grid-rows-[repeat(auto-fit,minmax(228px,1fr))] gap-x-2`}
     <ul
       className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-x-2`}
     >
