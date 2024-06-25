@@ -1,46 +1,26 @@
-/**
- * Функция useThrottle первым аргументов принимает функцию, а вторым время (в ms)
- * переднная функция будет вызываться не раньше указанного промежутка времени
+import { useCallback, useRef } from 'react'
+
+/** Позволяет выполнить лишь одно событие в промежуток времени - например сохранять позицию скролла только раз в секунду
+ * (оптимизация событий, которые часто вызываются)
  * */
+export function useThrottle(callback: (...args: unknown[]) => void, delay: number) {
+  /** хранит значение показывающее можно вызывать колбек или нет */
+  const throttleRef = useRef(false)
 
-export function useThrottle<T extends (...args: unknown[]) => unknown>(
-  func: T,
-  delay: number = 1000
-): (...args: Parameters<T>) => void {
-  let lastFunc: ReturnType<typeof setTimeout>
-  let lastRan: number
+  return useCallback(
+    (...args: unknown[]) => {
+      if (!throttleRef.current) {
+        /** колбек будет выполняться 1 раз в промежуток времени */
+        callback(...args)
+        throttleRef.current = true
 
-  return function (this: ThisParameterType<T>, ...args: Parameters<T>): void {
-    /** Сохраняем контекст вызова, чтобы использовать внутри setTimeout */
-    const context = this
-
-    if (!lastRan) {
-      /** Если переданная функция (func) еще не вызывалась
-       * то делаем вызов и запоминаем время */
-      func.apply(context, args)
-      lastRan = Date.now()
-    } else {
-      /** Если переданная функция (func) уже вызывалась, отменяем таймер */
-      clearTimeout(lastFunc)
-      lastFunc = setTimeout(
-        () => {
-          if (Date.now() - lastRan >= delay) {
-            /** Если прошло достаточно времени, то вызываем func и запоминаем время */
-            func.apply(context, args)
-            lastRan = Date.now()
-          }
-        },
-        delay - (Date.now() - lastRan)
-      )
-    }
-  }
+        setTimeout(() => {
+          /** все последующие вызовы колбека игнорируем пока не вернем значение throttleRef_а в false, а сделаем жэто по истечению задержки */
+          throttleRef.current = false
+        }, delay)
+      }
+    },
+    /** возвращает колбек с тротлингом и задеркой */
+    [callback, delay]
+  )
 }
-
-/**
- * Пример
- * function onScroll(event: Event) {
- *   console.log('Прокрутка окна');
- * }
- * const throttledOnScroll = useThrottle(onScroll, 500);
- * window.addEventListener('scroll', throttledOnScroll);
- * */

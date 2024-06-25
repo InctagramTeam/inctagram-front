@@ -1,43 +1,24 @@
+import { MutableRefObject, useCallback, useRef } from 'react'
+
 /**
- * Функция useDebounce первым аргументов принимает функцию, а вторым время (в ms)
- * переднная функция будет вызываться не раньше указанного промежутка времени
- * после последнего вызова.
- * Возвращает объект с заторможенной функцией и функцией отмены.
- * */
+ * Хук, который позволяет отменять предыдущий вызов функции (события) пока не истечет delay
+ * до тех пор пока, что-то вводим в инпут, колбек вызываться не будет,как только проидет задержка,
+ * колбек вызовется, а все предыдущие вызовы будут отменены
+ * @param callback
+ * @param delay - задержка в мс
+ */
+export const useDebounce = <T>(callback: (...args: unknown[]) => void, delay: number) => {
+  const timer = useRef() as MutableRefObject<any>
 
-export function useDebounce<T extends (...args: unknown[]) => void>(
-  func: T,
-  delay: number
-): { cancel: () => void; debouncedFunction: (...args: Parameters<T>) => void } {
-  let timeoutId: ReturnType<typeof setTimeout> | null = null
-
-  const debouncedFunction = function (...args: Parameters<T>): void {
-    if (timeoutId) {
-      /** Если предыдущий таймер был установлен, то отменяем его */
-      clearTimeout(timeoutId)
-    }
-    /** Устанавливаем новый таймер, который вызовет func после задержки */
-    timeoutId = setTimeout(() => func(...args), delay)
-  }
-
-  /** Функция для отмены вызова, если он был запланирован */
-  const cancel = () => {
-    if (timeoutId) {
-      clearTimeout(timeoutId)
-    }
-  }
-
-  return { cancel, debouncedFunction }
+  return useCallback(
+    (...args: any[]) => {
+      if (timer.current) {
+        clearTimeout(timer.current)
+      }
+      timer.current = setTimeout(() => {
+        callback(...args)
+      }, delay)
+    },
+    [callback, delay]
+  )
 }
-
-/**
- * Пример
- * function saveInput(inputValue: string) {
- *   console.log(`Сохранение данных: ${inputValue}`);
- * }
- *
- * const { debouncedFunction, cancel } = useDebounce(saveInput, 1000);
- * function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
- *   debouncedFunction(event.target.value);
- * }
- * */
