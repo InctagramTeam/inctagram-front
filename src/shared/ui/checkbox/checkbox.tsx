@@ -1,7 +1,7 @@
 'use client'
 import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useId } from 'react'
 
-import { EMPTY_STRING, ReturnComponent } from '@/shared'
+import { EMPTY_STRING, ReturnComponent, Text } from '@/shared'
 import CheckIcon from '@/shared/assets/icons/CheckIcon'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import * as LabelRadix from '@radix-ui/react-label'
@@ -10,6 +10,7 @@ import clsx from 'clsx'
 export type CheckboxProps = {
   checked?: boolean
   className?: string
+  errorMessage?: string
   disabled?: boolean
   id?: string
   label?: ReactNode | string
@@ -27,6 +28,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
     className,
     disabled,
     id,
+    errorMessage = EMPTY_STRING,
     label = EMPTY_STRING,
     labelPosition = 'right',
     name,
@@ -39,21 +41,22 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
   const finalId = id ?? generatedId
 
   return (
-    <div className={`_container_ flex items-center`}>
-      <LabelRadix.Root
-        className={clsx(
-          `_label_ z-0 inline-flex w-full cursor-default select-none items-center text-regular-text-14`,
-          className,
-          disabled && `text-Light-900/60`
-        )}
-        htmlFor={finalId}
-      >
-        <CheckboxRadix.Root
-          {...rest}
-          checked={checked}
+    <>
+      <div className={`_container_ flex items-center`}>
+        <LabelRadix.Root
           className={clsx(
-            disabled && `cursor-default`,
-            `_Checkbox_ hover:not:before:data-[disabled]:opacity-100 hover:not:before:data-[disabled=true]:bg-Dark-300
+            `_label_ z-0 inline-flex w-full cursor-default select-none items-center text-regular-text-14`,
+            className,
+            disabled && `text-Light-900/60`
+          )}
+          htmlFor={finalId}
+        >
+          <CheckboxRadix.Root
+            {...rest}
+            checked={checked}
+            className={clsx(
+              disabled && `cursor-default`,
+              `_Checkbox_ hover:not:before:data-[disabled]:opacity-100 hover:not:before:data-[disabled=true]:bg-Dark-300
             hover:not:before:data-[disabled]:transition-opacity hover:not:before:data-[disabled]:delay-150
             focus-visible:not:data-[disabled]:outline-none focus-visible:not:data-[disabled]:outline-none
             focus-visible:not:data-[disabled]:before:opacity-100 focus-visible:not:data-[disabled]:before:bg-Dark-500
@@ -78,25 +81,36 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
             hover:before:scale-100 hover:before:opacity-60 hover:disabled:cursor-default
             hover:disabled:before:hidden
             `
-          )}
-          disabled={disabled}
-          id={id}
-          name={name}
-          ref={ref}
-          required={required}
-        >
-          <CheckboxRadix.Indicator className={`_indicator_ CENTER data-[disabled]:cursor-default`}>
-            <CheckIcon
-              className={
-                disabled
-                  ? `_checkIconDisabled_ cursor-default text-Light-700`
-                  : `_checkIcon_ text-Dark-900`
-              }
-            />
-          </CheckboxRadix.Indicator>
-        </CheckboxRadix.Root>
-        {label}
-      </LabelRadix.Root>
-    </div>
+            )}
+            disabled={disabled}
+            id={id}
+            name={name}
+            ref={ref}
+            required={required}
+          >
+            <CheckboxRadix.Indicator
+              className={`_indicator_ CENTER data-[disabled]:cursor-default`}
+            >
+              <CheckIcon
+                className={
+                  disabled
+                    ? `_checkIconDisabled_ cursor-default text-Light-700`
+                    : `_checkIcon_ text-Dark-900`
+                }
+              />
+            </CheckboxRadix.Indicator>
+          </CheckboxRadix.Root>
+          {label}
+        </LabelRadix.Root>
+      </div>
+      <Text
+        className={`w-full text-left text-small-text-12 !text-Danger-500`}
+        id={`${finalId}-error`}
+        role={'alert'}
+        variant={'error_text_12'}
+      >
+        {errorMessage}
+      </Text>
+    </>
   )
 })

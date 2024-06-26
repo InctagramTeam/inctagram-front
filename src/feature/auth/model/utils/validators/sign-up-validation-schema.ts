@@ -10,8 +10,7 @@ export const signUpSchema = (t: LocaleType) =>
         // пользовательская проверка refine
         .refine(value => value, {
           message: t.validation.required,
-        })
-        .optional(),
+        }),
       email: emailSchema(t),
       password: passwordSchema(t),
       passwordConfirm: z.string().default(EMPTY_STRING),

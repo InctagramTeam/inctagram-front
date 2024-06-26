@@ -10,13 +10,15 @@ import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox'
 type Props<T extends FieldValues> =
   /** Не имеем возможность контролировать компонент снаружи, нет возможности передать ему value, onChange */
   Omit<CheckboxProps, 'checked' | 'id' | 'onCheckedChange'> &
-    Omit<UseControllerProps<T>, 'defaultValue' | 'rules'>
+    Omit<UseControllerProps<T>, 'defaultValue'>
 
 export const ControlledCheckbox = <T extends FieldValues>({
   control,
   disabled,
   label,
   name,
+  errorMessage,
+  rules,
   shouldUnregister,
   /** В ...rest попадут все пропсы: CheckboxProps */
   ...rest
@@ -27,6 +29,7 @@ export const ControlledCheckbox = <T extends FieldValues>({
     control,
     disabled,
     name,
+    rules,
     shouldUnregister,
   })
 
@@ -34,6 +37,7 @@ export const ControlledCheckbox = <T extends FieldValues>({
     <Checkbox
       {...rest}
       checked={checked}
+      errorMessage={errorMessage}
       disabled={disabled}
       id={name}
       label={label}
