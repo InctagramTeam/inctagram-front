@@ -1,3 +1,3 @@
-export { Flex } from './flex'
-export { FlexRow } from './flex-row/flex-row'
-export { FlexCol } from './flex-col/flex-col'
+export { Flex } from './ui/flex'
+export { FlexRow } from './ui/flex-row/flex-row'
+export { FlexCol } from './ui/flex-col/flex-col'

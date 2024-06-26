@@ -60,7 +60,7 @@ export const PageWrapper = ({
   })
 
   return (
-    <section
+    <main
       className={cn(
         `_Section_ mx-auto flex min-h-full w-full max-w-[1280px] justify-center p-[0_15px] focus-visible:outline-none`,
         className,
@@ -72,6 +72,6 @@ export const PageWrapper = ({
       <HeadMeta description={description} favicon={instagram.src} title={title} />
       {children}
       {onScrollEnd ? <div className={`m-[10px] h-[20px]`} ref={triggerRef}></div> : null}
-    </section>
+    </main>
   )
 }

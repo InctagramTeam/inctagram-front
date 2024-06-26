@@ -1,117 +1,40 @@
 'use client'
 
 import {
-  CSSProperties,
   ComponentPropsWithoutRef,
+  CSSProperties,
   DetailedHTMLProps,
+  forwardRef,
   HTMLAttributes,
   ReactNode,
-  forwardRef,
   useMemo,
 } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
 import { Undefinable } from '@/shared/types/undefinable'
 import { clsx } from 'clsx'
-
-// types
-type FlexJustifyContent =
-  | 'center'
-  | 'end'
-  | 'spaceAround'
-  | 'spaceBetween'
-  | 'spaceEvenly'
-  | 'start'
-
-type FlexGapType =
-  | '1'
-  | '2'
-  | '3'
-  | '4'
-  | '6'
-  | '8'
-  | '10'
-  | '12'
-  | '14'
-  | '16'
-  | '18'
-  | '20'
-  | '22'
-  | '24'
-  | '26'
-  | '28'
-  | '30'
-  | '34'
-  | '40'
-  | '50'
-  | '60'
-  | '70'
-  | '80'
-
-type FlexAlignItemsType = 'baseline' | 'center' | 'end' | 'start' | 'stretch'
-type FlexDirectionType = 'col_reverse' | 'column' | 'row' | 'row_reverse'
-type FlexWrapType = 'no_wrap' | 'wrap' | 'wrap_reverse'
-
-// mapping types in classes
-const justifyClasses: Record<FlexJustifyContent, string> = {
-  center: 'justify-center',
-  end: 'justify-end',
-  spaceAround: 'justify-around',
-  spaceBetween: 'justify-between',
-  spaceEvenly: 'justify-evenly',
-  start: 'justify-start',
-}
-
-const flexWrapClasses: Record<FlexWrapType, string> = {
-  no_wrap: 'flex-nowrap',
-  wrap: 'flex-wrap',
-  wrap_reverse: 'flex-wrap-reverse',
-}
-
-const alignClasses: Record<FlexAlignItemsType, string> = {
-  baseline: 'items-baseline',
-  center: 'items-center',
-  end: 'items-end',
-  start: 'items-start',
-  stretch: 'items-stretch',
-}
-
-const directionClasses: Record<FlexDirectionType, string> = {
-  col_reverse: 'flex-col-reverse',
-  column: 'flex-col',
-  row: 'flex-row',
-  row_reverse: 'flex-row-reverse',
-}
-
-const gapClasses: Record<FlexGapType, string> = {
-  1: 'gap-[1px]',
-  2: 'gap-[2px]',
-  3: 'gap-[3px]',
-  4: 'gap-[4px]',
-  6: 'gap-[6px]',
-  8: 'gap-[8px]',
-  10: 'gap-[10px]',
-  12: 'gap-[12px]',
-  14: 'gap-[14px]',
-  16: 'gap-[16px]',
-  18: 'gap-[18px]',
-  20: 'gap-[20px]',
-  22: 'gap-[22px]',
-  24: 'gap-[24px]',
-  26: 'gap-[26px]',
-  28: 'gap-[28px]',
-  30: 'gap-[30px]',
-  34: 'gap-[34px]',
-  40: 'gap-[40px]',
-  50: 'gap-[50px]',
-  60: 'gap-[60px]',
-  70: 'gap-[70px]',
-  80: 'gap-[80px]',
-}
+import {
+  FlexAlignItemsType,
+  FlexDirectionType,
+  FlexGapType,
+  FlexJustifyContent,
+  FlexWrapType,
+} from '@/shared/ui/flex/model/types/flex-type'
+import {
+  ALIGN_CLASSES,
+  DIRECTION_CLASSES,
+  FLEX_WRAP_CLASSES,
+  GAP_CLASSES,
+  JUSTIFY_CLASSES,
+} from '@/shared/ui/flex/model/constants/mapping-flex-classes'
 
 // props
 type DivPropsType = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
+/** Наследуемся (extends) от пропсов стандартного div элемента, чтобы у Flex появились такие же свойста как и у div
+ * Теперь при использовании Flex или его имплементациё: FlexRow, FlexCol - можем навешать, к примеру атрибут role='navigation',
+ блок стал семантически правильнее, роботы лучше проиндексируют его
+ * */
 export interface FlexProps extends DivPropsType {
   children: ReactNode | any
   className?: string
@@ -178,16 +101,17 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
 
     const classes = [
       className,
-      justifyClasses[justify],
-      alignClasses[items],
-      directionClasses[direction],
-      directionClasses[direction],
-      flexWrapClasses[wrap],
-      gap && gapClasses[gap],
+      JUSTIFY_CLASSES[justify],
+      ALIGN_CLASSES[items],
+      DIRECTION_CLASSES[direction],
+      DIRECTION_CLASSES[direction],
+      FLEX_WRAP_CLASSES[wrap],
+      gap && GAP_CLASSES[gap],
     ]
 
     console.log('flex')
 
+    /** {...rest} первым, т.к чтобы при передачи снаружи className, последний перезатрёт пропсы */
     return (
       <div
         {...rest}
@@ -202,5 +126,4 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
 )
 
 Flex.displayName = 'Flex'
-
 export { Flex }
