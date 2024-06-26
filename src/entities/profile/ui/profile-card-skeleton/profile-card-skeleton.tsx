@@ -1,7 +1,7 @@
 'use client'
 
-import { Skeleton } from '@/shared/ui/skeleton'
 import { Flex } from '@/shared'
+import { Skeleton } from '@/shared/ui/skeleton'
 
 export const ProfileCardSkeleton = () => {
   return (
@@ -14,11 +14,11 @@ export const ProfileCardSkeleton = () => {
           <Flex
             className={`Header_ flex w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}
           >
-            <Skeleton width={140} height={30} />
+            <Skeleton height={30} width={140} />
             <Skeleton height={30} width={160} />
           </Flex>
           <div className={`_description_ w-full text-balance pb-[53px] pt-[23px]`}>
-            <Skeleton maxWidth height={100} />
+            <Skeleton height={100} maxWidth />
           </div>
         </div>
       </div>

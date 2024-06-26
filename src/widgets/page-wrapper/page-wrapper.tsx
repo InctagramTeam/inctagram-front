@@ -1,28 +1,28 @@
 import {
-  ComponentPropsWithoutRef,
   CSSProperties,
+  ComponentPropsWithoutRef,
   MutableRefObject,
   ReactNode,
   useMemo,
   useRef,
 } from 'react'
 
+import { useInfiniteScroll } from '@/shared/lib/hooks/use-Infinite-scroll'
 import HeadMeta from '@/shared/lib/seo/head-meta'
 import { cn } from '@/shared/lib/utils/merge-cn'
 import { ReturnComponent } from '@/shared/types'
-import instagram from 'public/inctagram.png'
 import { Undefinable } from '@/shared/types/undefinable'
-import { useInfiniteScroll } from '@/shared/lib/hooks/use-Infinite-scroll'
+import instagram from 'public/inctagram.png'
 
 type Props = {
+  children: ReactNode
+  className?: string
   description?: string
   favicon?: string
-  className?: string
-  children: ReactNode
-  paddingBlock?: CSSProperties['paddingBlock']
-  title?: string
   /** Для бесконечной ленты - отработает единожды когда элемент появляется в зоне видимости */
   onScrollEnd?: () => void
+  paddingBlock?: CSSProperties['paddingBlock']
+  title?: string
 } & ComponentPropsWithoutRef<'section'>
 
 /** Оборачиваем все страницы в проекте */
@@ -31,6 +31,7 @@ export const PageWrapper = ({
   className,
   description,
   favicon,
+  onScrollEnd,
   /**
    * Отступ обёртки над страницей (PageWrapper) по оси "y". Например: Отступ страницы SingIn от Header
    * (по умолчанию для главной странице с local url: http://localhost:3000 --> 24рх,
@@ -39,7 +40,6 @@ export const PageWrapper = ({
   paddingBlock = '24px',
   style,
   title,
-  onScrollEnd,
   ...rest
 }: Props): ReturnComponent => {
   const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>
@@ -54,9 +54,9 @@ export const PageWrapper = ({
   )
 
   useInfiniteScroll({
+    callback: onScrollEnd,
     triggerRef,
     wrapperRef,
-    callback: onScrollEnd,
   })
 
   return (

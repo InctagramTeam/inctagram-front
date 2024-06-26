@@ -2,13 +2,13 @@ import React from 'react'
 
 import {
   Button,
-  cn,
-  getAuthLayout,
   InformationBlock,
   ReturnComponent,
+  XS_BREAKPOINT,
+  cn,
+  getAuthLayout,
   useResponsive,
   useTranslation,
-  XS_BREAKPOINT,
 } from '@/shared'
 import { TimeManagementIllustration } from '@/shared/assets/illustrations'
 import { PageWrapper } from '@/widgets/page-wrapper'

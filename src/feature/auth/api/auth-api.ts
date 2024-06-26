@@ -1,9 +1,9 @@
 import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user'
 import { SignUpRequest, getContentType } from '@/feature'
+import { removeTokensStorage, saveToStorage } from '@/feature/auth/model/utils/auth.helper'
+import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
-import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
-import { removeTokensStorage, saveToStorage } from '@/feature/auth/model/utils/auth.helper'
 
 /* Todo --> AuthApi */
 export class AuthApi {
@@ -61,4 +61,5 @@ export class AuthApi {
 }
 
 const authApi = new AuthApi()
+
 export default authApi

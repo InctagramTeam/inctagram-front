@@ -1,9 +1,9 @@
 import { useRef } from 'react'
 
 import { SignInFormValues } from '@/feature'
-import { EMPTY_STRING, getAuthLayout, ReturnComponent, UseFormRef, useTranslation } from '@/shared'
-import dynamic from 'next/dynamic'
+import { EMPTY_STRING, ReturnComponent, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
+import dynamic from 'next/dynamic'
 
 const DynamicSignInForm = dynamic(
   import('../../../feature/auth/ui/sign-in-form').then(module => module.SignInForm)

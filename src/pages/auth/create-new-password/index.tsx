@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 
 import { CreateNewPasswordFormValues, CreatePasswordForm } from '@/feature'
-import { getAuthLayout, ReturnComponent, UseFormRef, useTranslation } from '@/shared'
+import { ReturnComponent, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 
 const CreateNewPasswordPage = (): ReturnComponent => {

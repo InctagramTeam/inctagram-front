@@ -3,9 +3,9 @@
 import { useRef, useState } from 'react'
 
 import { SignUpFormValues } from '@/feature'
-import { EMPTY_STRING, getAuthLayout, UseFormRef, useTranslation } from '@/shared'
-import dynamic from 'next/dynamic'
+import { EMPTY_STRING, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
+import dynamic from 'next/dynamic'
 
 const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)

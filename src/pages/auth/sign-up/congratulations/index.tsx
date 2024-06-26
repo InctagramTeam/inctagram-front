@@ -2,13 +2,13 @@
 import {
   AuthRoutes,
   Button,
-  cn,
-  getAuthLayout,
   InformationBlock,
   ReturnComponent,
+  XS_BREAKPOINT,
+  cn,
+  getAuthLayout,
   useResponsive,
   useTranslation,
-  XS_BREAKPOINT,
 } from '@/shared'
 import { SignUpBroIllustration } from '@/shared/assets/illustrations'
 import { AppLink } from '@/shared/ui/app-link/app-link'

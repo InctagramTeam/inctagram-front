@@ -23,9 +23,9 @@ import {
   useResponsive,
   useTranslation,
 } from '@/shared'
+import { AppLink } from '@/shared/ui/app-link/app-link'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
-import { AppLink } from '@/shared/ui/app-link/app-link'
 
 type Props = {
   className?: string

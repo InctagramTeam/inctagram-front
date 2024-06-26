@@ -3,26 +3,26 @@ import {
   ComponentPropsWithoutRef,
   ElementRef,
   ElementType,
-  forwardRef,
   HTMLAttributes,
-  memo,
   ReactNode,
+  forwardRef,
+  memo,
 } from 'react'
 
-import { cn, PolymorphComponentPropsWithRef } from '@/shared'
+import { PolymorphComponentPropsWithRef, cn } from '@/shared'
 import clsx from 'clsx'
 
-type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, ComponentPropsWithoutRef<T>> &
-  OwnProps
+type Props<T extends ElementType> = OwnProps &
+  PolymorphComponentPropsWithRef<T, ComponentPropsWithoutRef<T>>
 
 type OwnProps = {
-  variant?: CardVariant
   border?: CardBorder
   padding?: CardPadding
+  variant?: CardVariant
 }
 
-export type CardVariant = 'normal' | 'outlined' | 'light'
-export type CardBorder = 'round' | 'normal' | 'partial'
+export type CardVariant = 'light' | 'normal' | 'outlined'
+export type CardBorder = 'normal' | 'partial' | 'round'
 export type CardPadding = '0' | '4' | '8' | '12' | '16' | '24'
 
 type CardComponent = <T extends ElementType = 'div'>(props: Props<T>) => ReactNode
@@ -39,7 +39,7 @@ const mapPaddingToClass: Record<CardPadding, string> = {
 export const Card: CardComponent = memo(
   forwardRef(
     <T extends ElementType = 'div'>(
-      { asComponent, className, variant, border, padding = '4', ...props }: Props<T>,
+      { asComponent, border, className, padding = '4', variant, ...props }: Props<T>,
       ref: ElementRef<T>
     ) => {
       const Component = asComponent || 'div'

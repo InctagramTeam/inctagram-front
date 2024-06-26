@@ -3,9 +3,9 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
 import { ForgotPasswordForm, ForgotPasswordFormValues, SentEmailModal } from '@/feature'
-import { getAuthLayout, RECAPTCHA_PUBLIK_KEY, UseFormRef, useTranslation } from '@/shared'
-import Script from 'next/script'
+import { RECAPTCHA_PUBLIK_KEY, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
+import Script from 'next/script'
 
 type ForgotPasswordFormRef = UseFormRef<
   ForgotPasswordFormValues,

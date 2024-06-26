@@ -1,10 +1,10 @@
 'use client'
 import * as React from 'react'
-import { ComponentPropsWithoutRef, CSSProperties, ElementRef, ReactElement, useMemo } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef, ElementRef, ReactElement, useMemo } from 'react'
 
 import { cn } from '@/shared'
-import * as AvatarPrimitive from '@radix-ui/react-avatar'
 import { Undefinable } from '@/shared/types/undefinable'
+import * as AvatarPrimitive from '@radix-ui/react-avatar'
 
 const Avatar = React.forwardRef<
   ElementRef<typeof AvatarPrimitive.Root>,
@@ -22,29 +22,29 @@ const Avatar = React.forwardRef<
 Avatar.displayName = AvatarPrimitive.Root.displayName
 
 type AvatarImagerProps = {
-  src?: string
   alt?: string
   className?: string
   /** Передаем размеры аватарки из вне: чтобы сделать аватарку круглой */
   size?: number
+  src?: string
 }
 const AvatarImage = React.forwardRef<
   ElementRef<typeof AvatarPrimitive.Image>,
-  ComponentPropsWithoutRef<typeof AvatarPrimitive.Image> & AvatarImagerProps
->(({ className, size, src, alt, ...props }, ref) => {
+  AvatarImagerProps & ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ alt, className, size, src, ...props }, ref) => {
   const styles = useMemo<Undefinable<CSSProperties>>(() => {
     return {
-      width: size || 200,
       height: size || 200,
+      width: size || 200,
     }
   }, [size])
 
   return (
     <AvatarPrimitive.Image
-      src={src}
       alt={alt}
       className={cn('aspect-square h-full w-full object-cover', className)}
       ref={ref}
+      src={src}
       style={styles}
       {...props}
     />
@@ -59,7 +59,7 @@ type AvatarFallbackProps = {
 
 const AvatarFallback = React.forwardRef<
   ElementRef<typeof AvatarPrimitive.Fallback>,
-  ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> & AvatarFallbackProps
+  AvatarFallbackProps & ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
 >(({ className, userName, ...props }, ref) => (
   <AvatarPrimitive.Fallback
     className={cn(

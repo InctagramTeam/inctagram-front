@@ -1,8 +1,9 @@
 'use client'
 
+import { memo } from 'react'
+
 import { Avatar } from '@/shared/ui/avatar'
 import { AvatarFallback, AvatarImage } from '@/shared/ui/avatar/avatar'
-import { memo } from 'react'
 
 export const UserAvatar = memo(({ className }: { className?: string }) => {
   return (
