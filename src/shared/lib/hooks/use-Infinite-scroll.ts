@@ -11,7 +11,7 @@ export interface UseInfiniteScrollOptions {
   wrapperRef?: MutableRefObject<HTMLElement>
 }
 
-export function useInfiniteScroll({ callback, wrapperRef, triggerRef }: UseInfiniteScrollOptions) {
+export function useInfiniteScroll({ callback, triggerRef, wrapperRef }: UseInfiniteScrollOptions) {
   /** IntersectionObserver: позволяет наблюдать за появлением элементов и реализовывать бесконечную ленту */
   const observer = useRef<IntersectionObserver | null>(null)
 

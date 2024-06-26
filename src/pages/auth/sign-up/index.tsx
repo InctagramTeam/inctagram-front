@@ -1,23 +1,20 @@
 'use client'
-
 import { useRef, useState } from 'react'
 
-import { SignUpFormValues } from '@/feature'
-import { EMPTY_STRING, getAuthLayout, UseFormRef, useTranslation } from '@/shared'
-import dynamic from 'next/dynamic'
+import { SignUpForm, SignUpFormValues } from '@/feature'
+import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
+import dynamic from 'next/dynamic'
 
-const DynamicSentEmailModal = dynamic(
+const SentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
-)
-const DynamicSignUpForm = dynamic(
-  import('../../../feature/auth/ui/sign-up-form/sign-up-form').then(module => module.SignUpForm)
 )
 
 const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
   const [open, setOpen] = useState(true)
   const { t } = useTranslation()
+  const { xs } = useResponsive()
 
   const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
     /*  signUp(formData)
@@ -48,15 +45,19 @@ const SignUpPage = () => {
   }
 
   return (
-    <PageWrapper description={t.pages.signUp.metaDescription} title={t.pages.signUp.metaTitle}>
-      <DynamicSignUpForm
+    <PageWrapper
+      description={t.pages.signUp.metaDescription}
+      paddingBlock={xs ? '24px' : '16px'}
+      title={t.pages.signUp.metaTitle}
+    >
+      <SignUpForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
         // disabled={isLoading}
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <DynamicSentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
+      <SentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
     </PageWrapper>
   )
 }

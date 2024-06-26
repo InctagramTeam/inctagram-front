@@ -4,7 +4,7 @@ export type Profile = {
 
 export type ProfileSchema = {
   data: Profile
-  isLoading?: boolean
   error?: string
+  isLoading?: boolean
   readonly?: string
 }

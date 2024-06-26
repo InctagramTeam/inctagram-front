@@ -1,7 +1,10 @@
-import { ReturnComponent, Text, useTranslation } from '@/shared'
+'use client'
+
+import { ReturnComponent, Text, useResponsive, useTranslation } from '@/shared'
 import { clsx } from 'clsx'
 
 export const RequestEmpty = (): ReturnComponent => {
+  const { sm } = useResponsive()
   const { t } = useTranslation()
 
   const classes = {
@@ -9,7 +12,7 @@ export const RequestEmpty = (): ReturnComponent => {
   }
 
   return (
-    <div className={'mt-[84px]'}>
+    <div className={sm ? 'mt-[25px]' : 'mt-[84px]'}>
       <Text asComponent={'h2'} className={clsx(classes.text, 'mb-[6px]')} variant={'bold_text_14'}>
         {t.pages.search.empty}
       </Text>

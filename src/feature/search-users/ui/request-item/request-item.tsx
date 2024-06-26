@@ -1,17 +1,23 @@
 import { RequestItemProps } from '@/feature/search-users/model'
-import { Flex, ReturnComponent, Text } from '@/shared'
-import { Avatar } from '@/shared/ui/avatar'
-import { AvatarFallback, AvatarImage } from '@/shared/ui/avatar/avatar'
+import { Flex, ReturnComponent, Text, UserAvatar } from '@/shared'
+import Link from 'next/link'
 
 export const RequestItem = ({ ava, name, nickname }: RequestItemProps): ReturnComponent => {
   return (
     <Flex gap={'12'}>
-      <Avatar className={'h-[3rem] w-[3rem]'}>
-        <AvatarImage alt={'user-avatar'} src={ava} />
-        <AvatarFallback>USER</AvatarFallback>
-      </Avatar>
+      <UserAvatar className={'h-[3rem] w-[3rem]'} src={ava} userName={name} />
       <div>
-        <Text className={'block underline'} variant={'bold_text_14'}>
+        <Text
+          asComponent={Link}
+          className={'block underline'}
+          href={
+            {
+              // todo: данные с сервера для редиректа на страницу конкретного профиля
+              // `${AppRoutes.PROFILE}/${data?.id}`
+            }
+          }
+          variant={'bold_text_14'}
+        >
           {nickname}
         </Text>
         <Text className={'block text-Light-900'} variant={'regular-text-14'}>

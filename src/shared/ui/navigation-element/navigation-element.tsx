@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, ElementType, forwardRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
 import { EMPTY_STRING } from '@/shared/constants'
 import { cn, getIcon } from '@/shared/lib/utils'
@@ -10,8 +10,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
-import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 type CustomProps = {
   name: string
@@ -58,11 +58,11 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
             <Button
-              href={''}
               aria-label={onlyIcon ? name : EMPTY_STRING}
               asComponent={Link || 'button'}
               className={classes.link}
               disabled={disabled}
+              href={''}
               ref={ref}
               startIcon={
                 (props.href || startIcon) && (

@@ -47,8 +47,8 @@ const Toast = forwardRef<
 >(({ className, variant, ...props }, ref) => {
   return (
     <ToastPrimitives.Root
-      duration={3000}
       className={cn(toastVariants({ variant }), className)}
+      duration={3000}
       ref={ref}
       {...props}
     />

@@ -1,5 +1,5 @@
-import Cookies from 'js-cookie'
 import { IAuthResponse, ITokens } from '@/entities/user/model/types/user'
+import Cookies from 'js-cookie'
 
 export const saveTokensStorage = (data: ITokens) => {
   Cookies.set('accessToken', data.accessToken)

@@ -1,11 +1,12 @@
+import { ReactNode, useEffect } from 'react'
+
+import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
+import { useUser } from '@/entities/user'
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
-import { ReactNode, useEffect } from 'react'
-import { useUser } from '@/entities/user'
 
-type Props = TypeComponentAuthFields & { children: ReactNode }
+type Props = { children: ReactNode } & TypeComponentAuthFields
 
 const DynamicCheckRole = dynamic(() => import('../check-role/check-role'), {
   /**
@@ -17,8 +18,8 @@ const DynamicCheckRole = dynamic(() => import('../check-role/check-role'), {
 
 const AuthProvider = (props: Props) => {
   const {
-    children,
     Component: { isOnlyAdmin, isOnlyUser },
+    children,
   } = props
 
   // забираем авторизованного юзера

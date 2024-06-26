@@ -1,9 +1,9 @@
 export interface RegisterSchema {
-  userName: string
-  password: string
-  isLoading?: boolean
-  rememberMe?: boolean
   error?: string
+  isLoading?: boolean
+  password: string
+  rememberMe?: boolean
+  userName: string
 }
 
 // ----------------------

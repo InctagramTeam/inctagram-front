@@ -1,14 +1,15 @@
 import { SearchUsers } from '@/feature'
-import { getBaseAppLayout, useTranslation } from '@/shared'
+import { ReturnComponent, getBaseAppLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 
-const Search = () => {
+const Search = (): ReturnComponent => {
+  const { xs } = useResponsive()
   const { t } = useTranslation()
 
   return (
     <PageWrapper
       description={t.pages.search.metaDescription}
-      paddingBlock={'35px'}
+      paddingBlock={xs ? '12px' : '35px'}
       title={t.pages.search.metaTitle}
     >
       <SearchUsers />

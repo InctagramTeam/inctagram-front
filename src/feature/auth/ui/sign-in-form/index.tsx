@@ -3,7 +3,7 @@
 import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { SignInFormValues, signInSchema } from '@/feature/auth/model/utils/validators'
+import { SignInFormValues, signInSchema } from '@/feature'
 import {
   AppLinksList,
   AuthRoutes,
@@ -13,7 +13,6 @@ import {
   EMPTY_STRING,
   Flex,
   ReturnComponent,
-  SM_BREAKPOINT,
   Text,
   UseFormRef,
   useFormRevalidateWithLocale,
@@ -37,16 +36,14 @@ export const SignInForm = forwardRef(
     const { className, disabled, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
 
     const { locale, t } = useTranslation()
-    const { width } = useResponsive()
-
-    const isMobile = width && width < SM_BREAKPOINT
+    const { xs } = useResponsive()
 
     const classes = {
       button: `py-[6px] px-[24px] mb-[1.2rem]`,
       forgotLink: `py-[0] ml-auto h-auto text-Light-900 mb-[1.5rem] text-right !text-regular-text-14 bg-transparent`,
       form: clsx(
         'max-w-[380px] w-full p-[1.5rem] self-start',
-        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        xs && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
         className
       ),
       question: 'mb-[12px] text-Light-100',

@@ -11,8 +11,8 @@ import {
 } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
-import { clsx } from 'clsx'
 import { Undefinable } from '@/shared/types/undefinable'
+import { clsx } from 'clsx'
 
 // types
 type FlexJustifyContent =
@@ -185,8 +185,6 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
       flexWrapClasses[wrap],
       gap && gapClasses[gap],
     ]
-
-    console.log('flex')
 
     return (
       <div

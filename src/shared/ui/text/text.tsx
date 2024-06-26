@@ -1,8 +1,9 @@
 'use client'
-import { ComponentPropsWithoutRef, CSSProperties, ElementType, ReactNode, useMemo } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode, useMemo } from 'react'
+
+import { clsx } from 'clsx'
 
 import { ReturnComponent } from '../../types'
-import { clsx } from 'clsx'
 import { Undefinable } from '../../types/undefinable'
 
 export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'
@@ -27,6 +28,7 @@ export type TextVariant =
 
 interface TextProps<T extends ElementType> {
   asComponent?: T
+  bold?: boolean
   children: ReactNode
   color?: CSSProperties['color']
   mb?: CSSProperties['marginBottom']
@@ -38,17 +40,16 @@ interface TextProps<T extends ElementType> {
   /** Пример использования с props "as": Текст будет ссылкой: <Text as={AppLink} to={'main/auth/sign-in'} variant="subtitle1" className={s.name}>Привет!</Text> */
   textAlign?: TextAlign
   textColor?: TextColor
-  variant?: TextVariant
-  bold?: boolean
   title?: string
+  variant?: TextVariant
 }
 
 export function Text<T extends ElementType = 'span'>({
   asComponent,
+  bold,
   children,
   className,
   color,
-  bold,
   /** mb, ml, mr, mt, mx, my - Внешние отступы (маржины) Text от соседних элементов */
   mb,
   ml,
@@ -61,9 +62,9 @@ export function Text<T extends ElementType = 'span'>({
   /** Выравнивание текста */
   textAlign = 'left',
   textColor = 'primary',
+  title,
   /** Задаёт шрифт + размер + межстрочный интервал текста */
   variant = 'regular_text_16',
-  title,
   ...rest
 }: Omit<ComponentPropsWithoutRef<T>, keyof TextProps<T>> & TextProps<T>): ReturnComponent {
   const textClasses = clsx(
