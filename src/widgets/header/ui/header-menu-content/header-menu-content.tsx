@@ -1,5 +1,5 @@
 import { LangSelectSwitcher, getLanguages } from '@/feature/translate'
-import { Flex, useTranslation } from '@/shared'
+import { Flex, ReturnComponent, useResponsive, useTranslation } from '@/shared'
 import {
   AuthButtons,
   MobileDropdown,
@@ -7,21 +7,26 @@ import {
   NotificationsDropdown,
 } from '@/widgets/header/ui'
 
-const renderNotificationsDropdown = (isDesktop: boolean, notifications?: NotificationProps[]) => {
-  if (!isDesktop) {
-    return
+const renderNotificationsDropdown = (
+  isMobile: boolean,
+  notifications?: NotificationProps[]
+): ReturnComponent => {
+  if (isMobile) {
+    return null
   }
 
   return <NotificationsDropdown notifications={notifications} />
 }
 
 /** Render-functions */
-const renderLangSelectSwitcher = (width: number, sidebarItems: ReturnType<typeof getLanguages>) => {
-  return <LangSelectSwitcher sidebarItems={sidebarItems} width={width} />
+const renderLangSelectSwitcher = (
+  sidebarItems: ReturnType<typeof getLanguages>
+): ReturnComponent => {
+  return <LangSelectSwitcher sidebarItems={sidebarItems} />
 }
 
-const renderAuthButtons = (isDesktop: boolean, isAuth?: boolean) => {
-  if (isDesktop && !isAuth) {
+const renderAuthButtons = (isMobile: boolean, isAuth?: boolean): ReturnComponent => {
+  if (!isMobile && !isAuth) {
     return (
       <Flex className={'flex-nowrap'} gap={'24'}>
         <AuthButtons />
@@ -32,9 +37,9 @@ const renderAuthButtons = (isDesktop: boolean, isAuth?: boolean) => {
   return null
 }
 
-const renderMobileDropdown = (isDesktop: boolean, logout?: () => void) => {
-  if (isDesktop) {
-    return
+const renderMobileDropdown = (isMobile: boolean, logout?: () => void): ReturnComponent => {
+  if (!isMobile) {
+    return null
   }
 
   return <MobileDropdown logout={logout} />
@@ -42,25 +47,26 @@ const renderMobileDropdown = (isDesktop: boolean, logout?: () => void) => {
 
 export const HeaderMenuContent = ({
   isAuth,
-  isDesktop,
   logout,
   notifications,
   sidebarItems,
-  t,
-  width,
 }: {
   isAuth?: boolean
-  isDesktop: boolean
   logout?: () => void
   notifications?: NotificationProps[]
   sidebarItems: ReturnType<typeof getLanguages>
   t: ReturnType<typeof useTranslation>['t']
-  width: number
-}) => (
-  <Flex gap={'40'}>
-    {renderNotificationsDropdown(isDesktop, notifications)}
-    {renderLangSelectSwitcher(width, sidebarItems)}
-    {renderAuthButtons(isDesktop, isAuth)}
-    {renderMobileDropdown(!isDesktop, logout)}
-  </Flex>
-)
+}): ReturnComponent => {
+  const { md } = useResponsive()
+
+  const isMobile = md
+
+  return (
+    <Flex gap={'40'}>
+      {renderNotificationsDropdown(isMobile, notifications)}
+      {renderLangSelectSwitcher(sidebarItems)}
+      {renderAuthButtons(isMobile, isAuth)}
+      {renderMobileDropdown(isMobile, logout)}
+    </Flex>
+  )
+}

@@ -3,7 +3,14 @@ import ReCAPTCHA from 'react-google-recaptcha'
 import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
 import { ForgotPasswordForm, ForgotPasswordFormValues, SentEmailModal } from '@/feature'
-import { RECAPTCHA_PUBLIK_KEY, UseFormRef, getAuthLayout, useTranslation } from '@/shared'
+import {
+  RECAPTCHA_PUBLIK_KEY,
+  ReturnComponent,
+  UseFormRef,
+  getAuthLayout,
+  useResponsive,
+  useTranslation,
+} from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import Script from 'next/script'
 
@@ -15,13 +22,13 @@ type ForgotPasswordFormRef = UseFormRef<
   }
 >
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage = (): ReturnComponent => {
+  const { xs } = useResponsive()
   const { t } = useTranslation()
   const [open, setOpen] = useState(true)
   const ref = useRef<ForgotPasswordFormRef>(null)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const [recaptchaValue, setRecaptchaValue] = useState<null | string>(null)
-
   const handleSubmitForm = (formData: ForgotPasswordFormValues) => {
     setRecaptchaValue(recaptchaRef.current?.getValue() ?? null)
 
@@ -48,7 +55,7 @@ const ForgotPasswordPage = () => {
       <Script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_PUBLIK_KEY}`} />
       <PageWrapper
         description={t.pages.forgotPassword.metaDescription}
-        paddingBlock={'72px'}
+        paddingBlock={xs ? '12px' : '72px'}
         title={t.pages.forgotPassword.metaTitle}
       >
         <ForgotPasswordForm

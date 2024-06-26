@@ -34,8 +34,8 @@ const AvatarImage = React.forwardRef<
 >(({ alt, className, size, src, ...props }, ref) => {
   const styles = useMemo<Undefinable<CSSProperties>>(() => {
     return {
-      height: size ?? 200,
-      width: size ?? 200,
+      height: size || 200,
+      width: size || 200,
     }
   }, [size])
 

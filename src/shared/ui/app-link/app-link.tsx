@@ -1,7 +1,5 @@
 import { ReactNode } from 'react'
 
-import { UrlObject } from 'url'
-
 import clsx from 'clsx'
 import Link from 'next/link'
 
@@ -10,7 +8,7 @@ export type AppLinkVariant = 'primary' | 'red'
 export type AppLinkProps = {
   activeLink?: string
   children?: ReactNode
-  href?: UrlObject | string
+  href?: string
   variant?: AppLinkVariant
 } & Parameters<typeof Link>[0]
 

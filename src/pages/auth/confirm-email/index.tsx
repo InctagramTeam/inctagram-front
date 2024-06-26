@@ -4,7 +4,6 @@ import {
   Button,
   InformationBlock,
   ReturnComponent,
-  XS_BREAKPOINT,
   cn,
   getAuthLayout,
   useResponsive,
@@ -14,24 +13,18 @@ import { TimeManagementIllustration } from '@/shared/assets/illustrations'
 import { PageWrapper } from '@/widgets/page-wrapper'
 
 const ConfirmEmailPage = (): ReturnComponent => {
-  const { width } = useResponsive()
+  const { xs } = useResponsive()
   const { t } = useTranslation()
 
-  if (width === null) {
-    return null
-  }
-
-  const isMobile = width < XS_BREAKPOINT
-
   const classes = {
-    button: cn('py-[6px] px-[24px]', !isMobile && 'mb-[32px]', isMobile && 'order-1'),
-    illustration: cn('max-w-[474px] w-full h-[354px]', isMobile && 'h-[246px] mb-[42px]'),
+    button: cn('py-[6px] px-[24px]', !xs && 'mb-[32px]', xs && 'order-1'),
+    illustration: cn('max-w-[474px] w-full h-[354px]', xs && 'h-[246px] mb-[42px]'),
   }
 
   return (
     <PageWrapper
       description={t.pages.verifyEmail.metaDescription}
-      paddingBlock={'35px'}
+      paddingBlock={xs ? '12px' : '35px'}
       title={t.pages.verifyEmail.metaTitle}
     >
       <InformationBlock
@@ -39,14 +32,14 @@ const ConfirmEmailPage = (): ReturnComponent => {
           <Button
             asComponent={'button'}
             className={classes.button}
-            fullWidth={isMobile}
+            fullWidth={xs}
             onClick={() => {}}
           >
             {t.button.resendVerificationLink}
           </Button>
         }
         illustration={<TimeManagementIllustration aria-hidden className={classes.illustration} />}
-        isMobile={isMobile}
+        isMobile={xs}
         text={t.pages.verifyEmail.text}
         title={t.pages.verifyEmail.title}
       />

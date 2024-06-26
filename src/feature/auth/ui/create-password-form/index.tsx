@@ -1,14 +1,20 @@
 import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { CreateNewPasswordFormValues, createPasswordSchema } from '@/feature'
 import {
-  CreateNewPasswordFormValues,
-  createPasswordSchema,
-} from '@/feature/auth/model/utils/validators'
-import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { Button, Card, ControlledInput, Flex, Text } from '@/shared/ui'
+  Button,
+  Card,
+  ControlledInput,
+  EMPTY_STRING,
+  Flex,
+  ReturnComponent,
+  Text,
+  UseFormRef,
+  useFormRevalidateWithLocale,
+  useResponsive,
+  useTranslation,
+} from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 
@@ -24,14 +30,12 @@ export const CreatePasswordForm = forwardRef(
   ): ReturnComponent => {
     const { className, disabled, onSubmit, ...rest } = props
     const { locale, t } = useTranslation()
-    const { width } = useResponsive()
-
-    const isMobile = width && width < SM_BREAKPOINT
+    const { xs } = useResponsive()
 
     const classes = {
       form: clsx(
         'max-w-[380px] w-full p-[1.5rem] pb-[2rem] self-start',
-        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        xs && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
         className
       ),
     }
@@ -56,12 +60,6 @@ export const CreatePasswordForm = forwardRef(
     useImperativeHandle(methodsRef, () => ({ reset, setError }))
 
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
-
-    console.log(errors)
-
-    if (width === null) {
-      return null
-    }
 
     return (
       <Card
