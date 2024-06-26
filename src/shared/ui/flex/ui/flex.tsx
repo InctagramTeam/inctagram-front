@@ -99,7 +99,7 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
       }
     }, [mr, ml, mt, mb, mx, my, m, p, width, max])
 
-    const classes = [
+    const optionalClasses = [
       className,
       JUSTIFY_CLASSES[justify],
       ALIGN_CLASSES[items],
@@ -107,7 +107,7 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
       DIRECTION_CLASSES[direction],
       FLEX_WRAP_CLASSES[wrap],
       gap && GAP_CLASSES[gap],
-    ]
+    ] as const
 
     console.log('flex')
 
@@ -115,7 +115,7 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
     return (
       <div
         {...rest}
-        className={clsx('flex', maxWidth && 'w-full', classes, className)}
+        className={clsx('flex', maxWidth && 'w-full', optionalClasses, className)}
         ref={ref}
         style={styles}
       >

@@ -130,7 +130,7 @@ export const ForgotPasswordForm = forwardRef(
 
         <Button
           className={classes.button}
-          disabled={!!Object.keys(errors).length || disabled}
+          disabled={!!Object.keys(errors).length ?? disabled}
           fullWidth
           type={'submit'}
         >

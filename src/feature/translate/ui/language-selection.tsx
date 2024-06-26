@@ -36,7 +36,7 @@ export const LanguageSelection = memo(({ sidebarItems, width }: Props) => {
     itemInner: 'flex gap-[12px] text-inherit',
   }
 
-  const value = locale || defaultLocale
+  const value = locale ?? defaultLocale
 
   return (
     <Select onValueChange={changeLocale} value={value}>
