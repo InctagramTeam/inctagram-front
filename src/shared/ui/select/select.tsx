@@ -8,6 +8,13 @@ import { ChevronIcon } from '@/shared/assets/icons'
 import * as SelectRadix from '@radix-ui/react-select'
 
 import { SelectContent, SelectItem, SelectLabel, SelectTrigger } from './'
+import {
+  ALIGN_CLASSES,
+  DIRECTION_CLASSES,
+  FLEX_WRAP_CLASSES,
+  GAP_CLASSES,
+  JUSTIFY_CLASSES,
+} from '@/shared/ui/flex/model/constants/mapping-flex-classes'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
@@ -36,6 +43,23 @@ type OwnProps<T extends number | string> = {
   position?: 'item-aligned' | 'popper'
   required?: boolean
   variant?: 'pagination' | 'primary'
+  direction?: SelectContentMenuDirection
+}
+
+export type SelectContentMenuDirection =
+  | 'top left'
+  | 'top right'
+  | 'bottom left'
+  | 'bottom right'
+  | 'default'
+
+// mapping classes
+export const mapDirectionClass: Record<SelectContentMenuDirection, string> = {
+  'top right': `bottom-[100%] left-0`,
+  'top left': `bottom-[100%] right-0`,
+  'bottom left': `top-[100%] right-0`,
+  'bottom right': `top-[100%] left-0`,
+  default: ``,
 }
 
 type Props = ChangeValueProps<number | string> & OwnProps<number | string>
@@ -48,6 +72,7 @@ const SelectBox = (props: Props): ReturnComponent => {
     name,
     onChange,
     options,
+    direction,
     placeholder,
     position,
     required,
@@ -56,9 +81,14 @@ const SelectBox = (props: Props): ReturnComponent => {
     ...rest
   } = props
 
+  const optionalClasses = [mapDirectionClass[direction ?? 'default']]
+
   const classes = {
     chevron: cn(variant === 'pagination' && '[h-16px] w-[16px]'),
-    content: cn(variant === 'pagination' ? 'w-[50px]' : 'w-full'),
+    content: cn(
+      variant === 'pagination' ? 'w-[50px]' : 'w-full',
+      direction === 'top left' && `bottom-[100%]`
+    ),
     item: cn(variant === 'pagination' ? 'w-[50px]' : 'w-[210px]'),
     text: cn(
       `flex items-center gap-[12px] text-regular-text-14`,
@@ -69,6 +99,8 @@ const SelectBox = (props: Props): ReturnComponent => {
         ? 'w-[50px] justify-center gap-[1px] py-0 pl-[6px] pr-[1px]'
         : 'w-[210px]'
     ),
+    optionalClasses,
+    className,
   }
 
   return (

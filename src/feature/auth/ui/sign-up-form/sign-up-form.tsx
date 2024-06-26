@@ -54,7 +54,7 @@ export const SignUpForm = forwardRef(
 
     const {
       control,
-      /** Состояние формы6 errors - ошибки всех полей */
+      /** Состояние формы errors - ошибки всех полей */
       formState: { errors },
       /** Получение значений формы */
       getValues,
@@ -114,7 +114,6 @@ export const SignUpForm = forwardRef(
             label={t.label.userName}
             name={'username'}
             placeholder={t.placeholders.username}
-            rules={{ required: true }}
             type={'text'}
           />
           <ControlledInput
@@ -126,7 +125,6 @@ export const SignUpForm = forwardRef(
             label={t.label.email}
             name={'email'}
             placeholder={t.placeholders.email}
-            rules={{ required: true }}
             type={'email'}
           />
           <ControlledInput
@@ -138,7 +136,6 @@ export const SignUpForm = forwardRef(
             label={t.label.password}
             name={'password'}
             placeholder={t.placeholders.password}
-            rules={{ required: true }}
             type={'password'}
           />
           <ControlledInput
@@ -150,13 +147,14 @@ export const SignUpForm = forwardRef(
             label={t.label.confirmPassword}
             name={'passwordConfirm'}
             placeholder={t.placeholders.passwordConfirm}
-            rules={{ required: true }}
             type={'password'}
           />
           <ControlledCheckbox
             className={'mr-2 inline-block'}
             control={control}
+            errorMessage={errors.accept?.message}
             disabled={disabled}
+            rules={{ required: true }}
             label={
               <Text asComponent={'p'} className={classes.agreement} variant={'small-text-12'}>
                 <Translate

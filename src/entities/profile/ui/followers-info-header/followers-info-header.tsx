@@ -1,13 +1,12 @@
 import { Button, Flex, Text, useTranslation } from '@/shared'
 import Link from 'next/link'
+import { FlexRow } from '@/shared/ui/flex'
 
 export const FollowersInfoHeader = () => {
   const { t } = useTranslation()
 
   return (
-    <Flex
-      className={`Header_ flex w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}
-    >
+    <FlexRow className={`Header_ w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}>
       <Text asComponent={'h2'} className={`title`} variant={'H1'}>
         URL_Profile
       </Text>
@@ -24,6 +23,6 @@ export const FollowersInfoHeader = () => {
       >
         Profile Settings
       </Button>
-    </Flex>
+    </FlexRow>
   )
 }
