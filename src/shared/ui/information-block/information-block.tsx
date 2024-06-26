@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { Flex } from '@/shared/ui/flex'
+import { Flex, FlexCol } from '@/shared/ui/flex'
 import { Text } from '@/shared/ui/text'
 import { clsx } from 'clsx'
 
@@ -25,11 +25,8 @@ export const InformationBlock = ({
   titleClassName,
 }: Props) => {
   return (
-    <Flex direction={'column'} justify={'center'}>
-      <Flex
-        className={clsx('w-full', !isMobile && 'max-w-[294px]', containerClassName)}
-        direction={'column'}
-      >
+    <FlexCol justify={'center'}>
+      <FlexCol className={clsx('w-full', !isMobile && 'max-w-[294px]', containerClassName)}>
         {title && (
           <Text
             asComponent={'h1'}
@@ -53,9 +50,9 @@ export const InformationBlock = ({
             {text}
           </Text>
         )}
-      </Flex>
+      </FlexCol>
       {action && action}
       {illustration && illustration}
-    </Flex>
+    </FlexCol>
   )
 }

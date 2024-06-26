@@ -54,7 +54,7 @@ export const SignUpForm = forwardRef(
 
     const {
       control,
-      /** Состояние формы6 errors - ошибки всех полей */
+      /** Состояние формы errors - ошибки всех полей */
       formState: { errors },
       /** Получение значений формы */
       getValues,

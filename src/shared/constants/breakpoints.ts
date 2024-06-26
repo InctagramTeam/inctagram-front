@@ -5,4 +5,4 @@ export const Breakpoints = {
   XL: 1280,
   XL2: 1536,
   XS: 360,
-}
+} as const

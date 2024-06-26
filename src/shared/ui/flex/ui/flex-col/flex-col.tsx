@@ -4,6 +4,6 @@ type FlexColProps = Omit<FlexProps, 'direction'> & { className?: string }
 
 /** Конкретная имплементация Flex - чтобы не писать <Flex direction='flex-col'/> , просто пишем FlexCol и применяем все пропсы из Flex */
 export const FlexCol = (props: FlexColProps) => {
-  const { items = 'start' } = props
+  const { items = 'center' } = props
   return <Flex className={props.className} {...props} direction="column" items={items} />
 }
