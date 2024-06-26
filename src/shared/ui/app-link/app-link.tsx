@@ -8,15 +8,13 @@ export type AppLinkProps = {
   variant?: AppLinkVariant
   children?: ReactNode
   activeLink?: string
-  href?: string
 } & Parameters<typeof Link>[0]
 
 /** Обёртка над дефолтным Link от Next.js */
 export function AppLink(props: AppLinkProps) {
-  const { className, variant = 'primary', children, activeLink, href, ...rest } = props
+  const { className, variant = 'primary', children, activeLink, ...rest } = props
   return (
     <Link
-      href={href}
       {...rest}
       className={clsx(
         className,
