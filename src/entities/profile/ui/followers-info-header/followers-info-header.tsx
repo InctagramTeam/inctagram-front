@@ -1,6 +1,6 @@
 import { Button, Flex, Text, useTranslation } from '@/shared'
-import Link from 'next/link'
 import { FlexRow } from '@/shared/ui/flex'
+import Link from 'next/link'
 
 export const FollowersInfoHeader = () => {
   const { t } = useTranslation()

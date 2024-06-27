@@ -15,9 +15,9 @@ type Props<T extends FieldValues> =
 export const ControlledCheckbox = <T extends FieldValues>({
   control,
   disabled,
+  errorMessage,
   label,
   name,
-  errorMessage,
   rules,
   shouldUnregister,
   /** В ...rest попадут все пропсы: CheckboxProps */
@@ -37,8 +37,8 @@ export const ControlledCheckbox = <T extends FieldValues>({
     <Checkbox
       {...rest}
       checked={checked}
-      errorMessage={errorMessage}
       disabled={disabled}
+      errorMessage={errorMessage}
       id={name}
       label={label}
       onCheckedChange={onValueChange}

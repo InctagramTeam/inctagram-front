@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 export const ProfilePhotos = () => {
   return (
-    <ul className={`profile-bottom-gallery_ grid-cols-ideal-[234px] grid max-w-[972px] gap-1`}>
+    <ul className={`profile-bottom-gallery_ grid max-w-[972px] gap-1 grid-cols-ideal-[234px]`}>
       <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
           alt={`photo` ?? EMPTY_STRING}

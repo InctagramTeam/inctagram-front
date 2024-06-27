@@ -25,11 +25,13 @@ export const passwordSchema = (t: LocaleType) => {
     .default(EMPTY_STRING)
 }
 
-export const checkboxSchema = ({ trueValue = 'on' }: CheckboxOpts = {}) =>
-  z
-    .union([z.literal(trueValue).transform(() => true), z.literal(false).transform(() => false)])
-    .transform(val => val === true)
-
 type CheckboxOpts = {
   trueValue?: any
 }
+
+export const checkboxSchema = ({ trueValue = 'on' }: CheckboxOpts = {}) =>
+  z.union([
+    z.literal(trueValue).transform(() => true),
+    z.literal(undefined).transform(() => false),
+    z.literal('' || null).transform(() => true),
+  ])

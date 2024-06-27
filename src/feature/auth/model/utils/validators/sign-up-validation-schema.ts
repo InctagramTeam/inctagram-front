@@ -1,16 +1,14 @@
 import { LocaleType } from '@/../locales'
 import { EMPTY_STRING, USERNAME_PATTERN, emailSchema, passwordSchema } from '@/shared'
+import { checkboxSchema } from '@/shared/lib/utils/validators'
 import { z } from 'zod'
 
 export const signUpSchema = (t: LocaleType) =>
   z
     .object({
-      accept: z
-        .boolean()
-        // пользовательская проверка refine
-        .refine(value => value, {
-          message: t.validation.required,
-        }),
+      checkAccept: checkboxSchema({ trueValue: '' }).refine(val => val, {
+        message: t.validation.acceptTerms,
+      }),
       email: emailSchema(t),
       password: passwordSchema(t),
       passwordConfirm: z.string().default(EMPTY_STRING),

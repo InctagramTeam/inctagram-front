@@ -5,9 +5,6 @@ import { ReactNode } from 'react'
 
 import { ReturnComponent, cn } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
-import * as SelectRadix from '@radix-ui/react-select'
-
-import { SelectContent, SelectItem, SelectLabel, SelectTrigger } from './'
 import {
   ALIGN_CLASSES,
   DIRECTION_CLASSES,
@@ -15,6 +12,9 @@ import {
   GAP_CLASSES,
   JUSTIFY_CLASSES,
 } from '@/shared/ui/flex/model/constants/mapping-flex-classes'
+import * as SelectRadix from '@radix-ui/react-select'
+
+import { SelectContent, SelectItem, SelectLabel, SelectTrigger } from './'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
@@ -35,6 +35,7 @@ export type SelectOptionsProps<T extends number | string> = {
 
 type OwnProps<T extends number | string> = {
   className?: string
+  direction?: SelectContentMenuDirection
   disabled?: boolean
   label?: string
   name?: string
@@ -43,23 +44,22 @@ type OwnProps<T extends number | string> = {
   position?: 'item-aligned' | 'popper'
   required?: boolean
   variant?: 'pagination' | 'primary'
-  direction?: SelectContentMenuDirection
 }
 
 export type SelectContentMenuDirection =
-  | 'top left'
-  | 'top right'
   | 'bottom left'
   | 'bottom right'
   | 'default'
+  | 'top left'
+  | 'top right'
 
 // mapping classes
 export const mapDirectionClass: Record<SelectContentMenuDirection, string> = {
-  'top right': `bottom-[100%] left-0`,
-  'top left': `bottom-[100%] right-0`,
   'bottom left': `top-[100%] right-0`,
   'bottom right': `top-[100%] left-0`,
   default: ``,
+  'top left': `bottom-[100%] right-0`,
+  'top right': `bottom-[100%] left-0`,
 }
 
 type Props = ChangeValueProps<number | string> & OwnProps<number | string>
@@ -67,12 +67,12 @@ type Props = ChangeValueProps<number | string> & OwnProps<number | string>
 const SelectBox = (props: Props): ReturnComponent => {
   const {
     className,
+    direction,
     disabled,
     label,
     name,
     onChange,
     options,
-    direction,
     placeholder,
     position,
     required,
@@ -85,11 +85,13 @@ const SelectBox = (props: Props): ReturnComponent => {
 
   const classes = {
     chevron: cn(variant === 'pagination' && '[h-16px] w-[16px]'),
+    className,
     content: cn(
       variant === 'pagination' ? 'w-[50px]' : 'w-full',
       direction === 'top left' && `bottom-[100%]`
     ),
     item: cn(variant === 'pagination' ? 'w-[50px]' : 'w-[210px]'),
+    optionalClasses,
     text: cn(
       `flex items-center gap-[12px] text-regular-text-14`,
       variant === 'pagination' && `leading-3`
@@ -99,8 +101,6 @@ const SelectBox = (props: Props): ReturnComponent => {
         ? 'w-[50px] justify-center gap-[1px] py-0 pl-[6px] pr-[1px]'
         : 'w-[210px]'
     ),
-    optionalClasses,
-    className,
   }
 
   return (

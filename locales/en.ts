@@ -187,6 +187,7 @@ export const en = {
   validation: {
     minLength: (len: number) => `Minimum ${len} characters`,
     required: 'Required field',
+    acceptTerms: 'Required check',
     maxLength: (len: number) => `Maximum ${len} characters`,
     emailVerification: 'The email must match the format example@example.com',
     passwordVerification:

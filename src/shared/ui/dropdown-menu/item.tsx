@@ -1,43 +1,44 @@
-import { ComponentPropsWithoutRef, CSSProperties, ReactNode } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
+
 import { ReturnComponent } from '@/shared/types'
 import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
 import { clsx } from 'clsx'
 
 export type DropdownItemProps = {
   children: ReactNode
+  direction?: DropdownDirection
   disabled?: boolean
   endIcon?: ReactNode
   onSelect?: () => void
   startIcon?: ReactNode
   style?: CSSProperties
-  direction?: DropdownDirection
 } & ComponentPropsWithoutRef<typeof DropdownRadix.Item>
 
 export type DropdownDirection =
-  | 'top left'
-  | 'top right'
   | 'bottom left'
   | 'bottom right'
   | 'default'
+  | 'top left'
+  | 'top right'
 
 // mapping classes
 export const mapDirectionClass: Record<DropdownDirection, string> = {
   'bottom left': `top-[100%] right-0`,
   'bottom right': `top-[100%] left-0`,
-  'top right': `bottom-[100%] left-0`,
-  'top left': `bottom-[100%] right-0`,
   default: '',
+  'top left': `bottom-[100%] right-0`,
+  'top right': `bottom-[100%] left-0`,
 }
 
 const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, s * 1000))
 
 const Item = ({
   children,
+  direction,
   disabled,
   endIcon,
   onSelect,
   startIcon,
-  direction,
   style,
   ...rest
 }: DropdownItemProps): ReturnComponent => {

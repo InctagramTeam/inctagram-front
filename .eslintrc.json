@@ -6,5 +6,10 @@
     "react-hooks/exhaustive-deps": "off",
     "ulbi-tv-plugin/path-checker": "error"
   },
-  "plugins": ["ulbi-tv-plugin"]
+  "plugins": [
+    "ulbi-tv-plugin",
+    {
+      "alias": "@"
+    }
+  ]
 }

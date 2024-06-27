@@ -2,7 +2,7 @@
 import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
+import { SignUpFormValues, signUpSchema } from '../../model'
 import {
   AppLinksList,
   AuthRoutes,
@@ -13,7 +13,6 @@ import {
   ControlledInput,
   EMPTY_STRING,
   Flex,
-  GeneralRoutes,
   ReturnComponent,
   Text,
   Translate,
@@ -67,7 +66,7 @@ export const SignUpForm = forwardRef(
     } = useForm<SignUpFormValues>({
       /** Значения формы по умолчанию */
       defaultValues: {
-        email: EMPTY_STRING,
+        email: 'example@gmail.com',
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
         username: EMPTY_STRING,
@@ -77,7 +76,8 @@ export const SignUpForm = forwardRef(
       resolver: zodResolver(signUpSchema(t)),
     })
 
-    /** Используется с неуправляемыми компонентами для прокидывания в верхний (родительский) компонент "Ref" функций управления состоянием формы.
+    /** Используется с неуправляемыми компонентами для прокидывания в верхний (родительский) компонент "Ref" методов дочернего компонента и
+     * для управления состоянием формы из родителя.
      * Результат вызова функции поместися в "Ref" -в handleSubmitForm = () => можем сбросить состояние формы: ref?.current?.reset()
      * */
     useImperativeHandle(methodsRef, () => ({ reset, setError }))
@@ -152,8 +152,8 @@ export const SignUpForm = forwardRef(
           <ControlledCheckbox
             className={'mr-2 inline-block'}
             control={control}
-            errorMessage={errors.accept?.message}
             disabled={disabled}
+            errorMessage={errors.checkAccept?.message}
             label={
               <Text asComponent={'p'} className={classes.agreement} variant={'small-text-12'}>
                 <Translate
@@ -184,7 +184,7 @@ export const SignUpForm = forwardRef(
                 />
               </Text>
             }
-            name={'accept'}
+            name={'checkAccept'}
           />
         </Flex>
 

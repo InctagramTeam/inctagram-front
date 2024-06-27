@@ -1,25 +1,17 @@
 'use client'
 
 import {
-  ComponentPropsWithoutRef,
   CSSProperties,
+  ComponentPropsWithoutRef,
   DetailedHTMLProps,
-  forwardRef,
   HTMLAttributes,
   ReactNode,
+  forwardRef,
   useMemo,
 } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
 import { Undefinable } from '@/shared/types/undefinable'
-import { clsx } from 'clsx'
-import {
-  FlexAlignItemsType,
-  FlexDirectionType,
-  FlexGapType,
-  FlexJustifyContent,
-  FlexWrapType,
-} from '@/shared/ui/flex/model/types/flex-type'
 import {
   ALIGN_CLASSES,
   DIRECTION_CLASSES,
@@ -27,6 +19,14 @@ import {
   GAP_CLASSES,
   JUSTIFY_CLASSES,
 } from '@/shared/ui/flex/model/constants/mapping-flex-classes'
+import {
+  FlexAlignItemsType,
+  FlexDirectionType,
+  FlexGapType,
+  FlexJustifyContent,
+  FlexWrapType,
+} from '@/shared/ui/flex/model/types/flex-type'
+import { clsx } from 'clsx'
 
 // props
 type DivPropsType = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>

@@ -10,8 +10,8 @@ import clsx from 'clsx'
 export type CheckboxProps = {
   checked?: boolean
   className?: string
-  errorMessage?: string
   disabled?: boolean
+  errorMessage?: null | string | undefined
   id?: string
   label?: ReactNode | string
   labelPosition?: 'left' | 'right'
@@ -27,8 +27,8 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
     checked,
     className,
     disabled,
-    id,
     errorMessage = EMPTY_STRING,
+    id,
     label = EMPTY_STRING,
     labelPosition = 'right',
     name,

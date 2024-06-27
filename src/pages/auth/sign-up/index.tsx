@@ -12,11 +12,12 @@ const DynamicSentEmailModal = dynamic(
 
 const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
+
   const [open, setOpen] = useState(true)
   const { t } = useTranslation()
   const { xs } = useResponsive()
 
-  const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
+  const handleSubmitForm = ({ checkAccept, passwordConfirm, ...formData }: SignUpFormValues) => {
     /*  signUp(formData)
       .then(() => {
         setOpen(true)
@@ -28,8 +29,8 @@ const SignUpPage = () => {
         ref?.current?.reset()
         navigate(ROUTES.signIn)
       })
-      .catch(() => {
-        // console.log(error)
+      .catch((error) => {
+        // ref?.current?.setError('root', { message}: 'Error formData!')
 
         toast({
           variant: 'destructive',
