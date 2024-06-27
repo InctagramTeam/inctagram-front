@@ -62,7 +62,7 @@ export const PageWrapper = ({
   return (
     <main
       className={cn(
-        `_Section_ mx-auto flex min-h-full w-full max-w-[1280px] justify-center p-[0_15px] focus-visible:outline-none`,
+        `_Section_ container mx-auto flex min-h-full w-full justify-center p-[0_15px] focus-visible:outline-none max-lg:max-w-none`,
         className,
         paddingBlock
       )}
@@ -75,3 +75,4 @@ export const PageWrapper = ({
     </main>
   )
 }
+/** max-lg:max-w-none - чтобы контейнер был резиновый */

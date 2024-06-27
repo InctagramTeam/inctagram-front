@@ -1,3 +1,7 @@
+// смотрим в консоле дефолтные свойства tailwind
+const defaultTheme = require('tailwindcss/defaultTheme.js')
+console.log(defaultTheme)
+
 /** @types {import('tailwindcss').Config} */
 
 module.exports = {
@@ -18,7 +22,6 @@ module.exports = {
     screens: {
       lg: '1024px',
       sm: '640px',
-      '2xl': '1536px',
       xl: '1280px',
       xs: '360px',
       md: '768px',
@@ -26,9 +29,16 @@ module.exports = {
     variants: {
       scrollbar: ['dark'],
     },
+    // центрируем всегда контейнер
     container: {
-      center: true,
-      padding: '0.9375rem',
+      padding: {
+        // падинги контейнера на разных экранах
+        DEFAULT: '0.9375rem',
+        center: true,
+        sm: '0.9375rem',
+        lg: '0.9375rem',
+        xl: '0.9375rem',
+      },
     },
     extend: {
       data: {
