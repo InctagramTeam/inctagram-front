@@ -19,8 +19,8 @@ export function useInfiniteScroll({ callback, triggerRef, wrapperRef }: UseInfin
     /** будем передавать в качестве wrapperRef нашу страницу (page)
      * wrapperElement и triggerElement замкнём в колбеке эффекта чтобы они никогда не были === null
      * */
-    const wrapperElement = wrapperRef?.current ?? null
-    const triggerElement = triggerRef.current ?? null
+    const wrapperElement = wrapperRef?.current || null
+    const triggerElement = triggerRef.current
 
     /** колбек вызывается когда пересекли тот или иной элемент */
     if (callback) {
