@@ -55,7 +55,7 @@ export const SignUpForm = forwardRef(
     const {
       control,
       /** Состояние формы errors - ошибки всех полей */
-      formState: { errors },
+      formState: { errors, isSubmitting },
       /** Получение значений формы */
       getValues,
       handleSubmit,
@@ -84,7 +84,7 @@ export const SignUpForm = forwardRef(
 
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
-    const isSubmitting = useForm().formState.isSubmitting
+    const isSubmittingFormValues = isSubmitting
     const appLinksList = useMemo(
       () => [
         { 'aria-label': t.pages.signUp.github, href: hrefGithub },
@@ -154,7 +154,6 @@ export const SignUpForm = forwardRef(
             control={control}
             errorMessage={errors.accept?.message}
             disabled={disabled}
-            rules={{ required: true }}
             label={
               <Text asComponent={'p'} className={classes.agreement} variant={'small-text-12'}>
                 <Translate
@@ -190,8 +189,13 @@ export const SignUpForm = forwardRef(
         </Flex>
 
         <Flex direction={'column'}>
-          <Button className={classes.button} disabled={isSubmitting} fullWidth type={'submit'}>
-            {isSubmitting && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
+          <Button
+            className={classes.button}
+            disabled={isSubmittingFormValues}
+            fullWidth
+            type={'submit'}
+          >
+            {isSubmittingFormValues && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
             {t.button.signUp}
           </Button>
           <Text className={classes.question} variant={'regular_text_16'}>

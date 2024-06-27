@@ -6,7 +6,7 @@ import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation 
 import { PageWrapper } from '@/widgets/page-wrapper'
 import dynamic from 'next/dynamic'
 
-const SentEmailModal = dynamic(
+const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
 )
 
@@ -57,7 +57,7 @@ const SignUpPage = () => {
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <SentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
+      <DynamicSentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
     </PageWrapper>
   )
 }
