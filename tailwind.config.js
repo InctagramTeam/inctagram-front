@@ -1,4 +1,6 @@
-// смотрим в консоле дефолтные свойства tailwind
+const plugin = require('tailwindcss/plugin.js')
+
+// дефолтные свойства tailwind
 const defaultTheme = require('tailwindcss/defaultTheme.js')
 console.log(defaultTheme)
 
@@ -16,6 +18,15 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('tailwindcss-animate'),
     require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
+    plugin(function ({ matchUtilities }) {
+      matchUtilities({
+        'grid-cols-ideal': value => {
+          return {
+            gridTemplateColumns: `repeat(auto-fill, minmax(${value}, 1fr))`,
+          }
+        },
+      })
+    }),
   ],
   prefix: '',
   theme: {
@@ -45,12 +56,13 @@ module.exports = {
         checked: 'ui~="checked"',
       },
       spacing: {
-        // Custom vars
+        // кастомная переменная
         'header-height': '3.75rem', // 60px
       },
-      // Custom fonts
+      // шрифт проекта
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
+        heading: ['Inter', 'sans-serif'], // для заголовков - применение: font-heading font-bold font-light
       },
       fontSize: {
         'Large-26': ['1.625rem', { fontWeight: '600', lineHeight: '2.25rem' }], // '2.25rem' = 26px, '2.25rem' = 36px,

@@ -1,6 +1,6 @@
 'use client'
 import * as React from 'react'
-import { CSSProperties, ComponentPropsWithoutRef, ElementRef, ReactElement, useMemo } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef, ElementRef, useMemo } from 'react'
 
 import { cn } from '@/shared'
 import { Undefinable } from '@/shared/types/undefinable'

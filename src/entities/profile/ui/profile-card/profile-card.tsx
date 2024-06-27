@@ -1,7 +1,5 @@
 'use client'
 
-import { memo } from 'react'
-
 import { Text } from '@/shared'
 
 import { Profile } from '../../model/types/profile'
@@ -18,7 +16,7 @@ type ProfileCardProps = {
   readonly?: boolean
 }
 
-export const ProfileCard = memo((props: ProfileCardProps) => {
+export const ProfileCard = (props: ProfileCardProps) => {
   const { data, isError, isLoading } = props
 
   if (isLoading) {
@@ -43,4 +41,4 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
       <ProfilePhotos />
     </div>
   )
-})
+}
