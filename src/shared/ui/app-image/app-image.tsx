@@ -9,7 +9,7 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 }
 
 /** AppImage - в случаях когда нужно применить нативный html tag: <img />
- * Применение: <AppImage fallback=<Skeleton width='200' height='200'className=`` src={post.img} alt={post.title} errorFallback={<Icon />} /> />  */
+ * Применение: <AppImage fallback=<Skeleton width='200' height='200'className=`` src={post.img} alt={post.title} errorFallback={<IconWrapper />} /> />  */
 export const AppImage = memo(
   forwardRef<HTMLImageElement, AppImageProps>((props, ref) => {
     const { className, src, alt = 'image', errorFallback, fallback, ...rest } = props
