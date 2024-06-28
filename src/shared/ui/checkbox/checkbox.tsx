@@ -11,7 +11,7 @@ export type CheckboxProps = {
   checked?: boolean
   className?: string
   disabled?: boolean
-  errorMessage?: null | string | undefined
+  errorMessage?: string
   id?: string
   label?: ReactNode | string
   labelPosition?: 'left' | 'right'

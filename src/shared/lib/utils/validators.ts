@@ -30,8 +30,5 @@ type CheckboxOpts = {
 }
 
 export const checkboxSchema = ({ trueValue = 'on' }: CheckboxOpts = {}) =>
-  z.union([
-    z.literal(trueValue).transform(() => true),
-    z.literal(undefined).transform(() => false),
-    z.literal('' || null).transform(() => true),
-  ])
+  z.union([z.literal(trueValue).transform(() => true), z.literal(undefined).transform(() => false)])
+// z.literal(true)
