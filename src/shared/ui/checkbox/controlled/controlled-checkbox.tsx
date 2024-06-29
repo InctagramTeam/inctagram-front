@@ -15,7 +15,7 @@ type Props<T extends FieldValues> =
 export const ControlledCheckbox = <T extends FieldValues>({
   control,
   disabled,
-  errorMessage,
+  errorMessage = '',
   label,
   name,
   rules,

@@ -25,8 +25,4 @@ export const passwordSchema = (t: LocaleType) => {
     .default(EMPTY_STRING)
 }
 
-type CheckboxOpts = {
-  trueValue?: any
-}
-
 export const checkboxSchema = () => z.boolean()
