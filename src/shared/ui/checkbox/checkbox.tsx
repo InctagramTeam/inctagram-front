@@ -2,8 +2,9 @@
 import React, {
   ComponentPropsWithoutRef,
   ElementRef,
-  ReactNode,
   forwardRef,
+  memo,
+  ReactNode,
   useId,
   useState,
 } from 'react'
@@ -29,54 +30,57 @@ export type CheckboxProps = {
 
 export type Ref = ElementRef<typeof CheckboxRadix.Root>
 
-export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnComponent => {
-  const {
-    checked,
-    className,
-    disabled,
-    errorMessage = EMPTY_STRING,
-    id,
-    label = EMPTY_STRING,
-    labelPosition = 'right',
-    name,
-    onCheckedChange,
-    required,
-    ...rest
-  } = props
+export const Checkbox = memo(
+  forwardRef<Ref, CheckboxProps>((props, ref): ReturnComponent => {
+    const {
+      checked,
+      className,
+      disabled,
+      errorMessage = EMPTY_STRING,
+      id,
+      label = EMPTY_STRING,
+      labelPosition = 'right',
+      name,
+      onCheckedChange,
+      required,
+      ...rest
+    } = props
 
-  const generatedId = useId()
-  const finalId = id ?? generatedId
+    const generatedId = useId()
+    const finalId = id ?? generatedId
 
-  const [isFirstRender, setIsFirstRender] = useState(true)
-  const [isChecked, setIsChecked] = useState(checked)
+    const [isFirstRender, setIsFirstRender] = useState(true)
+    const [isChecked, setIsChecked] = useState(checked)
 
-  const handleCheckedChange = (newChecked: boolean) => {
-    if (isFirstRender) {
-      setIsChecked(newChecked)
-      onCheckedChange?.(newChecked)
-    } else {
-      setIsFirstRender(false)
+    const handleCheckedChange = (newChecked: boolean) => {
+      if (isFirstRender) {
+        setIsChecked(newChecked)
+        onCheckedChange?.(newChecked)
+      } else {
+        setIsFirstRender(false)
+      }
     }
-  }
 
-  return (
-    <>
-      <div className={`_container_ flex items-center`}>
-        <LabelRadix.Root
-          className={clsx(
-            `_label_ z-0 inline-flex w-full cursor-default select-none items-center text-regular-text-14`,
-            className,
-            disabled && `text-Light-900/60`
-          )}
-          htmlFor={finalId}
-        >
-          <CheckboxRadix.Root
-            {...rest}
-            checked={checked}
-            onCheckedChange={handleCheckedChange}
+    const isShowErrorMessage = isChecked ? null : errorMessage === 'Required' ? '' : errorMessage
+
+    return (
+      <>
+        <div className={`_container_ flex items-center`}>
+          <LabelRadix.Root
             className={clsx(
-              disabled && `cursor-default`,
-              `_Checkbox_ hover:not:before:data-[disabled]:opacity-100 hover:not:before:data-[disabled=true]:bg-Dark-300
+              `_label_ z-0 inline-flex w-full cursor-default select-none items-center text-regular-text-14`,
+              className,
+              disabled && `text-Light-900/60`
+            )}
+            htmlFor={finalId}
+          >
+            <CheckboxRadix.Root
+              {...rest}
+              checked={checked}
+              onCheckedChange={handleCheckedChange}
+              className={clsx(
+                disabled && `cursor-default`,
+                `_Checkbox_ hover:not:before:data-[disabled]:opacity-100 hover:not:before:data-[disabled=true]:bg-Dark-300
             hover:not:before:data-[disabled]:transition-opacity hover:not:before:data-[disabled]:delay-150
             focus-visible:not:data-[disabled]:outline-none focus-visible:not:data-[disabled]:outline-none
             focus-visible:not:data-[disabled]:before:opacity-100 focus-visible:not:data-[disabled]:before:bg-Dark-500
@@ -100,36 +104,37 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
             hover:before:-translate-x-[1px] hover:before:-translate-y-[1px]
             hover:before:scale-100 hover:before:opacity-60 hover:disabled:cursor-default
             hover:disabled:before:hidden`
-            )}
-            disabled={disabled}
-            id={id}
-            name={name}
-            ref={ref}
-            required={required}
-          >
-            <CheckboxRadix.Indicator
-              className={`_indicator_ CENTER data-[disabled]:cursor-default`}
+              )}
+              disabled={disabled}
+              id={id}
+              name={name}
+              ref={ref}
+              required={required}
             >
-              <CheckIcon
-                className={
-                  disabled
-                    ? `_checkIconDisabled_ cursor-default text-Light-700`
-                    : `_checkIcon_ text-Dark-900`
-                }
-              />
-            </CheckboxRadix.Indicator>
-          </CheckboxRadix.Root>
-          {label}
-        </LabelRadix.Root>
-      </div>
-      <Text
-        className={`w-full text-left text-small-text-12 !text-Danger-500`}
-        id={`${finalId}-error`}
-        role={'alert'}
-        variant={'error_text_12'}
-      >
-        {isChecked ? null : errorMessage === 'Required' ? '' : errorMessage}
-      </Text>
-    </>
-  )
-})
+              <CheckboxRadix.Indicator
+                className={`_indicator_ CENTER data-[disabled]:cursor-default`}
+              >
+                <CheckIcon
+                  className={
+                    disabled
+                      ? `_checkIconDisabled_ cursor-default text-Light-700`
+                      : `_checkIcon_ text-Dark-900`
+                  }
+                />
+              </CheckboxRadix.Indicator>
+            </CheckboxRadix.Root>
+            {label}
+          </LabelRadix.Root>
+        </div>
+        <Text
+          className={`w-full text-left text-small-text-12 !text-Danger-500`}
+          id={`${finalId}-error`}
+          role={'alert'}
+          variant={'error_text_12'}
+        >
+          {isShowErrorMessage}
+        </Text>
+      </>
+    )
+  })
+)

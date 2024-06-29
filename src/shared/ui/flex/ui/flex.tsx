@@ -109,8 +109,6 @@ const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexPr
       gap && GAP_CLASSES[gap],
     ] as const
 
-    console.log('flex')
-
     /** {...rest} первым, т.к чтобы при передачи снаружи className, последний перезатрёт пропсы */
     return (
       <div
