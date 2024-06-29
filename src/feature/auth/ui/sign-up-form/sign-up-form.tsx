@@ -30,11 +30,11 @@ type Props = {
   disabled?: boolean
   hrefGithub: string
   hrefGoogle: string
-  onSubmit: (formData: SignUpFormValues) => void
+  onSubmit: (formData: any) => void
 } & Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'>
 
 export const SignUpForm = forwardRef(
-  (props: Props, methodsRef: Ref<UseFormRef<SignUpFormValues> | null>): ReturnComponent => {
+  (props: Props, methodsRef: Ref<UseFormRef<any> | null>): ReturnComponent => {
     const { className, disabled = false, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
 
     const { locale, t } = useTranslation()
@@ -70,6 +70,7 @@ export const SignUpForm = forwardRef(
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
         username: EMPTY_STRING,
+        checkAccept: false,
       },
       /** Режим срабатывания подсветки ошибок при изменении полей */
       mode: 'onChange',
@@ -93,15 +94,13 @@ export const SignUpForm = forwardRef(
       [hrefGithub, hrefGoogle]
     )
 
-    console.log(errors.checkAccept?.message)
+    const onFormDataSubmit = handleSubmit(formData => {
+      onSubmit(formData)
+      console.log(formData)
+    })
 
     return (
-      <Card
-        {...rest}
-        asComponent={'form'}
-        className={classes.form}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <Card {...rest} asComponent={'form'} className={classes.form} onSubmit={onFormDataSubmit}>
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
           {t.pages.signUp.title}
         </Text>
@@ -189,16 +188,16 @@ export const SignUpForm = forwardRef(
             name={'checkAccept'}
           />
         </Flex>
+        <Button
+          className={classes.button}
+          disabled={isSubmittingFormValues}
+          fullWidth
+          type={'submit'}
+        >
+          {isSubmittingFormValues && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
+          {t.button.signUp}
+        </Button>
         <Flex direction={'column'}>
-          <Button
-            className={classes.button}
-            disabled={isSubmittingFormValues}
-            fullWidth
-            type={'submit'}
-          >
-            {isSubmittingFormValues && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
-            {t.button.signUp}
-          </Button>
           <Text className={classes.question} variant={'regular_text_16'}>
             {t.pages.signUp.question}
           </Text>

@@ -17,7 +17,8 @@ const SignUpPage = () => {
   const { t } = useTranslation()
   const { xs } = useResponsive()
 
-  const handleSubmitForm = ({ checkAccept, passwordConfirm, ...formData }: SignUpFormValues) => {
+  const handleSubmitForm = (formData: any) => {
+    console.log(formData)
     /*  signUp(formData)
       .then(() => {
         setOpen(true)
