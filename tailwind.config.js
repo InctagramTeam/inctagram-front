@@ -2,9 +2,7 @@ const plugin = require('tailwindcss/plugin.js')
 
 // дефолтные свойства tailwind
 const defaultTheme = require('tailwindcss/defaultTheme.js')
-console.log(defaultTheme)
-
-/** @types {import('tailwindcss').Config} */
+// console.log(defaultTheme)
 
 module.exports = {
   content: [

@@ -6,7 +6,7 @@ import { z } from 'zod'
 export const signUpSchema = (t: LocaleType) =>
   z
     .object({
-      checkAccept: checkboxSchema({ trueValue: '' }).refine(val => val, {
+      checkAccept: checkboxSchema().refine(val => val, {
         message: t.validation.acceptTerms,
       }),
       email: emailSchema(t),

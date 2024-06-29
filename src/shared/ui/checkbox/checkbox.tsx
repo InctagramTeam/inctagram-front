@@ -1,5 +1,12 @@
 'use client'
-import React, { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, useId } from 'react'
+import React, {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ReactNode,
+  forwardRef,
+  useId,
+  useState,
+} from 'react'
 
 import { EMPTY_STRING, ReturnComponent, Text } from '@/shared'
 import CheckIcon from '@/shared/assets/icons/CheckIcon'
@@ -40,6 +47,18 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
   const generatedId = useId()
   const finalId = id ?? generatedId
 
+  const [isFirstRender, setIsFirstRender] = useState(true)
+  const [isChecked, setIsChecked] = useState(checked)
+
+  const handleCheckedChange = (newChecked: boolean) => {
+    if (isFirstRender) {
+      setIsChecked(newChecked)
+      onCheckedChange?.(newChecked)
+    } else {
+      setIsFirstRender(false)
+    }
+  }
+
   return (
     <>
       <div className={`_container_ flex items-center`}>
@@ -54,6 +73,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
           <CheckboxRadix.Root
             {...rest}
             checked={checked}
+            onCheckedChange={handleCheckedChange}
             className={clsx(
               disabled && `cursor-default`,
               `_Checkbox_ hover:not:before:data-[disabled]:opacity-100 hover:not:before:data-[disabled=true]:bg-Dark-300
@@ -79,8 +99,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
             data-[disabled]:opacity-30 hover:before:z-1
             hover:before:-translate-x-[1px] hover:before:-translate-y-[1px]
             hover:before:scale-100 hover:before:opacity-60 hover:disabled:cursor-default
-            hover:disabled:before:hidden
-            `
+            hover:disabled:before:hidden`
             )}
             disabled={disabled}
             id={id}
@@ -109,7 +128,7 @@ export const Checkbox = forwardRef<Ref, CheckboxProps>((props, ref): ReturnCompo
         role={'alert'}
         variant={'error_text_12'}
       >
-        {errorMessage}
+        {isChecked ? null : errorMessage === 'Required' ? '' : errorMessage}
       </Text>
     </>
   )
