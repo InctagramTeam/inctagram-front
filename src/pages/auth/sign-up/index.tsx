@@ -18,7 +18,6 @@ const SignUpPage = () => {
   const { xs } = useResponsive()
 
   const handleSubmitForm = (formData: any) => {
-    console.log(formData)
     /*  signUp(formData)
       .then(() => {
         setOpen(true)
