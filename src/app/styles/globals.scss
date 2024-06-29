@@ -83,6 +83,10 @@
     @apply list-none;
   }
 
+  img {
+    @apply h-auto max-w-full;
+  }
+
   .navbar {
     @apply flex gap-5;
   }

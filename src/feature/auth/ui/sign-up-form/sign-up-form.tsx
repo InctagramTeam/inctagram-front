@@ -1,5 +1,5 @@
 'use client'
-import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle, useMemo } from 'react'
+import { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '../../model'
@@ -92,6 +92,8 @@ export const SignUpForm = forwardRef(
       ],
       [hrefGithub, hrefGoogle]
     )
+
+    console.log(errors.checkAccept?.message)
 
     return (
       <Card
@@ -187,7 +189,6 @@ export const SignUpForm = forwardRef(
             name={'checkAccept'}
           />
         </Flex>
-
         <Flex direction={'column'}>
           <Button
             className={classes.button}
