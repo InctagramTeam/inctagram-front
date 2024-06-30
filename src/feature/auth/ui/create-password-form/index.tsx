@@ -109,7 +109,7 @@ export const CreatePasswordForm = forwardRef(
         </Text>
         <Button
           className={'px-[24px] py-[6px]'}
-          disabled={!!Object.keys(errors).length || disabled}
+          disabled={!!Object.keys(errors).length ?? disabled}
           fullWidth
           type={'submit'}
         >

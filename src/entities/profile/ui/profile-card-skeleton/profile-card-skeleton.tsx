@@ -25,28 +25,28 @@ export const ProfileCardSkeleton = () => {
         className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-1`}
       >
         <li className={'photo-item max-w-[234px] overflow-hidden'}>
-          <Skeleton className={'h-[234px] w-[228px]'} />
+          <Skeleton height={234} width={228} />
         </li>
         <li className={'photo-item max-w-[234px] overflow-hidden'}>
-          <Skeleton className={'h-[234px] w-[228px]'} />
+          <Skeleton height={234} width={228} />
         </li>
         <li className={'photo-item max-w-[234px] overflow-hidden'}>
-          <Skeleton className={'h-[234px] w-[228px]'} />
+          <Skeleton height={234} width={228} />
         </li>
         <li className={'photo-item max-w-[234px] overflow-hidden'}>
-          <Skeleton className={'h-[234px] w-[228px]'} />
+          <Skeleton height={234} width={228} />
         </li>
         <li className={'photo-item max-w-[234px] overflow-hidden'}>
-          <Skeleton className={'h-[234px] w-[228px]'} />
+          <Skeleton height={234} width={228} />
         </li>
         <li className={'photo-item max-w-[234px] overflow-hidden'}>
-          <Skeleton className={'h-[234px] w-[228px]'} />
+          <Skeleton height={234} width={228} />
         </li>
         <li className={'photo-item max-w-[234px] overflow-hidden'}>
-          <Skeleton className={'h-[234px] w-[228px]'} />
+          <Skeleton height={234} width={228} />
         </li>
         <li className={'photo-item max-w-[234px] overflow-hidden'}>
-          <Skeleton className={'h-[234px] w-[228px]'} />
+          <Skeleton height={234} width={228} />
         </li>
       </ul>
     </section>

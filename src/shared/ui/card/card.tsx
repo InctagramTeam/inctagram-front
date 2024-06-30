@@ -22,8 +22,8 @@ type OwnProps = {
 }
 
 export type CardVariant = 'light' | 'normal' | 'outlined'
-export type CardBorder = 'normal' | 'partial' | 'round'
-export type CardPadding = '0' | '4' | '8' | '12' | '16' | '24'
+export type CardBorder = 'normal' | 'partial' | 'circle'
+export type CardPadding = '0' | '4' | '8' | '12' | '16' | '24' | 'default'
 
 type CardComponent = <T extends ElementType = 'div'>(props: Props<T>) => ReactNode
 
@@ -34,28 +34,31 @@ const mapPaddingToClass: Record<CardPadding, string> = {
   '12': 'p-[12px]',
   '16': 'p-[16px]',
   '24': 'p-[24px]',
+  default: '',
 }
 
 export const Card: CardComponent = memo(
   forwardRef(
     <T extends ElementType = 'div'>(
-      { asComponent, border, className, padding = '4', variant, ...props }: Props<T>,
+      { asComponent, border, className, padding, variant, ...props }: Props<T>,
       ref: ElementRef<T>
     ) => {
       const Component = asComponent || 'div'
 
-      const paddingClass = mapPaddingToClass[padding]
+      const paddingClass = mapPaddingToClass[padding ?? 'default']
 
       return (
         <Component
           {...props}
           className={clsx(
-            `rounded-[2px] border-[1px] border-Dark-300 bg-Dark-500 shadow-sm shadow-Dark-300 transition-all duration-150 hover:scale-[1.02]`,
+            `rounded-[2px] border-[1px] border-Dark-300 bg-Dark-500 shadow-sm shadow-Dark-300 transition-all duration-300`,
             className,
             variant === 'outlined' && `bg-Light-100 shadow-md`,
-            variant === 'light' && `border-[1px] border-Light-900 bg-Light-700 shadow-Light-700`,
-            border === 'round' && `rounded-full`,
+            variant === 'light' &&
+              `border-[1px] border-Light-900 bg-Light-700 text-Dark-700 shadow-Light-700`,
+            border === 'circle' && `rounded-full`,
             border === 'partial' && `rounded-lg`,
+            border === 'normal' && `rounded`,
             paddingClass
           )}
           ref={ref}

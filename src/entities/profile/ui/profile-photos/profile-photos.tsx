@@ -5,11 +5,9 @@ import { memo } from 'react'
 import { EMPTY_STRING } from '@/shared'
 import Image from 'next/image'
 
-export const ProfilePhotos = memo(() => {
+export const ProfilePhotos = () => {
   return (
-    <ul
-      className={`profile-bottom-gallery_ grid grid-cols-[repeat(4,228px)] grid-rows-[repeat(2,234px)] gap-x-2`}
-    >
+    <ul className={`profile-bottom-gallery_ grid max-w-[972px] gap-1 grid-cols-ideal-[234px]`}>
       <li className={'photo-item max-w-[234px] overflow-hidden'}>
         <Image
           alt={`photo` ?? EMPTY_STRING}
@@ -92,4 +90,4 @@ export const ProfilePhotos = memo(() => {
       </li>
     </ul>
   )
-})
+}

@@ -1,10 +1,8 @@
 'use client'
 
-import { memo } from 'react'
-
-import { Profile } from '@/entities/profile'
 import { Text } from '@/shared'
 
+import { Profile } from '../../model/types/profile'
 import { ProfileCardSkeleton } from '../profile-card-skeleton'
 import { ProfileFollowerInfoBlock } from '../profile-followers-info'
 import { ProfilePhotos } from '../profile-photos'
@@ -18,7 +16,7 @@ type ProfileCardProps = {
   readonly?: boolean
 }
 
-export const ProfileCard = memo((props: ProfileCardProps) => {
+export const ProfileCard = (props: ProfileCardProps) => {
   const { data, isError, isLoading } = props
 
   if (isLoading) {
@@ -43,4 +41,4 @@ export const ProfileCard = memo((props: ProfileCardProps) => {
       <ProfilePhotos />
     </div>
   )
-})
+}

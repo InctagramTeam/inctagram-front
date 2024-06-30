@@ -6,17 +6,19 @@ import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation 
 import { PageWrapper } from '@/widgets/page-wrapper'
 import dynamic from 'next/dynamic'
 
-const SentEmailModal = dynamic(
+const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
 )
 
 const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
+
   const [open, setOpen] = useState(true)
   const { t } = useTranslation()
   const { xs } = useResponsive()
 
-  const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
+  const handleSubmitForm = (formData: any) => {
+    console.log(formData)
     /*  signUp(formData)
       .then(() => {
         setOpen(true)
@@ -28,8 +30,8 @@ const SignUpPage = () => {
         ref?.current?.reset()
         navigate(ROUTES.signIn)
       })
-      .catch(() => {
-        // console.log(error)
+      .catch((error) => {
+        // ref?.current?.setError('root', { message}: 'Error formData!')
 
         toast({
           variant: 'destructive',
@@ -57,7 +59,7 @@ const SignUpPage = () => {
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <SentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
+      <DynamicSentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
     </PageWrapper>
   )
 }

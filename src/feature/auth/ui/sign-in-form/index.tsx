@@ -118,7 +118,7 @@ export const SignInForm = forwardRef(
           <Button
             asComponent={Link}
             className={classes.forgotLink}
-            disabled={isValid || disabled}
+            disabled={isValid ?? disabled}
             href={AuthRoutes.FORGOT_PASSWORD}
             variant={'text'}
           >
@@ -126,7 +126,7 @@ export const SignInForm = forwardRef(
           </Button>
           <Button
             className={classes.button}
-            disabled={!!Object.keys(errors).length || disabled}
+            disabled={!!Object.keys(errors).length ?? disabled}
             fullWidth
           >
             {t.button.signIn}

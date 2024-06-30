@@ -7,10 +7,15 @@
       "dom.iterable",
       "esnext"
     ],
+    // Это означает лишь, что в подобных ситуация разработчик должен явно писать any,
+    "noImplicitAny": true,
+    // Компилятор будет обрабатывать не только TS файлы, но и JS файлы
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
+    // TypeScript не требует явной инициализации всех свойств класса в конструкторе
+    "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",

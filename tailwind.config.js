@@ -1,4 +1,8 @@
-/** @types {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin.js')
+
+// дефолтные свойства tailwind
+const defaultTheme = require('tailwindcss/defaultTheme.js')
+// console.log(defaultTheme)
 
 module.exports = {
   content: [
@@ -12,13 +16,21 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('tailwindcss-animate'),
     require('tailwind-scrollbar')({ nocompatible: true, preferredStrategy: 'pseudoelements' }),
+    plugin(function ({ matchUtilities }) {
+      matchUtilities({
+        'grid-cols-ideal': value => {
+          return {
+            gridTemplateColumns: `repeat(auto-fill, minmax(${value}, 1fr))`,
+          }
+        },
+      })
+    }),
   ],
   prefix: '',
   theme: {
     screens: {
       lg: '1024px',
       sm: '640px',
-      '2xl': '1536px',
       xl: '1280px',
       xs: '360px',
       md: '768px',
@@ -26,21 +38,29 @@ module.exports = {
     variants: {
       scrollbar: ['dark'],
     },
+    // центрируем всегда контейнер
     container: {
-      center: true,
-      padding: '0.9375rem',
+      padding: {
+        // падинги контейнера на разных экранах
+        DEFAULT: '0.9375rem',
+        center: true,
+        sm: '0.9375rem',
+        lg: '0.9375rem',
+        xl: '0.9375rem',
+      },
     },
     extend: {
       data: {
         checked: 'ui~="checked"',
       },
       spacing: {
-        // Custom vars
+        // кастомная переменная
         'header-height': '3.75rem', // 60px
       },
-      // Custom fonts
+      // шрифт проекта
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
+        heading: ['Inter', 'sans-serif'], // для заголовков - применение: font-heading font-bold font-light
       },
       fontSize: {
         'Large-26': ['1.625rem', { fontWeight: '600', lineHeight: '2.25rem' }], // '2.25rem' = 26px, '2.25rem' = 36px,

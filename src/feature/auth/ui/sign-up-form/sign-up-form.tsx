@@ -1,8 +1,8 @@
 'use client'
-import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle, useMemo } from 'react'
+import { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { SignUpFormValues, signUpSchema } from '@/feature/auth/model/utils/validators'
+import { SignUpFormValues, signUpSchema } from '../../model'
 import {
   AppLinksList,
   AuthRoutes,
@@ -13,7 +13,6 @@ import {
   ControlledInput,
   EMPTY_STRING,
   Flex,
-  GeneralRoutes,
   ReturnComponent,
   Text,
   Translate,
@@ -31,11 +30,11 @@ type Props = {
   disabled?: boolean
   hrefGithub: string
   hrefGoogle: string
-  onSubmit: (formData: SignUpFormValues) => void
+  onSubmit: (formData: any) => void
 } & Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'>
 
 export const SignUpForm = forwardRef(
-  (props: Props, methodsRef: Ref<UseFormRef<SignUpFormValues> | null>): ReturnComponent => {
+  (props: Props, methodsRef: Ref<UseFormRef<any> | null>): ReturnComponent => {
     const { className, disabled = false, hrefGithub, hrefGoogle, onSubmit, ...rest } = props
 
     const { locale, t } = useTranslation()
@@ -54,8 +53,8 @@ export const SignUpForm = forwardRef(
 
     const {
       control,
-      /** Состояние формы6 errors - ошибки всех полей */
-      formState: { errors },
+      /** Состояние формы errors - ошибки всех полей */
+      formState: { errors, isSubmitting },
       /** Получение значений формы */
       getValues,
       handleSubmit,
@@ -67,24 +66,26 @@ export const SignUpForm = forwardRef(
     } = useForm<SignUpFormValues>({
       /** Значения формы по умолчанию */
       defaultValues: {
-        email: EMPTY_STRING,
+        email: 'example@gmail.com',
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
         username: EMPTY_STRING,
+        checkAccept: false,
       },
       /** Режим срабатывания подсветки ошибок при изменении полей */
       mode: 'onChange',
       resolver: zodResolver(signUpSchema(t)),
     })
 
-    /** Используется с неуправляемыми компонентами для прокидывания в верхний (родительский) компонент "Ref" функций управления состоянием формы.
+    /** Используется с неуправляемыми компонентами для прокидывания в верхний (родительский) компонент "Ref" методов дочернего компонента и
+     * для управления состоянием формы из родителя.
      * Результат вызова функции поместися в "Ref" -в handleSubmitForm = () => можем сбросить состояние формы: ref?.current?.reset()
      * */
     useImperativeHandle(methodsRef, () => ({ reset, setError }))
 
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
-    const isSubmitting = useForm().formState.isSubmitting
+    const isSubmittingFormValues = isSubmitting
     const appLinksList = useMemo(
       () => [
         { 'aria-label': t.pages.signUp.github, href: hrefGithub },
@@ -93,13 +94,13 @@ export const SignUpForm = forwardRef(
       [hrefGithub, hrefGoogle]
     )
 
+    const onFormDataSubmit = handleSubmit(formData => {
+      onSubmit(formData)
+      console.log(formData)
+    })
+
     return (
-      <Card
-        {...rest}
-        asComponent={'form'}
-        className={classes.form}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <Card {...rest} asComponent={'form'} className={classes.form} onSubmit={onFormDataSubmit}>
         <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
           {t.pages.signUp.title}
         </Text>
@@ -114,7 +115,6 @@ export const SignUpForm = forwardRef(
             label={t.label.userName}
             name={'username'}
             placeholder={t.placeholders.username}
-            rules={{ required: true }}
             type={'text'}
           />
           <ControlledInput
@@ -126,7 +126,6 @@ export const SignUpForm = forwardRef(
             label={t.label.email}
             name={'email'}
             placeholder={t.placeholders.email}
-            rules={{ required: true }}
             type={'email'}
           />
           <ControlledInput
@@ -138,7 +137,6 @@ export const SignUpForm = forwardRef(
             label={t.label.password}
             name={'password'}
             placeholder={t.placeholders.password}
-            rules={{ required: true }}
             type={'password'}
           />
           <ControlledInput
@@ -150,13 +148,13 @@ export const SignUpForm = forwardRef(
             label={t.label.confirmPassword}
             name={'passwordConfirm'}
             placeholder={t.placeholders.passwordConfirm}
-            rules={{ required: true }}
             type={'password'}
           />
           <ControlledCheckbox
             className={'mr-2 inline-block'}
             control={control}
             disabled={disabled}
+            errorMessage={errors.checkAccept?.message}
             label={
               <Text asComponent={'p'} className={classes.agreement} variant={'small-text-12'}>
                 <Translate
@@ -187,15 +185,19 @@ export const SignUpForm = forwardRef(
                 />
               </Text>
             }
-            name={'accept'}
+            name={'checkAccept'}
           />
         </Flex>
-
+        <Button
+          className={classes.button}
+          disabled={isSubmittingFormValues}
+          fullWidth
+          type={'submit'}
+        >
+          {isSubmittingFormValues && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
+          {t.button.signUp}
+        </Button>
         <Flex direction={'column'}>
-          <Button className={classes.button} disabled={isSubmitting} fullWidth type={'submit'}>
-            {isSubmitting && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
-            {t.button.signUp}
-          </Button>
           <Text className={classes.question} variant={'regular_text_16'}>
             {t.pages.signUp.question}
           </Text>

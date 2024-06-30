@@ -3,17 +3,19 @@ import {
   ComponentProps,
   ComponentPropsWithoutRef,
   forwardRef,
+  useEffect,
   useId,
   useRef,
   useState,
 } from 'react'
 
-import { EMPTY_STRING, ReturnComponent, Text, mergeRefs, useTranslation } from '@/shared'
+import { EMPTY_STRING, mergeRefs, ReturnComponent, Text, useTranslation } from '@/shared'
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
 import { clsx } from 'clsx'
 
 export type InputProps = {
   disabled?: boolean
+  autofocus?: boolean
   /** Чтобы задать стили отдельно, для элементов html разметки снаружи достучаться до них <--
    * Пример использования:
    * <Input
@@ -58,6 +60,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onClearInput,
       onValueChange,
       placeholder,
+      autofocus = true,
       readonly = false,
       type = 'search',
       ...rest
@@ -67,17 +70,25 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
   ): ReturnComponent => {
     const { t } = useTranslation()
 
+    /** Чтобы получить доступ к инпуту: inputRef */
+    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
+    const finalRef = mergeRefs([forwardedRef, inputRef])
+
+    /** Чтобы передать несколько ссылок (ref-ов) на инпут нужно их скомбинировать в finalRef */
+    const [revealPassword, setRevealPassword] = useState(false)
+    const [isFocused, setIsFocused] = useState(false)
+
+    // ids
     const generatedId = useId()
     const finalId = id ?? generatedId
     const errorId = `${finalId}-error`
 
-    /** Чтобы получить доступ к инпуту: inputRef */
-    const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
-
-    /** Чтобы передать несколько ссылок (ref-ов) на инпут нужно их скомбинировать в finalRef */
-    const finalRef = mergeRefs([forwardedRef, inputRef])
-
-    const [revealPassword, setRevealPassword] = useState(false)
+    useEffect(() => {
+      if (autofocus) {
+        setIsFocused(true)
+        inputRef.current?.focus()
+      }
+    }, [autofocus])
 
     const isRevealPasswordButtonShown = type === 'password'
     const isSearchField = type === 'search'
@@ -88,6 +99,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     function handleChange(e: ChangeEvent<HTMLInputElement>) {
       onChange?.(e)
       onValueChange?.(e.target.value)
+    }
+
+    const onBlur = () => {
+      setIsFocused(false)
+    }
+
+    const onFocus = () => {
+      setIsFocused(true)
     }
 
     /**
@@ -200,6 +219,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             id={finalId}
             onChange={handleChange}
+            onFocus={onFocus}
+            onBlur={onBlur}
             placeholder={placeholder}
             readOnly={readonly}
             ref={finalRef}
