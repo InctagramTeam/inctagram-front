@@ -8,6 +8,7 @@ import {
   ReactNode,
   forwardRef,
   useMemo,
+  memo,
 } from 'react'
 
 import { ReturnComponent } from '@/shared/types'
@@ -58,70 +59,69 @@ export interface FlexProps extends DivPropsType {
   wrap?: FlexWrapType
 }
 
-const Flex = forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexProps>(
-  (props, ref): ReturnComponent => {
-    const {
-      children,
-      className,
-      direction = 'row',
-      gap,
-      items = 'center',
-      justify = 'start',
-      m,
-      max,
-      maxWidth,
-      mb,
-      ml,
-      mr,
-      mt,
-      mx,
-      my,
-      p,
-      style,
-      width,
-      wrap = 'no_wrap',
-      ...rest
-    } = props
+export const Flex = memo(
+  forwardRef<HTMLDivElement, ComponentPropsWithoutRef<'div'> & FlexProps>(
+    (props, ref): ReturnComponent => {
+      const {
+        children,
+        className,
+        direction = 'row',
+        gap,
+        items = 'center',
+        justify = 'start',
+        m,
+        max,
+        maxWidth,
+        mb,
+        ml,
+        mr,
+        mt,
+        mx,
+        my,
+        p,
+        style,
+        width,
+        wrap = 'no_wrap',
+        ...rest
+      } = props
 
-    const styles = useMemo<Undefinable<CSSProperties>>(() => {
-      return {
-        ...style,
-        ...(mr && { marginRight: mr }),
-        ...(ml && { marginLeft: ml }),
-        ...(mt && { marginTop: mt }),
-        ...(mb && { marginBottom: mb }),
-        ...(mx && { marginLeft: mx, marginRight: mx }),
-        ...(my && { marginBottom: my, marginTop: my }),
-        ...(m && { margin: m }),
-        ...(p && { padding: p }),
-        ...(width && { width: width }),
-        ...(max && { max: max }),
-      }
-    }, [mr, ml, mt, mb, mx, my, m, p, width, max])
+      const styles = useMemo<Undefinable<CSSProperties>>(() => {
+        return {
+          ...style,
+          ...(mr && { marginRight: mr }),
+          ...(ml && { marginLeft: ml }),
+          ...(mt && { marginTop: mt }),
+          ...(mb && { marginBottom: mb }),
+          ...(mx && { marginLeft: mx, marginRight: mx }),
+          ...(my && { marginBottom: my, marginTop: my }),
+          ...(m && { margin: m }),
+          ...(p && { padding: p }),
+          ...(width && { width: width }),
+          ...(max && { max: max }),
+        }
+      }, [mr, ml, mt, mb, mx, my, m, p, width, max])
 
-    const optionalClasses = [
-      className,
-      JUSTIFY_CLASSES[justify],
-      ALIGN_CLASSES[items],
-      DIRECTION_CLASSES[direction],
-      DIRECTION_CLASSES[direction],
-      FLEX_WRAP_CLASSES[wrap],
-      gap && GAP_CLASSES[gap],
-    ] as const
+      const optionalClasses = [
+        className,
+        JUSTIFY_CLASSES[justify],
+        ALIGN_CLASSES[items],
+        DIRECTION_CLASSES[direction],
+        DIRECTION_CLASSES[direction],
+        FLEX_WRAP_CLASSES[wrap],
+        gap && GAP_CLASSES[gap],
+      ] as const
 
-    /** {...rest} первым, т.к чтобы при передачи снаружи className, последний перезатрёт пропсы */
-    return (
-      <div
-        {...rest}
-        className={clsx('flex', maxWidth && 'w-full', optionalClasses, className)}
-        ref={ref}
-        style={styles}
-      >
-        {children}
-      </div>
-    )
-  }
+      /** {...rest} первым, т.к чтобы при передачи снаружи className, последний перезатрёт пропсы */
+      return (
+        <div
+          {...rest}
+          className={clsx('flex', maxWidth && 'w-full', optionalClasses, className)}
+          ref={ref}
+          style={styles}
+        >
+          {children}
+        </div>
+      )
+    }
+  )
 )
-
-Flex.displayName = 'Flex'
-export { Flex }
