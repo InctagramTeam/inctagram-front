@@ -2,10 +2,9 @@
 
 import { Text } from '@/shared'
 
-import { Profile } from '../../model/types/profile'
+import { Profile, ProfileGallery } from '@/entities/profile'
 import { ProfileCardSkeleton } from '../profile-card-skeleton'
 import { ProfileFollowerInfoBlock } from '../profile-followers-info'
-import { ProfilePhotos } from '../profile-photos'
 import { UserAvatar } from '../user-avatar'
 
 type ProfileCardProps = {
@@ -35,10 +34,10 @@ export const ProfileCard = (props: ProfileCardProps) => {
   return (
     <div className={`_Profile_ w-full pl-6`}>
       <div className={`_Profile-top_ flex w-full justify-start pb-[50px]`}>
-        <UserAvatar className={`min-h-[200px] w-full min-w-[200px]`} />
+        <UserAvatar className={`h-[200px] w-[200px]`} />
         <ProfileFollowerInfoBlock />
       </div>
-      <ProfilePhotos />
+      <ProfileGallery />
     </div>
   )
 }

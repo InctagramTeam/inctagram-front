@@ -177,6 +177,12 @@ export const en = {
       empty: 'Oops! This place looks empty!',
       noRequests: 'No recent requests',
     },
+    favorites: {
+      metaDescription:
+        "Discover our social network's Favorites page, where you'll find the most popular and discussed topics chosen by our community. Join us and share your favorites!",
+      metaTitle: 'Favorites | Instagram',
+      title: 'Favorites',
+    },
   },
   tabs: {
     devices: 'Devices',

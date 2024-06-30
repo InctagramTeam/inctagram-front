@@ -1,15 +1,19 @@
 'use client'
 
-import { Avatar } from '@/shared/ui/avatar'
-import { AvatarFallback, AvatarImage } from '@/shared/ui/avatar/avatar'
+import { memo } from 'react'
 
-export const UserAvatar = ({ className }: { className?: string }) => {
-  return (
-    <div className={`_Avatar-photo_ min-h-[160px] max-w-[160px]`}>
-      <Avatar className={className}>
-        <AvatarImage alt={'user-avatar'} src={'https://github.com/shadcn.png'} />
-        <AvatarFallback>USER</AvatarFallback>
-      </Avatar>
-    </div>
-  )
+import { Avatar, AvatarFallback, AvatarImage, ReturnComponent } from '@/shared'
+
+type Props = {
+  className?: string
+  src?: string
+  userName?: string
 }
+export const UserAvatar = memo(({ className, src, userName }: Props): ReturnComponent => {
+  return (
+    <Avatar className={className}>
+      <AvatarImage alt={'user-avatar'} src={src} />
+      <AvatarFallback className={'bg-Light-900'}>{userName?.[0] || 'U'}</AvatarFallback>
+    </Avatar>
+  )
+})

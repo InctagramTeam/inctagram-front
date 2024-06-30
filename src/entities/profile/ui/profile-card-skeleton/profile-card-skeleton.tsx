@@ -1,7 +1,6 @@
 'use client'
 
-import { Flex } from '@/shared'
-import { Skeleton } from '@/shared/ui/skeleton'
+import { Flex, Skeleton } from '@/shared'
 
 export const ProfileCardSkeleton = () => {
   return (
