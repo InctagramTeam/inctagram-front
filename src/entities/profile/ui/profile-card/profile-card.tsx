@@ -2,10 +2,9 @@
 
 import { Text } from '@/shared'
 
-import { Profile } from '@/entities/profile'
+import { Profile, ProfileGallery } from '@/entities/profile'
 import { ProfileCardSkeleton } from '../profile-card-skeleton'
 import { ProfileFollowerInfoBlock } from '../profile-followers-info'
-import { ProfilePhotos } from '../profile-photos'
 import { UserAvatar } from '../user-avatar'
 
 type ProfileCardProps = {
@@ -38,7 +37,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         <UserAvatar className={`h-[200px] w-[200px]`} />
         <ProfileFollowerInfoBlock />
       </div>
-      <ProfilePhotos />
+      <ProfileGallery />
     </div>
   )
 }
