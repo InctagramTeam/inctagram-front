@@ -2,16 +2,18 @@
 
 import { memo } from 'react'
 
-import { Avatar } from '@/shared/ui/avatar'
-import { AvatarFallback, AvatarImage } from '@/shared/ui/avatar/avatar'
+import { Avatar, AvatarFallback, AvatarImage, ReturnComponent } from '@/shared'
 
-export const UserAvatar = memo(({ className }: { className?: string }) => {
+type Props = {
+  className?: string
+  src?: string
+  userName?: string
+}
+export const UserAvatar = memo(({ className, src, userName }: Props): ReturnComponent => {
   return (
-    <div className={`_Avatar-photo_ min-h-[160px] max-w-[160px]`}>
-      <Avatar className={className}>
-        <AvatarImage alt={'user-avatar'} src={'https://github.com/shadcn.png'} />
-        <AvatarFallback>USER</AvatarFallback>
-      </Avatar>
-    </div>
+    <Avatar className={className}>
+      <AvatarImage alt={'user-avatar'} src={src} />
+      <AvatarFallback className={'bg-Light-900'}>{userName?.[0] || 'U'}</AvatarFallback>
+    </Avatar>
   )
 })
