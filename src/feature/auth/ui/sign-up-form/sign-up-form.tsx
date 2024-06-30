@@ -2,7 +2,7 @@
 import { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { SignUpFormValues, signUpSchema } from '../../model'
+import { SignUpFormValues, signUpSchema } from '@/feature'
 import {
   AppLinksList,
   AuthRoutes,
@@ -20,8 +20,8 @@ import {
   useFormRevalidateWithLocale,
   useResponsive,
   useTranslation,
+  AppLink,
 } from '@/shared'
-import { AppLink } from '@/shared/ui/app-link/app-link'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 

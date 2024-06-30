@@ -3,9 +3,9 @@ import { ReactNode } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 
-export type AppLinkVariant = 'primary' | 'red'
+type AppLinkVariant = 'primary' | 'red'
 
-export type AppLinkProps = {
+type AppLinkProps = {
   activeLink?: string
   children?: ReactNode
   href?: string
