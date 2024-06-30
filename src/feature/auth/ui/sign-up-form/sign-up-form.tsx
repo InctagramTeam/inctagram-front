@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '@/feature'
 import {
+  AppLink,
   AppLinksList,
   AuthRoutes,
   Button,
@@ -20,7 +21,6 @@ import {
   useFormRevalidateWithLocale,
   useResponsive,
   useTranslation,
-  AppLink,
 } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
