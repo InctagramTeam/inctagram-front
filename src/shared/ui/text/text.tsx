@@ -3,7 +3,7 @@ import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode, useMem
 
 import { clsx } from 'clsx'
 
-import { ReturnComponent } from '../../types'
+import { ReturnComponent } from '@/shared'
 import { Undefinable } from '../../types/undefinable'
 
 export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'

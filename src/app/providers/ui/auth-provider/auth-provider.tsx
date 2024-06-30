@@ -10,7 +10,7 @@ type Props = { children: ReactNode } & TypeComponentAuthFields
 
 const DynamicCheckRole = dynamic(() => import('../check-role/check-role'), {
   /**
-   - Компонент чтобы грузился асинхронно только на клиенте, отключаем ssr, кроме траниц с ролями: isOnlyAdmin, isOnlyUser
+   - Компонент чтобы грузился асинхронно только на клиенте, отключаем ssr, кроме страниц с ролями: isOnlyAdmin, isOnlyUser
    - Отключаем ssr для тех, кто требует авторизвации
    * */
   ssr: false,

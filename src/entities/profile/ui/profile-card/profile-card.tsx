@@ -2,9 +2,9 @@
 
 import { memo } from 'react'
 
+import { Profile } from '@/entities/profile'
 import { Text } from '@/shared'
 
-import { Profile } from '../../model/types/profile'
 import { ProfileCardSkeleton } from '../profile-card-skeleton'
 import { ProfileFollowerInfoBlock } from '../profile-followers-info'
 import { ProfilePhotos } from '../profile-photos'

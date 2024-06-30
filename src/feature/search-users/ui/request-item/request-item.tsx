@@ -1,5 +1,6 @@
+import { UserAvatar } from '@/entities/profile'
 import { RequestItemProps } from '@/feature/search-users/model'
-import { Flex, ReturnComponent, Text, UserAvatar } from '@/shared'
+import { Flex, ReturnComponent, Text } from '@/shared'
 import Link from 'next/link'
 
 export const RequestItem = ({ ava, name, nickname }: RequestItemProps): ReturnComponent => {
