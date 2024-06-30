@@ -11,14 +11,14 @@ export const FollowersInfoHeader = () => {
         URL_Profile
       </Text>
       <Button
-        asComponent={Link}
+        // asComponent={Link}
         className={`px-6 py-[6px]`}
-        href={
-          {
-            // todo: данные с сервера для редиректа на страницу настроек конкретного профиля
-            // pathname: AppRoutes.PROFILE + `/${data?.id}/settings`,
-          }
-        }
+        // href={
+        //   {
+        //     // todo: данные с сервера для редиректа на страницу настроек конкретного профиля
+        //     // pathname: AppRoutes.PROFILE + `/${data?.id}/settings`,
+        //   }
+        // }
         variant={'secondary'}
       >
         Profile Settings

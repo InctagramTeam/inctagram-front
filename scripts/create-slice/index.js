@@ -3,7 +3,7 @@ const createTemplate = require('./templates/create-template')
 const layer = process.argv[2]
 const sliceName = process.argv[3]
 
-const layers = ['features', 'entities', 'pages']
+const layers = ['feature', 'entities', 'pages']
 
 if (!layer || !layers.includes(layer)) {
   throw new Error(`Укажите слой ${layers.join(' или ')}`)
