@@ -13,7 +13,7 @@ export const SearchUsers = (): ReturnComponent => {
   const changeValueHandler = (e: ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.value)
 
   return (
-    <div className={'block w-full'}>
+    <section className={'block w-full'}>
       <Text asComponent={'h1'} className={sm ? 'sr-only' : undefined} mb={'13px'} variant={'H1'}>
         {t.pages.search.title}
       </Text>
@@ -31,6 +31,6 @@ export const SearchUsers = (): ReturnComponent => {
         {t.pages.search.requests}
       </Text>
       <RequestResult items={requests} />
-    </div>
+    </section>
   )
 }
