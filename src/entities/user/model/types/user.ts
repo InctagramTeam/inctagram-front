@@ -8,6 +8,7 @@ export interface IUser {
   password: string
   roles?: 'ADMIN' | 'MANAGER' | 'USER'
   userName: string
+  isAuth: boolean
 }
 
 export interface IUserSchema {
