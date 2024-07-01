@@ -1,16 +1,20 @@
-import { getAuthLayout, useTranslation } from '@/shared'
+import { getAuthLayout, ReturnBack, ReturnComponent, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
+import React from 'react'
+import { TermsOfService } from '@/feature'
 
-const TermOfServicePage = () => {
+const TermOfServicePage = (): ReturnComponent => {
   const { t } = useTranslation()
+  const { sm } = useResponsive()
 
   return (
     <PageWrapper
+      className={'max-w-[1268px] justify-start'}
       description={t.pages.termsOfService.metaDescription}
-      paddingBlock={'72px'}
+      paddingBlock={sm ? '16px' : '24px'}
       title={t.pages.termsOfService.metaTitle}
     >
-      <h1>TermOfService</h1>
+      <TermsOfService />
     </PageWrapper>
   )
 }

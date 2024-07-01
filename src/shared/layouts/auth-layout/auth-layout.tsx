@@ -13,7 +13,7 @@ export const AuthLayout = ({ children }: Props): ReturnComponent => {
   return (
     <>
       <Header isAuth={isAuth} />
-      <Main>{children}</Main>
+      <Main className={'pl-0'}>{children}</Main>
     </>
   )
 }

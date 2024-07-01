@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 
 import { ReturnComponent, cn, useLayoutContext, useResponsive } from '@/shared'
 import { Inter } from 'next/font/google'
+import { className } from 'postcss-selector-parser'
 
 const inter = Inter({
   display: 'swap',
@@ -13,9 +14,10 @@ const inter = Inter({
 type Props = {
   children: ReactNode
   layoutMainChildren?: ReactNode
+  className?: string
 }
 
-export const Main = ({ children }: Props): ReturnComponent => {
+export const Main = ({ children, className }: Props): ReturnComponent => {
   const { isCollapsed } = useLayoutContext()
   const { lg, xs } = useResponsive()
 
@@ -24,7 +26,8 @@ export const Main = ({ children }: Props): ReturnComponent => {
       `flex min-h-screen pt-[var(--header-height)] pl-[250px]`,
       (isCollapsed || lg) && 'pl-[80px]',
       xs && 'pl-0',
-      inter.variable
+      inter.variable,
+      className
     ),
   }
 

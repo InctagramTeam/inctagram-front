@@ -167,6 +167,7 @@ export const en = {
         'Please review our Terms of Service to understand your rights and responsibilities when using our api. We are committed to transparency and fair dealings so that' +
         ' you can use our site with confidence.',
       metaTitle: 'Terms of service | Instagram',
+      title: 'Terms of Service',
     },
     search: {
       metaDescription:

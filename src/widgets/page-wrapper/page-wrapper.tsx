@@ -62,7 +62,7 @@ export const PageWrapper = ({
   return (
     <div
       className={cn(
-        `_Section_ container mx-auto flex min-h-full w-full justify-center p-[0_15px] focus-visible:outline-none max-lg:max-w-none`,
+        `_Section_ container mx-auto flex min-h-full w-full max-w-[1020px] justify-center p-[0_24px] focus-visible:outline-none max-lg:max-w-none`,
         className,
         paddingBlock
       )}
