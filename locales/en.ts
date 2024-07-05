@@ -161,6 +161,7 @@ export const en = {
       metaDescription:
         'Please read our Privacy Policy to learn how we collect, use and protect your personal information. We are committed to keeping your data secure and upholding your right to privacy.',
       metaTitle: 'Privacy Policy | Instagram',
+      title: 'Privacy Policy',
     },
     termsOfService: {
       metaDescription:

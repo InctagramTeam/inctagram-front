@@ -1,5 +1,5 @@
-import { getAuthLayout, ReturnBack, ReturnComponent, useResponsive, useTranslation } from '@/shared'
-import { PageWrapper } from '@/widgets/page-wrapper'
+import { getAuthLayout, ReturnComponent, useResponsive, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets'
 import React from 'react'
 import { TermsOfService } from '@/feature'
 
