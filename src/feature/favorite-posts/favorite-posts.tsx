@@ -1,6 +1,8 @@
-import { ReturnComponent, Text, useResponsive, useTranslation } from '@/shared'
-import { Gallery, GalleryImage } from '@/widgets'
-import { GalleryImageType } from '@/widgets/gallery'
+'use client'
+
+import { cn, ReturnBack, ReturnComponent, Text, useResponsive, useTranslation } from '@/shared'
+import { Gallery, GalleryImage, GalleryImageType } from '@/widgets'
+import React from 'react'
 
 const items: GalleryImageType[] = []
 
@@ -13,12 +15,23 @@ export const FavoritePosts = (): ReturnComponent => {
 
   return (
     <section className={'w-full'}>
-      <Text asComponent={'h1'} mb={'13px'} variant={'H1'}>
+      {sm && <ReturnBack text={t.button.back} />}
+      <Text
+        asComponent={'h1'}
+        mb={'13px'}
+        variant={'H1'}
+        className={sm ? 'text-center' : undefined}
+      >
         {t.pages.favorites.title}
       </Text>
-      <Gallery>
+      <Gallery
+        className={cn(
+          'grid-cols-ideal-unset grid grid-cols-4 gap-[12px]',
+          sm && 'grid-cols-3 gap-[3px]'
+        )}
+      >
         {items.map((item, index) => (
-          <li key={index}>
+          <li className={'aspect-square'} key={index}>
             <GalleryImage {...item} />
           </li>
         ))}

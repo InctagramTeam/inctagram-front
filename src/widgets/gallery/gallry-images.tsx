@@ -1,3 +1,5 @@
+'use client'
+
 import Image, { ImageProps } from 'next/image'
 import { EMPTY_STRING, ReturnComponent } from '@/shared'
 import { clsx } from 'clsx'
@@ -17,7 +19,7 @@ export const GalleryImage = ({
 }: GalleryImageType): ReturnComponent => (
   <Image
     alt={alt ?? EMPTY_STRING}
-    className={clsx(`contain-content`, className)}
+    className={clsx(`h-full w-full contain-content`, className)}
     height={228}
     src={src} // `/man.png`
     width={234}

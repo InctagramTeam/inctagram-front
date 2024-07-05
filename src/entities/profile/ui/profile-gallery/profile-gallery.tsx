@@ -12,7 +12,7 @@ for (let i = 0; i < 8; i++) {
 
 export const ProfileGallery = (): ReturnComponent => {
   return (
-    <Gallery className={'profile-bottom-gallery_'}>
+    <Gallery className={'profile-bottom-gallery_ grid grid-cols-4 gap-[12px]'}>
       {items.map((item, index) => (
         <li key={index}>
           <GalleryImage {...item} />
