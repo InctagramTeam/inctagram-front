@@ -3,10 +3,8 @@ import type { AppProps } from 'next/app'
 
 import type { ReactElement, ReactNode } from 'react'
 
-import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
-import AuthProvider from '@/app/providers/ui/auth-provider/auth-provider'
-import { AppQueryClientProvider } from '@/app/providers/ui/query-client-provider/app-query-client-provider'
-import { useLoader } from '@/shared/lib/hooks'
+import { TypeComponentAuthFields, AppQueryClientProvider, AuthProvider } from '@/app/providers'
+import { useLoader } from '@/shared'
 
 import '@/app/styles/globals.scss'
 import '@/app/styles/nprogress.scss'
