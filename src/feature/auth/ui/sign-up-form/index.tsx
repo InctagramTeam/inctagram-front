@@ -24,6 +24,8 @@ import {
 } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
+import { useSignUp } from '@/feature/auth/api/hooks/useSignUp'
+import { log } from 'next/dist/server/typescript/utils'
 
 type Props = {
   className?: string
@@ -93,7 +95,6 @@ export const SignUpForm = forwardRef(
       ],
       [hrefGithub, hrefGoogle]
     )
-
     const onFormDataSubmit = handleSubmit(formData => {
       onSubmit(formData)
       console.log(formData)

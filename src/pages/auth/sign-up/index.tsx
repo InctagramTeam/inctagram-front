@@ -5,6 +5,7 @@ import { SignUpForm, SignUpFormValues } from '@/feature'
 import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import dynamic from 'next/dynamic'
+import { useSignUp } from '@/feature/auth/api/hooks/useSignUp'
 
 const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
@@ -16,7 +17,7 @@ const SignUpPage = () => {
   const [open, setOpen] = useState(true)
   const { t } = useTranslation()
   const { xs } = useResponsive()
-
+  const { mutate } = useSignUp()
   const handleSubmitForm = (formData: any) => {
     /*  signUp(formData)
       .then(() => {
@@ -38,6 +39,7 @@ const SignUpPage = () => {
           description: 'Please! Try again.',
         })
       })  */
+    mutate(formData)
   }
 
   const handleChangeOpen = (open: boolean) => {
