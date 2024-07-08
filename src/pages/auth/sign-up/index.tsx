@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { SignUpForm, SignUpFormValues } from '@/feature'
 import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
@@ -14,10 +14,10 @@ const DynamicSentEmailModal = dynamic(
 const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
 
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { xs } = useResponsive()
-  const { mutate } = useSignUp()
+  const { mutate, data, isPending, isSuccess } = useSignUp()
   const handleSubmitForm = (formData: any) => {
     /*  signUp(formData)
       .then(() => {
@@ -39,8 +39,13 @@ const SignUpPage = () => {
           description: 'Please! Try again.',
         })
       })  */
-    mutate(formData)
+    mutate(formData) //в mutate передаются данные, которые необходимо отправить на сервер для выполнения мутации
   }
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(true) // Открываем модальное окно при успешном isSuccess
+    }
+  }, [isSuccess])
 
   const handleChangeOpen = (open: boolean) => {
     setOpen(open)
@@ -56,11 +61,17 @@ const SignUpPage = () => {
       <SignUpForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
-        // disabled={isLoading}
+        disabled={isPending}
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <DynamicSentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
+      {data && (
+        <DynamicSentEmailModal
+          email={data.data.email}
+          onOpenChange={handleChangeOpen}
+          open={open}
+        />
+      )}
     </PageWrapper>
   )
 }

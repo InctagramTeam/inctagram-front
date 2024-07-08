@@ -6,7 +6,7 @@ import { Button, Modal, Text } from '@/shared/ui'
 import { FlexCol } from '@/shared/ui/flex'
 
 type Props = {
-  email: string
+  email?: string
   onOpenChange: (open: boolean) => void
   open: boolean
 }
@@ -22,7 +22,6 @@ export const SentEmailModal = ({ email, onOpenChange, open }: Props): ReturnComp
   if (!isClient) {
     return null
   }
-
   return (
     <Modal onOpenChange={onOpenChange} open={open}>
       <Modal.Content
