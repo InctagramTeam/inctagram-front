@@ -28,9 +28,15 @@ export interface IEmailPassword {
   rememberMe?: boolean
 }
 
-// получаем данные с сервера?
-export interface IAuthResponse extends ITokens {
-  user: {
-    isAdmin?: boolean
-  } & IUser
+// данные с сервера
+export interface IAuthResponse {
+  id: number
+  userName: string
+  email: string
+  name: null
+  confirmed: boolean
+  passwordHash: string
+  passwordSalt: string
+  createdAt: string
+  updatedAt: string
 }

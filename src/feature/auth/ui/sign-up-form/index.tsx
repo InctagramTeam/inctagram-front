@@ -93,7 +93,6 @@ export const SignUpForm = forwardRef(
       ],
       [hrefGithub, hrefGoogle]
     )
-
     const onFormDataSubmit = handleSubmit(formData => {
       onSubmit(formData)
       console.log(formData)

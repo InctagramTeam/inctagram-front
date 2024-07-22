@@ -1,10 +1,11 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { SignUpForm, SignUpFormValues } from '@/feature'
 import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import dynamic from 'next/dynamic'
+import { useSignUp } from '@/feature/auth/api/hooks/useSignUp'
 
 const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
@@ -12,39 +13,23 @@ const DynamicSentEmailModal = dynamic(
 
 const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
-
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { xs } = useResponsive()
-
-  const handleSubmitForm = (formData: any) => {
-    /*  signUp(formData)
-      .then(() => {
-        setOpen(true)
-        toast({
-          variant: 'default',
-          title: 'Congratulations! you are successfully registered.',
-          description: 'Please! Go through the login procedure to use the application.',
-        })
-        ref?.current?.reset()
-        navigate(ROUTES.signIn)
-      })
-      .catch((error) => {
-        // ref?.current?.setError('root', { message}: 'Error formData!')
-
-        toast({
-          variant: 'destructive',
-          title: 'Error registration!',
-          description: 'Please! Try again.',
-        })
-      })  */
+  const { mutate, data, isPending, isSuccess } = useSignUp()
+  const handleSubmitForm = (formData: SignUpFormValues) => {
+    mutate(formData) //в mutate передаются данные, которые необходимо отправить на сервер для выполнения мутации
   }
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(true) // Открываем модальное окно при успешном isSuccess
+    }
+  }, [isSuccess])
 
   const handleChangeOpen = (open: boolean) => {
     setOpen(open)
     ref.current?.reset()
   }
-
   return (
     <PageWrapper
       description={t.pages.signUp.metaDescription}
@@ -54,11 +39,17 @@ const SignUpPage = () => {
       <SignUpForm
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
-        // disabled={isLoading}
+        disabled={isPending}
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <DynamicSentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
+      {data && (
+        <DynamicSentEmailModal
+          email={data.data.email}
+          onOpenChange={handleChangeOpen}
+          open={open}
+        />
+      )}
     </PageWrapper>
   )
 }

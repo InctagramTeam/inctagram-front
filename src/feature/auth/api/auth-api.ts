@@ -1,7 +1,7 @@
 import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user'
 import { SignUpRequest, getContentType } from '@/feature'
-import { removeTokensStorage, saveToStorage } from '@/feature/auth/model/utils/auth.helper'
-import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
+import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
+import { axiosNotAuthorized } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 
@@ -15,11 +15,6 @@ export class AuthApi {
       { refreshToken },
       { headers: getContentType() }
     )
-
-    if (response?.data?.accessToken) {
-      saveToStorage(response?.data)
-    }
-
     return response
   }
 
@@ -34,11 +29,6 @@ export class AuthApi {
       AxiosResponse<IAuthResponse>,
       SignUpRequest
     >('auth/registration', { email, password, userName })
-
-    if (response?.data?.accessToken) {
-      saveToStorage(response?.data)
-    }
-
     return response
   }
 
@@ -51,11 +41,10 @@ export class AuthApi {
       email,
       password,
     })
-
-    if (response?.data?.accessToken) {
-      saveToStorage(response?.data)
-    }
-
+    //
+    // if (response?.data?.accessToken) {
+    //   saveToStorage(response?.data)
+    // }
     return response
   }
 }

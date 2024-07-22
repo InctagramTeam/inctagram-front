@@ -11,7 +11,7 @@ const options: CreateAxiosDefaults = {
     'Content-Type': 'application/json',
   },
   // работаем с серверными куками
-  withCredentials: true,
+  // withCredentials: true,
 }
 
 /** Если делаем запрос на сервер с авторизацией, то использовать: axiosWithAuth, если нет, то: axiosNotAuthorized (например при логинизации)  */
