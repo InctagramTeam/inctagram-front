@@ -2,18 +2,10 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { SignUpForm, SignUpFormValues } from '@/feature'
-import {
-  EMPTY_STRING,
-  UseFormRef,
-  getAuthLayout,
-  useResponsive,
-  useTranslation,
-  AuthRoutes,
-} from '@/shared'
+import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import dynamic from 'next/dynamic'
 import { useSignUp } from '@/feature/auth/api/hooks/useSignUp'
-import { useRouter } from 'next/router'
 
 const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
@@ -21,7 +13,6 @@ const DynamicSentEmailModal = dynamic(
 
 const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
-  const router = useRouter()
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { xs } = useResponsive()
@@ -37,10 +28,6 @@ const SignUpPage = () => {
 
   const handleChangeOpen = (open: boolean) => {
     setOpen(open)
-    if (!open && isSuccess) {
-      // Выполняем редирект, если модальное окно закрывается и isSuccess истинно
-      router.push(AuthRoutes.SIGN_IN)
-    }
     ref.current?.reset()
   }
   return (
