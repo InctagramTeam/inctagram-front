@@ -7,9 +7,9 @@ export const saveTokensStorage = (data: ITokens) => {
 }
 
 export const saveToStorage = (data: IAuthResponse) => {
-  saveTokensStorage(data)
+  // saveTokensStorage(data?)
   // при регистрации (логинизации) записываем user-a в LS
-  localStorage.setItem('user', JSON.stringify(data.user))
+  localStorage.setItem('user', JSON.stringify(data))
 }
 
 export const removeTokensStorage = () => {

@@ -15,11 +15,6 @@ export class AuthApi {
       { refreshToken },
       { headers: getContentType() }
     )
-
-    if (response?.data?.accessToken) {
-      saveToStorage(response?.data)
-    }
-
     return response
   }
 
@@ -50,11 +45,10 @@ export class AuthApi {
       email,
       password,
     })
-
-    if (response?.data?.accessToken) {
-      saveToStorage(response?.data)
-    }
-
+    //
+    // if (response?.data?.accessToken) {
+    //   saveToStorage(response?.data)
+    // }
     return response
   }
 }
