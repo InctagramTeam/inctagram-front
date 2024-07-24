@@ -15,11 +15,12 @@ export type MeResponse = {
 
 /** Error */
 export type ErrorResponse = {
-  error: string
-  messages: [{ field: string; message: string }]
-  statusCode: number
+  response?: {
+    data?: {
+      errorsMessages?: [{ message: string; field: string }]
+    }
+  }
 }
-
 /** SignUp */
 export type SignUpRequest = {
   email: string
