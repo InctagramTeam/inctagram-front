@@ -1,9 +1,10 @@
 import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user'
-import { SignUpRequest, getContentType } from '@/feature'
+import { RecoveryPasswordArgs, SignUpRequest, getContentType } from '@/feature'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import { axiosNotAuthorized } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
+import { any } from 'zod'
 
 /* Todo --> AuthApi */
 export class AuthApi {
@@ -45,6 +46,18 @@ export class AuthApi {
     // if (response?.data?.accessToken) {
     //   saveToStorage(response?.data)
     // }
+    return response
+  }
+
+  async passwordRecovery(email: string, recaptchaValue: string) {
+    const response = await axiosNotAuthorized.post<null, AxiosResponse<any>, RecoveryPasswordArgs>(
+      `auth/password-recovery`,
+      {
+        email,
+        recaptchaValue,
+      }
+    )
+
     return response
   }
 }

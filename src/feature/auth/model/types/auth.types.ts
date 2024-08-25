@@ -84,7 +84,7 @@ export type NewPasswordArgs = {
 /** RecoveryPassword -- url: '/auth/password-recovery' */
 export type RecoveryPasswordArgs = {
   email: string
-  recaptcha: string
+  recaptchaValue: string
 }
 
 /** ResendRecoveryPassword -- url: '/auth/resend-recovery-code' */
