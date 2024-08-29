@@ -64,7 +64,6 @@ const ForgotPasswordPage = (): ReturnComponent => {
 
   return (
     <>
-      <Script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_PUBLIK_KEY}`} />
       <PageWrapper
         description={t.pages.forgotPassword.metaDescription}
         paddingBlock={xs ? '12px' : '72px'}

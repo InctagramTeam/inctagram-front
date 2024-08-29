@@ -4,7 +4,6 @@ import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import { axiosNotAuthorized } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
-import { any } from 'zod'
 
 /* Todo --> AuthApi */
 export class AuthApi {
