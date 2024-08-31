@@ -9,6 +9,7 @@ import { useLoader } from '@/shared'
 import '@/app/styles/globals.scss'
 import '@/app/styles/nprogress.scss'
 import { Toaster } from '@/shared/ui/toast/toaster'
+import { SessionProvider } from 'next-auth/react'
 
 export type NextPageWithLayout<P = {}, IP = P> = {
   getLayout?: (page: ReactElement) => ReactNode
@@ -28,10 +29,12 @@ export default function MyApp({
 
   return getLayout(
     <AppQueryClientProvider {...pageProps}>
-      <AuthProvider Component={Component}>
-        <Component {...pageProps} />
-        <Toaster />
-      </AuthProvider>
+      <SessionProvider>
+        <AuthProvider Component={Component}>
+          <Component {...pageProps} />
+          <Toaster />
+        </AuthProvider>
+      </SessionProvider>
     </AppQueryClientProvider>
   )
 }
