@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { CreateNewPasswordFormValues, createPasswordSchema } from '@/feature'
 import {
   Button,
+  ButtonSpinner,
   Card,
   ControlledInput,
   EMPTY_STRING,
@@ -107,14 +108,18 @@ export const CreatePasswordForm = forwardRef(
         >
           {t.pages.createPassword.hint}
         </Text>
-        <Button
-          className={'px-[24px] py-[6px]'}
-          // disabled={!!Object.keys(errors).length ?? disabled}
-          fullWidth
-          type={'submit'}
-        >
-          {t.button.createNewPassword}
-        </Button>
+        {disabled ? (
+          <ButtonSpinner className={'mb-6 h-[30px] w-[30px] min-w-full text-center'} />
+        ) : (
+          <Button
+            className={'px-[24px] py-[6px]'}
+            disabled={!!Object.keys(errors).length}
+            fullWidth
+            type={'submit'}
+          >
+            {t.button.createNewPassword}
+          </Button>
+        )}
       </Card>
     )
   }
