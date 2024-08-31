@@ -41,7 +41,7 @@ const SignUpCongratulations = (): ReturnComponent => {
         }
         illustration={<SignUpBroIllustration aria-hidden className={classes.illustration} />}
         isMobile={xs}
-        text={t.pages.congratulations.text}
+        text={t.pages.congratulations.textEmail}
         title={t.pages.congratulations.title}
       />
     </PageWrapper>
