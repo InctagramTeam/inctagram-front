@@ -25,7 +25,7 @@ const ForgotPasswordPage = (): ReturnComponent => {
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const [recaptchaValue, setRecaptchaValue] = useState<null | string>(null)
 
-  const { mutate, data, isPending, isSuccess } = usePasswordRecovery()
+  const { mutate, isSuccess, isPending } = usePasswordRecovery()
 
   const recaptchaChangeHandler = (value: null | string) => {
     if (value) {
@@ -53,6 +53,9 @@ const ForgotPasswordPage = (): ReturnComponent => {
   useEffect(() => {
     if (isSuccess) {
       setOpen(true)
+      ref?.current?.clearErrors?.('recaptcha')
+
+      recaptchaRef.current?.reset()
     }
   }, [isSuccess])
 
@@ -67,8 +70,8 @@ const ForgotPasswordPage = (): ReturnComponent => {
           onSubmit={handleSubmitForm}
           recaptchaChangeHandler={recaptchaChangeHandler}
           recaptchaRef={recaptchaRef}
-          // disabled={}
-          // isSent={}
+          disabled={isPending}
+          isSent={isSuccess}
           ref={ref}
         />
         <SentEmailModal email={emailUser} onOpenChange={setOpen} open={open} />
