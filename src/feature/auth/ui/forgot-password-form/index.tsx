@@ -125,7 +125,8 @@ export const ForgotPasswordForm = forwardRef(
 
         <Button
           className={classes.button}
-          disabled={Object.keys(errors).length !== 0 || !isDirty}
+          disabled={!getValues('recaptcha') || !getValues('email') || !!Object.keys(errors).length}
+          //
           fullWidth
           type={'submit'}
         >
