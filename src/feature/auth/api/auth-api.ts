@@ -1,5 +1,11 @@
 import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user'
-import { RecoveryPasswordArgs, SignUpRequest, getContentType } from '@/feature'
+import {
+  NewPasswordArgs,
+  NewPasswordRequestArgs,
+  RecoveryPasswordArgs,
+  SignUpRequest,
+  getContentType,
+} from '@/feature'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import { axiosNotAuthorized } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
@@ -56,6 +62,18 @@ export class AuthApi {
         recaptchaValue,
       }
     )
+
+    return response
+  }
+
+  async createNewPassword(code: string, newPassword: string) {
+    const response = await axiosNotAuthorized.post<
+      null,
+      AxiosResponse<any>,
+      NewPasswordRequestArgs
+    >(`auth/new-password?code=${code}`, {
+      newPassword,
+    })
 
     return response
   }

@@ -76,9 +76,13 @@ export type ConfirmEmailArgs = {
 }
 
 /** NewPassword -- url: '/auth/new-password'*/
+export type NewPasswordRequestArgs = {
+  newPassword: string
+}
+
 export type NewPasswordArgs = {
   newPassword: string
-  recoveryCode: string
+  code: string
 }
 
 /** RecoveryPassword -- url: '/auth/password-recovery' */
