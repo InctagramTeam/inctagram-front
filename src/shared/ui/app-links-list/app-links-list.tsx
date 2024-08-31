@@ -10,6 +10,7 @@ type Props = {
 
 export type AppProps = {
   href: string
+  onClick?: () => void
 } & Parameters<typeof Link>[0]
 
 /**
@@ -27,11 +28,11 @@ export const AppLinksList = ({ className, items }: Props) => {
   return (
     <ul className={classes.items}>
       {items.map((item, index) => {
-        const { className, href, ...rest } = item
+        const { className, href, onClick, ...rest } = item
 
         return (
           <li key={index}>
-            <Link className={cn(classes.link, className)} href={href} {...rest}>
+            <Link className={cn(classes.link, className)} href={href} {...rest} onClick={onClick}>
               {getIcon(href, false)}
             </Link>
           </li>

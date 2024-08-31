@@ -24,6 +24,7 @@ import {
 } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
+import { signIn } from 'next-auth/react'
 
 type Props = {
   className?: string
@@ -86,9 +87,18 @@ export const SignUpForm = forwardRef(
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
     const isSubmittingFormValues = isSubmitting
+    const signInGithubHandler = () =>
+      signIn('github', {
+        callbackUrl: '/',
+        redirect: true,
+      })
     const appLinksList = useMemo(
       () => [
-        { 'aria-label': t.pages.signUp.github, href: hrefGithub },
+        {
+          'aria-label': t.pages.signUp.github,
+          href: hrefGithub,
+          onClick: signInGithubHandler,
+        },
         { 'aria-label': t.pages.signUp.google, href: hrefGoogle },
       ],
       [hrefGithub, hrefGoogle]
