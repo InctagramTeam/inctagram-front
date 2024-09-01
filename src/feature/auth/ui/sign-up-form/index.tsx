@@ -88,7 +88,12 @@ export const SignUpForm = forwardRef(
 
     const isSubmittingFormValues = isSubmitting
     const signInGithubHandler = () =>
-      signIn('github', {
+      signIn('google', {
+        callbackUrl: '/',
+        redirect: true,
+      })
+    const signInGoogleHandler = () =>
+      signIn('google', {
         callbackUrl: '/',
         redirect: true,
       })
@@ -99,7 +104,7 @@ export const SignUpForm = forwardRef(
           href: hrefGithub,
           onClick: signInGithubHandler,
         },
-        { 'aria-label': t.pages.signUp.google, href: hrefGoogle },
+        { 'aria-label': t.pages.signUp.google, href: hrefGoogle, onClick: signInGoogleHandler },
       ],
       [hrefGithub, hrefGoogle]
     )
