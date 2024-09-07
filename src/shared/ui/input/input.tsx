@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   ComponentProps,
   ComponentPropsWithoutRef,
+  FocusEvent,
   forwardRef,
   useEffect,
   useId,
@@ -57,6 +58,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       label = EMPTY_STRING,
       labelProps = {},
       onChange,
+      onBlur,
       onClearInput,
       onValueChange,
       placeholder,
@@ -101,7 +103,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onValueChange?.(e.target.value)
     }
 
-    const onBlur = () => {
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+      onBlur?.(e)
       setIsFocused(false)
     }
 
@@ -220,7 +223,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={finalId}
             onChange={handleChange}
             onFocus={onFocus}
-            onBlur={onBlur}
+            onBlur={handleBlur}
             placeholder={placeholder}
             readOnly={readonly}
             ref={finalRef}

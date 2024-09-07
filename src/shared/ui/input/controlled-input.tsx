@@ -15,7 +15,7 @@ export const ControlledInput = <T extends FieldValues>({
   ...rest
 }: Props<T>) => {
   const {
-    field: { onChange, value, ...field },
+    field: { onChange, onBlur, value, ...field },
   } = useController({
     control,
     defaultValue,
@@ -24,5 +24,5 @@ export const ControlledInput = <T extends FieldValues>({
     shouldUnregister,
   })
 
-  return <Input {...rest} {...field} id={name} onChange={onChange} value={value} />
+  return <Input {...rest} {...field} onBlur={onBlur} id={name} onChange={onChange} value={value} />
 }
