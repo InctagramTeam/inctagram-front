@@ -58,6 +58,10 @@ export const ru: LocaleType = {
     password: 'Пароль',
     newPassword: 'Новый пароль',
     userName: 'Имя пользователя',
+    dateOfBirth: 'Дата рождения',
+    firstName: 'Имя',
+    aboutMe: 'Обо мне',
+    lastName: 'Фамилия',
     confirmPassword: 'Подтвердите пароль',
   },
   placeholders: {
@@ -65,6 +69,7 @@ export const ru: LocaleType = {
     firstName: 'Введите ваше имя',
     lastName: 'Введите вашу фамилию',
     password: 'Введите ваш пароль',
+    aboutMe: 'Обо мне',
     passwordConfirm: 'Введите ваш пароль снова',
     username: 'Введите имя пользователя',
   },

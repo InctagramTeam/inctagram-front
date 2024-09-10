@@ -61,10 +61,14 @@ export const en = {
   },
   label: {
     userName: 'Username',
+    firstName: 'First Name',
+    dateOfBirth: 'Date of birth',
+    lastName: 'Last Name',
     email: 'Email',
     password: 'Password',
     newPassword: 'New password',
     error: 'Error',
+    aboutMe: 'About Me',
     confirmPassword: 'Confirm password',
   },
   placeholders: {
@@ -72,6 +76,7 @@ export const en = {
     firstName: 'Enter your first name',
     lastName: 'Enter your last name',
     password: 'Enter your password',
+    aboutMe: 'About Me',
     passwordConfirm: 'Enter your password again',
     username: 'Enter your username',
   },
