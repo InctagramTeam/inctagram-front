@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { ReactNode } from 'react'
 
-import { ReturnComponent, cn } from '@/shared'
+import { ReturnComponent, cn, Text } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
 import {
   ALIGN_CLASSES,
@@ -90,7 +90,7 @@ const SelectBox = (props: Props): ReturnComponent => {
       variant === 'pagination' ? 'w-[50px]' : 'w-full',
       direction === 'top left' && `bottom-[100%]`
     ),
-    item: cn(variant === 'pagination' ? 'w-[50px]' : 'w-[210px]'),
+    item: cn(variant === 'pagination' ? 'w-[50px]' : 'w-full'),
     optionalClasses,
     text: cn(
       `flex items-center gap-[12px] text-regular-text-14`,
@@ -99,43 +99,58 @@ const SelectBox = (props: Props): ReturnComponent => {
     trigger: cn(
       variant === 'pagination'
         ? 'w-[50px] justify-center gap-[1px] py-0 pl-[6px] pr-[1px]'
-        : 'w-[210px]'
+        : 'w-full'
+    ),
+    label: cn(
+      `_Label_ mb-[1px] text-Dark-100 text-regular-text-14 text-Light-900`,
+      { [`text-Dark-100`]: disabled },
+      disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
     ),
   }
 
   return (
-    <Select
-      {...rest}
-      disabled={disabled}
-      name={name}
-      onValueChange={onChange}
-      required={required}
-      value={value as string}
-    >
-      <SelectTrigger className={classes.trigger}>
-        <SelectValue placeholder={placeholder} />
-        <ChevronIcon className={cn('chevron-up rotate-180', classes.chevron)} />
-        <ChevronIcon className={cn('chevron-down', classes.chevron)} />
-      </SelectTrigger>
-      <SelectContent className={classes.content} position={position}>
-        {label && <SelectLabel>{label}</SelectLabel>}
-
-        {options.map(option => (
-          <SelectItem
-            className={classes.item}
-            disabled={option.disabled}
-            key={option.value}
-            value={option.value as string}
+    <div className={classes.className}>
+      <Select
+        {...rest}
+        disabled={disabled}
+        name={name}
+        onValueChange={onChange}
+        required={required}
+        value={value as string}
+      >
+        {label && (
+          <Text
+            asComponent={'label'}
+            htmlFor={name}
+            className={classes.label}
+            variant={'regular_text_16'}
           >
-            <span className={classes.text}>
-              {option.label}
-              {option.icon}
-              {option.name}
-            </span>
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+            {label}
+          </Text>
+        )}
+        <SelectTrigger id={name} className={classes.trigger}>
+          <SelectValue placeholder={placeholder} />
+          <ChevronIcon className={cn('chevron-up rotate-180', classes.chevron)} />
+          <ChevronIcon className={cn('chevron-down', classes.chevron)} />
+        </SelectTrigger>
+        <SelectContent className={classes.content} position={position}>
+          {options.map(option => (
+            <SelectItem
+              className={classes.item}
+              disabled={option.disabled}
+              key={option.value}
+              value={option.value as string}
+            >
+              <span className={classes.text}>
+                {option.label}
+                {option.icon}
+                {option.name}
+              </span>
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
   )
 }
 

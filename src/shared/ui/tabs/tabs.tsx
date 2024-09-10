@@ -56,7 +56,7 @@ export const TabSwitcher = (props: Props): ReturnComponent => {
 
   const classes = {
     /** Табы растягиваются на всю ширину контейнера и скролятся, если их ширина превышает ширину контейнера */
-    list: cn('flex w-full overflow-x-scroll', listClassName),
+    list: cn('flex w-full overflow-x-auto', listClassName),
     trigger: cn([baseClasses, sizes[size || 'base'], fullWidth && `w-full`, triggerClassName]),
   }
 

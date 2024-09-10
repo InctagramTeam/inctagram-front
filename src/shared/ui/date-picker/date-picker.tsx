@@ -73,7 +73,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     return (
-      <>
+      <div>
         <Popover onOpenChange={onOpenChange} open={open}>
           <label className={classes.label} htmlFor={id}>
             {label && label}
@@ -107,7 +107,7 @@ export const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             </span>
           )}
         </Popover>
-      </>
+      </div>
     )
   }
 )
