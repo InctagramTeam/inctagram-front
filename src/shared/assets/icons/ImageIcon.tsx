@@ -1,6 +1,6 @@
 import { Ref, SVGProps, forwardRef, memo } from 'react'
 
-const BellIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+const ImageIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     ref={ref}
     {...props}
@@ -23,7 +23,7 @@ const BellIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   </svg>
 )
 
-const ForwardRef = forwardRef(BellIcon)
+const ForwardRef = forwardRef(ImageIcon)
 const Memo = memo(ForwardRef)
 
 export default Memo
