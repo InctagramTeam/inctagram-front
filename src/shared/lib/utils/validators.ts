@@ -1,4 +1,5 @@
 import { EMPTY_STRING, PASSWORD_PATTERN, USERNAME_PATTERN } from '@/shared'
+import { ABOUT_ME_PATTERN, FIRST_OR_LAST_NAME_PATTERN } from '@/shared/constants/regexs'
 import { LocaleType } from 'locales'
 import { z } from 'zod'
 
@@ -23,6 +24,31 @@ export const passwordSchema = (t: LocaleType) => {
     .max(20, t.validation.maxLength(20))
     .regex(PASSWORD_PATTERN, t.validation.passwordVerification)
     .default(EMPTY_STRING)
+}
+
+export const firstOrLastNameSchema = (t: LocaleType) => {
+  return z
+    .string()
+    .trim()
+    .regex(FIRST_OR_LAST_NAME_PATTERN) //TODO - добавить интернализацию для ошибки
+    .min(1, t.validation.minLength(1))
+    .max(50, t.validation.maxLength(50))
+    .default(EMPTY_STRING)
+}
+
+export const dateSchema = (t: LocaleType) => {
+  return z.string()
+}
+
+export const aboutMeSchema = (t: LocaleType) => {
+  return z
+    .string()
+    .trim()
+    .regex(ABOUT_ME_PATTERN) //TODO - добавить интернализацию для ошибки
+    .min(0, t.validation.minLength(0))
+    .max(200, t.validation.maxLength(200))
+    .default(EMPTY_STRING)
+    .optional()
 }
 
 export const checkboxSchema = () => z.boolean()
