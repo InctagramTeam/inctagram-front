@@ -1,4 +1,4 @@
-import { Button, Flex, Text, useTranslation } from '@/shared'
+import { AppRoutes, Button, Flex, Text, useTranslation } from '@/shared'
 import { FlexRow } from '@/shared/ui/flex'
 import Link from 'next/link'
 
@@ -11,14 +11,10 @@ export const FollowersInfoHeader = () => {
         URL_Profile
       </Text>
       <Button
-        // asComponent={Link}
+        asComponent={Link}
         className={`px-6 py-[6px]`}
-        // href={
-        //   {
-        //     // todo: данные с сервера для редиректа на страницу настроек конкретного профиля
-        //     // pathname: AppRoutes.PROFILE + `/${data?.id}/settings`,
-        //   }
-        // }
+        //TODO - поменять роут PROFILE - убрать id - получать его из query параметров AppRoutes.PROFILE + `/${data?.id}` + AppRoutes.PROFILE_SETTINGS,
+        href={AppRoutes.PROFILE + AppRoutes.PROFILE_SETTINGS}
         variant={'secondary'}
       >
         Profile Settings
