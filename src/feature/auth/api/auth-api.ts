@@ -1,9 +1,10 @@
-import { IAuthResponse, IEmailPassword } from '@/entities/user/model/types/user'
-import { SignUpRequest, getContentType } from '@/feature'
+import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user'
+import { getContentType, SignUpRequest } from '@/feature'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import { axiosNotAuthorized } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
+import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 
 /* Todo --> AuthApi */
 export class AuthApi {
@@ -33,18 +34,16 @@ export class AuthApi {
   }
 
   async singIn(email: string, password: string) {
-    const response = await axiosNotAuthorized.post<
-      null,
-      AxiosResponse<IAuthResponse>,
-      IEmailPassword
-    >(`auth/login`, {
-      email,
-      password,
-    })
-    //
-    // if (response?.data?.accessToken) {
-    //   saveToStorage(response?.data)
-    // }
+    const response = await axiosNotAuthorized.post<null, AxiosResponse<ITokens>, IEmailPassword>(
+      `auth/login`,
+      {
+        loginOrEmail: email,
+        password,
+      }
+    )
+    if (response?.data?.accessToken) {
+      saveToLocalStorage('accessToken', response.data.accessToken)
+    }
     return response
   }
 }
