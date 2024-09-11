@@ -7,7 +7,7 @@ import {
 import { LocaleType } from 'locales'
 import { z } from 'zod'
 
-export const profileSettingsSchema = (t: LocaleType) =>
+export const profileInfoSchema = (t: LocaleType) =>
   z.object({
     userName: usernameSchema(t),
     firstName: firstOrLastNameSchema(t),
@@ -17,4 +17,4 @@ export const profileSettingsSchema = (t: LocaleType) =>
     aboutMe: aboutMeSchema(t),
   })
 
-export type ProfileSettingsFormValues = z.infer<ReturnType<typeof profileSettingsSchema>>
+export type ProfileInfoFormValues = z.infer<ReturnType<typeof profileInfoSchema>>
