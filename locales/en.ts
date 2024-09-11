@@ -12,6 +12,7 @@ export const en = {
   button: {
     answer: 'Answer',
     back: 'Back',
+    addProfilePhoto: 'Add a Profile Photo',
     backToHome: 'Back to home-nav-links',
     backToPayment: 'Back to payment',
     backToSignIn: 'Back to Sign In',

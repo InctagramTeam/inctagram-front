@@ -5,6 +5,7 @@ export const ru: LocaleType = {
   button: {
     answer: 'Ответить',
     back: 'Вернуться',
+    addProfilePhoto: 'Добавить фото профиля',
     backToHome: 'Вернутся на домашнюю',
     backToPayment: 'Вернуться к оплате',
     backToSignIn: 'Страница входа',
