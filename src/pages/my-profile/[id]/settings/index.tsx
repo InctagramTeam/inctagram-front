@@ -1,4 +1,4 @@
-import { ProfileSettingsForm } from '@/feature/profile'
+import { ProfileAvatarForm, ProfileInfoForm } from '@/feature/profile'
 import { TabContent, TabSwitcher } from '@/shared'
 import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
 import { PageWrapper } from '@/widgets/page-wrapper'
@@ -32,8 +32,9 @@ const SettingsPage = () => {
       <TabSwitcher rootClassName="min-w-full" tabs={tabs} defaultValue="general">
         {tabs.map(tab => {
           return (
-            <TabContent value={tab.value}>
-              <ProfileSettingsForm onSubmit={() => {}} />
+            <TabContent value={tab.value} key={tab.value + new Date()} className="flex">
+              <ProfileAvatarForm onSubmit={() => {}} />
+              <ProfileInfoForm className="grow" onSubmit={() => {}} />
             </TabContent>
           )
         })}
