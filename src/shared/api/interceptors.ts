@@ -2,7 +2,7 @@ import authApi from '@/feature/auth/api/auth-api'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import { errorCatch } from '@/shared/lib/utils/error-catch'
 import axios, { type CreateAxiosDefaults } from 'axios'
-import Cookies from 'js-cookie'
+import { getStoreLocalStorage } from '@/shared/lib/utils'
 
 const options: CreateAxiosDefaults = {
   baseURL: process.env.BACKEND_API_URL, //https://app.incubatogram.org/api/v1,
@@ -11,7 +11,7 @@ const options: CreateAxiosDefaults = {
     'Content-Type': 'application/json',
   },
   // работаем с серверными куками
-  // withCredentials: true,
+  withCredentials: true,
 }
 
 /** Если делаем запрос на сервер с авторизацией, то использовать: axiosWithAuth, если нет, то: axiosNotAuthorized (например при логинизации)  */
@@ -19,7 +19,7 @@ const axiosNotAuthorized = axios.create(options) // axios без авториз�
 const axiosWithAuth = axios.create(options)
 
 axiosWithAuth.interceptors.request.use(config => {
-  const accessToken = Cookies.get('accessToken')
+  const accessToken = getStoreLocalStorage('accessToken')
 
   if (config.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
