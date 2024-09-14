@@ -5,6 +5,8 @@ import { useUser } from '@/entities/user'
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import { getStoreLocalStorage } from '@/shared/lib/utils'
+import { getAuthUrl } from '@/shared/config/url/api.config'
 
 type Props = { children: ReactNode } & TypeComponentAuthFields
 
@@ -24,14 +26,17 @@ const AuthProvider = (props: Props) => {
 
   // забираем авторизованного юзера
   const { user } = useUser()
+  const router = useRouter()
 
   /* todo: получить -> authMe, logout */
   // const { authMe, logout } = useActions()
-  const { pathname } = useRouter()
 
   /** При первом запуске Арр */
   useEffect(() => {
-    const accessToken = Cookies.get('accessToken')
+    const accessToken = getStoreLocalStorage('accessToken')
+    if (!accessToken) {
+      router.push(getAuthUrl('/sign-in'))
+    }
     // if (accessToken) authMe()
   }, [])
 
@@ -39,7 +44,7 @@ const AuthProvider = (props: Props) => {
   useEffect(() => {
     const refreshToken = Cookies.get('refreshToken')
     // if (!refreshToken && user) logout()
-  }, [pathname])
+  }, [router.pathname])
 
   return !isOnlyAdmin && !isOnlyUser ? (
     <>{children}</>

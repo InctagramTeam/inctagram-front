@@ -23,7 +23,7 @@ export interface ITokens {
 // todo:
 // отправляем в параметрах на сервер?
 export interface IEmailPassword {
-  email: string
+  loginOrEmail: string
   password: string
   rememberMe?: boolean
 }
