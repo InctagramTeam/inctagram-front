@@ -127,7 +127,8 @@ export const ru: LocaleType = {
       metaDescription: 'Поздравляем! Ваша почта была подтверждена',
       metaTitle: 'Поздравляем | Instagram',
       title: 'Поздравляем!',
-      text: 'Ваша почта была подтверждена',
+      textEmail: 'Ваша почта была подтверждена',
+      textPassword: 'Ваш пароль успешно изменен',
     },
     verifyEmail: {
       metaDescription:
