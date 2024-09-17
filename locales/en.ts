@@ -139,7 +139,8 @@ export const en = {
       metaDescription: 'Congratulations! Your email has been confirmed',
       metaTitle: 'Congratulations | Instagram',
       title: 'Congratulations!',
-      text: 'Your email has been confirmed',
+      textEmail: 'Your email has been confirmed',
+      textPassword: 'Your password has been successfully changed.',
     },
     verifyEmail: {
       metaDescription:

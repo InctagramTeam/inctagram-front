@@ -1,6 +1,8 @@
+'use client'
 import React from 'react'
 
 import {
+  AuthRoutes,
   Button,
   InformationBlock,
   ReturnComponent,
@@ -11,6 +13,7 @@ import {
 } from '@/shared'
 import { TimeManagementIllustration } from '@/shared/assets/illustrations'
 import { PageWrapper } from '@/widgets/page-wrapper'
+import { useRouter } from 'next/router'
 
 const ConfirmEmailPage = (): ReturnComponent => {
   const { xs } = useResponsive()
@@ -20,6 +23,8 @@ const ConfirmEmailPage = (): ReturnComponent => {
     button: cn('py-[6px] px-[24px]', !xs && 'mb-[32px]', xs && 'order-1'),
     illustration: cn('max-w-[474px] w-full h-[354px]', xs && 'h-[246px] mb-[42px]'),
   }
+
+  const router = useRouter()
 
   return (
     <PageWrapper
@@ -33,7 +38,9 @@ const ConfirmEmailPage = (): ReturnComponent => {
             asComponent={'button'}
             className={classes.button}
             fullWidth={xs}
-            onClick={() => {}}
+            onClick={() => {
+              router.replace(AuthRoutes.FORGOT_PASSWORD)
+            }}
           >
             {t.button.resendVerificationLink}
           </Button>
