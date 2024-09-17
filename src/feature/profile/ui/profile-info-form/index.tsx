@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
-
+import Geonames from 'geonames.js'
 import {
   Button,
   cn,
@@ -40,6 +40,12 @@ export const ProfileInfoForm = forwardRef(
     const { locale, t } = useTranslation()
     const { xs } = useResponsive()
 
+    const geonames = Geonames({
+      username: 'inctagram',
+      lan: 'en',
+      encoding: 'JSON',
+    })
+
     const classes = {
       button: 'mb-[30px] px-[24px] py-[6px]',
       form: cn(
@@ -66,6 +72,13 @@ export const ProfileInfoForm = forwardRef(
 
     useImperativeHandle(methodsRef, () => ({ clearErrors, reset, setError, setValue }))
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
+
+    geonames
+      .search({ q: 'CONT' }) //get continents
+      .then(resp => {
+        console.log(resp.geonames)
+      })
+      .catch(err => console.error(err))
 
     return (
       <div className={className}>
