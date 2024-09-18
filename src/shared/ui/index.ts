@@ -17,7 +17,14 @@ export { NavigationElement } from './navigation-element'
 export { Pagination } from './pagination'
 export { Popover, PopoverContent, PopoverTrigger } from './popover'
 export { Recaptcha } from './recaptcha'
-export { Select, SelectBox, SelectContent, SelectItem, SelectTrigger } from './select'
+export {
+  Select,
+  SelectBox,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  ControlledSelect,
+} from './select'
 export { Sheet, SheetClose, SheetContent, SheetPortal, SheetTrigger } from './sheet'
 export { Skeleton } from './skeleton'
 export { TabContent, TabSwitcher } from './tabs'
@@ -26,3 +33,4 @@ export { ControlledTextarea, Textarea } from './textarea'
 export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip'
 export { AppLink } from './app-link'
 export { ReturnBack } from './return-back'
+export type { SelectProps } from './select'

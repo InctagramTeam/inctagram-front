@@ -3,12 +3,12 @@
 import * as React from 'react'
 import { ReactNode } from 'react'
 
-import { ReturnComponent, cn, Text } from '@/shared'
+import { cn, ReturnComponent, Text } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
 
 import * as SelectRadix from '@radix-ui/react-select'
 
-import { SelectContent, SelectItem, SelectLabel, SelectTrigger } from './'
+import { SelectContent, SelectItem, SelectTrigger } from './'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
@@ -56,9 +56,9 @@ export const mapDirectionClass: Record<SelectContentMenuDirection, string> = {
   'top right': `bottom-[100%] left-0`,
 }
 
-type Props = ChangeValueProps<number | string> & OwnProps<number | string>
+export type SelectProps = ChangeValueProps<number | string> & OwnProps<number | string>
 
-const SelectBox = (props: Props): ReturnComponent => {
+const SelectBox = (props: SelectProps): ReturnComponent => {
   const {
     className,
     direction,

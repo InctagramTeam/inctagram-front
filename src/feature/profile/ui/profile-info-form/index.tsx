@@ -1,9 +1,9 @@
 import React, {
   ComponentPropsWithoutRef,
-  Ref,
   forwardRef,
-  useImperativeHandle,
+  Ref,
   useEffect,
+  useImperativeHandle,
   useState,
 } from 'react'
 import { useForm } from 'react-hook-form'
@@ -12,11 +12,11 @@ import {
   Button,
   cn,
   ControlledInput,
+  ControlledSelect,
   ControlledTextarea,
   DatePicker,
   EMPTY_STRING,
   ReturnComponent,
-  SelectBox,
   UseFormRef,
   useFormRevalidateWithLocale,
   useResponsive,
@@ -157,14 +157,16 @@ export const ProfileInfoForm = forwardRef(
             disabled={disabled}
           />
           <div className="flex justify-between gap-6">
-            <SelectBox
+            <ControlledSelect
+              control={control}
               label="Select your country"
               placeholder="Country"
               name="country"
               options={options}
               className="w-full"
             />
-            <SelectBox
+            <ControlledSelect
+              control={control}
               label="Select your city"
               placeholder="City"
               name="city"
