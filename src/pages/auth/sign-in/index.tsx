@@ -10,12 +10,17 @@ import {
   useTranslation,
 } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
+import { useSignIn } from '@/feature/auth/api/hooks/useSignIn'
 
 const SignInPge = (): ReturnComponent => {
   const { sm } = useResponsive()
   const { t } = useTranslation()
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
-  const handleSubmitForm = (formData: SignInFormValues) => {}
+  const { mutate, isPending } = useSignIn()
+
+  const handleSubmitForm = (formData: SignInFormValues) => {
+    mutate(formData)
+  }
 
   return (
     <PageWrapper
@@ -27,7 +32,7 @@ const SignInPge = (): ReturnComponent => {
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
         onSubmit={handleSubmitForm}
-        // disabled={isLoading}
+        disabled={isPending}
         ref={ref}
       />
     </PageWrapper>

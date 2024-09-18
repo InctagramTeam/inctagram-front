@@ -39,9 +39,8 @@ const SignUpCongratulations = (): ReturnComponent => {
             {t.button.signIn}
           </Button>
         }
-        illustration={<SignUpBroIllustration aria-hidden className={classes.illustration} />}
         isMobile={xs}
-        text={t.pages.congratulations.textEmail}
+        text={t.pages.congratulations.textPassword}
         title={t.pages.congratulations.title}
       />
     </PageWrapper>

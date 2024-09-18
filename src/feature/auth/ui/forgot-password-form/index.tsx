@@ -12,6 +12,7 @@ import { ForgotPasswordFormValues, forgotPasswordSchema } from '@/feature'
 import {
   AuthRoutes,
   Button,
+  ButtonSpinner,
   Card,
   ControlledInput,
   EMPTY_STRING,
@@ -123,14 +124,21 @@ export const ForgotPasswordForm = forwardRef(
           </Text>
         )}
 
-        <Button
-          className={classes.button}
-          disabled={!!Object.keys(errors).length ?? disabled}
-          fullWidth
-          type={'submit'}
-        >
-          {isSent ? t.button.sendLinkAgain : t.button.sendLink}
-        </Button>
+        {disabled ? (
+          <ButtonSpinner className={'mb-6 h-[30px] w-[30px] min-w-full text-center'} />
+        ) : (
+          <Button
+            className={classes.button}
+            disabled={
+              !getValues('recaptcha') || !getValues('email') || !!Object.keys(errors).length
+            }
+            fullWidth
+            type={'submit'}
+          >
+            {isSent ? t.button.sendLinkAgain : t.button.sendLink}
+          </Button>
+        )}
+
         <Button
           asComponent={Link}
           className={classes.link}

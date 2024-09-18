@@ -62,6 +62,7 @@ export const SignInForm = forwardRef(
         email: EMPTY_STRING,
         password: EMPTY_STRING,
       },
+      mode: 'onTouched',
       resolver: zodResolver(signInSchema(t)),
     })
 
@@ -118,23 +119,20 @@ export const SignInForm = forwardRef(
           <Button
             asComponent={Link}
             className={classes.forgotLink}
-            disabled={isValid ?? disabled}
+            disabled={disabled}
             href={AuthRoutes.FORGOT_PASSWORD}
             variant={'text'}
           >
             {t.pages.signIn.link}
           </Button>
-          <Button
-            className={classes.button}
-            disabled={!!Object.keys(errors).length ?? disabled}
-            fullWidth
-          >
+          <Button className={classes.button} disabled={!isValid || disabled} fullWidth>
             {t.button.signIn}
           </Button>
           <Text className={classes.question} variant={'regular_text_16'}>
             {t.pages.signIn.question}
           </Text>
           <Button
+            disabled={disabled}
             asComponent={Link}
             className={`m-[0] text-balance`}
             href={AuthRoutes.SIGN_UP}
