@@ -25,6 +25,7 @@ export const SentEmailModal = ({ email, onOpenChange, open }: Props): ReturnComp
   return (
     <Modal onOpenChange={onOpenChange} open={open}>
       <Modal.Content
+        classNameChildrenWrapper={'pt-[30px] pb-[36px] px-[24px]'}
         asChild
         classNameContent={'max-w-[378px] w-[90vw]'}
         title={t.pages.signUp.modalTitle}
