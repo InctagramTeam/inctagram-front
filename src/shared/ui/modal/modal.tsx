@@ -27,6 +27,8 @@ type ModalContentProps = {
   classNameChildrenWrapper?: string
   classNameContent?: string
   classNameOverlay?: string
+  classNameTitle?: string
+  classNameTitleContainer?: string
   customTitleComponent?: ReactNode
   style?: CSSProperties
   title?: string
@@ -37,6 +39,8 @@ export const ModalContent = ({
   classNameChildrenWrapper,
   classNameContent,
   classNameOverlay,
+  classNameTitle,
+  classNameTitleContainer,
   style,
   title = EMPTY_STRING,
   ...rest
@@ -44,7 +48,7 @@ export const ModalContent = ({
   const { t } = useTranslation()
 
   const classes = {
-    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
+    childrenWrapper: classNameChildrenWrapper,
     close: `w-[24px] h-[24px] CENTER text-Light-100 
     rounded-[2px] outline-none duration-300 transition-color
     hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
@@ -60,9 +64,10 @@ export const ModalContent = ({
           data-[state=open]:animate-[dialog-overlay-show_200ms]`,
       classNameOverlay
     ),
-    title: 'text-xl',
+    title: clsx('text-xl', classNameTitle),
     titleContainer: clsx(
-      'relative flex items-center justify-between px-[24px] py-[12px] border-b border-b-Dark-100'
+      'relative flex items-center justify-between px-[24px] py-[12px] border-b border-b-Dark-100',
+      classNameTitleContainer
     ),
   }
 
