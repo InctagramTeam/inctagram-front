@@ -1,4 +1,5 @@
 import { IUser } from 'src/entities/user/model/types/user'
+import { axiosWithAuth } from '@/shared/api/interceptors'
 
 export interface IProfileResponse {
   statistics: {
@@ -8,8 +9,8 @@ export interface IProfileResponse {
   user: IUser
 }
 
-class UserService {
-  // private BASE_URL = '/user/profile'
+export class UserService {
+  private BASE_URL = '/profile'
 
   async getProfile() {
     // const response = await axiosWithAuth.get<IProfileResponse>(this.BASE_URL)
@@ -19,6 +20,12 @@ class UserService {
   async update(data: any) {
     // const response = await axiosWithAuth.put(this.BASE_URL, data)
     // return response.data
+  }
+
+  async updatePhoto(formData: FormData) {
+    const response = await axiosWithAuth.put(this.BASE_URL + '/avatar', formData)
+    console.log(response)
+    return response.data
   }
 }
 
