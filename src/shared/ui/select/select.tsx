@@ -5,13 +5,7 @@ import { ReactNode } from 'react'
 
 import { ReturnComponent, cn, Text } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
-import {
-  ALIGN_CLASSES,
-  DIRECTION_CLASSES,
-  FLEX_WRAP_CLASSES,
-  GAP_CLASSES,
-  JUSTIFY_CLASSES,
-} from '@/shared/ui/flex/model/constants/mapping-flex-classes'
+
 import * as SelectRadix from '@radix-ui/react-select'
 
 import { SelectContent, SelectItem, SelectLabel, SelectTrigger } from './'

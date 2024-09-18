@@ -1,4 +1,11 @@
-import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
+import React, {
+  ComponentPropsWithoutRef,
+  Ref,
+  forwardRef,
+  useImperativeHandle,
+  useEffect,
+  useState,
+} from 'react'
 import { useForm } from 'react-hook-form'
 import Geonames from 'geonames.js'
 import {
@@ -26,6 +33,12 @@ const options = [
   { label: '4', value: '4' },
 ]
 
+const geonames = Geonames({
+  username: 'inctagram',
+  lan: 'en',
+  encoding: 'JSON',
+})
+
 type Props = {
   className?: string
   disabled?: boolean
@@ -39,12 +52,12 @@ export const ProfileInfoForm = forwardRef(
     const { className, disabled, onSubmit, ...rest } = props
     const { locale, t } = useTranslation()
     const { xs } = useResponsive()
-
-    const geonames = Geonames({
-      username: 'inctagram',
-      lan: 'en',
-      encoding: 'JSON',
-    })
+    const [options, setOptions] = useState([
+      { label: '1', value: '1' },
+      { label: '2', value: '2' },
+      { label: '3', value: '3' },
+      { label: '4', value: '4' },
+    ])
 
     const classes = {
       button: 'mb-[30px] px-[24px] py-[6px]',
@@ -73,12 +86,28 @@ export const ProfileInfoForm = forwardRef(
     useImperativeHandle(methodsRef, () => ({ clearErrors, reset, setError, setValue }))
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
-    geonames
-      .search({ q: 'CONT' }) //get continents
-      .then(resp => {
-        console.log(resp.geonames)
-      })
-      .catch(err => console.error(err))
+    useEffect(() => {
+      geonames
+        .countryInfo({})
+        // .then(countries => {
+        //   return geonames.children({ geonameId: countries.geonames[2].geonameId })
+        // })
+        // .then(states => {
+        //   return geonames.children({ geonameId: states.geonames[3].geonameId })
+        // })
+        // .then(regions => {
+        //   return geonames.children({ geonameId: regions.geonames[3].geonameId })
+        // })
+        .then(countries => {
+          const res = countries.geonames.map((country: any) => {
+            return { label: country.countryName, value: country.countryName }
+          })
+
+          setOptions(res)
+          // console.log(countries)
+        })
+        .catch((err: any) => console.log(err))
+    }, [])
 
     return (
       <div className={className}>
