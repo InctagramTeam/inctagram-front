@@ -78,6 +78,7 @@ export const en = {
     lastName: 'Enter your last name',
     password: 'Enter your password',
     aboutMe: 'About Me',
+    dateOfBirth: 'Pick a date',
     passwordConfirm: 'Enter your password again',
     username: 'Enter your username',
   },

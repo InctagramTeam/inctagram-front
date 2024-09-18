@@ -11,10 +11,10 @@ import Geonames from 'geonames.js'
 import {
   Button,
   cn,
+  ControlledDataPicker,
   ControlledInput,
   ControlledSelect,
   ControlledTextarea,
-  DatePicker,
   EMPTY_STRING,
   ReturnComponent,
   UseFormRef,
@@ -58,6 +58,7 @@ export const ProfileInfoForm = forwardRef(
       { label: '3', value: '3' },
       { label: '4', value: '4' },
     ])
+    const [date, setDate] = useState<Date>()
 
     const classes = {
       button: 'mb-[30px] px-[24px] py-[6px]',
@@ -109,6 +110,13 @@ export const ProfileInfoForm = forwardRef(
         .catch((err: any) => console.log(err))
     }, [])
 
+    const handleChange = (dateChange: any) => {
+      setValue('dateOfBirth', dateChange, {
+        shouldDirty: true,
+      })
+      setDate(dateChange)
+    }
+
     return (
       <div className={className}>
         <form onSubmit={handleSubmit(onSubmit)} className={classes.form} {...rest}>
@@ -149,12 +157,11 @@ export const ProfileInfoForm = forwardRef(
             rules={{ required: true }}
             labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
           />
-          <DatePicker
-            name={'dateOfBirth'}
+          <ControlledDataPicker
             label={t.label.dateOfBirth}
-            textTrigger="00.00.0000"
-            errorMessage={errors.dateOfBirth?.message}
-            disabled={disabled}
+            defaultValue={t.placeholders.dateOfBirth}
+            control={control}
+            name={'dateOfBirth'}
           />
           <div className="flex justify-between gap-6">
             <ControlledSelect

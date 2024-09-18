@@ -70,6 +70,7 @@ export const ru: LocaleType = {
     firstName: 'Введите ваше имя',
     lastName: 'Введите вашу фамилию',
     password: 'Введите ваш пароль',
+    dateOfBirth: 'Выберите дату',
     aboutMe: 'Обо мне',
     passwordConfirm: 'Введите ваш пароль снова',
     username: 'Введите имя пользователя',

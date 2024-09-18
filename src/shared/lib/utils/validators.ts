@@ -37,7 +37,7 @@ export const firstOrLastNameSchema = (t: LocaleType) => {
 }
 
 export const dateSchema = (t: LocaleType) => {
-  return z.string()
+  return z.date()
 }
 
 export const aboutMeSchema = (t: LocaleType) => {

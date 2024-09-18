@@ -1,18 +1,13 @@
 import * as React from 'react'
-import { DayModifiers, DayPicker } from 'react-day-picker'
-
-import { ChevronIcon } from '@/shared/assets/icons'
+import { DayPicker } from 'react-day-picker'
 import { EMPTY_STRING } from '@/shared/constants/base'
 import { cn } from '@/shared/lib/utils/merge-cn'
+import { ChevronIcon } from '@/shared/assets/icons'
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
 // about calendar in shad-cn https://ui.shadcn.com/docs/components/calendar
 const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) => {
-  const modifiers: DayModifiers = {
-    weekend: (date: Date) => date.getDay() === 0 || date.getDay() === 6,
-  }
-
   const dayPickerClassNames = {
     caption: 'flex justify-between items-center',
     caption_label: 'text-bold-text-16 text-Light-100 pl-[8px]',
@@ -57,16 +52,14 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
 
   return (
     <DayPicker
+      showOutsideDays={showOutsideDays}
       className={cn(`px-[24px] py-[16px]`, className)}
       classNames={dayPickerClassNames}
       components={{
         IconLeft: () => <ChevronIcon className={'h-[20px] w-[20px] rotate-90'} />,
         IconRight: () => <ChevronIcon className={'h-[20px] w-[20px] -rotate-90'} />,
       }}
-      modifiers={modifiers}
       modifiersClassNames={modifiersClassNames}
-      showOutsideDays={showOutsideDays}
-      weekStartsOn={1}
       {...props}
     />
   )
