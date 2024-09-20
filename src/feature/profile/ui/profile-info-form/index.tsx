@@ -110,13 +110,6 @@ export const ProfileInfoForm = forwardRef(
         .catch((err: any) => console.log(err))
     }, [])
 
-    const handleChange = (dateChange: any) => {
-      setValue('dateOfBirth', dateChange, {
-        shouldDirty: true,
-      })
-      setDate(dateChange)
-    }
-
     return (
       <div className={className}>
         <form onSubmit={handleSubmit(onSubmit)} className={classes.form} {...rest}>

@@ -30,7 +30,7 @@ export const firstOrLastNameSchema = (t: LocaleType) => {
   return z
     .string()
     .trim()
-    .regex(FIRST_OR_LAST_NAME_PATTERN) //TODO - добавить интернализацию для ошибки
+    .regex(FIRST_OR_LAST_NAME_PATTERN, t.validation.nameVerification)
     .min(1, t.validation.minLength(1))
     .max(50, t.validation.maxLength(50))
     .default(EMPTY_STRING)
@@ -44,7 +44,7 @@ export const aboutMeSchema = (t: LocaleType) => {
   return z
     .string()
     .trim()
-    .regex(ABOUT_ME_PATTERN) //TODO - добавить интернализацию для ошибки
+    .regex(ABOUT_ME_PATTERN, t.validation.aboutMeVerification)
     .min(0, t.validation.minLength(0))
     .max(200, t.validation.maxLength(200))
     .default(EMPTY_STRING)

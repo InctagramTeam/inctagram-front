@@ -212,5 +212,8 @@ export const en = {
     recaptcha: 'Please verify that you are not a robot',
     userNameVerification:
       'Username can contain only letters "a-z" (uppercase and lowercase), numbers, and the characters "_" and "-"',
+    nameVerification: 'Can contain only letters "a-z" (uppercase and lowercase)',
+    aboutMeVerification:
+      'It can only contain the letters a-z, numbers and special characters (!@#$%^&*()-_+=)',
   },
 }

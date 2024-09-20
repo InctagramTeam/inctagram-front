@@ -1,2 +1,2 @@
-export { profileInfoSchema } from './profile-settings-schema'
-export type { ProfileInfoFormValues } from './profile-settings-schema'
+export { profileInfoSchema } from './schemas'
+export type { ProfileInfoFormValues } from './schemas'
