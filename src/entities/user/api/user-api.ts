@@ -10,7 +10,7 @@ export interface IProfileResponse {
 }
 
 export class UserService {
-  private BASE_URL = '/my-profile'
+  private BASE_URL = '/profile'
 
   async getProfile() {
     // const response = await axiosWithAuth.get<IProfileResponse>(this.BASE_URL)
@@ -22,7 +22,12 @@ export class UserService {
     // return response.data
   }
 
-  async updatePhoto(formData: FormData) {
+  async deleteAvatar() {
+    const response = await axiosWithAuth.delete(this.BASE_URL + '/avatar')
+    return response.data
+  }
+
+  async updateAvatar(formData: FormData) {
     const response = await axiosWithAuth.put(this.BASE_URL + '/avatar', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
