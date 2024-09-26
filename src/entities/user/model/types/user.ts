@@ -4,11 +4,11 @@ export interface IUser {
   error?: string
   id?: string
   isAdmin?: boolean
+  isAuth: boolean
   isLoading?: string
   password: string
   roles?: 'ADMIN' | 'MANAGER' | 'USER'
   userName: string
-  isAuth: boolean
 }
 
 export interface IUserSchema {
@@ -30,13 +30,13 @@ export interface IEmailPassword {
 
 // данные с сервера
 export interface IAuthResponse {
-  id: number
-  userName: string
-  email: string
-  name: null
   confirmed: boolean
+  createdAt: string
+  email: string
+  id: number
+  name: null
   passwordHash: string
   passwordSalt: string
-  createdAt: string
   updatedAt: string
+  userName: string
 }

@@ -22,6 +22,7 @@ export const SentEmailModal = ({ email, onOpenChange, open }: Props): ReturnComp
   if (!isClient) {
     return null
   }
+
   return (
     <Modal onOpenChange={onOpenChange} open={open}>
       <Modal.Content

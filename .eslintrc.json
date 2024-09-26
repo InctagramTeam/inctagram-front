@@ -7,9 +7,9 @@
     "ulbi-tv-plugin/path-checker": "error"
   },
   "plugins": [
-    "ulbi-tv-plugin",
-    {
-      "alias": "@"
-    }
+    "ulbi-tv-plugin"
+//    {
+//      "alias": "@"
+//    }
   ]
 }

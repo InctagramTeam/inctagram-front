@@ -10,13 +10,13 @@ import {
   useState,
 } from 'react'
 
-import { EMPTY_STRING, mergeRefs, ReturnComponent, Text, useTranslation } from '@/shared'
+import { EMPTY_STRING, ReturnComponent, Text, mergeRefs, useTranslation } from '@/shared'
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
 import { clsx } from 'clsx'
 
 export type InputProps = {
-  disabled?: boolean
   autofocus?: boolean
+  disabled?: boolean
   /** Чтобы задать стили отдельно, для элементов html разметки снаружи достучаться до них <--
    * Пример использования:
    * <Input
@@ -49,6 +49,7 @@ export type InputProps = {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
+      autofocus = true,
       className,
       disabled,
       divContainerProps = {},
@@ -57,12 +58,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       inputProps = {},
       label = EMPTY_STRING,
       labelProps = {},
-      onChange,
       onBlur,
+      onChange,
       onClearInput,
       onValueChange,
       placeholder,
-      autofocus = true,
       readonly = false,
       type = 'search',
       ...rest
@@ -221,9 +221,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={classNames.input}
             disabled={disabled}
             id={finalId}
+            onBlur={handleBlur}
             onChange={handleChange}
             onFocus={onFocus}
-            onBlur={handleBlur}
             placeholder={placeholder}
             readOnly={readonly}
             ref={finalRef}

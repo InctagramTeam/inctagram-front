@@ -1,12 +1,12 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+import { default as ReCAPTCHA } from 'react-google-recaptcha'
 import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
 import { ForgotPasswordForm, ForgotPasswordFormValues, SentEmailModal } from '@/feature'
+import { usePasswordRecovery } from '@/feature/auth/api/hooks/usePasswordRecovery'
 import { ReturnComponent, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
-import { usePasswordRecovery } from '@/feature/auth/api/hooks/usePasswordRecovery'
 
 type ForgotPasswordFormRef = UseFormRef<
   ForgotPasswordFormValues,
@@ -25,7 +25,7 @@ const ForgotPasswordPage = (): ReturnComponent => {
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const [recaptchaValue, setRecaptchaValue] = useState<null | string>(null)
 
-  const { mutate, isSuccess, isPending } = usePasswordRecovery()
+  const { isPending, isSuccess, mutate } = usePasswordRecovery()
 
   const recaptchaChangeHandler = (value: null | string) => {
     if (value) {
@@ -67,11 +67,11 @@ const ForgotPasswordPage = (): ReturnComponent => {
         title={t.pages.forgotPassword.metaTitle}
       >
         <ForgotPasswordForm
+          disabled={isPending}
+          isSent={isSuccess}
           onSubmit={handleSubmitForm}
           recaptchaChangeHandler={recaptchaChangeHandler}
           recaptchaRef={recaptchaRef}
-          disabled={isPending}
-          isSent={isSuccess}
           ref={ref}
         />
         <SentEmailModal email={emailUser} onOpenChange={setOpen} open={open} />

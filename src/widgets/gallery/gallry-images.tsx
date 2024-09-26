@@ -1,20 +1,20 @@
 'use client'
 
-import Image, { ImageProps } from 'next/image'
 import { EMPTY_STRING, ReturnComponent } from '@/shared'
 import { clsx } from 'clsx'
+import Image, { ImageProps } from 'next/image'
 
 type Props = {
   alt?: string
-  src: string
   className?: string
+  src: string
 }
 
-export type GalleryImageType = Props & Omit<ImageProps, keyof Props>
+export type GalleryImageType = Omit<ImageProps, keyof Props> & Props
 export const GalleryImage = ({
   alt,
-  src,
   className,
+  src,
   ...rest
 }: GalleryImageType): ReturnComponent => (
   <Image

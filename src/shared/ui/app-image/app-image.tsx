@@ -1,24 +1,33 @@
-import { forwardRef, ImgHTMLAttributes, memo, ReactElement, useLayoutEffect, useState } from 'react'
+import { ImgHTMLAttributes, ReactElement, forwardRef, memo, useLayoutEffect, useState } from 'react'
+
+import Image from 'next/image'
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   className?: string
-  /** будет отображаться в момент загрузки */
-  fallback?: ReactElement
-  /** будет отображаться в случае ошибки */
   errorFallback?: ReactElement
+  fallback?: ReactElement
+  height?: number // добавляем высоту
+  width?: number // добавляем ширину
 }
 
-/** AppImage - в случаях когда нужно применить нативный html tag: <img />
- * Применение: <AppImage fallback=<Skeleton width='200' height='200'className=`` src={post.img} alt={post.title} errorFallback={<IconWrapper />} /> />  */
 export const AppImage = memo(
   forwardRef<HTMLImageElement, AppImageProps>((props, ref) => {
-    const { className, src, alt = 'image', errorFallback, fallback, ...rest } = props
+    const {
+      alt = 'image',
+      className,
+      errorFallback,
+      fallback,
+      height = 300,
+      src,
+      width = 300,
+      ...rest
+    } = props // задаем дефолтные размеры
     const [isLoading, setIsLoading] = useState(true)
     const [hasError, setHasError] = useState(false)
 
-    /** Вызовется до вмонтирования компонента (синхронно) */
     useLayoutEffect(() => {
-      const img = new Image()
+      const img = new window.Image()
+
       img.src = src ?? ''
       img.onload = () => {
         setIsLoading(false)
@@ -37,6 +46,17 @@ export const AppImage = memo(
       return errorFallback
     }
 
-    return <img ref={ref} {...rest} className={className} src={src} alt={alt} />
+    return (
+      <Image
+        ref={ref as any}
+        {...rest}
+        alt={alt}
+        className={className}
+        height={height} // передаем высоту
+        layout={'responsive'} // можно указать layout для автоматической подгонки
+        src={src ?? ''}
+        width={width} // передаем ширину
+      />
+    )
   })
 )

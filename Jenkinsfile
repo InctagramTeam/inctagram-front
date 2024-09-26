@@ -4,12 +4,12 @@ pipeline {
     agent any
     environment {
         ENV_TYPE = "production"
-        PORT = 3363
+        PORT = 3538
         NAMESPACE = "incubatogram-org"
         REGISTRY_HOSTNAME = "incubator24"
         REGISTRY = "registry.hub.docker.com"
-        PROJECT = "inc-front-nextjs"
-        DEPLOYMENT_NAME = "inc-front-nextjs-deployment"
+        PROJECT = "inctagramapp-front"
+        DEPLOYMENT_NAME = "inctagramapp-front-deployment"
         IMAGE_NAME = "${env.BUILD_ID}_${env.ENV_TYPE}_${env.GIT_COMMIT}"
         DOCKER_BUILD_NAME = "${env.REGISTRY_HOSTNAME}/${env.PROJECT}:${env.IMAGE_NAME}"
     }

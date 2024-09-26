@@ -1,6 +1,7 @@
 import { useRef } from 'react'
 
 import { SignInForm, SignInFormValues } from '@/feature'
+import { useSignIn } from '@/feature/auth/api/hooks/useSignIn'
 import {
   EMPTY_STRING,
   ReturnComponent,
@@ -10,13 +11,12 @@ import {
   useTranslation,
 } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
-import { useSignIn } from '@/feature/auth/api/hooks/useSignIn'
 
 const SignInPge = (): ReturnComponent => {
   const { sm } = useResponsive()
   const { t } = useTranslation()
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
-  const { mutate, isPending } = useSignIn()
+  const { isPending, mutate } = useSignIn()
 
   const handleSubmitForm = (formData: SignInFormValues) => {
     mutate(formData)
@@ -29,10 +29,10 @@ const SignInPge = (): ReturnComponent => {
       title={t.pages.signIn.metaTitle}
     >
       <SignInForm
+        disabled={isPending}
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
         onSubmit={handleSubmitForm}
-        disabled={isPending}
         ref={ref}
       />
     </PageWrapper>

@@ -1,5 +1,5 @@
 'use client'
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
 import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox'
 
@@ -35,7 +35,7 @@ export const ControlledCheckbox = <T extends FieldValues>({
 
   return (
     <Checkbox
-      defaultChecked={true}
+      defaultChecked
       {...rest}
       checked={checked}
       disabled={disabled}

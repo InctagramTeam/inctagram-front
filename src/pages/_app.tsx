@@ -3,12 +3,12 @@ import type { AppProps } from 'next/app'
 
 import type { ReactElement, ReactNode } from 'react'
 
-import { TypeComponentAuthFields, AppQueryClientProvider, AuthProvider } from '@/app/providers'
+import { AppQueryClientProvider, AuthProvider, TypeComponentAuthFields } from '@/app/providers'
 import { useLoader } from '@/shared'
+import { Toaster } from '@/shared/ui/toast/toaster'
 
 import '@/app/styles/globals.scss'
 import '@/app/styles/nprogress.scss'
-import { Toaster } from '@/shared/ui/toast/toaster'
 
 export type NextPageWithLayout<P = {}, IP = P> = {
   getLayout?: (page: ReactElement) => ReactNode
