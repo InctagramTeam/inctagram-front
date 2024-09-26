@@ -22,6 +22,11 @@ export class UserService {
     // return response.data
   }
 
+  async getAvatar(id: string) {
+    const response = await axiosWithAuth.get(`${this.BASE_URL}/avatar/${id}`)
+    return response.data
+  }
+
   async deleteAvatar() {
     const response = await axiosWithAuth.delete(this.BASE_URL + '/avatar')
     return response.data

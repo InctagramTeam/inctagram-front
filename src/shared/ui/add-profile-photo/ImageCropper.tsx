@@ -18,7 +18,7 @@ const VALID_FORMATS = ['image/jpeg', 'image/png']
 
 type ImageCropperProps = {
   closeModal: () => void
-  updateAvatar: (dataUrl: string) => void
+  updateAvatar: (formData: FormData) => void
 }
 
 const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar }) => {
@@ -27,6 +27,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
   const [imgSrc, setImgSrc] = useState<string>('')
   const [crop, setCrop] = useState<Crop | undefined>(undefined)
   const [error, setError] = useState<string>('')
+
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const validateFile = (file: File): string | null => {
@@ -91,8 +92,19 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
       previewCanvasRef.current,
       convertToPixelCrop(crop as PixelCrop, imgRef.current.width, imgRef.current.height)
     )
-    const dataUrl = previewCanvasRef.current.toDataURL()
-    updateAvatar(dataUrl)
+
+    // Создание blob и преобразование его в файл
+    previewCanvasRef.current.toBlob(blob => {
+      if (blob) {
+        const file = new File([blob], 'avatar.jpg', { type: 'image/jpeg' })
+        const formData = new FormData()
+        formData.append('file', file)
+
+        // Отправка файла на сервер
+        updateAvatar(formData)
+      }
+    }, 'image/jpeg')
+
     closeModal()
   }, [crop, updateAvatar, closeModal])
 

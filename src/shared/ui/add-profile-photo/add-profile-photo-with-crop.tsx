@@ -2,23 +2,35 @@ import { Button, Modal, Text } from '@/shared'
 import { UserAvatar } from '@/entities/profile'
 import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
 import * as React from 'react'
-import { useRef, useState } from 'react'
-import { useMutation } from '@tanstack/react-query'
+import { useState } from 'react'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { userService } from '@/entities/user/api/user-api'
 import ImageCropper from '@/shared/ui/add-profile-photo/ImageCropper'
 import 'react-image-crop/dist/ReactCrop.css'
 import { DeleteAvatarIcon } from '@/shared/assets/icons/DeleteIcon'
 
 export const AddProfilePhotoWithCrop = () => {
-  const avatarUrl = useRef('')
   const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
   const [modalDeleteAvatarOpen, setModalDeleteAvatarOpen] = useState(false)
+
+  const queryClient = useQueryClient()
+
+  const avatar = useQuery({
+    queryFn: async () => {
+      return userService.getAvatar('5')
+    },
+    queryKey: ['avatar'],
+  })
+
+  console.log(avatar.data?.url)
 
   const { mutate: deleteAvatar, isPending: isPendingDeleteAvatar } = useMutation({
     mutationFn: async () => {
       return userService.deleteAvatar()
     },
-    onSuccess: () => {},
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['avatar'] })
+    },
     onError: (err: Error) => {},
   })
 
@@ -26,19 +38,19 @@ export const AddProfilePhotoWithCrop = () => {
     mutationFn: async (formData: FormData) => {
       return userService.updateAvatar(formData)
     },
-    onSuccess: () => {},
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['avatar'] })
+    },
     onError: (err: Error) => {},
   })
 
   const deleteAvatarHandler = () => {
-    avatarUrl.current = ''
+    deleteAvatar()
     setModalDeleteAvatarOpen(false)
-    // deleteAvatar()
   }
 
-  const updateAvatarHandler = (imgSrc: string) => {
-    avatarUrl.current = imgSrc
-    // updatePhoto(imgSrc)
+  const updateAvatarHandler = (formData: FormData) => {
+    updateAvatar(formData)
   }
 
   return (
@@ -48,12 +60,9 @@ export const AddProfilePhotoWithCrop = () => {
           className={`h-full w-full`}
           bgColor={'bg-Dark-500'}
           children={<ImageOutlineIcon />}
-          src={avatarUrl.current}
+          src={avatar.data?.url || null}
         />
-        {avatarUrl.current && (
-          // <button className={`absolute right-4 top-4`} onClick={deleteAvatarHandler}>
-          //   <DeleteAvatarIcon />
-          // </button>
+        {avatar.data?.url && (
           <Modal
             open={modalDeleteAvatarOpen}
             onOpenChange={isOpen => setModalDeleteAvatarOpen(isOpen)}
