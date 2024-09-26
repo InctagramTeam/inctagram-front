@@ -7,7 +7,7 @@ import { GalleryImageType } from '@/widgets/gallery'
 const items: GalleryImageType[] = []
 
 for (let i = 0; i < 8; i++) {
-  items.push({ src: '/man.png', alt: 'photo' })
+  items.push({ alt: 'photo', src: '/man.png' })
 }
 
 export const ProfileGallery = (): ReturnComponent => {

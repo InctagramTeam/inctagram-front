@@ -132,9 +132,9 @@ export const SignInForm = forwardRef(
             {t.pages.signIn.question}
           </Text>
           <Button
-            disabled={disabled}
             asComponent={Link}
             className={`m-[0] text-balance`}
+            disabled={disabled}
             href={AuthRoutes.SIGN_UP}
             variant={'link'}
           >

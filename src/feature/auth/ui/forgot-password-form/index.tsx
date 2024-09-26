@@ -5,7 +5,7 @@ import React, {
   forwardRef,
   useImperativeHandle,
 } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+import { default as ReCAPTCHA } from 'react-google-recaptcha'
 import { useForm } from 'react-hook-form'
 
 import { ForgotPasswordFormValues, forgotPasswordSchema } from '@/feature'

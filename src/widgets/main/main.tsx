@@ -1,8 +1,7 @@
 import { ReactNode } from 'react'
 
-import { ReturnComponent, cn, useLayoutContext, useResponsive } from '@/shared'
+import { cn, ReturnComponent, useLayoutContext, useResponsive } from '@/shared'
 import { Inter } from 'next/font/google'
-import { className } from 'postcss-selector-parser'
 
 const inter = Inter({
   display: 'swap',
@@ -13,8 +12,8 @@ const inter = Inter({
 
 type Props = {
   children: ReactNode
-  layoutMainChildren?: ReactNode
   className?: string
+  layoutMainChildren?: ReactNode
 }
 
 export const Main = ({ children, className }: Props): ReturnComponent => {

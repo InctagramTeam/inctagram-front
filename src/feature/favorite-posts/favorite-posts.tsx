@@ -1,13 +1,14 @@
 'use client'
 
-import { cn, ReturnBack, ReturnComponent, Text, useResponsive, useTranslation } from '@/shared'
-import { Gallery, GalleryImage, GalleryImageType } from '@/widgets'
 import React from 'react'
+
+import { ReturnBack, ReturnComponent, Text, cn, useResponsive, useTranslation } from '@/shared'
+import { Gallery, GalleryImage, GalleryImageType } from '@/widgets'
 
 const items: GalleryImageType[] = []
 
 for (let i = 0; i < 12; i++) {
-  items.push({ src: '/man.png', alt: 'photo' })
+  items.push({ alt: 'photo', src: '/man.png' })
 }
 export const FavoritePosts = (): ReturnComponent => {
   const { sm } = useResponsive()
@@ -18,9 +19,9 @@ export const FavoritePosts = (): ReturnComponent => {
       {sm && <ReturnBack text={t.button.back} />}
       <Text
         asComponent={'h1'}
+        className={sm ? 'text-center' : undefined}
         mb={'13px'}
         variant={'H1'}
-        className={sm ? 'text-center' : undefined}
       >
         {t.pages.favorites.title}
       </Text>

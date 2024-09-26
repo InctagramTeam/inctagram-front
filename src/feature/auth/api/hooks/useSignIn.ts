@@ -1,30 +1,31 @@
-import { useMutation } from '@tanstack/react-query'
 import { SignInFormValues } from '@/feature'
 import authApi from '@/feature/auth/api/auth-api'
-import { toast } from '@/shared/ui/toast/use-toast'
-import { useRouter } from 'next/router'
-import { AxiosError } from 'axios'
 import { AppRoutes } from '@/shared'
+import { toast } from '@/shared/ui/toast/use-toast'
+import { useMutation } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
+import { useRouter } from 'next/router'
 
 export const useSignIn = () => {
   const router = useRouter()
   const mutation = useMutation({
-    mutationKey: ['sign-in'],
     mutationFn: async (formData: SignInFormValues) => {
       return authApi.singIn(formData.email, formData.password)
     },
-    onSuccess: _ => {
-      router.replace(AppRoutes.MAIN)
-    },
+    mutationKey: ['sign-in'],
     onError: (error: AxiosError) => {
       if (error) {
         toast({
-          title: 'error',
           description: error.message,
+          title: 'error',
           variant: 'destructive',
         })
       }
     },
+    onSuccess: _ => {
+      router.replace(AppRoutes.MAIN)
+    },
   })
+
   return mutation
 }

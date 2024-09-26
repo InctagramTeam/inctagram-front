@@ -1,8 +1,8 @@
 import authApi from '@/feature/auth/api/auth-api'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
+import { getStoreLocalStorage } from '@/shared/lib/utils'
 import { errorCatch } from '@/shared/lib/utils/error-catch'
 import axios, { type CreateAxiosDefaults } from 'axios'
-import { getStoreLocalStorage } from '@/shared/lib/utils'
 
 const options: CreateAxiosDefaults = {
   baseURL: process.env.BACKEND_API_URL, //https://app.incubatogram.org/api/v1,
