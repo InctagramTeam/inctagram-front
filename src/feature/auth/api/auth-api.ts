@@ -1,9 +1,9 @@
 import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user'
 import {
-  getContentType,
   NewPasswordRequestArgs,
   RecoveryPasswordArgs,
   SignUpRequest,
+  getContentType,
 } from '@/feature'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import { axiosNotAuthorized } from '@/shared/api/interceptors'

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { cn, ReturnComponent, useLayoutContext, useResponsive } from '@/shared'
+import { ReturnComponent, cn, useLayoutContext, useResponsive } from '@/shared'
 import { Inter } from 'next/font/google'
 
 const inter = Inter({

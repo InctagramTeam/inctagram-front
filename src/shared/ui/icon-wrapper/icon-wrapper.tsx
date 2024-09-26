@@ -1,4 +1,4 @@
-import React, { FunctionComponent, memo, SVGProps } from 'react'
+import React, { FunctionComponent, SVGProps, memo } from 'react'
 
 import { clsx } from 'clsx'
 
