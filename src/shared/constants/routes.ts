@@ -1,5 +1,6 @@
 export const AuthRoutes = {
   CONFIRM_EMAIL: '/auth/confirm-email',
+  CONGRATULATIONS: '/congratulations',
   CREATE_NEW_PASSWORD: '/auth/create-new-password',
   FORGOT_PASSWORD: '/auth/forgot-password',
   PASSWORD_RECOVERY: '/auth/password-recovery',
@@ -16,10 +17,10 @@ export const GeneralRoutes = {
 export const AppRoutes = {
   CREATE_POST: '/create',
   FAVORITES: '/favorites',
-  HOME: '/home-nav-links',
+  HOME: '/home',
   MAIN: '/',
   MESSENGER: '/messenger',
-  PROFILE: '/profile',
+  PROFILE: '/my-profile/1',
   PROFILE_SETTINGS: '/settings',
   PUBLIC_PROFILE: '/public-profile',
   SEARCH: '/search',

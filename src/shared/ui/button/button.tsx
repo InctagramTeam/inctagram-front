@@ -1,9 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
 
-import { ReturnComponent } from '@/shared/types'
+import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared'
 import clsx from 'clsx'
-
-import { PolymorphComponentPropsWithRef } from '../../types'
 
 type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 
@@ -60,11 +58,11 @@ export const Button: ButtonComponent = forwardRef(
           !disabled &&
           `bg-Primary-500
           hover:transition-all duration-150 ease-in-out
-          active:text-Light-100 active:bg-Primary-700 
+          active:text-Light-100 active:bg-Primary-700 active:shadow-[5px_5px_5px_bg-Dark-700_inset] 
           hover:text-Light-100 hover:bg-Primary-300
-          focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-opacity-50
+          focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-opacity-50
           focus:ring-offset-Primary-300
-          focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
+          focus-visible:outline-none focus-visible:ring-1 focus-visible:offset-1
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
           disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed`,
         variant === 'primary' &&

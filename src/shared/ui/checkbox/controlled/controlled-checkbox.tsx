@@ -1,7 +1,7 @@
 'use client'
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
-import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
+import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox'
 
 /** Исключили:
  - rules: правила валидации react-hook-form -> используем валидатор Zod
@@ -10,13 +10,15 @@ import { Checkbox, CheckboxProps } from '@/shared/ui/checkbox/checkbox'
 type Props<T extends FieldValues> =
   /** Не имеем возможность контролировать компонент снаружи, нет возможности передать ему value, onChange */
   Omit<CheckboxProps, 'checked' | 'id' | 'onCheckedChange'> &
-    Omit<UseControllerProps<T>, 'defaultValue' | 'rules'>
+    Omit<UseControllerProps<T>, 'defaultValue'>
 
 export const ControlledCheckbox = <T extends FieldValues>({
   control,
   disabled,
+  errorMessage = '',
   label,
   name,
+  rules,
   shouldUnregister,
   /** В ...rest попадут все пропсы: CheckboxProps */
   ...rest
@@ -27,14 +29,17 @@ export const ControlledCheckbox = <T extends FieldValues>({
     control,
     disabled,
     name,
+    rules,
     shouldUnregister,
   })
 
   return (
     <Checkbox
+      defaultChecked
       {...rest}
       checked={checked}
       disabled={disabled}
+      errorMessage={errorMessage}
       id={name}
       label={label}
       onCheckedChange={onValueChange}

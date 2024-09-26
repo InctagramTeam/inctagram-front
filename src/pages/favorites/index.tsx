@@ -1,13 +1,23 @@
-import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { FavoritePosts } from '@/feature'
+import { ReturnComponent, useResponsive, useTranslation } from '@/shared'
+import { getBaseAppLayout } from '@/shared/layouts'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
-const Favorites = () => {
+const FavoritesPage = (): ReturnComponent => {
+  const { t } = useTranslation()
+  const { xs } = useResponsive()
+
   return (
-    <PageWrapper paddingBlock={'72px'} title={'Favorites | Instagram'}>
-      <h1>Favorites</h1>
+    <PageWrapper
+      className={'w-full'}
+      description={t.pages.favorites.metaDescription}
+      paddingBlock={xs ? '16px' : '36px'}
+      title={t.pages.favorites.metaTitle}
+    >
+      <FavoritePosts />
     </PageWrapper>
   )
 }
 
-Favorites.getLayout = getBaseAppLayout
-export default Favorites
+FavoritesPage.getLayout = getBaseAppLayout
+export default FavoritesPage

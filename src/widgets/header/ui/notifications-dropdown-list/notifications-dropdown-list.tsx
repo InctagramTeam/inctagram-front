@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ReactNode } from 'react'
+import { ReactNode, memo } from 'react'
 
 import { Dropdown } from '@/shared/ui/dropdown-menu'
 
@@ -15,7 +15,7 @@ export type NotificationProps = {
   title: string
 }
 
-export const NotificationsDropdownList = ({ alternativeText, notifications }: Props) => {
+export const NotificationsDropdownList = memo(({ alternativeText, notifications }: Props) => {
   const classes = {
     alternativeText: `flex justify-center items-center h-full w-full text-center`,
     item: `flex-col w-full !items-start gap-0 cursor-auto relative py-[12px] outline-0
@@ -46,4 +46,4 @@ export const NotificationsDropdownList = ({ alternativeText, notifications }: Pr
       )}
     </div>
   )
-}
+})

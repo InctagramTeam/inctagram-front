@@ -37,7 +37,7 @@
     -webkit-text-fill-color: #8d9094;
   }
 
-  /* Reset ,browser Input styles */
+  /* Reset, browser "Input" style */
   input[type='search']::-webkit-search-cancel-button {
     display: none;
   }
@@ -59,6 +59,7 @@
     @apply cursor-pointer focus:text-Primary-100;
   }
 
+  /* Reset + base style */
   *,
   *::before,
   *::after {
@@ -66,7 +67,7 @@
   }
 
   html {
-    @apply w-full scrollbar-thin scrollbar-track-Dark-500 scrollbar-thumb-Primary-700;
+    @apply h-32 w-full overflow-y-scroll scrollbar scrollbar-track-Dark-500 scrollbar-thumb-Primary-700 scrollbar-track-rounded-full scrollbar-thumb-rounded-full;
   }
 
   body {
@@ -80,6 +81,10 @@
 
   li {
     @apply list-none;
+  }
+
+  img {
+    @apply h-auto max-w-full;
   }
 
   .navbar {
@@ -134,5 +139,16 @@
     --border: #4c4c4c;
     --input: #353535;
     --ring: #d3d3d3;
+  }
+}
+
+// Custom global my tailwind classes:
+
+/** Центрирует блок -> пишем короткий класс CENTER вместо: flex justify-center items-center
+- пример: className={'CENTER mx-auto p-[0_15px] focus-visible:outline-none'}
+ */
+@layer components {
+  .CENTER {
+    @apply flex items-center justify-center;
   }
 }

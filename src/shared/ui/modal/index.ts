@@ -1,2 +1,2 @@
 export { Modal } from './modal'
-export { ModalButtonSpinner } from './modal-button-spinner'
+export { ButtonSpinner } from '@/shared/ui/button/button-spinner'

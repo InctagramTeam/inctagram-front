@@ -1,4 +1,7 @@
-export { BaseAppLayout } from './base-app-layout'
-export { LayoutContext } from './layout-context/layout-context'
-export { useLayoutContext } from './layout-context/layout-context'
-export { LayoutContextProvider } from './layout-context/layout-context'
+export {
+  LayoutContext,
+  LayoutContextProvider,
+  useLayoutContext,
+} from '../lib/context/layout-context'
+export { AuthLayout, getAuthLayout } from './auth-layout'
+export { BaseAppLayout, getBaseAppLayout } from './base-app-layout'

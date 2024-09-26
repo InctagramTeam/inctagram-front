@@ -1,16 +1,12 @@
-import { useRef, useState } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+'use client'
+import { useEffect, useRef, useState } from 'react'
+import { default as ReCAPTCHA } from 'react-google-recaptcha'
 import { UseFormClearErrors, UseFormSetValue } from 'react-hook-form'
 
-import { ForgotPasswordFormValues } from '@/feature/auth/model/utils/validators'
-import { ForgotPasswordForm } from '@/feature/auth/ui/forgot-password-form'
-import { SentEmailModal } from '@/feature/auth/ui/sent-email-modal'
-import { RECAPTCHA_PUBLIK_KEY } from '@/shared/constants'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useTranslation } from '@/shared/lib/hooks'
-import { UseFormRef } from '@/shared/types'
-import Script from 'next/script'
+import { ForgotPasswordForm, ForgotPasswordFormValues, SentEmailModal } from '@/feature'
+import { usePasswordRecovery } from '@/feature/auth/api/hooks/usePasswordRecovery'
+import { ReturnComponent, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
 type ForgotPasswordFormRef = UseFormRef<
   ForgotPasswordFormValues,
@@ -20,14 +16,29 @@ type ForgotPasswordFormRef = UseFormRef<
   }
 >
 
-const ForgotPassword = () => {
+const ForgotPasswordPage = (): ReturnComponent => {
+  const { xs } = useResponsive()
   const { t } = useTranslation()
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
+  const [emailUser, setEmailUser] = useState('')
   const ref = useRef<ForgotPasswordFormRef>(null)
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   const [recaptchaValue, setRecaptchaValue] = useState<null | string>(null)
+
+  const { isPending, isSuccess, mutate } = usePasswordRecovery()
+
+  const recaptchaChangeHandler = (value: null | string) => {
+    if (value) {
+      setRecaptchaValue(value)
+      ref?.current?.clearErrors('recaptcha')
+      ref?.current?.setValue('recaptcha', true)
+    }
+  }
   const handleSubmitForm = (formData: ForgotPasswordFormValues) => {
     setRecaptchaValue(recaptchaRef.current?.getValue() ?? null)
+    setEmailUser(formData.email)
+
+    mutate({ email: formData.email, recaptchaValue: recaptchaValue ?? '' })
 
     if (recaptchaValue) {
       ref?.current?.clearErrors?.('recaptcha')
@@ -39,34 +50,35 @@ const ForgotPassword = () => {
     }
   }
 
-  const recaptchaChangeHandler = (value: null | string) => {
-    if (value) {
-      setRecaptchaValue(value)
-      ref?.current?.clearErrors('recaptcha')
-      ref?.current?.setValue('recaptcha', true)
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(true)
+      ref?.current?.clearErrors?.('recaptcha')
+
+      recaptchaRef.current?.reset()
     }
-  }
+  }, [isSuccess])
 
   return (
     <>
-      <Script src={`https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_PUBLIK_KEY}`} />
       <PageWrapper
         description={t.pages.forgotPassword.metaDescription}
-        paddingBlock={'72px'}
+        paddingBlock={xs ? '12px' : '72px'}
         title={t.pages.forgotPassword.metaTitle}
       >
         <ForgotPasswordForm
+          disabled={isPending}
+          isSent={isSuccess}
           onSubmit={handleSubmitForm}
           recaptchaChangeHandler={recaptchaChangeHandler}
           recaptchaRef={recaptchaRef}
-          // isSent={}
           ref={ref}
         />
-        <SentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
+        <SentEmailModal email={emailUser} onOpenChange={setOpen} open={open} />
       </PageWrapper>
     </>
   )
 }
 
-ForgotPassword.getLayout = getAuthLayout
-export default ForgotPassword
+ForgotPasswordPage.getLayout = getAuthLayout
+export default ForgotPasswordPage

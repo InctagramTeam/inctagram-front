@@ -1,1 +1,2 @@
-export * from './tabs'
+export { TabContent } from './content'
+export { TabSwitcher } from './tabs'

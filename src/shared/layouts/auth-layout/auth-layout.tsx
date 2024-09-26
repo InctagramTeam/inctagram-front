@@ -1,21 +1,23 @@
 import { PropsWithChildren, ReactElement } from 'react'
 
-import { BaseAppLayout, LayoutContextProvider } from '@/shared/layouts'
+import { LayoutContextProvider, ReturnComponent } from '@/shared'
 import { Header } from '@/widgets/header'
 import { Main } from '@/widgets/main/main'
 
 type Props = PropsWithChildren
 
-export const AuthLayout = ({ children }: Props) => {
+export const AuthLayout = ({ children }: Props): ReturnComponent => {
+  const isAuth = true
+
   return (
     <>
-      <Header />
-      <Main>{children}</Main>
+      <Header isAuth={isAuth} />
+      <Main className={'pl-0'}>{children}</Main>
     </>
   )
 }
 
-export const getAuthLayout = (pageComponent: ReactElement) => {
+export const getAuthLayout = (pageComponent: ReactElement): ReturnComponent => {
   return (
     <LayoutContextProvider>
       <AuthLayout>{pageComponent}</AuthLayout>

@@ -2,21 +2,20 @@ import {
   ChangeEvent,
   ComponentProps,
   ComponentPropsWithoutRef,
+  FocusEvent,
   forwardRef,
+  useEffect,
   useId,
   useRef,
   useState,
 } from 'react'
 
+import { EMPTY_STRING, ReturnComponent, Text, mergeRefs, useTranslation } from '@/shared'
 import { CloseIcon, EyeIcon, EyeOffIcon, SearchIcon } from '@/shared/assets/icons'
-import { EMPTY_STRING } from '@/shared/constants/base'
-import { useTranslation } from '@/shared/lib/hooks'
-import { mergeRefs } from '@/shared/lib/utils/merge-refs'
-import { ReturnComponent } from '@/shared/types'
-import { Text } from '@/shared/ui/text'
 import { clsx } from 'clsx'
 
 export type InputProps = {
+  autofocus?: boolean
   disabled?: boolean
   /** Чтобы задать стили отдельно, для элементов html разметки снаружи достучаться до них <--
    * Пример использования:
@@ -26,7 +25,7 @@ export type InputProps = {
    *   divContainerProps={{ className: `text-blue-700` }}
    *   className={`w-full max-w-[330px]`} --> стили зададаться для:<div {...divContainerProps} className={classNames.root}>
    *   label={'Username'}
-   *   type={'text'}
+   *   types={'text'}
    * />
    */
   divContainerProps?: ComponentProps<'div'>
@@ -38,7 +37,10 @@ export type InputProps = {
    * Если не указан, очищает внутреннее значение через ref и вызывает onValueChange с пустой строкой
    */
   onClearInput?: () => void
+  /** наверх отдаем ни event, а значение */
   onValueChange?: (value: string) => void
+  /** Флаг: чтобы не появлялся курсор на инпуте, сделать для чтения, например пока не нажали на кнопку чтобы фокус в инпуте не появлялся (был не активен) */
+  readonly?: boolean
   /** Т.к мы делаем компоненты универсальными и нам нужны все возможные пропсы, которые мы можем передать в нативный элемент,
    * т.e html тег, то мы используем тип ComponentPropsWithoutRef<‘input’> и в дженерике указываем для какого именно тэга
    */
@@ -47,6 +49,7 @@ export type InputProps = {
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
     {
+      autofocus = true,
       className,
       disabled,
       divContainerProps = {},
@@ -55,10 +58,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       inputProps = {},
       label = EMPTY_STRING,
       labelProps = {},
+      onBlur,
       onChange,
       onClearInput,
       onValueChange,
       placeholder,
+      readonly = false,
       type = 'search',
       ...rest
     },
@@ -66,16 +71,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     forwardedRef
   ): ReturnComponent => {
     const { t } = useTranslation()
-    const generatedId = useId()
-    const finalId = id ?? generatedId
 
     /** Чтобы получить доступ к инпуту: inputRef */
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
-
-    /** Чтобы передать несколько ссылок (ref) на инпут нужно их скомбинировать в finalRef */
     const finalRef = mergeRefs([forwardedRef, inputRef])
 
+    /** Чтобы передать несколько ссылок (ref-ов) на инпут нужно их скомбинировать в finalRef */
     const [revealPassword, setRevealPassword] = useState(false)
+    const [isFocused, setIsFocused] = useState(false)
+
+    // ids
+    const generatedId = useId()
+    const finalId = id ?? generatedId
+    const errorId = `${finalId}-error`
+
+    useEffect(() => {
+      if (autofocus) {
+        setIsFocused(true)
+        inputRef.current?.focus()
+      }
+    }, [autofocus])
 
     const isRevealPasswordButtonShown = type === 'password'
     const isSearchField = type === 'search'
@@ -87,6 +102,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange?.(e)
       onValueChange?.(e.target.value)
     }
+
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+      onBlur?.(e)
+      setIsFocused(false)
+    }
+
+    const onFocus = () => {
+      setIsFocused(true)
+    }
+
     /**
      * Вызывается при нажатии на кнопку для показа/скрытия пароля.
      * Она инвертирует состояние revealPassword, указывающее, должен ли пароль быть видимым.
@@ -94,6 +119,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     function handleToggleShowPassword() {
       setRevealPassword((prevState: boolean) => !prevState)
     }
+
     /**
      * Вызывается при нажатии на кнопку ("Х") для очистки введенных данных в инпуте
      * Она сначала вызывает переданный колбэк onClearInput, если он был передан, а затем
@@ -114,9 +140,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const classNames = {
       clearInputButton: clsx(
         `_ClearInput_ unset absolute right-[12px] top-1/2 flex -translate-y-1/2 transform
-                cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
-                focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
-                focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
+         cursor-pointer items-center text-Light-100 transition-colors delay-150 ease-in-out
+         focus:opacity-60 focus:shadow-sm focus:shadow-Primary-500
+         focus:ring-1 focus:ring-opacity-70 focus:ring-offset-1 focus:ring-offset-Primary-500`,
         disabled && `cursor-not-allowed text-Dark-100/60`
       ),
       error: clsx(
@@ -139,6 +165,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         file:border-0 file:bg-transparent file:font-inter disabled:cursor-not-allowed disabled:opacity-50`,
         disabled && `text-Dark-100`,
         [type],
+        readonly && `opacity-5`,
         type === 'password' && `pr-[42px]`,
         type === 'search' && 'px-[42px]'
       ),
@@ -151,13 +178,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       ),
       root: clsx(`_Root_  w-full min-w-[200px] text-regular-text-16 text-Light-900`, className),
       searchIcon: clsx(
-        `_LeadingIcon_ absolute text-Light-900 top-1/2 bottom-1/2 -left-3 transform -translate-t-1/2
-      w-[20px] h-[20px] ml-[12px] p-0 bg-transparent border-o outline-0 ring-0
-      focus-visible:text-Light-100 focus-visible:outline focus-visible:outline-2
-      focus-visible:outline-Primary-50
-      active:not:disabled:text-Light-100
-      `,
-        disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
+        `_LeadingIcon_ text-Light-900 w-[20px] h-[20px] ring-0`,
+        disabled && `text-Dark-300`
       ),
       showPasswordButton: clsx(
         `_ShowPassword_ rounder-[0.25rem] duration-300 transition-color text-Light-100 absolute bottom-1/2 right-[12px] top-1/2
@@ -185,7 +207,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         )}
         <div className={classNames.inputWrapper}>
           {isSearchField && (
-            <div aria-hidden className={`absolute left-[3%] top-1/4`}>
+            <div aria-hidden className={`absolute left-[0.7rem] top-1/4 h-[20px] w-[20px]`}>
               <SearchIcon
                 className={classNames.searchIcon}
                 onClick={() => inputRef.current?.focus()}
@@ -195,11 +217,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           <input
             {...rest}
             {...inputProps}
+            aria-describedby={errorId}
             className={classNames.input}
             disabled={disabled}
             id={finalId}
+            onBlur={handleBlur}
             onChange={handleChange}
+            onFocus={onFocus}
             placeholder={placeholder}
+            readOnly={readonly}
             ref={finalRef}
             type={finalType}
             value={rest.value}
@@ -230,7 +256,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             </button>
           )}
         </div>
-        <Text className={classNames.error} role={'alert'} variant={'error_text_12'}>
+        <Text className={classNames.error} id={errorId} role={'alert'} variant={'error_text_12'}>
           {errorMessage}
         </Text>
       </div>
@@ -240,7 +266,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
 /**
  * Для определения конечного типа инпута в компоненте Input. Она принимает два аргумента:
- * type (тип инпута) и showPassword (флаг, указывающий, должен ли пароль быть видимым).
+ * types (тип инпута) и showPassword (флаг, указывающий, должен ли пароль быть видимым).
  * Если тип инпута равен 'password' и пароль должен быть видимым (showPassword === true),
  * функция возвращает 'text', в противном случае она возвращает исходный тип инпута.
  * Это позволяет динамически изменять тип инпута для отображения или скрытия введенного текста в поле пароля

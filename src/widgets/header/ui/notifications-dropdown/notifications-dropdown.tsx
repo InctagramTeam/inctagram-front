@@ -1,11 +1,8 @@
 import * as React from 'react'
+import { memo } from 'react'
 
+import { Button, Dropdown, ELLIPSIS_STRING, cn, useTranslation } from '@/shared'
 import { BellIcon, BellOutlineIcon } from '@/shared/assets/icons'
-import { ELLIPSIS_STRING } from '@/shared/constants/base'
-import { useTranslation } from '@/shared/lib/hooks'
-import { cn } from '@/shared/lib/utils'
-import { Button } from '@/shared/ui/button'
-import { Dropdown } from '@/shared/ui/dropdown-menu'
 import { maxShowNumberNotifications } from '@/widgets/header/model/constants/base'
 import { NotificationProps, NotificationsDropdownList } from '@/widgets/header/ui'
 
@@ -16,8 +13,9 @@ export type NotificationsDropdownProps = {
   open?: boolean
 }
 
-export const NotificationsDropdown = (props: NotificationsDropdownProps) => {
+export const NotificationsDropdown = memo((props: NotificationsDropdownProps) => {
   const { t } = useTranslation()
+
   const {
     alternativeText = t.layout.notificationsDropdown.alternativeText,
     notifications,
@@ -29,7 +27,7 @@ export const NotificationsDropdown = (props: NotificationsDropdownProps) => {
     content: `h-[360px] overflow-y-auto
       scrollbar-thin scrollbar-thumb-Dark-100 scrollbar-track-Dark-300
       scrollbar-thumb-rounded-full scrollbar-track-rounded-full`,
-    countNotifications: `bg-Danger-500 text-Light-100 rounded-full w-[13px] h-[13px] flex items-center justify-center absolute top-0 right-0 text-[0.6rem] leading-[0.5rem]`,
+    countNotifications: `bg-Danger-500 text-Light-100 rounded-full w-[13px] h-[13px] CENTER absolute top-0 right-0 text-[0.6rem] leading-[0.5rem]`,
     dropdownTrigger: cn(
       `!w-[24px] !h-[24px] !p-0 justify-center relative duration-300 transition-colors
       hover:translate-y-0 hover:text-Primary-500 active:opacity-50 `,
@@ -82,6 +80,6 @@ export const NotificationsDropdown = (props: NotificationsDropdownProps) => {
       </div>
     </Dropdown.Menu>
   )
-}
+})
 
 NotificationsDropdown.displayName = 'NotificationsDropdown'

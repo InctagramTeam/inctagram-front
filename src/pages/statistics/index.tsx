@@ -1,7 +1,7 @@
-import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { getBaseAppLayout } from '@/shared/layouts'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
-const Statistics = () => {
+const StatisticPage = () => {
   return (
     <PageWrapper title={'Statistics | Instagram'}>
       <h1>Statistics</h1>
@@ -9,5 +9,5 @@ const Statistics = () => {
   )
 }
 
-Statistics.getLayout = getBaseAppLayout
-export default Statistics
+StatisticPage.getLayout = getBaseAppLayout
+export default StatisticPage

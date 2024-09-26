@@ -10,6 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/shared/ui/tooltip/tooltip'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 type CustomProps = {
@@ -34,7 +35,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     const { asComponent, className, disabled, name, onlyIcon, startIcon, ...rest } = props
 
     const pathname = usePathname()
-    const isActive = props.href && pathname!.startsWith(props.href)
+    const isActive = props.href && pathname?.startsWith(props.href)
 
     const classes = {
       content:
@@ -56,17 +57,17 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
       <TooltipProvider>
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
-            {/*@ts-expect-error TS2322*/}
             <Button
               aria-label={onlyIcon ? name : EMPTY_STRING}
-              asComponent={asComponent || 'button'}
+              asComponent={Link || 'button'}
               className={classes.link}
               disabled={disabled}
+              href={''}
               ref={ref}
               startIcon={
                 (props.href || startIcon) && (
                   <span aria-hidden className={classes.icon}>
-                    {props.href ? getIcon(props.href, isActive) : startIcon}
+                    {props.href ? getIcon(props.href, isActive as boolean) : startIcon}
                   </span>
                 )
               }

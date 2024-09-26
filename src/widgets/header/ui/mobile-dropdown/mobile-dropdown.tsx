@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import { LogOutIcon, MoreIcon } from '@/shared/assets/icons'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
@@ -13,7 +13,7 @@ type Props = {
   logout?: () => void
 }
 
-export const MobileDropdown = ({ logout }: Props) => {
+export const MobileDropdown = memo(({ logout }: Props) => {
   const { t } = useTranslation()
 
   const classes = {
@@ -64,4 +64,4 @@ export const MobileDropdown = ({ logout }: Props) => {
       </div>
     </Dropdown.Menu>
   )
-}
+})

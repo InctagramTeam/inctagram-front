@@ -1,7 +1,7 @@
 import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
-const Settings = () => {
+const SettingsPage = () => {
   return (
     <PageWrapper paddingBlock={'36px'} title={'Settings | Instagram'}>
       <h1>Settings</h1>
@@ -9,5 +9,5 @@ const Settings = () => {
   )
 }
 
-Settings.getLayout = getBaseAppLayout
-export default Settings
+SettingsPage.getLayout = getBaseAppLayout
+export default SettingsPage

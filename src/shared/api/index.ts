@@ -1,1 +1,1 @@
-export {} from 'src/shared/api/query-client'
+export { queryClient } from './query-client'

@@ -1,8 +1,16 @@
-import { EMPTY_STRING } from '@/shared/constants'
-import { PASSWORD_PATTERN } from '@/shared/constants/regexs'
+import { EMPTY_STRING, PASSWORD_PATTERN, USERNAME_PATTERN } from '@/shared'
 import { LocaleType } from 'locales'
 import { z } from 'zod'
 
+export const usernameSchema = (t: LocaleType) => {
+  return z
+    .string()
+    .trim()
+    .regex(USERNAME_PATTERN, { message: t.validation.userNameVerification })
+    .min(6, t.validation.minLength(6))
+    .max(30, t.validation.maxLength(30))
+    .default(EMPTY_STRING)
+}
 export const emailSchema = (t: LocaleType) => {
   return z.string().email({ message: t.validation.emailVerification }).default(EMPTY_STRING)
 }
@@ -16,3 +24,5 @@ export const passwordSchema = (t: LocaleType) => {
     .regex(PASSWORD_PATTERN, t.validation.passwordVerification)
     .default(EMPTY_STRING)
 }
+
+export const checkboxSchema = () => z.boolean()

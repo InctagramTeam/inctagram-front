@@ -1,18 +1,27 @@
 import { useEffect, useState } from 'react'
 
-export const useResponsive = () => {
-  const [width, setWidth] = useState<null | number>(null)
+import { Breakpoints, throttle } from '@/shared'
+
+export const useResponsive = (delay = 1000) => {
+  const [width, setWidth] = useState<number | undefined>(undefined)
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    setWidth(window.innerWidth)
+    const throttledHandleResize = throttle(() => {
       setWidth(window.innerWidth)
-      const handleWindowResize = () => setWidth(window.innerWidth)
+    }, delay)
 
-      window.addEventListener('resize', handleWindowResize)
+    window.addEventListener('resize', throttledHandleResize)
 
-      return () => window.removeEventListener('resize', handleWindowResize)
-    }
+    return () => window.removeEventListener('resize', throttledHandleResize)
   }, [])
 
-  return { width }
+  const xl2 = width ? width >= Breakpoints.XL2 : false
+  const xl = width ? width < Breakpoints.XL2 : false
+  const lg = width ? width < Breakpoints.XL : false
+  const md = width ? width < Breakpoints.LG : false
+  const sm = width ? width < Breakpoints.MD : false
+  const xs = width ? width < Breakpoints.SM : false
+
+  return { lg, md, sm, xl, xl2, xs }
 }

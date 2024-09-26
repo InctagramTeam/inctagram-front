@@ -1,12 +1,12 @@
 import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
 
-import CrossIcon from '@/shared/assets/icons/CrossIcon'
-import { EMPTY_STRING } from '@/shared/constants/base'
-import { useTranslation } from '@/shared/lib/hooks'
-import { Text } from '@/shared/ui/text'
+import { CrossIcon } from '@/shared/assets/icons'
+import { EMPTY_STRING } from '@/shared/constants'
+import { useTranslation } from '@/shared/lib'
+import { ReturnComponent } from '@/shared/types'
+import { Text } from '@/shared/ui'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
-import { ReturnComponent } from 'src/shared/types'
 
 type ModalProps = {
   children: ReactNode
@@ -45,7 +45,7 @@ export const ModalContent = ({
 
   const classes = {
     childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
-    close: `w-[24px] h-[24px] flex items-center justify-center text-Light-100 
+    close: `w-[24px] h-[24px] CENTER text-Light-100 
     rounded-[2px] outline-none duration-300 transition-color
     hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
     content: clsx(

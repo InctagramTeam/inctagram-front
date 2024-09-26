@@ -39,6 +39,7 @@ export const en = {
     yes: 'Yes',
     clearField: 'clear field',
     closeModal: 'close modal',
+    close: 'close',
     password: {
       hide: 'hide password',
       show: 'show password',
@@ -87,6 +88,7 @@ export const en = {
       title: 'Notifications!',
       alternativeText: 'No notifications yet',
     },
+    logo: 'Logo Inctagram',
   },
   pages: {
     signUp: {
@@ -95,8 +97,7 @@ export const en = {
         privacy: 'Privacy Policy',
         terms: 'Terms of Service',
       },
-      metaDescription:
-        'Create an account to start using our services and receive exclusive benefits.',
+      metaDescription: 'Create an account to start using our api and receive exclusive benefits.',
       metaTitle: 'Sign Up | Instagram',
       modalBtn: 'OK',
       modalTitle: 'Email sent',
@@ -106,28 +107,41 @@ export const en = {
       google: 'Register with google',
       title: 'Sign Up',
     },
-    congratulations: {
-      metaDescription: 'Congratulations! Your email has been confirmed',
-      metaTitle: 'Congratulations | Instagram',
-      title: 'Congratulations!',
-      text: 'Your email has been confirmed',
-    },
-    verifyEmail: {
-      metaDescription:
-        'The verification link has expired. Please verify your email again to start using our services and receive exclusive benefits.',
-      metaTitle: 'Email verification | Instagram',
-      title: 'Email verification link expired',
-      text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
-    },
     signIn: {
       metaTitle: 'Sign In | Instagram',
       metaDescription:
-        'Log in to your account to start using our services and receive exclusive benefits.',
+        'Log in to your account to start using our api and receive exclusive benefits.',
       title: 'Sign in',
       link: 'Forgot Password',
       question: 'Don’t have an account?',
       github: 'Login with github',
       google: 'Login with google',
+    },
+    profile: {
+      addProfilePhoto: 'Add a Profile Photo',
+      deletePhoto: 'Delete Photo',
+      deleteProfilePhoto: 'Are you sure you want to delete the photo?',
+      followers: 'Followers',
+      following: 'Following',
+      logOutConfirmation: 'Are you really want to log out of your account',
+      metaDescription:
+        'Discover detailed information about users, their interests, skills and experience.',
+      metaTitle: 'Profile',
+      publications: 'Publications',
+    },
+    congratulations: {
+      metaDescription: 'Congratulations! Your email has been confirmed',
+      metaTitle: 'Congratulations | Instagram',
+      title: 'Congratulations!',
+      textEmail: 'Your email has been confirmed',
+      textPassword: 'Your password has been successfully changed.',
+    },
+    verifyEmail: {
+      metaDescription:
+        'The verification link has expired. Please verify your email again to start using our api and receive exclusive benefits.',
+      metaTitle: 'Email verification | Instagram',
+      title: 'Email verification link expired',
+      text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
     },
     createPassword: {
       metaTitle: 'Create new password | Instagram',
@@ -144,6 +158,34 @@ export const en = {
       hint: 'Enter your email address and we will send you further instructions ',
       sent: 'The link has been sent by email. If you don’t receive an email send link again',
     },
+    privacyPolice: {
+      metaDescription:
+        'Please read our Privacy Policy to learn how we collect, use and protect your personal information. We are committed to keeping your data secure and upholding your right to privacy.',
+      metaTitle: 'Privacy Policy | Instagram',
+      title: 'Privacy Policy',
+    },
+    termsOfService: {
+      metaDescription:
+        'Please review our Terms of Service to understand your rights and responsibilities when using our api. We are committed to transparency and fair dealings so that' +
+        ' you can use our site with confidence.',
+      metaTitle: 'Terms of service | Instagram',
+      title: 'Terms of Service',
+    },
+    search: {
+      metaDescription:
+        'Use our convenient search to find interesting people in our social network. Discover new acquaintances, communicate and establish connections, expanding your social circle',
+      metaTitle: 'Search users | Instagram',
+      title: 'Search',
+      requests: 'Recent requests',
+      empty: 'Oops! This place looks empty!',
+      noRequests: 'No recent requests',
+    },
+    favorites: {
+      metaDescription:
+        "Discover our social network's Favorites page, where you'll find the most popular and discussed topics chosen by our community. Join us and share your favorites!",
+      metaTitle: 'Favorites | Instagram',
+      title: 'Favorites',
+    },
   },
   tabs: {
     devices: 'Devices',
@@ -154,6 +196,7 @@ export const en = {
   validation: {
     minLength: (len: number) => `Minimum ${len} characters`,
     required: 'Required field',
+    acceptTerms: 'Required check',
     maxLength: (len: number) => `Maximum ${len} characters`,
     emailVerification: 'The email must match the format example@example.com',
     passwordVerification:

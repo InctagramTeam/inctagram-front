@@ -1,10 +1,18 @@
-import { getBaseAppLayout } from '@/shared/layouts/base-app-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { SearchUsers } from '@/feature'
+import { ReturnComponent, getBaseAppLayout, useResponsive, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets/page-wrapper'
 
-const Search = () => {
+const Search = (): ReturnComponent => {
+  const { xs } = useResponsive()
+  const { t } = useTranslation()
+
   return (
-    <PageWrapper title={'Search | Instagram'}>
-      <h1>Search</h1>
+    <PageWrapper
+      description={t.pages.search.metaDescription}
+      paddingBlock={xs ? '12px' : '35px'}
+      title={t.pages.search.metaTitle}
+    >
+      <SearchUsers />
     </PageWrapper>
   )
 }

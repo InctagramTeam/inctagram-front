@@ -1,38 +1,42 @@
 import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { CreateNewPasswordFormValues, createPasswordSchema } from '@/feature'
 import {
-  CreatePasswordFormValues,
-  createPasswordSchema,
-} from '@/feature/auth/model/utils/validators'
-import { EMPTY_STRING, SM_BREAKPOINT } from '@/shared/constants'
-import { useFormRevalidateWithLocale, useResponsive, useTranslation } from '@/shared/lib/hooks'
-import { ReturnComponent, UseFormRef } from '@/shared/types'
-import { Button } from '@/shared/ui/button'
-import { Card } from '@/shared/ui/card'
-import { Flex } from '@/shared/ui/flex'
-import { ControlledInput } from '@/shared/ui/input'
-import { Text } from '@/shared/ui/text'
+  Button,
+  ButtonSpinner,
+  Card,
+  ControlledInput,
+  EMPTY_STRING,
+  Flex,
+  ReturnComponent,
+  Text,
+  UseFormRef,
+  useFormRevalidateWithLocale,
+  useResponsive,
+  useTranslation,
+} from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { clsx } from 'clsx'
 
 type Props = {
   className?: string
   disabled?: boolean
-  onSubmit: (formData: CreatePasswordFormValues) => void
+  onSubmit: (formData: CreateNewPasswordFormValues) => void
 } & Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'>
 export const CreatePasswordForm = forwardRef(
-  (props: Props, methodsRef: Ref<UseFormRef<CreatePasswordFormValues> | null>): ReturnComponent => {
+  (
+    props: Props,
+    methodsRef: Ref<UseFormRef<CreateNewPasswordFormValues> | null>
+  ): ReturnComponent => {
     const { className, disabled, onSubmit, ...rest } = props
     const { locale, t } = useTranslation()
-    const { width } = useResponsive()
-
-    const isMobile = width && width < SM_BREAKPOINT
+    const { xs } = useResponsive()
 
     const classes = {
       form: clsx(
         'max-w-[380px] w-full p-[1.5rem] pb-[2rem] self-start',
-        isMobile && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
+        xs && 'max-w-full px-0 py-0 bg-transparent border-none rounded-0',
         className
       ),
     }
@@ -45,7 +49,7 @@ export const CreatePasswordForm = forwardRef(
       reset,
       setError,
       setValue,
-    } = useForm<CreatePasswordFormValues>({
+    } = useForm<CreateNewPasswordFormValues>({
       defaultValues: {
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
@@ -57,12 +61,6 @@ export const CreatePasswordForm = forwardRef(
     useImperativeHandle(methodsRef, () => ({ reset, setError }))
 
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
-
-    console.log(errors)
-
-    if (width === null) {
-      return null
-    }
 
     return (
       <Card
@@ -76,6 +74,7 @@ export const CreatePasswordForm = forwardRef(
         </Text>
         <Flex direction={'column'} gap={'24'} mb={'7px'}>
           <ControlledInput
+            aria-describedby={'create-new-password-email-instructions'}
             aria-invalid={errors.password ? 'true' : 'false'}
             autoComplete={'new-password'}
             control={control}
@@ -103,19 +102,24 @@ export const CreatePasswordForm = forwardRef(
         <Text
           asComponent={'p'}
           className={'text-Light-900'}
+          id={'create-new-password-email-instructions'}
           mb={'41px'}
           variant={'regular-text-14'}
         >
           {t.pages.createPassword.hint}
         </Text>
-        <Button
-          className={'px-[24px] py-[6px]'}
-          disabled={!!Object.keys(errors).length || disabled}
-          fullWidth
-          type={'submit'}
-        >
-          {t.button.createNewPassword}
-        </Button>
+        {disabled ? (
+          <ButtonSpinner className={'mb-6 h-[30px] w-[30px] min-w-full text-center'} />
+        ) : (
+          <Button
+            className={'px-[24px] py-[6px]'}
+            disabled={!!Object.keys(errors).length}
+            fullWidth
+            type={'submit'}
+          >
+            {t.button.createNewPassword}
+          </Button>
+        )}
       </Card>
     )
   }

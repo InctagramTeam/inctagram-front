@@ -1,3 +1,12 @@
+export interface RegisterSchema {
+  error?: string
+  isLoading?: boolean
+  password: string
+  rememberMe?: boolean
+  userName: string
+}
+
+// ----------------------
 /** Me запрос -- url: '/auth/me' */
 export type MeResponse = {
   email: string
@@ -6,11 +15,12 @@ export type MeResponse = {
 
 /** Error */
 export type ErrorResponse = {
-  error: string
-  messages: [{ field: string; message: string }]
-  statusCode: number
+  response?: {
+    data?: {
+      errorsMessages?: [{ field: string; message: string }]
+    }
+  }
 }
-
 /** SignUp */
 export type SignUpRequest = {
   email: string
@@ -66,15 +76,19 @@ export type ConfirmEmailArgs = {
 }
 
 /** NewPassword -- url: '/auth/new-password'*/
-export type NewPasswordArgs = {
+export type NewPasswordRequestArgs = {
   newPassword: string
-  recoveryCode: string
+}
+
+export type NewPasswordArgs = {
+  code: string
+  newPassword: string
 }
 
 /** RecoveryPassword -- url: '/auth/password-recovery' */
 export type RecoveryPasswordArgs = {
   email: string
-  recaptcha: string
+  recaptchaValue: string
 }
 
 /** ResendRecoveryPassword -- url: '/auth/resend-recovery-code' */

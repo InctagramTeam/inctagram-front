@@ -1,37 +1,60 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import { SignUpFormValues } from '@/feature/auth/model/utils/validators'
-import { SignUpForm } from '@/feature/auth/ui/sign-up-form/sign-up-form'
-import { EMPTY_STRING } from '@/shared/constants'
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
-import { useTranslation } from '@/shared/lib/hooks'
-import { ReturnComponent } from '@/shared/types'
-import { UseFormRef } from '@/shared/types/form'
-import { SentEmailModal } from 'src/feature/auth/ui/sent-email-modal'
+import { SignUpForm, SignUpFormValues } from '@/feature'
+import { useSignUp } from '@/feature/auth/api/hooks/useSignUp'
+import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets/page-wrapper'
+import dynamic from 'next/dynamic'
 
-const SignUp = (): ReturnComponent => {
+const DynamicSentEmailModal = dynamic(
+  import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
+)
+
+const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
   const { t } = useTranslation()
-  const handleSubmitForm = ({ accept, passwordConfirm, ...formData }: SignUpFormValues) => {
-    // ref?.current?.reset()
+  const { xs } = useResponsive()
+  const { data, isPending, isSuccess, mutate } = useSignUp()
+  const handleSubmitForm = (formData: SignUpFormValues) => {
+    mutate(formData) //в mutate передаются данные, которые необходимо отправить на сервер для выполнения мутации
+  }
+
+  useEffect(() => {
+    if (isSuccess) {
+      setOpen(true) // Открываем модальное окно при успешном isSuccess
+    }
+  }, [isSuccess])
+
+  const handleChangeOpen = (open: boolean) => {
+    setOpen(open)
+    ref.current?.reset()
   }
 
   return (
-    <PageWrapper description={t.pages.signUp.metaDescription} title={t.pages.signUp.metaTitle}>
+    <PageWrapper
+      description={t.pages.signUp.metaDescription}
+      paddingBlock={xs ? '24px' : '16px'}
+      title={t.pages.signUp.metaTitle}
+    >
       <SignUpForm
+        disabled={isPending}
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
-        // disabled={isLoading}
         onSubmit={handleSubmitForm}
         ref={ref}
       />
-      <SentEmailModal email={'example@gmail.com'} onOpenChange={setOpen} open={open} />
+      {data && (
+        <DynamicSentEmailModal
+          email={data.data.email}
+          onOpenChange={handleChangeOpen}
+          open={open}
+        />
+      )}
     </PageWrapper>
   )
 }
 
-SignUp.getLayout = getAuthLayout
-export default SignUp
+SignUpPage.getLayout = getAuthLayout
+export default SignUpPage

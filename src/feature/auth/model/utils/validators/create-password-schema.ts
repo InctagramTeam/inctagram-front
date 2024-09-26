@@ -14,4 +14,4 @@ export const createPasswordSchema = (t: LocaleType) =>
       path: ['passwordConfirm'],
     })
 
-export type CreatePasswordFormValues = z.infer<ReturnType<typeof createPasswordSchema>>
+export type CreateNewPasswordFormValues = z.infer<ReturnType<typeof createPasswordSchema>>

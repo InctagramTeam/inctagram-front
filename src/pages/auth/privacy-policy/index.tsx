@@ -1,13 +1,22 @@
-import { getAuthLayout } from '@/shared/layouts/auth-layout/auth-layout'
-import { PageWrapper } from '@/shared/layouts/page-wrapper'
+import { PrivacyPolice } from '@/feature'
+import { ReturnComponent, getAuthLayout, useResponsive, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets'
 
-const PrivacyPolicy = () => {
+const PrivacyPolicyPage = (): ReturnComponent => {
+  const { t } = useTranslation()
+  const { sm } = useResponsive()
+
   return (
-    <PageWrapper paddingBlock={'72px'} title={'PrivacyPolicy | Instagram'}>
-      <h1>PrivacyPolicy</h1>
+    <PageWrapper
+      className={'max-w-[1268px] justify-start'}
+      description={t.pages.privacyPolice.metaDescription}
+      paddingBlock={sm ? '16px' : '24px'}
+      title={t.pages.privacyPolice.metaTitle}
+    >
+      <PrivacyPolice />
     </PageWrapper>
   )
 }
 
-PrivacyPolicy.getLayout = getAuthLayout
-export default PrivacyPolicy
+PrivacyPolicyPage.getLayout = getAuthLayout
+export default PrivacyPolicyPage
