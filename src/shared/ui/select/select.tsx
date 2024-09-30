@@ -1,15 +1,16 @@
 'use client'
 
 import * as React from 'react'
-import { ReactNode, useEffect, useRef } from 'react'
+import { ReactNode } from 'react'
+import { useInView } from 'react-intersection-observer'
 
-import { ReturnComponent, Text, cn } from '@/shared'
+import { ReturnComponent, SelectItem, Text, cn } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
-import { SelectContent, SelectItem, SelectTrigger } from './'
+import { SelectContent, SelectTrigger } from './'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
@@ -75,10 +76,6 @@ interface APIResponse {
   }
 }
 
-interface QueryParams {
-  pageParam?: string // Для хранения URL следующей страницы
-}
-
 // mapping classes
 export const mapDirectionClass: Record<SelectContentMenuDirection, string> = {
   'bottom left': `top-[100%] right-0`,
@@ -107,7 +104,7 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     ...rest
   } = props
 
-  const contentRef = useRef<HTMLDivElement | null>(null)
+  const { inView, ref } = useInView()
 
   const optionalClasses = [mapDirectionClass[direction ?? 'default']]
 
@@ -137,60 +134,80 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
   }
 
   const fetchCities = async ({
-    pageParam = 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=0&limit=10&countryIds=Q159&types=CITY',
-  }: QueryParams): Promise<{ cities: City[]; nextPage: null | string }> => {
-    const response = await axios.get<APIResponse>(pageParam, {
-      headers: {
-        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
-        'X-RapidAPI-Key': 'be85c08e71msh53680970446a6c9p1be9ecjsne9e26c037875',
-      },
-    })
+    offsetParam = 0,
+  }): Promise<{ cities: City[]; nextOffset: number }> => {
+    const response = await axios.get<APIResponse>(
+      `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=${offsetParam}&limit=10&countryIds=Q159&types=CITY`,
+      {
+        headers: {
+          'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
+          'X-RapidAPI-Key': 'be85c08e71msh53680970446a6c9p1be9ecjsne9e26c037875',
+        },
+      }
+    )
 
-    // Возвращаем данные и ссылку на следующую страницу (или null, если ее нет)
-    return {
-      cities: response.data.data,
-      nextPage: response.data.links.find(link => link.rel === 'next')?.href ?? 'null',
-    }
+    return { cities: response.data.data, nextOffset: offsetParam }
   }
 
-  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery({
-    getNextPageParam: (lastPage, pages) => lastPage.nextPage,
-    initialPageParam:
-      'https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=0&limit=10&countryIds=Q159&types=CITY',
-    queryFn: fetchCities,
+  // const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery({
+  //   queryKey: ['cities'],
+  //   queryFn: pageParam => fetchCities(pageParam),
+  //   initialPageParam: 0,
+  //   getNextPageParam: lastPage => {
+  //     console.log(lastPage)
+  //   },
+  // })
+
+  const {
+    status,
+    data,
+    error,
+    isFetching,
+    isFetchingNextPage,
+    isFetchingPreviousPage,
+    fetchNextPage,
+    fetchPreviousPage,
+    hasNextPage,
+    hasPreviousPage,
+  } = useInfiniteQuery({
     queryKey: ['cities'],
+    queryFn: async ({
+      pageParam,
+    }): Promise<{
+      data: City[]
+      nextOffset: number
+    }> => {
+      const response = await axios
+        .get<APIResponse>(
+          `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=${pageParam}&limit=10&countryIds=Q159&types=CITY&languageCode=RU`,
+          {
+            headers: {
+              'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
+              'X-RapidAPI-Key': 'be85c08e71msh53680970446a6c9p1be9ecjsne9e26c037875',
+            },
+          }
+        )
+        .then(response => response.data)
+
+      return { data: response.data, nextOffset: pageParam }
+    },
+    initialPageParam: 0,
+    getNextPageParam: lastPage => lastPage.nextOffset + 10,
   })
 
-  const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
-    const bottom =
-      e.currentTarget.scrollHeight - e.currentTarget.scrollTop === e.currentTarget.clientHeight
-
-    if (bottom && hasNextPage && !isFetchingNextPage) {
-      debugger
-      fetchNextPage()
-    }
-  }
-
-  useEffect(() => {
-    const contentElement = contentRef.current
-
-    if (contentElement) {
-      contentElement.addEventListener('scroll', handleScroll as any)
-    }
-
-    return () => {
-      if (contentElement) {
-        contentElement.removeEventListener('scroll', handleScroll as any)
-      }
-    }
-  }, [hasNextPage, isFetchingNextPage])
-
-  if (status === 'pending') {
-    return <p>Loading...</p>
-  }
-  if (status === 'error') {
-    return <p>Error: {error instanceof Error ? error.message : 'Unknown error'}</p>
-  }
+  const content = data?.pages.map((page, index) => (
+    <React.Fragment key={index}>
+      {page.data.map(city => (
+        <SelectItem className={classes.item} key={city.name} value={city.name}>
+          <span className={classes.text}>
+            {/*{option.label}*/}
+            {/*{option.icon}*/}
+            {city.name}
+          </span>
+        </SelectItem>
+      ))}
+    </React.Fragment>
+  ))
 
   return (
     <div className={classes.className}>
@@ -219,28 +236,13 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
         </SelectTrigger>
         <SelectContent
           className={classes.content}
-          onScroll={handleScroll}
+          // onScroll={handleScroll}
           position={position}
-          ref={contentRef}
         >
-          {data?.pages.map((page, index) => (
-            <React.Fragment key={index}>
-              {page.cities.map(city => (
-                <SelectItem className={classes.item} key={city.name} value={city.name}>
-                  <span className={classes.text}>
-                    {/*{option.label}*/}
-                    {/*{option.icon}*/}
-                    {city.name}
-                  </span>
-                </SelectItem>
-              ))}
-            </React.Fragment>
-          ))}
-          {isFetchingNextPage && (
-            <SelectItem disabled value={'loading'}>
-              Loading more...
-            </SelectItem>
-          )}
+          {content}
+          <button onClick={() => fetchNextPage()} type={'button'}>
+            Load more
+          </button>
         </SelectContent>
       </Select>
     </div>
