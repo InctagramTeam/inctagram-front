@@ -1,13 +1,14 @@
 import React from 'react'
-import { getSettingsLayout, TabContent } from '@/shared'
+
 import { ProfileAvatarForm, ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
+import { TabContent, getSettingsLayout } from '@/shared'
 
 const General = () => {
   return (
-    <TabContent value={'general'} className="flex">
+    <TabContent className={'flex'} value={'general'}>
       <ProfileAvatarForm onSubmit={() => {}} />
       <ProfileInfoForm
-        className="grow"
+        className={'grow'}
         onSubmit={(formData: ProfileInfoFormValues) => {
           console.log(formData)
         }}

@@ -9,13 +9,13 @@ import { z } from 'zod'
 
 export const profileInfoSchema = (t: LocaleType) =>
   z.object({
-    userName: usernameSchema(t),
+    aboutMe: aboutMeSchema(t),
+    city: z.string().optional(),
+    country: z.string().optional(),
+    dateOfBirth: dateSchema(t),
     firstName: firstOrLastNameSchema(t),
     lastName: firstOrLastNameSchema(t),
-    dateOfBirth: dateSchema(t),
-    country: z.string().optional(),
-    city: z.string().optional(),
-    aboutMe: aboutMeSchema(t),
+    userName: usernameSchema(t),
   })
 
 export type ProfileInfoFormValues = z.infer<ReturnType<typeof profileInfoSchema>>

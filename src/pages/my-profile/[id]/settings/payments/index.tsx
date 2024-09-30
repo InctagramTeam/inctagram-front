@@ -1,9 +1,10 @@
 import React from 'react'
-import { getSettingsLayout, TabContent } from '@/shared'
+
+import { TabContent, getSettingsLayout } from '@/shared'
 
 const Payments = () => {
   return (
-    <TabContent value={'payments'} className="flex">
+    <TabContent className={'flex'} value={'payments'}>
       <div>Payments</div>
     </TabContent>
   )

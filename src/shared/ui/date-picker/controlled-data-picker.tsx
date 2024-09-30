@@ -1,10 +1,11 @@
 'use client'
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
-import { Button, cn, Popover, PopoverContent, PopoverTrigger, Text } from '@/shared'
-import { CalendarIcon, CalendarOutlineIcon } from '@/shared/assets/icons'
-import { Calendar, CalendarProps } from '@/shared/ui/date-picker/calendar'
 import * as React from 'react'
 import { useId } from 'react'
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
+
+import { Button, Popover, PopoverContent, PopoverTrigger, Text, cn } from '@/shared'
+import { CalendarIcon, CalendarOutlineIcon } from '@/shared/assets/icons'
+import { Calendar, CalendarProps } from '@/shared/ui/date-picker/calendar'
 import { format, isDate } from 'date-fns'
 
 export type DatePickerProps = {
@@ -26,22 +27,22 @@ export type DatePickerProps = {
 type Props<T extends FieldValues> = Omit<DatePickerProps, 'value'> & UseControllerProps<T>
 
 export const ControlledDataPicker = <T extends FieldValues>({
+  calendarClassName,
   control,
   defaultValue,
-  name,
-  rules,
   id,
-  shouldUnregister,
+  label,
+  name,
   onOpenChange,
+  open,
+  rules,
+  shouldUnregister,
   textTrigger,
   triggerClassName,
-  calendarClassName,
-  open,
-  label,
   ...rest
 }: Props<T>) => {
   const {
-    field: { onChange, onBlur, value, disabled, ref, ...field },
+    field: { disabled, onBlur, onChange, ref, value, ...field },
     fieldState: { error },
   } = useController({
     control,
@@ -65,8 +66,8 @@ export const ControlledDataPicker = <T extends FieldValues>({
     ),
     calendar: cn(`border-[1px] !border-Dark-300 bg-Dark-500 rounded-[2px] text-Light-100`),
     error: cn(`block !text-Danger-500 text-small-text-12`),
-    popoverContent: cn(`w-[300px] p-0 !border-none`, calendarClassName),
     label: cn(`inline !text-Light-900 text-regular-text-14 text-left`, disabled && 'text-Dark-100'),
+    popoverContent: cn(`w-[300px] p-0 !border-none`, calendarClassName),
     triggerIcon: cn(`h-[24px] w-[24px] fill-Light-100`, error?.message && `fill-Danger-500`),
   }
 
@@ -90,10 +91,10 @@ export const ControlledDataPicker = <T extends FieldValues>({
         <PopoverTrigger asChild>
           <Button
             className={classes.button}
-            fullWidth
             disabled={disabled}
-            variant={'text'}
+            fullWidth
             id={buttonId}
+            variant={'text'}
           >
             {isDate(value) ? format(value, 'dd/MM/yyyy') : defaultValue}
             {open ? (
@@ -105,10 +106,10 @@ export const ControlledDataPicker = <T extends FieldValues>({
         </PopoverTrigger>
         <PopoverContent className={classes.popoverContent}>
           <Calendar
-            mode={'single'}
-            selected={value}
-            onSelect={onChange}
             className={classes.calendar}
+            mode={'single'}
+            onSelect={onChange}
+            selected={value}
           />
         </PopoverContent>
         {error?.message && (

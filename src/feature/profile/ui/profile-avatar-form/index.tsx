@@ -1,16 +1,16 @@
 import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
 
+import { UserAvatar } from '@/entities/profile'
 import {
   Button,
-  cn,
   ReturnComponent,
   UseFormRef,
+  cn,
   useFormRevalidateWithLocale,
   useResponsive,
   useTranslation,
 } from '@/shared'
-import { UserAvatar } from '@/entities/profile'
 
 type Props = {
   className?: string
@@ -50,13 +50,13 @@ export const ProfileAvatarForm = forwardRef(
 
     return (
       <div>
-        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} {...rest}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} {...rest}>
           <UserAvatar className={`h-[200px] w-[200px]`} />
           <Button
-            variant="outline"
             className={classes.button}
             // disabled={!!Object.keys(errors).length ?? disabled}
             type={'submit'}
+            variant={'outline'}
           >
             {t.button.addProfilePhoto}
           </Button>

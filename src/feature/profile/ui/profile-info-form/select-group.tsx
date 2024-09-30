@@ -1,26 +1,27 @@
 import React from 'react'
-import { ControlledSelect } from '@/shared'
 import { Control } from 'react-hook-form'
+
 import { ProfileInfoFormValues } from '@/feature/profile'
+import { ControlledSelect } from '@/shared'
 
 export const SelectGroup = ({ control }: { control: Control<ProfileInfoFormValues> }) => {
   return (
-    <div className="flex justify-between gap-6">
+    <div className={'flex justify-between gap-6'}>
       <ControlledSelect
-        control={control}
-        label="Select your country"
-        placeholder="Country"
-        name="country"
         // options={options}
-        className="w-full"
+        className={'w-full'}
+        control={control}
+        label={'Select your country'}
+        name={'country'}
+        placeholder={'Country'}
       />
       <ControlledSelect
-        control={control}
-        label="Select your city"
-        placeholder="City"
-        name="city"
         // options={options}
-        className="w-full"
+        className={'w-full'}
+        control={control}
+        label={'Select your city'}
+        name={'city'}
+        placeholder={'City'}
       />
     </div>
   )

@@ -1,21 +1,23 @@
-import React, { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle } from 'react'
+import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
 import { useForm } from 'react-hook-form'
+
+import { SelectGroup } from '@/feature/profile/ui/profile-info-form/select-group'
 import {
   Button,
-  cn,
   ControlledDataPicker,
   ControlledInput,
   ControlledTextarea,
   EMPTY_STRING,
   ReturnComponent,
   UseFormRef,
+  cn,
   useFormRevalidateWithLocale,
   useResponsive,
   useTranslation,
 } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
+
 import { ProfileInfoFormValues, profileInfoSchema } from '../../model'
-import { SelectGroup } from '@/feature/profile/ui/profile-info-form/select-group'
 
 // const geonames = Geonames({
 //   username: 'inctagram',
@@ -56,7 +58,7 @@ export const ProfileInfoForm = forwardRef(
       setError,
       setValue,
     } = useForm<ProfileInfoFormValues>({
-      defaultValues: { userName: EMPTY_STRING, firstName: EMPTY_STRING },
+      defaultValues: { firstName: EMPTY_STRING, userName: EMPTY_STRING },
       mode: 'onChange',
       resolver: zodResolver(profileInfoSchema(t)),
     })
@@ -66,7 +68,7 @@ export const ProfileInfoForm = forwardRef(
 
     return (
       <div className={className}>
-        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} {...rest}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} {...rest}>
           <ControlledInput
             aria-invalid={errors.userName ? 'true' : 'false'}
             autoComplete={'username'}
@@ -74,10 +76,10 @@ export const ProfileInfoForm = forwardRef(
             disabled={disabled}
             errorMessage={errors.userName?.message}
             label={t.label.userName}
+            labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
             name={'userName'}
             placeholder={t.placeholders.username}
             type={'text'}
-            labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
           />
           <ControlledInput
             aria-invalid={errors.firstName ? 'true' : 'false'}
@@ -85,10 +87,10 @@ export const ProfileInfoForm = forwardRef(
             disabled={disabled}
             errorMessage={errors.firstName?.message}
             label={t.label.firstName}
+            labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
             name={'firstName'}
             placeholder={t.placeholders.firstName}
             type={'text'}
-            labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
           />
           <ControlledInput
             aria-invalid={errors.lastName ? 'true' : 'false'}
@@ -96,15 +98,15 @@ export const ProfileInfoForm = forwardRef(
             disabled={disabled}
             errorMessage={errors.lastName?.message}
             label={t.label.lastName}
+            labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
             name={'lastName'}
             placeholder={t.placeholders.lastName}
             type={'text'}
-            labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
           />
           <ControlledDataPicker
-            label={t.label.dateOfBirth}
-            defaultValue={t.placeholders.dateOfBirth}
             control={control}
+            defaultValue={t.placeholders.dateOfBirth}
+            label={t.label.dateOfBirth}
             name={'dateOfBirth'}
           />
           <SelectGroup control={control} />
@@ -117,7 +119,7 @@ export const ProfileInfoForm = forwardRef(
             name={'aboutMe'}
             placeholder={t.placeholders.aboutMe}
           />
-          <div className="text-right">
+          <div className={'text-right'}>
             <Button
               className={classes.button}
               // disabled={!!Object.keys(errors).length ?? disabled}

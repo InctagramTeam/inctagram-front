@@ -1,5 +1,5 @@
 'use client'
-import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
+import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
 import { SelectBox, SelectProps } from '@/shared/ui'
 
@@ -15,7 +15,7 @@ export const ControlledSelect = <T extends FieldValues>({
   ...rest
 }: Props<T>) => {
   const {
-    field: { onChange, onBlur, value, ...field },
+    field: { onBlur, onChange, value, ...field },
   } = useController({
     control,
     defaultValue,

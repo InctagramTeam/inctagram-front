@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { DayPicker } from 'react-day-picker'
+
+import { ChevronIcon } from '@/shared/assets/icons'
 import { EMPTY_STRING } from '@/shared/constants/base'
 import { cn } from '@/shared/lib/utils/merge-cn'
-import { ChevronIcon } from '@/shared/assets/icons'
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -52,7 +53,6 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
 
   return (
     <DayPicker
-      showOutsideDays={showOutsideDays}
       className={cn(`px-[24px] py-[16px]`, className)}
       classNames={dayPickerClassNames}
       components={{
@@ -60,6 +60,7 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
         IconRight: () => <ChevronIcon className={'h-[20px] w-[20px] -rotate-90'} />,
       }}
       modifiersClassNames={modifiersClassNames}
+      showOutsideDays={showOutsideDays}
       {...props}
     />
   )

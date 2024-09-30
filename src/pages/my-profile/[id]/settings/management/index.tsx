@@ -1,9 +1,10 @@
 import React from 'react'
-import { getSettingsLayout, TabContent } from '@/shared'
+
+import { TabContent, getSettingsLayout } from '@/shared'
 
 const Management = () => {
   return (
-    <TabContent value={'management'} className="flex">
+    <TabContent className={'flex'} value={'management'}>
       <div>Management</div>
     </TabContent>
   )

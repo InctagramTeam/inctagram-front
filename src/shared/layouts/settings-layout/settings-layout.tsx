@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode, useState } from 'react'
-import { TABS } from '@/shared/constants/base'
+
 import {
   AppRoutes,
   BaseAppLayout,
@@ -7,6 +7,7 @@ import {
   ReturnComponent,
   TabSwitcher,
 } from '@/shared'
+import { TABS } from '@/shared/constants/base'
 import { PageWrapper } from '@/widgets'
 import { useRouter } from 'next/router'
 
@@ -23,11 +24,11 @@ export const SettingsLayout = ({ children }: { children: ReactNode }) => {
   return (
     <PageWrapper paddingBlock={'36px'} title={'Settings | Instagram'}>
       <TabSwitcher
-        value={activeTab}
+        defaultValue={'general'}
         onValueChange={handleTabChange}
-        rootClassName="min-w-full"
+        rootClassName={'min-w-full'}
         tabs={TABS}
-        defaultValue="general"
+        value={activeTab}
       >
         {children}
       </TabSwitcher>
