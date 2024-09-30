@@ -1,19 +1,21 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import { NavigationElement, ReturnComponent, cn } from '@/shared'
 import { LogOutIcon } from '@/shared/assets/icons'
 import { useBreakpointMode } from '@/widgets/sidebar/model'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
+import { LogoutModal, useLogout } from '@/feature'
 
 type Props = {
   isAuth: boolean
 }
 export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
+  const [isOpenLogoutModal, setIsOpenLogoutModal] = useState(false)
   const { isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t, tablet } =
     useBreakpointMode()
-
+  const { mutate } = useLogout()
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
     navigation: cn(`h-full flex justify-between flex-col items-start`, mobile && 'items-center'),
@@ -28,6 +30,12 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
       mobile &&
         'max-w-full z-2 bottom-0 right-0 h-[var(--header-height)] w-full border-t-[1px] border-t-Dark-300 pt-4 bg-Dark-700'
     ),
+  }
+  const handleLogout = () => {
+    mutate()
+  }
+  const handleClickLogoutBtn = () => {
+    setIsOpenLogoutModal(true)
   }
 
   const displayModeSidebar = () => {
@@ -56,12 +64,20 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
         <ToggleCollapsedButtons />
         <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
         {isAuth && (
-          <NavigationElement
-            className={classes.button}
-            name={t.button.logOut}
-            onlyIcon={onlyIcons}
-            startIcon={<LogOutIcon />}
-          />
+          <>
+            <NavigationElement
+              className={classes.button}
+              name={t.button.logOut}
+              onlyIcon={onlyIcons}
+              onClick={handleClickLogoutBtn}
+              startIcon={<LogOutIcon />}
+            />
+            <LogoutModal
+              open={isOpenLogoutModal}
+              onOpenChange={setIsOpenLogoutModal}
+              logout={handleLogout}
+            />
+          </>
         )}
       </>
     )
