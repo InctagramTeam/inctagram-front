@@ -1,5 +1,6 @@
-import { Flex, ReturnBack, ReturnComponent, Text, useTranslation } from '@/shared'
 import React from 'react'
+
+import { Flex, ReturnBack, ReturnComponent, Text, useTranslation } from '@/shared'
 
 export const PrivacyPolice = (): ReturnComponent => {
   const { t } = useTranslation()
@@ -11,7 +12,7 @@ export const PrivacyPolice = (): ReturnComponent => {
         <Text asComponent={'h1'} variant={'H1'}>
           {t.pages.privacyPolice.title}
         </Text>
-        <Text variant={'regular-text-14'} asComponent={'p'}>
+        <Text asComponent={'p'} variant={'regular-text-14'}>
           Текст с сервера
         </Text>
       </Flex>

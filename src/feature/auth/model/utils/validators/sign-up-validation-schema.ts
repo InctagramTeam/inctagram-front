@@ -1,5 +1,5 @@
 import { LocaleType } from '@/../locales'
-import { emailSchema, EMPTY_STRING, passwordSchema } from '@/shared'
+import { EMPTY_STRING, emailSchema, passwordSchema } from '@/shared'
 import { checkboxSchema, usernameSchema } from '@/shared/lib/utils/validators'
 import { z } from 'zod'
 

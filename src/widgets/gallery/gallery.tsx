@@ -1,12 +1,13 @@
 'use client'
 
-import { ReturnComponent } from '@/shared'
 import { ReactNode } from 'react'
+
+import { ReturnComponent } from '@/shared'
 import { clsx } from 'clsx'
 
 type Props = {
-  className?: string
   children: ReactNode
+  className?: string
 }
 
 export const Gallery = ({ children, className }: Props): ReturnComponent => {

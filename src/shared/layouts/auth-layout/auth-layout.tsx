@@ -1,9 +1,8 @@
 import { PropsWithChildren, ReactElement } from 'react'
 
+import { LayoutContextProvider, ReturnComponent } from '@/shared'
 import { Header } from '@/widgets/header'
 import { Main } from '@/widgets/main/main'
-
-import { LayoutContextProvider, ReturnComponent } from '@/shared'
 
 type Props = PropsWithChildren
 

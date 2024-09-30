@@ -1,5 +1,6 @@
 export const AuthRoutes = {
   CONFIRM_EMAIL: '/auth/confirm-email',
+  CONGRATULATIONS: '/congratulations',
   CREATE_NEW_PASSWORD: '/auth/create-new-password',
   FORGOT_PASSWORD: '/auth/forgot-password',
   PASSWORD_RECOVERY: '/auth/password-recovery',

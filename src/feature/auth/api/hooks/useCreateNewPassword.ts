@@ -1,14 +1,14 @@
-import { ErrorResponse, SignUpFormValues } from '@/feature'
+import { ErrorResponse, NewPasswordArgs } from '@/feature'
 import authApi from '@/feature/auth/api/auth-api'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { useMutation } from '@tanstack/react-query'
 
-export const useSignUp = () => {
+export const useCreateNewPassword = () => {
   const mutation = useMutation({
-    mutationFn: async (formData: SignUpFormValues) => {
-      return authApi.signUp(formData.username, formData.email, formData.password)
+    mutationFn: async (formData: NewPasswordArgs) => {
+      return authApi.createNewPassword(formData.code, formData.newPassword)
     },
-    mutationKey: ['sign-up'],
+    mutationKey: ['create-new-password'],
     onError: (error: ErrorResponse) => {
       if (error.response?.data?.errorsMessages) {
         toast({
@@ -18,7 +18,7 @@ export const useSignUp = () => {
         })
       }
     },
-    onSuccess: () => {},
+    onSuccess: data => {},
   })
 
   return mutation

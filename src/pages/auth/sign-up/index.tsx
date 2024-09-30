@@ -15,10 +15,11 @@ const SignUpPage = () => {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { xs } = useResponsive()
-  const { mutate, data, isPending, isSuccess } = useSignUp()
+  const { data, isPending, isSuccess, mutate } = useSignUp()
   const handleSubmitForm = (formData: SignUpFormValues) => {
     mutate(formData) //в mutate передаются данные, которые необходимо отправить на сервер для выполнения мутации
   }
+
   useEffect(() => {
     if (isSuccess) {
       setOpen(true) // Открываем модальное окно при успешном isSuccess
@@ -29,6 +30,7 @@ const SignUpPage = () => {
     setOpen(open)
     ref.current?.reset()
   }
+
   return (
     <PageWrapper
       description={t.pages.signUp.metaDescription}
@@ -36,9 +38,9 @@ const SignUpPage = () => {
       title={t.pages.signUp.metaTitle}
     >
       <SignUpForm
+        disabled={isPending}
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
-        disabled={isPending}
         onSubmit={handleSubmitForm}
         ref={ref}
       />

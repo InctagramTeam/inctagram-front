@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
+import { default as ReCAPTCHA } from 'react-google-recaptcha'
 
 import { Flex, RECAPTCHA_PUBLIK_KEY, ReturnComponent, Text } from '@/shared'
 import { clsx } from 'clsx'

@@ -1,14 +1,14 @@
-import { ErrorResponse, SignUpFormValues } from '@/feature'
+import { ErrorResponse, RecoveryPasswordArgs } from '@/feature'
 import authApi from '@/feature/auth/api/auth-api'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { useMutation } from '@tanstack/react-query'
 
-export const useSignUp = () => {
+export const usePasswordRecovery = () => {
   const mutation = useMutation({
-    mutationFn: async (formData: SignUpFormValues) => {
-      return authApi.signUp(formData.username, formData.email, formData.password)
+    mutationFn: async (formData: RecoveryPasswordArgs) => {
+      return authApi.passwordRecovery(formData.email, formData.recaptchaValue)
     },
-    mutationKey: ['sign-up'],
+    mutationKey: ['password-recovery'],
     onError: (error: ErrorResponse) => {
       if (error.response?.data?.errorsMessages) {
         toast({

@@ -17,7 +17,7 @@ export type MeResponse = {
 export type ErrorResponse = {
   response?: {
     data?: {
-      errorsMessages?: [{ message: string; field: string }]
+      errorsMessages?: [{ field: string; message: string }]
     }
   }
 }
@@ -76,15 +76,19 @@ export type ConfirmEmailArgs = {
 }
 
 /** NewPassword -- url: '/auth/new-password'*/
-export type NewPasswordArgs = {
+export type NewPasswordRequestArgs = {
   newPassword: string
-  recoveryCode: string
+}
+
+export type NewPasswordArgs = {
+  code: string
+  newPassword: string
 }
 
 /** RecoveryPassword -- url: '/auth/password-recovery' */
 export type RecoveryPasswordArgs = {
   email: string
-  recaptcha: string
+  recaptchaValue: string
 }
 
 /** ResendRecoveryPassword -- url: '/auth/resend-recovery-code' */

@@ -2,9 +2,9 @@
 import React, {
   ComponentPropsWithoutRef,
   ElementRef,
+  ReactNode,
   forwardRef,
   memo,
-  ReactNode,
   useId,
   useState,
 } from 'react'
@@ -77,7 +77,6 @@ export const Checkbox = memo(
             <CheckboxRadix.Root
               {...rest}
               checked={checked}
-              onCheckedChange={handleCheckedChange}
               className={clsx(
                 disabled && `cursor-default`,
                 `_Checkbox_ hover:not:before:data-[disabled]:opacity-100 hover:not:before:data-[disabled=true]:bg-Dark-300
@@ -108,6 +107,7 @@ export const Checkbox = memo(
               disabled={disabled}
               id={id}
               name={name}
+              onCheckedChange={handleCheckedChange}
               ref={ref}
               required={required}
             >

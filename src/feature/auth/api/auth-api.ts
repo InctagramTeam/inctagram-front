@@ -1,4 +1,13 @@
 import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user'
+import {
+  NewPasswordRequestArgs,
+  RecoveryPasswordArgs,
+  SignUpRequest,
+  getContentType,
+} from '@/feature'
+import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
+import { axiosNotAuthorized } from '@/shared/api/interceptors'
+import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 import { getContentType, SignUpRequest } from '@/feature'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
@@ -10,12 +19,11 @@ export class AuthApi {
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken')
 
-    const response = await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, any>(
+    return await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, any>(
       `auth/update-token`,
       { refreshToken },
       { headers: getContentType() }
     )
-    return response
   }
 
   async logout() {
@@ -25,13 +33,21 @@ export class AuthApi {
     }
   }
 
+  async passwordRecovery(email: string, recaptchaValue: string) {
+    return await axiosNotAuthorized.post<null, AxiosResponse<any>, RecoveryPasswordArgs>(
+      `auth/password-recovery`,
+      {
+        email,
+        recaptchaValue,
+      }
+    )
+  }
+
   async signUp(userName: string, email: string, password: string) {
-    const response = await axiosNotAuthorized.post<
-      null,
-      AxiosResponse<IAuthResponse>,
-      SignUpRequest
-    >('auth/registration', { email, password, userName })
-    return response
+    return await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, SignUpRequest>(
+      'auth/registration',
+      { email, password, userName }
+    )
   }
 
   async singIn(email: string, password: string) {
@@ -42,9 +58,11 @@ export class AuthApi {
         password,
       }
     )
+
     if (response?.data?.accessToken) {
       saveToLocalStorage('accessToken', response.data.accessToken)
     }
+
     return response
   }
 }

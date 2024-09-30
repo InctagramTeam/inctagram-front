@@ -15,7 +15,7 @@ const SignInPge = (): ReturnComponent => {
   const { sm } = useResponsive()
   const { t } = useTranslation()
   const ref = useRef<UseFormRef<SignInFormValues>>(null)
-  const { mutate, isPending } = useSignIn()
+  const { isPending, mutate } = useSignIn()
 
   const handleSubmitForm = (formData: SignInFormValues) => {
     mutate(formData)
@@ -28,10 +28,10 @@ const SignInPge = (): ReturnComponent => {
       title={t.pages.signIn.metaTitle}
     >
       <SignInForm
+        disabled={isPending}
         hrefGithub={process.env.NEXT_PUBLIC_GITHUB_OAUTH2 ?? EMPTY_STRING}
         hrefGoogle={process.env.NEXT_PUBLIC_GOOGLE_OAUTH2 ?? EMPTY_STRING}
         onSubmit={handleSubmitForm}
-        disabled={isPending}
         ref={ref}
       />
     </PageWrapper>
