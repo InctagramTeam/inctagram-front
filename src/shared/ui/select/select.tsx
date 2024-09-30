@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 
 import { cn, ReturnComponent, Text } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
@@ -9,6 +9,8 @@ import { ChevronIcon } from '@/shared/assets/icons'
 import * as SelectRadix from '@radix-ui/react-select'
 
 import { SelectContent, SelectItem, SelectTrigger } from './'
+import axios from 'axios'
+import { useInfiniteQuery } from '@tanstack/react-query'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
@@ -33,7 +35,7 @@ type OwnProps<T extends number | string> = {
   disabled?: boolean
   label?: string
   name?: string
-  options: SelectOptionsProps<T>[]
+  options?: SelectOptionsProps<T>[]
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
@@ -46,6 +48,37 @@ export type SelectContentMenuDirection =
   | 'default'
   | 'top left'
   | 'top right'
+
+interface City {
+  id: number
+  wikiDataId: string
+  type: string
+  name: string
+  country: string
+  countryCode: string
+  region: string
+  regionCode: number
+  latitude: number
+  longitude: number
+}
+
+interface Link {
+  rel: string
+  href: string
+}
+
+interface APIResponse {
+  data: City[]
+  links: Link[]
+  metadata: {
+    currentOffset: number
+    totalCount: number
+  }
+}
+
+interface QueryParams {
+  pageParam?: string // Для хранения URL следующей страницы
+}
 
 // mapping classes
 export const mapDirectionClass: Record<SelectContentMenuDirection, string> = {
@@ -75,6 +108,8 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     ...rest
   } = props
 
+  const contentRef = useRef<HTMLDivElement | null>(null)
+
   const optionalClasses = [mapDirectionClass[direction ?? 'default']]
 
   const classes = {
@@ -102,6 +137,56 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     ),
   }
 
+  const fetchCities = async ({
+    pageParam = 'https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=0&limit=10&countryIds=Q159&types=CITY',
+  }: QueryParams): Promise<{ cities: City[]; nextPage: string | null }> => {
+    const response = await axios.get<APIResponse>(pageParam, {
+      headers: {
+        'X-RapidAPI-Key': 'be85c08e71msh53680970446a6c9p1be9ecjsne9e26c037875',
+        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
+      },
+    })
+
+    // Возвращаем данные и ссылку на следующую страницу (или null, если ее нет)
+    return {
+      cities: response.data.data,
+      nextPage: response.data.links.find(link => link.rel === 'next')?.href ?? 'null',
+    }
+  }
+
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, error } = useInfiniteQuery({
+    queryKey: ['cities'],
+    queryFn: fetchCities,
+    initialPageParam:
+      'https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=0&limit=10&countryIds=Q159&types=CITY',
+    getNextPageParam: (lastPage, pages) => lastPage.nextPage,
+  })
+
+  const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    const bottom =
+      e.currentTarget.scrollHeight - e.currentTarget.scrollTop === e.currentTarget.clientHeight
+    if (bottom && hasNextPage && !isFetchingNextPage) {
+      debugger
+      fetchNextPage()
+    }
+  }
+
+  useEffect(() => {
+    const contentElement = contentRef.current
+    if (contentElement) {
+      contentElement.addEventListener('scroll', handleScroll as any)
+    }
+    return () => {
+      if (contentElement) {
+        contentElement.removeEventListener('scroll', handleScroll as any)
+      }
+    }
+  }, [hasNextPage, isFetchingNextPage])
+
+  if (status === 'pending') return <p>Loading...</p>
+  if (status === 'error')
+    return <p>Error: {error instanceof Error ? error.message : 'Unknown error'}</p>
+
   return (
     <div className={classes.className}>
       <Select
@@ -127,21 +212,30 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
           <ChevronIcon className={cn('chevron-up rotate-180', classes.chevron)} />
           <ChevronIcon className={cn('chevron-down', classes.chevron)} />
         </SelectTrigger>
-        <SelectContent className={classes.content} position={position}>
-          {options.map(option => (
-            <SelectItem
-              className={classes.item}
-              disabled={option.disabled}
-              key={option.value}
-              value={option.value as string}
-            >
-              <span className={classes.text}>
-                {option.label}
-                {option.icon}
-                {option.name}
-              </span>
-            </SelectItem>
+        <SelectContent
+          ref={contentRef}
+          onScroll={handleScroll}
+          className={classes.content}
+          position={position}
+        >
+          {data?.pages.map((page, index) => (
+            <React.Fragment key={index}>
+              {page.cities.map(city => (
+                <SelectItem className={classes.item} key={city.name} value={city.name}>
+                  <span className={classes.text}>
+                    {/*{option.label}*/}
+                    {/*{option.icon}*/}
+                    {city.name}
+                  </span>
+                </SelectItem>
+              ))}
+            </React.Fragment>
           ))}
+          {isFetchingNextPage && (
+            <SelectItem disabled value={'loading'}>
+              Loading more...
+            </SelectItem>
+          )}
         </SelectContent>
       </Select>
     </div>
