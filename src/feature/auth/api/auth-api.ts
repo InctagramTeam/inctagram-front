@@ -5,17 +5,22 @@ import {
   SignUpRequest,
   getContentType,
 } from '@/feature'
-import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
-import { axiosNotAuthorized } from '@/shared/api/interceptors'
-import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
-import { getContentType, SignUpRequest } from '@/feature'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
+import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
-import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 
 /* Todo --> AuthApi */
 export class AuthApi {
+  async createNewPassword(code: string, newPassword: string) {
+    return await axiosNotAuthorized.post<null, AxiosResponse<any>, NewPasswordRequestArgs>(
+      `auth/new-password?code=${code}`,
+      {
+        newPassword,
+      }
+    )
+  }
+
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken')
 
@@ -28,6 +33,7 @@ export class AuthApi {
 
   async logout() {
     const response = await axiosWithAuth.post('auth/logout')
+
     if (response.status === 204) {
       localStorage?.removeItem('accessToken')
     }
