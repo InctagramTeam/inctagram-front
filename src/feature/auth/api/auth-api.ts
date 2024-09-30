@@ -1,6 +1,5 @@
 import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user'
 import {
-  NewPasswordArgs,
   NewPasswordRequestArgs,
   RecoveryPasswordArgs,
   SignUpRequest,
@@ -8,21 +7,29 @@ import {
 } from '@/feature'
 import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import { axiosNotAuthorized } from '@/shared/api/interceptors'
+import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
-import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 
 /* Todo --> AuthApi */
 export class AuthApi {
+  async createNewPassword(code: string, newPassword: string) {
+    return await axiosNotAuthorized.post<null, AxiosResponse<any>, NewPasswordRequestArgs>(
+      `auth/new-password?code=${code}`,
+      {
+        newPassword,
+      }
+    )
+  }
+
   async getNewTokens() {
     const refreshToken = Cookies.get('refreshToken')
 
-    const response = await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, any>(
+    return await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, any>(
       `auth/update-token`,
       { refreshToken },
       { headers: getContentType() }
     )
-    return response
   }
 
   async logout() {
@@ -30,13 +37,21 @@ export class AuthApi {
     localStorage?.removeItem('user')
   }
 
+  async passwordRecovery(email: string, recaptchaValue: string) {
+    return await axiosNotAuthorized.post<null, AxiosResponse<any>, RecoveryPasswordArgs>(
+      `auth/password-recovery`,
+      {
+        email,
+        recaptchaValue,
+      }
+    )
+  }
+
   async signUp(userName: string, email: string, password: string) {
-    const response = await axiosNotAuthorized.post<
-      null,
-      AxiosResponse<IAuthResponse>,
-      SignUpRequest
-    >('auth/registration', { email, password, userName })
-    return response
+    return await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, SignUpRequest>(
+      'auth/registration',
+      { email, password, userName }
+    )
   }
 
   async singIn(email: string, password: string) {
@@ -47,32 +62,10 @@ export class AuthApi {
         password,
       }
     )
+
     if (response?.data?.accessToken) {
       saveToLocalStorage('accessToken', response.data.accessToken)
     }
-    return response
-  }
-
-  async passwordRecovery(email: string, recaptchaValue: string) {
-    const response = await axiosNotAuthorized.post<null, AxiosResponse<any>, RecoveryPasswordArgs>(
-      `auth/password-recovery`,
-      {
-        email,
-        recaptchaValue,
-      }
-    )
-
-    return response
-  }
-
-  async createNewPassword(code: string, newPassword: string) {
-    const response = await axiosNotAuthorized.post<
-      null,
-      AxiosResponse<any>,
-      NewPasswordRequestArgs
-    >(`auth/new-password?code=${code}`, {
-      newPassword,
-    })
 
     return response
   }

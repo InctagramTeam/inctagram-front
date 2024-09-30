@@ -1,7 +1,6 @@
-/** @types {import('next').NextConfig} */
+/** @type {import("next").NextConfig} */
 const nextConfig = {
-  images: {
-  },
+  images: {},
   poweredByHeader: false,
   env: {
     API_URL: process.env.NEXT_PUBLIC_API_URL,
@@ -12,10 +11,10 @@ const nextConfig = {
   },
   reactStrictMode: true,
   i18n: {
-    locales: ["ru","en",],
-    defaultLocale: "en",
+    locales: ['ru', 'en'],
+    defaultLocale: 'en',
     localeDetection: false,
   },
 }
 
-export default nextConfig
+module.exports = nextConfig

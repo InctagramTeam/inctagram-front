@@ -1,7 +1,8 @@
-import { getAuthLayout, ReturnComponent, useResponsive, useTranslation } from '@/shared'
-import { PageWrapper } from '@/widgets'
 import React from 'react'
+
 import { TermsOfService } from '@/feature'
+import { ReturnComponent, getAuthLayout, useResponsive, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets'
 
 const TermOfServicePage = (): ReturnComponent => {
   const { t } = useTranslation()

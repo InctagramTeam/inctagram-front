@@ -1,4 +1,4 @@
-import { Button, cn, ReturnComponent, useResponsive } from '@/shared'
+import { Button, ReturnComponent, cn, useResponsive } from '@/shared'
 import { ArrowIcon } from '@/shared/assets/icons'
 import { useRouter } from 'next/router'
 
@@ -6,7 +6,7 @@ type Props = {
   className?: string
   text: string
 }
-export const ReturnBack = ({ text, className }: Props): ReturnComponent => {
+export const ReturnBack = ({ className, text }: Props): ReturnComponent => {
   const { sm } = useResponsive()
   const router = useRouter()
 
@@ -17,12 +17,12 @@ export const ReturnBack = ({ text, className }: Props): ReturnComponent => {
 
   return (
     <Button
+      aria-label={sm ? text : undefined}
       className={classes.button}
       onClick={() => router.back()}
       variant={'text'}
-      aria-label={sm ? text : undefined}
     >
-      <ArrowIcon className={'classes.icon'} aria-hidden />
+      <ArrowIcon aria-hidden className={'classes.icon'} />
       {!sm && text}
     </Button>
   )

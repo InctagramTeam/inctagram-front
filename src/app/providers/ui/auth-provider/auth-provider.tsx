@@ -2,11 +2,11 @@ import { ReactNode, useEffect } from 'react'
 
 import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
 import { useUser } from '@/entities/user'
+import { getAuthUrl } from '@/shared/config/url/api.config'
+import { getStoreLocalStorage } from '@/shared/lib/utils'
 import Cookies from 'js-cookie'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { getStoreLocalStorage } from '@/shared/lib/utils'
-import { getAuthUrl } from '@/shared/config/url/api.config'
 
 type Props = { children: ReactNode } & TypeComponentAuthFields
 
@@ -34,6 +34,7 @@ const AuthProvider = (props: Props) => {
   /** При первом запуске Арр */
   useEffect(() => {
     const accessToken = getStoreLocalStorage('accessToken')
+
     if (!accessToken) {
       router.push(getAuthUrl('/sign-in'))
     }

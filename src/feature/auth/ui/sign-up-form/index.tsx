@@ -1,5 +1,5 @@
 'use client'
-import { ComponentPropsWithoutRef, forwardRef, Ref, useImperativeHandle, useMemo } from 'react'
+import { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { SignUpFormValues, signUpSchema } from '@/feature'
@@ -66,11 +66,11 @@ export const SignUpForm = forwardRef(
     } = useForm<SignUpFormValues>({
       /** Значения формы по умолчанию */
       defaultValues: {
+        checkAccept: false,
         email: 'example@gmail.com',
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
         username: EMPTY_STRING,
-        checkAccept: false,
       },
       /** Режим срабатывания подсветки ошибок при изменении полей */
       mode: 'onChange',
@@ -95,7 +95,6 @@ export const SignUpForm = forwardRef(
     )
     const onFormDataSubmit = handleSubmit(formData => {
       onSubmit(formData)
-      console.log(formData)
     })
 
     return (

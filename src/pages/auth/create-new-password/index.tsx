@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react'
 
 import { CreateNewPasswordFormValues, CreatePasswordForm } from '@/feature'
+import { useCreateNewPassword } from '@/feature/auth/api/hooks/useCreateNewPassword'
 import {
   AuthRoutes,
   ReturnComponent,
@@ -11,7 +12,6 @@ import {
   useTranslation,
 } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
-import { useCreateNewPassword } from '@/feature/auth/api/hooks/useCreateNewPassword'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
 
@@ -24,7 +24,7 @@ const CreateNewPasswordPage = (): ReturnComponent => {
   const searchParams = useSearchParams()
   const router = useRouter()
 
-  const { mutate, isSuccess, isPending } = useCreateNewPassword()
+  const { isPending, isSuccess, mutate } = useCreateNewPassword()
 
   const handleSubmitForm = (formData: CreateNewPasswordFormValues) => {
     const code = searchParams?.get('code')

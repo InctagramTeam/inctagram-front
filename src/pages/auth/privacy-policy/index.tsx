@@ -1,6 +1,6 @@
-import { getAuthLayout, ReturnComponent, useResponsive, useTranslation } from '@/shared'
-import { PageWrapper } from '@/widgets'
 import { PrivacyPolice } from '@/feature'
+import { ReturnComponent, getAuthLayout, useResponsive, useTranslation } from '@/shared'
+import { PageWrapper } from '@/widgets'
 
 const PrivacyPolicyPage = (): ReturnComponent => {
   const { t } = useTranslation()

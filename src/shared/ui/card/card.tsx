@@ -22,7 +22,7 @@ type OwnProps = {
 }
 
 export type CardVariant = 'light' | 'normal' | 'outlined'
-export type CardBorder = 'normal' | 'partial' | 'circle'
+export type CardBorder = 'circle' | 'normal' | 'partial'
 export type CardPadding = '0' | '4' | '8' | '12' | '16' | '24' | 'default'
 
 type CardComponent = <T extends ElementType = 'div'>(props: Props<T>) => ReactNode
@@ -68,7 +68,7 @@ export const Card: CardComponent = memo(
   )
 )
 
-const CardHeader = forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div className={cn('flex flex-col space-y-1.5 p-6', className)} ref={ref} {...props} />
   )

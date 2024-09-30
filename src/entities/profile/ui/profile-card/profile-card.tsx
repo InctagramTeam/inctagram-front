@@ -1,8 +1,8 @@
 'use client'
 
+import { Profile, ProfileGallery } from '@/entities/profile'
 import { Text } from '@/shared'
 
-import { Profile, ProfileGallery } from '@/entities/profile'
 import { ProfileCardSkeleton } from '../profile-card-skeleton'
 import { ProfileFollowerInfoBlock } from '../profile-followers-info'
 import { UserAvatar } from '../user-avatar'

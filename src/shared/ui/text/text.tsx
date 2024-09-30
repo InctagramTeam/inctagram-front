@@ -1,9 +1,9 @@
 'use client'
 import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode, useMemo } from 'react'
 
+import { ReturnComponent } from '@/shared'
 import { clsx } from 'clsx'
 
-import { ReturnComponent } from '@/shared'
 import { Undefinable } from '../../types/undefinable'
 
 export type TextColor = 'dark' | 'error' | 'info' | 'lightDark' | 'primary' | 'success' | 'warning'
