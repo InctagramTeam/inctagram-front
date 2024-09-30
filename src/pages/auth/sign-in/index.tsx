@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 
-import { SignInForm, SignInFormValues } from '@/feature'
+import { SignInForm, SignInFormValues, useSignIn } from '@/feature'
 import {
   EMPTY_STRING,
   ReturnComponent,
@@ -10,7 +10,6 @@ import {
   useTranslation,
 } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
-import { useSignIn } from '@/feature/auth/api/hooks/useSignIn'
 
 const SignInPge = (): ReturnComponent => {
   const { sm } = useResponsive()

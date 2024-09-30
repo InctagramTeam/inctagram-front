@@ -1,11 +1,10 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-import { SignUpForm, SignUpFormValues } from '@/feature'
+import { SignUpForm, SignUpFormValues, useSignUp } from '@/feature'
 import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import dynamic from 'next/dynamic'
-import { useSignUp } from '@/feature/auth/api/hooks/useSignUp'
 
 const DynamicSentEmailModal = dynamic(
   import('@/feature/auth/ui/sent-email-modal').then(module => module.SentEmailModal)
