@@ -11,6 +11,20 @@ export interface IUser {
   userName: string
 }
 
+export type UserProfile = {
+  firstName: string
+  lastName: string
+  dateOfBirth: string
+  country: string
+  city: string
+  aboutMe: string
+  avatarId: string
+}
+
+export type GetAvatar = {
+  url: string
+}
+
 export interface IUserSchema {
   _inited: boolean
   authData?: IUser

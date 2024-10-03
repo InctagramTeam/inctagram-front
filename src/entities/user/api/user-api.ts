@@ -1,44 +1,24 @@
-import { IUser } from 'src/entities/user/model/types/user'
 import { axiosWithAuth } from '@/shared/api/interceptors'
-
-export interface IProfileResponse {
-  statistics: {
-    label: string
-    value: string
-  }[]
-  user: IUser
-}
+import { GetAvatar } from '@/entities/user/model/types/user.types'
+import { AxiosResponse } from 'axios'
 
 export class UserService {
-  private BASE_URL = '/profile'
-
-  async getProfile() {
-    // const response = await axiosWithAuth.get<IProfileResponse>(this.BASE_URL)
-    // return response.data
-  }
-
-  async update(data: any) {
-    // const response = await axiosWithAuth.put(this.BASE_URL, data)
-    // return response.data
-  }
-
-  async getAvatar(id: string) {
-    const response = await axiosWithAuth.get(`${this.BASE_URL}/avatar/${id}`)
-    return response.data
+  async getAvatar(id: number) {
+    return await axiosWithAuth.get<GetAvatar>(`/profile/avatar/${id}`).then(res => res.data)
   }
 
   async deleteAvatar() {
-    const response = await axiosWithAuth.delete(this.BASE_URL + '/avatar')
-    return response.data
+    return await axiosWithAuth.delete<null>(`/profile/avatar`)
   }
 
   async updateAvatar(formData: FormData) {
-    const response = await axiosWithAuth.put(this.BASE_URL + '/avatar', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    return response.data
+    return await axiosWithAuth
+      .put<null, AxiosResponse<null>, FormData>('/profile/avatar', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(res => res.data)
   }
 }
 
