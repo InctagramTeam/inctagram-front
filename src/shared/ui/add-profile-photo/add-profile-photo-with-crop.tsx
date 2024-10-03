@@ -8,6 +8,8 @@ import { userService } from '@/entities/user/api/user-api'
 import ImageCropper from '@/shared/ui/add-profile-photo/ImageCropper'
 import 'react-image-crop/dist/ReactCrop.css'
 import { DeleteAvatarIcon } from '@/shared/assets/icons/DeleteIcon'
+import authApi from '@/feature/auth/api/auth-api'
+import { toast } from '@/shared/ui/toast/use-toast'
 
 export const AddProfilePhotoWithCrop = () => {
   const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
@@ -15,42 +17,107 @@ export const AddProfilePhotoWithCrop = () => {
 
   const queryClient = useQueryClient()
 
-  const avatar = useQuery({
-    queryFn: async () => {
-      return userService.getAvatar('5')
-    },
+  const { data: profile } = useQuery({ queryKey: ['me'], queryFn: authApi.me })
+
+  const { data: avatar } = useQuery({
+    queryFn: () => userService.getAvatar(Number(profile?.id)),
     queryKey: ['avatar'],
+    enabled: !!profile?.id,
   })
 
-  console.log(avatar.data?.url)
-
-  const { mutate: deleteAvatar, isPending: isPendingDeleteAvatar } = useMutation({
-    mutationFn: async () => {
-      return userService.deleteAvatar()
+  const { mutate: deleteAvatar } = useMutation({
+    mutationFn: userService.deleteAvatar,
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['avatar'] })
+      const previousAvatar = queryClient.getQueryData(['avatar'])
+      queryClient.setQueryData(['avatar'], null)
+      return { previousAvatar }
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['avatar'] })
+      toast({
+        description: 'The photo has been successfully deleted.',
+        title: 'Success',
+        variant: 'default',
+      })
     },
-    onError: (err: Error) => {},
+    onError: (error: Error, _, context: any) => {
+      toast({
+        description: navigator.onLine
+          ? error.message
+          : 'You are currently offline. Changes may not be saved.',
+        title: 'Error',
+        variant: 'destructive',
+      })
+
+      if (context?.previousAvatar) {
+        queryClient.setQueryData(['avatar'], context.previousAvatar)
+      }
+    },
   })
 
-  const { mutate: updateAvatar, isPending: isPendingUpdatePhoto } = useMutation({
+  const { mutate: updateAvatar } = useMutation({
     mutationFn: async (formData: FormData) => {
       return userService.updateAvatar(formData)
     },
+    onMutate: async (formData: FormData) => {
+      await queryClient.cancelQueries({ queryKey: ['avatar'] })
+      const previousAvatar = queryClient.getQueryData(['avatar'])
+      const newAvatarUrl = URL.createObjectURL(formData.get('file') as Blob)
+
+      queryClient.setQueryData(
+        ['avatar'],
+        previousAvatar ? { ...previousAvatar, url: newAvatarUrl } : { url: newAvatarUrl }
+      )
+
+      return { previousAvatar }
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['avatar'] })
+      toast({
+        description: 'The photo has been successfully updated.',
+        title: 'Success',
+        variant: 'default',
+      })
     },
-    onError: (err: Error) => {},
+    onError: (error: Error, _, context: any) => {
+      toast({
+        description: navigator.onLine
+          ? error.message
+          : 'You are currently offline. Changes may not be saved.',
+        title: 'Error',
+        variant: 'destructive',
+      })
+
+      if (context?.previousAvatar) {
+        queryClient.setQueryData(['avatar'], context.previousAvatar)
+      }
+    },
   })
 
   const deleteAvatarHandler = () => {
-    deleteAvatar()
+    if (navigator.onLine) {
+      deleteAvatar()
+    } else {
+      toast({
+        description: 'You are currently offline. Please check your internet connection.',
+        title: 'Error',
+        variant: 'destructive',
+      })
+    }
     setModalDeleteAvatarOpen(false)
   }
 
   const updateAvatarHandler = (formData: FormData) => {
-    updateAvatar(formData)
+    if (navigator.onLine) {
+      updateAvatar(formData)
+    } else {
+      toast({
+        description: 'You are currently offline. Please check your internet connection.',
+        title: 'Error',
+        variant: 'destructive',
+      })
+    }
   }
 
   return (
@@ -60,9 +127,9 @@ export const AddProfilePhotoWithCrop = () => {
           className={`h-full w-full`}
           bgColor={'bg-Dark-500'}
           children={<ImageOutlineIcon />}
-          src={avatar.data?.url || null}
+          src={avatar?.url || ''}
         />
-        {avatar.data?.url && (
+        {avatar?.url && (
           <Modal
             open={modalDeleteAvatarOpen}
             onOpenChange={isOpen => setModalDeleteAvatarOpen(isOpen)}
