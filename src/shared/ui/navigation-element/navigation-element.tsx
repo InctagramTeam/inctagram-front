@@ -16,6 +16,7 @@ import { usePathname } from 'next/navigation'
 type CustomProps = {
   name: string
   onlyIcon?: boolean
+  onClick?: () => void
 } & CustomButtonProps
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
@@ -32,7 +33,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
     ref: ElementRef<T>
   ): ReturnComponent => {
-    const { asComponent, className, disabled, name, onlyIcon, startIcon, ...rest } = props
+    const { asComponent, className, disabled, name, onlyIcon, onClick, startIcon, ...rest } = props
 
     const pathname = usePathname()
     const isActive = props.href && pathname?.startsWith(props.href)
@@ -52,7 +53,9 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
         className
       ),
     }
-
+    const handleClick = () => {
+      onClick?.()
+    }
     return (
       <TooltipProvider>
         <Tooltip delayDuration={0}>
@@ -72,6 +75,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
                 )
               }
               variant={'text'}
+              onClick={handleClick}
               {...rest}
             >
               {onlyIcon ? (
