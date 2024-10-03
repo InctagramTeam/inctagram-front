@@ -144,7 +144,7 @@ export const AddProfilePhotoWithCrop = () => {
             </Modal.Button>
             <Modal.Content
               title="Delete Photo"
-              classNameChildrenWrapper={'px-[24px]'}
+              classNameChildrenWrapper={'px-[24px] !py-0'}
               classNameTitle={'text-H1-20'}
               classNameTitleContainer={'h-[59px]'}
               classNameContent={'!max-w-[438px]'}
@@ -181,7 +181,7 @@ export const AddProfilePhotoWithCrop = () => {
         </Modal.Button>
         <Modal.Content
           title="Add a Profile Photo"
-          classNameChildrenWrapper={'px-[24px]'}
+          classNameChildrenWrapper={'px-[24px] !py-0'}
           classNameTitle={'text-H1-20'}
           classNameTitleContainer={'h-[59px]'}
           classNameContent={'!max-w-[492px]'}

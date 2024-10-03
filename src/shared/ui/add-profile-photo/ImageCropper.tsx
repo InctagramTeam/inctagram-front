@@ -139,7 +139,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
             type="button"
             onClick={triggerFileInput}
             variant="primary"
-            className="mb-[72px] mt-[60px] px-6 py-1.5"
+            className="mb-[108px] mt-[60px] px-6 py-1.5"
           >
             <Text variant="H3">Select from Computer</Text>
           </Button>
