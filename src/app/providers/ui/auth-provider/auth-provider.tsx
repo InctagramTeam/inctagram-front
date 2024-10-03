@@ -33,17 +33,13 @@ const AuthProvider = (props: Props) => {
 
   /** При первом запуске Арр */
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const accessToken = getStoreLocalStorage('accessToken')
+    const accessToken = getStoreLocalStorage('accessToken')
 
-      if (!accessToken) {
-        router.push(getAuthUrl('/sign-in'))
-      }
-      // if (accessToken) authMe()
-    }, 500) // Задержка в 500 мс
-
-    return () => clearTimeout(timer)
-  }, [router])
+    if (!accessToken) {
+      router.push(getAuthUrl('/sign-in'))
+    }
+    // if (accessToken) authMe()
+  }, [])
   /** Проверка на рефреш-токен при переходе на др.страницу - если его нет, то logout() */
   useEffect(() => {
     const refreshToken = Cookies.get('refreshToken')
