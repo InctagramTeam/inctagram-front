@@ -7,13 +7,13 @@ import { FlexCol } from '@/shared/ui/flex'
 
 type Props = {
   email?: string
-  onOpenChange: (open: boolean) => void
   logout: () => void
+  onOpenChange: (open: boolean) => void
   open: boolean
 }
 
 export const LogoutModal = (props: Props): ReturnComponent => {
-  const { email = 'example@bk.ru', onOpenChange, open, logout } = props
+  const { email = 'example@bk.ru', logout, onOpenChange, open } = props
   const { t } = useTranslation()
   const [isClient, setIsClient] = useState(false)
 
@@ -21,6 +21,7 @@ export const LogoutModal = (props: Props): ReturnComponent => {
     logout()
     onOpenChange(false)
   }
+
   useEffect(() => {
     setIsClient(true)
   }, [])
@@ -28,6 +29,7 @@ export const LogoutModal = (props: Props): ReturnComponent => {
   if (!isClient) {
     return null
   }
+
   return (
     <Modal onOpenChange={onOpenChange} open={open}>
       <Modal.Content
