@@ -11,13 +11,13 @@ export interface RegisterSchema {
 // ----------------------
 /** Me запрос -- url: '/auth/me' */
 export type MeResponse = {
-  id: number
-  userName: string
+  createdAt: string
   email: string
   emailIsConfirm: boolean
-  createdAt: string
-  updatedAt: string
+  id: number
   profile: UserProfile
+  updatedAt: string
+  userName: string
 }
 
 /** Error */

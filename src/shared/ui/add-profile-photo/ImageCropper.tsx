@@ -1,14 +1,18 @@
-import React, { useRef, useState, useCallback } from 'react'
-import ReactCrop, {
+import React, { useCallback, useRef, useState } from 'react'
+import {
+  Crop,
+  PixelCrop,
+  ReactCrop,
   centerCrop,
   convertToPixelCrop,
   makeAspectCrop,
-  Crop,
-  PixelCrop,
 } from 'react-image-crop'
-import setCanvasPreview from '@/shared/ui/add-profile-photo/setCanvasPreview'
+
 import { Button, Card, Text } from '@/shared'
 import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
+import setCanvasPreview from '@/shared/ui/add-profile-photo/setCanvasPreview'
+import Image from 'next/image'
+
 import 'react-image-crop/dist/ReactCrop.css'
 
 const ASPECT_RATIO = 1
@@ -30,33 +34,42 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const validateFile = (file: File): string | null => {
+  const validateFile = (file: File): null | string => {
     if (!VALID_FORMATS.includes(file.type)) {
       return 'The format of the uploaded photo must be PNG or JPEG'
     }
     if (file.size > MAX_SIZE_MB) {
       return 'Photo size must be less than 10 MB!'
     }
+
     return null
   }
 
   const onSelectFile = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (!file) return
+
+    if (!file) {
+      return
+    }
 
     const validationError = validateFile(file)
+
     if (validationError) {
       setError(validationError)
+
       return
     }
 
     const reader = new FileReader()
+
     reader.onload = () => {
       const imageUrl = reader.result?.toString() || ''
-      const imageElement = new Image()
+      const imageElement: HTMLImageElement = document.createElement('img')
+
       imageElement.src = imageUrl
-      imageElement.onload = e => {
-        const { naturalWidth, naturalHeight } = e.currentTarget as HTMLImageElement
+      imageElement.onload = (e: Event) => {
+        const { naturalHeight, naturalWidth } = e.currentTarget as HTMLImageElement
+
         if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
           setError(`Image must be at least ${MIN_DIMENSION} x ${MIN_DIMENSION} pixels.`)
           setImgSrc('')
@@ -70,13 +83,14 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
   }, [])
 
   const onImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const { width, height } = e.currentTarget
+    const { height, width } = e.currentTarget
     const crop = makeAspectCrop(
       { unit: '%', width: (MIN_DIMENSION / width) * 100 },
       ASPECT_RATIO,
       width,
       height
     )
+
     setCrop(centerCrop(crop, width, height))
   }, [])
 
@@ -85,7 +99,9 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
   }, [])
 
   const handleSave = useCallback(() => {
-    if (!imgRef.current || !previewCanvasRef.current || !crop) return
+    if (!imgRef.current || !previewCanvasRef.current || !crop) {
+      return
+    }
 
     setCanvasPreview(
       imgRef.current,
@@ -98,6 +114,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
       if (blob) {
         const file = new File([blob], 'avatar.jpg', { type: 'image/jpeg' })
         const formData = new FormData()
+
         formData.append('file', file)
 
         // Отправка файла на сервер
@@ -111,60 +128,67 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
   return (
     <>
       {error && (
-        <div className="my-[24px] flex items-center justify-center border border-Danger-500 bg-Danger-900 px-[24px] py-[6px]">
-          <div className="w-[80%] text-center">
-            <Text variant="bold_text_14">Error! </Text>
-            <Text variant="regular-text-14">{error}</Text>
+        <div
+          className={
+            'my-[24px] flex items-center justify-center border border-Danger-500 bg-Danger-900 px-[24px] py-[6px]'
+          }
+        >
+          <div className={'w-[80%] text-center'}>
+            <Text variant={'bold_text_14'}>Error! </Text>
+            <Text variant={'regular-text-14'}>{error}</Text>
           </div>
         </div>
       )}
 
       {!imgSrc ? (
         <div className={`flex w-full flex-col items-center ${!error ? 'mt-[72px]' : ''}`}>
-          <Card className="h-[228px] w-[222px]">
-            <div className="flex h-full w-full items-center justify-center">
+          <Card className={'h-[228px] w-[222px]'}>
+            <div className={'flex h-full w-full items-center justify-center'}>
               <ImageOutlineIcon />
             </div>
           </Card>
 
           <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/jpeg,image/png"
+            accept={'image/jpeg,image/png'}
+            className={'hidden'}
             onChange={onSelectFile}
-            className="hidden"
+            ref={fileInputRef}
+            type={'file'}
           />
 
           <Button
-            type="button"
+            className={'mb-[108px] mt-[60px] px-6 py-1.5'}
             onClick={triggerFileInput}
-            variant="primary"
-            className="mb-[108px] mt-[60px] px-6 py-1.5"
+            type={'button'}
+            variant={'primary'}
           >
-            <Text variant="H3">Select from Computer</Text>
+            <Text variant={'H3'}>Select from Computer</Text>
           </Button>
         </div>
       ) : (
         <div className={`flex w-full flex-col items-center ${!error ? 'mt-[28px]' : ''}`}>
           <ReactCrop
-            crop={crop}
-            onChange={(pixelCrop, percentCrop) => setCrop(percentCrop)}
-            circularCrop
-            keepSelection
             aspect={ASPECT_RATIO}
+            circularCrop
+            crop={crop}
+            keepSelection
             minWidth={MIN_DIMENSION}
+            onChange={percentCrop => setCrop(percentCrop)}
           >
-            <img
-              ref={imgRef}
-              src={imgSrc}
-              alt="Upload"
-              className="!max-h-[340px]"
-              onLoad={onImageLoad}
-            />
+            <div className={'relative !max-h-[340px]'}>
+              <Image
+                alt={'Upload'}
+                layout={'fill'}
+                objectFit={'contain'}
+                onLoad={onImageLoad}
+                ref={imgRef}
+                src={imgSrc}
+              />
+            </div>
           </ReactCrop>
 
-          <div className="my-[36px] flex w-full justify-end">
-            <Button variant="primary" className="px-[24px] py-[6px]" onClick={handleSave}>
+          <div className={'my-[36px] flex w-full justify-end'}>
+            <Button className={'px-[24px] py-[6px]'} onClick={handleSave} variant={'primary'}>
               Save
             </Button>
           </div>
@@ -173,10 +197,10 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
 
       {crop && (
         <canvas
-          ref={previewCanvasRef}
-          className="hidden"
-          width={MIN_DIMENSION}
+          className={'hidden'}
           height={MIN_DIMENSION}
+          ref={previewCanvasRef}
+          width={MIN_DIMENSION}
         />
       )}
     </>

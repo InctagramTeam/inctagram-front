@@ -12,13 +12,13 @@ export interface IUser {
 }
 
 export type UserProfile = {
-  firstName: string
-  lastName: string
-  dateOfBirth: string
-  country: string
-  city: string
   aboutMe: string
   avatarId: string
+  city: string
+  country: string
+  dateOfBirth: string
+  firstName: string
+  lastName: string
 }
 
 export type GetAvatar = {

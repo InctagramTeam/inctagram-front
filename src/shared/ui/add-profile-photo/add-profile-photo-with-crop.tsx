@@ -1,15 +1,17 @@
-import { Button, Modal, Text } from '@/shared'
-import { UserAvatar } from '@/entities/profile'
-import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
 import * as React from 'react'
 import { useState } from 'react'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+
+import { UserAvatar } from '@/entities/profile'
 import { userService } from '@/entities/user/api/user-api'
-import ImageCropper from '@/shared/ui/add-profile-photo/ImageCropper'
-import 'react-image-crop/dist/ReactCrop.css'
-import { DeleteAvatarIcon } from '@/shared/assets/icons/DeleteIcon'
 import authApi from '@/feature/auth/api/auth-api'
+import { Button, Modal, Text } from '@/shared'
+import { DeleteAvatarIcon } from '@/shared/assets/icons/DeleteIcon'
+import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
+import ImageCropper from '@/shared/ui/add-profile-photo/ImageCropper'
 import { toast } from '@/shared/ui/toast/use-toast'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+
+import 'react-image-crop/dist/ReactCrop.css'
 
 export const AddProfilePhotoWithCrop = () => {
   const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
@@ -17,30 +19,16 @@ export const AddProfilePhotoWithCrop = () => {
 
   const queryClient = useQueryClient()
 
-  const { data: profile } = useQuery({ queryKey: ['me'], queryFn: authApi.me })
+  const { data: profile } = useQuery({ queryFn: authApi.me, queryKey: ['me'] })
 
   const { data: avatar } = useQuery({
+    enabled: !!profile?.id,
     queryFn: () => userService.getAvatar(Number(profile?.id)),
     queryKey: ['avatar'],
-    enabled: !!profile?.id,
   })
 
   const { mutate: deleteAvatar } = useMutation({
     mutationFn: userService.deleteAvatar,
-    onMutate: async () => {
-      await queryClient.cancelQueries({ queryKey: ['avatar'] })
-      const previousAvatar = queryClient.getQueryData(['avatar'])
-      queryClient.setQueryData(['avatar'], null)
-      return { previousAvatar }
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['avatar'] })
-      toast({
-        description: 'The photo has been successfully deleted.',
-        title: 'Success',
-        variant: 'default',
-      })
-    },
     onError: (error: Error, _, context: any) => {
       toast({
         description: navigator.onLine
@@ -54,11 +42,40 @@ export const AddProfilePhotoWithCrop = () => {
         queryClient.setQueryData(['avatar'], context.previousAvatar)
       }
     },
+    onMutate: async () => {
+      await queryClient.cancelQueries({ queryKey: ['avatar'] })
+      const previousAvatar = queryClient.getQueryData(['avatar'])
+
+      queryClient.setQueryData(['avatar'], null)
+
+      return { previousAvatar }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['avatar'] })
+      toast({
+        description: 'The photo has been successfully deleted.',
+        title: 'Success',
+        variant: 'default',
+      })
+    },
   })
 
   const { mutate: updateAvatar } = useMutation({
     mutationFn: async (formData: FormData) => {
       return userService.updateAvatar(formData)
+    },
+    onError: (error: Error, _, context: any) => {
+      toast({
+        description: navigator.onLine
+          ? error.message
+          : 'You are currently offline. Changes may not be saved.',
+        title: 'Error',
+        variant: 'destructive',
+      })
+
+      if (context?.previousAvatar) {
+        queryClient.setQueryData(['avatar'], context.previousAvatar)
+      }
     },
     onMutate: async (formData: FormData) => {
       await queryClient.cancelQueries({ queryKey: ['avatar'] })
@@ -79,19 +96,6 @@ export const AddProfilePhotoWithCrop = () => {
         title: 'Success',
         variant: 'default',
       })
-    },
-    onError: (error: Error, _, context: any) => {
-      toast({
-        description: navigator.onLine
-          ? error.message
-          : 'You are currently offline. Changes may not be saved.',
-        title: 'Error',
-        variant: 'destructive',
-      })
-
-      if (context?.previousAvatar) {
-        queryClient.setQueryData(['avatar'], context.previousAvatar)
-      }
     },
   })
 
@@ -123,16 +127,13 @@ export const AddProfilePhotoWithCrop = () => {
   return (
     <div className={'flex flex-col gap-y-6'}>
       <div className={`relative h-[192px] w-[192px]`}>
-        <UserAvatar
-          className={`h-full w-full`}
-          bgColor={'bg-Dark-500'}
-          children={<ImageOutlineIcon />}
-          src={avatar?.url || ''}
-        />
+        <UserAvatar bgColor={'bg-Dark-500'} className={`h-full w-full`} src={avatar?.url || ''}>
+          <ImageOutlineIcon />
+        </UserAvatar>
         {avatar?.url && (
           <Modal
-            open={modalDeleteAvatarOpen}
             onOpenChange={isOpen => setModalDeleteAvatarOpen(isOpen)}
+            open={modalDeleteAvatarOpen}
           >
             <Modal.Button asChild>
               <button
@@ -143,11 +144,11 @@ export const AddProfilePhotoWithCrop = () => {
               </button>
             </Modal.Button>
             <Modal.Content
-              title="Delete Photo"
               classNameChildrenWrapper={'px-[24px] !py-0'}
+              classNameContent={'!max-w-[438px]'}
               classNameTitle={'text-H1-20'}
               classNameTitleContainer={'h-[59px]'}
-              classNameContent={'!max-w-[438px]'}
+              title={'Delete Photo'}
             >
               <div className={'flex flex-col'}>
                 <Text className={'mb-[54px] mt-[30px]'} variant={'regular_text_16'}>
@@ -155,9 +156,9 @@ export const AddProfilePhotoWithCrop = () => {
                 </Text>
                 <div className={'mb-[36px] flex justify-end gap-x-[24px]'}>
                   <Button
-                    variant={'outline'}
                     className={'h-[36px] w-[96px] !p-0'}
                     onClick={deleteAvatarHandler}
+                    variant={'outline'}
                   >
                     Yes
                   </Button>
@@ -173,22 +174,22 @@ export const AddProfilePhotoWithCrop = () => {
           </Modal>
         )}
       </div>
-      <Modal open={modalUpdateAvatarOpen} onOpenChange={isOpen => setModalUpdateAvatarOpen(isOpen)}>
+      <Modal onOpenChange={isOpen => setModalUpdateAvatarOpen(isOpen)} open={modalUpdateAvatarOpen}>
         <Modal.Button asChild>
-          <Button variant={'outline'} onClick={() => setModalUpdateAvatarOpen(true)}>
+          <Button onClick={() => setModalUpdateAvatarOpen(true)} variant={'outline'}>
             Add a Profile Photo
           </Button>
         </Modal.Button>
         <Modal.Content
-          title="Add a Profile Photo"
           classNameChildrenWrapper={'px-[24px] !py-0'}
+          classNameContent={'!max-w-[492px]'}
           classNameTitle={'text-H1-20'}
           classNameTitleContainer={'h-[59px]'}
-          classNameContent={'!max-w-[492px]'}
+          title={'Add a Profile Photo'}
         >
           <ImageCropper
-            updateAvatar={updateAvatarHandler}
             closeModal={() => setModalUpdateAvatarOpen(false)}
+            updateAvatar={updateAvatarHandler}
           />
         </Modal.Content>
       </Modal>

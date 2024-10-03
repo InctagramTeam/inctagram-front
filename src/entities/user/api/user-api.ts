@@ -1,14 +1,14 @@
-import { axiosWithAuth } from '@/shared/api/interceptors'
 import { GetAvatar } from '@/entities/user/model/types/user.types'
+import { axiosWithAuth } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
 
 export class UserService {
-  async getAvatar(id: number) {
-    return await axiosWithAuth.get<GetAvatar>(`/profile/avatar/${id}`).then(res => res.data)
-  }
-
   async deleteAvatar() {
     return await axiosWithAuth.delete<null>(`/profile/avatar`)
+  }
+
+  async getAvatar(id: number) {
+    return await axiosWithAuth.get<GetAvatar>(`/profile/avatar/${id}`).then(res => res.data)
   }
 
   async updateAvatar(formData: FormData) {

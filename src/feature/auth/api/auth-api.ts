@@ -1,10 +1,10 @@
 import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user.types'
 import {
+  MeResponse,
   NewPasswordRequestArgs,
   RecoveryPasswordArgs,
   SignUpRequest,
   getContentType,
-  MeResponse,
 } from '@/feature'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
@@ -40,6 +40,10 @@ export class AuthApi {
     }
   }
 
+  async me() {
+    return await axiosWithAuth.get<MeResponse>(`auth/me`).then(res => res.data)
+  }
+
   async passwordRecovery(email: string, recaptchaValue: string) {
     return await axiosNotAuthorized.post<null, AxiosResponse<any>, RecoveryPasswordArgs>(
       `auth/password-recovery`,
@@ -71,10 +75,6 @@ export class AuthApi {
     }
 
     return response
-  }
-
-  async me() {
-    return await axiosWithAuth.get<MeResponse>(`auth/me`).then(res => res.data)
   }
 }
 
