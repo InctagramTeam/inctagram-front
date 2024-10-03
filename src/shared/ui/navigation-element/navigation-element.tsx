@@ -15,6 +15,7 @@ import { usePathname } from 'next/navigation'
 
 type CustomProps = {
   name: string
+  onClick?: () => void
   onlyIcon?: boolean
 } & CustomButtonProps
 
@@ -32,7 +33,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
     ref: ElementRef<T>
   ): ReturnComponent => {
-    const { asComponent, className, disabled, name, onlyIcon, startIcon, ...rest } = props
+    const { asComponent, className, disabled, name, onClick, onlyIcon, startIcon, ...rest } = props
 
     const pathname = usePathname()
     const isActive = props.href && pathname?.startsWith(props.href)
@@ -52,6 +53,9 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
         className
       ),
     }
+    const handleClick = () => {
+      onClick?.()
+    }
 
     return (
       <TooltipProvider>
@@ -63,6 +67,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
               className={classes.link}
               disabled={disabled}
               href={''}
+              onClick={handleClick}
               ref={ref}
               startIcon={
                 (props.href || startIcon) && (

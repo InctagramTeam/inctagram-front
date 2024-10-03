@@ -1,8 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-import { SignUpForm, SignUpFormValues } from '@/feature'
-import { useSignUp } from '@/feature/auth/api/hooks/useSignUp'
+import { SignUpForm, SignUpFormValues, useSignUp } from '@/feature'
 import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import dynamic from 'next/dynamic'

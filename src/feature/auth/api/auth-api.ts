@@ -6,7 +6,6 @@ import {
   getContentType,
   MeResponse,
 } from '@/feature'
-import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 import { AxiosResponse } from 'axios'
@@ -34,8 +33,11 @@ export class AuthApi {
   }
 
   async logout() {
-    removeTokensStorage()
-    localStorage?.removeItem('user')
+    const response = await axiosWithAuth.post('auth/logout')
+
+    if (response.status === 204) {
+      localStorage?.removeItem('accessToken')
+    }
   }
 
   async passwordRecovery(email: string, recaptchaValue: string) {
