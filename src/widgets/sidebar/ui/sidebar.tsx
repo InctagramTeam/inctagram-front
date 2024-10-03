@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react'
 
+import { LogoutModal, useLogout } from '@/feature'
 import { NavigationElement, ReturnComponent, cn } from '@/shared'
 import { LogOutIcon } from '@/shared/assets/icons'
 import { useBreakpointMode } from '@/widgets/sidebar/model'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
-import { LogoutModal, useLogout } from '@/feature'
 
 type Props = {
   isAuth: boolean
@@ -68,14 +68,14 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
             <NavigationElement
               className={classes.button}
               name={t.button.logOut}
-              onlyIcon={onlyIcons}
               onClick={handleClickLogoutBtn}
+              onlyIcon={onlyIcons}
               startIcon={<LogOutIcon />}
             />
             <LogoutModal
-              open={isOpenLogoutModal}
-              onOpenChange={setIsOpenLogoutModal}
               logout={handleLogout}
+              onOpenChange={setIsOpenLogoutModal}
+              open={isOpenLogoutModal}
             />
           </>
         )}

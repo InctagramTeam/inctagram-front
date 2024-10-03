@@ -1,29 +1,29 @@
-import { useMutation } from '@tanstack/react-query'
 import authApi from '@/feature/auth/api/auth-api'
-import { toast } from '@/shared/ui/toast/use-toast'
-import { useRouter } from 'next/router'
-import { AxiosError } from 'axios'
 import { AuthRoutes } from '@/shared'
+import { toast } from '@/shared/ui/toast/use-toast'
+import { useMutation } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
+import { useRouter } from 'next/router'
 
 export const useLogout = () => {
   const router = useRouter()
-  const mutation = useMutation({
-    mutationKey: ['logout'],
+
+  return useMutation({
     mutationFn: async () => {
       return authApi.logout()
     },
-    onSuccess: _ => {
-      router.replace(AuthRoutes.SIGN_IN)
-    },
+    mutationKey: ['logout'],
     onError: (error: AxiosError) => {
       if (error) {
         toast({
-          title: 'error',
           description: error.message,
+          title: 'error',
           variant: 'destructive',
         })
       }
     },
+    onSuccess: _ => {
+      router.replace(AuthRoutes.SIGN_IN)
+    },
   })
-  return mutation
 }
