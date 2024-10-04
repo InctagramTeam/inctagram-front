@@ -1,9 +1,7 @@
-import { getRequestParams } from '@/feature/profile/api/geo-db-cities-api'
-import { APIResponse, City } from '@/feature/profile/model/types'
-import { Country } from '@/feature/profile/model/types/geo-db-cities'
+import geoDbCitiesApi from '@/feature/profile/api/geo-db-cities-api'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-type ResponseData<T> = {
+export type ResponseData<T> = {
   data: T[]
   nextOffset: number
 }
@@ -11,15 +9,22 @@ type ResponseData<T> = {
 type Props = {
   countryIds?: string
   key: 'cities' | 'countries'
-  locale: string
-  selectorFn: ({
-    countryIds,
-    locale,
-    pageParam,
-  }: getRequestParams) => ResponseData<City> | ResponseData<Country>
+  locale?: string
 }
 
-export function useDataSelectorWithPagination({ key, locale, selectorFn, countryIds }: Props) {
+export function useDataSelectorWithPagination({ key, locale = 'en', countryIds }: Props) {
+  const fetchFunction = async ({ pageParam = 1 }) => {
+    let func
+
+    if (countryIds) {
+      func = () => geoDbCitiesApi.getCities({ pageParam, locale, countryIds })
+    } else {
+      func = () => geoDbCitiesApi.getCountries({ pageParam, locale })
+    }
+
+    return func()
+  }
+
   const {
     data,
     error,
@@ -32,8 +37,8 @@ export function useDataSelectorWithPagination({ key, locale, selectorFn, country
     isFetchingPreviousPage,
     status,
   } = useInfiniteQuery({
-    queryKey: [key],
-    queryFn: ({ pageParam }) => selectorFn({ pageParam, locale, countryIds }),
+    queryKey: [key, { locale }],
+    queryFn: fetchFunction,
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.nextOffset + 10,
   })

@@ -1,13 +1,14 @@
 'use client'
 
 import * as React from 'react'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
 import { useDataSelectorWithPagination } from '@/feature/profile/model/utils/hooks/use-data-selector-with-pagination'
-import { ReturnComponent, SelectItem, Text, cn } from '@/shared'
+import { ButtonSpinner, ReturnComponent, SelectItem, Text, cn } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
 import * as SelectRadix from '@radix-ui/react-select'
+import { useQueryClient } from '@tanstack/react-query'
 
 import { SelectContent, SelectTrigger } from './'
 
@@ -30,15 +31,17 @@ export type SelectOptionsProps<T extends number | string> = {
 
 type OwnProps<T extends number | string> = {
   className?: string
+  countryIds?: string
   direction?: SelectContentMenuDirection
   disabled?: boolean
   label?: string
+  locale?: string
   name?: string
   options?: SelectOptionsProps<T>[]
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
-  typeRequest?: 'cities' | 'countries'
+  typeRequest: 'cities' | 'countries'
   variant?: 'pagination' | 'primary'
 }
 
@@ -74,6 +77,8 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     required,
     value,
     typeRequest,
+    locale,
+    countryIds,
     variant = 'primary',
     ...rest
   } = props
@@ -107,23 +112,44 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
 
   const { inView, ref } = useInView()
 
-  const { data, fetchNextPage, status } = useDataSelectorWithPagination({
-    key: typeRequest,
-  })
+  const queryClient = useQueryClient()
+
+  const { data, fetchNextPage, status, isFetchingNextPage, hasNextPage } =
+    useDataSelectorWithPagination({
+      key: typeRequest,
+      locale,
+      countryIds,
+    })
 
   const content = data?.pages.map((page, index) => (
     <React.Fragment key={index}>
-      {page.data.map(city => (
-        <SelectItem className={classes.item} key={city.name} value={city.name}>
-          <span className={classes.text}>
-            {/*{option.label}*/}
-            {/*{option.icon}*/}
-            {city.name}
-          </span>
-        </SelectItem>
-      ))}
+      {page.data.map((city, index) => {
+        if (page.data.length === index + 1) {
+          return (
+            <SelectItem className={classes.item} key={city.name} ref={ref} value={city.name}>
+              <span className={classes.text}>{city.name}</span>
+            </SelectItem>
+          )
+        }
+
+        return (
+          <SelectItem className={classes.item} key={city.name} value={city.name}>
+            <span className={classes.text}>{city.name}</span>
+          </SelectItem>
+        )
+      })}
     </React.Fragment>
   ))
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['cities', 'countries'] })
+  }, [queryClient, locale])
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage()
+    }
+  }, [inView])
 
   return (
     <div className={classes.className}>
@@ -150,15 +176,9 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
           <ChevronIcon className={cn('chevron-up rotate-180', classes.chevron)} />
           <ChevronIcon className={cn('chevron-down', classes.chevron)} />
         </SelectTrigger>
-        <SelectContent
-          className={classes.content}
-          // onScroll={handleScroll}
-          position={position}
-        >
+        <SelectContent className={classes.content} position={position}>
           {content}
-          <button onClick={() => fetchNextPage()} type={'button'}>
-            Load more
-          </button>
+          {isFetchingNextPage && <ButtonSpinner className={'w-full'} height={20} width={20} />}
         </SelectContent>
       </Select>
     </div>

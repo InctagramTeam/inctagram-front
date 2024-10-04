@@ -5,7 +5,7 @@ import { ProfileInfoFormValues } from '@/feature/profile'
 import { ControlledSelect } from '@/shared'
 
 export const SelectGroup = ({ control }: { control: Control<ProfileInfoFormValues> }) => {
-  const [countryId, setCountryId] = useState()
+  const [countryId, setCountryId] = useState('Q159')
 
   return (
     <div className={'flex justify-between gap-6'}>
@@ -15,13 +15,16 @@ export const SelectGroup = ({ control }: { control: Control<ProfileInfoFormValue
         label={'Select your country'}
         name={'country'}
         placeholder={'Country'}
+        typeRequest={'countries'}
       />
       <ControlledSelect
         className={'w-full'}
         control={control}
+        countryIds={countryId}
         label={'Select your city'}
         name={'city'}
         placeholder={'City'}
+        typeRequest={'cities'}
       />
     </div>
   )

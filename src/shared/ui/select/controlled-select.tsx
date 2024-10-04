@@ -1,6 +1,7 @@
 'use client'
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
+import { useTranslation } from '@/shared'
 import { SelectBox, SelectProps } from '@/shared/ui'
 
 type Props<T extends FieldValues> = Omit<SelectProps, 'id' | 'onChange' | 'value'> &
@@ -24,5 +25,7 @@ export const ControlledSelect = <T extends FieldValues>({
     shouldUnregister,
   })
 
-  return <SelectBox {...rest} {...field} onChange={onChange} value={value} />
+  const { locale, t } = useTranslation()
+
+  return <SelectBox {...rest} {...field} locale={locale} onChange={onChange} value={value} />
 }
