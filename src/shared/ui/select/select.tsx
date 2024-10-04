@@ -4,11 +4,10 @@ import * as React from 'react'
 import { ReactNode } from 'react'
 import { useInView } from 'react-intersection-observer'
 
+import { useDataSelectorWithPagination } from '@/feature/profile/model/utils/hooks/use-data-selector-with-pagination'
 import { ReturnComponent, SelectItem, Text, cn } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
 import * as SelectRadix from '@radix-ui/react-select'
-import { useInfiniteQuery } from '@tanstack/react-query'
-import axios from 'axios'
 
 import { SelectContent, SelectTrigger } from './'
 
@@ -39,6 +38,7 @@ type OwnProps<T extends number | string> = {
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
+  typeRequest?: 'cities' | 'countries'
   variant?: 'pagination' | 'primary'
 }
 
@@ -48,33 +48,6 @@ export type SelectContentMenuDirection =
   | 'default'
   | 'top left'
   | 'top right'
-
-interface City {
-  country: string
-  countryCode: string
-  id: number
-  latitude: number
-  longitude: number
-  name: string
-  region: string
-  regionCode: number
-  type: string
-  wikiDataId: string
-}
-
-interface Link {
-  href: string
-  rel: string
-}
-
-interface APIResponse {
-  data: City[]
-  links: Link[]
-  metadata: {
-    currentOffset: number
-    totalCount: number
-  }
-}
 
 // mapping classes
 export const mapDirectionClass: Record<SelectContentMenuDirection, string> = {
@@ -100,11 +73,10 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     position,
     required,
     value,
+    typeRequest,
     variant = 'primary',
     ...rest
   } = props
-
-  const { inView, ref } = useInView()
 
   const optionalClasses = [mapDirectionClass[direction ?? 'default']]
 
@@ -133,66 +105,10 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     ),
   }
 
-  const fetchCities = async ({
-    offsetParam = 0,
-  }): Promise<{ cities: City[]; nextOffset: number }> => {
-    const response = await axios.get<APIResponse>(
-      `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=${offsetParam}&limit=10&countryIds=Q159&types=CITY`,
-      {
-        headers: {
-          'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
-          'X-RapidAPI-Key': 'be85c08e71msh53680970446a6c9p1be9ecjsne9e26c037875',
-        },
-      }
-    )
+  const { inView, ref } = useInView()
 
-    return { cities: response.data.data, nextOffset: offsetParam }
-  }
-
-  // const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage, status } = useInfiniteQuery({
-  //   queryKey: ['cities'],
-  //   queryFn: pageParam => fetchCities(pageParam),
-  //   initialPageParam: 0,
-  //   getNextPageParam: lastPage => {
-  //     console.log(lastPage)
-  //   },
-  // })
-
-  const {
-    status,
-    data,
-    error,
-    isFetching,
-    isFetchingNextPage,
-    isFetchingPreviousPage,
-    fetchNextPage,
-    fetchPreviousPage,
-    hasNextPage,
-    hasPreviousPage,
-  } = useInfiniteQuery({
-    queryKey: ['cities'],
-    queryFn: async ({
-      pageParam,
-    }): Promise<{
-      data: City[]
-      nextOffset: number
-    }> => {
-      const response = await axios
-        .get<APIResponse>(
-          `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?offset=${pageParam}&limit=10&countryIds=Q159&types=CITY&languageCode=RU`,
-          {
-            headers: {
-              'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
-              'X-RapidAPI-Key': 'be85c08e71msh53680970446a6c9p1be9ecjsne9e26c037875',
-            },
-          }
-        )
-        .then(response => response.data)
-
-      return { data: response.data, nextOffset: pageParam }
-    },
-    initialPageParam: 0,
-    getNextPageParam: lastPage => lastPage.nextOffset + 10,
+  const { data, fetchNextPage, status } = useDataSelectorWithPagination({
+    key: typeRequest,
   })
 
   const content = data?.pages.map((page, index) => (

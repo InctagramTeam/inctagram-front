@@ -19,12 +19,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { ProfileInfoFormValues, profileInfoSchema } from '../../model'
 
-// const geonames = Geonames({
-//   username: 'inctagram',
-//   lan: 'en',
-//   encoding: 'JSON',
-// })
-
 type Props = {
   className?: string
   disabled?: boolean
