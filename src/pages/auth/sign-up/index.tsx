@@ -13,11 +13,13 @@ const DynamicSentEmailModal = dynamic(
 const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
   const [open, setOpen] = useState(false)
+  const [emailUser, setEmailUser] = useState('')
   const { t } = useTranslation()
   const { xs } = useResponsive()
   const { data, isPending, isSuccess, mutate } = useSignUp()
   const handleSubmitForm = (formData: SignUpFormValues) => {
     mutate(formData) //в mutate передаются данные, которые необходимо отправить на сервер для выполнения мутации
+    setEmailUser(formData.email)
   }
 
   useEffect(() => {
@@ -45,11 +47,7 @@ const SignUpPage = () => {
         ref={ref}
       />
       {data && (
-        <DynamicSentEmailModal
-          email={data.data.email}
-          onOpenChange={handleChangeOpen}
-          open={open}
-        />
+        <DynamicSentEmailModal email={emailUser} onOpenChange={handleChangeOpen} open={open} />
       )}
     </PageWrapper>
   )
