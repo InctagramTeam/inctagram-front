@@ -1,24 +1,24 @@
-import { IUser } from 'src/entities/user/model/types/user'
+import { GetAvatar } from '@/entities/user/model/types/user.types'
+import { axiosWithAuth } from '@/shared/api/interceptors'
+import { AxiosResponse } from 'axios'
 
-export interface IProfileResponse {
-  statistics: {
-    label: string
-    value: string
-  }[]
-  user: IUser
-}
-
-class UserService {
-  // private BASE_URL = '/user/profile'
-
-  async getProfile() {
-    // const response = await axiosWithAuth.get<IProfileResponse>(this.BASE_URL)
-    // return response.data
+export class UserService {
+  async deleteAvatar() {
+    return await axiosWithAuth.delete<null>(`/profile/avatar`)
   }
 
-  async update(data: any) {
-    // const response = await axiosWithAuth.put(this.BASE_URL, data)
-    // return response.data
+  async getAvatar(id: number) {
+    return await axiosWithAuth.get<GetAvatar>(`/profile/avatar/${id}`).then(res => res.data)
+  }
+
+  async updateAvatar(formData: FormData) {
+    return await axiosWithAuth
+      .put<null, AxiosResponse<null>, FormData>('/profile/avatar', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(res => res.data)
   }
 }
 

@@ -54,13 +54,14 @@ const AvatarImage = React.forwardRef<
 AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
 type AvatarFallbackProps = {
+  children?: React.ReactNode
   userName?: string
 }
 
 const AvatarFallback = React.forwardRef<
   ElementRef<typeof AvatarPrimitive.Fallback>,
   AvatarFallbackProps & ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, userName, ...props }, ref) => (
+>(({ children, className, userName, ...props }, ref) => (
   <AvatarPrimitive.Fallback
     className={cn(
       'flex h-full w-full items-center justify-center rounded-full bg-muted',
@@ -69,7 +70,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     {...props}
   >
-    {userName?.[0] || 'U'}
+    {children || userName?.[0] || 'U'}
   </AvatarPrimitive.Fallback>
 ))
 

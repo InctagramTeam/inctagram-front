@@ -1,5 +1,6 @@
-import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user'
+import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user.types'
 import {
+  MeResponse,
   NewPasswordRequestArgs,
   RecoveryPasswordArgs,
   SignUpRequest,
@@ -37,6 +38,10 @@ export class AuthApi {
     if (response.status === 204) {
       localStorage?.removeItem('accessToken')
     }
+  }
+
+  async me() {
+    return await axiosWithAuth.get<MeResponse>(`auth/me`).then(res => res.data)
   }
 
   async passwordRecovery(email: string, recaptchaValue: string) {

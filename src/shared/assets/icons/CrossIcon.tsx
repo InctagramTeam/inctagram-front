@@ -5,9 +5,9 @@ const CheckIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
     ref={ref}
     {...props}
     fill={'none'}
-    height={'16'}
+    height={'14'}
     viewBox={'0 0 14 14'}
-    width={'16'}
+    width={'14'}
     xmlns={'http://www.w3.org/2000/svg'}
   >
     <path
