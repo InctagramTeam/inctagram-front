@@ -1,12 +1,22 @@
 'use client'
 import * as React from 'react'
-import { useId } from 'react'
+import { ComponentProps, useId } from 'react'
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
-import { Button, Popover, PopoverContent, PopoverTrigger, Text, cn } from '@/shared'
+import {
+  AuthRoutes,
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Text,
+  cn,
+  useTranslation,
+} from '@/shared'
 import { CalendarIcon, CalendarOutlineIcon } from '@/shared/assets/icons'
 import { Calendar, CalendarProps } from '@/shared/ui/date-picker/calendar'
 import { format, isDate } from 'date-fns'
+import Link from 'next/link'
 
 export type DatePickerProps = {
   calendarClassName?: string
@@ -14,6 +24,7 @@ export type DatePickerProps = {
   errorMessage?: string
   id?: string
   label?: string
+  labelProps?: ComponentProps<'label'>
   name?: string
   onOpenChange?: (value: boolean) => void
   // onValueChange: (value: string) => void
@@ -36,6 +47,7 @@ export const ControlledDataPicker = <T extends FieldValues>({
   onOpenChange,
   open,
   rules,
+  labelProps = {},
   shouldUnregister,
   textTrigger,
   triggerClassName,
@@ -65,11 +77,17 @@ export const ControlledDataPicker = <T extends FieldValues>({
       triggerClassName
     ),
     calendar: cn(`border-[1px] !border-Dark-300 bg-Dark-500 rounded-[2px] text-Light-100`),
-    error: cn(`block !text-Danger-500 text-small-text-12`),
-    label: cn(`inline !text-Light-900 text-regular-text-14 text-left`, disabled && 'text-Dark-100'),
+    error: cn(`!text-Danger-500 text-small-text-12`),
+    label: cn(
+      `inline !text-Light-900 text-regular-text-14 text-left`,
+      labelProps?.className,
+      disabled && 'text-Dark-100'
+    ),
     popoverContent: cn(`w-[300px] p-0 !border-none`, calendarClassName),
     triggerIcon: cn(`h-[24px] w-[24px] fill-Light-100`, error?.message && `fill-Danger-500`),
   }
+
+  const { t } = useTranslation()
 
   const generatedId = useId()
   const buttonId = id ?? generatedId
@@ -80,6 +98,7 @@ export const ControlledDataPicker = <T extends FieldValues>({
       <Popover onOpenChange={onOpenChange} open={open}>
         {label && (
           <Text
+            {...labelProps}
             asComponent={'label'}
             className={classes.label}
             htmlFor={buttonId}
@@ -114,7 +133,15 @@ export const ControlledDataPicker = <T extends FieldValues>({
         </PopoverContent>
         {error?.message && (
           <span aria-labelledby={buttonId} className={classes.error} id={errorId} role={'alert'}>
-            {error.message}
+            {error.message + ' '}
+            <Text
+              asComponent={Link}
+              className={classes.error}
+              href={AuthRoutes.PRIVACY}
+              variant={'small-link_12'}
+            >
+              {t.pages.privacyPolice.title}
+            </Text>
           </span>
         )}
       </Popover>

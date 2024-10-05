@@ -101,6 +101,7 @@ export const ProfileInfoForm = forwardRef(
             control={control}
             defaultValue={t.placeholders.dateOfBirth}
             label={t.label.dateOfBirth}
+            labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
             name={'dateOfBirth'}
           />
           <SelectGroup control={control} />
