@@ -18,7 +18,13 @@ export const NavigationButton = ({
   }
 
   return (
-    <button aria-label={type} className={classes.item} disabled={disabled} onClick={onClick}>
+    <button
+      aria-label={type}
+      className={classes.item}
+      disabled={disabled}
+      onClick={onClick}
+      type={'button'}
+    >
       <ChevronIcon
         aria-hidden
         className={clsx(classes.icon, type === 'next' ? '-rotate-90' : 'rotate-90')}

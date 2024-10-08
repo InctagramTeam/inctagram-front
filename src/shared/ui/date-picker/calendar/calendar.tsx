@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { DayModifiers, DayPicker } from 'react-day-picker'
+import { DayPicker } from 'react-day-picker'
 
 import { ChevronIcon } from '@/shared/assets/icons'
 import { EMPTY_STRING } from '@/shared/constants/base'
@@ -9,10 +9,6 @@ export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
 // about calendar in shad-cn https://ui.shadcn.com/docs/components/calendar
 const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) => {
-  const modifiers: DayModifiers = {
-    weekend: (date: Date) => date.getDay() === 0 || date.getDay() === 6,
-  }
-
   const dayPickerClassNames = {
     caption: 'flex justify-between items-center',
     caption_label: 'text-bold-text-16 text-Light-100 pl-[8px]',
@@ -63,10 +59,8 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
         IconLeft: () => <ChevronIcon className={'h-[20px] w-[20px] rotate-90'} />,
         IconRight: () => <ChevronIcon className={'h-[20px] w-[20px] -rotate-90'} />,
       }}
-      modifiers={modifiers}
       modifiersClassNames={modifiersClassNames}
       showOutsideDays={showOutsideDays}
-      weekStartsOn={1}
       {...props}
     />
   )

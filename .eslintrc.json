@@ -3,6 +3,7 @@
   "rules": {
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-nested-ternary": "off",
+    "perfectionist/sort-objects": "off",
     "react-hooks/exhaustive-deps": "off",
     "ulbi-tv-plugin/path-checker": "error"
   },

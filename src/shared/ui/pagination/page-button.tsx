@@ -21,6 +21,7 @@ export const PageButton = ({ disabled, onClick, page, selected }: Props): Return
       className={classes.pageButton(selected)}
       disabled={selected || disabled}
       onClick={onClick}
+      type={'button'}
     >
       {page}
     </button>

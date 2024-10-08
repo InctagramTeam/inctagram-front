@@ -1,20 +1,16 @@
 'use client'
 
 import * as React from 'react'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 
-import { ReturnComponent, cn } from '@/shared'
+import { useDataSelectorWithPagination } from '@/feature/profile/model/utils/hooks/use-data-selector-with-pagination'
+import { ButtonSpinner, ReturnComponent, SelectItem, Text, cn } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
-import {
-  ALIGN_CLASSES,
-  DIRECTION_CLASSES,
-  FLEX_WRAP_CLASSES,
-  GAP_CLASSES,
-  JUSTIFY_CLASSES,
-} from '@/shared/ui/flex/model/constants/mapping-flex-classes'
 import * as SelectRadix from '@radix-ui/react-select'
+import { useQueryClient } from '@tanstack/react-query'
 
-import { SelectContent, SelectItem, SelectLabel, SelectTrigger } from './'
+import { SelectContent, SelectTrigger } from './'
 
 const Select: typeof SelectRadix.Root = SelectRadix.Root
 const SelectGroup: typeof SelectRadix.Group = SelectRadix.Group
@@ -35,14 +31,17 @@ export type SelectOptionsProps<T extends number | string> = {
 
 type OwnProps<T extends number | string> = {
   className?: string
+  countryIds?: string
   direction?: SelectContentMenuDirection
   disabled?: boolean
   label?: string
+  locale?: string
   name?: string
-  options: SelectOptionsProps<T>[]
+  options?: SelectOptionsProps<T>[]
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
+  typeRequest: 'cities' | 'countries'
   variant?: 'pagination' | 'primary'
 }
 
@@ -62,9 +61,9 @@ export const mapDirectionClass: Record<SelectContentMenuDirection, string> = {
   'top right': `bottom-[100%] left-0`,
 }
 
-type Props = ChangeValueProps<number | string> & OwnProps<number | string>
+export type SelectProps = ChangeValueProps<number | string> & OwnProps<number | string>
 
-const SelectBox = (props: Props): ReturnComponent => {
+const SelectBox = (props: SelectProps): ReturnComponent => {
   const {
     className,
     direction,
@@ -77,6 +76,9 @@ const SelectBox = (props: Props): ReturnComponent => {
     position,
     required,
     value,
+    typeRequest,
+    locale,
+    countryIds,
     variant = 'primary',
     ...rest
   } = props
@@ -90,7 +92,12 @@ const SelectBox = (props: Props): ReturnComponent => {
       variant === 'pagination' ? 'w-[50px]' : 'w-full',
       direction === 'top left' && `bottom-[100%]`
     ),
-    item: cn(variant === 'pagination' ? 'w-[50px]' : 'w-[210px]'),
+    item: cn(variant === 'pagination' ? 'w-[50px]' : 'w-full'),
+    label: cn(
+      `_Label_ mb-[1px] text-Dark-100 text-regular-text-14 text-Light-900`,
+      { [`text-Dark-100`]: disabled },
+      disabled && `text-Dark-300 active:not:disabled:text-Light-100 disabled:cursor-not-allowed`
+    ),
     optionalClasses,
     text: cn(
       `flex items-center gap-[12px] text-regular-text-14`,
@@ -99,43 +106,82 @@ const SelectBox = (props: Props): ReturnComponent => {
     trigger: cn(
       variant === 'pagination'
         ? 'w-[50px] justify-center gap-[1px] py-0 pl-[6px] pr-[1px]'
-        : 'w-[210px]'
+        : 'w-full'
     ),
   }
 
-  return (
-    <Select
-      {...rest}
-      disabled={disabled}
-      name={name}
-      onValueChange={onChange}
-      required={required}
-      value={value as string}
-    >
-      <SelectTrigger className={classes.trigger}>
-        <SelectValue placeholder={placeholder} />
-        <ChevronIcon className={cn('chevron-up rotate-180', classes.chevron)} />
-        <ChevronIcon className={cn('chevron-down', classes.chevron)} />
-      </SelectTrigger>
-      <SelectContent className={classes.content} position={position}>
-        {label && <SelectLabel>{label}</SelectLabel>}
+  const { inView, ref } = useInView()
 
-        {options.map(option => (
-          <SelectItem
-            className={classes.item}
-            disabled={option.disabled}
-            key={option.value}
-            value={option.value as string}
-          >
-            <span className={classes.text}>
-              {option.label}
-              {option.icon}
-              {option.name}
-            </span>
+  const queryClient = useQueryClient()
+
+  const { data, fetchNextPage, status, isFetchingNextPage, hasNextPage } =
+    useDataSelectorWithPagination({
+      key: typeRequest,
+      locale,
+      countryIds,
+    })
+
+  const content = data?.pages.map((page, index) => (
+    <React.Fragment key={index}>
+      {page.data.map((city, index) => {
+        if (page.data.length === index + 1) {
+          return (
+            <SelectItem className={classes.item} key={city.name} ref={ref} value={city.name}>
+              <span className={classes.text}>{city.name}</span>
+            </SelectItem>
+          )
+        }
+
+        return (
+          <SelectItem className={classes.item} key={city.name} value={city.name}>
+            <span className={classes.text}>{city.name}</span>
           </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+        )
+      })}
+    </React.Fragment>
+  ))
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ['cities', 'countries'] })
+  }, [queryClient, locale])
+
+  useEffect(() => {
+    if (inView) {
+      fetchNextPage()
+    }
+  }, [inView])
+
+  return (
+    <div className={classes.className}>
+      <Select
+        {...rest}
+        disabled={disabled}
+        name={name}
+        onValueChange={onChange}
+        required={required}
+        value={value as string}
+      >
+        {label && (
+          <Text
+            asComponent={'label'}
+            className={classes.label}
+            htmlFor={name}
+            variant={'regular_text_16'}
+          >
+            {label}
+          </Text>
+        )}
+        <SelectTrigger className={classes.trigger} id={name}>
+          <SelectValue placeholder={placeholder} />
+          <ChevronIcon className={cn('chevron-up rotate-180', classes.chevron)} />
+          <ChevronIcon className={cn('chevron-down', classes.chevron)} />
+        </SelectTrigger>
+        <SelectContent className={classes.content} position={position}>
+          {content}
+          {isFetchingNextPage && <ButtonSpinner className={'w-full'} height={20} width={20} />}
+        </SelectContent>
+      </Select>
+    </div>
   )
 }
 

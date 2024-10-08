@@ -1,5 +1,5 @@
-import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 import * as React from 'react'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
 import { cn } from '@/shared/lib/utils'
 import { ReturnComponent } from '@/shared/types'
@@ -28,7 +28,7 @@ export const SelectTrigger = forwardRef<
   }
 
   return (
-    <SelectRadix.Trigger {...props} className={classes.trigger} ref={ref}>
+    <SelectRadix.Trigger className={classes.trigger} ref={ref} {...props}>
       {children}
       <SelectRadix.Icon asChild>{icon}</SelectRadix.Icon>
     </SelectRadix.Trigger>
