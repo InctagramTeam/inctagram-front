@@ -4,8 +4,8 @@ import * as React from 'react'
 import { ReactNode, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { useDataSelectorWithPagination } from '@/feature/profile/model/utils/hooks/use-data-selector-with-pagination'
-import { ButtonSpinner, ReturnComponent, SelectItem, Text, cn } from '@/shared'
+import { useQueryDataWithPagination } from '@/feature/profile/model/utils/hooks/use-query-data-with-pagination'
+import { ButtonSpinner, ReturnComponent, SelectItem, Text, cn, useTranslation } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
 import * as SelectRadix from '@radix-ui/react-select'
 import { useQueryClient } from '@tanstack/react-query'
@@ -35,12 +35,12 @@ type OwnProps<T extends number | string> = {
   direction?: SelectContentMenuDirection
   disabled?: boolean
   label?: string
-  locale?: string
   name?: string
   options?: SelectOptionsProps<T>[]
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
+  setCountryId?: (id: string) => void
   typeRequest: 'cities' | 'countries'
   variant?: 'pagination' | 'primary'
 }
@@ -77,7 +77,7 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
     required,
     value,
     typeRequest,
-    locale,
+    setCountryId,
     countryIds,
     variant = 'primary',
     ...rest
@@ -111,30 +111,38 @@ const SelectBox = (props: SelectProps): ReturnComponent => {
   }
 
   const { inView, ref } = useInView()
+  const { locale, t } = useTranslation()
 
   const queryClient = useQueryClient()
 
   const { data, fetchNextPage, status, isFetchingNextPage, hasNextPage } =
-    useDataSelectorWithPagination({
+    useQueryDataWithPagination({
       key: typeRequest,
       locale,
       countryIds,
     })
 
+  //TODO - реализовать получение id выбранного SelectItem
+  const setCountryIdHandler = (event: any) => {}
+
   const content = data?.pages.map((page, index) => (
     <React.Fragment key={index}>
-      {page.data.map((city, index) => {
+      {page.data.map((el, index) => {
         if (page.data.length === index + 1) {
           return (
-            <SelectItem className={classes.item} key={city.name} ref={ref} value={city.name}>
-              <span className={classes.text}>{city.name}</span>
+            <SelectItem className={classes.item} key={el.name} ref={ref} value={el.name}>
+              <span className={classes.text} onClick={setCountryIdHandler}>
+                {el.name}
+              </span>
             </SelectItem>
           )
         }
 
         return (
-          <SelectItem className={classes.item} key={city.name} value={city.name}>
-            <span className={classes.text}>{city.name}</span>
+          <SelectItem className={classes.item} key={el.name} value={el.name}>
+            <span className={classes.text} onClick={setCountryIdHandler}>
+              {el.name}
+            </span>
           </SelectItem>
         )
       })}

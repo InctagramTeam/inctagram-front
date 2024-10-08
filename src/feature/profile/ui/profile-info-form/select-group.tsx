@@ -5,6 +5,7 @@ import { ProfileInfoFormValues } from '@/feature/profile'
 import { ControlledSelect } from '@/shared'
 
 export const SelectGroup = ({ control }: { control: Control<ProfileInfoFormValues> }) => {
+  //TODO - реализовать сохранение id страны для запроса
   const [countryId, setCountryId] = useState('Q159')
 
   return (
@@ -15,6 +16,7 @@ export const SelectGroup = ({ control }: { control: Control<ProfileInfoFormValue
         label={'Select your country'}
         name={'country'}
         placeholder={'Country'}
+        setCountryId={setCountryId}
         typeRequest={'countries'}
       />
       <ControlledSelect
