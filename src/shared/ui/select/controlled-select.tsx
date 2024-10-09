@@ -25,7 +25,5 @@ export const ControlledSelect = <T extends FieldValues>({
     shouldUnregister,
   })
 
-  const { locale, t } = useTranslation()
-
-  return <SelectBox {...rest} {...field} locale={locale} onChange={onChange} value={value} />
+  return <SelectBox {...rest} {...field} onChange={onChange} value={value} />
 }

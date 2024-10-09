@@ -1,5 +1,5 @@
 import { APIResponse, City } from '@/feature/profile/model/types'
-import { Country } from '@/feature/profile/model/types/geo-db-cities'
+import { Country } from '@/feature/profile/model/types/geo-db-cities.types'
 import axios from 'axios'
 
 export type getRequestParams = {

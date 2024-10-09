@@ -6,10 +6,7 @@ import { TabContent, getSettingsLayout } from '@/shared'
 
 const General = () => {
   const onSubmitProfileSettings = (formData: ProfileInfoFormValues) => {
-    const profile = { ...formData, dateOfBirth: '2000-09-28T21:00:00.000Z' }
-    // const profile = { ...formData, dateOfBirth: formData.dateOfBirth.toISOString() }
-
-    profileApi.createNewProfile(profile)
+    profileApi.createProfile({ ...formData })
   }
 
   return (

@@ -12,7 +12,7 @@ type Props = {
   locale?: string
 }
 
-export function useDataSelectorWithPagination({ key, locale = 'en', countryIds }: Props) {
+export function useQueryDataWithPagination({ key, locale = 'en', countryIds }: Props) {
   const fetchFunction = async ({ pageParam = 1 }) => {
     let func
 
