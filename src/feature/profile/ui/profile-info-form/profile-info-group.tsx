@@ -1,6 +1,13 @@
-import React, { ComponentPropsWithoutRef, Ref, forwardRef, useImperativeHandle } from 'react'
+import React, {
+  ComponentPropsWithoutRef,
+  Ref,
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+} from 'react'
 import { useForm } from 'react-hook-form'
 
+import authApi from '@/feature/auth/api/auth-api'
 import { SelectGroup } from '@/feature/profile/ui/profile-info-form/select-group'
 import {
   Button,
@@ -16,6 +23,7 @@ import {
   useTranslation,
 } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useQuery } from '@tanstack/react-query'
 
 import { ProfileInfoFormValues, profileInfoSchema } from '../../model'
 
@@ -32,6 +40,8 @@ export const ProfileInfoForm = forwardRef(
     const { className, disabled, onSubmit, ...rest } = props
     const { locale, t } = useTranslation()
     const { xs } = useResponsive()
+
+    const { data: user } = useQuery({ queryFn: authApi.me, queryKey: ['me'] })
 
     const classes = {
       button: 'mb-[30px] px-[24px] py-[6px]',
@@ -52,10 +62,20 @@ export const ProfileInfoForm = forwardRef(
       setError,
       setValue,
     } = useForm<ProfileInfoFormValues>({
-      defaultValues: { firstName: EMPTY_STRING, userName: EMPTY_STRING },
+      // defaultValues: {
+      //   firstName: EMPTY_STRING,
+      //   userName: EMPTY_STRING,
+      // },
       mode: 'onChange',
       resolver: zodResolver(profileInfoSchema(t)),
     })
+
+    useEffect(() => {
+      reset({
+        firstName: user?.profile.firstName,
+        userName: user?.userName,
+      })
+    }, [user])
 
     useImperativeHandle(methodsRef, () => ({ clearErrors, reset, setError, setValue }))
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
@@ -103,7 +123,8 @@ export const ProfileInfoForm = forwardRef(
             label={t.label.dateOfBirth}
             name={'dateOfBirth'}
           />
-          <SelectGroup control={control} />
+          {/*Пока закомментировано, т.к. выдает ошибку*/}
+          {/*<SelectGroup control={control} />*/}
           <ControlledTextarea
             aria-invalid={errors.aboutMe ? 'true' : 'false'}
             control={control}

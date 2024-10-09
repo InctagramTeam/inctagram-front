@@ -1,5 +1,10 @@
 export type Profile = {
-  // поля с сервака (БД)
+  aboutMe?: string | undefined
+  city?: string | undefined
+  dateOfBirth: string
+  firstName: string
+  lastName: string
+  userName: string
 }
 
 export type ProfileSchema = {
