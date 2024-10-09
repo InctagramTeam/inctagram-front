@@ -40,7 +40,6 @@ const AuthProvider = (props: Props) => {
     }
     // if (accessToken) authMe()
   }, [])
-
   /** Проверка на рефреш-токен при переходе на др.страницу - если его нет, то logout() */
   useEffect(() => {
     const refreshToken = Cookies.get('refreshToken')

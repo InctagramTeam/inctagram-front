@@ -26,10 +26,10 @@ export default function MyApp({
 
   const getLayout = Component.getLayout ?? (page => page)
 
-  return getLayout(
+  return (
     <AppQueryClientProvider {...pageProps}>
       <AuthProvider Component={Component}>
-        <Component {...pageProps} />
+        {getLayout(<Component {...pageProps} />)}
         <Toaster />
       </AuthProvider>
     </AppQueryClientProvider>

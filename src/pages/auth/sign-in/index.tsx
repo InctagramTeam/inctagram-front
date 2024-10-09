@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 
-import { SignInForm, SignInFormValues } from '@/feature'
-import { useSignIn } from '@/feature/auth/api/hooks/useSignIn'
+import { SignInForm, SignInFormValues, useSignIn } from '@/feature'
 import {
   EMPTY_STRING,
   ReturnComponent,

@@ -1,12 +1,12 @@
-import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user'
+import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user.types'
 import {
+  MeResponse,
   NewPasswordRequestArgs,
   RecoveryPasswordArgs,
   SignUpRequest,
   getContentType,
 } from '@/feature'
-import { removeTokensStorage } from '@/feature/auth/model/utils/auth.helper'
-import { axiosNotAuthorized } from '@/shared/api/interceptors'
+import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
@@ -33,8 +33,15 @@ export class AuthApi {
   }
 
   async logout() {
-    removeTokensStorage()
-    localStorage?.removeItem('user')
+    const response = await axiosWithAuth.post('auth/logout')
+
+    if (response.status === 204) {
+      localStorage?.removeItem('accessToken')
+    }
+  }
+
+  async me() {
+    return await axiosWithAuth.get<MeResponse>(`auth/me`).then(res => res.data)
   }
 
   async passwordRecovery(email: string, recaptchaValue: string) {

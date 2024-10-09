@@ -1,8 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 
-import { SignUpForm, SignUpFormValues } from '@/feature'
-import { useSignUp } from '@/feature/auth/api/hooks/useSignUp'
+import { SignUpForm, SignUpFormValues, useSignUp } from '@/feature'
 import { EMPTY_STRING, UseFormRef, getAuthLayout, useResponsive, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import dynamic from 'next/dynamic'
@@ -14,11 +13,13 @@ const DynamicSentEmailModal = dynamic(
 const SignUpPage = () => {
   const ref = useRef<UseFormRef<SignUpFormValues>>(null)
   const [open, setOpen] = useState(false)
+  const [emailUser, setEmailUser] = useState('')
   const { t } = useTranslation()
   const { xs } = useResponsive()
   const { data, isPending, isSuccess, mutate } = useSignUp()
   const handleSubmitForm = (formData: SignUpFormValues) => {
     mutate(formData) //в mutate передаются данные, которые необходимо отправить на сервер для выполнения мутации
+    setEmailUser(formData.email)
   }
 
   useEffect(() => {
@@ -46,11 +47,7 @@ const SignUpPage = () => {
         ref={ref}
       />
       {data && (
-        <DynamicSentEmailModal
-          email={data.data.email}
-          onOpenChange={handleChangeOpen}
-          open={open}
-        />
+        <DynamicSentEmailModal email={emailUser} onOpenChange={handleChangeOpen} open={open} />
       )}
     </PageWrapper>
   )

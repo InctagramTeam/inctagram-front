@@ -135,6 +135,12 @@ export const en = {
         'Discover detailed information about users, their interests, skills and experience.',
       metaTitle: 'Profile',
       publications: 'Publications',
+      logOut: {
+        modalTitle: 'Logout',
+        modalText: 'Are you really want to log out of your account',
+        modalBtnYes: 'Yes',
+        modalBtnNo: 'No',
+      },
     },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',

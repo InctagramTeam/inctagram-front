@@ -129,6 +129,12 @@ export const ru: LocaleType = {
         'Откройте для себя подробную информацию о пользователях, их интересах, навыках и опыте.',
       metaTitle: 'Профиль',
       publications: 'Публикации',
+      logOut: {
+        modalTitle: 'Выйти',
+        modalText: 'Вы действительно хотите выйти с аккаунта',
+        modalBtnYes: 'Да',
+        modalBtnNo: 'Нет',
+      },
     },
     congratulations: {
       metaDescription: 'Поздравляем! Ваша почта была подтверждена',
