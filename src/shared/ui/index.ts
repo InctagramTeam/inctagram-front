@@ -1,3 +1,4 @@
+export { AddProfilePhotoWithCrop } from './add-profile-photo'
 export { Alert } from './alert'
 export { AppLink } from './app-link'
 export { AppLinksList } from './app-links-list'

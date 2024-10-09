@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import type { ReactElement, ReactNode } from 'react'
 
 import { AppQueryClientProvider, AuthProvider, TypeComponentAuthFields } from '@/app/providers'
+import { UserStoreProvider } from '@/app/providers/ui/user-store-provider/user-store-provider'
 import { useLoader } from '@/shared'
 import { Toaster } from '@/shared/ui/toast/toaster'
 
@@ -29,8 +30,10 @@ export default function MyApp({
   return (
     <AppQueryClientProvider {...pageProps}>
       <AuthProvider Component={Component}>
-        {getLayout(<Component {...pageProps} />)}
-        <Toaster />
+        <UserStoreProvider>
+          {getLayout(<Component {...pageProps} />)}
+          <Toaster />
+        </UserStoreProvider>
       </AuthProvider>
     </AppQueryClientProvider>
   )
