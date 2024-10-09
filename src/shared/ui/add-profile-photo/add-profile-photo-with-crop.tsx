@@ -125,7 +125,7 @@ export const AddProfilePhotoWithCrop = () => {
   }
 
   return (
-    <div className={'flex flex-col gap-y-6'}>
+    <div className={'flex flex-col gap-y-6 py-[1.5rem]'}>
       <div className={`relative h-[192px] w-[192px]`}>
         <UserAvatar bgColor={'bg-Dark-500'} className={`h-full w-full`} src={avatar?.url || ''}>
           <ImageOutlineIcon />
