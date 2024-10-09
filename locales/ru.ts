@@ -207,6 +207,7 @@ export const ru: LocaleType = {
     nameVerification: 'Может содержать только буквы "a-я" (заглавные и строчные)',
     aboutMeVerification:
       'Может содержать использовать только буквы a-z, цифры и специальные символы (!@#$%^&*()-_+=)',
-    dateOfBirthVerification: 'Пользователь младше 13 лет не может создать профиль.',
+    minAgeDateOfBirthVerification: 'Пользователь младше 13 лет не может создать профиль.',
+    dateOfBirthVerification: 'Пожалуйста, введите дату вашего рождения.',
   },
 }

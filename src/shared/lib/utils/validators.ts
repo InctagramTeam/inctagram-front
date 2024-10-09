@@ -38,7 +38,7 @@ export const firstOrLastNameSchema = (t: LocaleType) => {
 }
 
 export const dateSchema = (t: LocaleType) => {
-  return z.date().refine(
+  return z.date({ message: t.validation.dateOfBirthVerification }).refine(
     data => {
       const now = new Date()
       const birthDate = new Date(data)
@@ -50,7 +50,7 @@ export const dateSchema = (t: LocaleType) => {
       return yearsBetweenDates >= 13
     },
     {
-      message: t.validation.dateOfBirthVerification,
+      message: t.validation.minAgeDateOfBirthVerification,
     }
   )
 }

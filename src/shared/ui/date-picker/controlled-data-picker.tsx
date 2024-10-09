@@ -134,14 +134,16 @@ export const ControlledDataPicker = <T extends FieldValues>({
         {error?.message && (
           <span aria-labelledby={buttonId} className={classes.error} id={errorId} role={'alert'}>
             {error.message + ' '}
-            <Text
-              asComponent={Link}
-              className={classes.error}
-              href={AuthRoutes.PRIVACY}
-              variant={'small-link_12'}
-            >
-              {t.pages.privacyPolice.title}
-            </Text>
+            {isDate(value) && (
+              <Text
+                asComponent={Link}
+                className={classes.error}
+                href={AuthRoutes.PRIVACY}
+                variant={'small-link_12'}
+              >
+                {t.pages.privacyPolice.title}
+              </Text>
+            )}
           </span>
         )}
       </Popover>

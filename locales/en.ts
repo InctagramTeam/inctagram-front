@@ -215,6 +215,7 @@ export const en = {
     nameVerification: 'Can contain only letters "a-z" (uppercase and lowercase)',
     aboutMeVerification:
       'It can only contain the letters a-z, numbers and special characters (!@#$%^&*()-_+=)',
-    dateOfBirthVerification: 'A user under 13 cannot create a profile.',
+    minAgeDateOfBirthVerification: 'A user under 13 cannot create a profile.',
+    dateOfBirthVerification: 'Please enter your date of birth.',
   },
 }
