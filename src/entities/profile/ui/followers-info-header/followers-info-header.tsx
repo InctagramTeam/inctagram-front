@@ -1,20 +1,26 @@
+import { Profile } from '@/entities/profile'
 import { AppRoutes, Button, Text, useTranslation } from '@/shared'
 import { FlexRow } from '@/shared/ui/flex'
+import Cookies from 'js-cookie'
 import Link from 'next/link'
 
-export const FollowersInfoHeader = () => {
+type Props = {
+  profile?: Profile
+}
+
+export const FollowersInfoHeader = ({ profile }: Props) => {
   const { t } = useTranslation()
+  const userId = Cookies.get('userId')
 
   return (
     <FlexRow className={`Header_ w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}>
       <Text asComponent={'h2'} className={`title`} variant={'H1'}>
-        URL_Profile
+        {profile ? profile.firstName + profile.lastName : 'URL_Profile'}
       </Text>
       <Button
         asComponent={Link}
         className={`px-6 py-[6px]`}
-        //TODO - поменять роут PROFILE - убрать id - получать его из query параметров AppRoutes.PROFILE + `/${data?.id}` + AppRoutes.PROFILE_SETTINGS,
-        href={AppRoutes.PROFILE + AppRoutes.PROFILE_SETTINGS + '/general'}
+        href={AppRoutes.PROFILE + userId + AppRoutes.PROFILE_SETTINGS + '/general'}
         variant={'secondary'}
       >
         Profile Settings

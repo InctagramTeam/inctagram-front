@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ProfileAvatarForm, ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
+import { ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
 import { AddProfilePhotoWithCrop, TabContent, getSettingsLayout } from '@/shared'
 
 const General = () => {

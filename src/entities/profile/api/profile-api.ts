@@ -1,7 +1,7 @@
+import { User, createProfileRequest } from '@/entities/profile'
 import { ProfileInfoFormValues } from '@/feature/profile'
-import { createProfileRequest } from '@/feature/profile/model/types'
 import { EMPTY_STRING } from '@/shared'
-import { axiosWithAuth } from '@/shared/api/interceptors'
+import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
 import { format } from 'date-fns'
 
@@ -23,6 +23,11 @@ export class ProfileApi {
       city,
       dateOfBirth: format(dateOfBirth, 'dd-MM-yy'),
     })
+  }
+  async getProfile(id: string) {
+    return await axiosNotAuthorized
+      .get<null, AxiosResponse<User>, string>(`profile/${id}`)
+      .then(res => res.data)
   }
 }
 
