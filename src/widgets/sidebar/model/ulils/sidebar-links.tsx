@@ -1,7 +1,10 @@
 import { AppRoutes, NavLink } from '@/shared'
+import Cookies from 'js-cookie'
 import { LocaleType } from 'locales'
 
 export const getBaseLinks = (t: LocaleType): NavLink[] => {
+  const userId = Cookies.get('userId')
+
   return [
     {
       disabled: false,
@@ -25,7 +28,7 @@ export const getBaseLinks = (t: LocaleType): NavLink[] => {
     },
     {
       disabled: false,
-      href: AppRoutes.PROFILE,
+      href: AppRoutes.PROFILE + userId,
       name: t.links.profile,
     },
   ]

@@ -37,6 +37,7 @@ export class AuthApi {
 
     if (response.status === 204) {
       localStorage?.removeItem('accessToken')
+      Cookies.remove('userId')
     }
   }
 
