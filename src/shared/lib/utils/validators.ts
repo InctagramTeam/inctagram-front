@@ -11,7 +11,6 @@ export const usernameSchema = (t: LocaleType) => {
     .regex(USERNAME_PATTERN, { message: t.validation.userNameVerification })
     .min(6, t.validation.minLength(6))
     .max(30, t.validation.maxLength(30))
-    .default(EMPTY_STRING)
 }
 export const emailSchema = (t: LocaleType) => {
   return z.string().email({ message: t.validation.emailVerification }).default(EMPTY_STRING)
@@ -24,7 +23,6 @@ export const passwordSchema = (t: LocaleType) => {
     .min(6, t.validation.minLength(6))
     .max(20, t.validation.maxLength(20))
     .regex(PASSWORD_PATTERN, t.validation.passwordVerification)
-    .default(EMPTY_STRING)
 }
 
 export const firstOrLastNameSchema = (t: LocaleType) => {
@@ -34,7 +32,6 @@ export const firstOrLastNameSchema = (t: LocaleType) => {
     .regex(FIRST_OR_LAST_NAME_PATTERN, t.validation.nameVerification)
     .min(1, t.validation.minLength(1))
     .max(50, t.validation.maxLength(50))
-    .default(EMPTY_STRING)
 }
 
 export const dateSchema = (t: LocaleType) => {
@@ -58,11 +55,8 @@ export const dateSchema = (t: LocaleType) => {
 export const aboutMeSchema = (t: LocaleType) => {
   return z
     .string()
-    .trim()
-    .regex(ABOUT_ME_PATTERN, t.validation.aboutMeVerification)
-    .min(0, t.validation.minLength(0))
     .max(200, t.validation.maxLength(200))
-    .default(EMPTY_STRING)
+    .regex(ABOUT_ME_PATTERN, t.validation.aboutMeVerification)
     .optional()
 }
 

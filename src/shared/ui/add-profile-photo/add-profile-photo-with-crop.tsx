@@ -13,17 +13,15 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import 'react-image-crop/dist/ReactCrop.css'
 
-export const AddProfilePhotoWithCrop = () => {
+export const AddProfilePhotoWithCrop = ({ userId }: { userId: number }) => {
   const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
   const [modalDeleteAvatarOpen, setModalDeleteAvatarOpen] = useState(false)
 
   const queryClient = useQueryClient()
 
-  const { data: profile } = useQuery({ queryFn: authApi.me, queryKey: ['me'] })
-
   const { data: avatar } = useQuery({
-    enabled: !!profile?.id,
-    queryFn: () => userService.getAvatar(Number(profile?.id)),
+    enabled: !!userId,
+    queryFn: () => userService.getAvatar(Number(userId)),
     queryKey: ['avatar'],
   })
 

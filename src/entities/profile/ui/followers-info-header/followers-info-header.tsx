@@ -15,7 +15,7 @@ export const FollowersInfoHeader = ({ profile }: Props) => {
   return (
     <FlexRow className={`Header_ w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}>
       <Text asComponent={'h2'} className={`title`} variant={'H1'}>
-        {profile ? profile.firstName + profile.lastName : 'URL_Profile'}
+        {profile ? profile.firstName + ' ' + profile.lastName : 'URL_Profile'}
       </Text>
       <Button
         asComponent={Link}
