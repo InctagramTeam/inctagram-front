@@ -1,9 +1,7 @@
 import { ParsedUrlQuery } from 'querystring'
 
 import { User } from '@/entities/profile'
-import { useGetProfile } from '@/entities/profile/api/hooks/useGetProfile'
 import profileApi from '@/entities/profile/api/profile-api'
-import { userService } from '@/entities/user/api/user-api'
 import { getBaseAppLayout } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import { GetServerSideProps } from 'next'
