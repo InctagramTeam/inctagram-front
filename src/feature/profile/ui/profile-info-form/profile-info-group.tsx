@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { Profile, User } from '@/entities/profile'
+import { User } from '@/entities/profile'
 import { SelectGroup } from '@/feature/profile/ui/profile-info-form/select-group'
 import {
   Button,
@@ -23,7 +23,6 @@ import {
   useTranslation,
 } from '@/shared'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { format, parseISO } from 'date-fns'
 
 import { ProfileInfoFormValues, profileInfoSchema } from '../../model'
 
@@ -37,7 +36,6 @@ type Props = {
 
 export const ProfileInfoForm = forwardRef(
   (props: Props, methodsRef: Ref<UseFormRef<ProfileInfoFormValues> | null>): ReturnComponent => {
-    // const { className, disabled, isSent = false,  } = props
     const { className, user, disabled, onSubmit, ...rest } = props
     const { locale, t } = useTranslation()
     const { xs } = useResponsive()
@@ -61,6 +59,15 @@ export const ProfileInfoForm = forwardRef(
       setError,
       setValue,
     } = useForm<ProfileInfoFormValues>({
+      defaultValues: {
+        userName: EMPTY_STRING,
+        firstName: EMPTY_STRING,
+        lastName: EMPTY_STRING,
+        city: EMPTY_STRING,
+        country: EMPTY_STRING,
+        aboutMe: EMPTY_STRING,
+        dateOfBirth: new Date(1999, 5, 18),
+      },
       mode: 'onChange',
       resolver: zodResolver(profileInfoSchema(t)),
     })
