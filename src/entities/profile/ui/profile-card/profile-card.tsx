@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 import { ProfileGallery, User } from '@/entities/profile'
-import { UserService, userService } from '@/entities/user/api/user-api'
+import { userService } from '@/entities/user/api/user-api'
 import { Text } from '@/shared'
 
 import { ProfileCardSkeleton } from '../profile-card-skeleton'

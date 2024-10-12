@@ -1,11 +1,6 @@
 import geoDbCitiesApi from '@/feature/profile/api/geo-db-cities-api'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
-export type ResponseData<T> = {
-  data: T[]
-  nextOffset: number
-}
-
 type Props = {
   countryIds?: string
   key: 'cities' | 'countries'
