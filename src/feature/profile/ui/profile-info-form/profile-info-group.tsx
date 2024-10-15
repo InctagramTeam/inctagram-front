@@ -145,7 +145,7 @@ export const ProfileInfoForm = forwardRef(
           <div className={'text-right'}>
             <Button
               className={classes.button}
-              // disabled={!!Object.keys(errors).length ?? disabled}
+              disabled={!!Object.keys(errors).length}
               type={'submit'}
             >
               {t.button.save}
