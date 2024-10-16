@@ -65,11 +65,5 @@ export const getServerSideProps = (async context => {
   return { props: { user } }
 }) satisfies GetServerSideProps<{ user: User }>
 
-// export const getServerSideProps = (async context => {
-//   const profile = await profileApi.getMyProfile()
-//
-//   return { props: { profile } }
-// }) satisfies GetServerSideProps<{ profile: User }>
-
 General.getLayout = getSettingsLayout
 export default General

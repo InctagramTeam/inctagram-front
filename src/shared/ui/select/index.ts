@@ -1,5 +1,4 @@
 export { SelectContent } from './content'
-export { ControlledSelect } from './controlled-select'
 export { SelectItem } from './item'
 export { SelectLabel } from './label'
 export { Select, SelectBox, SelectGroup, SelectValue } from './select'

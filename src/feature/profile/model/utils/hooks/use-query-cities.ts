@@ -2,22 +2,14 @@ import geoDbCitiesApi from '@/feature/profile/api/geo-db-cities-api'
 import { useInfiniteQuery } from '@tanstack/react-query'
 
 type Props = {
-  countryIds?: string
-  key: 'cities' | 'countries'
+  countryIds: string
+  key: 'cities'
   locale?: string
 }
 
-export function useQueryDataWithPagination({ key, locale = 'en', countryIds }: Props) {
+export function useQueryCities({ key, locale = 'en', countryIds }: Props) {
   const fetchFunction = async ({ pageParam = 1 }) => {
-    let func
-
-    if (countryIds) {
-      func = () => geoDbCitiesApi.getCities({ pageParam, locale, countryIds })
-    } else {
-      func = () => geoDbCitiesApi.getCountries({ pageParam, locale })
-    }
-
-    return func()
+    return await geoDbCitiesApi.getCities({ pageParam, locale, countryIds })
   }
 
   const {
@@ -36,6 +28,7 @@ export function useQueryDataWithPagination({ key, locale = 'en', countryIds }: P
     queryFn: fetchFunction,
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.nextOffset + 10,
+    enabled: !!countryIds,
   })
 
   return { data, fetchNextPage, hasNextPage, isFetchingNextPage, error, status }

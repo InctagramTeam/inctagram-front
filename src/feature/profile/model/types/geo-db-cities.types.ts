@@ -31,3 +31,5 @@ export interface APIResponse<T> {
     totalCount: number
   }
 }
+
+export type TypeRequests = 'cities' | 'countries'

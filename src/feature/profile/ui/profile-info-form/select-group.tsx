@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 import { Control } from 'react-hook-form'
 
 import { ProfileInfoFormValues } from '@/feature/profile'
-import { ControlledSelect } from '@/shared'
+import { ControlledSelectWithCity } from '@/feature/profile/ui/profile-info-form/controlled-select-with-city'
+import { ControlledSelectWithCountry } from '@/feature/profile/ui/profile-info-form/controlled-select-with-country'
 
 export const SelectGroup = ({ control }: { control: Control<ProfileInfoFormValues> }) => {
   //TODO - реализовать сохранение id страны для запроса
   const [countryId, setCountryId] = useState('Q159')
+  // 'Q159'
 
   return (
     <div className={'flex justify-between gap-6'}>
-      <ControlledSelect
+      <ControlledSelectWithCountry
         className={'w-full'}
         control={control}
         label={'Select your country'}
@@ -19,7 +21,7 @@ export const SelectGroup = ({ control }: { control: Control<ProfileInfoFormValue
         setCountryId={setCountryId}
         typeRequest={'countries'}
       />
-      <ControlledSelect
+      <ControlledSelectWithCity
         className={'w-full'}
         control={control}
         countryIds={countryId}

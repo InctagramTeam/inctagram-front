@@ -20,14 +20,7 @@ export { Pagination } from './pagination'
 export { Popover, PopoverContent, PopoverTrigger } from './popover'
 export { Recaptcha } from './recaptcha'
 export { ReturnBack } from './return-back'
-export {
-  ControlledSelect,
-  Select,
-  SelectBox,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from './select'
+export { Select, SelectBox, SelectContent, SelectItem, SelectTrigger } from './select'
 export type { SelectProps } from './select'
 export { Sheet, SheetClose, SheetContent, SheetPortal, SheetTrigger } from './sheet'
 export { Skeleton } from './skeleton'

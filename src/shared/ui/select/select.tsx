@@ -4,7 +4,7 @@ import * as React from 'react'
 import { ElementRef, ReactNode, forwardRef, useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 
-import { useQueryDataWithPagination } from '@/feature/profile/model/utils/hooks/use-query-data-with-pagination'
+import { City, Country } from '@/feature/profile/model/types'
 import {
   ButtonSpinner,
   ReturnComponent,
@@ -16,7 +16,7 @@ import {
 } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
 import * as SelectRadix from '@radix-ui/react-select'
-import { useQueryClient } from '@tanstack/react-query'
+import { FetchNextPageOptions, UseInfiniteQueryResult, useQueryClient } from '@tanstack/react-query'
 
 import { SelectContent, SelectTrigger } from './'
 
@@ -39,17 +39,18 @@ export type SelectOptionsProps<T extends number | string> = {
 
 type OwnProps<T extends number | string> = {
   className?: string
-  countryIds?: string
   direction?: SelectContentMenuDirection
   disabled?: boolean
+  fetchNextPage: (options?: FetchNextPageOptions) => Promise<UseInfiniteQueryResult>
+  isFetchingNextPage: boolean
   label?: string
+  locations: City[] | Country[]
   name?: string
   options?: SelectOptionsProps<T>[]
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
   setCountryId?: (id: string) => void
-  typeRequest: 'cities' | 'countries'
   variant?: 'pagination' | 'primary'
 }
 
@@ -83,11 +84,12 @@ const SelectBox = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectProps
       options,
       placeholder,
       position,
+      locations,
+      fetchNextPage,
+      isFetchingNextPage,
       required,
       value,
-      typeRequest,
       setCountryId,
-      countryIds,
       variant = 'primary',
       ...rest
     },
@@ -120,59 +122,17 @@ const SelectBox = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectProps
       ),
     }
 
+    const queryClient = useQueryClient()
+    const { locale } = useTranslation()
+
     const { inView, ref } = useInView({
       threshold: 1.0,
       trackVisibility: true,
       delay: 1000,
     })
-    const { locale, t } = useTranslation()
-
-    const queryClient = useQueryClient()
-
-    const { data, fetchNextPage, status, isFetchingNextPage, hasNextPage } =
-      useQueryDataWithPagination({
-        key: typeRequest,
-        locale,
-        countryIds,
-      })
-
-    //TODO - реализация removeDublicate for data
 
     //TODO - реализовать получение id выбранного SelectItem
     const setCountryIdHandler = (event: any) => {}
-
-    const content = data?.pages.map((page, index) => (
-      <React.Fragment key={index}>
-        {page.data.map((el, index) => {
-          if (page.data.length === index + 1) {
-            return (
-              <SelectItem
-                className={classes.item}
-                key={isCountry(el) ? el.wikiDataId : el.id}
-                ref={ref}
-                value={el.name}
-              >
-                <span className={classes.text} onClick={setCountryIdHandler}>
-                  {el.name}
-                </span>
-              </SelectItem>
-            )
-          }
-
-          return (
-            <SelectItem
-              className={classes.item}
-              key={isCountry(el) ? el.wikiDataId : el.id}
-              value={el.name}
-            >
-              <span className={classes.text} onClick={setCountryIdHandler}>
-                {el.name}
-              </span>
-            </SelectItem>
-          )
-        })}
-      </React.Fragment>
-    ))
 
     useEffect(() => {
       queryClient.invalidateQueries({ queryKey: ['cities', 'countries'] })
@@ -183,6 +143,35 @@ const SelectBox = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectProps
         fetchNextPage()
       }
     }, [inView])
+
+    const content = locations.map((location, index) => {
+      if (locations.length === index + 1) {
+        return (
+          <SelectItem
+            className={classes.item}
+            key={isCountry(location) ? location.wikiDataId : location.id}
+            ref={ref}
+            value={location.name}
+          >
+            <span className={classes.text} onClick={setCountryIdHandler}>
+              {location.name}
+            </span>
+          </SelectItem>
+        )
+      }
+
+      return (
+        <SelectItem
+          className={classes.item}
+          key={isCountry(location) ? location.wikiDataId : location.id}
+          value={location.name}
+        >
+          <span className={classes.text} onClick={setCountryIdHandler}>
+            {location.name}
+          </span>
+        </SelectItem>
+      )
+    })
 
     return (
       <div className={classes.className}>
