@@ -216,4 +216,8 @@ export const ru: LocaleType = {
     minAgeDateOfBirthVerification: 'Пользователь младше 13 лет не может создать профиль.',
     dateOfBirthVerification: 'Пожалуйста, введите дату вашего рождения.',
   },
+  notifications: {
+    profileCreated: 'Профиль успешно создан',
+    profileUpdated: 'Профиль успешно обновлён',
+  },
 }

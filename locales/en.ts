@@ -224,4 +224,8 @@ export const en = {
     minAgeDateOfBirthVerification: 'A user under 13 cannot create a profile.',
     dateOfBirthVerification: 'Please enter your date of birth.',
   },
+  notifications: {
+    profileCreated: 'Profile successfully created',
+    profileUpdated: 'Profile successfully updated',
+  },
 }
