@@ -28,7 +28,7 @@ export const useUpdateProfile = () => {
     },
     onSuccess: _ => {
       toast({
-        description: 'Профиль успешно создан',
+        description: 'Профиль успешно обновлён',
         title: 'Success',
         variant: 'default',
       })
