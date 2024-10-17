@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { userService } from '@/entities/user/api/user-api'
 import { toast } from '@/shared/ui/toast/use-toast'
+import { useTranslation } from '@/shared'
 
 export const useUpdateAvatar = () => {
+  const { t } = useTranslation()
   const queryClient = useQueryClient()
 
   return useMutation({
@@ -13,8 +15,8 @@ export const useUpdateAvatar = () => {
       toast({
         description: navigator.onLine
           ? error.message
-          : 'You are currently offline. Changes may not be saved.',
-        title: 'Error',
+          : t.pages.profile.addProfilePhoto.updateAvatar.onError,
+        title: t.label.error,
         variant: 'destructive',
       })
 
@@ -37,8 +39,8 @@ export const useUpdateAvatar = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['myProfile'] })
       toast({
-        description: 'The photo has been successfully updated.',
-        title: 'Success',
+        description: t.pages.profile.addProfilePhoto.updateAvatar.onSuccess,
+        title: t.label.success,
         variant: 'default',
       })
     },

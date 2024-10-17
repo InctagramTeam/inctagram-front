@@ -71,6 +71,7 @@ export const en = {
     error: 'Error',
     aboutMe: 'About Me',
     confirmPassword: 'Confirm password',
+    success: 'Success',
   },
   placeholders: {
     email: 'email@inctagram.com',
@@ -142,6 +143,10 @@ export const en = {
           offline: 'You are currently offline. Please check your internet connection.',
           minDimension: (MIN_DIMENSION: number) =>
             `Image must be at least ${MIN_DIMENSION} x ${MIN_DIMENSION} pixels.`,
+        },
+        updateAvatar: {
+          onError: 'You are currently offline. Changes may not be saved.',
+          onSuccess: 'The photo has been successfully updated.',
         },
       },
       followers: 'Followers',

@@ -8,8 +8,10 @@ import { DeleteAvatarButton } from '@/shared/ui/add-profile-photo/delete-avatar-
 import { AddAvatarButton } from '@/shared/ui/add-profile-photo/add-avatar-button/addAvatarButton'
 import { useMyProfile } from '@/shared/ui/add-profile-photo/useMyProfile'
 
+// TODO Обсудить со Стасом как лучше передать аватар
 export const AddProfilePhotoWithCrop = ({ userId }: { userId: number }) => {
   const { data: myProfile } = useMyProfile()
+  const avatarId = myProfile?.profile.avatarId
 
   return (
     <div className={'flex flex-col gap-y-6 py-[1.5rem]'}>
@@ -17,13 +19,11 @@ export const AddProfilePhotoWithCrop = ({ userId }: { userId: number }) => {
         <UserAvatar
           bgColor={'bg-Dark-500'}
           className={`h-full w-full`}
-          src={
-            `https://incubatogramdata.storage.yandexcloud.net/${myProfile?.profile.avatarId}` || '' //Todo исправить на бэке начало ссылки.
-          }
+          src={`https://incubatogramdata.storage.yandexcloud.net/${avatarId}` || ''} //Todo исправить на бэке начало ссылки.
         >
           <ImageOutlineIcon />
         </UserAvatar>
-        {myProfile?.profile.avatarId && <DeleteAvatarButton />}
+        {avatarId && <DeleteAvatarButton />}
       </div>
       <AddAvatarButton />
     </div>

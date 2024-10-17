@@ -64,6 +64,7 @@ export const ru: LocaleType = {
     aboutMe: 'Обо мне',
     lastName: 'Фамилия',
     confirmPassword: 'Подтвердите пароль',
+    success: 'Успех',
   },
   placeholders: {
     email: 'email@inctagram.com',
@@ -136,6 +137,10 @@ export const ru: LocaleType = {
           offline: 'В данный момент вы не в сети. Пожалуйста, проверьте подключение к Интернету.',
           minDimension: (MIN_DIMENSION: number) =>
             `Изображение должно быть размером не менее ${MIN_DIMENSION} x ${MIN_DIMENSION} пикселей.`,
+        },
+        updateAvatar: {
+          onError: 'В данный момент вы не в сети. Пожалуйста, проверьте подключение к Интернету.',
+          onSuccess: 'Фотография была успешно обновлена.',
         },
       },
       followers: 'Подписчики',
