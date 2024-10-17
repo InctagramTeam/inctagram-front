@@ -1,5 +1,3 @@
-import * as process from 'node:process'
-
 import { APIResponse, City } from '@/feature/profile/model/types'
 import { Country } from '@/feature/profile/model/types/geo-db-cities.types'
 import axios from 'axios'
@@ -14,8 +12,7 @@ const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_GEO_DB_URL,
   headers: {
     'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
-    'X-RapidAPI-Key': 'be85c08e71msh53680970446a6c9p1be9ecjsne9e26c037875',
-    // process.env.NEXT_PUBLIC_GEO_DB_API_KEY
+    'X-RapidAPI-Key': process.env.NEXT_PUBLIC_GEO_DB_API_KEY,
   },
 })
 
