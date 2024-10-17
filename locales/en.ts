@@ -118,9 +118,25 @@ export const en = {
       google: 'Login with google',
     },
     profile: {
-      addProfilePhoto: 'Add a Profile Photo',
-      deletePhoto: 'Delete Photo',
-      deleteProfilePhoto: 'Are you sure you want to delete the photo?',
+      deletePhoto: {
+        title: 'Delete Photo',
+        deleteProfilePhotoQuestion: 'Are you sure you want to delete the photo?',
+        errors: {
+          offline: 'You are currently offline. Please check your internet connection.',
+        },
+      },
+      addProfilePhoto: {
+        title: 'Add a Profile Photo',
+        errors: {
+          validateFile: {
+            fileType: 'The format of the uploaded photo must be PNG or JPEG',
+            fileSize: 'Photo size must be less than 10 MB!',
+          },
+          offline: 'You are currently offline. Please check your internet connection.',
+          minDimension: (MIN_DIMENSION: number) =>
+            `Image must be at least ${MIN_DIMENSION} x ${MIN_DIMENSION} pixels.`,
+        },
+      },
       followers: 'Followers',
       following: 'Following',
       logOutConfirmation: 'Are you really want to log out of your account',

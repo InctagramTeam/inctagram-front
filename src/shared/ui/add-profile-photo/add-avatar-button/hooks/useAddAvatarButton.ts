@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { useUpdateAvatar } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 import { toast } from '@/shared/ui/toast/use-toast'
+import { useTranslation } from '@/shared'
 
 export const useAddAvatarButton = () => {
+  const { t } = useTranslation()
+
   const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
 
   const { mutate: updateAvatar } = useUpdateAvatar()
@@ -12,8 +15,8 @@ export const useAddAvatarButton = () => {
       updateAvatar(formData)
     } else {
       toast({
-        description: 'You are currently offline. Please check your internet connection.',
-        title: 'Error',
+        description: t.pages.profile.addProfilePhoto.errors.offline,
+        title: t.label.error,
         variant: 'destructive',
       })
     }
