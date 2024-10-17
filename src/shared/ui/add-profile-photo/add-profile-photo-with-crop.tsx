@@ -13,17 +13,15 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import 'react-image-crop/dist/ReactCrop.css'
 
-export const AddProfilePhotoWithCrop = () => {
+export const AddProfilePhotoWithCrop = ({ userId }: { userId: number }) => {
   const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
   const [modalDeleteAvatarOpen, setModalDeleteAvatarOpen] = useState(false)
 
   const queryClient = useQueryClient()
 
-  const { data: profile } = useQuery({ queryFn: authApi.me, queryKey: ['me'] })
-
   const { data: avatar } = useQuery({
-    enabled: !!profile?.id,
-    queryFn: () => userService.getAvatar(Number(profile?.id)),
+    enabled: !!userId,
+    queryFn: () => userService.getAvatar(Number(userId)),
     queryKey: ['avatar'],
   })
 
@@ -125,7 +123,7 @@ export const AddProfilePhotoWithCrop = () => {
   }
 
   return (
-    <div className={'flex flex-col gap-y-6'}>
+    <div className={'flex flex-col gap-y-6 py-[1.5rem]'}>
       <div className={`relative h-[192px] w-[192px]`}>
         <UserAvatar bgColor={'bg-Dark-500'} className={`h-full w-full`} src={avatar?.url || ''}>
           <ImageOutlineIcon />
@@ -139,6 +137,7 @@ export const AddProfilePhotoWithCrop = () => {
               <button
                 className={`absolute right-3 top-3`}
                 onClick={() => setModalDeleteAvatarOpen(true)}
+                type={'button'}
               >
                 <DeleteAvatarIcon />
               </button>

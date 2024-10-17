@@ -6,6 +6,7 @@ export const AuthRoutes = {
   PASSWORD_RECOVERY: '/auth/password-recovery',
   SIGN_IN: '/auth/sign-in',
   SIGN_UP: '/auth/sign-up',
+  PRIVACY: '/auth/privacy-policy',
 } as const
 
 export const GeneralRoutes = {
@@ -20,7 +21,7 @@ export const AppRoutes = {
   HOME: '/home',
   MAIN: '/',
   MESSENGER: '/messenger',
-  PROFILE: '/my-profile/1',
+  PROFILE: '/my-profile/',
   PROFILE_SETTINGS: '/settings',
   PUBLIC_PROFILE: '/public-profile',
   SEARCH: '/search',

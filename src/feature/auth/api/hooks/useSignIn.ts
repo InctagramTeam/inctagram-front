@@ -4,10 +4,12 @@ import { AppRoutes } from '@/shared'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 
 export const useSignIn = () => {
   const router = useRouter()
+
   const mutation = useMutation({
     mutationFn: async (formData: SignInFormValues) => {
       return authApi.singIn(formData.email, formData.password)
@@ -22,8 +24,13 @@ export const useSignIn = () => {
         })
       }
     },
-    onSuccess: _ => {
-      router.replace(AppRoutes.MAIN)
+    onSuccess: async () => {
+      const res = await authApi.me()
+
+      if (res) {
+        Cookies.set('userId', String(res.id))
+        router.replace(AppRoutes.PROFILE + res.id)
+      }
     },
   })
 

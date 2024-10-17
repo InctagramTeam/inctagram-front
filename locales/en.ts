@@ -12,6 +12,7 @@ export const en = {
   button: {
     answer: 'Answer',
     back: 'Back',
+    addProfilePhoto: 'Add a Profile Photo',
     backToHome: 'Back to home-nav-links',
     backToPayment: 'Back to payment',
     backToSignIn: 'Back to Sign In',
@@ -61,10 +62,14 @@ export const en = {
   },
   label: {
     userName: 'Username',
+    firstName: 'First Name',
+    dateOfBirth: 'Date of birth',
+    lastName: 'Last Name',
     email: 'Email',
     password: 'Password',
     newPassword: 'New password',
     error: 'Error',
+    aboutMe: 'About Me',
     confirmPassword: 'Confirm password',
   },
   placeholders: {
@@ -72,6 +77,8 @@ export const en = {
     firstName: 'Enter your first name',
     lastName: 'Enter your last name',
     password: 'Enter your password',
+    aboutMe: 'About Me',
+    dateOfBirth: 'Pick a date',
     passwordConfirm: 'Enter your password again',
     username: 'Enter your username',
   },
@@ -211,5 +218,10 @@ export const en = {
     recaptcha: 'Please verify that you are not a robot',
     userNameVerification:
       'Username can contain only letters "a-z" (uppercase and lowercase), numbers, and the characters "_" and "-"',
+    nameVerification: 'Can contain only letters "a-z" (uppercase and lowercase)',
+    aboutMeVerification:
+      'It can only contain the letters a-z, numbers and special characters (!@#$%^&*()-_+=)',
+    minAgeDateOfBirthVerification: 'A user under 13 cannot create a profile.',
+    dateOfBirthVerification: 'Please enter your date of birth.',
   },
 }
