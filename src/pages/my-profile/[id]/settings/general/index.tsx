@@ -24,7 +24,7 @@ const General = ({ user }: { user: User }) => {
       firstName,
       city: city ?? '',
       aboutMe: aboutMe ?? '',
-      dateOfBirth: format(dateOfBirth, 'dd-MM-yyyy'),
+      dateOfBirth: format(dateOfBirth, 'MM-dd-yyyy'),
     })
   }
 
@@ -37,7 +37,7 @@ const General = ({ user }: { user: User }) => {
       firstName,
       city: city ?? '',
       aboutMe: aboutMe ?? '',
-      dateOfBirth: format(dateOfBirth, 'dd-MM-yyyy'),
+      dateOfBirth: format(dateOfBirth, 'MM-dd-yyyy'),
     })
   }
 
