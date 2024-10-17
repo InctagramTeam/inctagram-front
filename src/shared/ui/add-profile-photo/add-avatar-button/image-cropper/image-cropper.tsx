@@ -10,7 +10,7 @@ import {
 
 import { Button, Card, Text } from '@/shared'
 import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
-import setCanvasPreview from '@/shared/ui/add-profile-photo/setCanvasPreview'
+import setCanvasPreview from '@/shared/ui/add-profile-photo/add-avatar-button/image-cropper/set-canvas-preview'
 import Image from 'next/image'
 
 import 'react-image-crop/dist/ReactCrop.css'
