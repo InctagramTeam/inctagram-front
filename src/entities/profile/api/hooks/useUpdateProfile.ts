@@ -1,10 +1,13 @@
 import { createProfileRequest } from '@/entities/profile'
 import profileApi from '@/entities/profile/api/profile-api'
 import { ErrorResponse } from '@/feature'
+import { useTranslation } from '@/shared'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { useMutation } from '@tanstack/react-query'
 
 export const useUpdateProfile = () => {
+  const { t } = useTranslation()
+
   const mutation = useMutation({
     mutationFn: async ({
       firstName,
@@ -28,7 +31,7 @@ export const useUpdateProfile = () => {
     },
     onSuccess: _ => {
       toast({
-        description: 'Профиль успешно обновлён',
+        description: t.notifications.profileUpdated,
         title: 'Success',
         variant: 'default',
       })
