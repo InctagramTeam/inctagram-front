@@ -83,22 +83,22 @@ export const Checkbox = memo(
             hover:not:before:data-[disabled]:transition-opacity hover:not:before:data-[disabled]:delay-150
             focus-visible:not:data-[disabled]:outline-none focus-visible:not:data-[disabled]:outline-none
             focus-visible:not:data-[disabled]:before:opacity-100 focus-visible:not:data-[disabled]:before:bg-Dark-500
-            active:not:data-[disabled]:before:bg-Dark-100 data-[state=checked,disabled]:bg-Dark-100
-            relative flex h-[18px]
-            w-[18px]
-            shrink-0 cursor-pointer items-center justify-center rounded
-            border-2 border-Light-500 bg-transparent p-[3px_1px]
-            before:absolute before:-z-1 before:h-[32px] before:w-[32px]
-            before:scale-0 before:rounded-[50%]
-            before:bg-Light-900/60 before:opacity-0
-            before:content-['']
+            active:not:data-[disabled]:before:bg-Dark-100 relative
+            flex h-[18px] w-[18px]
+            shrink-0
+            cursor-pointer items-center justify-center rounded border-2
+            border-Light-500 bg-transparent p-[3px_1px] before:absolute
+            before:-z-1 before:h-[32px] before:w-[32px] before:scale-0
+            before:rounded-[50%] before:bg-Light-900/60
+            before:opacity-0 before:content-['']
             data-[disabled]:cursor-default
             data-[state=checked]:cursor-pointer
             data-[state=unchecked]:cursor-pointer
             data-[disabled]:border-2
-            data-[state=checked]:border-2 data-[state=unchecked]:border-2
-            data-[disabled]:border-Light-900 data-[state=checked]:border-Dark-100 
-            data-[state=unchecked]:border-Dark-100 data-[disabled]:bg-Dark-100 data-[state=checked]:bg-Light-100 data-[state=unchecked]:bg-Dark-700
+            data-[state=checked]:border-2
+            data-[state=unchecked]:border-2 data-[disabled]:border-Light-900
+            data-[state=checked]:border-Dark-100 data-[state=unchecked]:border-Dark-100 
+            data-[disabled]:bg-Dark-100 data-[state=checked,disabled]:bg-Dark-100 data-[state=checked]:bg-Light-100 data-[state=unchecked]:bg-Dark-700
             data-[disabled]:opacity-30 hover:before:z-1
             hover:before:-translate-x-[1px] hover:before:-translate-y-[1px]
             hover:before:scale-100 hover:before:opacity-60 hover:disabled:cursor-default

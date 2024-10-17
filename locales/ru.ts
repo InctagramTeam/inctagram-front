@@ -5,6 +5,7 @@ export const ru: LocaleType = {
   button: {
     answer: 'Ответить',
     back: 'Вернуться',
+    addProfilePhoto: 'Добавить фото профиля',
     backToHome: 'Вернутся на домашнюю',
     backToPayment: 'Вернуться к оплате',
     backToSignIn: 'Страница входа',
@@ -58,6 +59,10 @@ export const ru: LocaleType = {
     password: 'Пароль',
     newPassword: 'Новый пароль',
     userName: 'Имя пользователя',
+    dateOfBirth: 'Дата рождения',
+    firstName: 'Имя',
+    aboutMe: 'Обо мне',
+    lastName: 'Фамилия',
     confirmPassword: 'Подтвердите пароль',
   },
   placeholders: {
@@ -65,6 +70,8 @@ export const ru: LocaleType = {
     firstName: 'Введите ваше имя',
     lastName: 'Введите вашу фамилию',
     password: 'Введите ваш пароль',
+    dateOfBirth: 'Выберите дату',
+    aboutMe: 'Обо мне',
     passwordConfirm: 'Введите ваш пароль снова',
     username: 'Введите имя пользователя',
   },
@@ -218,6 +225,11 @@ export const ru: LocaleType = {
     passwordMismatch: 'Пароли должны совпадать',
     recaptcha: 'Пожалуйста, подтвердите, что вы не робот',
     userNameVerification:
-      'Имя пользователя может содержать только буквы "a-z" (заглавные и строчные), цифры и символы "_" и "-"',
+      'Имя пользователя может содержать только буквы "a-я" (заглавные и строчные), цифры и символы "_" и "-"',
+    nameVerification: 'Может содержать только буквы "a-я" (заглавные и строчные)',
+    aboutMeVerification:
+      'Может содержать использовать только буквы a-z, цифры и специальные символы (!@#$%^&*()-_+=)',
+    minAgeDateOfBirthVerification: 'Пользователь младше 13 лет не может создать профиль.',
+    dateOfBirthVerification: 'Пожалуйста, введите дату вашего рождения.',
   },
 }

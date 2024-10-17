@@ -8,11 +8,11 @@ import { DeleteAvatarButton } from '@/shared/ui/add-profile-photo/delete-avatar-
 import { AddAvatarButton } from '@/shared/ui/add-profile-photo/add-avatar-button/addAvatarButton'
 import { useMyProfile } from '@/shared/ui/add-profile-photo/useMyProfile'
 
-export const AddProfilePhotoWithCrop = () => {
+export const AddProfilePhotoWithCrop = ({ userId }: { userId: number }) => {
   const { data: myProfile } = useMyProfile()
 
   return (
-    <div className={'flex flex-col gap-y-6'}>
+    <div className={'flex flex-col gap-y-6 py-[1.5rem]'}>
       <div className={`relative h-[192px] w-[192px]`}>
         <UserAvatar
           bgColor={'bg-Dark-500'}
