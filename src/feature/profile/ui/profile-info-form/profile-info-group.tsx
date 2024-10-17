@@ -56,6 +56,7 @@ export const ProfileInfoForm = forwardRef(
       getValues,
       handleSubmit,
       reset,
+      resetField,
       setError,
       setValue,
     } = useForm<ProfileInfoFormValues>({
@@ -132,7 +133,7 @@ export const ProfileInfoForm = forwardRef(
             labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
             name={'dateOfBirth'}
           />
-          <SelectGroup control={control} />
+          <SelectGroup control={control} resetFieldForm={resetField} />
           <ControlledTextarea
             aria-invalid={errors.aboutMe ? 'true' : 'false'}
             control={control}

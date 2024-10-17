@@ -137,6 +137,7 @@ export const AddProfilePhotoWithCrop = ({ userId }: { userId: number }) => {
               <button
                 className={`absolute right-3 top-3`}
                 onClick={() => setModalDeleteAvatarOpen(true)}
+                type={'button'}
               >
                 <DeleteAvatarIcon />
               </button>

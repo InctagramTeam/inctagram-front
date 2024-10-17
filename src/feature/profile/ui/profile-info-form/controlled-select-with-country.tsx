@@ -1,11 +1,14 @@
 'use client'
 
-import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
+import { useEffect } from 'react'
+import { FieldValues, UseControllerProps, UseFormResetField, useController } from 'react-hook-form'
 
-import { removeDublicateData, useQueryCountries } from '@/feature/profile'
+import { ProfileInfoFormValues, removeDublicateData, useQueryCountries } from '@/feature/profile'
 import { SelectBox, SelectProps, useTranslation } from '@/shared'
 
 type ControlledSelectProps = {
+  resetFieldForm: UseFormResetField<ProfileInfoFormValues>
+  setCountryId: (id: string) => void
   typeRequest: 'countries'
 }
 
@@ -23,6 +26,8 @@ export const ControlledSelectWithCountry = <T extends FieldValues>({
   rules,
   shouldUnregister,
   typeRequest,
+  resetFieldForm,
+  setCountryId,
   ...rest
 }: Props<T>) => {
   const {
@@ -37,12 +42,21 @@ export const ControlledSelectWithCountry = <T extends FieldValues>({
 
   const { locale } = useTranslation()
 
-  const { data, fetchNextPage, isFetchingNextPage, hasNextPage } = useQueryCountries({
+  const { data, fetchNextPage, isFetchingNextPage } = useQueryCountries({
     key: typeRequest,
     locale,
   })
 
   const uniqueDataMap = removeDublicateData(data?.pages ?? [])
+
+  useEffect(() => {
+    const countryWikiDataId = uniqueDataMap.find(country => country.name === value)?.wikiDataId
+
+    if (countryWikiDataId) {
+      resetFieldForm('city')
+      setCountryId(countryWikiDataId)
+    }
+  }, [value])
 
   return (
     <SelectBox

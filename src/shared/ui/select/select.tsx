@@ -50,7 +50,6 @@ type OwnProps<T extends number | string> = {
   placeholder?: string
   position?: 'item-aligned' | 'popper'
   required?: boolean
-  setCountryId?: (id: string) => void
   variant?: 'pagination' | 'primary'
 }
 
@@ -89,7 +88,6 @@ const SelectBox = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectProps
       isFetchingNextPage,
       required,
       value,
-      setCountryId,
       variant = 'primary',
       ...rest
     },
@@ -131,9 +129,6 @@ const SelectBox = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectProps
       delay: 1000,
     })
 
-    //TODO - реализовать получение id выбранного SelectItem
-    const setCountryIdHandler = (event: any) => {}
-
     useEffect(() => {
       queryClient.invalidateQueries({ queryKey: ['cities', 'countries'] })
     }, [queryClient, locale])
@@ -153,9 +148,7 @@ const SelectBox = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectProps
             ref={ref}
             value={location.name}
           >
-            <span className={classes.text} onClick={setCountryIdHandler}>
-              {location.name}
-            </span>
+            <span className={classes.text}>{location.name}</span>
           </SelectItem>
         )
       }
@@ -166,9 +159,7 @@ const SelectBox = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectProps
           key={isCountry(location) ? location.wikiDataId : location.id}
           value={location.name}
         >
-          <span className={classes.text} onClick={setCountryIdHandler}>
-            {location.name}
-          </span>
+          <span className={classes.text}>{location.name}</span>
         </SelectItem>
       )
     })
