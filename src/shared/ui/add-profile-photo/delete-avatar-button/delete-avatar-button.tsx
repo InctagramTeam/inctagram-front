@@ -1,6 +1,7 @@
+import * as React from 'react'
+
 import { Button, Modal, Text, useTranslation } from '@/shared'
 import { DeleteAvatarIcon } from '@/shared/assets/icons/DeleteIcon'
-import * as React from 'react'
 import { useDeleteAvatarButton } from '@/shared/ui/add-profile-photo/delete-avatar-button/hooks/useDeleteAvatarButton'
 
 export const DeleteAvatarButton = () => {
@@ -16,6 +17,7 @@ export const DeleteAvatarButton = () => {
           className={`absolute right-3 top-3`}
           onClick={() => setModalDeleteAvatarOpen(true)}
           title={t.pages.profile.deletePhoto.title}
+          type={'button'}
         >
           <DeleteAvatarIcon />
         </button>

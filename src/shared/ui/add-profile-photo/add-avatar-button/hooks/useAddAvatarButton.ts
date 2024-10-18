@@ -1,7 +1,8 @@
 import { useState } from 'react'
+
+import { useTranslation } from '@/shared'
 import { useUpdateAvatar } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 import { toast } from '@/shared/ui/toast/use-toast'
-import { useTranslation } from '@/shared'
 
 export const useAddAvatarButton = () => {
   const { t } = useTranslation()

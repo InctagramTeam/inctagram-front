@@ -178,12 +178,12 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
             <div className={'relative !max-h-[340px]'}>
               <Image
                 alt={'Upload'}
-                width={340}
                 height={340}
                 objectFit={'contain'}
                 onLoad={onImageLoad}
                 ref={imgRef}
                 src={imgSrc}
+                width={340}
               />
             </div>
           </ReactCrop>

@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { userService } from '@/entities/user/api/user-api'
-import { toast } from '@/shared/ui/toast/use-toast'
 import { useTranslation } from '@/shared'
+import { toast } from '@/shared/ui/toast/use-toast'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 export const useUpdateAvatar = () => {
   const { t } = useTranslation()

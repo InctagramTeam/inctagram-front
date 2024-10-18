@@ -43,7 +43,7 @@ const General = ({ user }: { user: User }) => {
 
   return (
     <TabContent className={'flex'} value={'general'}>
-      <AddProfilePhotoWithCrop userId={user.id} />
+      <AddProfilePhotoWithCrop />
       <ProfileInfoForm
         className={'grow'}
         onSubmit={user.profile ? submitUpdateProfileHandler : submitCreateProfileHandler}

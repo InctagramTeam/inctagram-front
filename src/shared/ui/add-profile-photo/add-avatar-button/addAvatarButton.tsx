@@ -1,7 +1,8 @@
-import { Button, Modal, useTranslation } from '@/shared'
-import ImageCropper from '@/shared/ui/add-profile-photo/add-avatar-button/image-cropper/image-cropper'
 import * as React from 'react'
+
+import { Button, Modal, useTranslation } from '@/shared'
 import { useAddAvatarButton } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useAddAvatarButton'
+import ImageCropper from '@/shared/ui/add-profile-photo/add-avatar-button/image-cropper/image-cropper'
 
 export const AddAvatarButton = () => {
   const { t } = useTranslation()
@@ -12,9 +13,9 @@ export const AddAvatarButton = () => {
     <Modal onOpenChange={isOpen => setModalUpdateAvatarOpen(isOpen)} open={modalUpdateAvatarOpen}>
       <Modal.Button asChild>
         <Button
+          className={`max-w-[196px] !whitespace-normal break-words`}
           onClick={() => setModalUpdateAvatarOpen(true)}
           variant={'outline'}
-          className={`max-w-[196px] !whitespace-normal break-words`}
         >
           {t.pages.profile.addProfilePhoto.title}
         </Button>

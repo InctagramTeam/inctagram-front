@@ -22,22 +22,22 @@ export type UserProfile = {
 }
 
 export type ProfileMe = {
-  id: number
-  userName: string
+  createdAt: string
   email: string
   emailIsConfirm: boolean
-  createdAt: string
-  updatedAt: string
+  id: number
   profile: ProfileMeProfile
+  updatedAt: string
+  userName: string
 }
 export type ProfileMeProfile = {
+  aboutMe: string
+  city: string
+  country: string
+  dateOfBirth: string
   firstName: string
   lastName: string
-  dateOfBirth: string
-  country: string
-  city: string
-  aboutMe: string
-  avatarId: string
+  url: string
 }
 
 export type GetAvatar = {
