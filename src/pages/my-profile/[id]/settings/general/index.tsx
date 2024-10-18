@@ -11,44 +11,28 @@ import { format } from 'date-fns'
 import { GetServerSideProps } from 'next'
 
 const General = ({ user }: { user: User }) => {
-  //TODO: заменить на одну функцию с дженериками
   const { mutate: createProfile } = useCreateProfile()
   const { mutate: updateProfile } = useUpdateProfile()
 
-  const submitCreateProfileHandler = (formData: ProfileInfoFormValues) => {
-    const { lastName, userName, firstName, city, aboutMe, dateOfBirth } = formData
+  const submitProfileHandler = (formData: ProfileInfoFormValues) => {
+    const { userName, firstName, lastName, dateOfBirth, city, aboutMe } = formData
 
-    createProfile({
-      lastName,
+    const profile = {
       userName,
       firstName,
-      city: city ?? '',
-      aboutMe: aboutMe ?? '',
-      dateOfBirth: format(dateOfBirth, 'dd-MM-yyyy'),
-    })
-  }
-
-  const submitUpdateProfileHandler = (formData: ProfileInfoFormValues) => {
-    const { lastName, userName, firstName, city, aboutMe, dateOfBirth } = formData
-
-    updateProfile({
       lastName,
-      userName,
-      firstName,
+      dateOfBirth: format(dateOfBirth, 'MM-dd-yyyy'),
       city: city ?? '',
       aboutMe: aboutMe ?? '',
-      dateOfBirth: format(dateOfBirth, 'dd-MM-yyyy'),
-    })
+    }
+
+    user.profile ? updateProfile(profile) : createProfile(profile)
   }
 
   return (
     <TabContent className={'flex'} value={'general'}>
       <AddProfilePhotoWithCrop />
-      <ProfileInfoForm
-        className={'grow'}
-        onSubmit={user.profile ? submitUpdateProfileHandler : submitCreateProfileHandler}
-        user={user}
-      />
+      <ProfileInfoForm className={'grow'} onSubmit={submitProfileHandler} user={user} />
     </TabContent>
   )
 }
