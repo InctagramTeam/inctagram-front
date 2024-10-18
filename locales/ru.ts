@@ -202,7 +202,7 @@ export const ru: LocaleType = {
   validation: {
     minLength: (len: number) => `Минимальное количество символов ${len}`,
     required: 'Обязательное поле',
-    acceptTerms: 'Подтвержите согласие',
+    acceptTerms: 'Подтвердите согласие',
     maxLength: (len: number) => `Максимальное количество символов ${len}`,
     passwordVerification: 'Пароль должен содержать минимум 1 заглавную букву, спец. символ и цифру',
     emailVerification: 'Почта должна соответствовать формату example@example.com',
