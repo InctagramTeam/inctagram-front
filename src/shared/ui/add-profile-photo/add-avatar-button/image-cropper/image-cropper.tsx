@@ -8,9 +8,9 @@ import {
   makeAspectCrop,
 } from 'react-image-crop'
 
-import { Button, Card, Text } from '@/shared'
+import { Button, Card, Text, useTranslation } from '@/shared'
 import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
-import setCanvasPreview from '@/shared/ui/add-profile-photo/setCanvasPreview'
+import setCanvasPreview from '@/shared/ui/add-profile-photo/add-avatar-button/image-cropper/set-canvas-preview'
 import Image from 'next/image'
 
 import 'react-image-crop/dist/ReactCrop.css'
@@ -26,6 +26,8 @@ type ImageCropperProps = {
 }
 
 const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar }) => {
+  const { t } = useTranslation()
+
   const imgRef = useRef<HTMLImageElement>(null)
   const previewCanvasRef = useRef<HTMLCanvasElement>(null)
   const [imgSrc, setImgSrc] = useState<string>('')
@@ -36,10 +38,10 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
 
   const validateFile = (file: File): null | string => {
     if (!VALID_FORMATS.includes(file.type)) {
-      return 'The format of the uploaded photo must be PNG or JPEG'
+      return t.pages.profile.addProfilePhoto.errors.validateFile.fileType
     }
     if (file.size > MAX_SIZE_MB) {
-      return 'Photo size must be less than 10 MB!'
+      return t.pages.profile.addProfilePhoto.errors.validateFile.fileSize
     }
 
     return null
@@ -71,7 +73,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
         const { naturalHeight, naturalWidth } = e.currentTarget as HTMLImageElement
 
         if (naturalWidth < MIN_DIMENSION || naturalHeight < MIN_DIMENSION) {
-          setError(`Image must be at least ${MIN_DIMENSION} x ${MIN_DIMENSION} pixels.`)
+          setError(t.pages.profile.addProfilePhoto.errors.minDimension(MIN_DIMENSION))
           setImgSrc('')
         } else {
           setError('')
@@ -109,7 +111,6 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
       convertToPixelCrop(crop as PixelCrop, imgRef.current.width, imgRef.current.height)
     )
 
-    // Создание blob и преобразование его в файл
     previewCanvasRef.current.toBlob(blob => {
       if (blob) {
         const file = new File([blob], 'avatar.jpg', { type: 'image/jpeg' })
@@ -117,7 +118,6 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
 
         formData.append('file', file)
 
-        // Отправка файла на сервер
         updateAvatar(formData)
       }
     }, 'image/jpeg')
@@ -134,7 +134,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
           }
         >
           <div className={'w-[80%] text-center'}>
-            <Text variant={'bold_text_14'}>Error! </Text>
+            <Text variant={'bold_text_14'}>{t.label.error}! </Text>
             <Text variant={'regular-text-14'}>{error}</Text>
           </div>
         </div>
@@ -162,7 +162,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
             type={'button'}
             variant={'primary'}
           >
-            <Text variant={'H3'}>Select from Computer</Text>
+            <Text variant={'H3'}>{t.button.selectFromComputer}</Text>
           </Button>
         </div>
       ) : (
@@ -178,19 +178,19 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
             <div className={'relative !max-h-[340px]'}>
               <Image
                 alt={'Upload'}
-                width={340}
                 height={340}
                 objectFit={'contain'}
                 onLoad={onImageLoad}
                 ref={imgRef}
                 src={imgSrc}
+                width={340}
               />
             </div>
           </ReactCrop>
 
           <div className={'my-[36px] flex w-full justify-end'}>
             <Button className={'px-[24px] py-[6px]'} onClick={handleSave} variant={'primary'}>
-              Save
+              {t.button.simple_save}
             </Button>
           </div>
         </div>
