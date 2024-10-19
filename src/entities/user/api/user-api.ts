@@ -1,4 +1,4 @@
-import { GetAvatar } from '@/entities/user/model/types/user.types'
+import { GetAvatar, ProfileMe } from '@/entities/user/model/types/user.types'
 import { axiosWithAuth } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
 
@@ -9,6 +9,10 @@ export class UserService {
 
   async getAvatar(id: number) {
     return await axiosWithAuth.get<GetAvatar>(`/profile/avatar/${id}`).then(res => res.data)
+  }
+
+  async getProfile() {
+    return await axiosWithAuth.get<ProfileMe>(`/profile/me`).then(res => res.data)
   }
 
   async updateAvatar(formData: FormData) {
