@@ -35,9 +35,9 @@ const AuthProvider = (props: Props) => {
   useEffect(() => {
     const accessToken = getStoreLocalStorage('accessToken')
 
-    if (!accessToken) {
-      router.push(getAuthUrl('/sign-in'))
-    }
+    // if (!accessToken) {
+    //   router.push(getAuthUrl('/sign-in'))
+    // }
     // if (accessToken) authMe()
   }, [])
   /** Проверка на рефреш-токен при переходе на др.страницу - если его нет, то logout() */
