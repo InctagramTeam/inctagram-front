@@ -1,15 +1,17 @@
-import { PropsWithChildren, ReactElement } from 'react'
+import { PropsWithChildren, ReactElement } from "react";
 
-import { LayoutContextProvider, ReturnComponent } from '@/shared'
-import { Header } from '@/widgets/header'
-import { Main } from '@/widgets/main/main'
-import { Sidebar } from '@/widgets/sidebar'
-import { NextPage } from 'next'
+import { LayoutContextProvider, ReturnComponent } from "@/shared";
+import { Header } from "@/widgets/header";
+import { Main } from "@/widgets/main/main";
+import { Sidebar } from "@/widgets/sidebar";
+import { NextPage } from "next";
 
 /** Общий Лайаут для всех страниц */
-export const BaseAppLayout: NextPage<PropsWithChildren> = ({ children }): ReturnComponent => {
+export const BaseAppLayout: NextPage<PropsWithChildren> = ({
+  children,
+}): ReturnComponent => {
   /* const { data: meData } = useMeQuery() */ // авторизован ли я?
-  const isAuth = true
+  const isAuth = true;
 
   return (
     <>
@@ -17,13 +19,15 @@ export const BaseAppLayout: NextPage<PropsWithChildren> = ({ children }): Return
       <Sidebar isAuth={isAuth} />
       <Main>{children}</Main>
     </>
-  )
-}
+  );
+};
 /** getBaseLayout: HOC - возвращаем страницу обёрнутую в Лайаут - убираем дублирование Хедера и Сайдбара на всех страницах в одно место */
-export const getBaseAppLayout = (pageComponent: ReactElement): ReturnComponent => {
+export const getBaseAppLayout = (
+  pageComponent: ReactElement,
+): ReturnComponent => {
   return (
     <LayoutContextProvider>
       <BaseAppLayout>{pageComponent}</BaseAppLayout>
     </LayoutContextProvider>
-  )
-}
+  );
+};

@@ -1,9 +1,14 @@
-import * as React from 'react'
-import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
+import * as React from "react";
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ReactNode,
+  forwardRef,
+} from "react";
 
-import { cn } from '@/shared/lib/utils'
-import { ReturnComponent } from '@/shared/types'
-import * as SelectRadix from '@radix-ui/react-select'
+import { cn } from "@/shared/lib/utils";
+import { ReturnComponent } from "@/shared/types";
+import * as SelectRadix from "@radix-ui/react-select";
 
 export const SelectTrigger = forwardRef<
   ElementRef<typeof SelectRadix.Trigger>,
@@ -23,16 +28,16 @@ export const SelectTrigger = forwardRef<
   [&_.chevron-up]:hidden [&_.chevron-up]:data-[state=open]:block 
   [&_.chevron-up]:data-[state=open]:-translate-y-[2px] 
   [&_.chevron-down]:block [&_.chevron-down]:data-[state=open]:hidden`,
-      className
+      className,
     ),
-  }
+  };
 
   return (
     <SelectRadix.Trigger className={classes.trigger} ref={ref} {...props}>
       {children}
       <SelectRadix.Icon asChild>{icon}</SelectRadix.Icon>
     </SelectRadix.Trigger>
-  )
-})
+  );
+});
 
-SelectTrigger.displayName = 'SelectTrigger'
+SelectTrigger.displayName = "SelectTrigger";

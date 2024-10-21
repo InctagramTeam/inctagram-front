@@ -1,7 +1,7 @@
-import { PageWrapper } from '@/widgets/page-wrapper'
+import { PageWrapper } from "@/widgets/page-wrapper";
 
 export const UsersInfoPage = () => {
-  return <PageWrapper>UsersInfoPage</PageWrapper>
-}
+  return <PageWrapper>UsersInfoPage</PageWrapper>;
+};
 
-export default UsersInfoPage
+export default UsersInfoPage;

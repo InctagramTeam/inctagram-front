@@ -1,7 +1,7 @@
-import { PageWrapper } from '@/widgets/page-wrapper'
+import { PageWrapper } from "@/widgets/page-wrapper";
 
 export const PostsListPage = () => {
-  return <PageWrapper>PostsListPage</PageWrapper>
-}
+  return <PageWrapper>PostsListPage</PageWrapper>;
+};
 
-export default PostsListPage
+export default PostsListPage;

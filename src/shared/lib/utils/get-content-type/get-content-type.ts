@@ -1,3 +1,3 @@
 export const getContentType = () => ({
-  'Content-Type': 'application/json',
-})
+  "Content-Type": "application/json",
+});

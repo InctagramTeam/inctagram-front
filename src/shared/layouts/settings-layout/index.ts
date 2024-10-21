@@ -1,1 +1,1 @@
-export { SettingsLayout, getSettingsLayout } from './settings-layout'
+export { SettingsLayout, getSettingsLayout } from "./settings-layout";

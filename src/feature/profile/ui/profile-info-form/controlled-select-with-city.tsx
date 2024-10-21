@@ -1,23 +1,32 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
+import { useEffect } from "react";
+import {
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from "react-hook-form";
 
-import { removeDublicateData, useQueryCities } from '@/feature/profile'
-import { SelectBox, SelectProps, useTranslation } from '@/shared'
-import { useQueryClient } from '@tanstack/react-query'
+import { removeDublicateData, useQueryCities } from "@/feature/profile";
+import { SelectBox, SelectProps, useTranslation } from "@/shared";
+import { useQueryClient } from "@tanstack/react-query";
 
 type ControlledSelectProps = {
-  countryIds: string
-  typeRequest: 'cities'
-}
+  countryIds: string;
+  typeRequest: "cities";
+};
 
 type Props<T extends FieldValues> = ControlledSelectProps &
   Omit<
     SelectProps,
-    'fetchNextPage' | 'id' | 'isFetchingNextPage' | 'locations' | 'onChange' | 'value'
+    | "fetchNextPage"
+    | "id"
+    | "isFetchingNextPage"
+    | "locations"
+    | "onChange"
+    | "value"
   > &
-  UseControllerProps<T>
+  UseControllerProps<T>;
 
 export const ControlledSelectWithCity = <T extends FieldValues>({
   control,
@@ -37,22 +46,22 @@ export const ControlledSelectWithCity = <T extends FieldValues>({
     name,
     rules,
     shouldUnregister,
-  })
+  });
 
-  const { locale } = useTranslation()
-  const queryClient = useQueryClient()
+  const { locale } = useTranslation();
+  const queryClient = useQueryClient();
 
   const { data, fetchNextPage, isFetchingNextPage } = useQueryCities({
     key: typeRequest,
     locale,
     countryIds,
-  })
+  });
 
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ['cities'] })
-  }, [countryIds])
+    queryClient.invalidateQueries({ queryKey: ["cities"] });
+  }, [countryIds]);
 
-  const uniqueDataMap = removeDublicateData(data?.pages ?? [])
+  const uniqueDataMap = removeDublicateData(data?.pages ?? []);
 
   return (
     <SelectBox
@@ -64,5 +73,5 @@ export const ControlledSelectWithCity = <T extends FieldValues>({
       onChange={onChange}
       value={value}
     />
-  )
-}
+  );
+};

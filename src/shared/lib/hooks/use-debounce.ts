@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback, useRef } from 'react'
+import { MutableRefObject, useCallback, useRef } from "react";
 
 /**
  * Хук, который позволяет отменять предыдущий вызов функции (события) пока не истечет delay
@@ -7,18 +7,21 @@ import { MutableRefObject, useCallback, useRef } from 'react'
  * @param callback
  * @param delay - задержка в мс
  */
-export const useDebounce = <T>(callback: (...args: unknown[]) => void, delay: number) => {
-  const timer = useRef() as MutableRefObject<any>
+export const useDebounce = <T>(
+  callback: (...args: unknown[]) => void,
+  delay: number,
+) => {
+  const timer = useRef() as MutableRefObject<any>;
 
   return useCallback(
     (...args: any[]) => {
       if (timer.current) {
-        clearTimeout(timer.current)
+        clearTimeout(timer.current);
       }
       timer.current = setTimeout(() => {
-        callback(...args)
-      }, delay)
+        callback(...args);
+      }, delay);
     },
-    [callback, delay]
-  )
-}
+    [callback, delay],
+  );
+};

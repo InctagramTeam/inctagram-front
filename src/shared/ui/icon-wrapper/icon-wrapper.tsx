@@ -1,33 +1,40 @@
-import React, { FunctionComponent, SVGProps, memo } from 'react'
+import React, { FunctionComponent, SVGProps, memo } from "react";
 
-import { clsx } from 'clsx'
+import { clsx } from "clsx";
 
-type SvgProps = Omit<SVGProps<SVGSVGElement>, 'onClick'>
+type SvgProps = Omit<SVGProps<SVGSVGElement>, "onClick">;
 
 interface IconBaseProps extends SvgProps {
-  Svg: FunctionComponent<React.SVGAttributes<SVGElement>>
-  className?: string
+  Svg: FunctionComponent<React.SVGAttributes<SVGElement>>;
+  className?: string;
 }
 
 /** Для некликабельных иконок */
 interface NonClickableIconProps extends IconBaseProps {
-  isClickable?: false
+  isClickable?: false;
 }
 
 /** Для кликабельных иконок */
 interface ClickableBaseProps extends IconBaseProps {
-  isClickable: true
-  onClick: () => void
+  isClickable: true;
+  onClick: () => void;
 }
 
-type IsClickableIconProps = ClickableBaseProps | NonClickableIconProps
+type IsClickableIconProps = ClickableBaseProps | NonClickableIconProps;
 
 /** Обёртка над svg иконкой.
  * Применение (_импортируем как svg, а не как компонент_):
  * <IconWrapper onClick{onToggle} className={`text-gold-600`} Svg={ArrowIcon} isClickable />
  * */
 export const IconWrapper = memo((props: IsClickableIconProps) => {
-  const { Svg, className, height = 32, isClickable, width = 32, ...rest } = props
+  const {
+    Svg,
+    className,
+    height = 32,
+    isClickable,
+    width = 32,
+    ...rest
+  } = props;
 
   const icon = (
     <Svg
@@ -37,7 +44,7 @@ export const IconWrapper = memo((props: IsClickableIconProps) => {
       onClick={undefined}
       width={width}
     />
-  )
+  );
 
   if (isClickable) {
     return (
@@ -45,12 +52,12 @@ export const IconWrapper = memo((props: IsClickableIconProps) => {
         className={`m-0 cursor-pointer border-none bg-none p-0 outline-none ring-0`}
         onClick={props.onClick}
         style={{ height, width }}
-        type={'button'}
+        type={"button"}
       >
         {icon}
       </button>
-    )
+    );
   }
 
-  return icon
-})
+  return icon;
+});

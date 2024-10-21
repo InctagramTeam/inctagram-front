@@ -1,10 +1,17 @@
-'use client'
-import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
+"use client";
+import {
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from "react-hook-form";
 
-import { Input, InputProps } from '@/shared/ui'
+import { Input, InputProps } from "@/shared/ui";
 
-type Props<T extends FieldValues> = Omit<InputProps, 'id' | 'onChange' | 'value'> &
-  UseControllerProps<T>
+type Props<T extends FieldValues> = Omit<
+  InputProps,
+  "id" | "onChange" | "value"
+> &
+  UseControllerProps<T>;
 
 export const ControlledInput = <T extends FieldValues>({
   control,
@@ -22,7 +29,16 @@ export const ControlledInput = <T extends FieldValues>({
     name,
     rules,
     shouldUnregister,
-  })
+  });
 
-  return <Input {...rest} {...field} id={name} onBlur={onBlur} onChange={onChange} value={value} />
-}
+  return (
+    <Input
+      {...rest}
+      {...field}
+      id={name}
+      onBlur={onBlur}
+      onChange={onChange}
+      value={value}
+    />
+  );
+};

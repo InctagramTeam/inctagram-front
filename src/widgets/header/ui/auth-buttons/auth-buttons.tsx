@@ -1,10 +1,10 @@
-import * as React from 'react'
+import * as React from "react";
 
-import { AuthRoutes, Button, ReturnComponent, useTranslation } from '@/shared'
-import Link from 'next/link'
+import { AuthRoutes, Button, ReturnComponent, useTranslation } from "@/shared";
+import Link from "next/link";
 
 export const AuthButtons = (): ReturnComponent => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const classes = {
     button: `py-[6px] text-center !text-H3-16`,
@@ -13,7 +13,7 @@ export const AuthButtons = (): ReturnComponent => {
       active:!text-Primary-700
       focus:no-underline`,
     signupLink: `px-[20px]`,
-  }
+  };
 
   return (
     <>
@@ -21,7 +21,7 @@ export const AuthButtons = (): ReturnComponent => {
         asComponent={Link}
         className={`${classes.button} ${classes.loginLink}`}
         href={AuthRoutes.SIGN_IN}
-        variant={'link'}
+        variant={"link"}
       >
         {t.button.signIn}
       </Button>
@@ -33,5 +33,5 @@ export const AuthButtons = (): ReturnComponent => {
         {t.button.signUp}
       </Button>
     </>
-  )
-}
+  );
+};

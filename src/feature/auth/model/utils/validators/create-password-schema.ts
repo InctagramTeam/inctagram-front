@@ -1,7 +1,7 @@
-import { EMPTY_STRING } from '@/shared/constants'
-import { passwordSchema } from '@/shared/lib/utils'
-import { LocaleType } from 'locales'
-import { z } from 'zod'
+import { EMPTY_STRING } from "@/shared/constants";
+import { passwordSchema } from "@/shared/lib/utils";
+import { LocaleType } from "locales";
+import { z } from "zod";
 
 export const createPasswordSchema = (t: LocaleType) =>
   z
@@ -9,9 +9,16 @@ export const createPasswordSchema = (t: LocaleType) =>
       password: passwordSchema(t),
       passwordConfirm: z.string().default(EMPTY_STRING),
     })
-    .refine(data => data.password === data.passwordConfirm && data.passwordConfirm.length > 0, {
-      message: t.validation.passwordMismatch,
-      path: ['passwordConfirm'],
-    })
+    .refine(
+      (data) =>
+        data.password === data.passwordConfirm &&
+        data.passwordConfirm.length > 0,
+      {
+        message: t.validation.passwordMismatch,
+        path: ["passwordConfirm"],
+      },
+    );
 
-export type CreateNewPasswordFormValues = z.infer<ReturnType<typeof createPasswordSchema>>
+export type CreateNewPasswordFormValues = z.infer<
+  ReturnType<typeof createPasswordSchema>
+>;

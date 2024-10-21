@@ -1,14 +1,19 @@
-import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useId } from 'react'
+import {
+  ChangeEvent,
+  ComponentPropsWithoutRef,
+  forwardRef,
+  useId,
+} from "react";
 
-import { ReturnComponent, Text, cn } from '@/shared'
+import { ReturnComponent, Text, cn } from "@/shared";
 
 export type TextareaProps = {
-  containerClassName?: string
-  errorMessage?: string
-  label?: string
-  onValueChange?: (value: string) => void
-  textareaClassName?: string
-} & ComponentPropsWithoutRef<'textarea'>
+  containerClassName?: string;
+  errorMessage?: string;
+  label?: string;
+  onValueChange?: (value: string) => void;
+  textareaClassName?: string;
+} & ComponentPropsWithoutRef<"textarea">;
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
@@ -23,7 +28,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       onValueChange,
       ...rest
     },
-    ref
+    ref,
   ): ReturnComponent => {
     const classes = {
       error: cn(`!text-regular-text-14 block text-Danger-500`),
@@ -34,19 +39,19 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         disabled:placeholder-Dark-100
         active:border-Light-100`,
         errorMessage && `border-Danger-500 `,
-        className
+        className,
       ),
       wrapper: cn(containerClassName),
-    }
+    };
 
-    const generatedId = useId()
-    const finalId = id ?? generatedId
-    const errorId = `${finalId}-error`
+    const generatedId = useId();
+    const finalId = id ?? generatedId;
+    const errorId = `${finalId}-error`;
 
     const changeValueHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      onChange?.(e)
-      onValueChange?.(e.currentTarget.value)
-    }
+      onChange?.(e);
+      onValueChange?.(e.currentTarget.value);
+    };
 
     return (
       <div className={classes.wrapper}>
@@ -65,14 +70,14 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...rest}
         />
         {errorMessage && (
-          <Text className={classes.error} id={errorId} role={'alert'}>
+          <Text className={classes.error} id={errorId} role={"alert"}>
             {errorMessage}
           </Text>
         )}
       </div>
-    )
-  }
-)
+    );
+  },
+);
 
-Textarea.displayName = 'Textarea'
-export { Textarea }
+Textarea.displayName = "Textarea";
+export { Textarea };

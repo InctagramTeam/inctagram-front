@@ -1,5 +1,5 @@
-import { ReactElement } from 'react'
+import { ReactElement } from "react";
 
-import { Nullable } from '@/shared/types'
+import { Nullable } from "@/shared/types";
 
-export type ReturnComponent = Nullable<ReactElement>
+export type ReturnComponent = Nullable<ReactElement>;

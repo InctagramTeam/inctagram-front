@@ -1,3 +1,3 @@
-export { getLanguages } from './helpers'
-export type { Language } from './helpers'
-export { useLangSwitcher } from './hooks'
+export { getLanguages } from "./helpers";
+export type { Language } from "./helpers";
+export { useLangSwitcher } from "./hooks";

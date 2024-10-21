@@ -1,1 +1,1 @@
-export { ProfileCardSkeleton } from './profile-card-skeleton'
+export { ProfileCardSkeleton } from "./profile-card-skeleton";

@@ -1,1 +1,1 @@
-export { getMobileDropdownLinks } from './utils'
+export { getMobileDropdownLinks } from "./utils";

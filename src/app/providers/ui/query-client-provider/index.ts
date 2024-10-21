@@ -1,1 +1,1 @@
-export { AppQueryClientProvider } from './app-query-client-provider'
+export { AppQueryClientProvider } from "./app-query-client-provider";

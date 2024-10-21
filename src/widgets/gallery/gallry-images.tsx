@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import { EMPTY_STRING, ReturnComponent } from '@/shared'
-import { clsx } from 'clsx'
-import Image, { ImageProps } from 'next/image'
+import { EMPTY_STRING, ReturnComponent } from "@/shared";
+import { clsx } from "clsx";
+import Image, { ImageProps } from "next/image";
 
 type Props = {
-  alt?: string
-  className?: string
-  src: string
-}
+  alt?: string;
+  className?: string;
+  src: string;
+};
 
-export type GalleryImageType = Omit<ImageProps, keyof Props> & Props
+export type GalleryImageType = Omit<ImageProps, keyof Props> & Props;
 export const GalleryImage = ({
   alt,
   className,
@@ -25,6 +25,6 @@ export const GalleryImage = ({
     width={234}
     {...rest}
   />
-)
+);
 
-GalleryImage.displayName = 'GalleryImage'
+GalleryImage.displayName = "GalleryImage";

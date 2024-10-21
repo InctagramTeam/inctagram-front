@@ -1,5 +1,5 @@
-import { ReturnComponent } from '@/shared/types'
+import { ReturnComponent } from "@/shared/types";
 
 const Dots = (): ReturnComponent => {
-  return <span>&#8230;</span>
-}
+  return <span>&#8230;</span>;
+};

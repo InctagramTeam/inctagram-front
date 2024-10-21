@@ -1,8 +1,8 @@
-import { User, createProfileRequest } from '@/entities/profile'
-import { EMPTY_STRING } from '@/shared'
-import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
-import { AxiosResponse } from 'axios'
-import { format } from 'date-fns'
+import { User, createProfileRequest } from "@/entities/profile";
+import { EMPTY_STRING } from "@/shared";
+import { axiosNotAuthorized, axiosWithAuth } from "@/shared/api/interceptors";
+import { AxiosResponse } from "axios";
+import { format } from "date-fns";
 
 export class ProfileApi {
   async createProfile({
@@ -14,23 +14,28 @@ export class ProfileApi {
     aboutMe = EMPTY_STRING,
   }: createProfileRequest) {
     return await axiosWithAuth
-      .post<null, AxiosResponse<User>, createProfileRequest>('profile/settings', {
-        firstName,
-        userName,
-        lastName,
-        aboutMe,
-        city,
-        dateOfBirth,
-      })
-      .then(res => res.data)
+      .post<null, AxiosResponse<User>, createProfileRequest>(
+        "profile/settings",
+        {
+          firstName,
+          userName,
+          lastName,
+          aboutMe,
+          city,
+          dateOfBirth,
+        },
+      )
+      .then((res) => res.data);
   }
   async getMyProfile() {
-    return await axiosWithAuth.get<null, AxiosResponse<User>>('profile/me').then(res => res.data)
+    return await axiosWithAuth
+      .get<null, AxiosResponse<User>>("profile/me")
+      .then((res) => res.data);
   }
   async getProfile(id: string) {
     return await axiosNotAuthorized
       .get<null, AxiosResponse<User>, string>(`profile/${id}`)
-      .then(res => res.data)
+      .then((res) => res.data);
   }
   async updateProfile({
     firstName,
@@ -41,7 +46,7 @@ export class ProfileApi {
     aboutMe = EMPTY_STRING,
   }: createProfileRequest) {
     return await axiosWithAuth
-      .put<null, AxiosResponse<any>, createProfileRequest>('profile/settings', {
+      .put<null, AxiosResponse<any>, createProfileRequest>("profile/settings", {
         firstName,
         userName,
         lastName,
@@ -49,10 +54,10 @@ export class ProfileApi {
         city,
         dateOfBirth,
       })
-      .then(res => res.data)
+      .then((res) => res.data);
   }
 }
 
-const profileApi = new ProfileApi()
+const profileApi = new ProfileApi();
 
-export default profileApi
+export default profileApi;

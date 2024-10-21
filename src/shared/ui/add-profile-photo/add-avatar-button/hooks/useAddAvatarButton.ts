@@ -1,31 +1,31 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import { useTranslation } from '@/shared'
-import { useUpdateAvatar } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
-import { toast } from '@/shared/ui/toast/use-toast'
+import { useTranslation } from "@/shared";
+import { useUpdateAvatar } from "@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar";
+import { toast } from "@/shared/ui/toast/use-toast";
 
 export const useAddAvatarButton = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
+  const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false);
 
-  const { mutate: updateAvatar } = useUpdateAvatar()
+  const { mutate: updateAvatar } = useUpdateAvatar();
 
   const updateAvatarHandler = (formData: FormData) => {
     if (navigator.onLine) {
-      updateAvatar(formData)
+      updateAvatar(formData);
     } else {
       toast({
         description: t.pages.profile.addProfilePhoto.errors.offline,
         title: t.label.error,
-        variant: 'destructive',
-      })
+        variant: "destructive",
+      });
     }
-  }
+  };
 
   return {
     modalUpdateAvatarOpen,
     setModalUpdateAvatarOpen,
     updateAvatarHandler,
-  }
-}
+  };
+};

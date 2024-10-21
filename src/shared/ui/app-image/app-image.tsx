@@ -1,19 +1,26 @@
-import { ImgHTMLAttributes, ReactElement, forwardRef, memo, useLayoutEffect, useState } from 'react'
+import {
+  ImgHTMLAttributes,
+  ReactElement,
+  forwardRef,
+  memo,
+  useLayoutEffect,
+  useState,
+} from "react";
 
-import Image from 'next/image'
+import Image from "next/image";
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
-  className?: string
-  errorFallback?: ReactElement
-  fallback?: ReactElement
-  height?: number // добавляем высоту
-  width?: number // добавляем ширину
+  className?: string;
+  errorFallback?: ReactElement;
+  fallback?: ReactElement;
+  height?: number; // добавляем высоту
+  width?: number; // добавляем ширину
 }
 
 export const AppImage = memo(
   forwardRef<HTMLImageElement, AppImageProps>((props, ref) => {
     const {
-      alt = 'image',
+      alt = "image",
       className,
       errorFallback,
       fallback,
@@ -21,29 +28,29 @@ export const AppImage = memo(
       src,
       width = 300,
       ...rest
-    } = props // задаем дефолтные размеры
-    const [isLoading, setIsLoading] = useState(true)
-    const [hasError, setHasError] = useState(false)
+    } = props; // задаем дефолтные размеры
+    const [isLoading, setIsLoading] = useState(true);
+    const [hasError, setHasError] = useState(false);
 
     useLayoutEffect(() => {
-      const img = new window.Image()
+      const img = new window.Image();
 
-      img.src = src ?? ''
+      img.src = src ?? "";
       img.onload = () => {
-        setIsLoading(false)
-      }
+        setIsLoading(false);
+      };
       img.onerror = () => {
-        setIsLoading(false)
-        setHasError(true)
-      }
-    }, [src])
+        setIsLoading(false);
+        setHasError(true);
+      };
+    }, [src]);
 
     if (isLoading && fallback) {
-      return fallback
+      return fallback;
     }
 
     if (hasError && errorFallback) {
-      return errorFallback
+      return errorFallback;
     }
 
     return (
@@ -53,10 +60,10 @@ export const AppImage = memo(
         alt={alt}
         className={className}
         height={height} // передаем высоту
-        layout={'responsive'} // можно указать layout для автоматической подгонки
-        src={src ?? ''}
+        layout={"responsive"} // можно указать layout для автоматической подгонки
+        src={src ?? ""}
         width={width} // передаем ширину
       />
-    )
-  })
-)
+    );
+  }),
+);

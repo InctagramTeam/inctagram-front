@@ -1,9 +1,9 @@
-import { AppRoutes, NavLink } from '@/shared'
-import Cookies from 'js-cookie'
-import { LocaleType } from 'locales'
+import { AppRoutes, NavLink } from "@/shared";
+import Cookies from "js-cookie";
+import { LocaleType } from "locales";
 
 export const getBaseLinks = (t: LocaleType): NavLink[] => {
-  const userId = Cookies.get('userId')
+  const userId = Cookies.get("userId");
 
   return [
     {
@@ -31,8 +31,8 @@ export const getBaseLinks = (t: LocaleType): NavLink[] => {
       href: AppRoutes.PROFILE + userId,
       name: t.links.profile,
     },
-  ]
-}
+  ];
+};
 
 const getAdditionalDesktopLinks = (t: LocaleType): NavLink[] => {
   return [
@@ -46,10 +46,10 @@ const getAdditionalDesktopLinks = (t: LocaleType): NavLink[] => {
       href: AppRoutes.FAVORITES,
       name: t.links.favorites,
     },
-  ]
-}
+  ];
+};
 
 export const getSidebarLinks = (t: LocaleType): NavLink[] => [
   ...getBaseLinks(t),
   ...getAdditionalDesktopLinks(t),
-]
+];

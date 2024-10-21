@@ -1,1 +1,1 @@
-export { AppImage } from './app-image'
+export { AppImage } from "./app-image";

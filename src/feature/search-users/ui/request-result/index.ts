@@ -1,1 +1,1 @@
-export { RequestResult } from './request-result'
+export { RequestResult } from "./request-result";

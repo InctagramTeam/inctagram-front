@@ -1,23 +1,37 @@
-'use client'
+"use client";
 
-import { useEffect } from 'react'
-import { FieldValues, UseControllerProps, UseFormResetField, useController } from 'react-hook-form'
+import { useEffect } from "react";
+import {
+  FieldValues,
+  UseControllerProps,
+  UseFormResetField,
+  useController,
+} from "react-hook-form";
 
-import { ProfileInfoFormValues, removeDublicateData, useQueryCountries } from '@/feature/profile'
-import { SelectBox, SelectProps, useTranslation } from '@/shared'
+import {
+  ProfileInfoFormValues,
+  removeDublicateData,
+  useQueryCountries,
+} from "@/feature/profile";
+import { SelectBox, SelectProps, useTranslation } from "@/shared";
 
 type ControlledSelectProps = {
-  resetFieldForm: UseFormResetField<ProfileInfoFormValues>
-  setCountryId: (id: string) => void
-  typeRequest: 'countries'
-}
+  resetFieldForm: UseFormResetField<ProfileInfoFormValues>;
+  setCountryId: (id: string) => void;
+  typeRequest: "countries";
+};
 
 type Props<T extends FieldValues> = ControlledSelectProps &
   Omit<
     SelectProps,
-    'fetchNextPage' | 'id' | 'isFetchingNextPage' | 'locations' | 'onChange' | 'value'
+    | "fetchNextPage"
+    | "id"
+    | "isFetchingNextPage"
+    | "locations"
+    | "onChange"
+    | "value"
   > &
-  UseControllerProps<T>
+  UseControllerProps<T>;
 
 export const ControlledSelectWithCountry = <T extends FieldValues>({
   control,
@@ -38,25 +52,27 @@ export const ControlledSelectWithCountry = <T extends FieldValues>({
     name,
     rules,
     shouldUnregister,
-  })
+  });
 
-  const { locale } = useTranslation()
+  const { locale } = useTranslation();
 
   const { data, fetchNextPage, isFetchingNextPage } = useQueryCountries({
     key: typeRequest,
     locale,
-  })
+  });
 
-  const uniqueDataMap = removeDublicateData(data?.pages ?? [])
+  const uniqueDataMap = removeDublicateData(data?.pages ?? []);
 
   useEffect(() => {
-    const countryWikiDataId = uniqueDataMap.find(country => country.name === value)?.wikiDataId
+    const countryWikiDataId = uniqueDataMap.find(
+      (country) => country.name === value,
+    )?.wikiDataId;
 
     if (countryWikiDataId) {
-      resetFieldForm('city')
-      setCountryId(countryWikiDataId)
+      resetFieldForm("city");
+      setCountryId(countryWikiDataId);
     }
-  }, [value])
+  }, [value]);
 
   return (
     <SelectBox
@@ -68,5 +84,5 @@ export const ControlledSelectWithCountry = <T extends FieldValues>({
       onChange={onChange}
       value={value}
     />
-  )
-}
+  );
+};

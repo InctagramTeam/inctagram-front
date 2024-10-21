@@ -1,1 +1,1 @@
-export { useBreakpointMode } from './use-breakpoin-mode'
+export { useBreakpointMode } from "./use-breakpoin-mode";

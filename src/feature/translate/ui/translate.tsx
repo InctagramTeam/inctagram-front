@@ -1,44 +1,48 @@
-'use client'
-import { Fragment, ReactNode } from 'react'
+"use client";
+import { Fragment, ReactNode } from "react";
 
-import { EMPTY_STRING } from '@/shared/constants'
+import { EMPTY_STRING } from "@/shared/constants";
 
-const tagsRegex = /(<\d+>[^<>]*<\/\d+>)/
-const openCloseTagRegex = /<(\d+)>([^<>]*)<\/(\d+)>/
+const tagsRegex = /(<\d+>[^<>]*<\/\d+>)/;
+const openCloseTagRegex = /<(\d+)>([^<>]*)<\/(\d+)>/;
 
 type TranslateType = {
   /** Передаем в объект: ключ это строка, значение функция */
-  tags?: Record<string, (str: string) => ReactNode>
-  text: string
-}
+  tags?: Record<string, (str: string) => ReactNode>;
+  text: string;
+};
 
 /** Используется с целью применить перевод к тексту обернутому html тэгами */
 export const Translate = (props: TranslateType) => {
-  return <>{interpolateTags(props)}</>
-}
+  return <>{interpolateTags(props)}</>;
+};
 
 const interpolateTags = (data: TranslateType) => {
-  const { tags, text } = data
+  const { tags, text } = data;
 
   if (!tags) {
-    return text
+    return text;
   }
 
-  const tokens = text.split(tagsRegex)
+  const tokens = text.split(tagsRegex);
 
-  return tokens.map(token => {
-    const matchResult = openCloseTagRegex.exec(token)
+  return tokens.map((token) => {
+    const matchResult = openCloseTagRegex.exec(token);
 
     if (!matchResult) {
-      return token
+      return token;
     }
 
-    const [, openTag, content, closeTag] = matchResult
+    const [, openTag, content, closeTag] = matchResult;
 
     if (!openTag || !closeTag || openTag !== closeTag) {
-      return token
+      return token;
     }
 
-    return <Fragment key={content}>{tags[openTag]?.(content ?? EMPTY_STRING)}</Fragment>
-  })
-}
+    return (
+      <Fragment key={content}>
+        {tags[openTag]?.(content ?? EMPTY_STRING)}
+      </Fragment>
+    );
+  });
+};

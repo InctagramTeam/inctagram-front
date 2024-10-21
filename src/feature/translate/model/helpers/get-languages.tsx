@@ -1,19 +1,19 @@
-import { LocaleType } from 'locales'
+import { LocaleType } from "locales";
 
 export type Language = {
-  textValue: string
-  value: string
-}
+  textValue: string;
+  value: string;
+};
 
 export const getLanguages = (t: LocaleType): Language[] => {
   return [
     {
       textValue: t.lang.en,
-      value: 'en',
+      value: "en",
     },
     {
       textValue: t.lang.ru,
-      value: 'ru',
+      value: "ru",
     },
-  ]
-}
+  ];
+};

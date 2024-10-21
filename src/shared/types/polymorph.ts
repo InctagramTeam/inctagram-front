@@ -4,21 +4,23 @@ import {
   ElementType,
   ForwardedRef,
   PropsWithChildren,
-} from 'react'
+} from "react";
 
 interface ForwardedRefProp<T extends ElementType> {
-  ref?: ForwardedRef<ElementRef<T>>
+  ref?: ForwardedRef<ElementRef<T>>;
 }
 
 interface AsComponentProp<T extends ElementType> {
-  asComponent?: T
+  asComponent?: T;
 }
 
 export type PolymorphComponentProps<T extends ElementType, P = {}> = Omit<
   ComponentPropsWithoutRef<T>,
   keyof (AsComponentProp<T> & P)
 > &
-  PropsWithChildren<AsComponentProp<T> & P>
+  PropsWithChildren<AsComponentProp<T> & P>;
 
-export type PolymorphComponentPropsWithRef<T extends ElementType, P = {}> = ForwardedRefProp<T> &
-  PolymorphComponentProps<T, P>
+export type PolymorphComponentPropsWithRef<
+  T extends ElementType,
+  P = {},
+> = ForwardedRefProp<T> & PolymorphComponentProps<T, P>;

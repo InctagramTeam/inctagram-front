@@ -1,26 +1,31 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, ReactNode } from "react";
 
-import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
+import * as DropdownRadix from "@radix-ui/react-dropdown-menu";
 
 type DropdownProps = {
-  children: ReactNode
-  className?: string
+  children: ReactNode;
+  className?: string;
   /**
    * Если true, взаимодействие с внешними элементами будет отключено, будет видно только содержимое меню */
-  modal?: boolean
-  onOpenChange?: (open: boolean) => void
-  open?: boolean
-} & ComponentPropsWithoutRef<typeof DropdownRadix.Root>
+  modal?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  open?: boolean;
+} & ComponentPropsWithoutRef<typeof DropdownRadix.Root>;
 
 export const Dropdown = (props: DropdownProps) => {
-  const { children, className, modal, onOpenChange, open, ...rest } = props
+  const { children, className, modal, onOpenChange, open, ...rest } = props;
 
   return (
-    <DropdownRadix.Root {...rest} modal={modal} onOpenChange={onOpenChange} open={open}>
+    <DropdownRadix.Root
+      {...rest}
+      modal={modal}
+      onOpenChange={onOpenChange}
+      open={open}
+    >
       {children}
     </DropdownRadix.Root>
-  )
-}
+  );
+};
 
 /**
  * Пример использования:

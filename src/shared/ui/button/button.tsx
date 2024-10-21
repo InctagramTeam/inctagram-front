@@ -1,35 +1,52 @@
-import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
+import {
+  ComponentPropsWithoutRef,
+  ElementRef,
+  ElementType,
+  ReactNode,
+  forwardRef,
+} from "react";
 
-import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared'
-import clsx from 'clsx'
+import { PolymorphComponentPropsWithRef, ReturnComponent } from "@/shared";
+import clsx from "clsx";
 
-type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
+type ButtonVariant =
+  | "destructive"
+  | "link"
+  | "outline"
+  | "primary"
+  | "secondary"
+  | "text";
 
 export type CustomButtonProps = {
-  className?: string
-  disabled?: boolean
-  endIcon?: ReactNode
+  className?: string;
+  disabled?: boolean;
+  endIcon?: ReactNode;
   /** Увеличивает кнопку на всю свободную ширину */
-  fullWidth?: boolean
-  isOpen?: boolean
-  rounded?: boolean
+  fullWidth?: boolean;
+  isOpen?: boolean;
+  rounded?: boolean;
   /** Размеры кнопки */
-  size?: '2xl' | 'lg' | 'md' | 'sm' | 'xl'
+  size?: "2xl" | "lg" | "md" | "sm" | "xl";
   /** Флаг, делающий кнопку квадратной */
-  square?: boolean
-  startIcon?: ReactNode
+  square?: boolean;
+  startIcon?: ReactNode;
   /** Вариант кнопки. Отвечает за визуал кнопки */
-  variant?: ButtonVariant
-}
+  variant?: ButtonVariant;
+};
 
-type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomButtonProps>
+type Props<T extends ElementType> = PolymorphComponentPropsWithRef<
+  T,
+  CustomButtonProps
+>;
 
-type ButtonComponent = <T extends ElementType = 'button'>(props: Props<T>) => ReactNode
+type ButtonComponent = <T extends ElementType = "button">(
+  props: Props<T>,
+) => ReactNode;
 
 export const Button: ButtonComponent = forwardRef(
-  <T extends ElementType = 'button'>(
+  <T extends ElementType>(
     props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
-    ref: ElementRef<T>
+    ref: ElementRef<T>,
   ): ReturnComponent => {
     const {
       asComponent,
@@ -42,10 +59,10 @@ export const Button: ButtonComponent = forwardRef(
       size,
       square = false,
       startIcon,
-      variant = 'primary',
+      variant = "primary",
       ...rest
-    } = props
-    const Component = asComponent || 'button'
+    } = props;
+    const Component = asComponent || "button";
 
     const classes = {
       btn: clsx(
@@ -54,7 +71,7 @@ export const Button: ButtonComponent = forwardRef(
         duration-150 ease-in-out cursor-pointer whitespace-nowrap text-center`,
         [variant],
         fullWidth && `w-full`,
-        variant === 'primary' &&
+        variant === "primary" &&
           !disabled &&
           `bg-Primary-500
           hover:transition-all duration-150 ease-in-out
@@ -65,11 +82,11 @@ export const Button: ButtonComponent = forwardRef(
           focus-visible:outline-none focus-visible:ring-1 focus-visible:offset-1
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
           disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed`,
-        variant === 'primary' &&
+        variant === "primary" &&
           disabled &&
           `bg-Primary-900 text-Light-900 cursor-not-allowed disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed
         `,
-        variant === 'secondary' &&
+        variant === "secondary" &&
           !disabled &&
           `bg-Dark-100 rounded-[2px] shadow-sm shadow-Dark-300 
            active:bg-[#212121]
@@ -81,11 +98,11 @@ export const Button: ButtonComponent = forwardRef(
            focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
            focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
            disabled:bg-Dark-500 disabled:text-Light-900 disabled:cursor-not-allowed`,
-        variant === 'secondary' &&
+        variant === "secondary" &&
           disabled &&
           `bg-Dark-300 text-Light-900 cursor-not-allowed
           disabled:bg-Dark-300 disabled:text-Light-900 disabled:cursor-not-allowed`,
-        variant === 'outline' &&
+        variant === "outline" &&
           !disabled &&
           `bg-Dark-300 text-Primary-500 p-[5px_24px] bg-transparent ring-1 ring-Primary-300
           rounded-[2px] shadow-sm shadow-Primary-900 
@@ -98,10 +115,10 @@ export const Button: ButtonComponent = forwardRef(
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
           disabled:bg-Dark-900 disabled:text-Primary-900 border-Primary-900 disabled:cursor-not-allowed`,
-        variant === 'outline' &&
+        variant === "outline" &&
           disabled &&
           `bg-Dark-500 text-Primary-900 ring-1 ring-Primary-900 cursor-not-allowed`,
-        variant === 'link' &&
+        variant === "link" &&
           !disabled &&
           `text-Primary-500 underline-offset-4
           border-b-2 border-transparent hover:border-text-Primary-300/50
@@ -111,8 +128,10 @@ export const Button: ButtonComponent = forwardRef(
           focus:outline-none focus:text-[rgb(106_156_243)] focus:underline
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300`,
-        variant === 'link' && disabled && `text-Primary-900/50 cursor-not-allowed`,
-        variant === 'text' &&
+        variant === "link" &&
+          disabled &&
+          `text-Primary-900/50 cursor-not-allowed`,
+        variant === "text" &&
           !disabled &&
           `bg-Dark-700 h-[4px] py-3 px-0
           font-inter font-semi_bold-600 text-H3-16 text-Light-300 transition-colors duration-150 ease-in-out
@@ -125,8 +144,10 @@ export const Button: ButtonComponent = forwardRef(
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300 focus-visible:Dark-700
           focus-visible:transition-all duration-150 ease-in-out
           disabled:bg-Dark-700 disabled:text-Light-300 disabled:cursor-not-allowed`,
-        variant === 'text' && disabled && `bg-Dark-700 text-Light-500 cursor-not-allowed`,
-        variant === 'destructive' &&
+        variant === "text" &&
+          disabled &&
+          `bg-Dark-700 text-Light-500 cursor-not-allowed`,
+        variant === "destructive" &&
           !disabled &&
           `bg-[#ff3f3f] text-Light-100 shadow-sm 
            hover:bg-red-400 transition-all duration-150 ease-in-out
@@ -136,27 +157,32 @@ export const Button: ButtonComponent = forwardRef(
            focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
            focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
            disabled:cursor-not-allowed disabled:bg-destructive/50 disabled:text-Primary-900/50`,
-        variant === 'destructive' &&
+        variant === "destructive" &&
           disabled &&
           `bg-red-700/20 text-white-100/10 cursor-not-allowed`,
-        size === 'sm' && `w-[100px] h-[36px]`,
-        size === 'md' && `w-[182px] h-[36px]`,
-        size === 'lg' && `w-[180px] h-[36px]`,
-        size === 'xl' && `w-[220px] h-[36px]`,
-        size === '2xl' && `w-[260px] h-[36px]`,
+        size === "sm" && `w-[100px] h-[36px]`,
+        size === "md" && `w-[182px] h-[36px]`,
+        size === "lg" && `w-[180px] h-[36px]`,
+        size === "xl" && `w-[220px] h-[36px]`,
+        size === "2xl" && `w-[260px] h-[36px]`,
         className,
         square && `rounded-none`,
-        rounded && `rounded-full`
+        rounded && `rounded-full`,
       ),
-    }
+    };
 
     /** className={classes.btn} перезаписывает {...rest} пропсы */
     return (
-      <Component {...rest} className={classes.btn} disabled={disabled} ref={ref}>
+      <Component
+        {...rest}
+        className={classes.btn}
+        disabled={disabled}
+        ref={ref}
+      >
         {startIcon}
         {children}
         {endIcon}
       </Component>
-    )
-  }
-)
+    );
+  },
+);

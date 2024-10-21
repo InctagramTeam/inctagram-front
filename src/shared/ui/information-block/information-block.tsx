@@ -1,19 +1,19 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 
-import { Flex, FlexCol } from '@/shared/ui/flex'
-import { Text } from '@/shared/ui/text'
-import { clsx } from 'clsx'
+import { Flex, FlexCol } from "@/shared/ui/flex";
+import { Text } from "@/shared/ui/text";
+import { clsx } from "clsx";
 
 type Props = {
-  action?: ReactNode
-  containerClassName?: string
-  illustration?: ReactNode
-  isMobile: boolean
-  text?: ReactNode
-  textClassName?: string
-  title?: string
-  titleClassName?: string
-}
+  action?: ReactNode;
+  containerClassName?: string;
+  illustration?: ReactNode;
+  isMobile: boolean;
+  text?: ReactNode;
+  textClassName?: string;
+  title?: string;
+  titleClassName?: string;
+};
 export const InformationBlock = ({
   action,
   containerClassName,
@@ -25,15 +25,21 @@ export const InformationBlock = ({
   titleClassName,
 }: Props) => {
   return (
-    <FlexCol justify={'center'}>
-      <FlexCol className={clsx('w-full', !isMobile && 'max-w-[294px]', containerClassName)}>
+    <FlexCol justify={"center"}>
+      <FlexCol
+        className={clsx(
+          "w-full",
+          !isMobile && "max-w-[294px]",
+          containerClassName,
+        )}
+      >
         {title && (
           <Text
-            asComponent={'h1'}
+            asComponent={"h1"}
             className={titleClassName}
-            mb={'15px'}
-            textAlign={'center'}
-            variant={'H1'}
+            mb={"15px"}
+            textAlign={"center"}
+            variant={"H1"}
           >
             {title}
           </Text>
@@ -41,11 +47,11 @@ export const InformationBlock = ({
 
         {text && (
           <Text
-            asComponent={'p'}
+            asComponent={"p"}
             className={textClassName}
-            mb={'54px'}
-            textAlign={'center'}
-            variant={'regular_text_16'}
+            mb={"54px"}
+            textAlign={"center"}
+            variant={"regular_text_16"}
           >
             {text}
           </Text>
@@ -54,5 +60,5 @@ export const InformationBlock = ({
       {action && action}
       {illustration && illustration}
     </FlexCol>
-  )
-}
+  );
+};

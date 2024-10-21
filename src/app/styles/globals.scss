@@ -1,4 +1,4 @@
-@import 'modal-animate';
+@import "modal-animate";
 
 @tailwind base;
 @tailwind components;
@@ -38,24 +38,24 @@
   }
 
   /* Reset, browser "Input" style */
-  input[type='search']::-webkit-search-cancel-button {
+  input[type="search"]::-webkit-search-cancel-button {
     display: none;
   }
 
-  input[type='search']::-webkit-search-decoration {
+  input[type="search"]::-webkit-search-decoration {
     display: none;
   }
 
-  input[type='search']::-webkit-search-results-button {
+  input[type="search"]::-webkit-search-results-button {
     display: none;
   }
 
-  input[type='search']::-webkit-search-results-decoration {
+  input[type="search"]::-webkit-search-results-decoration {
     display: none;
   }
 
-  input[type='file'],
-  input[type='file']::-webkit-file-upload-button {
+  input[type="file"],
+  input[type="file"]::-webkit-file-upload-button {
     @apply cursor-pointer focus:text-Primary-100;
   }
 
