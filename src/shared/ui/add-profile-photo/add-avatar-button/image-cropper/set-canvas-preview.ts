@@ -1,28 +1,35 @@
-import { PixelCrop } from 'react-image-crop'
+import { PixelCrop } from "react-image-crop";
 
 const setCanvasPreview = (
   image: HTMLImageElement,
   canvas: HTMLCanvasElement,
-  crop: PixelCrop
+  crop: PixelCrop,
 ): void => {
-  const ctx = canvas.getContext('2d')
+  const ctx = canvas.getContext("2d");
 
   if (!ctx) {
-    throw new Error('No 2d context')
+    throw new Error("No 2d context");
   }
 
-  const pixelRatio = window.devicePixelRatio || 1
-  const scaleX = image.naturalWidth / image.width
-  const scaleY = image.naturalHeight / image.height
+  const pixelRatio = window.devicePixelRatio || 1;
+  const scaleX = image.naturalWidth / image.width;
+  const scaleY = image.naturalHeight / image.height;
 
-  const width = Math.floor(crop.width * scaleX * pixelRatio)
-  const height = Math.floor(crop.height * scaleY * pixelRatio)
+  const width = Math.floor(crop.width * scaleX * pixelRatio);
+  const height = Math.floor(crop.height * scaleY * pixelRatio);
 
-  canvas.width = width
-  canvas.height = height
+  canvas.width = width;
+  canvas.height = height;
 
-  ctx.setTransform(pixelRatio, 0, 0, pixelRatio, -crop.x * scaleX, -crop.y * scaleY)
-  ctx.imageSmoothingQuality = 'high'
+  ctx.setTransform(
+    pixelRatio,
+    0,
+    0,
+    pixelRatio,
+    -crop.x * scaleX,
+    -crop.y * scaleY,
+  );
+  ctx.imageSmoothingQuality = "high";
 
   ctx.drawImage(
     image,
@@ -33,8 +40,8 @@ const setCanvasPreview = (
     0,
     0,
     image.naturalWidth,
-    image.naturalHeight
-  )
-}
+    image.naturalHeight,
+  );
+};
 
-export default setCanvasPreview
+export default setCanvasPreview;

@@ -1,7 +1,7 @@
-import { PageWrapper } from '@/widgets/page-wrapper'
+import { PageWrapper } from "@/widgets/page-wrapper";
 
 const PaymentsListPage = () => {
-  return <PageWrapper>PaymentsListPage</PageWrapper>
-}
+  return <PageWrapper>PaymentsListPage</PageWrapper>;
+};
 
-export default PaymentsListPage
+export default PaymentsListPage;

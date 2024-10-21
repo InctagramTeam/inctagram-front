@@ -1,1 +1,1 @@
-export const maxShowNumberNotifications = 100
+export const maxShowNumberNotifications = 100;

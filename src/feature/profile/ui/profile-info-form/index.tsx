@@ -1,1 +1,1 @@
-export { ProfileInfoForm } from './profile-info-group'
+export { ProfileInfoForm } from "./profile-info-group";

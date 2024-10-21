@@ -1,23 +1,23 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from "react";
 
 interface UseHoverBind {
-  onMouseEnter: () => void
-  onMouseLeave: () => void
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
 }
 
-type UseHoverResult = [boolean, UseHoverBind]
+type UseHoverResult = [boolean, UseHoverBind];
 
 /** Позволяет следить за hover состоянием через JS */
 export const useHover = () => {
-  const [isHover, setIsHover] = useState(false)
+  const [isHover, setIsHover] = useState(false);
 
   const onMouseEnter = useCallback(() => {
-    setIsHover(true)
-  }, [])
+    setIsHover(true);
+  }, []);
 
   const onMouseLeave = useCallback(() => {
-    setIsHover(false)
-  }, [])
+    setIsHover(false);
+  }, []);
 
   return useMemo(
     () => [
@@ -27,6 +27,6 @@ export const useHover = () => {
         onMouseLeave,
       },
     ],
-    [isHover, onMouseEnter, onMouseLeave]
-  )
-}
+    [isHover, onMouseEnter, onMouseLeave],
+  );
+};

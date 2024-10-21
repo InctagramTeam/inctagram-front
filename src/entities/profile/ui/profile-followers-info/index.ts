@@ -1,1 +1,1 @@
-export { ProfileFollowerInfoBlock } from './profile-follower-info-block'
+export { ProfileFollowerInfoBlock } from "./profile-follower-info-block";

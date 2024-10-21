@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import { cn, getIcon } from '@/shared'
-import Link from 'next/link'
+import { cn, getIcon } from "@/shared";
+import Link from "next/link";
 
 type Props = {
-  className?: string
-  items: AppProps[]
-}
+  className?: string;
+  items: AppProps[];
+};
 
 export type AppProps = {
-  href: string
-} & Parameters<typeof Link>[0]
+  href: string;
+} & Parameters<typeof Link>[0];
 
 /**
  * Компонент AppList используется, чтобы выводить список ссылок с иконками приложений
@@ -22,12 +22,12 @@ export const AppLinksList = ({ className, items }: Props) => {
     link: `block outline-none rounded-[2px] duration-150
     hover:text-Light-100 hover:translate-y-[-5px]
     active:opacity-70 focus-visible:ring-2`,
-  }
+  };
 
   return (
     <ul className={classes.items}>
       {items.map((item, index) => {
-        const { className, href, ...rest } = item
+        const { className, href, ...rest } = item;
 
         return (
           <li key={index}>
@@ -35,8 +35,8 @@ export const AppLinksList = ({ className, items }: Props) => {
               {getIcon(href, false)}
             </Link>
           </li>
-        )
+        );
       })}
     </ul>
-  )
-}
+  );
+};

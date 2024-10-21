@@ -15,37 +15,37 @@ import {
   SearchOutline,
   SettingIcon,
   TrendingIcon,
-} from '@/shared/assets/icons'
-import { AppRoutes } from '@/shared/constants/routes'
-import Cookies from 'js-cookie'
+} from "@/shared/assets/icons";
+import { AppRoutes } from "@/shared/constants/routes";
+import Cookies from "js-cookie";
 
 export const getIcon = (href: string, isActive: boolean) => {
-  const userId = Cookies.get('userId')
+  const userId = Cookies.get("userId");
 
   switch (href) {
     case AppRoutes.HOME:
-      return isActive ? <HomeIcon /> : <HomeOutlineIcon />
+      return isActive ? <HomeIcon /> : <HomeOutlineIcon />;
     case AppRoutes.CREATE_POST:
-      return isActive ? <PlusIcon /> : <PlusOutlineIcon />
+      return isActive ? <PlusIcon /> : <PlusOutlineIcon />;
     case AppRoutes.PROFILE + userId:
-      return isActive ? <PersonIcon /> : <PersonOutlineIcon />
+      return isActive ? <PersonIcon /> : <PersonOutlineIcon />;
     case AppRoutes.MESSENGER:
-      return isActive ? <MessageIcon /> : <MessageOutlineIcon />
+      return isActive ? <MessageIcon /> : <MessageOutlineIcon />;
     case AppRoutes.FAVORITES:
-      return isActive ? <BookmarkIcon /> : <BookmarkOutlineIcon />
+      return isActive ? <BookmarkIcon /> : <BookmarkOutlineIcon />;
     case AppRoutes.SEARCH:
-      return <SearchOutline />
+      return <SearchOutline />;
     case AppRoutes.PROFILE_SETTINGS:
-      return <SettingIcon />
+      return <SettingIcon />;
     case AppRoutes.STATISTICS:
-      return <TrendingIcon />
+      return <TrendingIcon />;
     case process.env.NEXT_PUBLIC_GITHUB_OAUTH2:
-      return <GithubIcon />
+      return <GithubIcon />;
     case process.env.NEXT_PUBLIC_GOOGLE_OAUTH2:
-      return <GoogleIcon />
-    case '/log-out':
-      return <LogOutIcon />
+      return <GoogleIcon />;
+    case "/log-out":
+      return <LogOutIcon />;
     default:
-      return null
+      return null;
   }
-}
+};

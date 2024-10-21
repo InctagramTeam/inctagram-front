@@ -1,1 +1,1 @@
-export { NavigationElement } from './navigation-element'
+export { NavigationElement } from "./navigation-element";

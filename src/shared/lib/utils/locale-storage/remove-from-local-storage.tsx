@@ -1,5 +1,5 @@
 function deleteFromLocalStorage(key: string) {
-  localStorage.removeItem(key)
+  localStorage.removeItem(key);
 }
 
-export default deleteFromLocalStorage
+export default deleteFromLocalStorage;

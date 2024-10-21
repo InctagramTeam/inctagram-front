@@ -1,1 +1,1 @@
-export { GeoDbCitiesApi } from './geo-db-cities-api'
+export { GeoDbCitiesApi } from "./geo-db-cities-api";

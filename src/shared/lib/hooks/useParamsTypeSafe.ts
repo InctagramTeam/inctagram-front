@@ -1,8 +1,8 @@
-import { useParams } from 'next/navigation'
-import { ZodType, z } from 'zod'
+import { useParams } from "next/navigation";
+import { ZodType, z } from "zod";
 
 export const useParamsTypeSafe = <T extends ZodType>(schema: T): z.infer<T> => {
-  const params = useParams()
+  const params = useParams();
 
-  return schema.parse(params)
-}
+  return schema.parse(params);
+};

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import {
   AuthRoutes,
   Button,
@@ -8,24 +8,31 @@ import {
   getAuthLayout,
   useResponsive,
   useTranslation,
-} from '@/shared'
-import { SignUpBroIllustration } from '@/shared/assets/illustrations'
-import { PageWrapper } from '@/widgets/page-wrapper'
-import Link from 'next/link'
+} from "@/shared";
+import { SignUpBroIllustration } from "@/shared/assets/illustrations";
+import { PageWrapper } from "@/widgets/page-wrapper";
+import Link from "next/link";
 
 const SignUpCongratulations = (): ReturnComponent => {
-  const { t } = useTranslation()
-  const { xs } = useResponsive()
+  const { t } = useTranslation();
+  const { xs } = useResponsive();
 
   const classes = {
-    button: cn('py-[6px]', !xs && 'mb-[72px] px-[60px]', xs && 'order-1 px-[20px]'),
-    illustration: cn('max-w-[432px] w-full h-[300px]', xs && 'h-[230px] mb-[48px]'),
-  }
+    button: cn(
+      "py-[6px]",
+      !xs && "mb-[72px] px-[60px]",
+      xs && "order-1 px-[20px]",
+    ),
+    illustration: cn(
+      "max-w-[432px] w-full h-[300px]",
+      xs && "h-[230px] mb-[48px]",
+    ),
+  };
 
   return (
     <PageWrapper
       description={t.pages.congratulations.metaDescription}
-      paddingBlock={xs ? '16px' : '36px'}
+      paddingBlock={xs ? "16px" : "36px"}
       title={t.pages.congratulations.title}
     >
       <InformationBlock
@@ -44,9 +51,9 @@ const SignUpCongratulations = (): ReturnComponent => {
         title={t.pages.congratulations.title}
       />
     </PageWrapper>
-  )
-}
+  );
+};
 
-SignUpCongratulations.getLayout = getAuthLayout
+SignUpCongratulations.getLayout = getAuthLayout;
 
-export default SignUpCongratulations
+export default SignUpCongratulations;

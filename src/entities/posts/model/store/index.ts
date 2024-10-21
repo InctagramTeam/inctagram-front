@@ -1,1 +1,1 @@
-export { usePosts } from './store'
+export { usePosts } from "./store";

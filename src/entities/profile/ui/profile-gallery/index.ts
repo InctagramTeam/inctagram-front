@@ -1,1 +1,1 @@
-export { ProfileGallery } from './profile-gallery'
+export { ProfileGallery } from "./profile-gallery";

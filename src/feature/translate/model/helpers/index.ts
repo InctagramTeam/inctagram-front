@@ -1,2 +1,2 @@
-export { getLanguages } from './get-languages'
-export type { Language } from './get-languages'
+export { getLanguages } from "./get-languages";
+export type { Language } from "./get-languages";

@@ -1,6 +1,6 @@
-import { useRef } from 'react'
+import { useRef } from "react";
 
-import { SignInForm, SignInFormValues, useSignIn } from '@/feature'
+import { SignInForm, SignInFormValues, useSignIn } from "@/feature";
 import {
   EMPTY_STRING,
   ReturnComponent,
@@ -8,23 +8,23 @@ import {
   getAuthLayout,
   useResponsive,
   useTranslation,
-} from '@/shared'
-import { PageWrapper } from '@/widgets/page-wrapper'
+} from "@/shared";
+import { PageWrapper } from "@/widgets/page-wrapper";
 
 const SignInPge = (): ReturnComponent => {
-  const { sm } = useResponsive()
-  const { t } = useTranslation()
-  const ref = useRef<UseFormRef<SignInFormValues>>(null)
-  const { isPending, mutate } = useSignIn()
+  const { sm } = useResponsive();
+  const { t } = useTranslation();
+  const ref = useRef<UseFormRef<SignInFormValues>>(null);
+  const { isPending, mutate } = useSignIn();
 
   const handleSubmitForm = (formData: SignInFormValues) => {
-    mutate(formData)
-  }
+    mutate(formData);
+  };
 
   return (
     <PageWrapper
       description={t.pages.signIn.metaDescription}
-      paddingBlock={sm ? '12px' : '36px'}
+      paddingBlock={sm ? "12px" : "36px"}
       title={t.pages.signIn.metaTitle}
     >
       <SignInForm
@@ -35,8 +35,8 @@ const SignInPge = (): ReturnComponent => {
         ref={ref}
       />
     </PageWrapper>
-  )
-}
+  );
+};
 
-SignInPge.getLayout = getAuthLayout
-export default SignInPge
+SignInPge.getLayout = getAuthLayout;
+export default SignInPge;

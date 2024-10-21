@@ -1,2 +1,2 @@
-import CheckRole from './check-role'
-export { CheckRole }
+import CheckRole from "./check-role";
+export { CheckRole };

@@ -1,32 +1,37 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useMemo } from "react";
 
-import { ELLIPSIS_STRING } from '@/shared/constants'
+import { ELLIPSIS_STRING } from "@/shared/constants";
 
 // original code: https://www.freecodecamp.org/news/build-a-custom-pagination-component-in-react/
 
 const range = (start: number, end: number) => {
-  const length = end - start + 1
+  const length = end - start + 1;
 
   /**
   	Create an array of certain length and set the elements within it from
     start value to end value.
   */
-  return Array.from({ length }, (_, idx) => idx + start)
-}
+  return Array.from({ length }, (_, idx) => idx + start);
+};
 
 type UsePaginationParamType = {
-  count: number
-  onChange: (pageNumber: number) => void
-  page: number
-  siblings?: number
-}
+  count: number;
+  onChange: (pageNumber: number) => void;
+  page: number;
+  siblings?: number;
+};
 
-type PaginationRange = (number | typeof ELLIPSIS_STRING)[]
+type PaginationRange = (number | typeof ELLIPSIS_STRING)[];
 
-export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePaginationParamType) => {
+export const usePagination = ({
+  count,
+  onChange,
+  page,
+  siblings = 1,
+}: UsePaginationParamType) => {
   const paginationRange = useMemo(() => {
     // Pages count is determined as siblingCount + firstPage + lastPage + page + 2*DOTS
-    const totalPageNumbers = siblings + 5
+    const totalPageNumbers = siblings + 5;
 
     /**
       Case 1:
@@ -34,71 +39,77 @@ export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePagina
       paginationComponent, we return the range [1..totalPageCount]
     */
     if (totalPageNumbers >= count) {
-      return range(1, count)
+      return range(1, count);
     }
 
     /**
     	Calculate left and right sibling index and make sure they are within range 1 and totalPageCount
     */
-    const leftSiblingIndex = Math.max(page - siblings, 1)
-    const rightSiblingIndex = Math.min(page + siblings, count)
+    const leftSiblingIndex = Math.max(page - siblings, 1);
+    const rightSiblingIndex = Math.min(page + siblings, count);
 
     /**
       We do not show dots when there is only one page number to be inserted
       between the extremes of siblings and the page limits i.e 1 and totalPageCount.
       Hence, we are using leftSiblingIndex > 2 and rightSiblingIndex < totalPageCount - 2
     */
-    const shouldShowLeftDots = leftSiblingIndex > 2
-    const shouldShowRightDots = rightSiblingIndex < count - 2
+    const shouldShowLeftDots = leftSiblingIndex > 2;
+    const shouldShowRightDots = rightSiblingIndex < count - 2;
 
-    const firstPageIndex = 1
-    const lastPageIndex = count
+    const firstPageIndex = 1;
+    const lastPageIndex = count;
 
     /**
     	Case 2: No left dots to show, but rights dots to be shown
     */
     if (!shouldShowLeftDots && shouldShowRightDots) {
-      const leftItemCount = 3 + 2 * siblings
-      const leftRange = range(1, leftItemCount)
+      const leftItemCount = 3 + 2 * siblings;
+      const leftRange = range(1, leftItemCount);
 
-      return [...leftRange, ELLIPSIS_STRING, count]
+      return [...leftRange, ELLIPSIS_STRING, count];
     }
 
     /**
     	Case 3: No right dots to show, but left dots to be shown
     */
     if (shouldShowLeftDots && !shouldShowRightDots) {
-      const rightItemCount = 3 + 2 * siblings
-      const rightRange = range(count - rightItemCount + 1, count)
+      const rightItemCount = 3 + 2 * siblings;
+      const rightRange = range(count - rightItemCount + 1, count);
 
-      return [firstPageIndex, ELLIPSIS_STRING, ...rightRange]
+      return [firstPageIndex, ELLIPSIS_STRING, ...rightRange];
     }
 
     /**
     	Case 4: Both left and right dots to be shown
     */
     if (shouldShowLeftDots && shouldShowRightDots) {
-      const middleRange = range(leftSiblingIndex, rightSiblingIndex)
+      const middleRange = range(leftSiblingIndex, rightSiblingIndex);
 
-      return [firstPageIndex, ELLIPSIS_STRING, ...middleRange, ELLIPSIS_STRING, lastPageIndex]
+      return [
+        firstPageIndex,
+        ELLIPSIS_STRING,
+        ...middleRange,
+        ELLIPSIS_STRING,
+        lastPageIndex,
+      ];
     }
-  }, [siblings, page, count]) as PaginationRange
+  }, [siblings, page, count]) as PaginationRange;
 
-  const lastPage = paginationRange.at(-1)
+  const lastPage = paginationRange.at(-1);
 
-  const isFirstPage = page === 1
-  const isLastPage = page === lastPage
+  const isFirstPage = page === 1;
+  const isLastPage = page === lastPage;
 
   const handleNextPageClicked = useCallback(() => {
-    onChange(page + 1)
-  }, [page, onChange])
+    onChange(page + 1);
+  }, [page, onChange]);
 
   const handlePreviousPageClicked = useCallback(() => {
-    onChange(page - 1)
-  }, [page, onChange])
+    onChange(page - 1);
+  }, [page, onChange]);
 
   function handleMainPageClicked(pageNumber: number) {
-    return () => onChange(pageNumber)
+    return () => onChange(pageNumber);
   }
 
   return {
@@ -108,5 +119,5 @@ export const usePagination = ({ count, onChange, page, siblings = 1 }: UsePagina
     isFirstPage,
     isLastPage,
     paginationRange,
-  }
-}
+  };
+};

@@ -1,20 +1,20 @@
-import React, { memo } from 'react'
+import React, { memo } from "react";
 
-import { LogOutIcon, MoreIcon } from '@/shared/assets/icons'
-import { useTranslation } from '@/shared/lib/hooks/use-translation'
-import { Button } from '@/shared/ui/button'
-import { Dropdown } from '@/shared/ui/dropdown-menu'
-import { NavigationElement } from '@/shared/ui/navigation-element'
-import { getMobileDropdownLinks } from '@/widgets/header/model'
-import { clsx } from 'clsx'
-import Link from 'next/link'
+import { LogOutIcon, MoreIcon } from "@/shared/assets/icons";
+import { useTranslation } from "@/shared/lib/hooks/use-translation";
+import { Button } from "@/shared/ui/button";
+import { Dropdown } from "@/shared/ui/dropdown-menu";
+import { NavigationElement } from "@/shared/ui/navigation-element";
+import { getMobileDropdownLinks } from "@/widgets/header/model";
+import { clsx } from "clsx";
+import Link from "next/link";
 
 type Props = {
-  logout?: () => void
-}
+  logout?: () => void;
+};
 
 export const MobileDropdown = memo(({ logout }: Props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const classes = {
     item: `w-full data-[highlighted]:ring-Primary-700 data-[highlighted]:ring-1 data-[highlighted]:outline-none rounded-[2px]`,
@@ -26,19 +26,23 @@ export const MobileDropdown = memo(({ logout }: Props) => {
     logoutButton: `h-auto !justify-normal bg-transparent focus:bg-transparent hover:translate-y-0 active:bg-transparent active:!text-Light-100`,
     menu: `before:hidden z-20 p-[1px] pt-[12px] pb-[12px]`,
     triggerButton: `w-[1.5rem] !h-[1.5rem] py-0 data-[state=open]:text-Primary-500 hover:translate-y-0`,
-  }
+  };
 
   const trigger = (
-    <Button aria-label={'menu'} className={classes.triggerButton} variant={'text'}>
+    <Button
+      aria-label={"menu"}
+      className={classes.triggerButton}
+      variant={"text"}
+    >
       <MoreIcon aria-hidden />
     </Button>
-  )
+  );
 
   return (
     <Dropdown.Menu className={classes.menu} trigger={trigger}>
       <div>
         <ul className={classes.items}>
-          {getMobileDropdownLinks(t).map(link => {
+          {getMobileDropdownLinks(t).map((link) => {
             return (
               <Dropdown.Item className={classes.item} key={link.href}>
                 <li>
@@ -50,7 +54,7 @@ export const MobileDropdown = memo(({ logout }: Props) => {
                   />
                 </li>
               </Dropdown.Item>
-            )
+            );
           })}
         </ul>
         <Dropdown.Item className={classes.item}>
@@ -63,5 +67,5 @@ export const MobileDropdown = memo(({ logout }: Props) => {
         </Dropdown.Item>
       </div>
     </Dropdown.Menu>
-  )
-})
+  );
+});

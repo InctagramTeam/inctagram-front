@@ -1,1 +1,1 @@
-export { FollowersInfoHeader } from './followers-info-header'
+export { FollowersInfoHeader } from "./followers-info-header";

@@ -1,36 +1,37 @@
-import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from 'react'
+import { CSSProperties, ComponentPropsWithoutRef, ReactNode } from "react";
 
-import { ReturnComponent } from '@/shared/types'
-import * as DropdownRadix from '@radix-ui/react-dropdown-menu'
-import { clsx } from 'clsx'
+import { ReturnComponent } from "@/shared/types";
+import * as DropdownRadix from "@radix-ui/react-dropdown-menu";
+import { clsx } from "clsx";
 
 export type DropdownItemProps = {
-  children: ReactNode
-  direction?: DropdownDirection
-  disabled?: boolean
-  endIcon?: ReactNode
-  onSelect?: () => void
-  startIcon?: ReactNode
-  style?: CSSProperties
-} & ComponentPropsWithoutRef<typeof DropdownRadix.Item>
+  children: ReactNode;
+  direction?: DropdownDirection;
+  disabled?: boolean;
+  endIcon?: ReactNode;
+  onSelect?: () => void;
+  startIcon?: ReactNode;
+  style?: CSSProperties;
+} & ComponentPropsWithoutRef<typeof DropdownRadix.Item>;
 
 export type DropdownDirection =
-  | 'bottom left'
-  | 'bottom right'
-  | 'default'
-  | 'top left'
-  | 'top right'
+  | "bottom left"
+  | "bottom right"
+  | "default"
+  | "top left"
+  | "top right";
 
 // mapping classes
 export const mapDirectionClass: Record<DropdownDirection, string> = {
-  'bottom left': `top-[100%] right-0`,
-  'bottom right': `top-[100%] left-0`,
-  default: '',
-  'top left': `bottom-[100%] right-0`,
-  'top right': `bottom-[100%] left-0`,
-}
+  "bottom left": `top-[100%] right-0`,
+  "bottom right": `top-[100%] left-0`,
+  default: "",
+  "top left": `bottom-[100%] right-0`,
+  "top right": `bottom-[100%] left-0`,
+};
 
-const sleep = (s: number) => new Promise(resolve => setTimeout(resolve, s * 1000))
+const sleep = (s: number) =>
+  new Promise((resolve) => setTimeout(resolve, s * 1000));
 
 const Item = ({
   children,
@@ -43,14 +44,14 @@ const Item = ({
   ...rest
 }: DropdownItemProps): ReturnComponent => {
   const handleSelect = async (e: any) => {
-    e.preventDefault()
-    await sleep(0.075)
+    e.preventDefault();
+    await sleep(0.075);
     if (onSelect) {
-      onSelect()
+      onSelect();
     }
-  }
+  };
 
-  const menuClasses = [mapDirectionClass[direction ?? 'default']]
+  const menuClasses = [mapDirectionClass[direction ?? "default"]];
 
   return (
     <DropdownRadix.Item
@@ -60,7 +61,7 @@ const Item = ({
         border-b-Dark-100/10 bg-Dark-500 p-[0.75rem] py-1.5 text-Light-100 shadow-sm
         outline-none transition-all duration-150 ease-linear
         data-[highlighted]:bg-Dark-100 data-[highlighted]:text-Light-100 hover:bg-Dark-100/70 hover:text-Primary-100 data-[highlighted]:focus:outline-none`,
-        menuClasses
+        menuClasses,
       )}
       disabled={disabled}
       onSelect={handleSelect}
@@ -73,8 +74,8 @@ const Item = ({
         {endIcon && endIcon}
       </>
     </DropdownRadix.Item>
-  )
-}
+  );
+};
 
-Item.displayName = 'Item'
-export { Item }
+Item.displayName = "Item";
+export { Item };

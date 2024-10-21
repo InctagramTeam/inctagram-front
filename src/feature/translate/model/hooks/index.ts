@@ -1,1 +1,1 @@
-export { useLangSwitcher } from './use-lang-switcher'
+export { useLangSwitcher } from "./use-lang-switcher";

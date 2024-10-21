@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, {
   ComponentPropsWithoutRef,
   ElementRef,
@@ -7,28 +7,28 @@ import React, {
   memo,
   useId,
   useState,
-} from 'react'
+} from "react";
 
-import { EMPTY_STRING, ReturnComponent, Text } from '@/shared'
-import CheckIcon from '@/shared/assets/icons/CheckIcon'
-import * as CheckboxRadix from '@radix-ui/react-checkbox'
-import * as LabelRadix from '@radix-ui/react-label'
-import clsx from 'clsx'
+import { EMPTY_STRING, ReturnComponent, Text } from "@/shared";
+import CheckIcon from "@/shared/assets/icons/CheckIcon";
+import * as CheckboxRadix from "@radix-ui/react-checkbox";
+import * as LabelRadix from "@radix-ui/react-label";
+import clsx from "clsx";
 
 export type CheckboxProps = {
-  checked?: boolean
-  className?: string
-  disabled?: boolean
-  errorMessage?: string
-  id?: string
-  label?: ReactNode | string
-  labelPosition?: 'left' | 'right'
-  onCheckedChange?: (checked: boolean) => void
-  required?: boolean
-  value?: string
-} & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>
+  checked?: boolean;
+  className?: string;
+  disabled?: boolean;
+  errorMessage?: string;
+  id?: string;
+  label?: ReactNode | string;
+  labelPosition?: "left" | "right";
+  onCheckedChange?: (checked: boolean) => void;
+  required?: boolean;
+  value?: string;
+} & ComponentPropsWithoutRef<typeof CheckboxRadix.Root>;
 
-export type Ref = ElementRef<typeof CheckboxRadix.Root>
+export type Ref = ElementRef<typeof CheckboxRadix.Root>;
 
 export const Checkbox = memo(
   forwardRef<Ref, CheckboxProps>((props, ref): ReturnComponent => {
@@ -39,29 +39,33 @@ export const Checkbox = memo(
       errorMessage = EMPTY_STRING,
       id,
       label = EMPTY_STRING,
-      labelPosition = 'right',
+      labelPosition = "right",
       name,
       onCheckedChange,
       required,
       ...rest
-    } = props
+    } = props;
 
-    const generatedId = useId()
-    const finalId = id ?? generatedId
+    const generatedId = useId();
+    const finalId = id ?? generatedId;
 
-    const [isFirstRender, setIsFirstRender] = useState(true)
-    const [isChecked, setIsChecked] = useState(checked)
+    const [isFirstRender, setIsFirstRender] = useState(true);
+    const [isChecked, setIsChecked] = useState(checked);
 
     const handleCheckedChange = (newChecked: boolean) => {
       if (isFirstRender) {
-        setIsChecked(newChecked)
-        onCheckedChange?.(newChecked)
+        setIsChecked(newChecked);
+        onCheckedChange?.(newChecked);
       } else {
-        setIsFirstRender(false)
+        setIsFirstRender(false);
       }
-    }
+    };
 
-    const isShowErrorMessage = isChecked ? null : errorMessage === 'Required' ? '' : errorMessage
+    const isShowErrorMessage = isChecked
+      ? null
+      : errorMessage === "Required"
+        ? ""
+        : errorMessage;
 
     return (
       <>
@@ -70,7 +74,7 @@ export const Checkbox = memo(
             className={clsx(
               `_label_ z-0 inline-flex w-full cursor-default select-none items-center text-regular-text-14`,
               className,
-              disabled && `text-Light-900/60`
+              disabled && `text-Light-900/60`,
             )}
             htmlFor={finalId}
           >
@@ -102,7 +106,7 @@ export const Checkbox = memo(
             data-[disabled]:opacity-30 hover:before:z-1
             hover:before:-translate-x-[1px] hover:before:-translate-y-[1px]
             hover:before:scale-100 hover:before:opacity-60 hover:disabled:cursor-default
-            hover:disabled:before:hidden`
+            hover:disabled:before:hidden`,
               )}
               disabled={disabled}
               id={id}
@@ -129,12 +133,12 @@ export const Checkbox = memo(
         <Text
           className={`w-full text-left text-small-text-12 !text-Danger-500`}
           id={`${finalId}-error`}
-          role={'alert'}
-          variant={'error_text_12'}
+          role={"alert"}
+          variant={"error_text_12"}
         >
           {isShowErrorMessage}
         </Text>
       </>
-    )
-  })
-)
+    );
+  }),
+);

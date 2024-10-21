@@ -1,7 +1,7 @@
-import { PageWrapper } from '@/widgets/page-wrapper'
+import { PageWrapper } from "@/widgets/page-wrapper";
 
 export const SignInPage = () => {
-  return <PageWrapper>SignInPage</PageWrapper>
-}
+  return <PageWrapper>SignInPage</PageWrapper>;
+};
 
-export default SignInPage
+export default SignInPage;

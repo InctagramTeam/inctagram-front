@@ -7,27 +7,27 @@
 
 export function debounce<T extends (...args: unknown[]) => void>(
   func: T,
-  delay: number
+  delay: number,
 ): { cancel: () => void; debouncedFunction: (...args: Parameters<T>) => void } {
-  let timeoutId: ReturnType<typeof setTimeout> | null = null
+  let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
   const debouncedFunction = function (...args: Parameters<T>): void {
     if (timeoutId) {
       /** Если предыдущий таймер был установлен, то отменяем его */
-      clearTimeout(timeoutId)
+      clearTimeout(timeoutId);
     }
     /** Устанавливаем новый таймер, который вызовет func после задержки */
-    timeoutId = setTimeout(() => func(...args), delay)
-  }
+    timeoutId = setTimeout(() => func(...args), delay);
+  };
 
   /** Функция для отмены вызова, если он был запланирован */
   const cancel = () => {
     if (timeoutId) {
-      clearTimeout(timeoutId)
+      clearTimeout(timeoutId);
     }
-  }
+  };
 
-  return { cancel, debouncedFunction }
+  return { cancel, debouncedFunction };
 }
 
 /**
