@@ -9,33 +9,27 @@ import clsx from 'clsx'
 
 import s from './post.module.scss'
 
-type Props = {
-  post: PostItem
-}
-
-const Post = () => {
+const Post = (props: PostItem) => {
+  const { description, postImages, id, isDraft } = props
   const [isExpanded, setIsExpanded] = useState(false)
-
+  const src = postImages[0].url
   const handleToggle = () => {
     setIsExpanded(!isExpanded)
   }
 
   return (
     <div className={clsx(s.post)}>
-      <AppImage alt={'post'} className={s.image} src={'/images/post1.png'} />
+      <h1>{src}</h1>
+      <AppImage alt={'post'} className={s.image} src={src} />
 
       <Button className={s.open} variant={'text'}>
-        <AppImage alt={'post'} className={s.avatar} src={'/images/post1.png'} />
+        <AppImage alt={'post'} className={s.avatar} src={src} />
         <h3>URLProfile</h3>
       </Button>
 
       <p className={s.time}>22 min ago</p>
       <div className={s.description}>
-        <span className={clsx(s.container, { [s.expanded]: isExpanded })}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </span>
+        <span className={clsx(s.container, { [s.expanded]: isExpanded })}>{description}</span>
         <button className={s.toggle} onClick={handleToggle} type={'button'}>
           {isExpanded ? 'Hide' : 'Show more'}
         </button>
