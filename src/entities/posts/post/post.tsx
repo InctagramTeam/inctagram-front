@@ -2,6 +2,7 @@
 
 import React, { ReactNode, useState } from 'react'
 
+import { PostItem } from '@/entities/posts/model/types/posts.types'
 import { Button } from '@/shared'
 import { AppImage } from '@/shared/ui/app-image'
 import clsx from 'clsx'
@@ -9,7 +10,7 @@ import clsx from 'clsx'
 import s from './post.module.scss'
 
 type Props = {
-  children: ReactNode
+  post: PostItem
 }
 
 const Post = () => {
