@@ -6,7 +6,6 @@ import { useMyProfile } from '@/shared/ui/add-profile-photo/useMyProfile'
 
 import 'react-image-crop/dist/ReactCrop.css'
 
-// TODO Обсудить со Стасом как лучше передать аватар
 export const AddProfilePhotoWithCrop = () => {
   const { data: myProfile } = useMyProfile()
   const avatarUrl = myProfile?.profile.url
