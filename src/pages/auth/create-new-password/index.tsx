@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react'
 
 import { CreateNewPasswordFormValues, CreatePasswordForm } from '@/feature'
+import authApi from '@/feature/auth/api/auth-api'
 import { useCreateNewPassword } from '@/feature/auth/api/hooks/useCreateNewPassword'
 import {
   AuthRoutes,
@@ -12,8 +13,28 @@ import {
   useTranslation,
 } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
+import { GetServerSideProps } from 'next'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/router'
+
+export const getServerSideProps: GetServerSideProps = async context => {
+  const { code } = context.query
+
+  try {
+    await authApi.validateCodePasswordRecovery(code as string)
+
+    return {
+      props: {},
+    }
+  } catch (error) {
+    return {
+      redirect: {
+        destination: AuthRoutes.FORGOT_PASSWORD + AuthRoutes.LINK_EXPIRED,
+        permanent: false,
+      },
+    }
+  }
+}
 
 const CreateNewPasswordPage = (): ReturnComponent => {
   const { sm } = useResponsive()

@@ -61,7 +61,6 @@ export class AuthApi {
       { email, password, userName }
     )
   }
-
   async singIn(email: string, password: string) {
     const response = await axiosNotAuthorized.post<null, AxiosResponse<ITokens>, IEmailPassword>(
       `auth/login`,
@@ -76,6 +75,10 @@ export class AuthApi {
     }
 
     return response
+  }
+
+  async validateCodePasswordRecovery(code: string) {
+    return await axiosNotAuthorized.get(`auth/new-password?code=${code}`).then(res => res.data)
   }
 }
 
