@@ -14,6 +14,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 type CustomProps = {
+  isButton?: boolean
   name: string
   onClick?: () => void
   onlyIcon?: boolean
@@ -33,21 +34,31 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
     ref: ElementRef<T>
   ): ReturnComponent => {
-    const { asComponent, className, disabled, name, onClick, onlyIcon, startIcon, ...rest } = props
+    const {
+      asComponent,
+      isButton = false,
+      className,
+      disabled,
+      name,
+      onClick,
+      onlyIcon,
+      startIcon,
+      ...rest
+    } = props
 
     const pathname = usePathname()
     const isActive = props.href && pathname?.startsWith(props.href)
-
+    const isBtnComponent = isButton ? 'button' : Link
     const classes = {
       content:
         'rounded-1/2 flex h-8 w-full max-w-[100px] items-center gap-4 bg-Dark-500 !text-Light-100',
       icon: 'h-[24px] basis-[24px]',
       link: cn(
         `relative h-auto flex !items-start gap-[12px] py-[0]
-      !text-medium-text-14 text-Light-100 !whitespace-normal !text-left 
-      transition ease-in-out hover:text-Primary-100
-      before:absolute before:right-[-20%] before:content-[''] before:h-2 before:w-2 before:bg-Primary-900 before:rounded
-      before:opacity-0 before:transition-opacity before:duration-300`,
+        !text-medium-text-14 text-Light-100 !whitespace-normal !text-left 
+        transition ease-in-out hover:text-Primary-100
+        before:absolute before:right-[-20%] before:content-[''] before:h-2 before:w-2 before:bg-Primary-900 before:rounded
+        before:opacity-0 before:transition-opacity before:duration-300`,
         disabled && '!cursor-default !text-Dark-100',
         isActive && `text-Primary-500 before:opacity-1`,
         className
@@ -63,7 +74,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
           <TooltipTrigger asChild>
             <Button
               aria-label={onlyIcon ? name : EMPTY_STRING}
-              asComponent={Link || 'button'}
+              asComponent={isBtnComponent}
               className={classes.link}
               disabled={disabled}
               href={''}
@@ -93,3 +104,5 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     )
   }
 )
+
+//add logout modal for tablet and changed logout nav element to button

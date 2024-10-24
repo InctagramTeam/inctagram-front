@@ -48,12 +48,20 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
         <>
           <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
           {isAuth && (
-            <NavigationElement
-              className={classes.button}
-              name={t.button.logOut}
-              onlyIcon={onlyIcons}
-              startIcon={<LogOutIcon />}
-            />
+            <>
+              <NavigationElement
+                className={classes.button}
+                isButton
+                name={t.button.logOut}
+                onlyIcon={onlyIcons}
+                startIcon={<LogOutIcon />}
+              />
+              <LogoutModal
+                logout={handleLogout}
+                onOpenChange={setIsOpenLogoutModal}
+                open={isOpenLogoutModal}
+              />
+            </>
           )}
         </>
       )
@@ -67,6 +75,7 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
           <>
             <NavigationElement
               className={classes.button}
+              isButton
               name={t.button.logOut}
               onClick={handleClickLogoutBtn}
               onlyIcon={onlyIcons}
