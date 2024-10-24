@@ -2,7 +2,7 @@
  * label: названия для лейблов, например "Confirm password", "Email", "New Password", "Password", и т.д.
  * button: названия для кнопок и ссылок
  * validation: сообщения для валидации, например "Maximum 20 characters for password", "Minimum 6 characters for password", "The passwords must match", и т.д.
- * pages: названия для страниц и их элементов, например "Congratulations!", "Create new password", "Email verification link expired", и т.д.
+ * pages: названия для страниц и их элементов, например "Congratulations!", "Create new password", "Email verification link link-expired", и т.д.
  * если на странице есть модалка то объект "modal" так же вкладывается внутрь объекта с названием страницы
  */
 
@@ -172,10 +172,16 @@ export const en = {
     },
     verifyEmail: {
       metaDescription:
-        'The verification link has expired. Please verify your email again to start using our api and receive exclusive benefits.',
+        'The verification link has link-expired. Please verify your email again to start using our api and receive exclusive benefits.',
       metaTitle: 'Email verification | Instagram',
-      title: 'Email verification link expired',
-      text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
+      title: 'Email verification link link-expired',
+      text: 'Looks like the verification link has link-expired. Not to worry, we can send the link again',
+    },
+    verifyPasswordRecoveryLink: {
+      metaDescription: 'The verification link has link-expired.',
+      metaTitle: 'Create new password | Instagram',
+      title: 'Password recovery link has expired',
+      text: 'Looks like the verification link has link-expired. Not to worry, we can send the link again',
     },
     createPassword: {
       metaTitle: 'Create new password | Instagram',
