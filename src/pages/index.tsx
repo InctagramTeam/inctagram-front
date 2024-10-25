@@ -1,8 +1,7 @@
 import { Posts } from '@/entities/posts/model/types/posts.types'
-import { Post } from '@/entities/posts/post/post'
+import { Post } from '@/entities/posts/post'
 import { Flex } from '@/shared'
 import { getBaseAppLayout } from '@/shared/layouts'
-import { Navigations } from '@/widgets/main'
 import { PageWrapper } from '@/widgets/page-wrapper'
 
 function HomePage() {
@@ -22,6 +21,24 @@ function HomePage() {
             fileId: 'p1',
             order: 0,
             url: '/images/post1.png',
+          },
+          {
+            id: 2,
+            fileId: 'p2',
+            order: 0,
+            url: '/images/post2.png',
+          },
+          {
+            id: 3,
+            fileId: 'p3',
+            order: 0,
+            url: '/images/post3.png',
+          },
+          {
+            id: 4,
+            fileId: 'p4',
+            order: 0,
+            url: '/images/post4.png',
           },
         ],
       },
@@ -71,6 +88,7 @@ function HomePage() {
     <PageWrapper paddingBlock={'24px'} title={'Main | Instagram'}>
       {/*<Navigations />*/}
       <div>счетчик постов</div>
+
       <Flex gap={'12'} items={'start'} justify={'start'} wrap={'wrap'}>
         {posts.items.map(post => (
           <Post key={post.id} {...post} />

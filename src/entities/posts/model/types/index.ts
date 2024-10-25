@@ -1,1 +1,1 @@
-import { Post, Posts } from './posts.types'
+export type { PostItem, Posts } from './posts.types'

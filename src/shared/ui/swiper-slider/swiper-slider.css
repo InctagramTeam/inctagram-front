@@ -1,0 +1,7 @@
+.swiper {
+  width: 100%;
+  border: 3px solid yellow;
+  & .swiper-button-next {
+    display: none;
+  }
+}
