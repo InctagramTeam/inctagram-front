@@ -1,5 +1,13 @@
 .swiper {
   width: 100%;
+  cursor: pointer;
+
+  a {
+    background: red;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 
   .swiper-button-prev,
   .swiper-button-next {

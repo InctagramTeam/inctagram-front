@@ -1,5 +1,7 @@
 'use client'
+import { AuthRoutes, Button } from '@/shared'
 import { AppImage } from '@/shared/ui/app-image'
+import Link from 'next/link'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -12,6 +14,7 @@ type Props = {
 export const SwiperSlider = (props: Props) => {
   const { images } = props
 
+  // todo move to Posts
   return (
     <div className={'swiper'}>
       <Swiper
@@ -23,7 +26,9 @@ export const SwiperSlider = (props: Props) => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <AppImage alt={`Slide ${index}`} src={image} />
+            <Button asComponent={Link} href={AuthRoutes.SIGN_UP}>
+              <AppImage alt={`Slide ${index}`} src={image} />
+            </Button>
           </SwiperSlide>
         ))}
       </Swiper>
