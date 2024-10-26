@@ -2,6 +2,7 @@ import { Posts } from '@/entities/posts/model/types/posts.types'
 import { Post } from '@/entities/posts/post'
 import { Flex } from '@/shared'
 import { getBaseAppLayout } from '@/shared/layouts'
+import { Counter } from '@/shared/ui/counter'
 import { PageWrapper } from '@/widgets/page-wrapper'
 
 function HomePage() {
@@ -87,7 +88,7 @@ function HomePage() {
   return (
     <PageWrapper paddingBlock={'24px'} title={'Main | Instagram'}>
       {/*<Navigations />*/}
-      <div>счетчик постов</div>
+      <Counter value={9213} />
 
       <Flex gap={'12'} items={'start'} justify={'start'} wrap={'wrap'}>
         {posts.items.map(post => (
