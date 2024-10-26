@@ -2,6 +2,7 @@ import { ReactNode, useEffect } from 'react'
 
 import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
 import { useUser } from '@/entities/user'
+import { AuthRoutes } from '@/shared'
 import { getAuthUrl } from '@/shared/config/url/api.config'
 import { getStoreLocalStorage } from '@/shared/lib/utils'
 import Cookies from 'js-cookie'
@@ -35,7 +36,13 @@ const AuthProvider = (props: Props) => {
   useEffect(() => {
     const accessToken = getStoreLocalStorage('accessToken')
 
-    if (!accessToken) {
+    //TODO: изменить, добавить два layouta - withAuth and withoutAuth
+    if (
+      !accessToken &&
+      !router.pathname.startsWith(AuthRoutes.CREATE_NEW_PASSWORD) &&
+      !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD) &&
+      !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD + AuthRoutes.LINK_EXPIRED)
+    ) {
       router.push(getAuthUrl('/sign-in'))
     }
     // if (accessToken) authMe()
