@@ -7,6 +7,7 @@ export const AuthRoutes = {
   SIGN_IN: '/auth/sign-in',
   SIGN_UP: '/auth/sign-up',
   PRIVACY: '/auth/privacy-policy',
+  LINK_EXPIRED: '/link-expired',
 } as const
 
 export const GeneralRoutes = {
