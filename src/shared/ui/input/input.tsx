@@ -202,6 +202,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             htmlFor={finalId}
             variant={'regular_text_16'}
           >
+            {labelProps?.children ?? labelProps.children}
             {label}
           </Text>
         )}
@@ -216,7 +217,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           <input
             {...rest}
-            {...inputProps}
             aria-describedby={errorId}
             className={classNames.input}
             disabled={disabled}
@@ -229,6 +229,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={finalRef}
             type={finalType}
             value={rest.value}
+            {...inputProps}
           />
           {isRevealPasswordButtonShown && (
             <button
