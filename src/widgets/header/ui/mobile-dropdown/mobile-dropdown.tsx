@@ -1,5 +1,6 @@
-import React, { memo } from 'react'
+import React, { memo, useState } from 'react'
 
+import { LogoutModal } from '@/feature'
 import { LogOutIcon, MoreIcon } from '@/shared/assets/icons'
 import { useTranslation } from '@/shared/lib/hooks/use-translation'
 import { Button } from '@/shared/ui/button'
@@ -10,12 +11,16 @@ import { clsx } from 'clsx'
 import Link from 'next/link'
 
 type Props = {
-  logout?: () => void
+  logout: () => void
 }
 
 export const MobileDropdown = memo(({ logout }: Props) => {
   const { t } = useTranslation()
+  const [isOpenLogoutModal, setIsOpenLogoutModal] = useState(false)
 
+  const handleClickLogoutBtn = () => {
+    setIsOpenLogoutModal(true)
+  }
   const classes = {
     item: `w-full data-[highlighted]:ring-Primary-700 data-[highlighted]:ring-1 data-[highlighted]:outline-none rounded-[2px]`,
     items: `flex flex-col gap-[12px] mb-[12px]`,
@@ -54,12 +59,20 @@ export const MobileDropdown = memo(({ logout }: Props) => {
           })}
         </ul>
         <Dropdown.Item className={classes.item}>
-          <NavigationElement
-            className={clsx(classes.link, classes.logoutButton)}
-            name={t.button.logOut}
-            onClick={logout}
-            startIcon={<LogOutIcon />}
-          />
+          <>
+            <NavigationElement
+              className={clsx(classes.link, classes.logoutButton)}
+              isButton
+              name={t.button.logOut}
+              onClick={handleClickLogoutBtn}
+              startIcon={<LogOutIcon />}
+            />
+            <LogoutModal
+              logout={logout}
+              onOpenChange={setIsOpenLogoutModal}
+              open={isOpenLogoutModal}
+            />
+          </>
         </Dropdown.Item>
       </div>
     </Dropdown.Menu>
