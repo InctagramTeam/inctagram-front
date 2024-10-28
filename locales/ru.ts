@@ -171,6 +171,12 @@ export const ru: LocaleType = {
       title: 'Ссылка для подтверждения по электронной почте устарела',
       text: 'Похоже, срок действия ссылки для проверки истек. Не волнуйтесь, мы можем отправить ссылку еще раз',
     },
+    verifyPasswordRecoveryLink: {
+      metaDescription: 'Срок действия ссылки для проверки истек.',
+      metaTitle: 'Создание нового пароля | Instagram',
+      title: 'Ссылка для восстановления пароля по электронной почте устарела',
+      text: 'Похоже, срок действия ссылки для проверки истек. Не волнуйтесь, мы можем отправить ссылку еще раз',
+    },
     createPassword: {
       metaTitle: 'Создание нового пароля | Instagram',
       metaDescription:
@@ -223,7 +229,7 @@ export const ru: LocaleType = {
   validation: {
     minLength: (len: number) => `Минимальное количество символов ${len}`,
     required: 'Обязательное поле',
-    acceptTerms: 'Подтвержите согласие',
+    acceptTerms: 'Подтвердите согласие',
     maxLength: (len: number) => `Максимальное количество символов ${len}`,
     passwordVerification: 'Пароль должен содержать минимум 1 заглавную букву, спец. символ и цифру',
     emailVerification: 'Почта должна соответствовать формату example@example.com',
