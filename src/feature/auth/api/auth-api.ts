@@ -5,6 +5,7 @@ import {
   RecoveryPasswordArgs,
   SignUpRequest,
   getContentType,
+  registrationEmailResendingArgs,
 } from '@/feature'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
@@ -55,12 +56,23 @@ export class AuthApi {
     )
   }
 
+  async registrationEmailResending(email: string) {
+    return await axiosNotAuthorized
+      .post<
+        null,
+        AxiosResponse<undefined>,
+        registrationEmailResendingArgs
+      >(`auth/registration-email-resending`, { email })
+      .then(res => res.data)
+  }
+
   async signUp(userName: string, email: string, password: string) {
     return await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, SignUpRequest>(
       'auth/registration',
       { email, password, userName }
     )
   }
+
   async singIn(email: string, password: string) {
     const response = await axiosNotAuthorized.post<null, AxiosResponse<ITokens>, IEmailPassword>(
       `auth/login`,
