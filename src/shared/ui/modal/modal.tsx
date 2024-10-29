@@ -46,7 +46,6 @@ export const ModalContent = ({
   const { t } = useTranslation()
 
   const classes = {
-    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
     close: `w-[24px] h-[24px] CENTER text-Light-100 
     rounded-[2px] outline-none duration-300 transition-color
     hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
@@ -63,6 +62,7 @@ export const ModalContent = ({
       'relative flex items-center justify-between px-[24px] py-[12px] border-b border-b-Dark-100',
       classNameTitleContainer
     ),
+    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
   }
 
   return (
