@@ -86,6 +86,7 @@ export const en = {
   posts: {
     showMore: 'Show More',
     hide: 'Hide',
+    registeredUsers: 'Registered users',
   },
   lang: {
     en: 'English',

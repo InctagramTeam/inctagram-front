@@ -3,12 +3,12 @@
 import React from 'react'
 
 import { PostItem } from '@/entities/posts/model/types/posts.types'
+import { PostImageSlider } from '@/entities/posts/ui/post-image-slider'
 import { Button } from '@/shared'
 import defaultAvatar from '@/shared/assets/images/avatar.svg'
 import { AppImage } from '@/shared/ui/app-image'
 import { CollapsingText } from '@/shared/ui/collapsing-text/collapsing-text'
 import clsx from 'clsx'
-import { PostImageSlider } from 'src/entities/posts/post-image-slider'
 
 import 'swiper/swiper-bundle.css'
 

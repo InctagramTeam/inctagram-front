@@ -14,7 +14,6 @@ type Props = {
 export const PostImageSlider = (props: Props) => {
   const { images } = props
 
-  // todo move to Posts
   return (
     <div className={'swiper'}>
       <Swiper

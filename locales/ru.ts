@@ -79,6 +79,7 @@ export const ru: LocaleType = {
   posts: {
     showMore: 'Показать',
     hide: 'Скрыть',
+    registeredUsers: 'Зарегистрировано пользователей',
   },
   lang: {
     en: 'Английский',
