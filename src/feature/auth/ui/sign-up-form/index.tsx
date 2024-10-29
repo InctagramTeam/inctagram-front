@@ -54,7 +54,7 @@ export const SignUpForm = forwardRef(
     const {
       control,
       /** Состояние формы errors - ошибки всех полей */
-      formState: { errors, isSubmitting },
+      formState: { errors, isValid },
       /** Получение значений формы */
       getValues,
       handleSubmit,
@@ -67,13 +67,13 @@ export const SignUpForm = forwardRef(
       /** Значения формы по умолчанию */
       defaultValues: {
         checkAccept: false,
-        email: 'example@gmail.com',
+        email: EMPTY_STRING,
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
         username: EMPTY_STRING,
       },
       /** Режим срабатывания подсветки ошибок при изменении полей */
-      mode: 'onChange',
+      mode: 'onTouched',
       resolver: zodResolver(signUpSchema(t)),
     })
 
@@ -85,7 +85,6 @@ export const SignUpForm = forwardRef(
 
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
-    const isSubmittingFormValues = isSubmitting
     const appLinksList = useMemo(
       () => [
         { 'aria-label': t.pages.signUp.github, href: hrefGithub },
@@ -188,11 +187,11 @@ export const SignUpForm = forwardRef(
         </Flex>
         <Button
           className={classes.button}
-          disabled={isSubmittingFormValues}
+          disabled={!isValid || disabled}
           fullWidth
           type={'submit'}
         >
-          {isSubmittingFormValues && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
+          {disabled && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
           {t.button.signUp}
         </Button>
         <Flex direction={'column'}>
