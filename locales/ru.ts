@@ -76,6 +76,10 @@ export const ru: LocaleType = {
     passwordConfirm: 'Введите ваш пароль снова',
     username: 'Введите имя пользователя',
   },
+  posts: {
+    showMore: 'Показать',
+    hide: 'Скрыть',
+  },
   lang: {
     en: 'Английский',
     ru: 'Русский',

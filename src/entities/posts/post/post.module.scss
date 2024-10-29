@@ -3,12 +3,13 @@
   height: 391px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  //gap: 12px;
 }
 
 .image {
   object-fit: cover;
   width: 100%;
+  margin-bottom: 12px;
 }
 
 .time {
@@ -16,12 +17,14 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
+  margin-bottom: 3px;
 }
 
-.open {
+.openProfile {
   padding: 0;
   height: auto;
   justify-content: start;
+  margin-bottom: 12px;
   h3 {
     font-size: 16px;
     font-weight: 600;
@@ -33,22 +36,6 @@
   max-width: 36px;
   max-height: 36px;
   border-radius: 50%;
-}
-
-.container {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  &.expanded {
-    -webkit-line-clamp: unset;
-  }
 }
 
 .toggle {

@@ -13,7 +13,8 @@ function HomePage() {
     pagesCount: 0,
     items: [
       {
-        description: 'description 1',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor inipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor incd.mpor incd.mpor incd.mpo1234567890',
         id: 1,
         isDraft: false,
         postImages: [
@@ -57,7 +58,8 @@ function HomePage() {
         ],
       },
       {
-        description: 'description 3',
+        description:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor inipiscing elit, sed do eiusmod tempor incdipiscing elit, sed do eiusmod tempor incd.mpor incd.mpor incd.mpo1234567890',
         id: 3,
         isDraft: false,
         postImages: [
