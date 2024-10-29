@@ -8,7 +8,7 @@ import defaultAvatar from '@/shared/assets/images/avatar.svg'
 import { AppImage } from '@/shared/ui/app-image'
 import { CollapsingText } from '@/shared/ui/collapsing-text/collapsing-text'
 import clsx from 'clsx'
-import { SwiperSlider } from 'src/entities/posts/post-image-slider'
+import { PostImageSlider } from 'src/entities/posts/post-image-slider'
 
 import 'swiper/swiper-bundle.css'
 
@@ -21,7 +21,7 @@ export const Post = (props: PostItem) => {
 
   return (
     <div className={clsx(s.post)}>
-      <SwiperSlider images={slides} />
+      <PostImageSlider images={slides} />
       <Button className={s.openProfile} variant={'text'}>
         <AppImage alt={'post'} className={s.avatar} src={defaultAvatar} />
         <h3>URLProfile</h3>

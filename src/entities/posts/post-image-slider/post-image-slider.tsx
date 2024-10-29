@@ -1,17 +1,17 @@
 'use client'
-import { AuthRoutes, Button } from '@/shared'
+import { Button } from '@/shared'
 import { AppImage } from '@/shared/ui/app-image'
 import Link from 'next/link'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import './swiper-slider.css'
+import './post-image-slider.css'
 
 type Props = {
   images: string[]
 }
 
-export const SwiperSlider = (props: Props) => {
+export const PostImageSlider = (props: Props) => {
   const { images } = props
 
   // todo move to Posts

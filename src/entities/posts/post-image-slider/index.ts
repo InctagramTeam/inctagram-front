@@ -1,1 +1,1 @@
-export { SwiperSlider } from './swiper-slider'
+export { PostImageSlider } from './post-image-slider'
