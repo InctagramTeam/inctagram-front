@@ -4,10 +4,11 @@ import React from 'react'
 
 import { PostItem } from '@/entities/posts/model/types/posts.types'
 import { Button } from '@/shared'
+import defaultAvatar from '@/shared/assets/images/avatar.svg'
 import { AppImage } from '@/shared/ui/app-image'
 import { CollapsingText } from '@/shared/ui/collapsing-text/collapsing-text'
-import { SwiperSlider } from '@/shared/ui/swiper-slider'
 import clsx from 'clsx'
+import { SwiperSlider } from 'src/entities/posts/post-image-slider'
 
 import 'swiper/swiper-bundle.css'
 
@@ -20,10 +21,9 @@ export const Post = (props: PostItem) => {
 
   return (
     <div className={clsx(s.post)}>
-      {/*<AppImage alt={'post'} className={s.image} src={slides[0]} />*/}
       <SwiperSlider images={slides} />
       <Button className={s.openProfile} variant={'text'}>
-        <AppImage alt={'post'} className={s.avatar} src={'/src'} />
+        <AppImage alt={'post'} className={s.avatar} src={defaultAvatar} />
         <h3>URLProfile</h3>
       </Button>
 

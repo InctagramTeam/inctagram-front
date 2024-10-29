@@ -3,13 +3,6 @@
   height: 391px;
   display: flex;
   flex-direction: column;
-  //gap: 12px;
-}
-
-.image {
-  object-fit: cover;
-  width: 100%;
-  margin-bottom: 12px;
 }
 
 .time {
@@ -24,18 +17,24 @@
   padding: 0;
   height: auto;
   justify-content: start;
-  margin-bottom: 12px;
+  margin: 12px 0;
   h3 {
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
   }
-}
-
-.avatar {
-  max-width: 36px;
-  max-height: 36px;
-  border-radius: 50%;
+  img {
+    transition: all 150ms ease-in-out;
+    max-width: 36px;
+    max-height: 36px;
+    border-radius: 50%;
+    background-color: #ffffff;
+  }
+  &:hover {
+    img {
+      background-color: var(--color-primary-500);
+    }
+  }
 }
 
 .toggle {

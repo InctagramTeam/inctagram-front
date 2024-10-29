@@ -26,7 +26,7 @@ export const SwiperSlider = (props: Props) => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <Button asComponent={Link} href={AuthRoutes.SIGN_UP}>
+            <Button asComponent={Link} href={'/'}>
               <AppImage alt={`Slide ${index}`} src={image} />
             </Button>
           </SwiperSlide>
