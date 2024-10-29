@@ -12,7 +12,7 @@ export const getBaseLinks = (t: LocaleType): NavLink[] => {
       name: t.links.home,
     },
     {
-      disabled: true,
+      disabled: false,
       href: AppRoutes.CREATE_POST,
       name: t.links.create,
     },

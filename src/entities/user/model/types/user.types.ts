@@ -21,6 +21,25 @@ export type UserProfile = {
   lastName: string
 }
 
+export type ProfileMe = {
+  createdAt: string
+  email: string
+  emailIsConfirm: boolean
+  id: number
+  profile: ProfileMeProfile
+  updatedAt: string
+  userName: string
+}
+export type ProfileMeProfile = {
+  aboutMe: string
+  city: string
+  country: string
+  dateOfBirth: string
+  firstName: string
+  lastName: string
+  url: string
+}
+
 export type GetAvatar = {
   url: string
 }
