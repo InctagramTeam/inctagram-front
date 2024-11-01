@@ -19,6 +19,8 @@ import { useRouter } from 'next/router'
 const LinkExpiredEmail = (): ReturnComponent => {
   const { xs } = useResponsive()
   const { t } = useTranslation()
+  const router = useRouter()
+  const email = router.query.email
 
   const { mutate } = useRegistrationEmailResending()
 
@@ -26,9 +28,11 @@ const LinkExpiredEmail = (): ReturnComponent => {
     button: cn('py-[6px] px-[24px]', !xs && 'mb-[32px]', xs && 'order-1'),
     illustration: cn('max-w-[474px] w-full h-[354px]', xs && 'h-[246px] mb-[42px]'),
   }
-  //TODO - обговорить с беками откуда получить email
+
   const resendLinkHandler = () => {
-    mutate(email)
+    if (email) {
+      mutate({ email: email as string })
+    }
   }
 
   return (

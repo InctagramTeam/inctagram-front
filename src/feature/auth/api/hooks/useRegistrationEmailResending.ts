@@ -5,8 +5,8 @@ import { useMutation } from '@tanstack/react-query'
 
 export const useRegistrationEmailResending = () => {
   const mutation = useMutation({
-    mutationFn: async (data: registrationEmailResendingArgs) => {
-      return authApi.registrationEmailResending(data.email)
+    mutationFn: async ({ email }: registrationEmailResendingArgs) => {
+      return authApi.registrationEmailResending(email)
     },
     mutationKey: ['registration-email-resending'],
     onError: (error: ErrorResponse) => {
