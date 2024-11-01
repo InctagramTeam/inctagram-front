@@ -1,9 +1,12 @@
-import { ErrorResponse, NewPasswordArgs, registrationEmailResendingArgs } from '@/feature'
+import { ErrorResponse, registrationEmailResendingArgs } from '@/feature'
 import authApi from '@/feature/auth/api/auth-api'
+import { useTranslation } from '@/shared'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { useMutation } from '@tanstack/react-query'
 
 export const useRegistrationEmailResending = () => {
+  const { t } = useTranslation()
+
   const mutation = useMutation({
     mutationFn: async ({ email }: registrationEmailResendingArgs) => {
       return authApi.registrationEmailResending(email)
@@ -18,7 +21,12 @@ export const useRegistrationEmailResending = () => {
         })
       }
     },
-    onSuccess: data => {},
+    onSuccess: data => {
+      toast({
+        description: t.notifications.emailVerification.onSuccess,
+        variant: 'success',
+      })
+    },
   })
 
   return mutation

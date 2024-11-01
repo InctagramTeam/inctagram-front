@@ -254,5 +254,8 @@ export const en = {
   notifications: {
     profileCreated: 'Profile successfully created',
     profileUpdated: 'Profile successfully updated',
+    emailVerification: {
+      onSuccess: 'The link email was successfully sent!',
+    },
   },
 }
