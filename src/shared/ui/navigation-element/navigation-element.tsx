@@ -69,8 +69,8 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     }
 
     return (
-      <TooltipProvider>
-        <Tooltip delayDuration={0}>
+      <TooltipProvider delayDuration={2000} disableHoverableContent>
+        <Tooltip>
           <TooltipTrigger asChild>
             <Button
               aria-label={onlyIcon ? name : EMPTY_STRING}
@@ -104,5 +104,3 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     )
   }
 )
-
-//add logout modal for tablet and changed logout nav element to button

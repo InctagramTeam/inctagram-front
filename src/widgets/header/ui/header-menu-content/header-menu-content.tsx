@@ -37,8 +37,12 @@ const renderAuthButtons = (isMobile: boolean, isAuth?: boolean): ReturnComponent
   return null
 }
 
-const renderMobileDropdown = (isMobile: boolean, logout?: () => void): ReturnComponent => {
-  if (!isMobile) {
+const renderMobileDropdown = (
+  logout: () => void,
+  isMobile: boolean,
+  isAuth?: boolean
+): ReturnComponent => {
+  if (!isMobile || !isAuth) {
     return null
   }
 
@@ -52,7 +56,7 @@ export const HeaderMenuContent = ({
   sidebarItems,
 }: {
   isAuth?: boolean
-  logout?: () => void
+  logout: () => void
   notifications?: NotificationProps[]
   sidebarItems: ReturnType<typeof getLanguages>
   t: ReturnType<typeof useTranslation>['t']
@@ -66,7 +70,7 @@ export const HeaderMenuContent = ({
       {renderNotificationsDropdown(isMobile, notifications)}
       {renderLangSelectSwitcher(sidebarItems)}
       {renderAuthButtons(isMobile, isAuth)}
-      {renderMobileDropdown(isMobile, logout)}
+      {renderMobileDropdown(logout, isMobile, isAuth)}
     </Flex>
   )
 }
