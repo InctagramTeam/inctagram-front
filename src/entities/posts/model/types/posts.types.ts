@@ -16,4 +16,5 @@ export type Posts = {
   items: PostItem[]
   page: number
   pagesCount: number
+  usersCount: number
 }

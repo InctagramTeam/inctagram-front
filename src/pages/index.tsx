@@ -22,8 +22,6 @@ function HomePage({ posts }: HomePageProps) {
 export const getServerSideProps: GetServerSideProps<{ posts: Posts }> = async context => {
   const posts = await postsApi.getPublicPosts()
 
-  console.log('await posts')
-
   return { props: { posts } }
 }
 

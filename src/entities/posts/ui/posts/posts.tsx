@@ -16,7 +16,7 @@ export const PostsPage = (props: Props) => {
 
   return (
     <div className={s.posts}>
-      <UsersCounter />
+      <UsersCounter value={posts?.usersCount} />
 
       <Flex gap={'12'} items={'start'} justify={'start'} wrap={'wrap'}>
         {posts?.items.map(post => <Post key={post.id} {...post} />)}
