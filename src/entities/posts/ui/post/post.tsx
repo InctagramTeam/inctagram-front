@@ -15,13 +15,14 @@ import 'swiper/swiper-bundle.css'
 import s from './post.module.scss'
 
 export const Post = (props: PostItem) => {
-  const { description, postImages, id, isDraft } = props
+  const { description, postImages } = props
 
   const slides = postImages.map(el => el.url)
 
   return (
     <div className={clsx(s.post)}>
       <PostImageSlider images={slides} />
+
       <Button className={s.openProfile} variant={'text'}>
         <AppImage alt={'post'} className={s.avatar} src={defaultAvatar} />
         <h3>URLProfile</h3>

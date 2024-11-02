@@ -1,6 +1,15 @@
 /** @type {import("next").NextConfig} */
 const nextConfig = {
-  images: {},
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'incubatogramdata.storage.yandexcloud.net',
+        port: '',
+        pathname: '/content/users/63/post_photos/**',
+      },
+    ],
+  },
   poweredByHeader: false,
   env: {
     API_URL: process.env.NEXT_PUBLIC_API_URL,
