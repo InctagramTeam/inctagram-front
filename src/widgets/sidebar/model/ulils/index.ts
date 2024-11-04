@@ -1,1 +1,1 @@
-export { getBaseLinks, getSidebarLinks } from './sidebar-links'
+export { SidebarConfig } from './sidebar-links-config'

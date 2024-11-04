@@ -18,6 +18,7 @@ type CustomProps = {
   name: string
   onClick?: () => void
   onlyIcon?: boolean
+  userId?: null | number
 } & CustomButtonProps
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
@@ -43,6 +44,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
       onClick,
       onlyIcon,
       startIcon,
+      userId,
       ...rest
     } = props
 
@@ -83,7 +85,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
               startIcon={
                 (props.href || startIcon) && (
                   <span aria-hidden className={classes.icon}>
-                    {props.href ? getIcon(props.href, isActive as boolean) : startIcon}
+                    {props.href ? getIcon(props.href, isActive as boolean, userId) : startIcon}
                   </span>
                 )
               }

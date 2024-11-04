@@ -1,11 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
+import { User } from '@/entities/profile'
 import { LogoutModal, useLogout } from '@/feature'
-import { NavigationElement, ReturnComponent, cn } from '@/shared'
+import { NavigationElement, ReturnComponent, cn, useTranslation } from '@/shared'
 import { LogOutIcon } from '@/shared/assets/icons'
-import { useBreakpointMode } from '@/widgets/sidebar/model'
+import { getStoreLocalStorage } from '@/shared/lib/utils'
+import { SidebarConfig, useBreakpointMode } from '@/widgets/sidebar/model'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 
 type Props = {
@@ -13,9 +15,28 @@ type Props = {
 }
 export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
   const [isOpenLogoutModal, setIsOpenLogoutModal] = useState(false)
-  const { isCollapsed, mobile, mobileSidebarLinks, onlyIcons, sidebarLinks, t, tablet } =
-    useBreakpointMode()
+  const { isCollapsed, mobile, onlyIcons, t, tablet } = useBreakpointMode()
+
+  const [userId, setUserId] = useState<null | number>(null)
+  const sidebarConfig = new SidebarConfig(t, userId)
+
   const { mutate } = useLogout()
+
+  useEffect(() => {
+    const user: User = getStoreLocalStorage('user')
+
+    if (user) {
+      setUserId(user.id)
+    }
+  }, [])
+
+  const handleLogout = () => {
+    mutate()
+  }
+  const handleClickLogoutBtn = () => {
+    setIsOpenLogoutModal(true)
+  }
+
   const classes = {
     button: cn('mt-auto', onlyIcons && 'mx-auto'),
     navigation: cn(`h-full flex justify-between flex-col items-start`, mobile && 'items-center'),
@@ -31,22 +52,20 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
         'max-w-full z-2 bottom-0 right-0 h-[var(--header-height)] w-full border-t-[1px] border-t-Dark-300 pt-4 bg-Dark-700'
     ),
   }
-  const handleLogout = () => {
-    mutate()
-  }
-  const handleClickLogoutBtn = () => {
-    setIsOpenLogoutModal(true)
-  }
 
   const displayModeSidebar = () => {
     if (mobile) {
-      return <SidebarList isMobile links={mobileSidebarLinks} onlyIcons />
+      return <SidebarList isMobile links={sidebarConfig.getBaseLinks} onlyIcons userId={userId} />
     }
 
     if (tablet) {
       return (
         <>
-          <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
+          <SidebarList
+            links={[...sidebarConfig.getBaseLinks, ...sidebarConfig.getAdditionalDesktopLinks]}
+            onlyIcons={onlyIcons}
+            userId={userId}
+          />
           {isAuth && (
             <>
               <NavigationElement
@@ -70,7 +89,11 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
     return (
       <>
         <ToggleCollapsedButtons />
-        <SidebarList links={sidebarLinks} onlyIcons={onlyIcons} />
+        <SidebarList
+          links={[...sidebarConfig.getBaseLinks, ...sidebarConfig.getAdditionalDesktopLinks]}
+          onlyIcons={onlyIcons}
+          userId={userId}
+        />
         {isAuth && (
           <>
             <NavigationElement
