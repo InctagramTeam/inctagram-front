@@ -9,7 +9,7 @@ import 'react-image-crop/dist/ReactCrop.css'
 // TODO Обсудить со Стасом как лучше передать аватар
 export const AddProfilePhotoWithCrop = () => {
   const { data: myProfile } = useMyProfile()
-  const avatarUrl = myProfile?.profile.url
+  const avatarUrl = myProfile?.profile?.url
 
   return (
     <div className={'flex flex-col gap-y-6 py-[1.5rem]'}>
