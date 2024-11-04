@@ -102,3 +102,8 @@ export type RecoveryPasswordArgs = {
 export type Email = {
   email: string
 }
+
+/** RegistrationEmailResending -- url: '/auth/registration-email-resending' */
+export type registrationEmailResendingArgs = {
+  email: string
+}

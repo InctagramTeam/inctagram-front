@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 
+import { useRegistrationEmailResending } from '@/feature'
 import {
   AuthRoutes,
   Button,
@@ -15,16 +16,24 @@ import { TimeManagementIllustration } from '@/shared/assets/illustrations'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import { useRouter } from 'next/router'
 
-const ConfirmEmailPage = (): ReturnComponent => {
+const LinkExpiredEmail = (): ReturnComponent => {
   const { xs } = useResponsive()
   const { t } = useTranslation()
+  const router = useRouter()
+  const email = router.query.email
+
+  const { mutate } = useRegistrationEmailResending()
 
   const classes = {
     button: cn('py-[6px] px-[24px]', !xs && 'mb-[32px]', xs && 'order-1'),
     illustration: cn('max-w-[474px] w-full h-[354px]', xs && 'h-[246px] mb-[42px]'),
   }
 
-  const router = useRouter()
+  const resendLinkHandler = () => {
+    if (email) {
+      mutate({ email: email as string })
+    }
+  }
 
   return (
     <PageWrapper
@@ -38,9 +47,7 @@ const ConfirmEmailPage = (): ReturnComponent => {
             asComponent={'button'}
             className={classes.button}
             fullWidth={xs}
-            onClick={() => {
-              router.replace(AuthRoutes.FORGOT_PASSWORD)
-            }}
+            onClick={resendLinkHandler}
           >
             {t.button.resendVerificationLink}
           </Button>
@@ -54,5 +61,5 @@ const ConfirmEmailPage = (): ReturnComponent => {
   )
 }
 
-ConfirmEmailPage.getLayout = getAuthLayout
-export default ConfirmEmailPage
+LinkExpiredEmail.getLayout = getAuthLayout
+export default LinkExpiredEmail
