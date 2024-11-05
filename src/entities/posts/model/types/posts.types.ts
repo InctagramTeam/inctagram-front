@@ -6,6 +6,7 @@ type PostImage = {
 }
 
 export type PostItem = {
+  createdAt: string
   description: string
   id: number
   isDraft: boolean
