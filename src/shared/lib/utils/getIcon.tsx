@@ -1,3 +1,5 @@
+'use client'
+
 import {
   BookmarkIcon,
   BookmarkOutlineIcon,
@@ -19,9 +21,7 @@ import {
 import { AppRoutes } from '@/shared/constants/routes'
 import Cookies from 'js-cookie'
 
-export const getIcon = (href: string, isActive: boolean) => {
-  const userId = Cookies.get('userId')
-
+export const getIcon = (href: string, isActive: boolean, userId?: null | number) => {
   switch (href) {
     case AppRoutes.HOME:
       return isActive ? <HomeIcon /> : <HomeOutlineIcon />

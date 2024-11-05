@@ -1,3 +1,5 @@
+'use client'
+
 import { memo, useMemo } from 'react'
 
 import { NavigationElement } from '@/shared'
@@ -10,9 +12,10 @@ type Props = {
   isMobile?: boolean
   links: NavLink[]
   onlyIcons?: boolean
+  userId: null | number
 }
 
-export const SidebarList = memo(({ isMobile = false, links, onlyIcons = false }: Props) => {
+export const SidebarList = memo(({ isMobile = false, links, userId, onlyIcons = false }: Props) => {
   const { isCollapsed } = useLayoutContext()
 
   const classes = useMemo(
@@ -38,7 +41,8 @@ export const SidebarList = memo(({ isMobile = false, links, onlyIcons = false }:
             disabled={link.disabled}
             name={link.name}
             onlyIcon={onlyIcons}
-            startIcon={getIcon(link.href, false)}
+            startIcon={getIcon(link.href, false, userId)}
+            userId={userId}
           />
         </li>
       )
@@ -46,7 +50,7 @@ export const SidebarList = memo(({ isMobile = false, links, onlyIcons = false }:
 
     return (
       <li className={classes.item} key={link.href}>
-        <NavigationElement asComponent={AppLink} onlyIcon={onlyIcons} {...link} />
+        <NavigationElement asComponent={AppLink} onlyIcon={onlyIcons} userId={userId} {...link} />
       </li>
     )
   }
