@@ -1,6 +1,7 @@
 import { SignInFormValues } from '@/feature'
 import authApi from '@/feature/auth/api/auth-api'
 import { AppRoutes } from '@/shared'
+import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -25,11 +26,11 @@ export const useSignIn = () => {
       }
     },
     onSuccess: async () => {
-      const res = await authApi.me()
+      const user = await authApi.me()
 
-      if (res) {
-        Cookies.set('userId', String(res.id))
-        router.replace(AppRoutes.PROFILE + res.id)
+      if (user) {
+        saveToLocalStorage('user', user)
+        router.replace(AppRoutes.PROFILE + user.id)
       }
     },
   })

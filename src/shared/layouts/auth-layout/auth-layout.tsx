@@ -1,13 +1,14 @@
 import { PropsWithChildren, ReactElement } from 'react'
 
 import { LayoutContextProvider, ReturnComponent } from '@/shared'
+import { useMeQuery } from '@/shared/api/hooks/useMeQuery'
 import { Header } from '@/widgets/header'
 import { Main } from '@/widgets/main/main'
 
 type Props = PropsWithChildren
 
 export const AuthLayout = ({ children }: Props): ReturnComponent => {
-  const isAuth = true
+  const { isSuccess: isAuth } = useMeQuery()
 
   return (
     <>

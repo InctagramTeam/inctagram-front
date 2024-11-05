@@ -37,15 +37,16 @@ const AuthProvider = (props: Props) => {
     const accessToken = getStoreLocalStorage('accessToken')
 
     //TODO: изменить, добавить два layouta - withAuth and withoutAuth
-    // if (
-    //   !accessToken &&
-    //   !router.pathname.startsWith(AuthRoutes.CREATE_NEW_PASSWORD) &&
-    //   !router.pathname.startsWith(AuthRoutes.SIGN_UP) &&
-    //   !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD) &&
-    //   !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD + AuthRoutes.LINK_EXPIRED)
-    // ) {
-    //   router.push(getAuthUrl('/sign-in'))
-    // }
+    if (
+      !accessToken &&
+      !router.pathname.startsWith(AuthRoutes.CREATE_NEW_PASSWORD) &&
+      !router.pathname.startsWith(AuthRoutes.SIGN_UP) &&
+      !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD) &&
+      !router.pathname.startsWith(AuthRoutes.SIGN_UP + AuthRoutes.LINK_EXPIRED) &&
+      !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD + AuthRoutes.LINK_EXPIRED)
+    ) {
+      router.push(getAuthUrl('/sign-in'))
+    }
     // if (accessToken) authMe()
   }, [])
   /** Проверка на рефреш-токен при переходе на др.страницу - если его нет, то logout() */

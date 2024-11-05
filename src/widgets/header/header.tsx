@@ -13,6 +13,9 @@ type Props = {
 
 export const Header = memo(
   ({ className, isAuth, logout, notifications, ...props }: Props): ReturnComponent => {
+    const handleLogout = () => {
+      logout?.()
+    }
     const classes = {
       header: clsx(
         `fixed inset-0 border-b-[1px] shadow-sm shadow-Dark-300 border-Dark-100 w-full h-[60px] py-[15px] z-10 bg-Dark-700`,
@@ -25,7 +28,12 @@ export const Header = memo(
       <header className={classes.header}>
         <Flex className={classes.wrapper} gap={'20'} items={'center'} justify={'spaceBetween'}>
           <Logo />
-          <HeaderMenu isAuth={isAuth} logout={logout} notifications={notifications} {...props} />
+          <HeaderMenu
+            isAuth={isAuth}
+            logout={handleLogout}
+            notifications={notifications}
+            {...props}
+          />
         </Flex>
       </header>
     )
