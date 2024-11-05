@@ -8,7 +8,7 @@ import { HeaderMenuContent } from '../header-menu-content'
 
 type Props = {
   isAuth?: boolean
-  logout?: () => void
+  logout: () => void
   notifications?: NotificationProps[]
 }
 export const HeaderMenu = memo(({ isAuth, logout, notifications }: Props): ReturnComponent => {

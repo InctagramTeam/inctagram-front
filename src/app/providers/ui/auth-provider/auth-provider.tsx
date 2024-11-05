@@ -40,7 +40,9 @@ const AuthProvider = (props: Props) => {
     if (
       !accessToken &&
       !router.pathname.startsWith(AuthRoutes.CREATE_NEW_PASSWORD) &&
+      !router.pathname.startsWith(AuthRoutes.SIGN_UP) &&
       !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD) &&
+      !router.pathname.startsWith(AuthRoutes.SIGN_UP + AuthRoutes.LINK_EXPIRED) &&
       !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD + AuthRoutes.LINK_EXPIRED)
     ) {
       router.push(getAuthUrl('/sign-in'))

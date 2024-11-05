@@ -246,5 +246,8 @@ export const ru: LocaleType = {
   notifications: {
     profileCreated: 'Профиль успешно создан',
     profileUpdated: 'Профиль успешно обновлён',
+    emailVerification: {
+      onSuccess: 'Письмо с ссылкой успешно отправлено!',
+    },
   },
 }

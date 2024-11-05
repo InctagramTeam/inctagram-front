@@ -18,6 +18,7 @@ type CustomProps = {
   name: string
   onClick?: () => void
   onlyIcon?: boolean
+  userId?: null | number
 } & CustomButtonProps
 
 type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomProps>
@@ -43,6 +44,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
       onClick,
       onlyIcon,
       startIcon,
+      userId,
       ...rest
     } = props
 
@@ -69,8 +71,8 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     }
 
     return (
-      <TooltipProvider>
-        <Tooltip delayDuration={0}>
+      <TooltipProvider delayDuration={2000} disableHoverableContent>
+        <Tooltip>
           <TooltipTrigger asChild>
             <Button
               aria-label={onlyIcon ? name : EMPTY_STRING}
@@ -83,7 +85,7 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
               startIcon={
                 (props.href || startIcon) && (
                   <span aria-hidden className={classes.icon}>
-                    {props.href ? getIcon(props.href, isActive as boolean) : startIcon}
+                    {props.href ? getIcon(props.href, isActive as boolean, userId) : startIcon}
                   </span>
                 )
               }
@@ -104,5 +106,3 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
     )
   }
 )
-
-//add logout modal for tablet and changed logout nav element to button

@@ -1,4 +1,5 @@
 'use client'
+import { FocusEvent } from 'react'
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
 import { Input, InputProps } from '@/shared/ui'
@@ -24,5 +25,14 @@ export const ControlledInput = <T extends FieldValues>({
     shouldUnregister,
   })
 
-  return <Input {...rest} {...field} id={name} onBlur={onBlur} onChange={onChange} value={value} />
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    onBlur()
+    if (name === 'username') {
+      onChange(e.target.value.trim())
+    }
+  }
+
+  return (
+    <Input {...rest} {...field} id={name} onBlur={handleBlur} onChange={onChange} value={value} />
+  )
 }

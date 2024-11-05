@@ -1,5 +1,6 @@
 import authApi from '@/feature/auth/api/auth-api'
 import { AuthRoutes } from '@/shared'
+import deleteFromLocalStorage from '@/shared/lib/utils/locale-storage/remove-from-local-storage'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
@@ -23,6 +24,7 @@ export const useLogout = () => {
       }
     },
     onSuccess: _ => {
+      deleteFromLocalStorage('user')
       router.replace(AuthRoutes.SIGN_IN)
     },
   })
