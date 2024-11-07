@@ -18,11 +18,15 @@ const MyProfilePage = ({
 }: {
   isError: boolean
   isLoading: boolean
-  user: User | undefined
+  user: User | null
 }) => {
   return (
     <PageWrapper paddingBlock={'36px'} title={'User | Instagram'}>
-      <DynamicProfileCard data={user} isError={isError} isLoading={isLoading} />
+      {user ? (
+        <DynamicProfileCard data={user} isError={isError} isLoading={isLoading} />
+      ) : (
+        <div className={'flex items-center justify-center'}>Профиль не найден</div>
+      )}
     </PageWrapper>
   )
 }
@@ -37,7 +41,7 @@ export const getServerSideProps = (async context => {
   const user = await profileApi.getProfile(id)
 
   return { props: { user } }
-}) satisfies GetServerSideProps<{ user: User }>
+}) satisfies GetServerSideProps<{ user: User | null }>
 
 MyProfilePage.getLayout = getBaseAppLayout
 

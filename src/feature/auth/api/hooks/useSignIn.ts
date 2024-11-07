@@ -5,7 +5,6 @@ import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-sto
 import { toast } from '@/shared/ui/toast/use-toast'
 import { useMutation } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
-import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 
 export const useSignIn = () => {
@@ -30,6 +29,12 @@ export const useSignIn = () => {
 
       if (user) {
         saveToLocalStorage('user', user)
+
+        await fetch(`/api/setUserIdCookie?userId=${user.id}`, {
+          method: 'GET',
+        })
+        // Cookies.set('userId', String(user.id), { secure: true, sameSite: 'strict' })
+
         router.replace(AppRoutes.PROFILE + user.id)
       }
     },

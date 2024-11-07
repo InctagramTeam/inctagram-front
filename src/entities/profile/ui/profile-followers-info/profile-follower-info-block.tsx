@@ -6,22 +6,19 @@ import { ProfileInfoDescription } from '@/entities/profile/ui/profile-info-descr
 import { ProfileInfoUserStats } from '@/entities/profile/ui/profile-info-user-stats/profile-info-user-stats'
 
 type Props = {
-  userInfo?: User
+  user: User
 }
 
-export const ProfileFollowerInfoBlock = ({ userInfo }: Props) => {
+export const ProfileFollowerInfoBlock = ({ user }: Props) => {
   return (
     <div className={`_profile-followers-info_ ml-[36px] w-full max-w-[734px] pl-[36px]`}>
-      <FollowersInfoHeader profile={userInfo?.profile} />
-      <ProfileInfoUserStats // TODO заполнить данными с бека, когда бэки добавят инфу в эндпоинт
-        // following={userInfo?.following || 0}
-        // followers={userInfo?.followers || 0}
-        // publication={userInfo?.publication || 0}
-        following={2218}
-        followers={2358}
-        publication={2764}
+      <FollowersInfoHeader profile={user?.profile} userId={user.id} />
+      <ProfileInfoUserStats
+        followers={user.followersCount}
+        following={user.followingCount}
+        publication={user.publicationsCount}
       />
-      <ProfileInfoDescription aboutMe={userInfo?.profile?.aboutMe} />
+      <ProfileInfoDescription aboutMe={user.profile?.aboutMe} />
     </div>
   )
 }

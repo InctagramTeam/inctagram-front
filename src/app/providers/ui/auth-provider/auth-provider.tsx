@@ -2,7 +2,7 @@ import { ReactNode, useEffect } from 'react'
 
 import { TypeComponentAuthFields } from '@/app/providers/model/types/role-type'
 import { useUser } from '@/entities/user'
-import { AuthRoutes } from '@/shared'
+import { AppRoutes, AuthRoutes } from '@/shared'
 import { getAuthUrl } from '@/shared/config/url/api.config'
 import { getStoreLocalStorage } from '@/shared/lib/utils'
 import Cookies from 'js-cookie'
@@ -43,7 +43,8 @@ const AuthProvider = (props: Props) => {
       !router.pathname.startsWith(AuthRoutes.SIGN_UP) &&
       !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD) &&
       !router.pathname.startsWith(AuthRoutes.SIGN_UP + AuthRoutes.LINK_EXPIRED) &&
-      !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD + AuthRoutes.LINK_EXPIRED)
+      !router.pathname.startsWith(AuthRoutes.FORGOT_PASSWORD + AuthRoutes.LINK_EXPIRED) &&
+      !router.pathname.startsWith(AppRoutes.PROFILE)
     ) {
       router.push(getAuthUrl('/sign-in'))
     }
