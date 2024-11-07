@@ -1,6 +1,6 @@
+import { User } from '@/entities/profile'
 import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user.types'
 import {
-  MeResponse,
   NewPasswordRequestArgs,
   RecoveryPasswordArgs,
   SignUpRequest,
@@ -43,7 +43,7 @@ export class AuthApi {
   }
 
   async me() {
-    return await axiosWithAuth.get<MeResponse>(`auth/me`).then(res => res.data)
+    return await axiosWithAuth.get<User>(`auth/me`).then(res => res.data)
   }
 
   async passwordRecovery(email: string, recaptchaValue: string) {

@@ -1,8 +1,8 @@
 import { Text } from '@/shared'
 
 type Props = {
-  following: number
   followers: number
+  following: number
   publication: number
 }
 

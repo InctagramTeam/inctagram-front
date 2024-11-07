@@ -2,7 +2,6 @@ import { User, createProfileRequest } from '@/entities/profile'
 import { EMPTY_STRING } from '@/shared'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import { AxiosResponse } from 'axios'
-import { format } from 'date-fns'
 
 export class ProfileApi {
   async createProfile({
@@ -24,14 +23,21 @@ export class ProfileApi {
       })
       .then(res => res.data)
   }
+
   async getMyProfile() {
     return await axiosWithAuth.get<null, AxiosResponse<User>>('profile/me').then(res => res.data)
   }
+
   async getProfile(id: string) {
-    return await axiosNotAuthorized
-      .get<null, AxiosResponse<User>, string>(`profile/${id}`)
-      .then(res => res.data)
+    try {
+      return await axiosNotAuthorized
+        .get<null, AxiosResponse<User>, string>(`profile/${id}`)
+        .then(res => res.data)
+    } catch (error) {
+      return null
+    }
   }
+
   async updateProfile({
     firstName,
     city = EMPTY_STRING,

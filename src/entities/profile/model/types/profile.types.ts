@@ -21,8 +21,11 @@ export type User = {
   createdAt: string
   email: string
   emailIsConfirm: boolean
+  followersCount: number
+  followingCount: number
   id: number
   profile: Profile
+  publicationsCount: number
   updatedAt: string
   userName: string
 }
