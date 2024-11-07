@@ -9,12 +9,12 @@ export type createProfileRequest = {
 
 export type Profile = {
   aboutMe: string
-  avatarId: string
   city: string
   country: string
   dateOfBirth: string
   firstName: string
   lastName: string
+  url: string
 }
 
 export type User = {
