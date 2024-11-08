@@ -1,5 +1,3 @@
-import { UserProfile } from '@/entities/user/model/types/user.types'
-
 export interface RegisterSchema {
   error?: string
   isLoading?: boolean
@@ -9,17 +7,6 @@ export interface RegisterSchema {
 }
 
 // ----------------------
-/** Me запрос -- url: '/auth/me' */
-export type MeResponse = {
-  createdAt: string
-  email: string
-  emailIsConfirm: boolean
-  id: number
-  profile: UserProfile
-  updatedAt: string
-  userName: string
-}
-
 /** Error */
 export type ErrorResponse = {
   response?: {

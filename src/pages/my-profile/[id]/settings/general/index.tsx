@@ -10,9 +10,13 @@ import { AddProfilePhotoWithCrop, TabContent, getSettingsLayout } from '@/shared
 import { format } from 'date-fns'
 import { GetServerSideProps } from 'next'
 
-const General = ({ user }: { user: User }) => {
+const General = ({ user }: { user: User | null }) => {
   const { mutate: createProfile } = useCreateProfile()
   const { mutate: updateProfile } = useUpdateProfile()
+
+  if (!user) {
+    return null
+  }
 
   const submitProfileHandler = (formData: ProfileInfoFormValues) => {
     const { userName, firstName, lastName, dateOfBirth, city, aboutMe } = formData
@@ -47,7 +51,7 @@ export const getServerSideProps = (async context => {
   const user = await profileApi.getProfile(id)
 
   return { props: { user } }
-}) satisfies GetServerSideProps<{ user: User }>
+}) satisfies GetServerSideProps<{ user: User | null }>
 
 General.getLayout = getSettingsLayout
 export default General

@@ -12,7 +12,7 @@ import { UserAvatar } from '../user-avatar'
 
 type ProfileCardProps = {
   className?: string
-  data?: User
+  data: User
   isError?: boolean
   isLoading?: boolean
   readonly?: boolean
@@ -46,7 +46,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
     <div className={`_Profile_ w-full pl-6`}>
       <div className={`_Profile-top_ flex w-full justify-start pb-[50px]`}>
         <UserAvatar className={`h-[200px] w-[200px]`} src={src} />
-        <ProfileFollowerInfoBlock userInfo={data} />
+        <ProfileFollowerInfoBlock user={data} />
       </div>
       <ProfileGallery />
     </div>

@@ -23,8 +23,11 @@ export const useLogout = () => {
         })
       }
     },
-    onSuccess: _ => {
+    onSuccess: async () => {
       deleteFromLocalStorage('user')
+
+      await fetch(`/api/deleteUserIdCookie`, { method: 'GET' })
+
       router.replace(AuthRoutes.SIGN_IN)
     },
   })

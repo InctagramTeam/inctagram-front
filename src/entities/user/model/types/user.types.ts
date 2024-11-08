@@ -11,25 +11,6 @@ export interface IUser {
   userName: string
 }
 
-export type UserProfile = {
-  aboutMe: string
-  avatarId: string
-  city: string
-  country: string
-  dateOfBirth: string
-  firstName: string
-  lastName: string
-}
-
-export type ProfileMe = {
-  createdAt: string
-  email: string
-  emailIsConfirm: boolean
-  id: number
-  profile: ProfileMeProfile
-  updatedAt: string
-  userName: string
-}
 export type ProfileMeProfile = {
   aboutMe: string
   city: string
