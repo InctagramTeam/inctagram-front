@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const FollowersInfoHeader = ({ profile, userId }: Props) => {
-  const { t } = useTranslation() //TODO translate
+  const { t } = useTranslation()
 
   const [isOwnProfile, setIsOwnProfile] = useState(false)
 
@@ -39,7 +39,7 @@ export const FollowersInfoHeader = ({ profile, userId }: Props) => {
           href={AppRoutes.PROFILE + userId + AppRoutes.PROFILE_SETTINGS + '/general'}
           variant={'secondary'}
         >
-          Profile Settings
+          {t.links.profileSettings}
         </Button>
       )}
     </FlexRow>
