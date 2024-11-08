@@ -83,6 +83,11 @@ export const en = {
     passwordConfirm: 'Enter your password again',
     username: 'Enter your username',
   },
+  posts: {
+    showMore: 'Show More',
+    hide: 'Hide',
+    registeredUsers: 'Registered users',
+  },
   lang: {
     en: 'English',
     ru: 'Russian',

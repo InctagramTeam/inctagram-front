@@ -1,0 +1,58 @@
+.swiper {
+  width: 100%;
+  cursor: pointer;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    color: #ffffff;
+    &:after {
+      font-size: 14px;
+      transition: color 0.7s ease;
+    }
+    &:hover {
+      &:after {
+        color: var(--color-primary-500);
+      }
+    }
+  }
+  .swiper-pagination {
+    padding: 0 4px;
+  }
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 26px;
+    height: 0;
+    &:before {
+      content: '';
+      width: 100%;
+      height: 12px;
+      bottom: -20px;
+      left: 0;
+      z-index: -1;
+      background: var(--color-dark-300);
+      opacity: 0.5;
+      border-radius: 2px;
+      position: absolute;
+    }
+  }
+  .swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    opacity: 1;
+    background: #ffffff;
+  }
+  .swiper-pagination-bullet-active {
+    background: var(--primary);
+  }
+}
