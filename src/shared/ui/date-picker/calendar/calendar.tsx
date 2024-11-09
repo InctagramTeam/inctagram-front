@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { DayPicker } from 'react-day-picker'
+import { DayPicker, YearsDropdown } from 'react-day-picker'
 
+import { Select } from '@/shared'
 import { ChevronIcon } from '@/shared/assets/icons'
 import { EMPTY_STRING } from '@/shared/constants/base'
 import { cn } from '@/shared/lib/utils/merge-cn'
+import DropdownDatePicker from '@/shared/ui/date-picker/dropdown/dropdown'
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -55,9 +57,18 @@ const Calendar = ({ className, classNames, showOutsideDays = true, ...props }: C
     <DayPicker
       className={cn(`px-[24px] py-[16px]`, className)}
       classNames={dayPickerClassNames}
+      // components={{
+      //   Chevron: props => {
+      //     if (props.orientation === 'left') {
+      //       return <ChevronIcon className={'h-[20px] w-[20px] rotate-90'} />
+      //     }
+      //
+      //     return <ChevronIcon className={'h-[20px] w-[20px] -rotate-90'} />
+      //   },
+      // }}
       components={{
-        IconLeft: () => <ChevronIcon className={'h-[20px] w-[20px] rotate-90'} />,
-        IconRight: () => <ChevronIcon className={'h-[20px] w-[20px] -rotate-90'} />,
+        YearsDropdown: props => <DropdownDatePicker {...props} />,
+        MonthsDropdown: props => <DropdownDatePicker {...props} />,
       }}
       modifiersClassNames={modifiersClassNames}
       showOutsideDays={showOutsideDays}

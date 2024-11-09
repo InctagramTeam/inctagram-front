@@ -17,6 +17,7 @@ import { CalendarIcon, CalendarOutlineIcon } from '@/shared/assets/icons'
 import { Calendar, CalendarProps } from '@/shared/ui/date-picker/calendar'
 import { format, isDate } from 'date-fns'
 import Link from 'next/link'
+import { date } from 'zod'
 
 export type DatePickerProps = {
   calendarClassName?: string
@@ -125,10 +126,14 @@ export const ControlledDataPicker = <T extends FieldValues>({
         </PopoverTrigger>
         <PopoverContent className={classes.popoverContent}>
           <Calendar
+            captionLayout={'dropdown'}
             className={classes.calendar}
+            endMonth={new Date()}
+            hideNavigation
             mode={'single'}
             onSelect={onChange}
             selected={value}
+            startMonth={new Date(1960, 0)}
           />
         </PopoverContent>
         {error?.message && (

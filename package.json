@@ -37,7 +37,7 @@
     "npm": "^10.8.1",
     "nprogress": "^0.2.0",
     "react": "^18.2.0",
-    "react-day-picker": "^8.10.1",
+    "react-day-picker": "^9.3.0",
     "react-dom": "^18",
     "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.51.4",
