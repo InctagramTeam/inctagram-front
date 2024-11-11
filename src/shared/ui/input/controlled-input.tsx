@@ -1,7 +1,8 @@
 'use client'
-import { FocusEvent } from 'react'
+import { KeyboardEvent, useState } from 'react'
 import { FieldValues, UseControllerProps, useController } from 'react-hook-form'
 
+import { useTranslation } from '@/shared'
 import { Input, InputProps } from '@/shared/ui'
 
 type Props<T extends FieldValues> = Omit<InputProps, 'id' | 'onChange' | 'value'> &
@@ -13,6 +14,7 @@ export const ControlledInput = <T extends FieldValues>({
   name,
   rules,
   shouldUnregister,
+  errorMessage,
   ...rest
 }: Props<T>) => {
   const {
@@ -24,15 +26,36 @@ export const ControlledInput = <T extends FieldValues>({
     rules,
     shouldUnregister,
   })
+  const { t } = useTranslation()
+  const [localError, setLocalError] = useState<null | string>(null)
 
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-    onBlur()
-    if (name === 'username') {
-      onChange(e.target.value.trim())
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (
+      name === 'username' ||
+      name === 'email' ||
+      name === 'password' ||
+      name === 'passwordConfirm'
+    ) {
+      if (e.key.match(/\s/)) {
+        e.preventDefault()
+        setLocalError(t.validation.noSpaces)
+      } else {
+        setLocalError(null)
+      }
     }
   }
 
   return (
-    <Input {...rest} {...field} id={name} onBlur={handleBlur} onChange={onChange} value={value} />
+    <Input
+      {...rest}
+      {...field}
+      aria-invalid={!!errorMessage || !!localError}
+      errorMessage={localError || errorMessage}
+      id={name}
+      onBlur={onBlur}
+      onChange={onChange}
+      onKeyDown={handleKeyDown}
+      value={value}
+    />
   )
 }

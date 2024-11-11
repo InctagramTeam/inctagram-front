@@ -243,6 +243,7 @@ export const en = {
     required: 'Required field',
     acceptTerms: 'Required check',
     maxLength: (len: number) => `Maximum ${len} characters`,
+    noSpaces: 'A space is not allowed in this field',
     emailVerification: 'The email must match the format example@example.com',
     passwordVerification:
       'The password must contain at least 1 capital letter, a special character and a number',

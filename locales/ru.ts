@@ -236,8 +236,9 @@ export const ru: LocaleType = {
     required: 'Обязательное поле',
     acceptTerms: 'Подтвердите согласие',
     maxLength: (len: number) => `Максимальное количество символов ${len}`,
-    passwordVerification: 'Пароль должен содержать минимум 1 заглавную букву, спец. символ и цифру',
+    noSpaces: 'Пробел не допускается в этом поле',
     emailVerification: 'Почта должна соответствовать формату example@example.com',
+    passwordVerification: 'Пароль должен содержать минимум 1 заглавную букву, спец. символ и цифру',
     passwordMismatch: 'Пароли должны совпадать',
     recaptcha: 'Пожалуйста, подтвердите, что вы не робот',
     userNameVerification:
