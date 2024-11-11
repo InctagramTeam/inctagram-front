@@ -7,10 +7,10 @@ import { z } from 'zod'
 export const usernameSchema = (t: LocaleType) => {
   return z
     .string()
-    .trim()
-    .regex(USERNAME_PATTERN, { message: t.validation.userNameVerification })
     .min(6, t.validation.minLength(6))
     .max(30, t.validation.maxLength(30))
+    .regex(USERNAME_PATTERN, { message: t.validation.userNameVerification })
+    .trim()
 }
 export const emailSchema = (t: LocaleType) => {
   return z.string().email({ message: t.validation.emailVerification }).default(EMPTY_STRING)
@@ -19,19 +19,19 @@ export const emailSchema = (t: LocaleType) => {
 export const passwordSchema = (t: LocaleType) => {
   return z
     .string()
-    .trim()
     .min(6, t.validation.minLength(6))
     .max(20, t.validation.maxLength(20))
     .regex(PASSWORD_PATTERN, t.validation.passwordVerification)
+    .trim()
 }
 
 export const firstOrLastNameSchema = (t: LocaleType) => {
   return z
     .string()
-    .trim()
-    .regex(FIRST_OR_LAST_NAME_PATTERN, t.validation.nameVerification)
     .min(1, t.validation.minLength(1))
     .max(50, t.validation.maxLength(50))
+    .regex(FIRST_OR_LAST_NAME_PATTERN, t.validation.nameVerification)
+    .trim()
 }
 
 export const dateSchema = (t: LocaleType) => {
