@@ -157,12 +157,7 @@ export const SignUpForm = forwardRef(
                 <Translate
                   tags={{
                     '1': () => (
-                      <Text
-                        asComponent={AppLink}
-                        href={''}
-                        // todo: href={{ pathname: GeneralRoutes.TERMS, query: { sender: 'signup' } }}
-                        variant={'small-link_12'}
-                      >
+                      <Text asComponent={AppLink} href={AuthRoutes.TERMS} variant={'small-link_12'}>
                         {t.pages.signUp.agreement.terms}
                       </Text>
                     ),
@@ -170,8 +165,7 @@ export const SignUpForm = forwardRef(
                       <Text
                         asComponent={AppLink}
                         className={`text-balance`}
-                        href={''}
-                        // todo: href={{ pathname: GeneralRoutes.PRIVACY, query: { sender: 'signup' } }}
+                        href={AuthRoutes.PRIVACY}
                         variant={'small-link_12'}
                       >
                         {t.pages.signUp.agreement.privacy}
