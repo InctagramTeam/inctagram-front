@@ -10,19 +10,23 @@ type Props = {
   isAuth?: boolean
   logout: () => void
   notifications?: NotificationProps[]
+  showButtons?: boolean
 }
-export const HeaderMenu = memo(({ isAuth, logout, notifications }: Props): ReturnComponent => {
-  const { t } = useTranslation()
+export const HeaderMenu = memo(
+  ({ isAuth, logout, notifications, showButtons }: Props): ReturnComponent => {
+    const { t } = useTranslation()
 
-  const sidebarItems = getLanguages(t)
+    const sidebarItems = getLanguages(t)
 
-  return (
-    <HeaderMenuContent
-      isAuth={isAuth}
-      logout={logout}
-      notifications={notifications}
-      sidebarItems={sidebarItems}
-      t={t}
-    />
-  )
-})
+    return (
+      <HeaderMenuContent
+        isAuth={isAuth}
+        logout={logout}
+        notifications={notifications}
+        showButtons={showButtons}
+        sidebarItems={sidebarItems}
+        t={t}
+      />
+    )
+  }
+)

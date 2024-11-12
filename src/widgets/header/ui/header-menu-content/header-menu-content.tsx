@@ -1,12 +1,11 @@
-import { LangSelectSwitcher, getLanguages } from '@/feature/translate'
-import { AuthRoutes, Button, Flex, ReturnComponent, useResponsive, useTranslation } from '@/shared'
+import { getLanguages, LangSelectSwitcher } from '@/feature/translate'
+import { Flex, ReturnComponent, useResponsive, useTranslation } from '@/shared'
 import {
   AuthButtons,
   MobileDropdown,
   NotificationProps,
   NotificationsDropdown,
 } from '@/widgets/header/ui'
-import Link from 'next/link'
 
 const renderNotificationsDropdown = (
   isMobile: boolean,
@@ -55,10 +54,12 @@ export const HeaderMenuContent = ({
   logout,
   notifications,
   sidebarItems,
+  showButtons,
 }: {
   isAuth?: boolean
   logout: () => void
   notifications?: NotificationProps[]
+  showButtons?: boolean
   sidebarItems: ReturnType<typeof getLanguages>
   t: ReturnType<typeof useTranslation>['t']
 }): ReturnComponent => {
@@ -66,29 +67,11 @@ export const HeaderMenuContent = ({
 
   const isMobile = md
 
-  const { t } = useTranslation()
-
   return (
     <Flex gap={'40'}>
       {renderNotificationsDropdown(isMobile, notifications)}
-      <Button
-        asComponent={Link}
-        className={`m-[0] text-balance px-5 py-1.5`}
-        href={AuthRoutes.SIGN_IN}
-        variant={'link'}
-      >
-        {t.button.signIn}
-      </Button>
-      <Button
-        asComponent={Link}
-        className={`m-[0] text-balance px-5 py-1.5`}
-        href={AuthRoutes.SIGN_UP}
-        variant={'primary'}
-      >
-        {t.button.signUp}
-      </Button>
       {renderLangSelectSwitcher(sidebarItems)}
-      {renderAuthButtons(isMobile, isAuth)}
+      {showButtons && renderAuthButtons(isMobile, isAuth)}
       {renderMobileDropdown(logout, isMobile, isAuth)}
     </Flex>
   )

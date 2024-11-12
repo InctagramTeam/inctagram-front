@@ -9,10 +9,18 @@ type Props = {
   isAuth?: boolean
   logout?: () => void
   notifications?: NotificationProps[]
+  showButtons?: boolean
 }
 
 export const Header = memo(
-  ({ className, isAuth, logout, notifications, ...props }: Props): ReturnComponent => {
+  ({
+    className,
+    isAuth,
+    logout,
+    notifications,
+    showButtons = true,
+    ...props
+  }: Props): ReturnComponent => {
     const handleLogout = () => {
       logout?.()
     }
@@ -32,6 +40,7 @@ export const Header = memo(
             isAuth={isAuth}
             logout={handleLogout}
             notifications={notifications}
+            showButtons={showButtons}
             {...props}
           />
         </Flex>
