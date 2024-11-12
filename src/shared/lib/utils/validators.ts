@@ -1,5 +1,9 @@
 import { EMPTY_STRING, PASSWORD_PATTERN, USERNAME_PATTERN } from '@/shared'
-import { ABOUT_ME_PATTERN, FIRST_OR_LAST_NAME_PATTERN } from '@/shared/constants/regexs'
+import {
+  ABOUT_ME_PATTERN,
+  EMAIL_PATTERN,
+  FIRST_OR_LAST_NAME_PATTERN,
+} from '@/shared/constants/regexs'
 import { differenceInYears } from 'date-fns'
 import { LocaleType } from 'locales'
 import { z } from 'zod'
@@ -13,7 +17,12 @@ export const usernameSchema = (t: LocaleType) => {
     .trim()
 }
 export const emailSchema = (t: LocaleType) => {
-  return z.string().email({ message: t.validation.emailVerification }).default(EMPTY_STRING)
+  return z
+    .string()
+    .trim()
+    .email({ message: t.validation.emailVerification })
+    .regex(EMAIL_PATTERN, t.validation.emailVerification)
+    .default(EMPTY_STRING)
 }
 
 export const passwordSchema = (t: LocaleType) => {
