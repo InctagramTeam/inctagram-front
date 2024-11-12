@@ -128,12 +128,9 @@ export const ControlledDataPicker = <T extends FieldValues>({
           <Calendar
             captionLayout={'dropdown'}
             className={classes.calendar}
-            endMonth={new Date()}
-            hideNavigation
             mode={'single'}
             onSelect={onChange}
             selected={value}
-            startMonth={new Date(1960, 0)}
           />
         </PopoverContent>
         {error?.message && (
