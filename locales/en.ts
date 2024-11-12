@@ -168,6 +168,9 @@ export const en = {
         modalBtnNo: 'No',
       },
     },
+    create: {
+      title: 'Add Photo',
+    },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',
       metaTitle: 'Congratulations | Instagram',

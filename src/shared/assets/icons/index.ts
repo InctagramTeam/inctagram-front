@@ -1,4 +1,5 @@
 export { default as ArrowIcon } from './ArrowIcon'
+export { default as ArrowIosBackIcon } from './ArrowIosBackIcon'
 export { default as BellIcon } from './BellIcon'
 export { default as BellOutlineIcon } from './BellOutlineIcon'
 export { default as BookmarkIcon } from './BookmarkIcon'
