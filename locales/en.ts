@@ -33,7 +33,7 @@ export const en = {
     sendLinkAgain: 'Send Link Again',
     showLess: 'Show less',
     showMore: 'Show more',
-    signIn: 'Sign In',
+    signIn: 'Log In',
     signUp: 'Sign Up',
     simple_save: 'Save',
     statistics: 'Statistics',
