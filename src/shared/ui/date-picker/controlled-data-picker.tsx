@@ -17,7 +17,6 @@ import { CalendarIcon, CalendarOutlineIcon } from '@/shared/assets/icons'
 import { Calendar, CalendarProps } from '@/shared/ui/date-picker/calendar'
 import { format, isDate } from 'date-fns'
 import Link from 'next/link'
-import { date } from 'zod'
 
 export type DatePickerProps = {
   calendarClassName?: string
