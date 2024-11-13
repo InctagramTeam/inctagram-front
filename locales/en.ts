@@ -168,6 +168,10 @@ export const en = {
         modalBtnNo: 'No',
       },
     },
+    create: {
+      title: 'Add Photo',
+      error: 'The maximum file size is 20 MB',
+    },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',
       metaTitle: 'Congratulations | Instagram',
