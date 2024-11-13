@@ -30,10 +30,8 @@ type ModalContentProps = {
   classNameTitle?: string
   classNameTitleContainer?: string
   customTitleComponent?: ReactNode
-  header?: ReactNode
-  isClose?: boolean
   style?: CSSProperties
-  title?: ReactNode
+  title?: string
 } & ComponentPropsWithoutRef<typeof Dialog.Content>
 
 export const ModalContent = ({
@@ -45,8 +43,6 @@ export const ModalContent = ({
   classNameTitleContainer,
   style,
   title = EMPTY_STRING,
-  header,
-  isClose,
   ...rest
 }: ModalContentProps): ReturnComponent => {
   const { t } = useTranslation()
@@ -81,13 +77,11 @@ export const ModalContent = ({
       <Dialog.Content className={classes.content} forceMount style={style}>
         <div className={classes.titleContainer}>
           <Dialog.Title asChild>
-            {header ? header : <Text className={classes.title}>{title}</Text>}
+            <Text className={classes.title}>{title}</Text>
           </Dialog.Title>
-          {!isClose && (
-            <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
-              <CrossIcon />
-            </Dialog.Close>
-          )}
+          <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
+            <CrossIcon />
+          </Dialog.Close>
         </div>
         <div className={classes.childrenWrapper}>{children}</div>
       </Dialog.Content>
