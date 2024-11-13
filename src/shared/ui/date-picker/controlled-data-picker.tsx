@@ -125,6 +125,7 @@ export const ControlledDataPicker = <T extends FieldValues>({
         </PopoverTrigger>
         <PopoverContent className={classes.popoverContent}>
           <Calendar
+            captionLayout={'dropdown'}
             className={classes.calendar}
             mode={'single'}
             onSelect={onChange}

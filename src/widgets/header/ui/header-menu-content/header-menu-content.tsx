@@ -1,4 +1,4 @@
-import { getLanguages, LangSelectSwitcher } from '@/feature/translate'
+import { LangSelectSwitcher, getLanguages } from '@/feature/translate'
 import { Flex, ReturnComponent, useResponsive, useTranslation } from '@/shared'
 import {
   AuthButtons,
