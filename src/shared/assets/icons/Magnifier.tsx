@@ -1,13 +1,20 @@
-import { forwardRef, memo } from 'react'
+import { SVGProps, forwardRef } from 'react'
 
 type IconProps = {
   color?: string
 }
 
-const Magnifier = memo(
-  forwardRef<SVGSVGElement, IconProps>(({ color }, ref) => {
+const Magnifier = forwardRef<SVGSVGElement, IconProps & SVGProps<SVGSVGElement>>(
+  ({ color, ...props }, ref) => {
     return (
-      <svg fill={'none'} height={36} ref={ref} width={36} xmlns={'http://www.w3.org/2000/svg'}>
+      <svg
+        {...props}
+        fill={'none'}
+        height={36}
+        ref={ref}
+        width={36}
+        xmlns={'http://www.w3.org/2000/svg'}
+      >
         <rect fill={'#171717'} height={36} opacity={0.8} rx={2} width={36} />
         <g clipPath={'url(#a)'} fill={color}>
           <path
@@ -28,9 +35,7 @@ const Magnifier = memo(
         </defs>
       </svg>
     )
-  })
+  }
 )
-const ForwardRef = forwardRef(Magnifier)
-const Memo = memo(ForwardRef)
 
-export default Memo
+export default Magnifier

@@ -1,8 +1,9 @@
 import React, { ChangeEvent, useRef } from 'react'
 
-import { useAddPostPhotoStore } from '@/entities/posts'
+import { convertFileToBase64, useAddPostPhotoStore } from '@/entities/posts'
 import { Button, Card, Text, useTranslation } from '@/shared'
 import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
+import { CroppingPhoto } from '@/shared/ui/add-post-photo'
 import { toast } from '@/shared/ui/toast/use-toast'
 
 export const AddPhotoFormContainer = () => {
@@ -12,17 +13,6 @@ export const AddPhotoFormContainer = () => {
   const addImage = useAddPostPhotoStore(state => state.addImage)
   const images = useAddPostPhotoStore(state => state.images)
   const modalState = useAddPostPhotoStore(state => state.modalState)
-
-  const convertFileToBase64 = (file: File, callBack: (value: string) => void) => {
-    const reader = new FileReader()
-
-    reader.onloadend = () => {
-      const file64 = reader.result as string
-
-      callBack(file64)
-    }
-    reader.readAsDataURL(file)
-  }
 
   const imgChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
@@ -80,6 +70,7 @@ export const AddPhotoFormContainer = () => {
           </div>
         </>
       )}
+      {modalState === 'cropping' && <CroppingPhoto />}
     </>
   )
 }
