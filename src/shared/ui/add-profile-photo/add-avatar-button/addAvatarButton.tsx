@@ -6,8 +6,7 @@ import ImageCropper from '@/shared/ui/add-profile-photo/add-avatar-button/image-
 
 export const AddAvatarButton = () => {
   const { t } = useTranslation()
-  const { modalUpdateAvatarOpen, setModalUpdateAvatarOpen, updateAvatarHandler } =
-    useAddAvatarButton()
+  const { modalUpdateAvatarOpen, setModalUpdateAvatarOpen } = useAddAvatarButton()
 
   return (
     <Modal onOpenChange={isOpen => setModalUpdateAvatarOpen(isOpen)} open={modalUpdateAvatarOpen}>
@@ -27,10 +26,7 @@ export const AddAvatarButton = () => {
         classNameTitleContainer={'h-[59px]'}
         title={t.pages.profile.addProfilePhoto.title}
       >
-        <ImageCropper
-          closeModal={() => setModalUpdateAvatarOpen(false)}
-          updateAvatar={updateAvatarHandler}
-        />
+        <ImageCropper closeModal={() => setModalUpdateAvatarOpen(false)} />
       </Modal.Content>
     </Modal>
   )
