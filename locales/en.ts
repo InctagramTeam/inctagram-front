@@ -167,6 +167,24 @@ export const en = {
         modalBtnYes: 'Yes',
         modalBtnNo: 'No',
       },
+      settings: {
+        tabs: {
+          devices: 'Devices',
+          general: 'General information',
+          management: 'Account management',
+          payments: 'My payments',
+        },
+        select: {
+          country: {
+            label: 'Select your country',
+            placeholder: 'Сountry',
+          },
+          city: {
+            label: 'Select your city',
+            placeholder: 'City',
+          },
+        },
+      },
     },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',
@@ -232,12 +250,7 @@ export const en = {
       title: 'Favorites',
     },
   },
-  tabs: {
-    devices: 'Devices',
-    general: 'General information',
-    management: 'Account management',
-    payments: 'My payments',
-  },
+
   validation: {
     minLength: (len: number) => `Minimum ${len} characters`,
     required: 'Required field',

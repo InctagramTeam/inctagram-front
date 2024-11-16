@@ -161,6 +161,24 @@ export const ru: LocaleType = {
         modalBtnYes: 'Да',
         modalBtnNo: 'Нет',
       },
+      settings: {
+        tabs: {
+          devices: 'Устройства',
+          general: 'Общая информация',
+          management: 'Управление аккаунтом',
+          payments: 'Мои платежи',
+        },
+        select: {
+          country: {
+            label: 'Выберите вашу страну',
+            placeholder: 'Страна',
+          },
+          city: {
+            label: 'Выберите ваш город',
+            placeholder: 'Город',
+          },
+        },
+      },
     },
     congratulations: {
       metaDescription: 'Поздравляем! Ваша почта была подтверждена',
@@ -225,12 +243,7 @@ export const ru: LocaleType = {
       title: 'Избранное',
     },
   },
-  tabs: {
-    devices: 'Устройства',
-    general: 'Общая информация',
-    management: 'Управление аккаунтом',
-    payments: 'Мои платежи',
-  },
+
   validation: {
     minLength: (len: number) => `Минимальное количество символов ${len}`,
     required: 'Обязательное поле',

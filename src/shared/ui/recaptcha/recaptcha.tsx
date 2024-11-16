@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
 import { default as ReCAPTCHA } from 'react-google-recaptcha'
 
-import { Flex, RECAPTCHA_PUBLIK_KEY, ReturnComponent, Text } from '@/shared'
+import { Flex, ReturnComponent, Text } from '@/shared'
 import { clsx } from 'clsx'
 
 type Props = {
@@ -31,7 +31,7 @@ export const Recaptcha = forwardRef<ReCAPTCHA, Props>(
         <ReCAPTCHA
           className={'g-recaptcha'}
           ref={ref}
-          sitekey={RECAPTCHA_PUBLIK_KEY}
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_PUBLIC_KEY!}
           theme={theme}
           {...rest}
         />
