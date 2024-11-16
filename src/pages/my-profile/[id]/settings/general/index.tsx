@@ -6,7 +6,7 @@ import { User } from '@/entities/profile'
 import { useCreateProfile, useUpdateProfile } from '@/entities/profile/api'
 import profileApi from '@/entities/profile/api/profile-api'
 import { ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
-import { AddProfilePhotoWithCrop, TabContent, getSettingsLayout } from '@/shared'
+import { AddProfilePhotoWithCrop, TABS_VARIANTS, TabContent, getSettingsLayout } from '@/shared'
 import { format } from 'date-fns'
 import { GetServerSideProps } from 'next'
 
@@ -34,7 +34,7 @@ const General = ({ user }: { user: User | null }) => {
   }
 
   return (
-    <TabContent className={'flex'} value={'general'}>
+    <TabContent className={'flex'} value={TABS_VARIANTS.general}>
       <AddProfilePhotoWithCrop />
       <ProfileInfoForm className={'grow'} onSubmit={submitProfileHandler} user={user} />
     </TabContent>
