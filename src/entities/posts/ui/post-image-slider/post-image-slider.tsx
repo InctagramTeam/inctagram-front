@@ -1,6 +1,5 @@
 'use client'
 import { Button } from '@/shared'
-import { AppImage } from '@/shared/ui/app-image'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navigation, Pagination } from 'swiper/modules'
