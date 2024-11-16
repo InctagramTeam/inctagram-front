@@ -20,7 +20,7 @@
     }
     &:hover {
       &:after {
-        color: var(--color-primary-500);
+        color: var(--primary);
       }
     }
   }
@@ -40,7 +40,7 @@
       bottom: -20px;
       left: 0;
       z-index: -1;
-      background: var(--color-dark-300);
+      background: #333333;
       opacity: 0.5;
       border-radius: 2px;
       position: absolute;
