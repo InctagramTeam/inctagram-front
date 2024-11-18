@@ -14,11 +14,13 @@ import { useRouter } from 'next/router'
 export const SettingsLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
 
-  const [activeTab, setActiveTab] = useState('general')
+  const userId = router.query.id
+  const initialTab = router.pathname.split('/').at(-1)
+  const [activeTab, setActiveTab] = useState(initialTab)
 
   const handleTabChange = (value: string) => {
     setActiveTab(value)
-    router.push(AppRoutes.PROFILE + AppRoutes.PROFILE_SETTINGS + `/${value}`)
+    router.push(AppRoutes.PROFILE + `${userId}` + AppRoutes.PROFILE_SETTINGS + `/${value}`)
   }
 
   return (
