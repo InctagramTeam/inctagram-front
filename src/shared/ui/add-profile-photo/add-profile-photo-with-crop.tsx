@@ -12,14 +12,14 @@ export const AddProfilePhotoWithCrop = () => {
   const { data: myProfile } = useMyProfile()
   const { localAvatar } = useProfile()
 
-  const file = localAvatar?.get('file') as File
-  const imageUrl = createImageUrlFromPhotoFile(file)
-
-  const avatarUrl = myProfile?.profile?.url ?? (imageUrl || '')
-
   if (!myProfile) {
     return null
   }
+
+  const file = localAvatar?.get('file') as File
+  const imageUrl = createImageUrlFromPhotoFile(file)
+
+  const avatarUrl = myProfile.profile?.url ?? (imageUrl || '')
 
   return (
     <div className={'flex flex-col gap-y-6 py-[1.5rem]'}>
@@ -29,7 +29,7 @@ export const AddProfilePhotoWithCrop = () => {
         </UserAvatar>
         {myProfile.profile?.url && <DeleteAvatarButton />}
       </div>
-      <AddAvatarButton />
+      <AddAvatarButton profile={myProfile.profile} />
     </div>
   )
 }
