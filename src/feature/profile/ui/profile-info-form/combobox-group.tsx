@@ -2,41 +2,43 @@ import React, { useState } from 'react'
 import { Control, UseFormResetField } from 'react-hook-form'
 
 import { ProfileInfoFormValues } from '@/feature/profile'
-import { ControlledSelectWithCity } from '@/feature/profile/ui/profile-info-form/controlled-select-with-city'
-import { ControlledSelectWithCountry } from '@/feature/profile/ui/profile-info-form/controlled-select-with-country'
-import { EMPTY_STRING } from '@/shared'
+import { EMPTY_STRING, useTranslation } from '@/shared'
+
+import { ControlledComboboxCity, ControlledComboboxCountry } from './controlled-combobox'
 
 type Props = {
   control: Control<ProfileInfoFormValues>
   resetFieldForm: UseFormResetField<ProfileInfoFormValues>
 }
 
-export const SelectGroup = ({ control, resetFieldForm }: Props) => {
+export const ComboboxGroup = ({ control, resetFieldForm }: Props) => {
   const [countryId, setCountryId] = useState(EMPTY_STRING)
+
+  const { t } = useTranslation()
 
   return (
     <div className={'flex justify-between gap-6'}>
-      <ControlledSelectWithCountry
+      <ControlledComboboxCountry
         className={'w-full'}
         control={control}
-        label={'Select your country'}
+        label={t.pages.profile.settings.combobox.country.label}
         name={'country'}
-        placeholder={'Country'}
+        placeholder={t.pages.profile.settings.combobox.country.placeholder}
         resetFieldForm={resetFieldForm}
         setCountryId={setCountryId}
         typeRequest={'countries'}
       />
-      <ControlledSelectWithCity
+      <ControlledComboboxCity
         className={'w-full'}
         control={control}
         countryIds={countryId}
-        label={'Select your city'}
+        label={t.pages.profile.settings.combobox.city.label}
         name={'city'}
-        placeholder={'City'}
+        placeholder={t.pages.profile.settings.combobox.city.placeholder}
         typeRequest={'cities'}
       />
     </div>
   )
 }
 
-SelectGroup.displayName = 'SelectGroup'
+ComboboxGroup.displayName = 'SelectGroup'
