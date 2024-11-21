@@ -167,6 +167,28 @@ export const en = {
         modalBtnYes: 'Yes',
         modalBtnNo: 'No',
       },
+      settings: {
+        tabs: {
+          devices: 'Devices',
+          general: 'General information',
+          management: 'Account management',
+          payments: 'My payments',
+        },
+        combobox: {
+          loading: 'Loading...',
+          empty: 'No locations found.',
+          country: {
+            label: 'Select your country',
+            placeholder: 'Сountry',
+            search: 'Search сountry',
+          },
+          city: {
+            label: 'Select your city',
+            placeholder: 'City',
+            search: 'Search city',
+          },
+        },
+      },
     },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',
