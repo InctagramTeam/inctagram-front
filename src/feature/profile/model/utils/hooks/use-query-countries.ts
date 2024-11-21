@@ -4,11 +4,12 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 type Props = {
   key: 'countries'
   locale?: string
+  namePrefix: string
 }
 
-export function useQueryCountries({ key, locale = 'en' }: Props) {
+export function useQueryCountries({ key, locale = 'en', namePrefix }: Props) {
   const fetchFunction = async ({ pageParam = 1 }) => {
-    return await geoDbCitiesApi.getCountries({ pageParam, locale })
+    return await geoDbCitiesApi.getCountries({ pageParam, locale, namePrefix })
   }
 
   const {
@@ -23,7 +24,7 @@ export function useQueryCountries({ key, locale = 'en' }: Props) {
     isFetchingPreviousPage,
     status,
   } = useInfiniteQuery({
-    queryKey: [key, { locale }],
+    queryKey: [key, { locale, namePrefix }],
     queryFn: fetchFunction,
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.nextOffset + 10,

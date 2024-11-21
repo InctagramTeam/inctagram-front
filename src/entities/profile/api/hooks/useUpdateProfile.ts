@@ -15,9 +15,18 @@ export const useUpdateProfile = () => {
       userName,
       dateOfBirth,
       city,
+      country,
       aboutMe,
     }: createProfileRequest) => {
-      return profileApi.updateProfile({ firstName, lastName, userName, dateOfBirth, city, aboutMe })
+      return profileApi.updateProfile({
+        firstName,
+        lastName,
+        userName,
+        dateOfBirth,
+        country,
+        city,
+        aboutMe,
+      })
     },
     mutationKey: ['update-profile'],
     onError: (error: ErrorResponse) => {
