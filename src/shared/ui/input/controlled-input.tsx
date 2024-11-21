@@ -30,12 +30,7 @@ export const ControlledInput = <T extends FieldValues>({
   const [localError, setLocalError] = useState<null | string>(null)
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (
-      name === 'username' ||
-      name === 'email' ||
-      name === 'password' ||
-      name === 'passwordConfirm'
-    ) {
+    if (['email', 'password', 'passwordConfirm', 'username'].includes(name)) {
       if (e.key.match(/\s/)) {
         e.preventDefault()
         setLocalError(t.validation.noSpaces)
