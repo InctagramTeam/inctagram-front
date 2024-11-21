@@ -7,11 +7,11 @@ import { MutableRefObject, useCallback, useRef } from 'react'
  * @param callback
  * @param delay - задержка в мс
  */
-export const useDebounce = <T>(callback: (...args: unknown[]) => void, delay: number) => {
+export const useDebounce = <T>(callback: (...args: T[]) => void, delay: number) => {
   const timer = useRef() as MutableRefObject<any>
 
   return useCallback(
-    (...args: any[]) => {
+    (...args: T[]) => {
       if (timer.current) {
         clearTimeout(timer.current)
       }
