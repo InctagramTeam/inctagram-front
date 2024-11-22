@@ -1,12 +1,15 @@
-import { User } from '@/entities/profile'
+import { Profile } from '@/entities/profile'
 import { create } from 'zustand'
 
-interface UserStoreType {
-  setUser: (user: User | null) => void
-  user: User | null
+interface ProfileStoreType {
+  localAvatar: FormData | null
+  profile: Profile | null
+  setUserAvatar: (localAvatar: FormData | null) => void
 }
 
-export const useProfile = create<UserStoreType>((set, get) => ({
-  user: null,
-  setUser: (user: User | null) => set(() => ({ user: user })),
+export const useProfile = create<ProfileStoreType>(set => ({
+  profile: null,
+  localAvatar: null,
+
+  setUserAvatar: localAvatar => set(() => ({ localAvatar: localAvatar })),
 }))
