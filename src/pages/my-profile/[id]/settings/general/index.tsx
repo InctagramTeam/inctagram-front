@@ -7,7 +7,7 @@ import { useCreateProfile, useUpdateProfile } from '@/entities/profile/api'
 import profileApi from '@/entities/profile/api/profile-api'
 import { useProfile } from '@/entities/profile/model/store/profile-store'
 import { ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
-import { AddProfilePhotoWithCrop, TabContent, getSettingsLayout, useTranslation } from '@/shared'
+import { AddProfilePhotoWithCrop, TABS_VARIANTS, TabContent, getSettingsLayout, useTranslation } from '@/shared'
 import { useUpdateAvatar } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { format } from 'date-fns'
@@ -53,7 +53,7 @@ const General = ({ user }: { user: User | null }) => {
   }
 
   return (
-    <TabContent className={'flex'} value={'general'}>
+    <TabContent className={'flex'} value={TABS_VARIANTS.general}>
       <AddProfilePhotoWithCrop />
       <ProfileInfoForm className={'grow'} onSubmit={submitProfileHandler} user={user} />
     </TabContent>
