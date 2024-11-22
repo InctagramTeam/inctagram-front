@@ -33,9 +33,12 @@ export const useSignIn = () => {
         await fetch(`/api/setUserIdCookie?userId=${user.id}`, {
           method: 'GET',
         })
-        // Cookies.set('userId', String(user.id), { secure: true, sameSite: 'strict' })
 
-        router.replace(AppRoutes.PROFILE + user.id)
+        user.profile
+          ? await router.replace(AppRoutes.PROFILE + user.id)
+          : await router.replace(
+              AppRoutes.PROFILE + user.id + AppRoutes.PROFILE_SETTINGS + '/general'
+            )
       }
     },
   })
