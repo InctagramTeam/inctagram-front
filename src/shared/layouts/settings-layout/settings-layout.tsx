@@ -18,7 +18,9 @@ export const SettingsLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter()
   const [userId, setUserId] = useState<null | string>(null)
   const { t } = useTranslation()
-
+  const initialTab = router.pathname.split('/').at(-1)
+  const [activeTab, setActiveTab] = useState<SettingsTabs>(initialTab)
+  
   useEffect(() => {
     const user = getStoreLocalStorage('user')
 
@@ -27,7 +29,6 @@ export const SettingsLayout = ({ children }: { children: ReactNode }) => {
     }
   }, [])
 
-  const [activeTab, setActiveTab] = useState<SettingsTabs>(TABS_VARIANTS.general)
   const tabs = useMemo(() => getSettingsTabs(t), [t])
 
   const handleTabChange = (value: string) => {
