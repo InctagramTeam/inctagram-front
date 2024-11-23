@@ -1,7 +1,6 @@
 .swiper {
   width: 100%;
   cursor: pointer;
-  z-index: 0 !important;
 
   a {
     display: block;

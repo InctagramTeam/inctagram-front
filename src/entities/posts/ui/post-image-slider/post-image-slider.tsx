@@ -15,7 +15,7 @@ export const PostImageSlider = (props: Props) => {
   const { images } = props
 
   return (
-    <div className={'swiper'}>
+    <div className={'z-0'}>
       <Swiper
         modules={[Navigation, Pagination]}
         navigation
