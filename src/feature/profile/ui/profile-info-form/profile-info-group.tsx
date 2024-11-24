@@ -88,6 +88,9 @@ export const ProfileInfoForm = forwardRef(
         city: user.profile?.city ?? EMPTY_STRING,
         aboutMe: user.profile?.aboutMe ?? '',
       })
+      setTimeout(() => {
+        clearErrors()
+      }, 0)
     }, [user, reset])
 
     return (
