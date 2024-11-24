@@ -33,6 +33,7 @@
     transform: translateX(-50%);
     bottom: 26px;
     height: 0;
+    cursor: auto;
     &:before {
       content: '';
       width: 100%;
