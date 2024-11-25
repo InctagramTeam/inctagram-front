@@ -116,14 +116,8 @@ export const SignInForm = forwardRef(
           />
         </Flex>
         <Flex direction={'column'}>
-          <Button
-            asComponent={Link}
-            className={classes.forgotLink}
-            disabled={disabled}
-            href={AuthRoutes.FORGOT_PASSWORD}
-            variant={'text'}
-          >
-            {t.pages.signIn.link}
+          <Button asChild className={classes.forgotLink} disabled={disabled} variant={'text'}>
+            <Link href={AuthRoutes.FORGOT_PASSWORD}>{t.pages.signIn.link}</Link>
           </Button>
           <Button className={classes.button} disabled={!isValid || disabled} fullWidth>
             {t.button.signIn}
@@ -131,14 +125,8 @@ export const SignInForm = forwardRef(
           <Text className={classes.question} variant={'regular_text_16'}>
             {t.pages.signIn.question}
           </Text>
-          <Button
-            asComponent={Link}
-            className={`m-[0] text-balance`}
-            disabled={disabled}
-            href={AuthRoutes.SIGN_UP}
-            variant={'link'}
-          >
-            {t.button.signUp}
+          <Button asChild className={`m-[0] text-balance`} disabled={disabled} variant={'link'}>
+            <Link href={AuthRoutes.SIGN_UP}>{t.button.signUp}</Link>
           </Button>
         </Flex>
       </Card>
