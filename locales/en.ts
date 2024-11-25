@@ -88,6 +88,13 @@ export const en = {
     hide: 'Hide',
     registeredUsers: 'Registered users',
   },
+  uploadPhoto: {
+    addPhoto: 'Add Photo',
+    crop: 'Cropping',
+    proportion: 'choose proportions',
+    zoom: 'zoom',
+    gallery: 'gallery menu',
+  },
   lang: {
     en: 'English',
     ru: 'Russian',

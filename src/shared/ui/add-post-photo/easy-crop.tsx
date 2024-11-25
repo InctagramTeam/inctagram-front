@@ -3,17 +3,18 @@ import Cropper from 'react-easy-crop'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
 import { getCroppedImg } from '@/entities/posts/helpers/getCroppedImg'
+import { CroppedAreaType } from '@/entities/posts/model/types/add-post-photo-store.types'
 type Props = {
   aspect: number
   croppedArea: any
+  currentImageId: string
   image: null | string
-  ind: number
   zoom: number
 }
-export const EasyCrop = ({ aspect, image, ind, zoom }: Props) => {
-  const cropperRef = useRef<HTMLDivElement>(null)
+export const EasyCrop = ({ aspect, image, currentImageId, zoom }: Props) => {
+  const cropperRef = useRef<HTMLDivElement | null>(null)
   const addCroppedImage = useAddPostPhotoStore(state => state.addCroppedImage)
-  const [croppedArea, setCroppedArea] = useState({ x: 0, y: 0 })
+  const [croppedArea, setCroppedArea] = useState<CroppedAreaType>({ x: 0, y: 0 })
   const onCropChange = (newCroppedArea: { x: number; y: number }) => {
     setCroppedArea(newCroppedArea)
   }
@@ -31,10 +32,8 @@ export const EasyCrop = ({ aspect, image, ind, zoom }: Props) => {
   ) => {
     const croppedImg = await getCroppedImg(image, croppedAreaPixels)
 
-    addCroppedImage(croppedImg as string, ind) // Сохраняем в Zustand
+    addCroppedImage(croppedImg as string, currentImageId) // Сохраняем в Zustand
   }
-
-  debugger
 
   return (
     <div ref={cropperRef}>

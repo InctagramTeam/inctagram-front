@@ -2,13 +2,13 @@ import { Ref, SVGProps, forwardRef, memo } from 'react'
 
 const CheckIcon = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
-    ref={ref}
-    {...props}
     fill={'none'}
     height={'14'}
+    ref={ref}
     viewBox={'0 0 14 14'}
     width={'14'}
     xmlns={'http://www.w3.org/2000/svg'}
+    {...props}
   >
     <path
       d={

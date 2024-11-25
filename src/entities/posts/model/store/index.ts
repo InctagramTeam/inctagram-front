@@ -1,2 +1,2 @@
 export { usePosts } from './store'
-export { useAddPostPhotoStore } from './useAddPostPhotoStore'
+export { useAddPostPhotoStore } from './use-add-post-photo-store'

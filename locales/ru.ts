@@ -81,6 +81,13 @@ export const ru: LocaleType = {
     hide: 'Скрыть',
     registeredUsers: 'Зарегистрировано пользователей',
   },
+  uploadPhoto: {
+    addPhoto: 'Добавить фото',
+    crop: 'Обрезка',
+    proportion: 'Выбрать пропорции',
+    zoom: 'Масштаб',
+    gallery: 'Управлять загруженными фото',
+  },
   lang: {
     en: 'Английский',
     ru: 'Русский',
