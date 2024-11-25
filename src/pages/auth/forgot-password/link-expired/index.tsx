@@ -32,7 +32,6 @@ const LinkExpiredPage = (): ReturnComponent => {
       <InformationBlock
         action={
           <Button
-            asComponent={'button'}
             className={classes.button}
             fullWidth={xs}
             onClick={() => {
