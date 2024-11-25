@@ -1,4 +1,4 @@
-export { ELLIPSIS_STRING, EMPTY_STRING, RECAPTCHA_PUBLIK_KEY } from './base'
+export { ELLIPSIS_STRING, EMPTY_STRING, TABS_VARIANTS } from './base'
 
 export { Breakpoints } from './breakpoints'
 

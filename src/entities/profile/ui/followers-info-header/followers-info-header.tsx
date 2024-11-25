@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { Profile } from '@/entities/profile'
 import authApi from '@/feature/auth/api/auth-api'
-import { AppRoutes, Button, Text, useTranslation } from '@/shared'
+import { AppRoutes, Button, TABS_VARIANTS, Text, useTranslation } from '@/shared'
 import { FlexRow } from '@/shared/ui/flex'
 import Link from 'next/link'
 
@@ -36,7 +36,9 @@ export const FollowersInfoHeader = ({ profile, userId }: Props) => {
         <Button
           asComponent={Link}
           className={`px-6 py-[6px]`}
-          href={AppRoutes.PROFILE + userId + AppRoutes.PROFILE_SETTINGS + '/general'}
+          href={
+            AppRoutes.PROFILE + userId + AppRoutes.PROFILE_SETTINGS + `/${TABS_VARIANTS.general}`
+          }
           variant={'secondary'}
         >
           {t.links.profileSettings}

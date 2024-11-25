@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react'
 
-import { ReturnComponent } from '@/shared/types'
+import { ReturnComponent, SettingsTabs } from '@/shared/types'
 import * as Tabs from '@radix-ui/react-tabs'
 
 export type Props = {
   children: ReactNode
   className?: string
   /** Уникальное значение, которое связывает триггер с содержимым.  */
-  value: string
+  value: SettingsTabs
 }
 
 export const TabContent = ({ children, className, value }: Props): ReturnComponent => {
