@@ -1,11 +1,11 @@
-import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
-
-import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared'
+import { ComponentPropsWithoutRef, ReactNode } from 'react'
 import clsx from 'clsx'
+import { Slot, Slottable } from '@radix-ui/react-slot'
 
 type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 
-export type CustomButtonProps = {
+export type Props = {
+  asChild?: boolean
   className?: string
   disabled?: boolean
   endIcon?: ReactNode
@@ -20,43 +20,35 @@ export type CustomButtonProps = {
   startIcon?: ReactNode
   /** Вариант кнопки. Отвечает за визуал кнопки */
   variant?: ButtonVariant
-}
+  children?: ReactNode
+} & ComponentPropsWithoutRef<'button'>
 
-type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomButtonProps>
+export const Button = ({
+  asChild,
+  children,
+  className,
+  disabled,
+  endIcon,
+  fullWidth,
+  rounded = false,
+  size,
+  square = false,
+  startIcon,
+  variant = 'primary',
+  ...restProps
+}: Props) => {
+  const Component = asChild ? Slot : 'button'
 
-type ButtonComponent = <T extends ElementType = 'button'>(props: Props<T>) => ReactNode
-
-export const Button: ButtonComponent = forwardRef(
-  <T extends ElementType = 'button'>(
-    props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
-    ref: ElementRef<T>
-  ): ReturnComponent => {
-    const {
-      asComponent,
-      children,
-      className,
-      disabled,
-      endIcon,
-      fullWidth,
-      rounded = false,
-      size,
-      square = false,
-      startIcon,
-      variant = 'primary',
-      ...rest
-    } = props
-    const Component = asComponent || 'button'
-
-    const classes = {
-      btn: clsx(
-        `inline-flex gap-[12px] items-center justify-center border-box
+  const classes = {
+    btn: clsx(
+      `inline-flex gap-[12px] items-center justify-center border-box
         text-regular-text-16 text-Light-100 border-none rounded outline-none transition-all
         duration-150 ease-in-out cursor-pointer whitespace-nowrap text-center`,
-        [variant],
-        fullWidth && `w-full`,
-        variant === 'primary' &&
-          !disabled &&
-          `bg-Primary-500
+      [variant],
+      fullWidth && `w-full`,
+      variant === 'primary' &&
+        !disabled &&
+        `bg-Primary-500
           hover:transition-all duration-150 ease-in-out
           active:text-Light-100 active:bg-Primary-700 active:shadow-[5px_5px_5px_bg-Dark-700_inset] 
           hover:text-Light-100 hover:bg-Primary-300
@@ -65,13 +57,13 @@ export const Button: ButtonComponent = forwardRef(
           focus-visible:outline-none focus-visible:ring-1 focus-visible:offset-1
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
           disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed`,
-        variant === 'primary' &&
-          disabled &&
-          `bg-Primary-900 text-Light-900 cursor-not-allowed disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed
+      variant === 'primary' &&
+        disabled &&
+        `bg-Primary-900 text-Light-900 cursor-not-allowed disabled:bg-Primary-900 disabled:text-Light-900 disabled:cursor-not-allowed
         `,
-        variant === 'secondary' &&
-          !disabled &&
-          `bg-Dark-100 rounded-[2px] shadow-sm shadow-Dark-300 
+      variant === 'secondary' &&
+        !disabled &&
+        `bg-Dark-100 rounded-[2px] shadow-sm shadow-Dark-300 
            active:bg-[#212121]
            hover:text-Light-100 hover:bg-Dark-100/90
            hover:transition-all duration-150 ease-in-out
@@ -81,13 +73,13 @@ export const Button: ButtonComponent = forwardRef(
            focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
            focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
            disabled:bg-Dark-500 disabled:text-Light-900 disabled:cursor-not-allowed`,
-        variant === 'secondary' &&
-          disabled &&
-          `bg-Dark-300 text-Light-900 cursor-not-allowed
+      variant === 'secondary' &&
+        disabled &&
+        `bg-Dark-300 text-Light-900 cursor-not-allowed
           disabled:bg-Dark-300 disabled:text-Light-900 disabled:cursor-not-allowed`,
-        variant === 'outline' &&
-          !disabled &&
-          `bg-Dark-300 text-Primary-500 p-[5px_24px] bg-transparent ring-1 ring-Primary-300
+      variant === 'outline' &&
+        !disabled &&
+        `bg-Dark-300 text-Primary-500 p-[5px_24px] bg-transparent ring-1 ring-Primary-300
           rounded-[2px] shadow-sm shadow-Primary-900 
           active:bg-Dark-700 active:text-Primary-700 active:border-Primary-700
           hover:text-Primary-100 hover:bg-Dark-500/60 hover:ring-1 hover:ring-Primary-100
@@ -98,12 +90,12 @@ export const Button: ButtonComponent = forwardRef(
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
           disabled:bg-Dark-900 disabled:text-Primary-900 border-Primary-900 disabled:cursor-not-allowed`,
-        variant === 'outline' &&
-          disabled &&
-          `bg-Dark-500 text-Primary-900 ring-1 ring-Primary-900 cursor-not-allowed`,
-        variant === 'link' &&
-          !disabled &&
-          `text-Primary-500 underline-offset-4
+      variant === 'outline' &&
+        disabled &&
+        `bg-Dark-500 text-Primary-900 ring-1 ring-Primary-900 cursor-not-allowed`,
+      variant === 'link' &&
+        !disabled &&
+        `text-Primary-500 underline-offset-4
           border-b-2 border-transparent hover:border-text-Primary-300/50
           transition-all duration-150 ease-in-out 
           hover:underline hover:text-[rgb(106_156_243)]
@@ -111,10 +103,10 @@ export const Button: ButtonComponent = forwardRef(
           focus:outline-none focus:text-[rgb(106_156_243)] focus:underline
           focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300`,
-        variant === 'link' && disabled && `text-Primary-900/50 cursor-not-allowed`,
-        variant === 'text' &&
-          !disabled &&
-          `bg-Dark-700 h-[4px] py-3 px-0
+      variant === 'link' && disabled && `text-Primary-900/50 cursor-not-allowed`,
+      variant === 'text' &&
+        !disabled &&
+        `bg-Dark-700 h-[4px] py-3 px-0
           font-inter font-semi_bold-600 text-H3-16 text-Light-300 transition-colors duration-150 ease-in-out
           active:bg-Dark-700 active:text-Primary-700
           active:transition-all duration-150 ease-in-out
@@ -125,10 +117,10 @@ export const Button: ButtonComponent = forwardRef(
           focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300 focus-visible:Dark-700
           focus-visible:transition-all duration-150 ease-in-out
           disabled:bg-Dark-700 disabled:text-Light-300 disabled:cursor-not-allowed`,
-        variant === 'text' && disabled && `bg-Dark-700 text-Light-500 cursor-not-allowed`,
-        variant === 'destructive' &&
-          !disabled &&
-          `bg-[#ff3f3f] text-Light-100 shadow-sm 
+      variant === 'text' && disabled && `bg-Dark-700 text-Light-500 cursor-not-allowed`,
+      variant === 'destructive' &&
+        !disabled &&
+        `bg-[#ff3f3f] text-Light-100 shadow-sm 
            hover:bg-red-400 transition-all duration-150 ease-in-out
            hover:transition-all duration-150 ease-in-out
            focus:outline-none focus:ring-1 focus:ring-Primary-700
@@ -136,27 +128,24 @@ export const Button: ButtonComponent = forwardRef(
            focus-visible:outline-none focus-visible:ring-2 focus-visible:offset-1
            focus-visible:ring-opacity-50 focus-visible:ring-offset-Primary-300
            disabled:cursor-not-allowed disabled:bg-destructive/50 disabled:text-Primary-900/50`,
-        variant === 'destructive' &&
-          disabled &&
-          `bg-red-700/20 text-white-100/10 cursor-not-allowed`,
-        size === 'sm' && `w-[100px] h-[36px]`,
-        size === 'md' && `w-[182px] h-[36px]`,
-        size === 'lg' && `w-[180px] h-[36px]`,
-        size === 'xl' && `w-[220px] h-[36px]`,
-        size === '2xl' && `w-[260px] h-[36px]`,
-        className,
-        square && `rounded-none`,
-        rounded && `rounded-full`
-      ),
-    }
-
-    /** className={classes.btn} перезаписывает {...rest} пропсы */
-    return (
-      <Component {...rest} className={classes.btn} disabled={disabled} ref={ref}>
-        {startIcon}
-        {children}
-        {endIcon}
-      </Component>
-    )
+      variant === 'destructive' && disabled && `bg-red-700/20 text-white-100/10 cursor-not-allowed`,
+      size === 'sm' && `w-[100px] h-[36px]`,
+      size === 'md' && `w-[182px] h-[36px]`,
+      size === 'lg' && `w-[180px] h-[36px]`,
+      size === 'xl' && `w-[220px] h-[36px]`,
+      size === '2xl' && `w-[260px] h-[36px]`,
+      className,
+      square && `rounded-none`,
+      rounded && `rounded-full`
+    ),
   }
-)
+
+  /** className={classes.btn} перезаписывает {...rest} пропсы */
+  return (
+    <Component {...restProps} className={classes.btn} disabled={disabled}>
+      {startIcon}
+      <Slottable>{children}</Slottable>
+      {endIcon}
+    </Component>
+  )
+}
