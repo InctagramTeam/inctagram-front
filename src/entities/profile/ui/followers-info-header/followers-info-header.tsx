@@ -33,15 +33,14 @@ export const FollowersInfoHeader = ({ profile, userId }: Props) => {
         {profile ? profile.firstName + ' ' + profile.lastName : 'URL_Profile'}
       </Text>
       {isOwnProfile && (
-        <Button
-          asComponent={Link}
-          className={`px-6 py-[6px]`}
-          href={
-            AppRoutes.PROFILE + userId + AppRoutes.PROFILE_SETTINGS + `/${TABS_VARIANTS.general}`
-          }
-          variant={'secondary'}
-        >
-          {t.links.profileSettings}
+        <Button asChild className={`px-6 py-[6px]`} variant={'secondary'}>
+          <Link
+            href={
+              AppRoutes.PROFILE + userId + AppRoutes.PROFILE_SETTINGS + `/${TABS_VARIANTS.general}`
+            }
+          >
+            {t.links.profileSettings}
+          </Link>
         </Button>
       )}
     </FlexRow>

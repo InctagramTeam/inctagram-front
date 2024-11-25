@@ -3,12 +3,11 @@ import React from 'react'
 
 import { useRegistrationEmailResending } from '@/feature'
 import {
-  AuthRoutes,
   Button,
-  InformationBlock,
-  ReturnComponent,
   cn,
   getAuthLayout,
+  InformationBlock,
+  ReturnComponent,
   useResponsive,
   useTranslation,
 } from '@/shared'
@@ -43,12 +42,7 @@ const LinkExpiredEmail = (): ReturnComponent => {
     >
       <InformationBlock
         action={
-          <Button
-            asComponent={'button'}
-            className={classes.button}
-            fullWidth={xs}
-            onClick={resendLinkHandler}
-          >
+          <Button className={classes.button} fullWidth={xs} onClick={resendLinkHandler}>
             {t.button.resendVerificationLink}
           </Button>
         }

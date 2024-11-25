@@ -2,14 +2,13 @@
 import {
   AuthRoutes,
   Button,
-  InformationBlock,
-  ReturnComponent,
   cn,
   getAuthLayout,
+  InformationBlock,
+  ReturnComponent,
   useResponsive,
   useTranslation,
 } from '@/shared'
-import { SignUpBroIllustration } from '@/shared/assets/illustrations'
 import { PageWrapper } from '@/widgets/page-wrapper'
 import Link from 'next/link'
 
@@ -30,13 +29,8 @@ const SignUpCongratulations = (): ReturnComponent => {
     >
       <InformationBlock
         action={
-          <Button
-            asComponent={Link}
-            className={classes.button}
-            fullWidth={xs}
-            href={AuthRoutes.SIGN_IN}
-          >
-            {t.button.signIn}
+          <Button asChild className={classes.button} fullWidth={xs}>
+            <Link href={AuthRoutes.SIGN_IN}>{t.button.signIn}</Link>
           </Button>
         }
         isMobile={xs}

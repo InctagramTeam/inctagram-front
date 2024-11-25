@@ -192,13 +192,8 @@ export const SignUpForm = forwardRef(
           <Text className={classes.question} variant={'regular_text_16'}>
             {t.pages.signUp.question}
           </Text>
-          <Button
-            asComponent={AppLink}
-            className={`m-[0] text-balance`}
-            href={AuthRoutes.SIGN_IN}
-            variant={'link'}
-          >
-            {t.button.signIn}
+          <Button asChild className={`m-[0] text-balance`} variant={'link'}>
+            <AppLink href={AuthRoutes.SIGN_IN}>{t.button.signIn}</AppLink>
           </Button>
         </Flex>
       </Card>

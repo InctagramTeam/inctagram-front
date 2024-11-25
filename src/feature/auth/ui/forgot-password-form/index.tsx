@@ -139,13 +139,8 @@ export const ForgotPasswordForm = forwardRef(
           </Button>
         )}
 
-        <Button
-          asComponent={Link}
-          className={classes.link}
-          href={AuthRoutes.SIGN_IN}
-          variant={'link'}
-        >
-          {t.button.backToSignIn}
+        <Button asChild className={classes.link} variant={'link'}>
+          <Link href={AuthRoutes.SIGN_IN}>{t.button.backToSignIn}</Link>
         </Button>
         <Recaptcha
           errorMessage={errors?.recaptcha?.message}
