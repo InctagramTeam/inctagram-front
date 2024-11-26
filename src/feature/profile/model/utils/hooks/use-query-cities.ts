@@ -5,11 +5,12 @@ type Props = {
   countryIds: string
   key: 'cities'
   locale?: string
+  namePrefix: string
 }
 
-export function useQueryCities({ key, locale = 'en', countryIds }: Props) {
+export function useQueryCities({ key, locale = 'en', countryIds, namePrefix }: Props) {
   const fetchFunction = async ({ pageParam = 1 }) => {
-    return await geoDbCitiesApi.getCities({ pageParam, locale, countryIds })
+    return await geoDbCitiesApi.getCities({ pageParam, locale, countryIds, namePrefix })
   }
 
   const {
@@ -24,7 +25,7 @@ export function useQueryCities({ key, locale = 'en', countryIds }: Props) {
     isFetchingPreviousPage,
     status,
   } = useInfiniteQuery({
-    queryKey: [key, { locale }],
+    queryKey: [key, { locale, namePrefix }],
     queryFn: fetchFunction,
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.nextOffset + 10,

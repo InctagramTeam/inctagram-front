@@ -1,25 +1,32 @@
-'use client'
-
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FieldValues, UseControllerProps, UseFormResetField, useController } from 'react-hook-form'
 
 import { ProfileInfoFormValues, removeDublicateData, useQueryCountries } from '@/feature/profile'
-import { SelectBox, SelectProps, useTranslation } from '@/shared'
+import { EMPTY_STRING, useTranslation } from '@/shared'
+import { Combobox, ComboboxProps } from '@/shared/ui/combobox/combobox'
 
-type ControlledSelectProps = {
+type ControlledComboboxProps = {
   resetFieldForm: UseFormResetField<ProfileInfoFormValues>
   setCountryId: (id: string) => void
   typeRequest: 'countries'
 }
 
-type Props<T extends FieldValues> = ControlledSelectProps &
+type Props<T extends FieldValues> = ControlledComboboxProps &
   Omit<
-    SelectProps,
-    'fetchNextPage' | 'id' | 'isFetchingNextPage' | 'locations' | 'onChange' | 'value'
+    ComboboxProps,
+    | 'debounceInputValue'
+    | 'fetchNextPage'
+    | 'id'
+    | 'isFetchingNextPage'
+    | 'locations'
+    | 'onChange'
+    | 'setDebounceInputValue'
+    | 'status'
+    | 'value'
   > &
   UseControllerProps<T>
 
-export const ControlledSelectWithCountry = <T extends FieldValues>({
+export const ControlledComboboxCountry = <T extends FieldValues>({
   control,
   defaultValue,
   name,
@@ -41,10 +48,12 @@ export const ControlledSelectWithCountry = <T extends FieldValues>({
   })
 
   const { locale } = useTranslation()
+  const [debounceInputValue, setDebounceInputValue] = useState(EMPTY_STRING)
 
-  const { data, fetchNextPage, isFetchingNextPage } = useQueryCountries({
+  const { data, fetchNextPage, isFetchingNextPage, status } = useQueryCountries({
     key: typeRequest,
     locale,
+    namePrefix: debounceInputValue,
   })
 
   const uniqueDataMap = removeDublicateData(data?.pages ?? [])
@@ -59,13 +68,16 @@ export const ControlledSelectWithCountry = <T extends FieldValues>({
   }, [value])
 
   return (
-    <SelectBox
+    <Combobox
       {...rest}
       {...field}
+      debounceInputValue={debounceInputValue}
       fetchNextPage={fetchNextPage}
       isFetchingNextPage={isFetchingNextPage}
       locations={uniqueDataMap}
       onChange={onChange}
+      setDebounceInputValue={setDebounceInputValue}
+      status={status}
       value={value}
     />
   )

@@ -168,14 +168,18 @@ export const ru: LocaleType = {
           management: 'Управление аккаунтом',
           payments: 'Мои платежи',
         },
-        select: {
+        combobox: {
+          loading: 'Поиск...',
+          empty: 'Локация не найдена.',
           country: {
             label: 'Выберите вашу страну',
             placeholder: 'Страна',
+            search: 'Поиск страны',
           },
           city: {
             label: 'Выберите ваш город',
             placeholder: 'Город',
+            search: 'Поиск города',
           },
         },
       },
@@ -243,7 +247,12 @@ export const ru: LocaleType = {
       title: 'Избранное',
     },
   },
-
+  tabs: {
+    devices: 'Устройства',
+    general: 'Общая информация',
+    management: 'Управление аккаунтом',
+    payments: 'Мои платежи',
+  },
   validation: {
     minLength: (len: number) => `Минимальное количество символов ${len}`,
     required: 'Обязательное поле',
@@ -268,8 +277,5 @@ export const ru: LocaleType = {
     emailVerification: {
       onSuccess: 'Письмо с ссылкой успешно отправлено!',
     },
-  },
-  errors: {
-    noProfile: 'Произошла ошибка при загрузке профиля. Попробуйте обновить страницу',
   },
 }
