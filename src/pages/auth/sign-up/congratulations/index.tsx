@@ -30,13 +30,8 @@ const SignUpCongratulations = (): ReturnComponent => {
     >
       <InformationBlock
         action={
-          <Button
-            asComponent={Link}
-            className={classes.button}
-            fullWidth={xs}
-            href={AuthRoutes.SIGN_IN}
-          >
-            {t.button.signIn}
+          <Button asChild className={classes.button} fullWidth={xs}>
+            <Link href={AuthRoutes.SIGN_IN}>{t.button.signIn}</Link>
           </Button>
         }
         illustration={<SignUpBroIllustration aria-hidden className={classes.illustration} />}

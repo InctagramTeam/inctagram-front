@@ -31,18 +31,20 @@ export const Post = (props: PostItem) => {
       {isSlides ? (
         <PostImageSlider images={slides} />
       ) : (
-        <Button asComponent={Link} className={'h-full max-h-60'} href={'/'}>
-          <Image
-            alt={'post-image'}
-            className={'h-full w-full object-cover'}
-            height={240}
-            src={slides[0]}
-            width={234}
-          />
+        <Button asChild className={'h-full max-h-60'}>
+          <Link href={'/'}>
+            <Image
+              alt={'post-image'}
+              className={'h-full w-full object-cover'}
+              height={240}
+              src={slides[0]}
+              width={234}
+            />
+          </Link>
         </Button>
       )}
 
-      <button
+      <Button
         className={'my-3 flex h-auto w-full items-center justify-start gap-3 text-left'}
         type={'button'}
       >
@@ -54,7 +56,7 @@ export const Post = (props: PostItem) => {
           src={defaultAvatar}
         />
         <h3 className={'text-lg font-semibold leading-6'}>URLProfile</h3>
-      </button>
+      </Button>
 
       <p className={'mb-1 text-sm font-normal leading-4 text-Light-900'}>{timeAgo}</p>
 

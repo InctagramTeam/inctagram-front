@@ -63,63 +63,60 @@ export const CreatePasswordForm = forwardRef(
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
     return (
-      <Card
-        asComponent={'form'}
-        className={classes.form}
-        onSubmit={handleSubmit(onSubmit)}
-        {...rest}
-      >
-        <Text asComponent={'h1'} mb={'37px'} textAlign={'center'} variant={'H1'}>
-          {t.pages.createPassword.title}
-        </Text>
-        <Flex direction={'column'} gap={'24'} mb={'7px'}>
-          <ControlledInput
-            aria-describedby={'create-new-password-email-instructions'}
-            aria-invalid={errors.password ? 'true' : 'false'}
-            autoComplete={'new-password'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.password?.message}
-            label={t.label.password}
-            name={'password'}
-            placeholder={t.placeholders.password}
-            rules={{ required: true }}
-            type={'password'}
-          />
-          <ControlledInput
-            aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
-            autoComplete={'new-password'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.passwordConfirm?.message}
-            label={t.label.confirmPassword}
-            name={'passwordConfirm'}
-            placeholder={t.placeholders.passwordConfirm}
-            rules={{ required: true }}
-            type={'password'}
-          />
-        </Flex>
-        <Text
-          asComponent={'p'}
-          className={'text-Light-900'}
-          id={'create-new-password-email-instructions'}
-          mb={'41px'}
-          variant={'regular-text-14'}
-        >
-          {t.pages.createPassword.hint}
-        </Text>
-        {disabled ? (
-          <ButtonSpinner className={'mb-6 h-[30px] w-[30px] min-w-full text-center'} />
-        ) : (
-          <Button
-            className={'px-[24px] py-[6px]'}
-            disabled={!!Object.keys(errors).length}
-            fullWidth
-            type={'submit'}
+      <Card asChild>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} {...rest}>
+          <Text asComponent={'h1'} mb={'37px'} textAlign={'center'} variant={'H1'}>
+            {t.pages.createPassword.title}
+          </Text>
+          <Flex direction={'column'} gap={'24'} mb={'7px'}>
+            <ControlledInput
+              aria-describedby={'create-new-password-email-instructions'}
+              aria-invalid={errors.password ? 'true' : 'false'}
+              autoComplete={'new-password'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.password?.message}
+              label={t.label.password}
+              name={'password'}
+              placeholder={t.placeholders.password}
+              rules={{ required: true }}
+              type={'password'}
+            />
+            <ControlledInput
+              aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
+              autoComplete={'new-password'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.passwordConfirm?.message}
+              label={t.label.confirmPassword}
+              name={'passwordConfirm'}
+              placeholder={t.placeholders.passwordConfirm}
+              rules={{ required: true }}
+              type={'password'}
+            />
+          </Flex>
+          <Text
+            asComponent={'p'}
+            className={'text-Light-900'}
+            id={'create-new-password-email-instructions'}
+            mb={'41px'}
+            variant={'regular-text-14'}
           >
-            {t.button.createNewPassword}
-          </Button>
-        )}
+            {t.pages.createPassword.hint}
+          </Text>
+          {disabled ? (
+            <ButtonSpinner className={'mb-6 h-[30px] w-[30px] min-w-full text-center'} />
+          ) : (
+            <Button
+              className={'px-[24px] py-[6px]'}
+              disabled={!!Object.keys(errors).length}
+              fullWidth
+              type={'submit'}
+            >
+              {t.button.createNewPassword}
+            </Button>
+          )}
+        </form>
       </Card>
     )
   }

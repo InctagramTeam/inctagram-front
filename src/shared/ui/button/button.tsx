@@ -1,11 +1,15 @@
-import { ComponentPropsWithoutRef, ElementRef, ElementType, ReactNode, forwardRef } from 'react'
+'use client'
 
-import { PolymorphComponentPropsWithRef, ReturnComponent } from '@/shared'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
+
+import { Slot, Slottable } from '@radix-ui/react-slot'
 import clsx from 'clsx'
 
 type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 
 export type CustomButtonProps = {
+  asChild?: boolean
+  children?: ReactNode
   className?: string
   disabled?: boolean
   endIcon?: ReactNode
@@ -20,19 +24,12 @@ export type CustomButtonProps = {
   startIcon?: ReactNode
   /** Вариант кнопки. Отвечает за визуал кнопки */
   variant?: ButtonVariant
-}
+} & ComponentPropsWithoutRef<'button'>
 
-type Props<T extends ElementType> = PolymorphComponentPropsWithRef<T, CustomButtonProps>
-
-type ButtonComponent = <T extends ElementType = 'button'>(props: Props<T>) => ReactNode
-
-export const Button: ButtonComponent = forwardRef(
-  <T extends ElementType = 'button'>(
-    props: Omit<ComponentPropsWithoutRef<T>, keyof Props<T>> & Props<T>,
-    ref: ElementRef<T>
-  ): ReturnComponent => {
-    const {
-      asComponent,
+export const Button = forwardRef<ElementRef<'button'>, CustomButtonProps>(
+  (
+    {
+      asChild,
       children,
       className,
       disabled,
@@ -43,9 +40,11 @@ export const Button: ButtonComponent = forwardRef(
       square = false,
       startIcon,
       variant = 'primary',
-      ...rest
-    } = props
-    const Component = asComponent || 'button'
+      ...restProps
+    },
+    ref
+  ) => {
+    const Component = asChild ? Slot : 'button'
 
     const classes = {
       btn: clsx(
@@ -152,9 +151,9 @@ export const Button: ButtonComponent = forwardRef(
 
     /** className={classes.btn} перезаписывает {...rest} пропсы */
     return (
-      <Component {...rest} className={classes.btn} disabled={disabled} ref={ref}>
+      <Component {...restProps} className={classes.btn} disabled={disabled} ref={ref}>
         {startIcon}
-        {children}
+        <Slottable>{children}</Slottable>
         {endIcon}
       </Component>
     )

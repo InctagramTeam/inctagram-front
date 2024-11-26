@@ -13,14 +13,14 @@ export const DeleteAvatarButton = () => {
   return (
     <Modal onOpenChange={isOpen => setModalDeleteAvatarOpen(isOpen)} open={modalDeleteAvatarOpen}>
       <Modal.Button asChild>
-        <button
+        <Button
           className={`absolute right-3 top-3`}
           onClick={() => setModalDeleteAvatarOpen(true)}
           title={t.pages.profile.deletePhoto.title}
           type={'button'}
         >
           <DeleteAvatarIcon />
-        </button>
+        </Button>
       </Modal.Button>
       <Modal.Content
         classNameChildrenWrapper={'px-[24px] !py-0'}

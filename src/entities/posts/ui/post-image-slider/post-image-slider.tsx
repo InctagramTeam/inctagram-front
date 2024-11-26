@@ -25,8 +25,10 @@ export const PostImageSlider = (props: Props) => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <Button asComponent={Link} href={'/'}>
-              <Image alt={`Slide ${index}`} height={240} src={image} width={234} />
+            <Button asChild>
+              <Link href={'/'}>
+                <Image alt={`Slide ${index}`} height={240} src={image} width={234} />
+              </Link>
             </Button>
           </SwiperSlide>
         ))}

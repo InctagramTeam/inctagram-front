@@ -17,20 +17,11 @@ export const AuthButtons = (): ReturnComponent => {
 
   return (
     <>
-      <Button
-        asComponent={Link}
-        className={`${classes.button} ${classes.loginLink}`}
-        href={AuthRoutes.SIGN_IN}
-        variant={'link'}
-      >
-        {t.button.signIn}
+      <Button asChild className={`${classes.button} ${classes.loginLink}`} variant={'link'}>
+        <Link href={AuthRoutes.SIGN_IN}>{t.button.signIn}</Link>
       </Button>
-      <Button
-        asComponent={Link}
-        className={`${classes.button} ${classes.signupLink}`}
-        href={AuthRoutes.SIGN_UP}
-      >
-        {t.button.signUp}
+      <Button asChild className={`${classes.button} ${classes.signupLink}`}>
+        <Link href={AuthRoutes.SIGN_UP}>{t.button.signUp}</Link>
       </Button>
     </>
   )
