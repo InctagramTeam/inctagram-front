@@ -19,7 +19,7 @@ export const Dropdown = (props: DropdownProps) => {
     triggerInner: cn(!sm && `flex items-center gap-[12px]`, sm && `basis-[20px] shrink-0 h-[20px]`),
     content: cn(
       'bg-Dark-500 border border-Light-100 w-[--radix-popper-anchor-width]',
-      !sm && ' border-t-0 rounded-b-[2px]',
+      !sm && ' border-t-0 rounded-b-[2px] w-[120px]',
       sm && 'min-w-0 rounded-[2px]'
     ),
     item: cn(

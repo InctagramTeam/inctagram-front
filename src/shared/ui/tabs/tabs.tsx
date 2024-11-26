@@ -1,14 +1,14 @@
 import React, { ReactNode } from 'react'
 
 import { cn } from '@/shared/lib/utils'
-import { ReturnComponent } from '@/shared/types'
+import { ReturnComponent, SettingsTabs } from '@/shared/types'
 import * as Tabs from '@radix-ui/react-tabs'
 
 type Tab = {
   disabled?: boolean
   title: string
   /** Уникальное значение, которое связывает триггер с содержимым.  */
-  value: string
+  value: SettingsTabs
 }
 
 type Props = {

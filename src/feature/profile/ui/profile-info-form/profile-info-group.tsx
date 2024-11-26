@@ -129,6 +129,7 @@ export const ProfileInfoForm = forwardRef(
           />
           <ControlledDataPicker
             control={control}
+            defaultMonth={new Date(user.profile?.dateOfBirth) || new Date(1999, 5, 18)}
             label={t.label.dateOfBirth}
             labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
             name={'dateOfBirth'}

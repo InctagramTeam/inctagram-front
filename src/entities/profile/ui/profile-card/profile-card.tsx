@@ -1,10 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-
 import { ProfileGallery, User } from '@/entities/profile'
-import { userService } from '@/entities/user/api/user-api'
-import { Text } from '@/shared'
+import { useTranslation } from '@/shared'
+import { toast } from '@/shared/ui/toast/use-toast'
 
 import { ProfileCardSkeleton } from '../profile-card-skeleton'
 import { ProfileFollowerInfoBlock } from '../profile-followers-info'
@@ -19,33 +17,27 @@ type ProfileCardProps = {
 }
 
 export const ProfileCard = (props: ProfileCardProps) => {
+  const { t } = useTranslation()
   const { data, isError, isLoading } = props
-
-  const [src, setSrc] = useState('')
-
-  useEffect(() => {
-    if (data) {
-      userService.getAvatar(data.id).then(({ url }) => setSrc(url))
-    }
-  }, [data?.id])
 
   if (isLoading) {
     return <ProfileCardSkeleton />
   }
 
   if (isError) {
-    return (
-      <Text className={`text-red-600`} textAlign={'center'} variant={'H2'}>
-        {/* todo: translate later */}
-        Произошла ошибка при загрузке профиля. Попробуйте обновить страницу
-      </Text>
-    )
+    toast({
+      description: t.errors.noProfile,
+      title: 'error',
+      variant: 'destructive',
+    })
+
+    return null
   }
 
   return (
     <div className={`_Profile_ w-full pl-6`}>
       <div className={`_Profile-top_ flex w-full justify-start pb-[50px]`}>
-        <UserAvatar className={`h-[200px] w-[200px]`} src={src} />
+        <UserAvatar className={`h-[200px] w-[200px]`} src={data.profile?.url} />
         <ProfileFollowerInfoBlock user={data} />
       </div>
       <ProfileGallery />

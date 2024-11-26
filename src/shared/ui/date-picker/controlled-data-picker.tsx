@@ -51,6 +51,7 @@ export const ControlledDataPicker = <T extends FieldValues>({
   shouldUnregister,
   textTrigger,
   triggerClassName,
+  defaultMonth,
   ...rest
 }: Props<T>) => {
   const {
@@ -127,6 +128,7 @@ export const ControlledDataPicker = <T extends FieldValues>({
           <Calendar
             captionLayout={'dropdown'}
             className={classes.calendar}
+            defaultMonth={defaultMonth}
             mode={'single'}
             onSelect={onChange}
             selected={value}

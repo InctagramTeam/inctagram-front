@@ -8,8 +8,11 @@ import {
   makeAspectCrop,
 } from 'react-image-crop'
 
+import { Profile } from '@/entities/profile'
+import { useProfile } from '@/entities/profile/model/store/profile-store'
 import { Button, Card, Text, useTranslation } from '@/shared'
 import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
+import { useAddAvatarButton } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useAddAvatarButton'
 import setCanvasPreview from '@/shared/ui/add-profile-photo/add-avatar-button/image-cropper/set-canvas-preview'
 import Image from 'next/image'
 
@@ -22,11 +25,13 @@ const VALID_FORMATS = ['image/jpeg', 'image/png']
 
 type ImageCropperProps = {
   closeModal: () => void
-  updateAvatar: (formData: FormData) => void
+  profile: Profile
 }
 
-const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar }) => {
+const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, profile }) => {
   const { t } = useTranslation()
+  const { setUserAvatar } = useProfile()
+  const { updateAvatarHandler } = useAddAvatarButton()
 
   const imgRef = useRef<HTMLImageElement>(null)
   const previewCanvasRef = useRef<HTMLCanvasElement>(null)
@@ -118,12 +123,12 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, updateAvatar })
 
         formData.append('file', file)
 
-        updateAvatar(formData)
+        profile ? updateAvatarHandler(formData) : setUserAvatar(formData)
       }
     }, 'image/jpeg')
 
     closeModal()
-  }, [crop, updateAvatar, closeModal])
+  }, [crop, setUserAvatar, updateAvatarHandler, closeModal])
 
   return (
     <>
