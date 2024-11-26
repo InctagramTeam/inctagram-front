@@ -286,4 +286,7 @@ export const en = {
       onSuccess: 'The link email was successfully sent!',
     },
   },
+  errors: {
+    noProfile: 'There was an error loading your profile. Try refreshing the page',
+  },
 }
