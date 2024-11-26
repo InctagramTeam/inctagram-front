@@ -81,73 +81,70 @@ export const ForgotPasswordForm = forwardRef(
     useFormRevalidateWithLocale({ currentFormValues: getValues(), errors, locale, setValue })
 
     return (
-      <Card
-        asComponent={'form'}
-        className={classes.form}
-        {...rest}
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <Text asComponent={'h1'} mb={'37px'} textAlign={'center'} variant={'H1'}>
-          {t.pages.forgotPassword.title}
-        </Text>
-        <ControlledInput
-          aria-describedby={'forgot-password-email-instructions'}
-          aria-invalid={errors.email ? 'true' : 'false'}
-          autoComplete={'email'}
-          className={'mb-[7px]'}
-          control={control}
-          disabled={disabled}
-          errorMessage={errors.email?.message}
-          label={t.label.email}
-          name={'email'}
-          placeholder={t.placeholders.email}
-          rules={{ required: true }}
-          type={'email'}
-        />
-        <Text
-          asComponent={'p'}
-          className={classes.hint}
-          id={'forgot-password-email-instructions'}
-          variant={'regular-text-14'}
-        >
-          {t.pages.forgotPassword.hint}
-        </Text>
-
-        {isSent && (
+      <Card asChild>
+        <form className={classes.form} {...rest} onSubmit={handleSubmit(onSubmit)}>
+          <Text asComponent={'h1'} mb={'37px'} textAlign={'center'} variant={'H1'}>
+            {t.pages.forgotPassword.title}
+          </Text>
+          <ControlledInput
+            aria-describedby={'forgot-password-email-instructions'}
+            aria-invalid={errors.email ? 'true' : 'false'}
+            autoComplete={'email'}
+            className={'mb-[7px]'}
+            control={control}
+            disabled={disabled}
+            errorMessage={errors.email?.message}
+            label={t.label.email}
+            name={'email'}
+            placeholder={t.placeholders.email}
+            rules={{ required: true }}
+            type={'email'}
+          />
           <Text
             asComponent={'p'}
+            className={classes.hint}
             id={'forgot-password-email-instructions'}
-            mb={'18px'}
             variant={'regular-text-14'}
           >
-            {t.pages.forgotPassword.sent}
+            {t.pages.forgotPassword.hint}
           </Text>
-        )}
 
-        {disabled ? (
-          <ButtonSpinner className={'mb-6 h-[30px] w-[30px] min-w-full text-center'} />
-        ) : (
-          <Button
-            className={classes.button}
-            disabled={
-              !getValues('recaptcha') || !getValues('email') || !!Object.keys(errors).length
-            }
-            fullWidth
-            type={'submit'}
-          >
-            {isSent ? t.button.sendLinkAgain : t.button.sendLink}
+          {isSent && (
+            <Text
+              asComponent={'p'}
+              id={'forgot-password-email-instructions'}
+              mb={'18px'}
+              variant={'regular-text-14'}
+            >
+              {t.pages.forgotPassword.sent}
+            </Text>
+          )}
+
+          {disabled ? (
+            <ButtonSpinner className={'mb-6 h-[30px] w-[30px] min-w-full text-center'} />
+          ) : (
+            <Button
+              className={classes.button}
+              disabled={
+                !getValues('recaptcha') || !getValues('email') || !!Object.keys(errors).length
+              }
+              fullWidth
+              type={'submit'}
+            >
+              {isSent ? t.button.sendLinkAgain : t.button.sendLink}
+            </Button>
+          )}
+
+          <Button asChild className={classes.link} variant={'link'}>
+            <Link href={AuthRoutes.SIGN_IN}>{t.button.backToSignIn}</Link>
           </Button>
-        )}
-
-        <Button asChild className={classes.link} variant={'link'}>
-          <Link href={AuthRoutes.SIGN_IN}>{t.button.backToSignIn}</Link>
-        </Button>
-        <Recaptcha
-          errorMessage={errors?.recaptcha?.message}
-          onChange={recaptchaChangeHandler}
-          ref={recaptchaRef}
-          wrapperClassName={'mx-auto'}
-        />
+          <Recaptcha
+            errorMessage={errors?.recaptcha?.message}
+            onChange={recaptchaChangeHandler}
+            ref={recaptchaRef}
+            wrapperClassName={'mx-auto'}
+          />
+        </form>
       </Card>
     )
   }

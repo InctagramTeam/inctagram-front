@@ -97,105 +97,111 @@ export const SignUpForm = forwardRef(
     })
 
     return (
-      <Card {...rest} asComponent={'form'} className={classes.form} onSubmit={onFormDataSubmit}>
-        <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
-          {t.pages.signUp.title}
-        </Text>
-        <AppLinksList items={appLinksList} />
-        <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
-          <ControlledInput
-            aria-invalid={errors.username ? 'true' : 'false'}
-            autoComplete={'username'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.username?.message}
-            label={t.label.userName}
-            name={'username'}
-            placeholder={t.placeholders.username}
-            type={'text'}
-          />
-          <ControlledInput
-            aria-invalid={errors.email ? 'true' : 'false'}
-            autoComplete={'email'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.email?.message}
-            label={t.label.email}
-            name={'email'}
-            placeholder={t.placeholders.email}
-            type={'email'}
-          />
-          <ControlledInput
-            aria-invalid={errors.password ? 'true' : 'false'}
-            autoComplete={'new-password'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.password?.message}
-            label={t.label.password}
-            name={'password'}
-            placeholder={t.placeholders.password}
-            type={'password'}
-          />
-          <ControlledInput
-            aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
-            autoComplete={'new-password'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.passwordConfirm?.message}
-            label={t.label.confirmPassword}
-            name={'passwordConfirm'}
-            placeholder={t.placeholders.passwordConfirm}
-            type={'password'}
-          />
-          <ControlledCheckbox
-            className={'mr-2 inline-block'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.checkAccept?.message}
-            label={
-              <Text asComponent={'p'} className={classes.agreement} variant={'small-text-12'}>
-                <Translate
-                  tags={{
-                    '1': () => (
-                      <Text asComponent={AppLink} href={AuthRoutes.TERMS} variant={'small-link_12'}>
-                        {t.pages.signUp.agreement.terms}
-                      </Text>
-                    ),
-                    '2': () => (
-                      <Text
-                        asComponent={AppLink}
-                        className={`text-balance`}
-                        href={AuthRoutes.PRIVACY}
-                        variant={'small-link_12'}
-                      >
-                        {t.pages.signUp.agreement.privacy}
-                      </Text>
-                    ),
-                  }}
-                  text={t.pages.signUp.agreement.description}
-                />
-              </Text>
-            }
-            name={'checkAccept'}
-          />
-        </Flex>
-        <Button
-          className={classes.button}
-          disabled={!isValid || disabled}
-          fullWidth
-          type={'submit'}
-        >
-          {disabled && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
-          {t.button.signUp}
-        </Button>
-        <Flex direction={'column'}>
-          <Text className={classes.question} variant={'regular_text_16'}>
-            {t.pages.signUp.question}
+      <Card asChild>
+        <form {...rest} className={classes.form} onSubmit={onFormDataSubmit}>
+          <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
+            {t.pages.signUp.title}
           </Text>
-          <Button asChild className={`m-[0] text-balance`} variant={'link'}>
-            <AppLink href={AuthRoutes.SIGN_IN}>{t.button.signIn}</AppLink>
+          <AppLinksList items={appLinksList} />
+          <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
+            <ControlledInput
+              aria-invalid={errors.username ? 'true' : 'false'}
+              autoComplete={'username'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.username?.message}
+              label={t.label.userName}
+              name={'username'}
+              placeholder={t.placeholders.username}
+              type={'text'}
+            />
+            <ControlledInput
+              aria-invalid={errors.email ? 'true' : 'false'}
+              autoComplete={'email'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.email?.message}
+              label={t.label.email}
+              name={'email'}
+              placeholder={t.placeholders.email}
+              type={'email'}
+            />
+            <ControlledInput
+              aria-invalid={errors.password ? 'true' : 'false'}
+              autoComplete={'new-password'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.password?.message}
+              label={t.label.password}
+              name={'password'}
+              placeholder={t.placeholders.password}
+              type={'password'}
+            />
+            <ControlledInput
+              aria-invalid={errors.passwordConfirm ? 'true' : 'false'}
+              autoComplete={'new-password'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.passwordConfirm?.message}
+              label={t.label.confirmPassword}
+              name={'passwordConfirm'}
+              placeholder={t.placeholders.passwordConfirm}
+              type={'password'}
+            />
+            <ControlledCheckbox
+              className={'mr-2 inline-block'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.checkAccept?.message}
+              label={
+                <Text asComponent={'p'} className={classes.agreement} variant={'small-text-12'}>
+                  <Translate
+                    tags={{
+                      '1': () => (
+                        <Text
+                          asComponent={AppLink}
+                          href={AuthRoutes.TERMS}
+                          variant={'small-link_12'}
+                        >
+                          {t.pages.signUp.agreement.terms}
+                        </Text>
+                      ),
+                      '2': () => (
+                        <Text
+                          asComponent={AppLink}
+                          className={`text-balance`}
+                          href={AuthRoutes.PRIVACY}
+                          variant={'small-link_12'}
+                        >
+                          {t.pages.signUp.agreement.privacy}
+                        </Text>
+                      ),
+                    }}
+                    text={t.pages.signUp.agreement.description}
+                  />
+                </Text>
+              }
+              name={'checkAccept'}
+            />
+          </Flex>
+          <Button
+            className={classes.button}
+            disabled={!isValid || disabled}
+            fullWidth
+            type={'submit'}
+          >
+            {disabled && <ButtonSpinner className={'h-4 w-4 animate-spin'} />}
+            {t.button.signUp}
           </Button>
-        </Flex>
+          <Flex direction={'column'}>
+            <Text className={classes.question} variant={'regular_text_16'}>
+              {t.pages.signUp.question}
+            </Text>
+            <Button asChild className={`m-[0] text-balance`} variant={'link'}>
+              <AppLink href={AuthRoutes.SIGN_IN}>{t.button.signIn}</AppLink>
+            </Button>
+          </Flex>
+        </form>
       </Card>
     )
   }

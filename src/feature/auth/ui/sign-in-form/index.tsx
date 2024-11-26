@@ -79,56 +79,55 @@ export const SignInForm = forwardRef(
     )
 
     return (
-      <Card
-        asComponent={'form'}
-        className={classes.form}
-        onSubmit={handleSubmit(onSubmit)}
-        {...rest}
-      >
-        <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
-          {t.pages.signIn.title}
-        </Text>
-        <AppLinksList items={appLinksList} />
-        <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
-          <ControlledInput
-            aria-invalid={errors.email ? 'true' : 'false'}
-            autoComplete={'email'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.email?.message}
-            label={t.label.email}
-            name={'email'}
-            placeholder={t.placeholders.email}
-            rules={{ required: true }}
-            type={'email'}
-          />
-          <ControlledInput
-            aria-invalid={errors.password ? 'true' : 'false'}
-            autoComplete={'current-password'}
-            control={control}
-            disabled={disabled}
-            errorMessage={errors.password?.message}
-            label={t.label.password}
-            name={'password'}
-            placeholder={t.placeholders.password}
-            rules={{ required: true }}
-            type={'password'}
-          />
-        </Flex>
-        <Flex direction={'column'}>
-          <Button asChild className={classes.forgotLink} disabled={disabled} variant={'text'}>
-            <Link href={AuthRoutes.FORGOT_PASSWORD}>{t.pages.signIn.link}</Link>
-          </Button>
-          <Button className={classes.button} disabled={!isValid || disabled} fullWidth>
-            {t.button.signIn}
-          </Button>
-          <Text className={classes.question} variant={'regular_text_16'}>
-            {t.pages.signIn.question}
+      <Card asChild>
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} {...rest}>
+          <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
+            {t.pages.signIn.title}
           </Text>
-          <Button asChild className={`m-[0] text-balance`} disabled={disabled} variant={'link'}>
-            <Link href={AuthRoutes.SIGN_UP}>{t.button.signUp}</Link>
-          </Button>
-        </Flex>
+          <AppLinksList items={appLinksList} />
+          <Flex direction={'column'} gap={'24'} items={'center'} justify={'center'} mb={'24px'}>
+            <ControlledInput
+              aria-invalid={errors.email ? 'true' : 'false'}
+              autoComplete={'email'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.email?.message}
+              label={t.label.email}
+              name={'email'}
+              placeholder={t.placeholders.email}
+              rules={{ required: true }}
+              type={'email'}
+            />
+            <ControlledInput
+              aria-invalid={errors.password ? 'true' : 'false'}
+              autoComplete={'current-password'}
+              control={control}
+              disabled={disabled}
+              errorMessage={errors.password?.message}
+              label={t.label.password}
+              name={'password'}
+              placeholder={t.placeholders.password}
+              rules={{ required: true }}
+              type={'password'}
+            />
+          </Flex>
+          <Flex direction={'column'}>
+            <Button asChild disabled={disabled} variant={'text'}>
+              <Link className={classes.forgotLink} href={AuthRoutes.FORGOT_PASSWORD}>
+                {t.pages.signIn.link}
+              </Link>
+            </Button>
+            <Button className={classes.button} disabled={!isValid || disabled} fullWidth>
+              {t.button.signIn}
+            </Button>
+            <Text className={classes.question} variant={'regular_text_16'}>
+              {t.pages.signIn.question}
+            </Text>
+            <Button asChild className={`m-[0] text-balance`} disabled={disabled} variant={'link'}>
+              <Link href={AuthRoutes.SIGN_UP}>{t.button.signUp}</Link>
+            </Button>
+          </Flex>
+        </form>
       </Card>
     )
   }
