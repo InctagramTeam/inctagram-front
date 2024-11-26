@@ -5,6 +5,7 @@ import axios from 'axios'
 export type getRequestParams = {
   countryIds?: string
   locale?: string
+  namePrefix?: string
   pageParam?: number
 }
 
@@ -17,7 +18,7 @@ const instance = axios.create({
 })
 
 export class GeoDbCitiesApi {
-  async getCities({ pageParam = 0, countryIds, locale }: getRequestParams): Promise<{
+  async getCities({ pageParam = 0, countryIds, locale, namePrefix }: getRequestParams): Promise<{
     data: City[]
     nextOffset: number
   }> {
@@ -29,6 +30,7 @@ export class GeoDbCitiesApi {
           countryIds: countryIds,
           types: 'CITY',
           languageCode: locale,
+          namePrefix,
         },
       })
       .then(response => response.data)
@@ -36,7 +38,7 @@ export class GeoDbCitiesApi {
     return { data: response.data, nextOffset: pageParam }
   }
 
-  async getCountries({ pageParam = 0, locale }: getRequestParams): Promise<{
+  async getCountries({ pageParam = 0, locale, namePrefix }: getRequestParams): Promise<{
     data: Country[]
     nextOffset: number
   }> {
@@ -46,6 +48,7 @@ export class GeoDbCitiesApi {
           offset: pageParam,
           limit: 10,
           languageCode: locale,
+          namePrefix,
         },
       })
       .then(response => response.data)

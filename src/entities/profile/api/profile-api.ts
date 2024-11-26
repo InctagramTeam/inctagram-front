@@ -7,6 +7,7 @@ export class ProfileApi {
   async createProfile({
     firstName,
     city = EMPTY_STRING,
+    country = EMPTY_STRING,
     userName,
     lastName,
     dateOfBirth,
@@ -20,6 +21,7 @@ export class ProfileApi {
         aboutMe,
         city,
         dateOfBirth,
+        country,
       })
       .then(res => res.data)
   }
@@ -44,12 +46,14 @@ export class ProfileApi {
     userName,
     lastName,
     dateOfBirth,
+    country = EMPTY_STRING,
     aboutMe = EMPTY_STRING,
   }: createProfileRequest) {
     return await axiosWithAuth
       .put<null, AxiosResponse<any>, createProfileRequest>('profile/settings', {
         firstName,
         userName,
+        country,
         lastName,
         aboutMe,
         city,
