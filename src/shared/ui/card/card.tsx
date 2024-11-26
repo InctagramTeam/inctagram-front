@@ -1,7 +1,8 @@
 'use client'
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, memo, ReactNode } from 'react'
-import clsx from 'clsx'
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef, memo } from 'react'
+
 import { Slot, Slottable } from '@radix-ui/react-slot'
+import clsx from 'clsx'
 
 export type CardVariant = 'light' | 'normal' | 'outlined'
 export type CardBorder = 'circle' | 'normal' | 'partial'
@@ -9,9 +10,9 @@ export type CardPadding = '0' | '4' | '8' | '12' | '16' | '24' | 'default'
 
 type CardProps = {
   asChild?: boolean
+  border?: CardBorder
   children?: ReactNode
   className?: string
-  border?: CardBorder
   padding?: CardPadding
   variant?: CardVariant
 } & ComponentPropsWithoutRef<'div'>

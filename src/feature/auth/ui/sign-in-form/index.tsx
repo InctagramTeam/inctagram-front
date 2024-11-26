@@ -80,7 +80,7 @@ export const SignInForm = forwardRef(
 
     return (
       <Card asChild>
-        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} {...rest}>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} {...rest}>
           <Text asComponent={'h1'} mb={'13px'} textAlign={'center'} variant={'H1'}>
             {t.pages.signIn.title}
           </Text>
