@@ -7,7 +7,13 @@ import { useCreateProfile, useUpdateProfile } from '@/entities/profile/api'
 import profileApi from '@/entities/profile/api/profile-api'
 import { useProfile } from '@/entities/profile/model/store/profile-store'
 import { ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
-import { AddProfilePhotoWithCrop, TABS_VARIANTS, TabContent, getSettingsLayout, useTranslation } from '@/shared'
+import {
+  AddProfilePhotoWithCrop,
+  TABS_VARIANTS,
+  TabContent,
+  getSettingsLayout,
+  useTranslation,
+} from '@/shared'
 import { useUpdateAvatar } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 import { toast } from '@/shared/ui/toast/use-toast'
 import { format } from 'date-fns'

@@ -1,11 +1,15 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef, ReactNode } from 'react'
-import clsx from 'clsx'
+'use client'
+
+import { ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
+
 import { Slot, Slottable } from '@radix-ui/react-slot'
+import clsx from 'clsx'
 
 type ButtonVariant = 'destructive' | 'link' | 'outline' | 'primary' | 'secondary' | 'text'
 
 export type CustomButtonProps = {
   asChild?: boolean
+  children?: ReactNode
   className?: string
   disabled?: boolean
   endIcon?: ReactNode
@@ -20,7 +24,6 @@ export type CustomButtonProps = {
   startIcon?: ReactNode
   /** Вариант кнопки. Отвечает за визуал кнопки */
   variant?: ButtonVariant
-  children?: ReactNode
 } & ComponentPropsWithoutRef<'button'>
 
 export const Button = forwardRef<ElementRef<'button'>, CustomButtonProps>(

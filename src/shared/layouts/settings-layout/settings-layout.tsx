@@ -20,7 +20,7 @@ export const SettingsLayout = ({ children }: { children: ReactNode }) => {
   const { t } = useTranslation()
   const initialTab = router.pathname.split('/').at(-1)
   const [activeTab, setActiveTab] = useState<SettingsTabs>(initialTab)
-  
+
   useEffect(() => {
     const user = getStoreLocalStorage('user')
 

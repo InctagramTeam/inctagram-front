@@ -4,10 +4,10 @@ import React from 'react'
 import { useRegistrationEmailResending } from '@/feature'
 import {
   Button,
-  cn,
-  getAuthLayout,
   InformationBlock,
   ReturnComponent,
+  cn,
+  getAuthLayout,
   useResponsive,
   useTranslation,
 } from '@/shared'

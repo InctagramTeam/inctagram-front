@@ -2,10 +2,10 @@
 import {
   AuthRoutes,
   Button,
-  cn,
-  getAuthLayout,
   InformationBlock,
   ReturnComponent,
+  cn,
+  getAuthLayout,
   useResponsive,
   useTranslation,
 } from '@/shared'
