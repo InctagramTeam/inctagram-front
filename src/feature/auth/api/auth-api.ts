@@ -1,5 +1,10 @@
 import { User } from '@/entities/profile'
-import { IAuthResponse, IEmailPassword, ITokens } from '@/entities/user/model/types/user.types'
+import {
+  IAuthResponse,
+  ICodeFromGitHub,
+  IEmailPassword,
+  ITokens,
+} from '@/entities/user/model/types/user.types'
 import {
   NewPasswordRequestArgs,
   RecoveryPasswordArgs,
@@ -66,13 +71,27 @@ export class AuthApi {
       .then(res => res.data)
   }
 
+  async signInUpGitHub(code: string) {
+    const response = await axiosNotAuthorized.post<null, AxiosResponse<ITokens>, ICodeFromGitHub>(
+      'auth/github',
+      {
+        code: code,
+      }
+    )
+
+    if (response?.data?.accessToken) {
+      saveToLocalStorage('accessToken', response.data.accessToken)
+    }
+
+    return response
+  }
+
   async signUp(userName: string, email: string, password: string) {
     return await axiosNotAuthorized.post<null, AxiosResponse<IAuthResponse>, SignUpRequest>(
       'auth/registration',
       { email, password, userName }
     )
   }
-
   async singIn(email: string, password: string) {
     const response = await axiosNotAuthorized.post<null, AxiosResponse<ITokens>, IEmailPassword>(
       `auth/login`,
