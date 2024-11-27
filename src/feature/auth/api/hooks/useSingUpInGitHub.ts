@@ -1,9 +1,7 @@
 import authApi from '@/feature/auth/api/auth-api'
-import { AppRoutes } from '@/shared'
-import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
-import { toast } from '@/shared/ui/toast/use-toast'
+import { handleSignInSuccess } from '@/feature/auth/model/utils/handleLoginSuccess'
+import { handleMutationError } from '@/shared/lib/utils/error-handling/handleMutationError'
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 
 export const useSingUpInGitHub = () => {
@@ -14,31 +12,9 @@ export const useSingUpInGitHub = () => {
       return authApi.signInUpGitHub(code)
     },
     mutationKey: ['sign-UpInGitHub'],
-    onError: (error: AxiosError) => {
-      if (error) {
-        toast({
-          description: error.message,
-          title: 'error',
-          variant: 'destructive',
-        })
-      }
-    },
+    onError: handleMutationError,
     onSuccess: async () => {
-      const user = await authApi.me()
-
-      if (user) {
-        saveToLocalStorage('user', user)
-
-        await fetch(`/api/setUserIdCookie?userId=${user.id}`, {
-          method: 'GET',
-        })
-
-        user.profile
-          ? await router.replace(AppRoutes.PROFILE + user.id)
-          : await router.replace(
-              AppRoutes.PROFILE + user.id + AppRoutes.PROFILE_SETTINGS + '/general'
-            )
-      }
+      await handleSignInSuccess(router)
     },
   })
 
