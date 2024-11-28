@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
-import { SwiperClass } from 'swiper/react'
+import { EasyCrop } from '@/shared/ui/add-post-photo/easy-crop'
+import { register } from 'swiper/element/bundle'
+import { A11y, Controller, Navigation, Thumbs } from 'swiper/modules'
+import { SwiperClass, SwiperSlide } from 'swiper/react'
 
-import { Carousel } from '../carousel'
 import { AddPhotosMenu } from '../menu/add-photos-menu/add-photos-menu'
 import { ScaleMenu } from '../menu/scale-menu/scale-menu'
 import { ZoomMenu } from '../menu/zoom-menu'
@@ -28,10 +30,66 @@ export const CroppingPhoto = () => {
     }
   }
 
+  const swiperMainRef = useRef(null)
+  const swiperThumbRef = useRef(null)
+
+  useEffect(() => {
+    register()
+
+    if (swiperMainRef?.current) {
+      const params = {
+        allowTouchMove: false,
+        modules: [Navigation, A11y, Thumbs, Controller],
+        navigation: true,
+        slidesPerGroup: 1,
+        slidesPerView: 1,
+        spaceBetween: 12,
+        thumbs: { swiper: thumbsSwiper },
+        className: 'h-full w-full',
+        on: {
+          update: swiper => {
+            console.log(swiper, 'update')
+          },
+          slideChange: () => {
+            //setCurrentImageId(images[swiperMainRef.current.swiper.activeIndex].id)
+          },
+        },
+      }
+
+      Object.assign(swiperMainRef?.current, params)
+
+      // swiperMainRef?.current.initialize()
+    }
+  }, [thumbsSwiper, showMenu])
+
+  console.log(showMenu ?? 'all-hide')
+
   return (
     <div className={'relative h-[50vh]'}>
       <div className={'h-full w-full'}>
-        <Carousel setCurrentImageId={setCurrentImageId} thumb={thumbsSwiper} />
+        <swiper-container
+          // init={false}
+          key={showMenu === 'add-photos-menu' ? showMenu : 'base'}
+          ref={swiperMainRef}
+        >
+          {images?.map(photo => (
+            <SwiperSlide className={'cursor-default'} key={photo.id}>
+              <EasyCrop
+                aspect={photo.settings.aspect}
+                croppedArea={photo.settings.croppedArea}
+                currentImageId={photo.id}
+                image={photo.src}
+                zoom={photo.settings.zoom}
+              />
+            </SwiperSlide>
+          ))}
+        </swiper-container>
+        {/*<Carousel*/}
+        {/*  key={showMenu}*/}
+        {/*  ref={swiperMainRef}*/}
+        {/*  setCurrentImageId={setCurrentImageId}*/}
+        {/*  thumbsSwiper={thumbsSwiper}*/}
+        {/*/>*/}
       </div>
       <div className={'absolute bottom-[15px] left-[15px] right-[15px] z-2 flex gap-[24px]'}>
         {menu.map(item => (
@@ -51,7 +109,7 @@ export const CroppingPhoto = () => {
           changeThumbSwiper={setThumbsSwiper}
           deleteImgCallback={deleteImgCallback}
           id={'add-photos-menu'}
-          thumb={thumbsSwiper}
+          ref={swiperThumbRef}
         />
       )}
     </div>
