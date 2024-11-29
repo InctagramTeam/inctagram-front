@@ -74,7 +74,7 @@ export const en = {
     success: 'Success',
   },
   placeholders: {
-    email: 'email@inctagram.com',
+    email: 'example@gmail.com',
     firstName: 'Enter your first name',
     lastName: 'Enter your last name',
     password: 'Enter your password',

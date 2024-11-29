@@ -66,14 +66,13 @@ export const SignUpForm = forwardRef(
     } = useForm<SignUpFormValues>({
       /** Значения формы по умолчанию */
       defaultValues: {
-        checkAccept: false,
         email: EMPTY_STRING,
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
         username: EMPTY_STRING,
       },
       /** Режим срабатывания подсветки ошибок при изменении полей */
-      mode: 'onTouched',
+      mode: 'onChange',
       resolver: zodResolver(signUpSchema(t)),
     })
 
