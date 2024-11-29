@@ -1,12 +1,24 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
+import { listVariants } from '@/shared/ui/add-post-photo/menu/scale-menu/data'
 import { clsx } from 'clsx'
 
 import { ButtonKey } from './types'
 
 export const useScaleMenu = (currentImageId: string) => {
-  const [activeButton, setActiveButton] = useState<ButtonKey>('base')
+  const currentImage = useAddPostPhotoStore(state =>
+    state.images.find(image => image.id === currentImageId)
+  )
+
+  const [activeButton, setActiveButton] = useState<ButtonKey | undefined>(undefined)
+
+  useEffect(() => {
+    const activeAspect = currentImage?.settings.aspect
+
+    setActiveButton(listVariants.find(button => button.aspect === activeAspect)?.key)
+  }, [currentImageId])
+
   const setOptions = useAddPostPhotoStore(state => state.setOptions)
 
   const handleButtonClick = useCallback(
@@ -16,7 +28,6 @@ export const useScaleMenu = (currentImageId: string) => {
         options: 'aspect', // indicate updating 'aspect' parameter
         value: aspect, // pass aspect value
       })
-
       setActiveButton(key)
     },
     [currentImageId, setOptions]
