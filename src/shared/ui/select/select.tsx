@@ -41,10 +41,10 @@ type OwnProps<T extends number | string> = {
   className?: string
   direction?: SelectContentMenuDirection
   disabled?: boolean
-  fetchNextPage: (options?: FetchNextPageOptions) => Promise<UseInfiniteQueryResult>
-  isFetchingNextPage: boolean
+  fetchNextPage?: (options?: FetchNextPageOptions) => Promise<UseInfiniteQueryResult>
+  isFetchingNextPage?: boolean
   label?: string
-  locations: City[] | Country[]
+  locations?: City[] | Country[]
   name?: string
   options?: SelectOptionsProps<T>[]
   placeholder?: string
@@ -83,9 +83,9 @@ const SelectBox = forwardRef<ElementRef<typeof SelectRadix.Trigger>, SelectProps
       options,
       placeholder,
       position,
-      locations,
-      fetchNextPage,
-      isFetchingNextPage,
+      locations = [],
+      fetchNextPage = () => {},
+      isFetchingNextPage = false,
       required,
       value,
       variant = 'primary',
