@@ -2,17 +2,18 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
-import { Modal, useTranslation } from '@/shared'
+import { Modal, ReturnComponent, useTranslation } from '@/shared'
+import { clsx } from 'clsx'
 
 import { AddPhotoForm } from './add-photo-form/add-photo-form'
+import { AddPhotoModalHeaderContent } from './add-photo-modal-header/add-photo-modal-header-content'
 import { CroppingPhoto } from './cropping-photo/cropping-photo'
-import { ModalHeaderForAddPhoto } from './modal-header-for-add-photo'
+import { FiltersPhoto } from './filters-photo/filters-photo'
 
-export const AddPhotoContainer = () => {
+export const AddPhotoContainer = (): ReturnComponent => {
   const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const modalState = useAddPostPhotoStore(state => state.modalState)
-  const images = useAddPostPhotoStore(state => state.images)
 
   useEffect(() => {
     setIsOpen(true)
@@ -22,18 +23,15 @@ export const AddPhotoContainer = () => {
     <Modal onOpenChange={isOpen => setIsOpen(isOpen)} open={isOpen}>
       <Modal.Content
         classNameChildrenWrapper={'!px-0 !py-0'}
-        classNameContent={'max-w-[492px]'}
+        classNameContent={clsx(modalState === 'filters' ? '!max-w-[972px]' : 'max-w-[492px]')}
         classNameTitle={'text-H1-20'}
-        header={
-          modalState === 'cropping' ? (
-            <ModalHeaderForAddPhoto returnCallback={setIsOpen} title={t.uploadPhoto.crop} />
-          ) : null
-        }
-        isClose={images.length > 0}
-        title={images.length === 0 ? t.uploadPhoto.addPhoto : undefined}
+        header={modalState !== 'add-photo' && <AddPhotoModalHeaderContent />}
+        isClose={modalState === 'add-photo'}
+        title={modalState === 'add-photo' ? t.uploadPhoto.addPhoto : undefined}
       >
         {modalState === 'add-photo' && <AddPhotoForm />}
         {modalState === 'cropping' && <CroppingPhoto />}
+        {modalState === 'filters' && <FiltersPhoto />}
       </Modal.Content>
     </Modal>
   )

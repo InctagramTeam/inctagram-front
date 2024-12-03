@@ -9,7 +9,7 @@ export const useEasyCrop = (currentImageId: string, image: null | string) => {
   const currentImage = useAddPostPhotoStore(state =>
     state.images.find(image => image.id === currentImageId)
   )
-  const addCroppedImage = useAddPostPhotoStore(state => state.addCroppedImage)
+  const setCroppedImage = useAddPostPhotoStore(state => state.setCroppedImage)
   const [croppedArea, setCroppedArea] = useState<CroppedAreaType>({ x: 0, y: 0 })
   const onCropChange = (newCroppedArea: { x: number; y: number }) => {
     setCroppedArea(newCroppedArea)
@@ -20,7 +20,8 @@ export const useEasyCrop = (currentImageId: string, image: null | string) => {
 
     currentCroppedArea && setCroppedArea(currentCroppedArea)
   }, [currentImageId])
-  const onCropComplete = async (
+
+  const onCropComplete = (
     croppedArea: {
       x: number
       y: number
@@ -32,10 +33,33 @@ export const useEasyCrop = (currentImageId: string, image: null | string) => {
       y: number
     }
   ) => {
-    const croppedImg = await getCroppedImg(image, croppedAreaPixels)
-
-    addCroppedImage(croppedImg as string, currentImageId) // Сохраняем в Zustand
+    const croppedImg = getCroppedImg(image, croppedAreaPixels).then(value => {
+      setCroppedImage(value, currentImageId) // Сохраняем в Zustand
+    })
   }
+
+  // useEffect(() => {
+  //   const currentCroppedArea = currentImage?.settings.croppedArea
+  //
+  //   currentCroppedArea && setCroppedArea(currentCroppedArea)
+  // }, [currentImageId])
+  //
+  // const onCropComplete = async (
+  //   croppedArea: {
+  //     x: number
+  //     y: number
+  //   },
+  //   croppedAreaPixels: {
+  //     height: number
+  //     width: number
+  //     x: number
+  //     y: number
+  //   }
+  // ) => {
+  //   const croppedImg = await getCroppedImg(image, croppedAreaPixels)
+  //
+  //   setCroppedImage(croppedImg as string, currentImageId) // Сохраняем в Zustand
+  // }
 
   return { cropperRef, croppedArea, onCropChange, onCropComplete }
 }

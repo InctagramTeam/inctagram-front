@@ -1,6 +1,7 @@
 import React from 'react'
 import Cropper from 'react-easy-crop'
 
+import { useAddPostPhotoStore } from '@/entities/posts'
 import { CroppedAreaType } from '@/entities/posts/model/types/add-post-photo-store.types'
 import { useEasyCrop } from '@/shared/ui/add-post-photo/easy-crop/use-easy-crop'
 

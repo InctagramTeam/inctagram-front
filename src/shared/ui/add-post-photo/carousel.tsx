@@ -15,6 +15,8 @@ type Props = {
 export const Carousel = ({ thumbsSwiper, setCurrentImageId }: Props) => {
   const images = useAddPostPhotoStore(state => state.images)
 
+  console.log(images, 'carousel')
+
   return (
     <Swiper
       allowTouchMove={false}

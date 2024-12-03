@@ -1,33 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import { useAddPostPhotoStore } from '@/entities/posts'
-import { Carousel } from '@/shared/ui/add-post-photo/carousel'
 import { clsx } from 'clsx'
-import { SwiperClass } from 'swiper/react'
 
+import { Carousel } from '../carousel'
 import { AddPhotosMenu } from '../menu/add-photos-menu/add-photos-menu'
 import { ScaleMenu } from '../menu/scale-menu/scale-menu'
 import { ZoomMenu } from '../menu/zoom-menu/zoom-menu'
 import { CroppingPhotoButton, Menu } from './cropping-photo-button'
+import { useCroppingPhoto } from './use-cropping-photo'
 
 const menu: Exclude<Menu, undefined>[] = ['scale-menu', 'zoom-menu', 'add-photos-menu']
 
 export const CroppingPhoto = () => {
-  const [showMenu, setShowMenu] = useState<Menu>(undefined)
-  const images = useAddPostPhotoStore(state => state.images)
-  const setModalStateTo = useAddPostPhotoStore(state => state.setModalStateTo)
-  const removeImage = useAddPostPhotoStore(state => state.removeImage)
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null)
-
-  const [currentImageId, setCurrentImageId] = useState<string>(
-    images[thumbsSwiper]?.id ?? images[0].id
-  )
-  const deleteImgCallback = (id: string) => {
-    removeImage(id)
-    if (images.length <= 1) {
-      setModalStateTo('add-photo')
-    }
-  }
+  const {
+    thumbsSwiper,
+    setCurrentImageId,
+    showMenu,
+    currentImageId,
+    setThumbsSwiper,
+    deleteImgCallback,
+    setShowMenu,
+  } = useCroppingPhoto()
 
   return (
     <div className={'relative h-[50vh]'}>

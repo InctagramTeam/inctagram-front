@@ -80,7 +80,7 @@ export const ModalContent = ({
               <Dialog.Title asChild>
                 {header ? header : <Text className={classes.title}>{title}</Text>}
               </Dialog.Title>
-              {!isClose && (
+              {isClose && (
                 <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
                   <CrossIcon aria-hidden />
                 </Dialog.Close>

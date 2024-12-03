@@ -23,7 +23,7 @@ export type AddPostPhotoStore = {
   setOptions: (action: SetOptionsAction) => void
 }
 
-type Area = {
+export type Area = {
   height: number
   width: number
   x: number
@@ -31,6 +31,7 @@ type Area = {
 }
 
 export type CroppedAreaType = { x: number; y: number }
+
 type croppedAreaPixelsType = { height: number; width: number }
 
 export type SetOptionsAction = {

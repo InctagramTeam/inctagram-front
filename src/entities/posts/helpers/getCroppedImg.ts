@@ -1,4 +1,6 @@
-export const getCroppedImg = (imageSrc: null | string, pixelCrop: any) => {
+import { Area } from '@/entities/posts/model/types/add-post-photo-store.types'
+
+export const getCroppedImg = (imageSrc: null | string, pixelCrop: Area): Promise<string> => {
   const image = new Image()
 
   image.src = imageSrc || ''

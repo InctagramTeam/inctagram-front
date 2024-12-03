@@ -4,6 +4,7 @@ import {
   Image,
   SetOptionsAction,
 } from '@/entities/posts/model/types/add-post-photo-store.types'
+import { images } from 'next/dist/build/webpack/config/blocks/images'
 import { v4 as uuidv4 } from 'uuid'
 import { create } from 'zustand'
 export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
@@ -54,8 +55,12 @@ export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
 
       return { images: updatedImages }
     }),
-  addCroppedImage: (newSrc: string, id: string) =>
+  setCroppedImage: (newSrc: string, id: string) =>
     set(state => {
-      return state.images.map(image => (image.id === id ? { ...image, src: newSrc } : image))
+      const updatedImages = state.images.map(image =>
+        image.id === id ? { ...image, newSrc } : image
+      )
+
+      return { images: updatedImages } // Возвращаем обновленное состояние
     }),
 }))
