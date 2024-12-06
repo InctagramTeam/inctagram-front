@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
+import { ReturnComponent } from '@/shared'
 import { EasyCrop } from '@/shared/ui/add-post-photo/easy-crop/easy-crop'
 import { A11y, Controller, Navigation, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
@@ -12,10 +13,8 @@ type Props = {
   setCurrentImageId: (id: string) => void
   thumbsSwiper: SwiperClass | null
 }
-export const Carousel = ({ thumbsSwiper, setCurrentImageId }: Props) => {
+export const Carousel = ({ thumbsSwiper, setCurrentImageId }: Props): ReturnComponent => {
   const images = useAddPostPhotoStore(state => state.images)
-
-  console.log(images, 'carousel')
 
   return (
     <Swiper
@@ -35,7 +34,7 @@ export const Carousel = ({ thumbsSwiper, setCurrentImageId }: Props) => {
             aspect={photo.settings.aspect}
             croppedArea={photo.settings.croppedArea}
             currentImageId={photo.id}
-            image={photo.src}
+            image={photo.baseSrc}
             zoom={photo.settings.zoom}
           />
         </SwiperSlide>

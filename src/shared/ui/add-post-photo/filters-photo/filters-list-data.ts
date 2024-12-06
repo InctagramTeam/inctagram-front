@@ -1,4 +1,4 @@
-import { FilterValue } from './filter-value-type'
+import { FilterValue } from '@/entities/posts/model/types/add-post-photo-store.types'
 
 export const filtersList: { label: string; value: FilterValue }[] = [
   { label: 'Normal', value: 'normal' },

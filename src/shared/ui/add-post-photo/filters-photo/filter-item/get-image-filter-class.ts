@@ -1,6 +1,5 @@
+import { FilterValue } from '@/entities/posts/model/types/add-post-photo-store.types'
 import { cn } from '@/shared'
-
-import { FilterValue } from './filter-value-type'
 
 export const getImageFilterClass = (value: FilterValue) => {
   return cn(

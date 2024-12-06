@@ -41,7 +41,7 @@ export const AddPhotosMenu = ({ deleteImgCallback, id, changeThumbSwiper, classN
         >
           {images?.map(photo => (
             <SwiperSlide className={'relative h-[80px] w-[80px]'} key={photo.id}>
-              <ThumbPhoto deleteCallback={deleteImgCallback} id={photo.id} src={photo.src} />
+              <ThumbPhoto deleteCallback={deleteImgCallback} id={photo.id} src={photo.baseSrc} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,10 +1,11 @@
 import {
   AddPostPhotoStore,
   CroppedAreaType,
+  FilterValue,
   Image,
   SetOptionsAction,
+  SetSrcAction,
 } from '@/entities/posts/model/types/add-post-photo-store.types'
-import { images } from 'next/dist/build/webpack/config/blocks/images'
 import { v4 as uuidv4 } from 'uuid'
 import { create } from 'zustand'
 export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
@@ -14,12 +15,14 @@ export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
     set(state => {
       const newImage: Image = {
         id: uuidv4(),
-        src,
-        newSrc: null,
+        baseSrc: src,
+        croppedSrc: null,
+        filteredSrc: null,
         settings: {
           aspect: 1,
           croppedArea: { x: 0, y: 0 },
           zoom: 1,
+          filter: 'normal',
         },
       }
 
@@ -50,17 +53,28 @@ export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
           case 'zoom':
             updatedImage.settings.zoom = action.value as number
             break
+          case 'filter':
+            updatedImage.settings.filter = action.value as FilterValue
         }
       }
 
       return { images: updatedImages }
     }),
-  setCroppedImage: (newSrc: string, id: string) =>
+  setSrc: (action: SetSrcAction) =>
     set(state => {
-      const updatedImages = state.images.map(image =>
-        image.id === id ? { ...image, newSrc } : image
-      )
+      const updatedImages = [...state.images] // Создаем копию массива изображений
+      const image = updatedImages.find(image => image.id === action.id) // Находим изображение по индексу
 
-      return { images: updatedImages } // Возвращаем обновленное состояние
+      if (image) {
+        switch (action.type) {
+          case 'cropped':
+            image.croppedSrc = action.newSrc
+            break
+          case 'filtered':
+            image.filteredSrc = action.newSrc
+        }
+      }
+
+      return { images: updatedImages }
     }),
 }))

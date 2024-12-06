@@ -92,6 +92,7 @@ export const en = {
     addPhoto: 'Add Photo',
     crop: 'Cropping',
     proportion: 'choose proportions',
+    filter: 'choose proportions',
     zoom: 'zoom',
     gallery: 'gallery menu',
   },

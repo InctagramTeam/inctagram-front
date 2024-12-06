@@ -85,6 +85,7 @@ export const ru: LocaleType = {
     addPhoto: 'Добавить фото',
     crop: 'Обрезка',
     proportion: 'Выбрать пропорции',
+    filter: 'Выбрать фильтр',
     zoom: 'Масштаб',
     gallery: 'Управлять загруженными фото',
   },
