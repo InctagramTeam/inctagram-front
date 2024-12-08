@@ -41,7 +41,9 @@ export interface IEmailPassword {
   password: string
   rememberMe?: boolean
 }
-
+export interface ICodeFromGitHub {
+  code: string
+}
 // данные с сервера
 export interface IAuthResponse {
   confirmed: boolean

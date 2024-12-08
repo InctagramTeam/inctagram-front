@@ -10,6 +10,7 @@ import { AppImage } from '@/shared/ui/app-image'
 import { CollapsingText } from '@/shared/ui/collapsing-text/collapsing-text'
 import { formatDistanceToNow } from 'date-fns'
 import { enUS, ru } from 'date-fns/locale'
+import Image from 'next/image'
 import Link from 'next/link'
 
 import 'swiper/swiper-bundle.css'
@@ -30,15 +31,22 @@ export const Post = (props: PostItem) => {
       {isSlides ? (
         <PostImageSlider images={slides} />
       ) : (
-        <Button asComponent={Link} href={'/'}>
-          <AppImage alt={'post-image'} className={'h-full w-full object-cover'} src={slides[0]} />
+        <Button asChild className={'h-full max-h-60'}>
+          <Link href={'/'}>
+            <Image
+              alt={'post-image'}
+              className={'h-full w-full object-cover'}
+              height={240}
+              src={slides[0]}
+              width={234}
+            />
+          </Link>
         </Button>
       )}
 
       <Button
-        className={'group my-3 flex h-auto w-full items-start justify-start p-0 text-left'}
-        style={{ justifyContent: 'start' }}
-        variant={'text'}
+        className={'my-3 flex h-auto w-full items-center justify-start gap-3 text-left'}
+        type={'button'}
       >
         <AppImage
           alt={'post'}

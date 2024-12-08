@@ -1,6 +1,7 @@
 export type createProfileRequest = {
   aboutMe: string
   city: string
+  country: string
   dateOfBirth: string
   firstName: string
   lastName: string

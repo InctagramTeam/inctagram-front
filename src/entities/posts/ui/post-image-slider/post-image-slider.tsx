@@ -1,6 +1,6 @@
 'use client'
 import { Button } from '@/shared'
-import { AppImage } from '@/shared/ui/app-image'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -15,7 +15,7 @@ export const PostImageSlider = (props: Props) => {
   const { images } = props
 
   return (
-    <div className={'swiper'}>
+    <div className={'z-0'}>
       <Swiper
         modules={[Navigation, Pagination]}
         navigation
@@ -25,8 +25,10 @@ export const PostImageSlider = (props: Props) => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <Button asComponent={Link} href={'/'}>
-              <AppImage alt={`Slide ${index}`} src={image} />
+            <Button asChild>
+              <Link href={'/'}>
+                <Image alt={`Slide ${index}`} height={240} src={image} width={234} />
+              </Link>
             </Button>
           </SwiperSlide>
         ))}

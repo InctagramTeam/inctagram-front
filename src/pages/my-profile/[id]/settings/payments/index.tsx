@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { TabContent, getSettingsLayout } from '@/shared'
+import { TABS_VARIANTS, TabContent, getSettingsLayout } from '@/shared'
 
 const Payments = () => {
   return (
-    <TabContent className={'flex'} value={'payments'}>
+    <TabContent className={'flex'} value={TABS_VARIANTS.payments}>
       <div>Payments</div>
     </TabContent>
   )

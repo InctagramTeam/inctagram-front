@@ -74,7 +74,7 @@ export const en = {
     success: 'Success',
   },
   placeholders: {
-    email: 'email@inctagram.com',
+    email: 'example@gmail.com',
     firstName: 'Enter your first name',
     lastName: 'Enter your last name',
     password: 'Enter your password',
@@ -179,6 +179,28 @@ export const en = {
         modalBtnYes: 'Yes',
         modalBtnNo: 'No',
       },
+      settings: {
+        tabs: {
+          devices: 'Devices',
+          general: 'General information',
+          management: 'Account management',
+          payments: 'My payments',
+        },
+        combobox: {
+          loading: 'Loading...',
+          empty: 'No locations found.',
+          country: {
+            label: 'Select your country',
+            placeholder: 'Сountry',
+            search: 'Search сountry',
+          },
+          city: {
+            label: 'Select your city',
+            placeholder: 'City',
+            search: 'Search city',
+          },
+        },
+      },
     },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',
@@ -275,5 +297,8 @@ export const en = {
     emailVerification: {
       onSuccess: 'The link email was successfully sent!',
     },
+  },
+  errors: {
+    noProfile: 'There was an error loading your profile. Try refreshing the page',
   },
 }

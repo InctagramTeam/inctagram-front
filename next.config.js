@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'incubatogramdata.storage.yandexcloud.net',
         port: '',
-        pathname: '/content/users/63/post_photos/**',
+        pathname: '/content/users/*/post_photos/**',
       },
     ],
   },

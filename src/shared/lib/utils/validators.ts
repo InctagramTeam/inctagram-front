@@ -16,6 +16,7 @@ export const usernameSchema = (t: LocaleType) => {
     .regex(USERNAME_PATTERN, { message: t.validation.userNameVerification })
     .trim()
 }
+
 export const emailSchema = (t: LocaleType) => {
   return z
     .string()

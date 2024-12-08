@@ -1,13 +1,9 @@
-import { useState } from 'react'
-
 import { useTranslation } from '@/shared'
 import { useUpdateAvatar } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 import { toast } from '@/shared/ui/toast/use-toast'
 
 export const useAddAvatarButton = () => {
   const { t } = useTranslation()
-
-  const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
 
   const { mutate: updateAvatar } = useUpdateAvatar()
 
@@ -23,9 +19,5 @@ export const useAddAvatarButton = () => {
     }
   }
 
-  return {
-    modalUpdateAvatarOpen,
-    setModalUpdateAvatarOpen,
-    updateAvatarHandler,
-  }
+  return { updateAvatarHandler }
 }

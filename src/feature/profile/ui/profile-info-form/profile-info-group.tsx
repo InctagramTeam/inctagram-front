@@ -8,7 +8,7 @@ import React, {
 import { useForm } from 'react-hook-form'
 
 import { User } from '@/entities/profile'
-import { SelectGroup } from '@/feature/profile/ui/profile-info-form/select-group'
+import { ComboboxGroup } from '@/feature/profile/ui/profile-info-form/combobox-group'
 import {
   Button,
   ControlledDataPicker,
@@ -88,6 +88,9 @@ export const ProfileInfoForm = forwardRef(
         city: user.profile?.city ?? EMPTY_STRING,
         aboutMe: user.profile?.aboutMe ?? '',
       })
+      setTimeout(() => {
+        clearErrors()
+      }, 0)
     }, [user, reset])
 
     return (
@@ -129,11 +132,12 @@ export const ProfileInfoForm = forwardRef(
           />
           <ControlledDataPicker
             control={control}
+            defaultMonth={new Date(user.profile?.dateOfBirth) || new Date(1999, 5, 18)}
             label={t.label.dateOfBirth}
             labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
             name={'dateOfBirth'}
           />
-          <SelectGroup control={control} resetFieldForm={resetField} />
+          <ComboboxGroup control={control} resetFieldForm={resetField} />
           <ControlledTextarea
             aria-invalid={errors.aboutMe ? 'true' : 'false'}
             control={control}

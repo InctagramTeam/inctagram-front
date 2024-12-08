@@ -173,6 +173,28 @@ export const ru: LocaleType = {
         modalBtnYes: 'Да',
         modalBtnNo: 'Нет',
       },
+      settings: {
+        tabs: {
+          devices: 'Устройства',
+          general: 'Общая информация',
+          management: 'Управление аккаунтом',
+          payments: 'Мои платежи',
+        },
+        combobox: {
+          loading: 'Поиск...',
+          empty: 'Локация не найдена.',
+          country: {
+            label: 'Выберите вашу страну',
+            placeholder: 'Страна',
+            search: 'Поиск страны',
+          },
+          city: {
+            label: 'Выберите ваш город',
+            placeholder: 'Город',
+            search: 'Поиск города',
+          },
+        },
+      },
     },
     congratulations: {
       metaDescription: 'Поздравляем! Ваша почта была подтверждена',
@@ -267,5 +289,8 @@ export const ru: LocaleType = {
     emailVerification: {
       onSuccess: 'Письмо с ссылкой успешно отправлено!',
     },
+  },
+  errors: {
+    noProfile: 'Произошла ошибка при загрузке профиля. Попробуйте обновить страницу',
   },
 }

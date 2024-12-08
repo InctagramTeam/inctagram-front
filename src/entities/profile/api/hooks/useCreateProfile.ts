@@ -13,11 +13,20 @@ export const useCreateProfile = () => {
       firstName,
       lastName,
       userName,
+      country,
       dateOfBirth,
       city,
       aboutMe,
     }: createProfileRequest) => {
-      return profileApi.createProfile({ firstName, lastName, userName, dateOfBirth, city, aboutMe })
+      return profileApi.createProfile({
+        firstName,
+        lastName,
+        userName,
+        dateOfBirth,
+        country,
+        city,
+        aboutMe,
+      })
     },
     mutationKey: ['create-profile'],
     onError: (error: ErrorResponse) => {
