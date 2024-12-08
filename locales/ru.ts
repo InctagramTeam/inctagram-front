@@ -83,11 +83,15 @@ export const ru: LocaleType = {
   },
   uploadPhoto: {
     addPhoto: 'Добавить фото',
-    crop: 'Обрезка',
+    croppingTitle: 'Редактирование',
     proportion: 'Выбрать пропорции',
     filter: 'Выбрать фильтр',
     zoom: 'Масштаб',
     gallery: 'Управлять загруженными фото',
+    filtersTitle: 'Фильтры',
+    publicationTitle: 'Публикация',
+    maxSize: 'Максимальный размер файла - 20 МБ',
+    fileFormat: 'Файл должен быть в формате PNG или JPEG ',
   },
   lang: {
     en: 'Английский',

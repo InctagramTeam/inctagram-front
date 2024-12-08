@@ -11,8 +11,6 @@ export const getCroppedImg = (
 
   image.src = imageSrc || ''
 
-  console.log(filter)
-
   return new Promise(resolve => {
     image.onload = () => {
       const canvas = document.createElement('canvas')

@@ -11,6 +11,7 @@ import { create } from 'zustand'
 export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
   modalState: 'add-photo',
   images: [],
+  setDescription: description => set({ description }),
   addImage: (src: string) =>
     set(state => {
       const newImage: Image = {

@@ -17,9 +17,11 @@ export type Image = {
 
 export type AddPostPhotoStore = {
   addImage: (src: string) => void
+  description: string
   images: Image[]
   modalState: ModalState
   removeImage: (id: string) => void
+  setDescription: (description: string) => void
   setModalStateTo: (state: ModalState) => void
   setOptions: (action: SetOptionsAction) => void
   setSrc: (action: SetSrcAction) => void

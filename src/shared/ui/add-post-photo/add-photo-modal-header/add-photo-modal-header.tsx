@@ -3,6 +3,7 @@ import { ArrowIosBackIcon } from '@/shared/assets/icons'
 import { Text } from '@/shared/ui'
 
 interface Props {
+  nextButtonText?: string
   nextHandler: () => void
   prevHandler: () => void
   title: string
@@ -12,6 +13,7 @@ export const AddPhotoModalHeader = ({
   title,
   nextHandler,
   prevHandler,
+  nextButtonText,
 }: Props): ReturnComponent => {
   const { t } = useTranslation()
   const classes = {
@@ -32,7 +34,7 @@ export const AddPhotoModalHeader = ({
       </Button>
       <Text className={classes.title}>{title}</Text>
       <Button onClick={nextHandler} type={'button'} variant={'link'}>
-        {t.button.next}
+        {nextButtonText ? nextButtonText : t.button.next}
       </Button>
     </div>
   )

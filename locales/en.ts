@@ -90,11 +90,15 @@ export const en = {
   },
   uploadPhoto: {
     addPhoto: 'Add Photo',
-    crop: 'Cropping',
+    croppingTitle: 'Cropping',
     proportion: 'choose proportions',
     filter: 'choose proportions',
     zoom: 'zoom',
     gallery: 'gallery menu',
+    filtersTitle: 'Filters',
+    publicationTitle: 'Publication',
+    maxSize: 'The maximum file size is 20 MB',
+    fileFormat: 'The file must be in PNG or JPEG format',
   },
   lang: {
     en: 'English',
@@ -175,10 +179,6 @@ export const en = {
         modalBtnYes: 'Yes',
         modalBtnNo: 'No',
       },
-    },
-    create: {
-      title: 'Add Photo',
-      error: 'The maximum file size is 20 MB',
     },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',

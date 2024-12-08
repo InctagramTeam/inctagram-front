@@ -26,10 +26,10 @@ export const useFilterItem = (value: FilterValue, currentImageId: string) => {
         height: 500,
       },
       currentImage?.settings.filter
-    ).then(res => {
+    ).then(imageSrc => {
       setCroppedImage({
         id: currentImageId,
-        newSrc: res,
+        newSrc: imageSrc,
         type: 'filtered',
       })
     })

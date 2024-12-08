@@ -11,22 +11,38 @@ export const useAddPhotoForm = () => {
   const images = useAddPostPhotoStore(state => state.images)
   const imgChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
-      const file = e.target?.files[0]
+      const files = Array.from(e.target?.files)
 
-      if (file.size > 20 * 1024 * 1024) {
-        toast({
-          title: 'error',
-          description: t.pages.create.error,
-          variant: 'destructive',
-        })
+      files.forEach(file => {
+        // image/jpeg
+        // image/png
+        console.log(file.type)
+        // if (file.type !== 'image/jpeg' || file.type !== 'image/png') {
+        //   toast({
+        //     title: 'error',
+        //     description: t.uploadPhoto.fileFormat,
+        //     variant: 'destructive',
+        //   })
+        //
+        //   return
+        // }
 
-        return
-      }
-      convertFileToBase64(file, (file64: string) => {
-        if (images.length < 1) {
-          setModalStateTo('cropping')
+        if (file.size > 20 * 1024 * 1024) {
+          toast({
+            title: 'error',
+            description: t.uploadPhoto.maxSize,
+            variant: 'destructive',
+          })
+
+          return
         }
-        addImage(file64)
+
+        convertFileToBase64(file, (file64: string) => {
+          if (images.length < 1) {
+            setModalStateTo('cropping')
+          }
+          addImage(file64)
+        })
       })
     }
   }
