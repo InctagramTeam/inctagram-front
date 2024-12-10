@@ -1,8 +1,9 @@
+import React from 'react'
+
 import { Button, Text } from '@/shared'
-import Link from 'next/link'
 import { PaypalIcon } from '@/shared/assets/icons/paypal-icon'
 import { StripeIcon } from '@/shared/assets/icons/stripe-icon'
-import React from 'react'
+import Link from 'next/link'
 
 export const ManagementButtons = () => {
   const buttonClasses = `h-16 w-24 border !border-solid border-Dark-300 bg-Dark-500 rounded-[5px]`

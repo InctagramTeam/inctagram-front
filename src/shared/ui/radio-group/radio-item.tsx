@@ -1,8 +1,7 @@
 import { ComponentPropsWithoutRef } from 'react'
 
-import * as RadioGroup from '@radix-ui/react-radio-group'
-
 import { Text } from '@/shared'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 import clsx from 'clsx'
 
 export type RadioOption = {
@@ -31,9 +30,9 @@ export const RadioItem = (props: RadioOption) => {
   return (
     <div className={'flex items-center'}>
       <RadioGroup.Item
+        aria-disabled={disabled}
         className={itemClasses}
         disabled={disabled}
-        aria-disabled={disabled}
         id={value}
         value={value}
         {...rest}
@@ -42,8 +41,8 @@ export const RadioItem = (props: RadioOption) => {
       </RadioGroup.Item>
 
       <Text
-        asComponent={'label'}
         aria-disabled={disabled}
+        asComponent={'label'}
         className={labelClasses}
         htmlFor={value}
         variant={'regular-text-14'}

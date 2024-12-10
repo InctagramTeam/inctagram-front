@@ -1,8 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
-import * as RadioGroup from '@radix-ui/react-radio-group'
-
 import { RadioItem } from '@/shared/ui/radio-group/radio-item'
+import * as RadioGroup from '@radix-ui/react-radio-group'
 
 export type RadioOption = {
   disabled?: boolean

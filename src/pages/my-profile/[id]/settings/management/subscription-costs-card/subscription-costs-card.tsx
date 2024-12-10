@@ -1,6 +1,7 @@
+import React, { useState } from 'react'
+
 import { Card, Text } from '@/shared'
 import { CustomRadioGroup } from '@/shared/ui/radio-group/radio-group'
-import React, { useState } from 'react'
 
 export const SubscriptionCostsCard = () => {
   const accountTypeOptions = [
@@ -9,7 +10,7 @@ export const SubscriptionCostsCard = () => {
     { label: '$100 per month', value: '100 per month' },
   ]
 
-  const [current, setCurrent] = useState(accountTypeOptions[0].value)
+  const [current, setCurrent] = useState(accountTypeOptions[0].value) //TODO получить значение с сервера
 
   const handleChangeCurrentRadio = (radioValue: string) => {
     setCurrent(radioValue)
