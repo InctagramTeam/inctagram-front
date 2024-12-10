@@ -1,42 +1,17 @@
 import React from 'react'
 
-import { Button, Card, getSettingsLayout, TabContent, TABS_VARIANTS, Text } from '@/shared'
-import Link from 'next/link'
+import { getSettingsLayout, TabContent, TABS_VARIANTS } from '@/shared'
+import { AccountTypeCard } from '@/pages/my-profile/[id]/settings/management/account-type-card/account-type-card'
+import { SubscriptionCostsCard } from '@/pages/my-profile/[id]/settings/management/subscription-costs-card/subscription-costs-card'
+import { ManagementButtons } from '@/pages/my-profile/[id]/settings/management/management-buttons'
 
 const Management = () => {
   return (
     <TabContent className={'flex'} value={TABS_VARIANTS.management}>
       <div className={'mt-[20px] flex w-full flex-col'}>
-        <div>
-          <Text asComponent={'p'} variant={'H3'}>
-            Account type:
-          </Text>
-          <Card className={'w-full'}>
-            <div>Radiobutton1</div>
-            <div>Radiobutton2</div>
-          </Card>
-        </div>
-        <div className={'mt-[42px]'}>
-          <Text asComponent={'p'} variant={'H3'}>
-            Your subscription costs:
-          </Text>
-          <Card className={'w-full'}>
-            <div>Radiobutton1</div>
-            <div>Radiobutton2</div>
-            <div>Radiobutton3</div>
-          </Card>
-        </div>
-        <div className={'mt-[24px] flex items-center justify-end gap-x-[54px]'}>
-          <Button asChild className={'p-3'}>
-            <Link href={''}>IconPayPal</Link>
-          </Button>
-
-          <Text>Or</Text>
-
-          <Button asChild className={'p-3'}>
-            <Link href={''}>IconStripe</Link>
-          </Button>
-        </div>
+        <AccountTypeCard />
+        <SubscriptionCostsCard />
+        <ManagementButtons />
       </div>
     </TabContent>
   )
