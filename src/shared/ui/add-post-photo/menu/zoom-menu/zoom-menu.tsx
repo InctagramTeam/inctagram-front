@@ -1,3 +1,7 @@
+import { memo } from 'react'
+
+import { ReturnComponent } from '@/shared'
+
 import { Slider } from '../../slider'
 import { useZoomMenu } from './use-zoom-menu'
 
@@ -5,7 +9,7 @@ type Props = {
   currentImageId: string
   id: string
 }
-export const ZoomMenu = ({ currentImageId, id }: Props) => {
+export const ZoomMenu = memo(({ currentImageId, id }: Props): ReturnComponent => {
   const { handleOnValueChange, zoom } = useZoomMenu(currentImageId)
 
   return (
@@ -21,4 +25,4 @@ export const ZoomMenu = ({ currentImageId, id }: Props) => {
       value={zoom ? [zoom] : undefined}
     />
   )
-}
+})

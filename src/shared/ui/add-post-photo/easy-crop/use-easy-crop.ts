@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
 import { getCroppedImg } from '@/entities/posts/helpers/get-cropped-img'
-import { CroppedAreaType } from '@/entities/posts/model/types/add-post-photo-store.types'
+import { CroppedArea } from '@/entities/posts/model/types/add-post-photo-store.types'
 
 export const useEasyCrop = (currentImageId: string, image: null | string) => {
   const cropperRef = useRef<HTMLDivElement | null>(null)
@@ -10,7 +10,8 @@ export const useEasyCrop = (currentImageId: string, image: null | string) => {
     state.images.find(image => image.id === currentImageId)
   )
   const setCroppedImage = useAddPostPhotoStore(state => state.setSrc)
-  const [croppedArea, setCroppedArea] = useState<CroppedAreaType>({ x: 0, y: 0 })
+  const setOptions = useAddPostPhotoStore(state => state.setOptions)
+  const [croppedArea, setCroppedArea] = useState<CroppedArea>({ x: 0, y: 0 })
   const onCropChange = (newCroppedArea: { x: number; y: number }) => {
     setCroppedArea(newCroppedArea)
   }
@@ -40,6 +41,12 @@ export const useEasyCrop = (currentImageId: string, image: null | string) => {
       newSrc: croppedImg,
       type: 'cropped',
     }) // Сохраняем в Zustand
+
+    setOptions({
+      options: 'pixelSizes',
+      id: currentImageId,
+      value: { height: croppedAreaPixels.height, width: croppedAreaPixels.width },
+    })
   }
 
   return { cropperRef, croppedArea, onCropChange, onCropComplete }

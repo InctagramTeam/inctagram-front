@@ -69,6 +69,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       readonly = false,
       type = 'search',
       labelProps,
+      checked,
       ...rest
     } = props
     const { t } = useTranslation()

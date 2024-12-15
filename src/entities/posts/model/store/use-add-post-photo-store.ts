@@ -1,13 +1,16 @@
 import {
   AddPostPhotoStore,
-  CroppedAreaType,
+  CroppedArea,
   FilterValue,
   Image,
+  PixelSizes,
   SetOptionsAction,
   SetSrcAction,
 } from '@/entities/posts/model/types/add-post-photo-store.types'
+import { images } from 'next/dist/build/webpack/config/blocks/images'
 import { v4 as uuidv4 } from 'uuid'
 import { create } from 'zustand'
+
 export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
   modalState: 'add-photo',
   images: [],
@@ -22,6 +25,7 @@ export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
         settings: {
           aspect: 1,
           croppedArea: { x: 0, y: 0 },
+          pixelSizes: { width: 0, height: 0 },
           zoom: 1,
           filter: 'normal',
         },
@@ -36,6 +40,10 @@ export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
     set(state => ({
       images: state.images.filter(image => image.id !== id),
     })),
+  removeImages: () =>
+    set(() => {
+      return { images: [] }
+    }),
   setOptions: (action: SetOptionsAction) =>
     set(state => {
       const updatedImages = [...state.images] // Создаем копию массива изображений
@@ -49,13 +57,16 @@ export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
             updatedImage.settings.aspect = action.value as number
             break
           case 'croppedArea':
-            updatedImage.settings.croppedArea = action.value as CroppedAreaType
+            updatedImage.settings.croppedArea = action.value as CroppedArea
             break
           case 'zoom':
             updatedImage.settings.zoom = action.value as number
             break
           case 'filter':
             updatedImage.settings.filter = action.value as FilterValue
+            break
+          case 'pixelSizes':
+            updatedImage.settings.pixelSizes = action.value as PixelSizes
         }
       }
 

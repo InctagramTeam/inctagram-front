@@ -1,25 +1,10 @@
 import * as React from 'react'
 
-import { useAddPostPhotoStore } from '@/entities/posts'
-import postsApi from '@/entities/posts/api/posts-api'
-import { useCreateProfile } from '@/entities/profile/api'
+import { base64ToFile, useAddPostPhotoStore } from '@/entities/posts'
+import { useCreatePost } from '@/entities/posts/api/hooks/use-create-post'
 import { ReturnComponent, useTranslation } from '@/shared'
 
 import { AddPhotoModalHeader } from './add-photo-modal-header'
-
-const base64ToFile = (base64, filename) => {
-  const arr = base64.split(',')
-  const mime = arr[0].match(/:(.*?);/)[1]
-  const bstr = atob(arr[1])
-  let n = bstr.length
-  const u8arr = new Uint8Array(n)
-
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n)
-  }
-
-  return new File([u8arr], filename, { type: mime })
-}
 
 export const AddPhotoModalHeaderContent = (): ReturnComponent => {
   const { t } = useTranslation()
@@ -27,7 +12,9 @@ export const AddPhotoModalHeaderContent = (): ReturnComponent => {
   const setModalStateTo = useAddPostPhotoStore(state => state.setModalStateTo)
   const images = useAddPostPhotoStore(state => state.images)
   const description = useAddPostPhotoStore(state => state.description)
-  const publicPost = async () => {
+  const removeImages = useAddPostPhotoStore(state => state.removeImages)
+  const { mutate: createPost } = useCreatePost()
+  const publicPost = () => {
     const allSrc = images.map(image => image.filteredSrc || image.croppedSrc)
 
     const formData = new FormData()
@@ -36,16 +23,15 @@ export const AddPhotoModalHeaderContent = (): ReturnComponent => {
       if (src) {
         const file = base64ToFile(src, `image_${index}.png`) // Преобразуем base64 в файл
 
-        // Проверяем, что файл имеет корректное расширение.
-        if (file.type === 'image/jpeg' || file.type === 'image/png') {
-          formData.append('files', file) // Добавляем файл в FormData
-        } else {
-          console.error('Неверный формат файла:', file.type)
-        }
+        formData.append('files', file)
       }
     })
 
-    await postsApi.createPost(formData)
+    createPost({
+      formData,
+      description,
+      isDraft: false,
+    })
   }
 
   if (modalState === 'cropping') {
@@ -55,6 +41,7 @@ export const AddPhotoModalHeaderContent = (): ReturnComponent => {
           setModalStateTo('filters')
         }}
         prevHandler={() => {
+          removeImages()
           setModalStateTo('add-photo')
         }}
         title={t.uploadPhoto.croppingTitle}

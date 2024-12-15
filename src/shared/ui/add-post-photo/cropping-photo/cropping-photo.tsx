@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { clsx } from 'clsx'
+import { ReturnComponent, cn } from '@/shared'
 
 import { Carousel } from '../carousel'
 import { AddPhotosMenu } from '../menu/add-photos-menu/add-photos-menu'
@@ -11,7 +11,7 @@ import { useCroppingPhoto } from './use-cropping-photo'
 
 const menu: Exclude<Menu, undefined>[] = ['scale-menu', 'zoom-menu', 'add-photos-menu']
 
-export const CroppingPhoto = () => {
+export const CroppingPhoto = (): ReturnComponent => {
   const {
     thumbsSwiper,
     setCurrentImageId,
@@ -23,7 +23,7 @@ export const CroppingPhoto = () => {
   } = useCroppingPhoto()
 
   return (
-    <div className={'relative h-[50vh]'}>
+    <div className={'relative h-[50vh] min-h-[440px]'}>
       <div className={'h-full w-full'}>
         <Carousel setCurrentImageId={setCurrentImageId} thumbsSwiper={thumbsSwiper} />
       </div>
@@ -42,7 +42,7 @@ export const CroppingPhoto = () => {
       {showMenu === 'zoom-menu' && <ZoomMenu currentImageId={currentImageId} id={'zoom-menu'} />}
       <AddPhotosMenu
         changeThumbSwiper={setThumbsSwiper}
-        className={clsx(showMenu !== 'add-photos-menu' ? 'hidden' : '')}
+        className={cn(showMenu !== 'add-photos-menu' ? 'hidden' : '')}
         deleteImgCallback={deleteImgCallback}
         id={'add-photos-menu'}
       />

@@ -1,5 +1,4 @@
-import { FilterValue } from '@/entities/posts/model/types/add-post-photo-store.types'
-
+import { FilterValue } from '../model/types/add-post-photo-store.types'
 export const getCanvasSettingFilter = (currentFilter: FilterValue) => {
   switch (currentFilter) {
     case 'brightness':

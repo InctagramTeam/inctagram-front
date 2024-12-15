@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
 import { Modal, ReturnComponent, useTranslation } from '@/shared'
 import { clsx } from 'clsx'
 
-import { AddPhotoForm } from './add-photo-form/add-photo-form'
+import { AddPhotoForm } from './add-photo-form'
 import { AddPhotoModalHeaderContent } from './add-photo-modal-header/add-photo-modal-header-content'
 import { CroppingPhoto } from './cropping-photo/cropping-photo'
 import { FiltersPhoto } from './filters-photo/filters-photo'
@@ -16,10 +16,6 @@ export const AddPhotoContainer = (): ReturnComponent => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const modalState = useAddPostPhotoStore(state => state.modalState)
 
-  useEffect(() => {
-    setIsOpen(true)
-  }, [])
-
   return (
     <Modal onOpenChange={isOpen => setIsOpen(isOpen)} open={isOpen}>
       <Modal.Content
@@ -27,7 +23,8 @@ export const AddPhotoContainer = (): ReturnComponent => {
         classNameContent={clsx(
           modalState === 'filters' || modalState === 'publication'
             ? '!max-w-[972px]'
-            : 'max-w-[492px]'
+            : 'max-w-[492px]',
+          'TEST@@@'
         )}
         classNameTitle={'text-H1-20'}
         header={modalState !== 'add-photo' && <AddPhotoModalHeaderContent />}

@@ -99,6 +99,8 @@ export const en = {
     publicationTitle: 'Publication',
     maxSize: 'The maximum file size is 20 MB',
     fileFormat: 'The file must be in PNG or JPEG format',
+    nextSlide: 'next slide',
+    prevSlide: 'prev slide',
   },
   lang: {
     en: 'English',
@@ -294,6 +296,7 @@ export const en = {
   notifications: {
     profileCreated: 'Profile successfully created',
     profileUpdated: 'Profile successfully updated',
+    postCreated: 'Post successfully created',
     emailVerification: {
       onSuccess: 'The link email was successfully sent!',
     },

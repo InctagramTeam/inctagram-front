@@ -1,8 +1,8 @@
 'use client'
-import React, { ComponentPropsWithoutRef } from 'react'
+import React, { ComponentPropsWithoutRef, memo } from 'react'
 
 import { FilterValue } from '@/entities/posts/model/types/add-post-photo-store.types'
-import { Input, ReturnComponent } from '@/shared'
+import { Input, ReturnComponent, cn } from '@/shared'
 import Image from 'next/image'
 
 import { getImageFilterClass } from './get-image-filter-class'
@@ -13,38 +13,38 @@ type Props = {
   label: string
   value: FilterValue
 } & Omit<ComponentPropsWithoutRef<'input'>, 'id' | 'label' | 'name' | 'onChange' | 'type' | 'value'>
-export const FilterItem = ({
-  imageClass,
-  id,
-  currentImageId,
-  value,
-  ...rest
-}: Props): ReturnComponent => {
-  const { classes, changeHandler, currentImage } = useFilterItem(value, currentImageId)
+export const FilterItem = memo(
+  ({ imageClass, id, currentImageId, value, ...rest }: Props): ReturnComponent => {
+    const { classes, changeHandler, currentImage, currentFilter } = useFilterItem(
+      value,
+      currentImageId
+    )
 
-  return (
-    <Input
-      {...rest}
-      className={classes.container}
-      id={value}
-      inputProps={{ className: classes.input }}
-      labelProps={{
-        className: classes.label,
-        htmlFor: id,
-        children: (
-          <Image
-            alt={'Photo'}
-            className={getImageFilterClass(value)}
-            height={108}
-            src={currentImage?.baseSrc || ''}
-            width={108}
-          />
-        ),
-      }}
-      name={'filters'}
-      onChange={changeHandler}
-      type={'radio'}
-      value={value}
-    />
-  )
-}
+    return (
+      <Input
+        {...rest}
+        aria-checked={currentFilter === value}
+        className={classes.container}
+        id={value}
+        inputProps={{ className: classes.input }}
+        labelProps={{
+          className: classes.label,
+          htmlFor: id,
+          children: (
+            <Image
+              alt={'Photo'}
+              className={cn(getImageFilterClass(value), 'h-[108px] object-cover')}
+              height={108}
+              src={currentImage?.baseSrc || ''}
+              width={108}
+            />
+          ),
+        }}
+        name={'filters'}
+        onChange={changeHandler}
+        type={'radio'}
+        value={value}
+      />
+    )
+  }
+)

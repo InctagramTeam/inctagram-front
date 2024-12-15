@@ -1,11 +1,15 @@
-import { Area, FilterValue } from '@/entities/posts/model/types/add-post-photo-store.types'
-
-import { getCanvasSettingFilter } from './get-canvas-setting-filter'
+import { getCanvasSettingFilter } from '@/entities/posts/helpers/get-canvas-setting-filter'
+import {
+  CroppedArea,
+  FilterValue,
+  PixelSizes,
+} from '@/entities/posts/model/types/add-post-photo-store.types'
 
 export const getCroppedImg = (
   imageSrc: null | string,
-  pixelCrop: Area,
-  filter?: FilterValue
+  pixelCrop: CroppedArea & PixelSizes,
+  filter?: FilterValue,
+  isRecropping?: boolean
 ): Promise<string> => {
   const image = new Image()
 
@@ -27,8 +31,10 @@ export const getCroppedImg = (
       if (filter) {
         ctx.filter = getCanvasSettingFilter(filter)
       }
-      ctx.drawImage(image, x, y, width, height, 0, 0, width, height)
-      // ctx.drawImage(image, x, x, width, height)
+
+      isRecropping
+        ? ctx.drawImage(image, x, x, width, height)
+        : ctx.drawImage(image, x, y, width, height, 0, 0, width, height)
 
       resolve(canvas.toDataURL('image/jpeg'))
     }

@@ -92,6 +92,8 @@ export const ru: LocaleType = {
     publicationTitle: 'Публикация',
     maxSize: 'Максимальный размер файла - 20 МБ',
     fileFormat: 'Файл должен быть в формате PNG или JPEG ',
+    nextSlide: 'Следующий слайд',
+    prevSlide: 'Предыдущий слайд',
   },
   lang: {
     en: 'Английский',
@@ -286,6 +288,7 @@ export const ru: LocaleType = {
   notifications: {
     profileCreated: 'Профиль успешно создан',
     profileUpdated: 'Профиль успешно обновлён',
+    postCreated: 'Пост успешно создан',
     emailVerification: {
       onSuccess: 'Письмо с ссылкой успешно отправлено!',
     },

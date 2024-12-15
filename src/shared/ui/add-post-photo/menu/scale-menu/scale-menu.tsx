@@ -1,8 +1,7 @@
 import React, { memo } from 'react'
 
-import { Button } from '@/shared'
+import { Button, ReturnComponent, cn } from '@/shared'
 import { PictureWithoutBackGround } from '@/shared/assets/icons'
-import { clsx } from 'clsx'
 
 import { listVariants } from './data'
 import { useScaleMenu } from './use-scale-menu'
@@ -12,7 +11,7 @@ type Props = {
   id: string
 }
 
-export const ScaleMenu = memo(({ currentImageId, id }: Props) => {
+export const ScaleMenu = memo(({ currentImageId, id }: Props): ReturnComponent => {
   const { classes, handleButtonClick, activeButton } = useScaleMenu(currentImageId)
 
   return (
@@ -21,7 +20,7 @@ export const ScaleMenu = memo(({ currentImageId, id }: Props) => {
         <li key={variant.key}>
           <Button
             aria-pressed={activeButton === variant.key}
-            className={clsx(
+            className={cn(
               variant.key === activeButton && '!text-Light-100 after:border-Light-100',
               classes.button,
               classes.buttonAfterUnique(variant.key)

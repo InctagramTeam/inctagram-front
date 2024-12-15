@@ -2,12 +2,13 @@ import React from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
 import { ReturnComponent } from '@/shared'
-import { EasyCrop } from '@/shared/ui/add-post-photo/easy-crop/easy-crop'
 import { A11y, Controller, Navigation, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
+
+import { EasyCrop } from './easy-crop/easy-crop'
 
 type Props = {
   setCurrentImageId: (id: string) => void

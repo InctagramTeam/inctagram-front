@@ -2,7 +2,7 @@ import React from 'react'
 
 import { ReturnComponent } from '@/shared'
 
-import { PhotoCarousel } from './photo-carousel'
+import { PhotoCarousel } from '../photo-carousel'
 import { PostDescription } from './post-description'
 
 export const PublicationPost = (): ReturnComponent => {

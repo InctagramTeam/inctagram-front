@@ -2,8 +2,9 @@ export type ModalState = 'add-photo' | 'cropping' | 'filters' | 'publication'
 
 export type ImageSettings = {
   aspect: number
-  croppedArea: CroppedAreaType
+  croppedArea: CroppedArea
   filter: FilterValue
+  pixelSizes: PixelSizes
   zoom: number
 }
 
@@ -21,27 +22,20 @@ export type AddPostPhotoStore = {
   images: Image[]
   modalState: ModalState
   removeImage: (id: string) => void
+  removeImages: () => void
   setDescription: (description: string) => void
   setModalStateTo: (state: ModalState) => void
   setOptions: (action: SetOptionsAction) => void
   setSrc: (action: SetSrcAction) => void
 }
 
-export type Area = {
-  height: number
-  width: number
-  x: number
-  y: number
-}
-
-export type CroppedAreaType = { x: number; y: number }
-
-type croppedAreaPixelsType = { height: number; width: number }
+export type CroppedArea = { x: number; y: number }
+export type PixelSizes = { height: number; width: number }
 
 export type SetOptionsAction = {
   id: string
-  options: 'aspect' | 'croppedArea' | 'filter' | 'zoom'
-  value: Area | CroppedAreaType | FilterValue | croppedAreaPixelsType | number
+  options: 'aspect' | 'croppedArea' | 'filter' | 'pixelSizes' | 'zoom'
+  value: CroppedArea | FilterValue | PixelSizes | number
 }
 
 export type SetSrcAction = {
