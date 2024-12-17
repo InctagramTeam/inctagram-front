@@ -50,7 +50,6 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
 
     const pathname = usePathname()
     const isActive = props.href && pathname?.startsWith(props.href)
-    const isBtnComponent = isButton ? 'button' : Link
     const classes = {
       content:
         'rounded-1/2 flex h-8 w-full max-w-[100px] items-center gap-4 bg-Dark-500 !text-Light-100',
@@ -74,32 +73,60 @@ export const NavigationElement: NavigationElementComponent = forwardRef(
       <TooltipProvider delayDuration={2000} disableHoverableContent>
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button
-              aria-label={onlyIcon ? name : EMPTY_STRING}
-              asComponent={isBtnComponent}
-              className={classes.link}
-              disabled={disabled}
-              href={''}
-              onClick={handleClick}
-              ref={ref}
-              startIcon={
-                (props.href || startIcon) && (
-                  <span aria-hidden className={classes.icon}>
-                    {props.href ? getIcon(props.href, isActive as boolean, userId) : startIcon}
-                  </span>
-                )
-              }
-              variant={'text'}
-              {...rest}
-            >
-              {onlyIcon ? (
-                <TooltipContent className={classes.content} side={'right'}>
-                  {name}
-                </TooltipContent>
-              ) : (
-                name
-              )}
-            </Button>
+            {isButton ? (
+              <Button
+                aria-label={onlyIcon ? name : EMPTY_STRING}
+                className={classes.link}
+                disabled={disabled}
+                onClick={handleClick}
+                ref={ref}
+                startIcon={
+                  (props.href || startIcon) && (
+                    <span aria-hidden className={classes.icon}>
+                      {props.href ? getIcon(props.href, isActive as boolean, userId) : startIcon}
+                    </span>
+                  )
+                }
+                variant={'text'}
+                {...rest}
+              >
+                {onlyIcon ? (
+                  <TooltipContent className={classes.content} side={'right'}>
+                    {name}
+                  </TooltipContent>
+                ) : (
+                  name
+                )}
+              </Button>
+            ) : (
+              <Button
+                aria-label={onlyIcon ? name : EMPTY_STRING}
+                asChild
+                className={classes.link}
+                disabled={disabled}
+                onClick={handleClick}
+                ref={ref}
+                startIcon={
+                  (props.href || startIcon) && (
+                    <span aria-hidden className={classes.icon}>
+                      {props.href ? getIcon(props.href, isActive as boolean, userId) : startIcon}
+                    </span>
+                  )
+                }
+                variant={'text'}
+                {...rest}
+              >
+                <Link href={props.href || '#'}>
+                  {onlyIcon ? (
+                    <TooltipContent className={classes.content} side={'right'}>
+                      {name}
+                    </TooltipContent>
+                  ) : (
+                    name
+                  )}
+                </Link>
+              </Button>
+            )}
           </TooltipTrigger>
         </Tooltip>
       </TooltipProvider>
