@@ -1,2 +1,6 @@
+export { base64ToFile } from './helpers/convert-base-64-to-file'
+export { convertFileToBase64 } from './helpers/convert-file-to-base-64'
+export { getCroppedImg } from './helpers/get-cropped-img'
+export { useAddPostPhotoStore } from './model/store/use-add-post-photo-store'
 export * from './model/types'
 export { PostsPage } from './ui/posts'

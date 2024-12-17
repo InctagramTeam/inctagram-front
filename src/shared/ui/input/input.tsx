@@ -48,7 +48,11 @@ export type InputProps = {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   (
-    {
+    props,
+    /** Так как используем react-hook-form, он работает через рефы, то должны принимать ref */
+    forwardedRef
+  ): ReturnComponent => {
+    const {
       autofocus = true,
       className,
       disabled,
@@ -57,7 +61,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       id,
       inputProps = {},
       label = EMPTY_STRING,
-      labelProps = {},
       onBlur,
       onChange,
       onClearInput,
@@ -65,11 +68,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       placeholder,
       readonly = false,
       type = 'search',
+      labelProps,
+      checked,
       ...rest
-    },
-    /** Так как используем react-hook-form, он работает через рефы, то должны принимать ref */
-    forwardedRef
-  ): ReturnComponent => {
+    } = props
     const { t } = useTranslation()
 
     /** Чтобы получить доступ к инпуту: inputRef */
@@ -196,12 +198,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       <div {...divContainerProps} className={classNames.root}>
         {label && (
           <Text
-            {...labelProps}
             asComponent={'label'}
             className={classNames.label}
             htmlFor={finalId}
             variant={'regular_text_16'}
           >
+            {labelProps?.children}
             {label}
           </Text>
         )}
@@ -216,7 +218,6 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           <input
             {...rest}
-            {...inputProps}
             aria-describedby={errorId}
             className={classNames.input}
             disabled={disabled}
@@ -229,6 +230,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={finalRef}
             type={finalType}
             value={rest.value}
+            {...inputProps}
           />
           {isRevealPasswordButtonShown && (
             <button
