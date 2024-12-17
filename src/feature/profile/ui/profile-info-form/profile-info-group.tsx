@@ -95,10 +95,14 @@ export const ProfileInfoForm = forwardRef(
 
     return (
       <div className={className}>
-        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} {...rest}>
+        <form
+          className={classes.form}
+          onSubmit={handleSubmit(onSubmit)}
+          {...rest}
+          autoComplete={'off'}
+        >
           <ControlledInput
             aria-invalid={errors.userName ? 'true' : 'false'}
-            autoComplete={'username'}
             control={control}
             disabled={disabled}
             errorMessage={errors.userName?.message}
