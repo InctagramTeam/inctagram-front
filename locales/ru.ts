@@ -81,6 +81,20 @@ export const ru: LocaleType = {
     hide: 'Скрыть',
     registeredUsers: 'Зарегистрировано пользователей',
   },
+  uploadPhoto: {
+    addPhoto: 'Добавить фото',
+    croppingTitle: 'Редактирование',
+    proportion: 'Выбрать пропорции',
+    filter: 'Выбрать фильтр',
+    zoom: 'Масштаб',
+    gallery: 'Управлять загруженными фото',
+    filtersTitle: 'Фильтры',
+    publicationTitle: 'Публикация',
+    maxSize: 'Максимальный размер файла - 20 МБ',
+    fileFormat: 'Файл должен быть в формате PNG или JPEG ',
+    nextSlide: 'Следующий слайд',
+    prevSlide: 'Предыдущий слайд',
+  },
   lang: {
     en: 'Английский',
     ru: 'Русский',
@@ -274,6 +288,7 @@ export const ru: LocaleType = {
   notifications: {
     profileCreated: 'Профиль успешно создан',
     profileUpdated: 'Профиль успешно обновлён',
+    postCreated: 'Пост успешно создан',
     emailVerification: {
       onSuccess: 'Письмо с ссылкой успешно отправлено!',
     },

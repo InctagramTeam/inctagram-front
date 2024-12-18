@@ -30,8 +30,10 @@ type ModalContentProps = {
   classNameTitle?: string
   classNameTitleContainer?: string
   customTitleComponent?: ReactNode
+  header?: ReactNode
+  isClose?: boolean
   style?: CSSProperties
-  title?: string
+  title?: ReactNode
 } & ComponentPropsWithoutRef<typeof Dialog.Content>
 
 export const ModalContent = ({
@@ -43,48 +45,51 @@ export const ModalContent = ({
   classNameTitleContainer,
   style,
   title = EMPTY_STRING,
+  header,
+  isClose,
   ...rest
 }: ModalContentProps): ReturnComponent => {
   const { t } = useTranslation()
 
   const classes = {
-    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
     close: `w-[24px] h-[24px] CENTER text-Light-100 
     rounded-[2px] outline-none duration-300 transition-color
     hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
     content: clsx(
-      `fixed left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 rounded
-        bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100
-        data-[state=closed]:animate-[dialog-content-hide_200ms]
-        data-[state=open]:animate-[dialog-content-show_200ms]`,
+      `z-20 w-full max-w-md relative rounded bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100 
+      data-[state=closed]:animate-[dialog-content-hide_200ms] 
+      data-[state=open]:animate-[dialog-content-show_200ms]`,
       classNameContent
     ),
-    overlay: clsx(
-      `fixed inset-0 bg-Dark-900/60 data-[state=closed]:animate-[dialog-overlay-hide_200ms]
-          data-[state=open]:animate-[dialog-overlay-show_200ms]`,
-      classNameOverlay
-    ),
+    container: 'bg-Dark-900/60 h-full w-full fixed insert top-0 block overflow-y-auto',
+    body: 'flex min-h-full w-full pt-[80px] pb-[20px] px-[20px] justify-center items-center',
     title: clsx('text-xl', classNameTitle),
     titleContainer: clsx(
       'relative flex items-center justify-between px-[24px] py-[12px] border-b border-b-Dark-100',
       classNameTitleContainer
     ),
+    childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
   }
 
   return (
     <Dialog.Portal {...rest}>
-      <Dialog.Overlay className={classes.overlay} />
-      <Dialog.Content className={classes.content} forceMount style={style}>
-        <div className={classes.titleContainer}>
-          <Dialog.Title asChild>
-            <Text className={classes.title}>{title}</Text>
-          </Dialog.Title>
-          <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
-            <CrossIcon />
-          </Dialog.Close>
+      <div className={classes.container}>
+        <div className={classes.body}>
+          <Dialog.Content className={classes.content} forceMount style={style}>
+            <div className={classes.titleContainer}>
+              <Dialog.Title asChild>
+                {header ? header : <Text className={classes.title}>{title}</Text>}
+              </Dialog.Title>
+              {isClose && (
+                <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
+                  <CrossIcon aria-hidden />
+                </Dialog.Close>
+              )}
+            </div>
+            <div className={classes.childrenWrapper}>{children}</div>
+          </Dialog.Content>
         </div>
-        <div className={classes.childrenWrapper}>{children}</div>
-      </Dialog.Content>
+      </div>
     </Dialog.Portal>
   )
 }

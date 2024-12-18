@@ -1,4 +1,4 @@
-import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useId } from 'react'
+import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useId, useState } from 'react'
 
 import { ReturnComponent, Text, cn } from '@/shared'
 
@@ -21,12 +21,13 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       label,
       onChange,
       onValueChange,
+      maxLength,
       ...rest
     },
     ref
   ): ReturnComponent => {
     const classes = {
-      error: cn(`!text-regular-text-14 block text-Danger-500`),
+      error: `block !text-Danger-500`,
       label: cn(`block text-Light-900`, disabled && `text-Dark-100`),
       textarea: cn(
         `bg-Dark-500 placeholder-Light-900 px-[12px] py-[6px] outline-none rounded-[2px] border-[1px] border-Dark-100 resize-none w-full h-[84px] 
@@ -36,27 +37,38 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         errorMessage && `border-Danger-500 `,
         className
       ),
-      wrapper: cn(containerClassName),
+      bottomWrapper: 'flex items-center justify-between gap-[20px]',
+      counter: 'text-right text-Light-900',
     }
 
     const generatedId = useId()
     const finalId = id ?? generatedId
     const errorId = `${finalId}-error`
+    const counterId = `${finalId}-counter`
+    const ariaDescribedby = `${errorMessage && errorId} ${maxLength && counterId}`
 
     const changeValueHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
       onChange?.(e)
       onValueChange?.(e.currentTarget.value)
+      maxLength && setCounter(e.currentTarget.value.length)
     }
 
+    const [counter, setCounter] = useState(0)
+
     return (
-      <div className={classes.wrapper}>
+      <div className={containerClassName}>
         {label && (
-          <label className={classes.label} htmlFor={finalId}>
+          <Text
+            asComponent={'label'}
+            className={classes.label}
+            htmlFor={finalId}
+            variant={'regular-text-14'}
+          >
             {label}
-          </label>
+          </Text>
         )}
         <textarea
-          aria-describedby={errorId}
+          aria-describedby={ariaDescribedby}
           className={classes.textarea}
           disabled={disabled}
           id={finalId}
@@ -64,11 +76,18 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           {...rest}
         />
-        {errorMessage && (
-          <Text className={classes.error} id={errorId} role={'alert'}>
-            {errorMessage}
-          </Text>
-        )}
+        <div className={classes.bottomWrapper}>
+          {errorMessage && (
+            <Text className={classes.error} id={errorId} role={'alert'} variant={'regular-text-14'}>
+              {errorMessage}
+            </Text>
+          )}
+          {maxLength && (
+            <Text className={classes.counter} id={counterId} variant={'small-text-12'}>
+              {counter} / {maxLength}
+            </Text>
+          )}
+        </div>
       </div>
     )
   }

@@ -88,6 +88,20 @@ export const en = {
     hide: 'Hide',
     registeredUsers: 'Registered users',
   },
+  uploadPhoto: {
+    addPhoto: 'Add Photo',
+    croppingTitle: 'Cropping',
+    proportion: 'choose proportions',
+    filter: 'choose proportions',
+    zoom: 'zoom',
+    gallery: 'gallery menu',
+    filtersTitle: 'Filters',
+    publicationTitle: 'Publication',
+    maxSize: 'The maximum file size is 20 MB',
+    fileFormat: 'The file must be in PNG or JPEG format',
+    nextSlide: 'next slide',
+    prevSlide: 'prev slide',
+  },
   lang: {
     en: 'English',
     ru: 'Russian',
@@ -282,6 +296,7 @@ export const en = {
   notifications: {
     profileCreated: 'Profile successfully created',
     profileUpdated: 'Profile successfully updated',
+    postCreated: 'Post successfully created',
     emailVerification: {
       onSuccess: 'The link email was successfully sent!',
     },
