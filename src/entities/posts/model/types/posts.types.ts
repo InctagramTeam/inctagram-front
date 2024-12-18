@@ -19,3 +19,22 @@ export type Posts = {
   pagesCount: number
   usersCount: number
 }
+
+export type PostDto = {
+  aboutMe: string
+  avatarId: null | string
+  comments: string[]
+  createdAt: string
+  description: string
+  id: number
+  postImages: PostImage[]
+  username: string
+}
+
+export type PublicPost = {
+  comments: string[]
+  createdAt: string
+  description: string
+  id: number
+  postImages: PostImage[]
+}
