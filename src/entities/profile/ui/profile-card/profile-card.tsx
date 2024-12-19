@@ -1,6 +1,6 @@
 'use client'
 
-import { PostDto } from '@/entities/posts/model/types/posts.types'
+import { PostDto, PublicPost } from '@/entities/posts/model/types/posts.types'
 import { ProfileGallery, User } from '@/entities/profile'
 import { useTranslation } from '@/shared'
 import { toast } from '@/shared/ui/toast/use-toast'
@@ -13,7 +13,7 @@ type ProfileCardProps = {
   className?: string
   isError?: boolean
   isLoading?: boolean
-  posts: PostDto[]
+  posts: PublicPost[]
   readonly?: boolean
   user: User
 }
@@ -42,7 +42,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         <UserAvatar className={`h-[200px] w-[200px]`} src={user.profile?.url} />
         <ProfileFollowerInfoBlock user={user} />
       </div>
-      <ProfileGallery />
+      <ProfileGallery posts={posts} />
     </div>
   )
 }

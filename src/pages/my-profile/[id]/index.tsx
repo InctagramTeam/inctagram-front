@@ -27,7 +27,7 @@ const MyProfilePage = ({
   return (
     <PageWrapper paddingBlock={'36px'} title={'User | Instagram'}>
       {user ? (
-        <DynamicProfileCard isError={isError} isLoading={isLoading} user={user} />
+        <DynamicProfileCard isError={isError} isLoading={isLoading} posts={posts} user={user} />
       ) : (
         <div className={'flex items-center justify-center'}>Профиль не найден</div>
       )}

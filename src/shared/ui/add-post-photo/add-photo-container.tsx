@@ -13,7 +13,7 @@ import { PublicationPost } from './publication-post/publication-post'
 
 export const AddPhotoContainer = (): ReturnComponent => {
   const { t } = useTranslation()
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpen, setIsOpen] = useState<boolean>(true)
   const modalState = useAddPostPhotoStore(state => state.modalState)
 
   return (
