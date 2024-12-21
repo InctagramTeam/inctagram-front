@@ -1,38 +1,15 @@
 import * as React from 'react'
 
-import { base64ToFile, useAddPostPhotoStore } from '@/entities/posts'
-import { useCreatePost } from '@/entities/posts/api/hooks/use-create-post'
+import { useAddPostPhotoStore } from '@/entities/posts'
 import { ReturnComponent, useTranslation } from '@/shared'
 
+import { usePublicPost } from '../use-public-post'
 import { AddPhotoModalHeader } from './add-photo-modal-header'
 
 export const AddPhotoModalHeaderContent = (): ReturnComponent => {
   const { t } = useTranslation()
+  const { publicPost, setModalStateTo, removeImages } = usePublicPost()
   const modalState = useAddPostPhotoStore(state => state.modalState)
-  const setModalStateTo = useAddPostPhotoStore(state => state.setModalStateTo)
-  const images = useAddPostPhotoStore(state => state.images)
-  const description = useAddPostPhotoStore(state => state.description)
-  const removeImages = useAddPostPhotoStore(state => state.removeImages)
-  const { mutate: createPost } = useCreatePost()
-  const publicPost = () => {
-    const allSrc = images.map(image => image.filteredSrc || image.croppedSrc)
-
-    const formData = new FormData()
-
-    allSrc.forEach((src, index) => {
-      if (src) {
-        const file = base64ToFile(src, `image_${index}.png`) // Преобразуем base64 в файл
-
-        formData.append('files', file)
-      }
-    })
-
-    createPost({
-      formData,
-      description,
-      isDraft: false,
-    })
-  }
 
   if (modalState === 'cropping') {
     return (
@@ -58,7 +35,7 @@ export const AddPhotoModalHeaderContent = (): ReturnComponent => {
         prevHandler={() => {
           setModalStateTo('cropping')
         }}
-        title={'Filters'}
+        title={t.uploadPhoto.filtersTitle}
       />
     )
   }
@@ -71,7 +48,7 @@ export const AddPhotoModalHeaderContent = (): ReturnComponent => {
         prevHandler={() => {
           setModalStateTo('filters')
         }}
-        title={'Publication'}
+        title={t.uploadPhoto.publicationTitle}
       />
     )
   }
