@@ -1,11 +1,11 @@
 import React from 'react'
 
+import { AddPhotosMenu } from '@/entities/posts/ui/create-post/menu/add-photos-menu/add-photos-menu'
+import { ScaleMenu } from '@/entities/posts/ui/create-post/menu/scale-menu/scale-menu'
+import { ZoomMenu } from '@/entities/posts/ui/create-post/menu/zoom-menu/zoom-menu'
 import { ReturnComponent, cn } from '@/shared'
 
 import { Carousel } from '../carousel'
-import { AddPhotosMenu } from '../menu/add-photos-menu/add-photos-menu'
-import { ScaleMenu } from '../menu/scale-menu/scale-menu'
-import { ZoomMenu } from '../menu/zoom-menu/zoom-menu'
 import { CroppingPhotoButton, Menu } from './cropping-photo-button'
 import { useCroppingPhoto } from './use-cropping-photo'
 

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Button, Modal, ReturnComponent, useTranslation } from '@/shared'
 
-import { usePublicPost } from '../add-post-photo/use-public-post'
+import { usePublicPost } from './use-public-post'
 
 type Props = {
   isOpen: boolean

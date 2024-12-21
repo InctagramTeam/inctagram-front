@@ -1,4 +1,5 @@
-import { AddPhotoContainer, ReturnComponent, getBaseAppLayout, useTranslation } from '@/shared'
+import { AddPhotoContainer } from '@/entities/posts/ui/create-post/add-photo-container'
+import { ReturnComponent, getBaseAppLayout, useTranslation } from '@/shared'
 import { PageWrapper } from '@/widgets'
 
 const Create = (): ReturnComponent => {
