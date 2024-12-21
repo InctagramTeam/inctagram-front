@@ -1,4 +1,3 @@
-import { ErrorResponse } from '@/feature'
 import { toast, useTranslation } from '@/shared'
 import { handleMutationError } from '@/shared/lib/utils/error-handling/handleMutationError'
 import { useMutation } from '@tanstack/react-query'
@@ -15,9 +14,9 @@ export const useCreatePost = () => {
     },
     mutationKey: ['create-post'],
     onError: handleMutationError,
-    onSuccess: _ => {
+    onSuccess: (_, variables) => {
       toast({
-        description: t.notifications.postCreated,
+        description: variables.isDraft ? t.notifications.draftSaved : t.notifications.postCreated,
         title: 'Success',
         variant: 'default',
       })

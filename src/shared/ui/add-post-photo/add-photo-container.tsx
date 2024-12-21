@@ -36,7 +36,11 @@ export const AddPhotoContainer = (): ReturnComponent => {
             : 'max-w-[492px]'
         )}
         classNameTitle={'text-H1-20'}
-        header={modalState !== 'add-photo' && <AddPhotoModalHeaderContent />}
+        header={
+          modalState !== 'add-photo' && (
+            <AddPhotoModalHeaderContent onChangeModalClose={setIsOpenModalClose} />
+          )
+        }
         isClose={modalState === 'add-photo'}
         title={modalState === 'add-photo' ? t.uploadPhoto.addPhoto : undefined}
       >

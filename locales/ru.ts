@@ -297,6 +297,7 @@ export const ru: LocaleType = {
     profileCreated: 'Профиль успешно создан',
     profileUpdated: 'Профиль успешно обновлён',
     postCreated: 'Пост успешно создан',
+    draftSaved: 'Черновик успешно сохранен',
     emailVerification: {
       onSuccess: 'Письмо с ссылкой успешно отправлено!',
     },

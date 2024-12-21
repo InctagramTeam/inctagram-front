@@ -6,9 +6,12 @@ import { ReturnComponent, useTranslation } from '@/shared'
 import { usePublicPost } from '../use-public-post'
 import { AddPhotoModalHeader } from './add-photo-modal-header'
 
-export const AddPhotoModalHeaderContent = (): ReturnComponent => {
+type Props = {
+  onChangeModalClose: (value: boolean) => void
+}
+export const AddPhotoModalHeaderContent = ({ onChangeModalClose }: Props): ReturnComponent => {
   const { t } = useTranslation()
-  const { publicPost, setModalStateTo, removeImages } = usePublicPost()
+  const { publicPost, setModalStateTo } = usePublicPost()
   const modalState = useAddPostPhotoStore(state => state.modalState)
 
   if (modalState === 'cropping') {
@@ -18,8 +21,7 @@ export const AddPhotoModalHeaderContent = (): ReturnComponent => {
           setModalStateTo('filters')
         }}
         prevHandler={() => {
-          removeImages()
-          setModalStateTo('add-photo')
+          onChangeModalClose(true)
         }}
         title={t.uploadPhoto.croppingTitle}
       />

@@ -305,6 +305,7 @@ export const en = {
     profileCreated: 'Profile successfully created',
     profileUpdated: 'Profile successfully updated',
     postCreated: 'Post successfully created',
+    draftSaved: 'Draft successfully saved',
     emailVerification: {
       onSuccess: 'The link email was successfully sent!',
     },
