@@ -90,10 +90,10 @@ export const ru: LocaleType = {
     gallery: 'Управлять загруженными фото',
     filtersTitle: 'Фильтры',
     publicationTitle: 'Публикация',
-    maxSize: 'Максимальный размер файла - 20 МБ',
-    fileFormat: 'Файл должен быть в формате PNG или JPEG ',
-    nextSlide: 'Следующий слайд',
-    prevSlide: 'Предыдущий слайд',
+    validateFile: {
+      fileSize: (sizes: number) => `Максимальный размер файла не должен привышать ${sizes} МБ!`,
+      fileType: 'Файл должен быть в формате PNG или JPEG',
+    },
   },
   lang: {
     en: 'Английский',
@@ -149,10 +149,6 @@ export const ru: LocaleType = {
       addProfilePhoto: {
         title: 'Добавить фото профиля',
         errors: {
-          validateFile: {
-            fileType: 'Формат загружаемой фотографии должен быть PNG или JPEG',
-            fileSize: 'Размер фотографии не должен превышать 10 МБ!',
-          },
           offline: 'В данный момент вы не в сети. Пожалуйста, проверьте подключение к Интернету.',
           minDimension: (MIN_DIMENSION: number) =>
             `Изображение должно быть размером не менее ${MIN_DIMENSION} x ${MIN_DIMENSION} пикселей.`,

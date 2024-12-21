@@ -38,8 +38,8 @@ export const en = {
     simple_save: 'Save',
     statistics: 'Statistics',
     yes: 'Yes',
-    clearField: 'clear field',
-    closeModal: 'close modal',
+    clearField: 'Clear field',
+    closeModal: 'Close modal',
     close: 'Close',
     password: {
       hide: 'hide password',
@@ -91,16 +91,16 @@ export const en = {
   uploadPhoto: {
     addPhoto: 'Add Photo',
     croppingTitle: 'Cropping',
-    proportion: 'choose proportions',
-    filter: 'choose proportions',
-    zoom: 'zoom',
-    gallery: 'gallery menu',
+    proportion: 'Choose proportions',
+    filter: 'Choose proportions',
+    zoom: 'Zoom',
+    gallery: 'Gallery menu',
     filtersTitle: 'Filters',
     publicationTitle: 'Publication',
-    maxSize: 'The maximum file size is 20 MB',
-    fileFormat: 'The file must be in PNG or JPEG format',
-    nextSlide: 'next slide',
-    prevSlide: 'prev slide',
+    validateFile: {
+      fileSize: (sizes: number) => `Photo size must be less than ${sizes} MB!`,
+      fileType: 'The file must be in PNG or JPEG format',
+    },
   },
   lang: {
     en: 'English',
@@ -155,10 +155,10 @@ export const en = {
       addProfilePhoto: {
         title: 'Add a Profile Photo',
         errors: {
-          validateFile: {
-            fileType: 'The format of the uploaded photo must be PNG or JPEG',
-            fileSize: 'Photo size must be less than 10 MB!',
-          },
+          // validateFile: {
+          //   fileType: 'The format of the uploaded photo must be PNG or JPEG',
+          //   fileSize: 'Photo size must be less than 10 MB!',
+          // },
           offline: 'You are currently offline. Please check your internet connection.',
           minDimension: (MIN_DIMENSION: number) =>
             `Image must be at least ${MIN_DIMENSION} x ${MIN_DIMENSION} pixels.`,
