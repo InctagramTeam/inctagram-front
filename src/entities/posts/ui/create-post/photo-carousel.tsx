@@ -32,14 +32,16 @@ export const PhotoCarousel = ({ onSlideChange, className }: Props): ReturnCompon
       spaceBetween={12}
     >
       {images?.map(photo => (
-        <SwiperSlide className={'flex cursor-default flex-col justify-center '} key={photo.id}>
-          <Image
-            alt={'Picture of the author'}
-            className={'h-auto w-auto object-cover'}
-            height={photo.settings.pixelSizes.height}
-            src={photo.filteredSrc || photo.croppedSrc || ''}
-            width={photo.settings.pixelSizes.width}
-          />
+        <SwiperSlide className={'cursor-default '} key={photo.id}>
+          <div className={'flex h-full items-center justify-center'}>
+            <Image
+              alt={'Picture of the author'}
+              className={'h-auto w-auto object-cover'}
+              height={photo.settings.pixelSizes.height}
+              src={photo.filteredSrc || photo.croppedSrc || ''}
+              width={photo.settings.pixelSizes.width}
+            />
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>

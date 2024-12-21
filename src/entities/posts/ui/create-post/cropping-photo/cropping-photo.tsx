@@ -11,7 +11,10 @@ import { useCroppingPhoto } from './use-cropping-photo'
 
 const menu: Exclude<Menu, undefined>[] = ['scale-menu', 'zoom-menu', 'add-photos-menu']
 
-export const CroppingPhoto = (): ReturnComponent => {
+type Props = {
+  openChangeModalClose: (value: boolean) => void
+}
+export const CroppingPhoto = ({ openChangeModalClose }: Props): ReturnComponent => {
   const {
     thumbsSwiper,
     setCurrentImageId,
@@ -20,7 +23,7 @@ export const CroppingPhoto = (): ReturnComponent => {
     setThumbsSwiper,
     deleteImgCallback,
     setShowMenu,
-  } = useCroppingPhoto()
+  } = useCroppingPhoto(openChangeModalClose)
 
   return (
     <div className={'relative h-[50vh] min-h-[440px]'}>

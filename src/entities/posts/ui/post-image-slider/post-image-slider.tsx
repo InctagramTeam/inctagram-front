@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import './post-image-slider.css'
-
 type Props = {
   images: string[]
 }
@@ -17,6 +15,7 @@ export const PostImageSlider = (props: Props) => {
   return (
     <div className={'z-0'}>
       <Swiper
+        className={'miniSlider'}
         modules={[Navigation, Pagination]}
         navigation
         pagination={{ clickable: true }}

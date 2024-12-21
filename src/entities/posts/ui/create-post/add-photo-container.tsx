@@ -44,9 +44,9 @@ export const AddPhotoContainer = (): ReturnComponent => {
         isClose={modalState === 'add-photo'}
         title={modalState === 'add-photo' ? t.uploadPhoto.addPhoto : undefined}
       >
-        <ModalCloseAddPhotoModal isOpen={isOpenModalClose} openChange={openModalCloseChange} />
+        <ModalCloseAddPhotoModal isOpen={isOpenModalClose} openChange={setIsOpenModalClose} />
         {modalState === 'add-photo' && <AddPhotoForm />}
-        {modalState === 'cropping' && <CroppingPhoto />}
+        {modalState === 'cropping' && <CroppingPhoto openChangeModalClose={setIsOpenModalClose} />}
         {modalState === 'filters' && <FiltersPhoto />}
         {modalState === 'publication' && <PublicationPost />}
       </Modal.Content>
