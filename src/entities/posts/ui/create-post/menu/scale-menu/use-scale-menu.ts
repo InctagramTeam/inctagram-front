@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
-import { listVariants } from '@/shared/ui/add-post-photo/menu/scale-menu/data'
 import { clsx } from 'clsx'
 
+import { listVariants } from './data'
 import { ButtonKey } from './types'
 
 export const useScaleMenu = (currentImageId: string) => {

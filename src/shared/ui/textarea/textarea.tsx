@@ -1,9 +1,17 @@
-import { ChangeEvent, ComponentPropsWithoutRef, forwardRef, useId, useState } from 'react'
+import {
+  ChangeEvent,
+  ComponentPropsWithoutRef,
+  forwardRef,
+  useEffect,
+  useId,
+  useState,
+} from 'react'
 
 import { ReturnComponent, Text, cn } from '@/shared'
 
 export type TextareaProps = {
   containerClassName?: string
+  defaultCounter?: number
   errorMessage?: string
   label?: string
   onValueChange?: (value: string) => void
@@ -22,6 +30,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       onChange,
       onValueChange,
       maxLength,
+      defaultCounter,
       ...rest
     },
     ref
@@ -53,7 +62,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       maxLength && setCounter(e.currentTarget.value.length)
     }
 
-    const [counter, setCounter] = useState(0)
+    const [counter, setCounter] = useState<number>(defaultCounter || 0)
 
     return (
       <div className={containerClassName}>

@@ -25,7 +25,7 @@ export const ThumbPhoto = ({ deleteCallback, id, src }: Props) => {
       </Button>
       <Image
         alt={''}
-        className={'h-full w-full rounded-[4px] object-cover'}
+        className={'h-[80px] w-[80px] rounded-[4px] object-cover'}
         height={80}
         src={src}
         width={80}

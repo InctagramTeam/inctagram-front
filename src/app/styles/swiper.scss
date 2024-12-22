@@ -1,12 +1,16 @@
 .swiper {
   .swiper-pagination-bullets.swiper-pagination-horizontal {
     bottom: 12px;
-     padding: 4px 8px;
+    padding: 4px 8px;
     background-color: rgba(51, 51, 51, 50%);
     border-radius: 4px;
-     height: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
 
     &::before {
       display: none;
@@ -16,6 +20,20 @@
   .swiper-pagination-bullet {
     width: 8px;
     height: 8px;
+    background-color: #fff;
+    opacity: 1;
+    transition: background-color 0.3s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: #EDF3FA;
+      }
+    }
+
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: #397DF6;
   }
 
   .swiper-button-prev,
@@ -27,6 +45,13 @@
     border-radius: 2px;
     margin-top: 0;
     transform: translateY(-50%);
+    transition: color 0.3s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: #73A5FF;
+      }
+    }
 
     &::after {
       font-size: 28px;
@@ -49,7 +74,7 @@
     height: 24px;
 
     &::after {
-      font-size: 16px;
+      font-size: 12px;
     }
   }
 }
