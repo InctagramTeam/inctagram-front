@@ -15,7 +15,7 @@ export const UserAvatar = memo(
   ({ bgColor, children, className, src, userName }: Props): ReturnComponent => {
     return (
       <Avatar className={className}>
-        <AvatarImage alt={'user-avatar'} src={src} />
+        <AvatarImage alt={t.layout.alts.userAvatar} src={src} />
         <AvatarFallback className={`${bgColor || 'bg-Light-900'}`}>
           {children || userName?.[0] || 'U'}
         </AvatarFallback>

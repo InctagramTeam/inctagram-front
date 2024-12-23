@@ -111,6 +111,9 @@ export const en = {
       close: 'Close alert',
       error: 'Error!',
     },
+    alts: {
+      userAvatar: 'User avatar',
+    },
     notificationsDropdown: {
       title: 'Notifications!',
       alternativeText: 'No notifications yet',
@@ -155,10 +158,6 @@ export const en = {
       addProfilePhoto: {
         title: 'Add a Profile Photo',
         errors: {
-          // validateFile: {
-          //   fileType: 'The format of the uploaded photo must be PNG or JPEG',
-          //   fileSize: 'Photo size must be less than 10 MB!',
-          // },
           offline: 'You are currently offline. Please check your internet connection.',
           minDimension: (MIN_DIMENSION: number) =>
             `Image must be at least ${MIN_DIMENSION} x ${MIN_DIMENSION} pixels.`,

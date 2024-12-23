@@ -104,6 +104,9 @@ export const ru: LocaleType = {
       close: 'Закрыть уведомление',
       error: 'Ошибка!',
     },
+    alts: {
+      userAvatar: 'Аватар пользователя',
+    },
     notificationsDropdown: {
       title: 'Уведомления!',
       alternativeText: 'Уведомлений еще нет',

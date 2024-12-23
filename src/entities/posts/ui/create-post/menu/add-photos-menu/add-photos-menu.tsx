@@ -24,7 +24,7 @@ export const AddPhotosMenu = ({
   id,
   changeThumbSwiper,
   className,
-}): ReturnComponent => {
+}: Props): ReturnComponent => {
   const images = useAddPostPhotoStore(state => state.images)
   const inputRef = useRef<HTMLInputElement | null>(null)
   const handleInputClick = (e: React.MouseEvent<HTMLButtonElement>) => {
