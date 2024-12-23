@@ -1,17 +1,20 @@
 import React from 'react'
 
+import { AddPhotosMenu } from '@/entities/posts/ui/create-post/menu/add-photos-menu/add-photos-menu'
+import { ScaleMenu } from '@/entities/posts/ui/create-post/menu/scale-menu/scale-menu'
+import { ZoomMenu } from '@/entities/posts/ui/create-post/menu/zoom-menu/zoom-menu'
 import { ReturnComponent, cn } from '@/shared'
 
 import { Carousel } from '../carousel'
-import { AddPhotosMenu } from '../menu/add-photos-menu/add-photos-menu'
-import { ScaleMenu } from '../menu/scale-menu/scale-menu'
-import { ZoomMenu } from '../menu/zoom-menu/zoom-menu'
 import { CroppingPhotoButton, Menu } from './cropping-photo-button'
 import { useCroppingPhoto } from './use-cropping-photo'
 
 const menu: Exclude<Menu, undefined>[] = ['scale-menu', 'zoom-menu', 'add-photos-menu']
 
-export const CroppingPhoto = (): ReturnComponent => {
+type Props = {
+  openChangeModalClose: (value: boolean) => void
+}
+export const CroppingPhoto = ({ openChangeModalClose }: Props): ReturnComponent => {
   const {
     thumbsSwiper,
     setCurrentImageId,
@@ -20,7 +23,7 @@ export const CroppingPhoto = (): ReturnComponent => {
     setThumbsSwiper,
     deleteImgCallback,
     setShowMenu,
-  } = useCroppingPhoto()
+  } = useCroppingPhoto(openChangeModalClose)
 
   return (
     <div className={'relative h-[50vh] min-h-[440px]'}>

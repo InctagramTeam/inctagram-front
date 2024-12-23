@@ -3,6 +3,9 @@ import React, { ChangeEvent, forwardRef } from 'react'
 import { convertFileToBase64, useAddPostPhotoStore } from '@/entities/posts'
 import { Input, ReturnComponent, toast, useTranslation } from '@/shared'
 
+const MAX_SIZE_MB = 20 * 1024 * 1024
+const VALID_FORMATS = ['image/jpeg', 'image/png']
+
 export const AddPhotoInput = forwardRef<HTMLInputElement>((_, ref): ReturnComponent => {
   const { t } = useTranslation()
   const images = useAddPostPhotoStore(state => state.images)
@@ -17,29 +20,36 @@ export const AddPhotoInput = forwardRef<HTMLInputElement>((_, ref): ReturnCompon
     })
   }
 
+  const validateFile = (file: File): null | string => {
+    if (!VALID_FORMATS.includes(file.type)) {
+      return t.uploadPhoto.validateFile.fileType
+    }
+    if (file.size > MAX_SIZE_MB) {
+      return t.uploadPhoto.validateFile.fileSize(10)
+    }
+
+    return null
+  }
+
   const imgChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       const files = Array.from(e.target?.files)
 
       files.forEach(file => {
-        if (file.type !== 'image/jpeg' && file.type !== 'image/png') {
-          getToastWithError(t.uploadPhoto.fileFormat)
+        const res = validateFile(file)
+
+        if (!res) {
+          convertFileToBase64(file, (file64: string) => {
+            if (images.length < 1 && modalState === 'add-photo') {
+              setModalStateTo('cropping')
+            }
+            addImage(file64)
+          })
+        } else {
+          getToastWithError(res)
 
           return
         }
-
-        if (file.size > 20 * 1024 * 1024) {
-          getToastWithError(t.uploadPhoto.maxSize)
-
-          return
-        }
-
-        convertFileToBase64(file, (file64: string) => {
-          if (images.length < 1 && modalState === 'add-photo') {
-            setModalStateTo('cropping')
-          }
-          addImage(file64)
-        })
       })
     }
   }

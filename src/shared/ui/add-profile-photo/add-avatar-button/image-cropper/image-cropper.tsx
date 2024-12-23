@@ -43,10 +43,10 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, profile }) => {
 
   const validateFile = (file: File): null | string => {
     if (!VALID_FORMATS.includes(file.type)) {
-      return t.pages.profile.addProfilePhoto.errors.validateFile.fileType
+      return t.uploadPhoto.validateFile.fileType
     }
     if (file.size > MAX_SIZE_MB) {
-      return t.pages.profile.addProfilePhoto.errors.validateFile.fileSize
+      return t.uploadPhoto.validateFile.fileSize(10)
     }
 
     return null

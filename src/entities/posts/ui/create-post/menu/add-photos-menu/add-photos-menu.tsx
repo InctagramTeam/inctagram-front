@@ -9,7 +9,7 @@ import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
-import { AddPhotoInput } from '../../add-photo-input'
+import { AddPhotoInput } from '../../add-post-form/add-photo-input'
 import { ThumbPhoto } from './thumb-photo'
 
 type Props = {
@@ -36,17 +36,18 @@ export const AddPhotosMenu = ({
     <div className={cn('absolute bottom-[60px] left-[12px] right-[13px] z-2', className)} id={id}>
       <div className={'flex gap-[12px] rounded-[2px] bg-[rgba(0,0,0,0.5)] p-[12px]'}>
         <Swiper
-          className={'miniSlider relative'}
+          className={'miniSlider relative !ml-0'}
           freeMode
           modules={[Navigation, A11y, Thumbs, Controller]}
           navigation
           onSwiper={changeThumbSwiper}
+          slidesPerGroup={4}
           slidesPerView={'auto'}
           spaceBetween={12}
           watchSlidesProgress
         >
           {images?.map(photo => (
-            <SwiperSlide className={'relative h-[80px] w-[80px]'} key={photo.id}>
+            <SwiperSlide className={'relative !h-[80px] !w-[80px]'} key={photo.id}>
               <ThumbPhoto deleteCallback={deleteImgCallback} id={photo.id} src={photo.baseSrc} />
             </SwiperSlide>
           ))}
