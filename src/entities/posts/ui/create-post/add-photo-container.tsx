@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
 import { Modal, ReturnComponent, useTranslation } from '@/shared'
+import { ModalContent } from '@/shared/ui/modal'
 import { clsx } from 'clsx'
 
 import { AddPhotoForm } from './add-post-form/add-photo-form'
@@ -18,7 +19,7 @@ export const AddPhotoContainer = (): ReturnComponent => {
   const [isOpen, setIsOpen] = useState<boolean>(true)
   const [isOpenModalClose, setIsOpenModalClose] = useState<boolean>(false)
 
-  const openChange = _ => {
+  const openChange = () => {
     modalState !== 'add-photo' && setIsOpenModalClose(true)
   }
 
@@ -28,7 +29,7 @@ export const AddPhotoContainer = (): ReturnComponent => {
 
   return (
     <Modal onOpenChange={openChange} open={isOpen}>
-      <Modal.Content
+      <ModalContent
         classNameChildrenWrapper={'!px-0 !py-0'}
         classNameContent={clsx(
           modalState === 'filters' || modalState === 'publication'
@@ -49,7 +50,7 @@ export const AddPhotoContainer = (): ReturnComponent => {
         {modalState === 'cropping' && <CroppingPhoto openChangeModalClose={setIsOpenModalClose} />}
         {modalState === 'filters' && <FiltersPhoto />}
         {modalState === 'publication' && <PublicationPost />}
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }

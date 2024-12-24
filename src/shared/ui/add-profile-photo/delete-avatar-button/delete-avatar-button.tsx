@@ -3,6 +3,7 @@ import * as React from 'react'
 import { Button, Modal, Text, useTranslation } from '@/shared'
 import { DeleteAvatarIcon } from '@/shared/assets/icons/DeleteIcon'
 import { useDeleteAvatarButton } from '@/shared/ui/add-profile-photo/delete-avatar-button/hooks/useDeleteAvatarButton'
+import { ModalContent, ModalTrigger } from '@/shared/ui/modal'
 
 export const DeleteAvatarButton = () => {
   const { t } = useTranslation()
@@ -12,7 +13,7 @@ export const DeleteAvatarButton = () => {
 
   return (
     <Modal onOpenChange={isOpen => setModalDeleteAvatarOpen(isOpen)} open={modalDeleteAvatarOpen}>
-      <Modal.Button asChild>
+      <ModalTrigger asChild>
         <Button
           className={`absolute right-3 top-3`}
           onClick={() => setModalDeleteAvatarOpen(true)}
@@ -21,8 +22,8 @@ export const DeleteAvatarButton = () => {
         >
           <DeleteAvatarIcon />
         </Button>
-      </Modal.Button>
-      <Modal.Content
+      </ModalTrigger>
+      <ModalContent
         classNameChildrenWrapper={'px-[24px] !py-0'}
         classNameContent={'!max-w-[438px]'}
         classNameTitle={'text-H1-20'}
@@ -46,7 +47,7 @@ export const DeleteAvatarButton = () => {
             </Button>
           </div>
         </div>
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }

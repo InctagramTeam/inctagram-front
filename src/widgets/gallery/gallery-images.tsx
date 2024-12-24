@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react'
 
 import { PublicPost } from '@/entities/posts/model/types/posts.types'
 import { EMPTY_STRING, Modal, ReturnComponent } from '@/shared'
+import { ModalContent, ModalTrigger } from '@/shared/ui/modal'
 import { clsx } from 'clsx'
-import Image, { ImageProps } from 'next/image'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 type Props = {
@@ -52,7 +53,7 @@ export const GalleryImage = ({ postData, className }: Props): ReturnComponent =>
 
   return (
     <Modal onOpenChange={openChangeHandler} open={open}>
-      <Modal.Button asChild>
+      <ModalTrigger asChild>
         <Image
           alt={postData.description ?? EMPTY_STRING}
           className={clsx(`h-full w-full contain-content`, className)}
@@ -60,8 +61,8 @@ export const GalleryImage = ({ postData, className }: Props): ReturnComponent =>
           src={postData.postImages[0].url}
           width={234}
         />
-      </Modal.Button>
-      <Modal.Content>Modal with Photo and Comments</Modal.Content>
+      </ModalTrigger>
+      <ModalContent isClose={open}>Modal with Photo and Comments</ModalContent>
     </Modal>
   )
 }

@@ -8,25 +8,12 @@ import { Text } from '@/shared/ui'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
 
-type ModalProps = {
-  children: ReactNode
-  onOpenChange?: (open: boolean) => void
-  open?: boolean
-} & ComponentPropsWithoutRef<typeof Dialog.Root>
-
-export const Modal = forwardRef<ElementRef<typeof Dialog.Root>, ModalProps>(
-  ({ children, onOpenChange, open, ...rest }, ref): ReturnComponent => {
-    return (
-      <Dialog.Root onOpenChange={onOpenChange} open={open} {...rest} ref={ref}>
-        {children}
-      </Dialog.Root>
-    )
-  }
-)
+export const Modal = Dialog.Root
 
 type ModalContentProps = {
   children?: ReactNode
   classNameChildrenWrapper?: string
+  classNameContainer?: string
   classNameContent?: string
   classNameOverlay?: string
   classNameTitle?: string
@@ -68,7 +55,10 @@ export const ModalContent = forwardRef<ElementRef<typeof Dialog.Content>, ModalC
       data-[state=open]:animate-[dialog-content-show_200ms]`,
         classNameContent
       ),
-      container: 'bg-Dark-900/60 h-full w-full fixed insert top-0 block overflow-y-auto',
+      container: clsx(
+        'bg-Dark-900/60 h-full w-full fixed insert top-0 block overflow-y-auto',
+        classNameContainer
+      ),
       body: 'flex min-h-full w-full pt-[80px] pb-[20px] px-[20px] justify-center items-center',
       title: clsx('text-xl', classNameTitle),
       titleContainer: clsx(
@@ -102,19 +92,5 @@ export const ModalContent = forwardRef<ElementRef<typeof Dialog.Content>, ModalC
   }
 )
 
-/*** API кнопки у Modal - делаем как у Dialog.Trigger, ModalContent, Dialog.Close */
-Modal.Button = Dialog.Trigger
-Modal.Content = ModalContent
-Modal.Close = Dialog.Close
-
-/**
- * Пример использования - Контролируемое "Модальное окно":
- * <Modal open={open} onOpenChange={setOpen}>
- *    <Modal.Button asChild className="rounded p-2 hover:bg-gray-200">
- *       <Button>Profile Setting</Button> --> children
- *    </Modal.Button>
- *    <Modal.Content title={`Edit Contact`}>
- *        <div>Card</div>
- *     </Modal.Content>
- *  </Modal>
- */
+export const ModalTrigger = Dialog.Trigger
+export const ModalClose = Dialog.Close
