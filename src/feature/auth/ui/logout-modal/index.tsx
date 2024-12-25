@@ -4,6 +4,7 @@ import { useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { Button, Flex, Modal, Text } from '@/shared/ui'
 import { FlexCol } from '@/shared/ui/flex'
+import { ModalContent } from '@/shared/ui/modal'
 
 type Props = {
   email?: string
@@ -32,7 +33,7 @@ export const LogoutModal = (props: Props): ReturnComponent => {
 
   return (
     <Modal onOpenChange={onOpenChange} open={open}>
-      <Modal.Content
+      <ModalContent
         asChild
         classNameContent={'max-w-[378px] w-[90vw]'}
         title={t.pages.profile.logOut.modalTitle}
@@ -50,7 +51,7 @@ export const LogoutModal = (props: Props): ReturnComponent => {
             </Button>
           </Flex>
         </FlexCol>
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }
