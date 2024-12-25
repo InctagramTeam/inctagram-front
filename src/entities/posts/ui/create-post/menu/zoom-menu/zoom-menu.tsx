@@ -2,7 +2,7 @@ import { memo } from 'react'
 
 import { ReturnComponent } from '@/shared'
 
-import { Slider } from '../../slider'
+import { Slider } from '../slider/slider'
 import { useZoomMenu } from './use-zoom-menu'
 
 type Props = {

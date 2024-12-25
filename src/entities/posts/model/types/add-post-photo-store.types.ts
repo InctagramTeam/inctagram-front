@@ -1,4 +1,4 @@
-export type ModalState = 'add-photo' | 'cropping' | 'filters' | 'publication'
+export type ModalState = 'add-photo' | 'cropping' | 'filters' | 'publication' | null
 
 export type ImageSettings = {
   aspect: number

@@ -38,9 +38,9 @@ export const en = {
     simple_save: 'Save',
     statistics: 'Statistics',
     yes: 'Yes',
-    clearField: 'clear field',
-    closeModal: 'close modal',
-    close: 'close',
+    clearField: 'Clear field',
+    closeModal: 'Close modal',
+    close: 'Close',
     password: {
       hide: 'hide password',
       show: 'show password',
@@ -91,16 +91,16 @@ export const en = {
   uploadPhoto: {
     addPhoto: 'Add Photo',
     croppingTitle: 'Cropping',
-    proportion: 'choose proportions',
-    filter: 'choose proportions',
-    zoom: 'zoom',
-    gallery: 'gallery menu',
+    proportion: 'Choose proportions',
+    filter: 'Choose proportions',
+    zoom: 'Zoom',
+    gallery: 'Gallery menu',
     filtersTitle: 'Filters',
     publicationTitle: 'Publication',
-    maxSize: 'The maximum file size is 20 MB',
-    fileFormat: 'The file must be in PNG or JPEG format',
-    nextSlide: 'next slide',
-    prevSlide: 'prev slide',
+    validateFile: {
+      fileSize: (sizes: number) => `Photo size must be less than ${sizes} MB!`,
+      fileType: 'The file must be in PNG or JPEG format',
+    },
   },
   lang: {
     en: 'English',
@@ -125,7 +125,7 @@ export const en = {
         terms: 'Terms of Service',
       },
       metaDescription: 'Create an account to start using our api and receive exclusive benefits.',
-      metaTitle: 'Sign Up | Instagram',
+      metaTitle: 'Sign Up | Inctagram',
       modalBtn: 'OK',
       modalTitle: 'Email sent',
       modalText: 'We have sent a link to confirm your email to ',
@@ -135,7 +135,7 @@ export const en = {
       title: 'Sign Up',
     },
     signIn: {
-      metaTitle: 'Sign In | Instagram',
+      metaTitle: 'Sign In | Inctagram',
       metaDescription:
         'Log in to your account to start using our api and receive exclusive benefits.',
       title: 'Sign in',
@@ -155,10 +155,10 @@ export const en = {
       addProfilePhoto: {
         title: 'Add a Profile Photo',
         errors: {
-          validateFile: {
-            fileType: 'The format of the uploaded photo must be PNG or JPEG',
-            fileSize: 'Photo size must be less than 10 MB!',
-          },
+          // validateFile: {
+          //   fileType: 'The format of the uploaded photo must be PNG or JPEG',
+          //   fileSize: 'Photo size must be less than 10 MB!',
+          // },
           offline: 'You are currently offline. Please check your internet connection.',
           minDimension: (MIN_DIMENSION: number) =>
             `Image must be at least ${MIN_DIMENSION} x ${MIN_DIMENSION} pixels.`,
@@ -228,7 +228,7 @@ export const en = {
     },
     congratulations: {
       metaDescription: 'Congratulations! Your email has been confirmed',
-      metaTitle: 'Congratulations | Instagram',
+      metaTitle: 'Congratulations | Inctagram',
       title: 'Congratulations!',
       textEmail: 'Your email has been confirmed',
       textPassword: 'Your password has been successfully changed.',
@@ -236,25 +236,25 @@ export const en = {
     verifyEmail: {
       metaDescription:
         'The verification link has expired. Please verify your email again to start using our api and receive exclusive benefits.',
-      metaTitle: 'Email verification | Instagram',
+      metaTitle: 'Email verification | Inctagram',
       title: 'Email verification link expired',
       text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
     },
     verifyPasswordRecoveryLink: {
       metaDescription: 'The verification link has expired.',
-      metaTitle: 'Create new password | Instagram',
+      metaTitle: 'Create new password | Inctagram',
       title: 'Password recovery link has expired',
       text: 'Looks like the verification link has expired. Not to worry, we can send the link again',
     },
     createPassword: {
-      metaTitle: 'Create new password | Instagram',
+      metaTitle: 'Create new password | Inctagram',
       metaDescription:
         'Create a new strong password for your account. Simple process, increased security and protection of your personal data.',
       title: 'Create New Password',
       hint: 'Your password must be between 6 and 20 characters',
     },
     forgotPassword: {
-      metaTitle: 'Forgot password | Instagram',
+      metaTitle: 'Forgot password | Inctagram',
       metaDescription:
         'Having trouble logging in? Recover access to your account using our simple and secure password reset process. Get started now and get back to your important business without delays',
       title: 'Forgot Password',
@@ -264,20 +264,20 @@ export const en = {
     privacyPolice: {
       metaDescription:
         'Please read our Privacy Policy to learn how we collect, use and protect your personal information. We are committed to keeping your data secure and upholding your right to privacy.',
-      metaTitle: 'Privacy Policy | Instagram',
+      metaTitle: 'Privacy Policy | Inctagram',
       title: 'Privacy Policy',
     },
     termsOfService: {
       metaDescription:
         'Please review our Terms of Service to understand your rights and responsibilities when using our api. We are committed to transparency and fair dealings so that' +
         ' you can use our site with confidence.',
-      metaTitle: 'Terms of service | Instagram',
+      metaTitle: 'Terms of service | Inctagram',
       title: 'Terms of Service',
     },
     search: {
       metaDescription:
         'Use our convenient search to find interesting people in our social network. Discover new acquaintances, communicate and establish connections, expanding your social circle',
-      metaTitle: 'Search users | Instagram',
+      metaTitle: 'Search users | Inctagram',
       title: 'Search',
       requests: 'Recent requests',
       empty: 'Oops! This place looks empty!',
@@ -286,8 +286,16 @@ export const en = {
     favorites: {
       metaDescription:
         "Discover our social network's Favorites page, where you'll find the most popular and discussed topics chosen by our community. Join us and share your favorites!",
-      metaTitle: 'Favorites | Instagram',
+      metaTitle: 'Favorites | Inctagram',
       title: 'Favorites',
+    },
+    createPost: {
+      metaDescription:
+        'Create a unique post: add a photo, text and hashtags. Share moments and inspire your subscribers in the app Inctagram!',
+      metaTitle: 'Create Post | Inctagram',
+      pageTitle: 'Create post',
+      wantToCloseCreation:
+        'Do you really want to close the creation of a publication? If you close everything will be deleted',
     },
   },
   tabs: {
@@ -319,6 +327,7 @@ export const en = {
     profileCreated: 'Profile successfully created',
     profileUpdated: 'Profile successfully updated',
     postCreated: 'Post successfully created',
+    draftSaved: 'Draft successfully saved',
     emailVerification: {
       onSuccess: 'The link email was successfully sent!',
     },
