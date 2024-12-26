@@ -3,7 +3,7 @@ import React from 'react'
 import { ParsedUrlQuery } from 'querystring'
 
 import { User } from '@/entities/profile'
-import { useCreateProfile, useUpdateProfile } from '@/entities/profile/api'
+import { useUpdateProfile } from '@/entities/profile/api'
 import profileApi from '@/entities/profile/api/profile-api'
 import { useProfile } from '@/entities/profile/model/store/profile-store'
 import { ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
@@ -22,7 +22,7 @@ import { GetServerSideProps } from 'next'
 
 const General = ({ user }: { user: User | null }) => {
   const { t } = useTranslation()
-  const { mutate: createProfile } = useCreateProfile()
+
   const { mutate: updateProfile } = useUpdateProfile()
   const { mutate: updateAvatar } = useUpdateAvatar()
 
@@ -56,7 +56,7 @@ const General = ({ user }: { user: User | null }) => {
       aboutMe: aboutMe ?? EMPTY_STRING,
     }
 
-    user.profile ? updateProfile(profile) : createProfile(profile)
+    updateProfile(profile)
     localAvatar && updateAvatarHandler(localAvatar)
   }
 
