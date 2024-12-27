@@ -12,8 +12,8 @@ import { Profile } from '@/entities/profile'
 import { useProfile } from '@/entities/profile/model/store/profile-store'
 import { Button, Card, Text, useTranslation } from '@/shared'
 import ImageOutlineIcon from '@/shared/assets/icons/ImageOutlineIcon'
-import { useAddAvatarButton } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useAddAvatarButton'
-import setCanvasPreview from '@/shared/ui/add-profile-photo/add-avatar-button/image-cropper/set-canvas-preview'
+import { useAddAvatarButton } from '@/widgets/add-profile-photo/add-avatar-button/hooks/useAddAvatarButton'
+import setCanvasPreview from '@/widgets/add-profile-photo/add-avatar-button/image-cropper/set-canvas-preview'
 import Image from 'next/image'
 
 import 'react-image-crop/dist/ReactCrop.css'
@@ -122,7 +122,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, profile }) => {
         const formData = new FormData()
 
         formData.append('file', file)
-
+        //TODO - изменить условие
         profile ? updateAvatarHandler(formData) : setUserAvatar(formData)
       }
     }, 'image/jpeg')
