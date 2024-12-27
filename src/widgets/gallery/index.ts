@@ -1,3 +1,3 @@
 export { Gallery } from './gallery'
-export { GalleryImage } from './gallry-images'
-export type { GalleryImageType } from './gallry-images'
+export { GalleryImage } from './gallery-images'
+export type { GalleryImageType } from './gallery-images'
