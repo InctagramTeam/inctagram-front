@@ -7,7 +7,7 @@ import { FlexRow } from '@/shared/ui/flex'
 import Link from 'next/link'
 
 type Props = {
-  profile?: Profile
+  profile: Profile
   userId: number
 }
 
@@ -30,7 +30,9 @@ export const FollowersInfoHeader = ({ profile, userId }: Props) => {
   return (
     <FlexRow className={`Header_ w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}>
       <Text asComponent={'h2'} className={`title`} variant={'H1'}>
-        {profile ? profile.firstName + ' ' + profile.lastName : 'URL_Profile'}
+        {profile.firstName && profile.lastName
+          ? profile.firstName + ' ' + profile.lastName
+          : 'URL_Profile'}
       </Text>
       {isOwnProfile && (
         <Button asChild className={`px-6 py-[6px]`} variant={'secondary'}>
