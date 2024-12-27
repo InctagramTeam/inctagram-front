@@ -2,7 +2,7 @@
 
 import { ReactNode, memo } from 'react'
 
-import { Avatar, AvatarFallback, AvatarImage, ReturnComponent } from '@/shared'
+import { Avatar, AvatarFallback, AvatarImage, ReturnComponent, useTranslation } from '@/shared'
 
 type Props = {
   bgColor?: string
@@ -13,6 +13,8 @@ type Props = {
 }
 export const UserAvatar = memo(
   ({ bgColor, children, className, src, userName }: Props): ReturnComponent => {
+    const { t } = useTranslation()
+
     return (
       <Avatar className={className}>
         <AvatarImage alt={t.layout.alts.userAvatar} src={src} />

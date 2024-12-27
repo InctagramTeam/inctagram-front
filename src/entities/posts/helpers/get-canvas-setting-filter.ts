@@ -1,5 +1,5 @@
 import { FilterValue } from '../model/types/add-post-photo-store.types'
-export const getCanvasSettingFilter = (currentFilter: FilterValue) => {
+export const getCanvasSettingFilter = (currentFilter: FilterValue): string => {
   switch (currentFilter) {
     case 'brightness':
       return 'brightness(1.25)'
@@ -15,5 +15,7 @@ export const getCanvasSettingFilter = (currentFilter: FilterValue) => {
       return 'saturate(1.5)'
     case 'sepia':
       return 'sepia(100%)'
+    default:
+      return 'none'
   }
 }

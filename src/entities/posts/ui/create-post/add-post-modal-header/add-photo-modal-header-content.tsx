@@ -54,4 +54,6 @@ export const AddPhotoModalHeaderContent = ({ onChangeModalClose }: Props): Retur
       />
     )
   }
+
+  return <></>
 }

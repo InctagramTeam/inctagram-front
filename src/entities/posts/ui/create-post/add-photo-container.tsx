@@ -18,7 +18,7 @@ export const AddPhotoContainer = (): ReturnComponent => {
   const [isOpen, setIsOpen] = useState<boolean>(true)
   const [isOpenModalClose, setIsOpenModalClose] = useState<boolean>(false)
 
-  const openChange = _ => {
+  const openChange = () => {
     modalState !== 'add-photo' && setIsOpenModalClose(true)
   }
 

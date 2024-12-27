@@ -7,13 +7,13 @@ import {
   SetOptionsAction,
   SetSrcAction,
 } from '@/entities/posts/model/types/add-post-photo-store.types'
-import { images } from 'next/dist/build/webpack/config/blocks/images'
 import { v4 as uuidv4 } from 'uuid'
 import { create } from 'zustand'
 
 export const useAddPostPhotoStore = create<AddPostPhotoStore>(set => ({
   modalState: 'add-photo',
   images: [],
+  description: '',
   setDescription: description => set({ description }),
   addImage: (src: string) =>
     set(state => {

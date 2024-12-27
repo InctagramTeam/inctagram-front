@@ -5,8 +5,7 @@ import { ReturnComponent } from '@/shared'
 import { A11y, Controller, Navigation, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react'
 
-import 'swiper/css'
-import 'swiper/css/navigation'
+import 'swiper/swiper-bundle.css'
 
 import { EasyCrop } from './easy-crop/easy-crop'
 
