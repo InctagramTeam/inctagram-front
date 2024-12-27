@@ -3,7 +3,8 @@ import { useState } from 'react'
 
 import { Profile } from '@/entities/profile'
 import { Button, Modal, useTranslation } from '@/shared'
-import ImageCropper from '@/shared/ui/add-profile-photo/add-avatar-button/image-cropper/image-cropper'
+import { ModalContent, ModalTrigger } from '@/shared/ui/modal'
+import ImageCropper from '@/widgets/add-profile-photo/add-avatar-button/image-cropper/image-cropper'
 
 type Props = {
   profile: Profile
@@ -15,7 +16,7 @@ export const AddAvatarButton = ({ profile }: Props) => {
 
   return (
     <Modal onOpenChange={isOpen => setModalUpdateAvatarOpen(isOpen)} open={modalUpdateAvatarOpen}>
-      <Modal.Button asChild>
+      <ModalTrigger asChild>
         <Button
           className={`max-w-[196px] !whitespace-normal break-words`}
           onClick={() => setModalUpdateAvatarOpen(true)}
@@ -23,8 +24,8 @@ export const AddAvatarButton = ({ profile }: Props) => {
         >
           {t.pages.profile.addProfilePhoto.title}
         </Button>
-      </Modal.Button>
-      <Modal.Content
+      </ModalTrigger>
+      <ModalContent
         classNameChildrenWrapper={'px-[24px] !py-0'}
         classNameContent={'!max-w-[492px]'}
         classNameTitle={'text-H1-20'}
@@ -32,7 +33,7 @@ export const AddAvatarButton = ({ profile }: Props) => {
         title={t.pages.profile.addProfilePhoto.title}
       >
         <ImageCropper closeModal={() => setModalUpdateAvatarOpen(false)} profile={profile} />
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }
