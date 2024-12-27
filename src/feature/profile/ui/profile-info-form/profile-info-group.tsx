@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { ProfileSettings } from '@/entities/profile'
+import { ProfileSettings } from '@/feature/profile/model/types'
 import { ComboboxGroup } from '@/feature/profile/ui/profile-info-form/combobox-group'
 import {
   Button,

@@ -2,11 +2,11 @@ import React from 'react'
 
 import { ParsedUrlQuery } from 'querystring'
 
-import { ProfileSettings } from '@/entities/profile'
 import { useUpdateProfile } from '@/entities/profile/api'
 import profileApi from '@/entities/profile/api/profile-api'
 import { useProfile } from '@/entities/profile/model/store/profile-store'
 import { ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
+import { ProfileSettings } from '@/feature/profile/model/types'
 import {
   EMPTY_STRING,
   TABS_VARIANTS,

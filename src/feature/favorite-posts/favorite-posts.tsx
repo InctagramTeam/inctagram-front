@@ -3,13 +3,8 @@
 import React from 'react'
 
 import { ReturnBack, ReturnComponent, Text, cn, useResponsive, useTranslation } from '@/shared'
-import { Gallery, GalleryImage, GalleryImageType } from '@/widgets'
+import { Gallery } from '@/widgets'
 
-const items: GalleryImageType[] = []
-
-for (let i = 0; i < 12; i++) {
-  items.push({ alt: 'photo', src: '/man.png' })
-}
 export const FavoritePosts = (): ReturnComponent => {
   const { sm } = useResponsive()
   const { t } = useTranslation()
@@ -31,11 +26,7 @@ export const FavoritePosts = (): ReturnComponent => {
           sm && 'grid-cols-3 gap-[3px]'
         )}
       >
-        {items.map((item, index) => (
-          <li className={'aspect-square'} key={index}>
-            <GalleryImage {...item} />
-          </li>
-        ))}
+        Галлерея избранных постов
       </Gallery>
     </section>
   )

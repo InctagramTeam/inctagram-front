@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { User } from '@/entities/profile'
+import { User } from '@/entities/user'
 import { LogoutModal, useLogout } from '@/feature'
 import { NavigationElement, ReturnComponent, cn } from '@/shared'
 import { LogOutIcon } from '@/shared/assets/icons'

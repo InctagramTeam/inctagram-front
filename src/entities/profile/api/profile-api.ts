@@ -1,11 +1,6 @@
-import {
-  Profile,
-  ProfileSchema,
-  ProfileSettings,
-  ProfileSettingsSchema,
-  updateProfileRequest,
-} from '@/entities/profile'
+import { Profile, ProfileSchema, updateProfileRequest } from '@/entities/profile'
 import { ProfileDto } from '@/entities/profile/api/dto'
+import { ProfileSettings, ProfileSettingsSchema } from '@/feature/profile/model/types'
 import { EMPTY_STRING } from '@/shared'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import { mapDtoToModel } from '@/shared/lib/utils/mapDtoToModel'
@@ -35,11 +30,11 @@ export class ProfileApi {
   }
 
   //TODO: переделать на запрос с куками и обсудить с командой accessToken в куки
-  // async getProfileSettings(): Promise<ProfileSettings | null> {
+  // async getProfileSettings(): Promise<ProfileSettingsTypes | null> {
   //   try {
   //     return await axiosWithAuth
   //       .get<null, AxiosResponse<ProfileDto>>(`profile`)
-  //       .then(res => mapDtoToModel<ProfileSettings, typeof res.data>(res.data))
+  //       .then(res => mapDtoToModel<ProfileSettingsTypes, typeof res.data>(res.data))
   //       .then(ProfileSettingsSchema.parse)
   //   } catch (error) {
   //     return null
