@@ -3,13 +3,23 @@
 import React from 'react'
 
 import { ReturnBack, ReturnComponent, Text, cn, useResponsive, useTranslation } from '@/shared'
-import { Gallery, GalleryImage, GalleryImageType } from '@/widgets'
+import { Gallery, GalleryImage } from '@/widgets'
+import { GalleryImageProps } from '@/widgets/gallery/gallery-images'
 
-const items: GalleryImageType[] = []
+const items: GalleryImageProps[] = []
 
-for (let i = 0; i < 12; i++) {
-  items.push({ alt: 'photo', src: '/man.png' })
-}
+// TODO:
+//  Этот цикл был нужен для того, чтобы отрисовать картинки (пока заглушки) на странице favorites,
+//  но после работы над компонентом GalleryImage стала ругаться типизация, поэтому цикл закомментировала
+//  и на данный момент на favorites пустая ul, так как пустой массив items
+
+// for (let i = 0; i < 12; i++) {
+//   items.push({
+//     alt: 'photo',
+//     src: '/man.png',
+//   })
+// }
+
 export const FavoritePosts = (): ReturnComponent => {
   const { sm } = useResponsive()
   const { t } = useTranslation()

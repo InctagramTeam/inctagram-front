@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 import { User } from '@/entities/profile'
 import { LogoutModal, useLogout } from '@/feature'
-import { NavigationElement, ReturnComponent, cn } from '@/shared'
+import { Button, NavigationElement, ReturnComponent, cn } from '@/shared'
 import { LogOutIcon } from '@/shared/assets/icons'
 import { getStoreLocalStorage } from '@/shared/lib/utils'
 import { SidebarConfig, useBreakpointMode } from '@/widgets/sidebar/model'
@@ -70,7 +70,6 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
             <>
               <NavigationElement
                 className={classes.button}
-                isButton
                 name={t.button.logOut}
                 onClick={handleClickLogoutBtn}
                 onlyIcon={onlyIcons}
@@ -99,7 +98,6 @@ export const Sidebar = ({ isAuth }: Props): ReturnComponent => {
           <>
             <NavigationElement
               className={classes.button}
-              isButton
               name={t.button.logOut}
               onClick={handleClickLogoutBtn}
               onlyIcon={onlyIcons}

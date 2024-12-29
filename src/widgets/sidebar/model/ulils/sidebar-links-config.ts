@@ -35,7 +35,7 @@ export class SidebarConfig {
         name: this.t.links.home,
       },
       {
-        disabled: false,
+        disabled: true,
         href: AppRoutes.CREATE_POST,
         name: this.t.links.create,
       },

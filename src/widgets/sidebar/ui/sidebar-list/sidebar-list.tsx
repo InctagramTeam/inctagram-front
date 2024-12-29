@@ -7,6 +7,7 @@ import { useLayoutContext } from '@/shared/layouts'
 import { cn, getIcon } from '@/shared/lib/utils'
 import { NavLink } from '@/shared/types'
 import { AppLink } from '@/shared/ui/app-link/app-link'
+import App from 'next/app'
 
 type Props = {
   isMobile?: boolean
@@ -37,20 +38,30 @@ export const SidebarList = memo(({ isMobile = false, links, userId, onlyIcons = 
       return (
         <li className={classes.item} key={link.href}>
           <NavigationElement
-            asComponent={'span'}
             disabled={link.disabled}
+            isButton={false}
             name={link.name}
             onlyIcon={onlyIcons}
             startIcon={getIcon(link.href, false, userId)}
             userId={userId}
-          />
+          >
+            <span>{link.name}</span>
+          </NavigationElement>
         </li>
       )
     }
 
     return (
       <li className={classes.item} key={link.href}>
-        <NavigationElement asComponent={AppLink} onlyIcon={onlyIcons} userId={userId} {...link} />
+        <NavigationElement
+          isButton={false}
+          onlyIcon={onlyIcons}
+          startIcon={getIcon(link.href, false, userId)}
+          userId={userId}
+          {...link}
+        >
+          <AppLink href={link.href}>{link.name}</AppLink>
+        </NavigationElement>
       </li>
     )
   }

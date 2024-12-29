@@ -2,8 +2,7 @@ import * as React from 'react'
 import { useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
-import { Modal, ReturnComponent, useTranslation } from '@/shared'
-import { ModalContent } from '@/shared/ui/modal'
+import { Modal, ModalContent, ReturnComponent, useTranslation } from '@/shared'
 import { clsx } from 'clsx'
 
 import { AddPhotoForm } from './add-post-form/add-photo-form'

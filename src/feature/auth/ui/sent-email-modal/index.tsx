@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
 
-import { useTranslation } from '@/shared/lib'
-import { ReturnComponent } from '@/shared/types'
-import { Button, Modal, Text } from '@/shared/ui'
-import { FlexCol } from '@/shared/ui/flex'
+import {
+  Button,
+  FlexCol,
+  Modal,
+  ModalContent,
+  ReturnComponent,
+  Text,
+  useTranslation,
+} from '@/shared'
 
 type Props = {
   email?: string
@@ -25,7 +30,7 @@ export const SentEmailModal = ({ email, onOpenChange, open }: Props): ReturnComp
 
   return (
     <Modal onOpenChange={onOpenChange} open={open}>
-      <Modal.Content
+      <ModalContent
         asChild
         classNameContent={'max-w-[378px] w-[90vw]'}
         title={t.pages.signUp.modalTitle}
@@ -38,7 +43,7 @@ export const SentEmailModal = ({ email, onOpenChange, open }: Props): ReturnComp
             {t.pages.signUp.modalBtn}
           </Button>
         </FlexCol>
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }
