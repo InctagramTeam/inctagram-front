@@ -70,6 +70,7 @@ export const SignUpForm = forwardRef(
         password: EMPTY_STRING,
         passwordConfirm: EMPTY_STRING,
         username: EMPTY_STRING,
+        checkAccept: false,
       },
       /** Режим срабатывания подсветки ошибок при изменении полей */
       mode: 'onChange',
