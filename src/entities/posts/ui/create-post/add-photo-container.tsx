@@ -2,8 +2,9 @@ import * as React from 'react'
 import { useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
-import { Modal, ModalContent, ReturnComponent, useTranslation } from '@/shared'
+import { AppRoutes, Modal, ModalContent, ReturnComponent, useTranslation } from '@/shared'
 import { clsx } from 'clsx'
+import { useRouter } from 'next/router'
 
 import { AddPhotoForm } from './add-post-form/add-photo-form'
 import { AddPhotoModalHeaderContent } from './add-post-modal-header/add-photo-modal-header-content'
@@ -17,9 +18,15 @@ export const AddPhotoContainer = (): ReturnComponent => {
   const modalState = useAddPostPhotoStore(state => state.modalState)
   const [isOpen, setIsOpen] = useState<boolean>(true)
   const [isOpenModalClose, setIsOpenModalClose] = useState<boolean>(false)
+  const router = useRouter()
 
   const openChange = () => {
-    modalState !== 'add-photo' && setIsOpenModalClose(true)
+    if (modalState === 'add-photo') {
+      setIsOpen(false)
+      router.replace(AppRoutes.MAIN)
+    } else {
+      setIsOpenModalClose(true)
+    }
   }
 
   return (
