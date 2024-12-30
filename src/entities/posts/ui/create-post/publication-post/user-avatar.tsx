@@ -21,7 +21,7 @@ export const AvatarUser = (): ReturnComponent => {
 
     if (user) {
       setUserName(user.userName)
-      user.profile.url && setAvatar(user.profile.url)
+      //user.profile.url && setAvatar(user.profile.url)
     }
   }, [])
 

@@ -1,10 +1,7 @@
 import { CSSProperties, ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
+import { EMPTY_STRING, ReturnComponent, Text, useTranslation } from '@/shared'
 import { CrossIcon } from '@/shared/assets/icons'
-import { EMPTY_STRING } from '@/shared/constants'
-import { cn, useTranslation } from '@/shared/lib'
-import { ReturnComponent } from '@/shared/types'
-import { Text } from '@/shared/ui'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
 
@@ -72,7 +69,13 @@ export const ModalContent = forwardRef<ElementRef<typeof Dialog.Content>, ModalC
       <Dialog.Portal {...rest}>
         <div className={classes.container}>
           <div className={classes.body}>
-            <Dialog.Content className={classes.content} forceMount ref={ref} style={style}>
+            <Dialog.Content
+              aria-describedby={undefined}
+              className={classes.content}
+              forceMount
+              ref={ref}
+              style={style}
+            >
               <div className={classes.titleContainer}>
                 <Dialog.Title asChild>
                   {header ? header : <Text className={classes.title}>{title}</Text>}

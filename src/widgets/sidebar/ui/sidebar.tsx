@@ -4,9 +4,8 @@ import React, { useEffect, useState } from 'react'
 
 import { User } from '@/entities/profile'
 import { LogoutModal, useLogout } from '@/feature'
-import { Button, NavigationElement, ReturnComponent, cn } from '@/shared'
+import { NavigationElement, ReturnComponent, cn, getStoreLocalStorage } from '@/shared'
 import { LogOutIcon } from '@/shared/assets/icons'
-import { getStoreLocalStorage } from '@/shared/lib/utils'
 import { SidebarConfig, useBreakpointMode } from '@/widgets/sidebar/model'
 import { SidebarList, ToggleCollapsedButtons } from '@/widgets/sidebar/ui'
 

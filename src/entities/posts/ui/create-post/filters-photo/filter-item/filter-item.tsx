@@ -1,8 +1,8 @@
 'use client'
-import React, { ComponentPropsWithoutRef, memo } from 'react'
+import React, { ComponentPropsWithoutRef, ReactNode, memo } from 'react'
 
 import { FilterValue } from '@/entities/posts/model/types/add-post-photo-store.types'
-import { Input, ReturnComponent, cn } from '@/shared'
+import { EMPTY_STRING, Input, ReturnComponent, cn } from '@/shared'
 import Image from 'next/image'
 
 import { getImageFilterClass } from './get-image-filter-class'
@@ -31,11 +31,11 @@ export const FilterItem = memo(({ id, currentImageId, value, ...rest }: Props): 
         htmlFor: id,
         children: (
           <Image
-            alt={'Photo'}
-            className={cn(getImageFilterClass(value), 'h-[108px] object-cover')}
-            height={108}
+            alt={EMPTY_STRING}
+            className={cn(getImageFilterClass(value), 'h-[108px] w-full object-cover')}
+            height={0}
             src={currentImage?.baseSrc || ''}
-            width={108}
+            width={0}
           />
         ),
       }}

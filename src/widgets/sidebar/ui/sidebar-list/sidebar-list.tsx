@@ -2,12 +2,7 @@
 
 import { memo, useMemo } from 'react'
 
-import { NavigationElement } from '@/shared'
-import { useLayoutContext } from '@/shared/layouts'
-import { cn, getIcon } from '@/shared/lib/utils'
-import { NavLink } from '@/shared/types'
-import { AppLink } from '@/shared/ui/app-link/app-link'
-import App from 'next/app'
+import { AppLink, NavLink, NavigationElement, cn, getIcon, useLayoutContext } from '@/shared'
 
 type Props = {
   isMobile?: boolean
