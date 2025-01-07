@@ -7,10 +7,10 @@ import { ModalContent, ModalTrigger } from '@/shared/ui/modal'
 import ImageCropper from '@/widgets/add-profile-photo/add-avatar-button/image-cropper/image-cropper'
 
 type Props = {
-  profile: Profile
+  profileAvatar: null | string
 }
 
-export const AddAvatarButton = ({ profile }: Props) => {
+export const AddAvatarButton = ({ profileAvatar }: Props) => {
   const { t } = useTranslation()
   const [modalUpdateAvatarOpen, setModalUpdateAvatarOpen] = useState(false)
 
@@ -32,7 +32,10 @@ export const AddAvatarButton = ({ profile }: Props) => {
         classNameTitleContainer={'h-[59px]'}
         title={t.pages.profile.addProfilePhoto.title}
       >
-        <ImageCropper closeModal={() => setModalUpdateAvatarOpen(false)} profile={profile} />
+        <ImageCropper
+          closeModal={() => setModalUpdateAvatarOpen(false)}
+          profileAvatar={profileAvatar}
+        />
       </ModalContent>
     </Modal>
   )

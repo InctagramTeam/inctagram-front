@@ -25,10 +25,10 @@ const VALID_FORMATS = ['image/jpeg', 'image/png']
 
 type ImageCropperProps = {
   closeModal: () => void
-  profile: Profile
+  profileAvatar: null | string
 }
 
-const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, profile }) => {
+const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, profileAvatar }) => {
   const { t } = useTranslation()
   const { setUserAvatar } = useProfile()
   const { updateAvatarHandler } = useAddAvatarButton()
@@ -122,8 +122,7 @@ const ImageCropper: React.FC<ImageCropperProps> = ({ closeModal, profile }) => {
         const formData = new FormData()
 
         formData.append('file', file)
-        //TODO - изменить условие
-        profile ? updateAvatarHandler(formData) : setUserAvatar(formData)
+        profileAvatar ? updateAvatarHandler(formData) : setUserAvatar(formData)
       }
     }, 'image/jpeg')
 

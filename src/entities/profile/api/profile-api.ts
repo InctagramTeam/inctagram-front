@@ -41,10 +41,10 @@ export class ProfileApi {
   //   }
   // }
 
-  async getProfileSettings(id: string): Promise<ProfileSettings | null> {
+  async getProfileSettings(): Promise<ProfileSettings | null> {
     try {
-      return await axiosNotAuthorized
-        .get<null, AxiosResponse<ProfileDto>>(`profile/${id}`)
+      return await axiosWithAuth
+        .get<null, AxiosResponse<ProfileDto>>(`profile`)
         .then(res => mapDtoToModel<ProfileSettings, typeof res.data>(res.data))
         .then(ProfileSettingsSchema.parse)
     } catch (error) {

@@ -91,7 +91,7 @@ export const ProfileInfoForm = forwardRef(
       setTimeout(() => {
         clearErrors()
       }, 0)
-    }, [profileSettings, reset])
+    }, [reset])
 
     return (
       <div className={className}>
