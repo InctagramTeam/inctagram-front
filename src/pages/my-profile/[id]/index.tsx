@@ -2,7 +2,7 @@ import { ParsedUrlQuery } from 'querystring'
 
 import postsApi from '@/entities/posts/api/posts-api'
 import { PublicPost } from '@/entities/posts/model/types/posts.types'
-import { User } from '@/entities/profile'
+import { Profile } from '@/entities/profile'
 import profileApi from '@/entities/profile/api/profile-api'
 import { getBaseAppLayout } from '@/shared'
 import { PageWrapper } from '@/widgets/page-wrapper'
@@ -14,7 +14,7 @@ const DynamicProfileCard = dynamic(
 )
 
 const MyProfilePage = ({
-  user,
+  profile,
   posts,
   isError,
   isLoading,
@@ -22,12 +22,17 @@ const MyProfilePage = ({
   isError: boolean
   isLoading: boolean
   posts: PublicPost[]
-  user: User | null
+  profile: Profile | null
 }) => {
   return (
     <PageWrapper paddingBlock={'36px'} title={'User | Instagram'}>
-      {user ? (
-        <DynamicProfileCard isError={isError} isLoading={isLoading} posts={posts} user={user} />
+      {profile ? (
+        <DynamicProfileCard
+          isError={isError}
+          isLoading={isLoading}
+          posts={posts}
+          profile={profile}
+        />
       ) : (
         <div className={'flex items-center justify-center'}>Профиль не найден</div>
       )}
@@ -42,11 +47,11 @@ interface Params extends ParsedUrlQuery {
 export const getServerSideProps = (async context => {
   const { id } = context.params as Params
 
-  const user = await profileApi.getProfile(id)
+  const profile = await profileApi.getProfileById(id)
   const posts = await postsApi.getUserPosts(id)
 
-  return { props: { user, posts } }
-}) satisfies GetServerSideProps<{ posts: PublicPost[]; user: User | null }>
+  return { props: { profile, posts } }
+}) satisfies GetServerSideProps<{ posts: PublicPost[]; profile: Profile | null }>
 
 MyProfilePage.getLayout = getBaseAppLayout
 

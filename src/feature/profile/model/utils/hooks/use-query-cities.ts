@@ -25,7 +25,7 @@ export function useQueryCities({ key, locale = 'en', countryIds, namePrefix }: P
     isFetchingPreviousPage,
     status,
   } = useInfiniteQuery({
-    queryKey: [key, { locale, namePrefix }],
+    queryKey: [key, { locale, namePrefix, countryIds }],
     queryFn: fetchFunction,
     initialPageParam: 0,
     getNextPageParam: lastPage => lastPage.nextOffset + 10,

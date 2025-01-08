@@ -1,14 +1,14 @@
-import { IUser } from '@/entities/user/model/types/user.types'
+import { User } from '@/entities/user'
 import { create } from 'zustand'
 
 interface IUserStoreType {
   isLoading?: boolean
-  setUser: (user: IUser | null) => void
-  user: IUser | null
+  setUser: (user: User | null) => void
+  user: User | null
 }
 
 export const useUser = create<IUserStoreType>((set, get) => ({
   user: null,
   isLoading: false,
-  setUser: (user: IUser | null) => set(() => ({ user: user })),
+  setUser: (user: User | null) => set(() => ({ user: user })),
 }))

@@ -1,1 +1,3 @@
-export type { Profile, User, createProfileRequest } from './profile.types'
+export type { Profile, updateProfileRequest } from './profile.types'
+
+export { ProfileSchema } from './profile.types'

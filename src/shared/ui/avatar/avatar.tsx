@@ -26,7 +26,7 @@ type AvatarImagerProps = {
   className?: string
   /** Передаем размеры аватарки из вне: чтобы сделать аватарку круглой */
   size?: number
-  src?: string
+  src: string
 }
 const AvatarImage = React.forwardRef<
   ElementRef<typeof AvatarPrimitive.Image>,

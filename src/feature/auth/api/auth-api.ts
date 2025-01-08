@@ -1,10 +1,5 @@
-import { User } from '@/entities/profile'
-import {
-  IAuthResponse,
-  ICodeFromGitHub,
-  IEmailPassword,
-  ITokens,
-} from '@/entities/user/model/types/user.types'
+import { IAuthResponse, ICodeFromGitHub, IEmailPassword, ITokens, User } from '@/entities/user'
+import { UserDto } from '@/entities/user/api/dto'
 import {
   NewPasswordRequestArgs,
   RecoveryPasswordArgs,
@@ -14,6 +9,7 @@ import {
 } from '@/feature'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import saveToLocalStorage from '@/shared/lib/utils/locale-storage/save-local-storage'
+import { mapDtoToModel } from '@/shared/lib/utils/mapDtoToModel'
 import { AxiosResponse } from 'axios'
 import Cookies from 'js-cookie'
 
@@ -48,7 +44,11 @@ export class AuthApi {
   }
 
   async me() {
-    return await axiosWithAuth.get<User>(`auth/me`).then(res => res.data)
+    return await axiosWithAuth.get<null, AxiosResponse<UserDto>>(`auth/me`).then(res => {
+      const user = mapDtoToModel<User, typeof res.data>(res.data)
+
+      return { ...user, isAdmin: false }
+    })
   }
 
   async passwordRecovery(email: string, recaptchaValue: string) {

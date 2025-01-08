@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 import { useTranslation } from '@/shared'
-import { useDeleteAvatar } from '@/shared/ui/add-profile-photo/delete-avatar-button/hooks/useDeleteAvatar'
 import { toast } from '@/shared/ui/toast/use-toast'
+import { useDeleteAvatar } from '@/widgets/add-profile-photo/delete-avatar-button/hooks/useDeleteAvatar'
 
 export const useDeleteAvatarButton = () => {
   const { t } = useTranslation()

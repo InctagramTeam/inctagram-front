@@ -8,7 +8,7 @@ type Props = {
   bgColor?: string
   children?: ReactNode
   className?: string
-  src?: string
+  src: string
   userName?: string
 }
 export const UserAvatar = memo(

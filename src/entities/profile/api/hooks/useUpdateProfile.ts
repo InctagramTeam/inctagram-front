@@ -1,4 +1,4 @@
-import { createProfileRequest } from '@/entities/profile'
+import { updateProfileRequest } from '@/entities/profile'
 import profileApi from '@/entities/profile/api/profile-api'
 import { ErrorResponse } from '@/feature'
 import { useTranslation } from '@/shared'
@@ -17,7 +17,7 @@ export const useUpdateProfile = () => {
       city,
       country,
       aboutMe,
-    }: createProfileRequest) => {
+    }: updateProfileRequest) => {
       return profileApi.updateProfile({
         firstName,
         lastName,
@@ -42,7 +42,7 @@ export const useUpdateProfile = () => {
       toast({
         description: t.notifications.profileUpdated,
         title: 'Success',
-        variant: 'default',
+        variant: 'success',
       })
     },
   })

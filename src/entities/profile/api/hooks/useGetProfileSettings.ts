@@ -1,10 +1,10 @@
 import profileApi from '@/entities/profile/api/profile-api'
 import { useQuery } from '@tanstack/react-query'
 
-export const useGetProfile = (id: string) => {
+export const useGetProfileSettings = () => {
   const { data, isError, isLoading } = useQuery({
-    queryKey: ['profile', id],
-    queryFn: async () => await profileApi.getProfileById(id),
+    queryKey: ['profileSettings'],
+    queryFn: async () => await profileApi.getProfileSettings(),
   })
 
   return { data, isError, isLoading }
