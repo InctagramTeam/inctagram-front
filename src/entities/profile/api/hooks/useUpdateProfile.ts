@@ -42,7 +42,7 @@ export const useUpdateProfile = () => {
       toast({
         description: t.notifications.profileUpdated,
         title: 'Success',
-        variant: 'default',
+        variant: 'success',
       })
     },
   })

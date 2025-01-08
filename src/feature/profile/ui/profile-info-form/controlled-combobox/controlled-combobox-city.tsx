@@ -57,9 +57,6 @@ export const ControlledComboboxCity = <T extends FieldValues>({
     namePrefix: debounceInputValue,
   })
 
-  console.log(countryIds)
-  console.log(value)
-
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ['cities'] })
   }, [countryIds])

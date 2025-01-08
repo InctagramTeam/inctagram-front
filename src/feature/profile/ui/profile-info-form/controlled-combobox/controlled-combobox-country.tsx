@@ -62,7 +62,7 @@ export const ControlledComboboxCountry = <T extends FieldValues>({
     const countryWikiDataId = uniqueDataMap.find(country => country.name === value)?.wikiDataId
 
     if (countryWikiDataId) {
-      resetFieldForm('city')
+      resetFieldForm('city', { defaultValue: EMPTY_STRING })
       setCountryId(countryWikiDataId)
     }
   }, [value])
