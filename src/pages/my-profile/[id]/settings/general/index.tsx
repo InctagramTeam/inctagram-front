@@ -1,12 +1,12 @@
+'use client'
+
 import React from 'react'
 
-import { ParsedUrlQuery } from 'querystring'
-
-import { User } from '@/entities/profile'
-import { useCreateProfile, useUpdateProfile } from '@/entities/profile/api'
-import profileApi from '@/entities/profile/api/profile-api'
+import { useUpdateProfile } from '@/entities/profile/api'
+import { useGetProfileSettings } from '@/entities/profile/api/hooks/useGetProfileSettings'
 import { useProfile } from '@/entities/profile/model/store/profile-store'
 import { ProfileInfoForm, ProfileInfoFormValues } from '@/feature/profile'
+import { ProfileInfoFormSkeleton } from '@/feature/profile/ui/profile-info-form/profile-info-form-skeleton'
 import {
   EMPTY_STRING,
   TABS_VARIANTS,
@@ -14,17 +14,19 @@ import {
   getSettingsLayout,
   useTranslation,
 } from '@/shared'
-import { AddProfilePhotoWithCrop } from '@/shared/ui/add-profile-photo'
-import { useUpdateAvatar } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 import { toast } from '@/shared/ui/toast/use-toast'
+import { AddProfilePhotoWithCrop } from '@/widgets/add-profile-photo'
+import { useUpdateAvatar } from '@/widgets/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 import { format } from 'date-fns'
-import { GetServerSideProps } from 'next'
 
-const General = ({ user }: { user: User | null }) => {
+const General = () => {
   const { t } = useTranslation()
-  const { mutate: createProfile } = useCreateProfile()
+
   const { mutate: updateProfile } = useUpdateProfile()
   const { mutate: updateAvatar } = useUpdateAvatar()
+  const { data: profileSettings, isLoading, isError } = useGetProfileSettings()
+
+  const { localAvatar } = useProfile()
 
   const updateAvatarHandler = (formData: FormData) => {
     if (navigator.onLine) {
@@ -37,12 +39,6 @@ const General = ({ user }: { user: User | null }) => {
       })
     }
   }
-  const { localAvatar } = useProfile()
-
-  if (!user) {
-    return null
-  }
-
   const submitProfileHandler = (formData: ProfileInfoFormValues) => {
     const { userName, firstName, lastName, dateOfBirth, country, city, aboutMe } = formData
 
@@ -56,29 +52,30 @@ const General = ({ user }: { user: User | null }) => {
       aboutMe: aboutMe ?? EMPTY_STRING,
     }
 
-    user.profile ? updateProfile(profile) : createProfile(profile)
+    updateProfile(profile)
+
     localAvatar && updateAvatarHandler(localAvatar)
   }
 
   return (
     <TabContent className={'flex'} value={TABS_VARIANTS.general}>
-      <AddProfilePhotoWithCrop />
-      <ProfileInfoForm className={'grow'} onSubmit={submitProfileHandler} user={user} />
+      {isLoading ? (
+        <ProfileInfoFormSkeleton />
+      ) : profileSettings ? (
+        <>
+          <AddProfilePhotoWithCrop profileAvatar={profileSettings.avatarUrl} />
+          <ProfileInfoForm
+            className={'grow'}
+            onSubmit={submitProfileHandler}
+            profileSettings={profileSettings}
+          />
+        </>
+      ) : (
+        <div>Профиль не найден!</div>
+      )}
     </TabContent>
   )
 }
-
-interface Params extends ParsedUrlQuery {
-  id: string
-}
-
-export const getServerSideProps = (async context => {
-  const { id } = context.params as Params
-
-  const user = await profileApi.getProfile(id)
-
-  return { props: { user } }
-}) satisfies GetServerSideProps<{ user: User | null }>
 
 General.getLayout = getSettingsLayout
 export default General

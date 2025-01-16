@@ -1,7 +1,6 @@
 import { PublicPost } from '@/entities/posts/model/types/posts.types'
 import { ReturnComponent } from '@/shared'
 import { Gallery, GalleryImage } from '@/widgets'
-import { GalleryImageType } from '@/widgets/gallery'
 
 type Props = {
   posts: PublicPost[]

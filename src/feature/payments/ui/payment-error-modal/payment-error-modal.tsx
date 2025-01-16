@@ -2,6 +2,7 @@ import { useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { Button, Modal, Text } from '@/shared/ui'
 import { FlexCol } from '@/shared/ui/flex'
+import { ModalContent } from '@/shared/ui/modal'
 import { clsx } from 'clsx'
 
 type Props = {
@@ -14,7 +15,7 @@ export const PaymentErrorModal = ({ onOpenChange, open }: Props): ReturnComponen
 
   return (
     <Modal onOpenChange={onOpenChange} open={open}>
-      <Modal.Content
+      <ModalContent
         asChild
         classNameChildrenWrapper={'pt-[18px]'}
         classNameContent={clsx('max-w-[366px] w-[90dvw]')}
@@ -30,7 +31,7 @@ export const PaymentErrorModal = ({ onOpenChange, open }: Props): ReturnComponen
             {t.pages.profile.settings.managementTab.paymentErrorModal.button}
           </Button>
         </FlexCol>
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }

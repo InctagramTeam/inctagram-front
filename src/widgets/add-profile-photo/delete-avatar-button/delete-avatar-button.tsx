@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import { Button, Modal, Text, useTranslation } from '@/shared'
 import { DeleteAvatarIcon } from '@/shared/assets/icons/DeleteIcon'
-import { useDeleteAvatarButton } from '@/shared/ui/add-profile-photo/delete-avatar-button/hooks/useDeleteAvatarButton'
 import { ModalContent, ModalTrigger } from '@/shared/ui/modal'
+import { useDeleteAvatarButton } from '@/widgets/add-profile-photo/delete-avatar-button/hooks/useDeleteAvatarButton'
 
 export const DeleteAvatarButton = () => {
   const { t } = useTranslation()

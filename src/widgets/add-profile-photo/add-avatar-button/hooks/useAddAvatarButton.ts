@@ -1,6 +1,6 @@
 import { useTranslation } from '@/shared'
-import { useUpdateAvatar } from '@/shared/ui/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 import { toast } from '@/shared/ui/toast/use-toast'
+import { useUpdateAvatar } from '@/widgets/add-profile-photo/add-avatar-button/hooks/useUpdateAvatar'
 
 export const useAddAvatarButton = () => {
   const { t } = useTranslation()

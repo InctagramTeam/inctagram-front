@@ -2,8 +2,8 @@ import { useTranslation } from '@/shared/lib'
 import { ReturnComponent } from '@/shared/types'
 import { Button, Modal, Text } from '@/shared/ui'
 import { FlexCol } from '@/shared/ui/flex'
-import { clsx } from 'clsx'
 import { ModalContent } from '@/shared/ui/modal'
+import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
 
 type Props = {
