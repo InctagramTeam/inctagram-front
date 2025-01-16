@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react'
 
 import { AccountTypeCard } from '@/feature/payments/ui/account-type-card/account-type-card'
@@ -66,10 +67,9 @@ const Management = () => {
     if (paymentStatus === 'success') {
       setOpenSuccessfulPaymentModal(true)
     }
-    if (paymentStatus === 'error') {
+    if (paymentStatus === 'cancel') {
       setOpenErrorPaymentModal(true)
     }
-    router.replace(router.pathname, undefined, { shallow: true })
   }, [paymentStatus, router])
 
   return (
@@ -100,7 +100,7 @@ const Management = () => {
           open={openSuccessfulPaymentModal}
         />
       )}
-      {paymentStatus === 'error' && (
+      {paymentStatus === 'cancel' && (
         <PaymentErrorModal onOpenChange={setOpenErrorPaymentModal} open={openErrorPaymentModal} />
       )}
     </>
