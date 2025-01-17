@@ -1,6 +1,7 @@
+import type { User } from '@/entities/user'
+
 import { useEffect, useState } from 'react'
 
-import { User } from '@/entities/profile'
 import {
   Avatar,
   AvatarFallback,
@@ -13,7 +14,7 @@ import { getStoreLocalStorage } from '@/shared/lib/utils'
 
 export const AvatarUser = (): ReturnComponent => {
   const [userName, setUserName] = useState('')
-  const [avatar, setAvatar] = useState<string | undefined>(undefined)
+  // const [avatar, setAvatar] = useState<string | undefined>(undefined)
   const { t } = useTranslation()
 
   useEffect(() => {
@@ -28,7 +29,8 @@ export const AvatarUser = (): ReturnComponent => {
   return (
     <div className={'mb-[24px] flex items-center gap-[12px]'}>
       <Avatar>
-        <AvatarImage alt={t.layout.alts.userAvatar} height={36} size={36} src={avatar} width={36} />
+        <AvatarImage alt={t.layout.alts.userAvatar} height={36} size={36} src={''} width={36} />
+        {/*<AvatarImage alt={t.layout.alts.userAvatar} height={36} size={36} src={avatar} width={36} />*/}
         <AvatarFallback className={'bg-Light-900'}>{userName?.[0] || 'U'}</AvatarFallback>
       </Avatar>
       {userName && <Text variant={'H3'}>{userName}</Text>}
