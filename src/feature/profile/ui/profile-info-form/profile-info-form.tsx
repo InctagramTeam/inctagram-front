@@ -7,7 +7,7 @@ import React, {
 } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { User } from '@/entities/profile'
+import { ProfileSettings } from '@/feature/profile/model/types'
 import { ComboboxGroup } from '@/feature/profile/ui/profile-info-form/combobox-group'
 import {
   Button,
@@ -31,12 +31,12 @@ type Props = {
   disabled?: boolean
   isSent?: boolean
   onSubmit: (formData: ProfileInfoFormValues) => void
-  user: User
+  profileSettings: ProfileSettings
 } & Omit<ComponentPropsWithoutRef<'form'>, 'onSubmit'>
 
 export const ProfileInfoForm = forwardRef(
   (props: Props, methodsRef: Ref<UseFormRef<ProfileInfoFormValues> | null>): ReturnComponent => {
-    const { className, user, disabled, onSubmit, ...rest } = props
+    const { className, profileSettings, disabled, onSubmit, ...rest } = props
     const { locale, t } = useTranslation()
     const { xs } = useResponsive()
 
@@ -67,7 +67,7 @@ export const ProfileInfoForm = forwardRef(
         city: EMPTY_STRING,
         country: EMPTY_STRING,
         aboutMe: EMPTY_STRING,
-        dateOfBirth: new Date(1999, 5, 18),
+        dateOfBirth: new Date(),
       },
       mode: 'onChange',
       resolver: zodResolver(profileInfoSchema(t)),
@@ -78,20 +78,21 @@ export const ProfileInfoForm = forwardRef(
 
     useEffect(() => {
       reset({
-        userName: user.userName,
-        lastName: user.profile?.lastName ?? EMPTY_STRING,
-        firstName: user.profile?.firstName ?? EMPTY_STRING,
-        dateOfBirth: user.profile?.dateOfBirth
-          ? new Date(user.profile?.dateOfBirth)
-          : new Date(1999, 5, 18),
-        country: user.profile?.country ?? EMPTY_STRING,
-        city: user.profile?.city ?? EMPTY_STRING,
-        aboutMe: user.profile?.aboutMe ?? '',
+        userName: profileSettings.userName,
+        lastName: profileSettings.lastName ?? EMPTY_STRING,
+        firstName: profileSettings.firstName ?? EMPTY_STRING,
+        dateOfBirth: profileSettings.dateOfBirth
+          ? new Date(profileSettings.dateOfBirth)
+          : new Date(),
+        country: profileSettings.country ?? EMPTY_STRING,
+        city: profileSettings.city ?? EMPTY_STRING,
+        aboutMe: profileSettings.aboutMe ?? EMPTY_STRING,
       })
+
       setTimeout(() => {
         clearErrors()
       }, 0)
-    }, [user, reset])
+    }, [reset])
 
     return (
       <div className={className}>
@@ -136,7 +137,9 @@ export const ProfileInfoForm = forwardRef(
           />
           <ControlledDataPicker
             control={control}
-            defaultMonth={new Date(user.profile?.dateOfBirth) || new Date(1999, 5, 18)}
+            defaultMonth={
+              profileSettings.dateOfBirth ? new Date(profileSettings.dateOfBirth) : new Date()
+            }
             label={t.label.dateOfBirth}
             labelProps={{ className: `after:content-['*'] after:ml-0.5 after:text-red-500` }}
             name={'dateOfBirth'}

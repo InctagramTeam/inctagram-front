@@ -1,25 +1,21 @@
 import { z } from 'zod'
 
-export type updateProfileRequest = {
-  aboutMe: string
-  city: string
-  country: string
-  dateOfBirth: string
-  firstName: string
-  lastName: string
-  userName: string
-}
-
-export const ProfileSchema = z.object({
+const ApiProfileTypeSchema = z.object({
   id: z.number(),
+  email: z.string(),
+  emailIsConfirm: z.boolean(),
   userName: z.string(),
   firstName: z.string().nullable(),
   lastName: z.string().nullable(),
+  city: z.string().nullable(),
+  country: z.string().nullable(),
+  dateOfBirth: z.string().nullable(),
   aboutMe: z.string().nullable(),
   avatarUrl: z.string().nullable(),
+  createdAt: z.string(),
   followingCount: z.number(),
   followersCount: z.number(),
   publicationsCount: z.number(),
 })
 
-export type Profile = z.infer<typeof ProfileSchema>
+export type ProfileDto = z.infer<typeof ApiProfileTypeSchema>

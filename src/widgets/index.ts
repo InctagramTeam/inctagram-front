@@ -1,3 +1,4 @@
+export { AddProfilePhotoWithCrop } from './add-profile-photo'
 export { Gallery, GalleryImage } from './gallery'
 export { Header } from './header'
 export { Main } from './main'

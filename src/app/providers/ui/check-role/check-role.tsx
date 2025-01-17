@@ -11,6 +11,8 @@ import { useRouter } from 'next/router'
 type Props = { children: ReactNode } & TypeComponentAuthFields
 
 /** Проверка роли пользователя: зарегистрированный user или admin? */
+
+//TODO: обсудить с командой используем ли мы эту функцию
 const CheckRole = (props: Props) => {
   const {
     Component: { isOnlyAdmin, isOnlyUser },

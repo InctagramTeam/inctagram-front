@@ -1,40 +1,38 @@
-export interface IUser {
-  avatar?: string
-  email?: string
-  error?: string
-  id?: string
-  isAdmin?: boolean
-  isAuth: boolean
-  isLoading?: string
-  password: string
-  roles?: 'ADMIN' | 'MANAGER' | 'USER'
-  userName: string
-}
+import { z } from 'zod'
 
-export type ProfileMeProfile = {
-  aboutMe: string
-  city: string
-  country: string
-  dateOfBirth: string
-  firstName: string
-  lastName: string
-  url: string
-}
+//по мере надобности добавляем необходимые нам поля на фронте
+export const UserSchema = z.object({
+  id: z.number(),
+  userName: z.string(),
+  email: z.string(),
+  isBlocked: z.boolean(),
+  isAdmin: z.boolean(),
+})
+
+export type User = z.infer<typeof UserSchema>
+
+// export interface IUser {
+//   avatar?: string
+//   email?: string
+//   error?: string
+//   id?: string
+//   isAdmin?: boolean
+//   isAuth: boolean
+//   isLoading?: string
+//   password: string
+//   roles?: 'ADMIN' | 'MANAGER' | 'USER'
+//   userName: string
+// }
 
 export type GetAvatar = {
   url: string
-}
-
-export interface IUserSchema {
-  _inited: boolean
-  authData?: IUser
 }
 
 export interface ITokens {
   accessToken: string
   refreshToken?: string
 }
-// todo:
+
 // отправляем в параметрах на сервер?
 export interface IEmailPassword {
   loginOrEmail: string
