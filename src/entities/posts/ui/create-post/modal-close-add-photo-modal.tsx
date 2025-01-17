@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Button, Modal, ReturnComponent, useTranslation } from '@/shared'
+import { Button, Modal, ModalContent, ReturnComponent, useTranslation } from '@/shared'
 
 import { usePublicPost } from './use-public-post'
 
@@ -19,7 +19,7 @@ export const ModalCloseAddPhotoModal = ({ isOpen, openChange }: Props): ReturnCo
 
   return (
     <Modal onOpenChange={_ => openChange(false)} open={isOpen}>
-      <Modal.Content classNameContent={'!max-w-[378px]'} isClose title={t.button.close}>
+      <ModalContent classNameContent={'!max-w-[378px]'} isClose title={t.button.close}>
         <p className={'mb-[18px]'}>{t.pages.createPost.wantToCloseCreation}</p>
         <div className={'flex justify-between gap-[20px]'}>
           <Button onClick={discardButtonHandler} type={'button'} variant={'outline'}>
@@ -34,7 +34,7 @@ export const ModalCloseAddPhotoModal = ({ isOpen, openChange }: Props): ReturnCo
             {t.button.saveDraft}
           </Button>
         </div>
-      </Modal.Content>
+      </ModalContent>
     </Modal>
   )
 }

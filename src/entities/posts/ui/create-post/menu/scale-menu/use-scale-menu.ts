@@ -4,14 +4,14 @@ import { useAddPostPhotoStore } from '@/entities/posts'
 import { clsx } from 'clsx'
 
 import { listVariants } from './data'
-import { ButtonKey } from './types'
+import { ButtonKeyValue } from './types'
 
 export const useScaleMenu = (currentImageId: string) => {
   const currentImage = useAddPostPhotoStore(state =>
     state.images.find(image => image.id === currentImageId)
   )
 
-  const [activeButton, setActiveButton] = useState<ButtonKey | undefined>(undefined)
+  const [activeButton, setActiveButton] = useState<ButtonKeyValue | undefined>(undefined)
 
   useEffect(() => {
     const activeAspect = currentImage?.settings.aspect
@@ -22,7 +22,7 @@ export const useScaleMenu = (currentImageId: string) => {
   const setOptions = useAddPostPhotoStore(state => state.setOptions)
 
   const handleButtonClick = useCallback(
-    (id: string, aspect: number, key: ButtonKey) => {
+    (id: string, aspect: number, key: ButtonKeyValue) => {
       setOptions({
         id, // pass current image index
         options: 'aspect', // indicate updating 'aspect' parameter
@@ -40,7 +40,7 @@ export const useScaleMenu = (currentImageId: string) => {
         '!justify-between w-full relative py-[0] h-auto active:bg-transparent focus:bg-transparent bg-transparent text-Light-900 transition-colors',
         'after:transition-colors after:rounded-[2px] after:absolute after:right-0 after:top-0 after:border-2 after:border-solid after:border-Light-900 after:content-[""]'
       ),
-      buttonAfterUnique: (key: ButtonKey) => {
+      buttonAfterUnique: (key: ButtonKeyValue) => {
         let classes = ''
 
         switch (key) {

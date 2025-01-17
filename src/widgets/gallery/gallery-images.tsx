@@ -9,12 +9,12 @@ import { clsx } from 'clsx'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-type Props = {
+export type GalleryImageProps = {
   className?: string
   postData: PublicPost
 }
 
-export const GalleryImage = ({ postData, className }: Props): ReturnComponent => {
+export const GalleryImage = ({ postData, className }: GalleryImageProps): ReturnComponent => {
   const [open, setOpen] = useState(false)
   const router = useRouter()
   const { post, ...rest } = router.query

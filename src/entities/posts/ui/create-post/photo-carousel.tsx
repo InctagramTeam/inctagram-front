@@ -15,7 +15,6 @@ export const PhotoCarousel = ({ onSlideChange, className }: Props): ReturnCompon
 
   return (
     <Swiper
-      a11y
       className={cn('relative m-0 max-h-[515px] w-full max-w-[490px] self-stretch', className)}
       modules={[Navigation, A11y, Controller, Pagination]}
       navigation

@@ -47,12 +47,9 @@ export const MobileDropdown = memo(({ logout }: Props) => {
             return (
               <Dropdown.Item className={classes.item} key={link.href}>
                 <li>
-                  <NavigationElement
-                    asComponent={Link}
-                    className={classes.link}
-                    href={link.href}
-                    name={link.name}
-                  />
+                  <NavigationElement className={classes.link} isButton={false} name={link.name}>
+                    <Link href={link.href}> {link.name} </Link>
+                  </NavigationElement>
                 </li>
               </Dropdown.Item>
             )
@@ -62,7 +59,6 @@ export const MobileDropdown = memo(({ logout }: Props) => {
           <>
             <NavigationElement
               className={clsx(classes.link, classes.logoutButton)}
-              isButton
               name={t.button.logOut}
               onClick={handleClickLogoutBtn}
               startIcon={<LogOutIcon />}

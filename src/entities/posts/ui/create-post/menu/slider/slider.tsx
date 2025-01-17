@@ -5,7 +5,7 @@ import * as SliderPrimitive from '@radix-ui/react-slider'
 
 export type SliderProps = {
   label?: string
-} & Omit<ComponentPropsWithoutRef<typeof SliderPrimitive.Root>, 'className' | 'label'>
+} & ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
 
 export const Slider = forwardRef<ElementRef<typeof SliderPrimitive.Root>, SliderProps>(
   ({ className, label, ...restProps }, ref) => {
