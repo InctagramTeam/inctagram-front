@@ -28,6 +28,7 @@ export const getCroppedImg = (
       canvas.width = width
       canvas.height = height
       ctx.filter = 'none'
+
       if (filter) {
         ctx.filter = getCanvasSettingFilter(filter)
       }

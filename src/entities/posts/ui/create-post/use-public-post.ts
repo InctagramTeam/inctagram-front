@@ -21,7 +21,7 @@ export const usePublicPost = () => {
       if (src) {
         const file = base64ToFile(src, `image_${index}.png`) // Преобразуем base64 в файл
 
-        formData.append('files', file)
+        file && formData.append('files', file)
       }
     })
 

@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 
-import { useTranslation } from '@/shared/lib'
-import { ReturnComponent } from '@/shared/types'
-import { Button, Modal, Text } from '@/shared/ui'
-import { FlexCol } from '@/shared/ui/flex'
-import { ModalContent } from '@/shared/ui/modal'
+import {
+  Button,
+  FlexCol,
+  Modal,
+  ModalContent,
+  ReturnComponent,
+  Text,
+  useTranslation,
+} from '@/shared'
 
 type Props = {
   email?: string
