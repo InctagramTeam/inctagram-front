@@ -77,16 +77,17 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
       </ModalTrigger>
       <ModalContent
         classNameChildrenWrapper={'p-0'}
-        classNameContent={' max-w-[61rem]'}
+        classNameContent={'max-w-[61rem] max-h-[564px]'}
         isClose={open}
+        isShowHeader={false}
       >
         <div className={'flex'}>
           <SwiperPhoto images={postData.postImages} />
-          <div className={'w-full max-w-[480px] self-start p-[24px]'}>
-            <AvatarUser classNameWrapper={'mb-4'} />
+          <div className={'w-full max-w-[480px] self-start px-[24px]'}>
+            <AvatarUser classNameWrapper={'my-3'} />
             <div
               className={
-                'flex flex-col gap-2 border-y border-b-Dark-100 border-t-Dark-100 py-[19px]'
+                'flex max-h-[350px] flex-col gap-2 overflow-y-auto border-y border-b-Dark-100 border-t-Dark-100 py-[10px]'
               }
             >
               <CommentItem />

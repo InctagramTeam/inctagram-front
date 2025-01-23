@@ -5,6 +5,7 @@ import { Separator } from '@/shared/ui/separator/separator'
 
 const CommentItem = () => {
   const [isExpanded, setIsExpanded] = useState(false)
+  const [isLike, setIsLike] = useState(false)
 
   const classes = {
     wrapper: cn(
@@ -63,6 +64,7 @@ const CommentItem = () => {
           </Text>
         </div>
       </div>
+      {isLike ? 'Yes' : 'No'}
     </div>
   )
 }

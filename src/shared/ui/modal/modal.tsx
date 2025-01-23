@@ -18,6 +18,7 @@ type ModalContentProps = {
   customTitleComponent?: ReactNode
   header?: ReactNode
   isClose?: boolean
+  isShowHeader?: boolean
   style?: CSSProperties
   title?: ReactNode
 } & ComponentPropsWithoutRef<typeof Dialog.Content>
@@ -35,6 +36,7 @@ export const ModalContent = forwardRef<ElementRef<typeof Dialog.Content>, ModalC
       title = EMPTY_STRING,
       header,
       isClose,
+      isShowHeader = true,
       classNameContainer,
       ...rest
     },
@@ -43,9 +45,11 @@ export const ModalContent = forwardRef<ElementRef<typeof Dialog.Content>, ModalC
     const { t } = useTranslation()
 
     const classes = {
-      close: `w-[24px] h-[24px] CENTER text-Light-100 
-    rounded-[2px] outline-none duration-300 transition-color
+      close: cn(
+        `w-[24px] h-[24px] CENTER text-Light-100 rounded-[2px] outline-none duration-300 transition-color
     hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
+        !isShowHeader && 'absolute top-[-30px] right-[-30px]'
+      ),
       content: cn(
         `z-20 w-full max-w-md relative rounded bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100 
       data-[state=closed]:animate-[dialog-content-hide_200ms] 
@@ -76,16 +80,25 @@ export const ModalContent = forwardRef<ElementRef<typeof Dialog.Content>, ModalC
               ref={ref}
               style={style}
             >
-              <div className={classes.titleContainer}>
-                <Dialog.Title asChild>
-                  {header ? header : <Text className={classes.title}>{title}</Text>}
-                </Dialog.Title>
-                {isClose && (
+              {isShowHeader ? (
+                <div className={classes.titleContainer}>
+                  <Dialog.Title asChild>
+                    {header ? header : <Text className={classes.title}>{title}</Text>}
+                  </Dialog.Title>
+
+                  {isClose && (
+                    <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
+                      <CrossIcon aria-hidden />
+                    </Dialog.Close>
+                  )}
+                </div>
+              ) : (
+                isClose && (
                   <Dialog.Close aria-label={t.button.closeModal} className={classes.close}>
                     <CrossIcon aria-hidden />
                   </Dialog.Close>
-                )}
-              </div>
+                )
+              )}
               <div className={classes.childrenWrapper}>{children}</div>
             </Dialog.Content>
           </div>
