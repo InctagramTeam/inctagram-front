@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 import { Avatar, AvatarFallback, AvatarImage, Button, Text, cn } from '@/shared'
+import { Separator } from '@/shared/ui/separator/separator'
 
 const CommentItem = () => {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -40,7 +41,7 @@ const CommentItem = () => {
           <Text textColor={'lightDark'} variant={'small-text-12'}>
             3 Hours ago
           </Text>
-          <Text textColor={'dark'} variant={'small-text-12'}>
+          <Text textColor={'dark'} variant={'semi-bold_small_text_12'}>
             Like: 4
           </Text>
           <Text textColor={'dark'} variant={'semi-bold_small_text_12'}>
@@ -55,7 +56,12 @@ const CommentItem = () => {
             </Text>
           </Button>
         </div>
-        {/*<Text></Text>*/}
+        <div className={'flex items-center gap-1'}>
+          <Separator className={'max-w-[24px]'} />
+          <Text textColor={'dark'} variant={'semi-bold_small_text_12'}>
+            Hide answers
+          </Text>
+        </div>
       </div>
     </div>
   )
