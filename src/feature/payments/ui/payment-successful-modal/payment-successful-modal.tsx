@@ -3,7 +3,6 @@ import { ReturnComponent } from '@/shared/types'
 import { Button, Modal, Text } from '@/shared/ui'
 import { FlexCol } from '@/shared/ui/flex'
 import { ModalContent } from '@/shared/ui/modal'
-import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
 
 type Props = {
@@ -15,22 +14,24 @@ export const PaymentSuccessfulModal = ({ onOpenChange, open }: Props): ReturnCom
   const { t } = useTranslation()
   const router = useRouter()
 
-  const onOpenChangeHandler = (open: boolean) => {
+  const handleModalClose = (open: boolean) => {
     if (!open) {
-      router.replace(`/my-profile/${router.query.id}/settings/management`, undefined, {
-        shallow: true,
-      })
+      if (router.query.id) {
+        router.replace(`/my-profile/${router.query.id}/settings/management`, undefined, {
+          shallow: true,
+        })
+      }
     }
     onOpenChange(open)
   }
 
   return (
-    <Modal onOpenChange={onOpenChangeHandler} open={open}>
+    <Modal onOpenChange={handleModalClose} open={open}>
       <ModalContent
         asChild
         classNameChildrenWrapper={'pt-[18px]'}
-        classNameContent={clsx('max-w-[366px] w-[90dvw]')}
-        classNameTitle={clsx('leading-9 font-bold')}
+        classNameContent={'max-w-[366px] w-[90dvw]'}
+        classNameTitle={'leading-9 font-bold'}
         isClose
         title={t.pages.profile.settings.managementTab.paymentSuccessfulModal.title}
       >
@@ -38,10 +39,7 @@ export const PaymentSuccessfulModal = ({ onOpenChange, open }: Props): ReturnCom
           <Text className={'mb-[54px]'}>
             {t.pages.profile.settings.managementTab.paymentSuccessfulModal.text}
           </Text>
-          <Button
-            className={clsx('w-full px-[24px] py-[6px]')}
-            onClick={() => onOpenChangeHandler(false)}
-          >
+          <Button className={'w-full px-[24px] py-[6px]'} onClick={() => handleModalClose(false)}>
             {t.pages.profile.settings.managementTab.paymentSuccessfulModal.button}
           </Button>
         </FlexCol>

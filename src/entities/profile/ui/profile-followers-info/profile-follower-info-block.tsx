@@ -12,7 +12,7 @@ type Props = {
 export const ProfileFollowerInfoBlock = ({ profile }: Props) => {
   return (
     <div className={`_profile-followers-info_ ml-[36px] w-full max-w-[734px] pl-[36px]`}>
-      <FollowersInfoHeader profile={profile} userId={profile.id} />
+      <FollowersInfoHeader profile={profile} />
       <ProfileInfoUserStats
         followers={profile.followersCount}
         following={profile.followingCount}

@@ -8,10 +8,9 @@ import Link from 'next/link'
 
 type Props = {
   profile: Profile
-  userId: number
 }
 
-export const FollowersInfoHeader = ({ profile, userId }: Props) => {
+export const FollowersInfoHeader = ({ profile }: Props) => {
   const { t } = useTranslation()
 
   const [isOwnProfile, setIsOwnProfile] = useState(false)
@@ -20,12 +19,12 @@ export const FollowersInfoHeader = ({ profile, userId }: Props) => {
     authApi
       .me()
       .then(authUser => {
-        if (authUser?.id === userId) {
+        if (authUser?.id === profile.id) {
           setIsOwnProfile(true)
         }
       })
       .catch(() => setIsOwnProfile(false))
-  }, [userId])
+  }, [profile.id])
 
   return (
     <FlexRow className={`Header_ w-full items-center justify-between gap-[100px] p-[0_0_20px_0px]`}>
@@ -38,7 +37,10 @@ export const FollowersInfoHeader = ({ profile, userId }: Props) => {
         <Button asChild className={`px-6 py-[6px]`} variant={'secondary'}>
           <Link
             href={
-              AppRoutes.PROFILE + userId + AppRoutes.PROFILE_SETTINGS + `/${TABS_VARIANTS.general}`
+              AppRoutes.PROFILE +
+              profile.id +
+              AppRoutes.PROFILE_SETTINGS +
+              `/${TABS_VARIANTS.general}`
             }
           >
             {t.links.profileSettings}

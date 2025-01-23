@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AccountType, AccountTypeOption } from '@/pages/my-profile/[id]/settings/management'
+import { AccountType, AccountTypeOption } from '@/feature/payments/types/payments.types'
 import { Card, Text, useTranslation } from '@/shared'
 import { CustomRadioGroup } from '@/shared/ui/radio-group/radio-group'
 

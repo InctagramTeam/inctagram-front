@@ -1,6 +1,11 @@
 'use client'
 import { useEffect, useState } from 'react'
 
+import {
+  getAccountTypeOptions,
+  getSubscriptionCostsOptions,
+} from '@/feature/payments/constants/payments.constants'
+import { AccountType, SubscriptionCostValue } from '@/feature/payments/types/payments.types'
 import { AccountTypeCard } from '@/feature/payments/ui/account-type-card/account-type-card'
 import { ManagementButtons } from '@/feature/payments/ui/management-buttons/management-buttons'
 import { PaymentErrorModal } from '@/feature/payments/ui/payment-error-modal/payment-error-modal'
@@ -9,68 +14,34 @@ import { SubscriptionCostsCard } from '@/feature/payments/ui/subscription-costs-
 import { TABS_VARIANTS, TabContent, getSettingsLayout, useTranslation } from '@/shared'
 import { useRouter } from 'next/router'
 
-export type AccountType = 'business' | 'personal'
-export type AccountTypeOption = {
-  label: 'Business' | 'Personal'
-  value: AccountType
-}
-export type SubscriptionCostValue = '1 day' | '7 days' | '30 days'
-export type SubscriptionCostsOption = {
-  label: '$10 per 1 Day' | '$50 per 7 Day' | '$100 per month'
-  value: SubscriptionCostValue
-}
-
 const Management = () => {
   const { t } = useTranslation()
 
-  const accountTypeOptions: AccountTypeOption[] = [
-    {
-      label: t.pages.profile.settings.managementTab.accountTypeOptions.personal,
-      value: 'personal',
-    },
-    {
-      label: t.pages.profile.settings.managementTab.accountTypeOptions.business,
-      value: 'business',
-    },
-  ] as AccountTypeOption[]
-  const subscriptionCostsOptions: SubscriptionCostsOption[] = [
-    {
-      label: `$10 ${t.pages.profile.settings.managementTab.subscriptionCostsOptions.day}`,
-      value: '1 day',
-    },
-    {
-      label: `$50 ${t.pages.profile.settings.managementTab.subscriptionCostsOptions.week}`,
-      value: '7 days',
-    },
-    {
-      label: `$100 ${t.pages.profile.settings.managementTab.subscriptionCostsOptions.month}`,
-      value: '30 days',
-    },
-  ] as SubscriptionCostsOption[]
+  const accountTypeOptions = getAccountTypeOptions(t)
+  const subscriptionCostsOptions = getSubscriptionCostsOptions(t)
 
   const router = useRouter()
   const { paymentStatus } = router.query
+
   const [openSuccessfulPaymentModal, setOpenSuccessfulPaymentModal] = useState(false)
   const [openErrorPaymentModal, setOpenErrorPaymentModal] = useState(false)
-
   const [currentAccountType, setCurrentAccountType] = useState<AccountType>(
     accountTypeOptions[0].value //TODO получить значение с сервера
   )
   const [currentValueSubscriptionCost, setCurrentValueSubscriptionCost] =
     useState<SubscriptionCostValue>(subscriptionCostsOptions[0].value) //TODO получить значение с сервера
 
-  const handleChangeCurrentRadio = (radioValue: SubscriptionCostValue) => {
+  const handleSubscriptionCostChange = (radioValue: SubscriptionCostValue) => {
     setCurrentValueSubscriptionCost(radioValue)
   }
 
   useEffect(() => {
     if (paymentStatus === 'success') {
       setOpenSuccessfulPaymentModal(true)
-    }
-    if (paymentStatus === 'cancel') {
+    } else if (paymentStatus === 'cancel') {
       setOpenErrorPaymentModal(true)
     }
-  }, [paymentStatus, router])
+  }, [paymentStatus])
 
   return (
     <>
@@ -85,7 +56,7 @@ const Management = () => {
             <>
               <SubscriptionCostsCard
                 currentValueSubscriptionCost={currentValueSubscriptionCost}
-                handleChangeCurrentRadio={handleChangeCurrentRadio}
+                handleChangeCurrentRadio={handleSubscriptionCostChange}
                 subscriptionCostsOptions={subscriptionCostsOptions}
               />
 
@@ -94,13 +65,13 @@ const Management = () => {
           )}
         </div>
       </TabContent>
-      {paymentStatus === 'success' && (
+      {openSuccessfulPaymentModal && (
         <PaymentSuccessfulModal
           onOpenChange={setOpenSuccessfulPaymentModal}
           open={openSuccessfulPaymentModal}
         />
       )}
-      {paymentStatus === 'cancel' && (
+      {openErrorPaymentModal && (
         <PaymentErrorModal onOpenChange={setOpenErrorPaymentModal} open={openErrorPaymentModal} />
       )}
     </>

@@ -1,13 +1,23 @@
+export type AccountType = 'business' | 'personal'
+export type AccountTypeOption = {
+  label: 'Business' | 'Personal'
+  value: AccountType
+}
+export type SubscriptionCostValue = '1 day' | '7 days' | '30 days'
+export type SubscriptionCostsOption = {
+  label: '$10 per 1 Day' | '$50 per 7 Day' | '$100 per month'
+  value: SubscriptionCostValue
+}
 export type PaymentSystem = 'paypal' | 'stripe'
-export type SubscriptionName = '1 day' | '7 days' | '30 days'
 export type CreatePaymentRequest = {
   paymentSystem: PaymentSystem
-  subscriptionName: SubscriptionName
+  subscriptionName: SubscriptionCostValue
 }
-export type ErrorType = {
-  field: 'string'
-  message: 'string'
-}
-export type ErrorsType = {
-  errorsMessages: ErrorType[]
+
+export type ApiError = {
+  response?: {
+    data?: {
+      errorsMessages?: Array<{ message: string }>
+    }
+  }
 }

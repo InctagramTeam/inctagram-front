@@ -201,6 +201,7 @@ export const ru: LocaleType = {
             personal: 'Персональный',
             business: 'Бизнес',
           },
+          subscriptionCostsTitle: 'Стоимость подписки:',
           subscriptionCostsOptions: {
             day: 'за 1 день',
             week: 'за 7 дней',

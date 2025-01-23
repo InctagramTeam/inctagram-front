@@ -207,6 +207,7 @@ export const en = {
             personal: 'Personal',
             business: 'Business',
           },
+          subscriptionCostsTitle: 'Your subscription costs:',
           subscriptionCostsOptions: {
             day: 'per 1 Day',
             week: 'per 7 Day',
