@@ -7,11 +7,16 @@ import {
   AvatarImage,
   ReturnComponent,
   Text,
+  cn,
   useTranslation,
 } from '@/shared'
 import { getStoreLocalStorage } from '@/shared/lib/utils'
 
-export const AvatarUser = (): ReturnComponent => {
+export const AvatarUser = ({
+  classNameWrapper,
+}: {
+  classNameWrapper?: string
+}): ReturnComponent => {
   const [userName, setUserName] = useState('')
   const [avatar, setAvatar] = useState<string | undefined>(undefined)
   const { t } = useTranslation()
@@ -26,7 +31,7 @@ export const AvatarUser = (): ReturnComponent => {
   }, [])
 
   return (
-    <div className={'mb-[24px] flex items-center gap-[12px]'}>
+    <div className={cn('mb-[24px] flex items-center gap-[12px]', classNameWrapper)}>
       <Avatar>
         <AvatarImage alt={t.layout.alts.userAvatar} height={36} size={36} src={avatar} width={36} />
         <AvatarFallback className={'bg-Light-900'}>{userName?.[0] || 'U'}</AvatarFallback>

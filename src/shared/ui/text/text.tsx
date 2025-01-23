@@ -1,7 +1,7 @@
 'use client'
 import { CSSProperties, ComponentPropsWithoutRef, ElementType, ReactNode, useMemo } from 'react'
 
-import { ReturnComponent } from '@/shared'
+import { ReturnComponent, cn } from '@/shared'
 import { clsx } from 'clsx'
 
 import { Undefinable } from '../../types/undefinable'
@@ -98,8 +98,8 @@ export function Text<T extends ElementType = 'span'>({
     textColor === 'info' && `text-Primary-100`,
     textColor === 'success' && `text-Success-500`,
     textColor === 'success' && `text-Success-500`,
-    textColor === 'lightDark' && `text-Dark-100`,
-    textColor === 'dark' && `text-Success-900`,
+    textColor === 'lightDark' && `text-Light-900`,
+    textColor === 'dark' && `text-Light-900`,
 
     textAlign === 'center' && `text-center`,
     textAlign === 'left' && `text-left`,

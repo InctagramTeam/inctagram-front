@@ -53,6 +53,12 @@ export class PostsApi {
                 fileId: '"f9b9ad018daba2a0be4b809e0278a47d"',
                 order: 1,
               },
+              {
+                id: 14,
+                url: 'https://incubatogramdata.storage.yandexcloud.net/content/users/6/post_photos/9/17376254046626_image.png',
+                fileId: '1f12d64170460cd132e418385f22a1a7',
+                order: 1,
+              },
             ],
             comments: [],
           },

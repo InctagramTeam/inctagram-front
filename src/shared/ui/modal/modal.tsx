@@ -1,6 +1,6 @@
 import { CSSProperties, ComponentPropsWithoutRef, ElementRef, ReactNode, forwardRef } from 'react'
 
-import { EMPTY_STRING, ReturnComponent, Text, useTranslation } from '@/shared'
+import { EMPTY_STRING, ReturnComponent, Text, cn, useTranslation } from '@/shared'
 import { CrossIcon } from '@/shared/assets/icons'
 import * as Dialog from '@radix-ui/react-dialog'
 import { clsx } from 'clsx'
@@ -46,23 +46,23 @@ export const ModalContent = forwardRef<ElementRef<typeof Dialog.Content>, ModalC
       close: `w-[24px] h-[24px] CENTER text-Light-100 
     rounded-[2px] outline-none duration-300 transition-color
     hover:text-Primary-300 focus:ring-2 focus:ring-offset-Primary-300`,
-      content: clsx(
+      content: cn(
         `z-20 w-full max-w-md relative rounded bg-Dark-300 text-Light-100 shadow-sm ring-1 ring-Dark-100 
       data-[state=closed]:animate-[dialog-content-hide_200ms] 
       data-[state=open]:animate-[dialog-content-show_200ms]`,
         classNameContent
       ),
-      container: clsx(
+      container: cn(
         'bg-Dark-900/60 h-full w-full fixed insert top-0 block overflow-y-auto',
         classNameContainer
       ),
       body: 'flex min-h-full w-full pt-[80px] pb-[20px] px-[20px] justify-center items-center',
-      title: clsx('text-xl', classNameTitle),
-      titleContainer: clsx(
+      title: cn('text-xl', classNameTitle),
+      titleContainer: cn(
         'relative flex items-center justify-between px-[24px] py-[12px] border-b border-b-Dark-100',
         classNameTitleContainer
       ),
-      childrenWrapper: clsx('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
+      childrenWrapper: cn('pt-[30px] pb-[36px] px-[24px]', classNameChildrenWrapper),
     }
 
     return (

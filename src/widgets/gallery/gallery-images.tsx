@@ -3,9 +3,21 @@
 import { useEffect, useState } from 'react'
 
 import { PublicPost } from '@/entities/posts/model/types/posts.types'
-import { EMPTY_STRING, Modal, ReturnComponent } from '@/shared'
+import CommentItem from '@/entities/posts/ui/comments/comment-item'
+import { AvatarUser } from '@/entities/posts/ui/create-post/publication-post/user-avatar'
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  EMPTY_STRING,
+  Modal,
+  ReturnComponent,
+  Text,
+  Textarea,
+  cn,
+} from '@/shared'
 import { ModalContent, ModalTrigger } from '@/shared/ui/modal'
-import { clsx } from 'clsx'
+import SwiperPhoto from '@/shared/ui/swiper-photo/swiper-photo'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
@@ -16,6 +28,7 @@ export type GalleryImageProps = {
 
 export const GalleryImage = ({ postData, className }: GalleryImageProps): ReturnComponent => {
   const [open, setOpen] = useState(false)
+  const [isEditMode, setIsEditMode] = useState(false)
   const router = useRouter()
   const { post, ...rest } = router.query
 
@@ -56,13 +69,46 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
       <ModalTrigger asChild>
         <Image
           alt={postData.description ?? EMPTY_STRING}
-          className={clsx(`h-full w-full contain-content`, className)}
+          className={cn(`h-full w-full contain-content`, className)}
           height={228}
           src={postData.postImages[0].url}
           width={234}
         />
       </ModalTrigger>
-      <ModalContent isClose={open}>Modal with Photo and Comments</ModalContent>
+      <ModalContent
+        classNameChildrenWrapper={'p-0'}
+        classNameContent={' max-w-[61rem]'}
+        isClose={open}
+      >
+        <div className={'flex'}>
+          <SwiperPhoto images={postData.postImages} />
+          <div className={'w-full max-w-[480px] self-start p-[24px]'}>
+            <AvatarUser classNameWrapper={'mb-4'} />
+            <div
+              className={
+                'flex flex-col gap-2 border-y border-b-Dark-100 border-t-Dark-100 py-[19px]'
+              }
+            >
+              <CommentItem />
+              <CommentItem />
+              <CommentItem />
+            </div>
+            {/*{isEditMode && (*/}
+            {/*  <Textarea*/}
+            {/*    className={'h-[120px]'}*/}
+            {/*    defaultCounter={postData.description?.length}*/}
+            {/*    id={'publication-post'}*/}
+            {/*    label={'Add publication descriptions'}*/}
+            {/*    maxLength={500}*/}
+            {/*    name={'post-description'}*/}
+            {/*    // onChange={event => setDescription(event.currentTarget.value)}*/}
+            {/*    placeholder={'Text-area'}*/}
+            {/*    // value={description}*/}
+            {/*  />*/}
+            {/*)}*/}
+          </div>
+        </div>
+      </ModalContent>
     </Modal>
   )
 }
