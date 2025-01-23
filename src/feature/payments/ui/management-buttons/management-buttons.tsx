@@ -1,8 +1,7 @@
 import paymentsApi from '@/feature/payments/api/payments-api'
 import { CreatePaymentRequest } from '@/feature/payments/types/payments.types'
 import { SubscriptionCostValue } from '@/pages/my-profile/[id]/settings/management'
-import { Button, Text, toast } from '@/shared'
-import { PaypalIcon } from '@/shared/assets/icons/paypal-icon'
+import { Button, toast } from '@/shared'
 import { StripeIcon } from '@/shared/assets/icons/stripe-icon'
 import { useMutation } from '@tanstack/react-query'
 import Link from 'next/link'
@@ -49,7 +48,7 @@ export const ManagementButtons = ({ currentValueSubscriptionCost }: Props) => {
 
   return (
     <div className={'mt-[24px] flex items-center justify-end gap-x-[54px]'}>
-      <Button
+      {/*      <Button
         asChild
         className={buttonClasses}
         onClick={() =>
@@ -63,6 +62,7 @@ export const ManagementButtons = ({ currentValueSubscriptionCost }: Props) => {
       </Button>
 
       <Text>Or</Text>
+      */}
 
       <Button
         asChild
