@@ -1,11 +1,24 @@
 import React, { useState } from 'react'
 
-import { Avatar, AvatarFallback, AvatarImage, Button, Text, cn } from '@/shared'
+import { Avatar, AvatarFallback, AvatarImage, Button, Text, cn, useTranslation } from '@/shared'
+import { HeartIcon, HeartIconOutline } from '@/shared/assets/icons'
 import { Separator } from '@/shared/ui/separator/separator'
+import { formatDistanceToNow } from 'date-fns'
+import { enUS, ru } from 'date-fns/locale'
 
-const CommentItem = () => {
+type Props = {
+  createdAt: string
+  likes: number
+}
+
+const CommentItem = ({ createdAt, likes }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isLike, setIsLike] = useState(false)
+  const { locale: localeFromUseTranslation } = useTranslation()
+
+  const locale = localeFromUseTranslation === 'ru' ? ru : enUS
+
+  const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true, locale })
 
   const classes = {
     wrapper: cn(
@@ -40,10 +53,10 @@ const CommentItem = () => {
         </div>
         <div className={'flex gap-3'}>
           <Text textColor={'lightDark'} variant={'small-text-12'}>
-            3 Hours ago
+            {timeAgo}
           </Text>
           <Text textColor={'dark'} variant={'semi-bold_small_text_12'}>
-            Like: 4
+            Like: {likes}
           </Text>
           <Text textColor={'dark'} variant={'semi-bold_small_text_12'}>
             Answer
@@ -64,7 +77,14 @@ const CommentItem = () => {
           </Text>
         </div>
       </div>
-      {isLike ? 'Yes' : 'No'}
+      <div className={'flex-shrink-0 pt-[15px]'}>
+        {/*Todo: добавить логику */}
+        {isLike ? (
+          <HeartIcon height={16} width={16} />
+        ) : (
+          <HeartIconOutline height={16} width={16} />
+        )}
+      </div>
     </div>
   )
 }
