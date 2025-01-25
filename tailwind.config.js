@@ -72,7 +72,7 @@ module.exports = {
         'regular-text-16': ['1rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '1rem' = 16px, '1.5rem' = 24px,
         'medium-text-14': ['0.875rem', { fontWeight: '500', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
         'sm-bold-14': ['0.875rem', { fontWeight: '700', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
-        'semi-bold_small_text_12': ['0.75rem', { fontWeight: '400', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,
+        'semi-bold_small_text_12': ['0.75rem', { fontWeight: '600', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,
         'regular-text-14': ['0.875rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
         'text-regular_link-14': ['0.875rem', { fontWeight: '400', lineHeight: '1.5rem' }], // '0.875rem' = 14px, '1.5rem' = 24px,
         'small-text-12': ['0.75rem', { fontWeight: '400', lineHeight: '1rem' }], // '0.75rem' = 12px, '1rem' = 16px,

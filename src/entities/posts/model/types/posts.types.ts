@@ -1,4 +1,4 @@
-type PostImage = {
+export type PostImage = {
   fileId: string
   id: number
   order: number
