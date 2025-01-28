@@ -15,7 +15,7 @@ export const DeleteAvatarButton = () => {
     <Modal onOpenChange={isOpen => setModalDeleteAvatarOpen(isOpen)} open={modalDeleteAvatarOpen}>
       <ModalTrigger asChild>
         <Button
-          className={`absolute right-3 top-3`}
+          className={`absolute right-3 top-3 border-none bg-transparent hover:scale-110 hover:bg-transparent active:scale-110 active:bg-transparent`}
           onClick={() => setModalDeleteAvatarOpen(true)}
           title={t.pages.profile.deletePhoto.title}
           type={'button'}

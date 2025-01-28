@@ -201,6 +201,29 @@ export const en = {
             search: 'Search city',
           },
         },
+        managementTab: {
+          accountType: 'Account type:',
+          accountTypeOptions: {
+            personal: 'Personal',
+            business: 'Business',
+          },
+          subscriptionCostsTitle: 'Your subscription costs:',
+          subscriptionCostsOptions: {
+            day: 'per 1 Day',
+            week: 'per 7 Day',
+            month: 'per month',
+          },
+          paymentSuccessfulModal: {
+            title: 'Success',
+            text: 'Payment was successful!',
+            button: 'OK',
+          },
+          paymentErrorModal: {
+            title: 'Error',
+            text: 'Transaction failed. Please, write to support',
+            button: 'Back to payment',
+          },
+        },
       },
     },
     congratulations: {

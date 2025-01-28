@@ -195,6 +195,29 @@ export const ru: LocaleType = {
             search: 'Поиск города',
           },
         },
+        managementTab: {
+          accountType: 'Тип аккаунта:',
+          accountTypeOptions: {
+            personal: 'Персональный',
+            business: 'Бизнес',
+          },
+          subscriptionCostsTitle: 'Стоимость подписки:',
+          subscriptionCostsOptions: {
+            day: 'за 1 день',
+            week: 'за 7 дней',
+            month: 'за месяц',
+          },
+          paymentSuccessfulModal: {
+            title: 'Успех',
+            text: 'Оплата прошла успешно!',
+            button: 'OK',
+          },
+          paymentErrorModal: {
+            title: 'Ошибка',
+            text: 'Транзакция не прошла. Пожалуйста, напишите в службу поддержки',
+            button: 'Назад к оплате',
+          },
+        },
       },
     },
     congratulations: {
