@@ -4,7 +4,7 @@ import React from 'react'
 
 import { PostItem } from '@/entities/posts/model/types/posts.types'
 import { PostImageSlider } from '@/entities/posts/ui/post-image-slider'
-import { Button, useTranslation } from '@/shared'
+import { AppRoutes, Button, useTranslation } from '@/shared'
 import defaultAvatar from '@/shared/assets/images/avatar.svg'
 import { AppImage } from '@/shared/ui/app-image'
 import { CollapsingText } from '@/shared/ui/collapsing-text/collapsing-text'
@@ -16,7 +16,7 @@ import Link from 'next/link'
 import 'swiper/swiper-bundle.css'
 
 export const Post = (props: PostItem) => {
-  const { description, postImages, createdAt } = props
+  const { description, postImages, createdAt, userId } = props
 
   const { locale: localeFromUseTranslation } = useTranslation()
   const locale = localeFromUseTranslation === 'ru' ? ru : enUS
@@ -29,10 +29,10 @@ export const Post = (props: PostItem) => {
   return (
     <div className={'flex h-[391px] w-[234px] flex-col'}>
       {isSlides ? (
-        <PostImageSlider images={slides} />
+        <PostImageSlider images={slides} userId={userId} />
       ) : (
         <Button asChild className={'h-full max-h-60'}>
-          <Link href={'/'}>
+          <Link href={AppRoutes.PROFILE + userId}>
             <Image
               alt={'post-image'}
               className={'h-full w-full object-cover'}
@@ -44,9 +44,9 @@ export const Post = (props: PostItem) => {
         </Button>
       )}
 
-      <Button
+      <Link
         className={'my-3 flex h-auto w-full items-center justify-start gap-3 text-left'}
-        type={'button'}
+        href={AppRoutes.PROFILE + userId}
       >
         <AppImage
           alt={'post'}
@@ -56,7 +56,7 @@ export const Post = (props: PostItem) => {
           src={defaultAvatar}
         />
         <h3 className={'text-lg font-semibold leading-6'}>URLProfile</h3>
-      </Button>
+      </Link>
 
       <p className={'mb-1 text-sm font-normal leading-4 text-Light-900'}>{timeAgo}</p>
 

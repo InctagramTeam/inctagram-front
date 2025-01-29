@@ -6,11 +6,14 @@ export type PostImage = {
 }
 
 export type PostItem = {
+  avatar_url: string
   createdAt: string
   description: string
-  id: number
-  isDraft: boolean
+  postId: number
   postImages: PostImage[]
+  updatedAt: string
+  userId: number
+  username: string
 }
 
 export type Posts = {
