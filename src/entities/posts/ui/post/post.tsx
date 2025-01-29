@@ -45,17 +45,19 @@ export const Post = (props: PostItem) => {
       )}
 
       <Link
-        className={'my-3 flex h-auto w-full items-center justify-start gap-3 text-left'}
+        className={'group my-3 flex h-auto w-full items-center justify-start gap-3 text-left'}
         href={AppRoutes.PROFILE + userId}
       >
         <AppImage
           alt={'post'}
           className={
-            'max-h-[36px] max-w-[36px] rounded-full bg-white transition-all duration-150 ease-in-out group-hover:bg-Primary-500 hover:bg-Primary-500'
+            'max-h-[36px] max-w-[36px] rounded-full bg-white transition-all duration-150 ease-in-out group-hover:bg-Primary-500'
           }
           src={defaultAvatar}
         />
-        <h3 className={'text-lg font-semibold leading-6'}>URLProfile</h3>
+        <h3 className={'text-lg font-semibold leading-6 group-hover:text-Primary-500'}>
+          URLProfile
+        </h3>
       </Link>
 
       <p className={'mb-1 text-sm font-normal leading-4 text-Light-900'}>{timeAgo}</p>
