@@ -5,18 +5,12 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-  Button,
-  Dropdown,
   ReturnComponent,
   Text,
   cn,
   useTranslation,
 } from '@/shared'
-import { MoreIcon } from '@/shared/assets/icons'
-import EditIcon from '@/shared/assets/icons/EditIcon'
-import TrashIcon from '@/shared/assets/icons/TrashIcon'
 import { getStoreLocalStorage } from '@/shared/lib/utils'
-import { DropdownItemWithIcon } from '@/shared/ui/dropdown-menu/item-with-icon'
 
 export const AvatarUser = ({
   classNameWrapper,
@@ -34,6 +28,7 @@ export const AvatarUser = ({
 
     if (user) {
       setUserName(user.userName)
+      // !TODO
       //user.profile.url && setAvatar(user.profile.url)
     }
   }, [])
@@ -44,7 +39,11 @@ export const AvatarUser = ({
         <AvatarImage alt={t.layout.alts.userAvatar} height={36} size={36} src={''} width={36} />
         <AvatarFallback className={'bg-Light-900'}>{userName?.[0] || 'U'}</AvatarFallback>
       </Avatar>
-      {userName && <Text variant={'H3'}>{userName}</Text>}
+      {userName && (
+        <Text className={'mr-auto'} variant={'H3'}>
+          {userName}
+        </Text>
+      )}
       {actions}
     </div>
   )
