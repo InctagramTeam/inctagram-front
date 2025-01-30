@@ -10,7 +10,7 @@ export const ProfileGallery = ({ posts }: Props): ReturnComponent => {
   return (
     <Gallery className={'profile-bottom-gallery_ grid grid-cols-4 gap-[12px]'}>
       {posts.map((item, index) => (
-        <li key={index}>
+        <li className={'h-full w-full'} key={index}>
           <GalleryImage postData={item} />
         </li>
       ))}

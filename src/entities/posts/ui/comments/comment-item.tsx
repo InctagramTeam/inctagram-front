@@ -23,7 +23,7 @@ const CommentItem = ({ createdAt, likes }: Props) => {
   const classes = {
     wrapper: cn(
       isExpanded ? 'max-h-none' : 'max-h-[72px]',
-      'overflow-hidden text-ellipsis whitespace-pre-wrap'
+      'overflow-hidden text-ellipsis whitespace-pre-wrap mb-2'
     ),
   }
 
@@ -45,13 +45,13 @@ const CommentItem = ({ createdAt, likes }: Props) => {
           <Text mr={'10px'} variant={'bold_text_14'}>
             User
           </Text>
-          <Text variant={'regular-text-14'}>
+          <Text asComponent={'p'} className={'inline'} variant={'regular-text-14'}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt ipsum libero
             voluptatum! Accusamus, architecto assumenda commodi consectetur eos expedita fuga, fugit
             id molestias recusandae sed sequi sint tempore, veniam voluptates.
           </Text>
         </div>
-        <div className={'flex gap-3'}>
+        <div className={'mb-2 flex gap-3'}>
           <Text textColor={'lightDark'} variant={'small-text-12'}>
             {timeAgo}
           </Text>
@@ -80,9 +80,25 @@ const CommentItem = ({ createdAt, likes }: Props) => {
       <div className={'flex-shrink-0 pt-[15px]'}>
         {/*Todo: добавить логику */}
         {isLike ? (
-          <HeartIcon height={16} width={16} />
+          <Button
+            aria-label={'Нравится'}
+            className={'!h-[16px] w-[16px] pb-0 pt-0 focus:bg-transparent active:bg-transparent'}
+            onClick={() => {}}
+            type={'button'}
+            variant={'text'}
+          >
+            <HeartIcon aria-hidden height={16} width={16} />
+          </Button>
         ) : (
-          <HeartIconOutline height={16} width={16} />
+          <Button
+            aria-label={'Убрать нравится'}
+            className={'!h-[16px] w-[16px] pb-0 pt-0 focus:bg-transparent active:bg-transparent'}
+            onClick={() => {}}
+            type={'button'}
+            variant={'text'}
+          >
+            <HeartIconOutline height={16} width={16} />
+          </Button>
         )}
       </div>
     </div>
