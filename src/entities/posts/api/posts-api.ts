@@ -1,7 +1,9 @@
 import { PostItem, Posts } from '@/entities/posts'
-import { PostDto, PublicPost } from '@/entities/posts/model/types/posts.types'
+import { Post, PostDto, PostRequest } from '@/entities/posts/model/types/posts.types'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
+import { mapDtoToModel } from '@/shared/lib/utils/mapDtoToModel'
 import { AxiosResponse } from 'axios'
+import { map } from 'zod'
 
 import { CreatePostRequest } from '../model/types/posts-api.types'
 
@@ -34,45 +36,17 @@ export class PostsApi {
       })
   }
 
-  //TODO - добавить получение постов юзера по его id
-  async getUserPosts(userId: string = '33'): Promise<PublicPost[]> {
-    return new Promise<PostDto[]>(resolve => {
-      setTimeout(() => {
-        resolve([
-          {
-            id: 19,
-            createdAt: '2024-12-18T13:04:54.610Z',
-            description: 'big data',
-            avatarId: null,
-            aboutMe: 'I am a software developer.',
-            username: 'stasfilippov18',
-            postImages: [
-              {
-                id: 29,
-                url: 'https://incubatogramdata.storage.yandexcloud.net/content/users/33/post_photos/173452709406633_image.png',
-                fileId: '"f9b9ad018daba2a0be4b809e0278a47d"',
-                order: 1,
-              },
-              {
-                id: 14,
-                url: 'https://incubatogramdata.storage.yandexcloud.net/content/users/6/post_photos/9/17376254046626_image.png',
-                fileId: '1f12d64170460cd132e418385f22a1a7',
-                order: 1,
-              },
-            ],
-            comments: [],
-          },
-        ])
-      }, 2000)
-    }).then(res => {
-      return res.map(post => ({
-        id: post.id,
-        createdAt: post.createdAt,
-        description: post.description,
-        postImages: post.postImages,
-        comments: post.comments,
-      }))
-    })
+  async getPublicPostsByUserId(
+    userId: number,
+    pageParam: number = 1
+  ): Promise<{ data: Post[]; nextOffset: number }> {
+    const response = await axiosNotAuthorized
+      .get<null, AxiosResponse<PostRequest>, string>(`posts/public/user/${userId}`, {
+        params: { page: String(pageParam) },
+      })
+      .then(res => res.data.items.map(post => mapDtoToModel<Post, typeof post>(post)))
+
+    return { data: response, nextOffset: pageParam + 1 }
   }
 }
 
