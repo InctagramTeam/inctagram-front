@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { PublicPost } from '@/entities/posts/model/types/posts.types'
+import { Post } from '@/entities/posts/model/types/posts.types'
 import CommentItem from '@/entities/posts/ui/comments/comment-item'
 import { AvatarUser } from '@/entities/posts/ui/create-post/publication-post/user-avatar'
 import {
@@ -34,7 +34,7 @@ import { useRouter } from 'next/router'
 
 export type GalleryImageProps = {
   className?: string
-  postData: PublicPost
+  postData: Post
 }
 
 export const GalleryImage = ({ postData, className }: GalleryImageProps): ReturnComponent => {
@@ -107,7 +107,7 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
           alt={postData.description ?? EMPTY_STRING}
           className={cn(`h-full w-full contain-content`, className)}
           height={228}
-          src={postData.postImages[0].url}
+          src={postData.postImages[0].url ?? ''}
           width={234}
         />
       </ModalTrigger>

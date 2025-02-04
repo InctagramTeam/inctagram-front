@@ -31,10 +31,19 @@ export type PostDto = {
   username: string
 }
 
-export type PublicPost = {
+export type Post = {
+  avatar_url: null | string
   comments: string[]
   createdAt: string
   description: string
   id: number
   postImages: PostImage[]
+  updatedAt: string
+  userId: number
+  username: string
+}
+
+export type PostRequest = {
+  items: PostDto[]
+  usersCount: number
 }
