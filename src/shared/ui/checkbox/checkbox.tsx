@@ -67,6 +67,7 @@ export const Checkbox = memo(
       <>
         <div className={`_container_ flex items-center`}>
           <LabelRadix.Root
+            aria-disabled={disabled}
             className={clsx(
               `_label_ z-0 inline-flex w-full cursor-default select-none items-center text-regular-text-14`,
               className,
