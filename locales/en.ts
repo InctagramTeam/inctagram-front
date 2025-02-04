@@ -202,6 +202,12 @@ export const en = {
           },
         },
         managementTab: {
+          currentSubscription: {
+            cardTitle: 'Current Subscription:',
+            expireAt: 'Expire at',
+            nextPayment: 'Next payment',
+            checkboxTitle: 'Auto-Renewal',
+          },
           accountType: 'Account type:',
           accountTypeOptions: {
             personal: 'Personal',
