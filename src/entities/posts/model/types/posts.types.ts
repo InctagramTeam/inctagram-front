@@ -36,7 +36,7 @@ export type PostType = {
   comments: string[]
   createdAt: string
   description: string
-  id: number
+  postId: number
   postImages: PostImage[]
   updatedAt: string
   userId: number
