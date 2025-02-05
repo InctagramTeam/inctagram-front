@@ -1,9 +1,8 @@
-import { PostItem, Posts } from '@/entities/posts'
-import { Post, PostDto, PostRequest } from '@/entities/posts/model/types/posts.types'
+import { Posts } from '@/entities/posts'
+import { PostRequest, PostType } from '@/entities/posts/model/types/posts.types'
 import { axiosNotAuthorized, axiosWithAuth } from '@/shared/api/interceptors'
 import { mapDtoToModel } from '@/shared/lib/utils/mapDtoToModel'
 import { AxiosResponse } from 'axios'
-import { map } from 'zod'
 
 import { CreatePostRequest } from '../model/types/posts-api.types'
 
@@ -22,6 +21,7 @@ export class PostsApi {
         return res.data
       })
   }
+
   async getPublicPosts(page: number = 1) {
     return await axiosNotAuthorized
       .get<null, AxiosResponse<Posts>, string>('posts/public', {
@@ -39,12 +39,12 @@ export class PostsApi {
   async getPublicPostsByUserId(
     userId: number,
     pageParam: number = 1
-  ): Promise<{ data: Post[]; nextOffset: number }> {
+  ): Promise<{ data: PostType[]; nextOffset: number }> {
     const response = await axiosNotAuthorized
       .get<null, AxiosResponse<PostRequest>, string>(`posts/public/user/${userId}`, {
         params: { page: String(pageParam) },
       })
-      .then(res => res.data.items.map(post => mapDtoToModel<Post, typeof post>(post)))
+      .then(res => res.data.items.map(post => mapDtoToModel<PostType, typeof post>(post)))
 
     return { data: response, nextOffset: pageParam + 1 }
   }

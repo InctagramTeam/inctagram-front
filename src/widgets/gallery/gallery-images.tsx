@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { Post } from '@/entities/posts/model/types/posts.types'
+import { PostType } from '@/entities/posts/model/types/posts.types'
 import CommentItem from '@/entities/posts/ui/comments/comment-item'
 import { AvatarUser } from '@/entities/posts/ui/create-post/publication-post/user-avatar'
 import {
@@ -34,7 +34,7 @@ import { useRouter } from 'next/router'
 
 export type GalleryImageProps = {
   className?: string
-  postData: Post
+  postData: PostType
 }
 
 export const GalleryImage = ({ postData, className }: GalleryImageProps): ReturnComponent => {
