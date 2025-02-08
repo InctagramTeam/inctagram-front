@@ -44,10 +44,10 @@ export const LogoutModal = (props: Props): ReturnComponent => {
           </Text>
           <Flex justify={'spaceBetween'} maxWidth>
             <Button className={'px-[36px] py-[6px]'} onClick={handleClickYes}>
-              {t.pages.profile.logOut.modalBtnYes}
+              {t.button.yes}
             </Button>
             <Button className={'px-[36px] py-[6px]'} onClick={() => onOpenChange(false)}>
-              {t.pages.profile.logOut.modalBtnNo}
+              {t.button.no}
             </Button>
           </Flex>
         </FlexCol>
