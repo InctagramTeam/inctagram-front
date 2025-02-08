@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { useDeletePost } from '@/entities/posts/api/hooks/use-delete-post'
-import { PublicPost } from '@/entities/posts/model/types/posts.types'
+import { Post } from '@/entities/posts/model/types/posts.types'
 import CommentItem from '@/entities/posts/ui/comments/comment-item'
 import { DoubleModal } from '@/entities/posts/ui/double-modal'
 import { AvatarUser } from '@/entities/posts/ui/user-avatar'
@@ -37,7 +37,7 @@ import { useRouter } from 'next/router'
 
 export type GalleryImageProps = {
   className?: string
-  postData: PublicPost
+  postData: Post
 }
 
 export const GalleryImage = ({ postData, className }: GalleryImageProps): ReturnComponent => {

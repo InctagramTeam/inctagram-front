@@ -7,7 +7,7 @@ export const useDeletePost = () => {
 
   const mutation = useMutation({
     mutationFn: async (postId: string) => {
-      return await postsApi.deletePost('5')
+      return await postsApi.deletePost(postId)
     },
     mutationKey: ['delete-post'],
     onError: handleMutationError,
