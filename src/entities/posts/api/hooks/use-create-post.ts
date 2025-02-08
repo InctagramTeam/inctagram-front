@@ -1,5 +1,4 @@
-import { toast, useTranslation } from '@/shared'
-import { handleMutationError } from '@/shared/lib/utils/error-handling/handleMutationError'
+import { handleMutationError, toast, useTranslation } from '@/shared'
 import { useMutation } from '@tanstack/react-query'
 
 import postsApi from '../../api/posts-api'
