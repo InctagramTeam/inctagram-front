@@ -1,4 +1,5 @@
 export { debounce } from './debounce'
+export { handleMutationError } from './error-handling/handleMutationError'
 export { getSettingsTabs } from './get-settings-tabs'
 export { getIcon } from './getIcon'
 export { getStoreLocalStorage } from './locale-storage/get-local-storage'

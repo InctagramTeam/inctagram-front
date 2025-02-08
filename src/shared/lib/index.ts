@@ -13,6 +13,7 @@ export {
   emailSchema,
   getIcon,
   getStoreLocalStorage,
+  handleMutationError,
   mergeRefs,
   passwordSchema,
   throttle,
