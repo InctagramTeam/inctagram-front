@@ -80,6 +80,9 @@ export const ru: LocaleType = {
     showMore: 'Показать',
     hide: 'Скрыть',
     registeredUsers: 'Зарегистрировано пользователей',
+    deletePost: 'Удалить пост',
+    editPost: 'Редактировать пост',
+    wantDeletePost: 'Вы уверены, что хотите удалить это сообщение?',
   },
   uploadPhoto: {
     addPhoto: 'Добавить фото',
@@ -171,8 +174,6 @@ export const ru: LocaleType = {
       logOut: {
         modalTitle: 'Выйти',
         modalText: 'Вы действительно хотите выйти с аккаунта',
-        modalBtnYes: 'Да',
-        modalBtnNo: 'Нет',
       },
       settings: {
         tabs: {
@@ -319,6 +320,7 @@ export const ru: LocaleType = {
     profileCreated: 'Профиль успешно создан',
     profileUpdated: 'Профиль успешно обновлён',
     postCreated: 'Пост успешно создан',
+    postDeleted: 'Пост успешно удален',
     draftSaved: 'Черновик успешно сохранен',
     emailVerification: {
       onSuccess: 'Письмо с ссылкой успешно отправлено!',

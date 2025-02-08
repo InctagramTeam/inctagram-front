@@ -2,8 +2,10 @@
 
 import React, { useEffect, useState } from 'react'
 
+import { useDeletePost } from '@/entities/posts/api/hooks/use-delete-post'
 import { PublicPost } from '@/entities/posts/model/types/posts.types'
 import CommentItem from '@/entities/posts/ui/comments/comment-item'
+import { DoubleModal } from '@/entities/posts/ui/double-modal'
 import { AvatarUser } from '@/entities/posts/ui/user-avatar'
 import {
   Avatar,
@@ -17,15 +19,16 @@ import {
   ReturnComponent,
   Text,
   cn,
+  useTranslation,
 } from '@/shared'
 import {
   BookmarkOutlineIcon,
+  EditIcon,
   HeartIconOutline,
   MoreIcon,
   PaperPlaneIcon,
+  TrashIcon,
 } from '@/shared/assets/icons'
-import EditIcon from '@/shared/assets/icons/EditIcon'
-import TrashIcon from '@/shared/assets/icons/TrashIcon'
 import { ModalContent, ModalTrigger } from '@/shared/ui/modal'
 import SwiperPhoto from '@/shared/ui/swiper-photo/swiper-photo'
 import { formatDate } from '@/widgets/gallery/lib/formateDate'
@@ -40,14 +43,24 @@ export type GalleryImageProps = {
 export const GalleryImage = ({ postData, className }: GalleryImageProps): ReturnComponent => {
   const [open, setOpen] = useState(false)
   const [isEditMode, setIsEditMode] = useState(false)
+  const [isOpenDeletePostModal, setIsOpenDeletePostModal] = useState(false)
   const router = useRouter()
   const { post, ...rest } = router.query
+  const { mutate: deletePost, isSuccess } = useDeletePost()
+  const { t } = useTranslation()
 
   useEffect(() => {
     if (post && +post === postData.id) {
       setOpen(true)
     }
   }, [])
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsOpenDeletePostModal(false)
+      setOpen(false)
+    }
+  }, [isSuccess])
 
   const openChangeHandler = (open: boolean) => {
     if (open) {
@@ -102,7 +115,7 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
               startIcon={<EditIcon aria-hidden />}
               variant={'text'}
             >
-              Edit Post
+              {t.posts.editPost}
             </Button>
           </li>
         </Dropdown.Item>
@@ -110,10 +123,11 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
           <li>
             <Button
               className={'h-full pb-0 pt-0 focus:bg-transparent active:bg-transparent'}
+              onClick={() => setIsOpenDeletePostModal(true)}
               startIcon={<TrashIcon aria-hidden />}
               variant={'text'}
             >
-              Delete Post
+              {t.posts.deletePost}
             </Button>
           </li>
         </Dropdown.Item>
@@ -125,7 +139,7 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
     <Modal onOpenChange={openChangeHandler} open={open}>
       <ModalTrigger asChild>
         <div className={'relative aspect-square w-full'}>
-          <button aria-label={'Open modal'} className={'absolute inset-0 z-2'} />
+          <button aria-label={'Open modal'} className={'absolute inset-0 z-2'} type={'button'} />
           <Image
             alt={postData.description ?? EMPTY_STRING}
             className={cn(`h-full w-full contain-content`, className)}
@@ -140,6 +154,29 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
         isClose={open}
         isShowHeader={false}
       >
+        <DoubleModal
+          isOpen={isOpenDeletePostModal}
+          modalTitle={t.posts.deletePost}
+          openChange={setIsOpenDeletePostModal}
+          text={t.posts.wantDeletePost}
+        >
+          <Button
+            className={'px-[32px] py-[6px]'}
+            onClick={() => deletePost(String(postData.id))}
+            type={'button'}
+            variant={'outline'}
+          >
+            {t.button.yes}
+          </Button>
+          <Button
+            className={'px-[32px] py-[6px]'}
+            onClick={() => setIsOpenDeletePostModal(false)}
+            type={'button'}
+            variant={'primary'}
+          >
+            {t.button.no}
+          </Button>
+        </DoubleModal>
         <div className={'flex'}>
           <SwiperPhoto images={postData.postImages} />
           <div className={'w-full max-w-[486px] self-start'}>

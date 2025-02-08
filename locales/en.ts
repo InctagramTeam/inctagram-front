@@ -87,6 +87,9 @@ export const en = {
     showMore: 'Show More',
     hide: 'Hide',
     registeredUsers: 'Registered users',
+    deletePost: 'Delete post',
+    editPost: 'Edit post',
+    wantDeletePost: 'Are you sure you want to delete this post?',
   },
   uploadPhoto: {
     addPhoto: 'Add Photo',
@@ -177,8 +180,6 @@ export const en = {
       logOut: {
         modalTitle: 'Logout',
         modalText: 'Are you really want to log out of your account',
-        modalBtnYes: 'Yes',
-        modalBtnNo: 'No',
       },
       settings: {
         tabs: {
@@ -327,6 +328,7 @@ export const en = {
     profileCreated: 'Profile successfully created',
     profileUpdated: 'Profile successfully updated',
     postCreated: 'Post successfully created',
+    postDeleted: 'Post deleted successfully',
     draftSaved: 'Draft successfully saved',
     emailVerification: {
       onSuccess: 'The link email was successfully sent!',

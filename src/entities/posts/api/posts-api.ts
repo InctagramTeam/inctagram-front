@@ -20,6 +20,11 @@ export class PostsApi {
         return res.data
       })
   }
+
+  async deletePost(postId: string) {
+    return await axiosWithAuth.delete<null, string, null>(`posts/${postId}`).then(res => res)
+  }
+
   async getPublicPosts(page: number = 1) {
     return await axiosNotAuthorized
       .get<null, AxiosResponse<Posts>, string>('posts/public', {
