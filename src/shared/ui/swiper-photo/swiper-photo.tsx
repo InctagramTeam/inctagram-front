@@ -2,7 +2,7 @@ import React from 'react'
 
 import { PostImage } from '@/entities/posts/model/types/posts.types'
 import Image from 'next/image'
-import { A11y, Controller, Navigation, Pagination, Thumbs } from 'swiper/modules'
+import { A11y, Controller, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import 'swiper/swiper-bundle.css'
@@ -12,7 +12,7 @@ const SwiperPhoto = ({ images }: { images: PostImage[] }) => {
     <Swiper
       allowTouchMove={false}
       className={'relative m-0 min-h-[515px] w-full max-w-[490px] self-stretch'}
-      modules={[Navigation, A11y, Thumbs, Controller, Pagination]}
+      modules={[Navigation, A11y, Controller, Pagination]}
       navigation
       pagination={{ clickable: true }}
       slidesPerGroup={1}
