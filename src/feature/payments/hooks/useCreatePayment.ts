@@ -1,7 +1,7 @@
-import { useMutation } from '@tanstack/react-query'
 import paymentsApi from '@/feature/payments/api/payments-api'
 import { ApiError, CreatePaymentRequest } from '@/feature/payments/types/payments.types'
 import { toast } from '@/shared'
+import { useMutation } from '@tanstack/react-query'
 
 export const useCreatePayment = () => {
   return useMutation({

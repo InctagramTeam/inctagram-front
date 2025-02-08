@@ -1,8 +1,8 @@
+import { useCreatePayment } from '@/feature/payments/hooks/useCreatePayment'
 import { SubscriptionCostValue } from '@/feature/payments/types/payments.types'
 import { Button } from '@/shared'
 import { StripeIcon } from '@/shared/assets/icons/stripe-icon'
 import Link from 'next/link'
-import { useCreatePayment } from '@/feature/payments/hooks/useCreatePayment'
 
 type Props = {
   currentValueSubscriptionCost: SubscriptionCostValue
