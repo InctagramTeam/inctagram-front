@@ -14,7 +14,7 @@ export type PostItem = {
 }
 
 export type Posts = {
-  items: PostItem[]
+  items: PostType[]
   page: number
   pagesCount: number
   usersCount: number
@@ -31,12 +31,12 @@ export type PostDto = {
   username: string
 }
 
-export type Post = {
+export type PostType = {
   avatar_url: null | string
   comments: string[]
   createdAt: string
   description: string
-  id: number
+  postId: number
   postImages: PostImage[]
   updatedAt: string
   userId: number
