@@ -74,6 +74,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     } = props
     const { t } = useTranslation()
 
+    const { className: inputClass, ...restInputProps } = inputProps
+
     /** Чтобы получить доступ к инпуту: inputRef */
     const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
     const finalRef = mergeRefs([forwardedRef, inputRef])
@@ -169,7 +171,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         [type],
         readonly && `opacity-5`,
         type === 'password' && `pr-[42px]`,
-        type === 'search' && 'px-[42px]'
+        type === 'search' && 'px-[42px]',
+        inputClass
       ),
       inputWrapper: clsx(`_FieldContainer_ relative w-full text-regular-text-16 text-Light-900`),
       label: clsx(
@@ -230,7 +233,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={finalRef}
             type={finalType}
             value={rest.value}
-            {...inputProps}
+            {...restInputProps}
           />
           {isRevealPasswordButtonShown && (
             <button

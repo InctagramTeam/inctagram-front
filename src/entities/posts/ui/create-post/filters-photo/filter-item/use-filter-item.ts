@@ -45,7 +45,7 @@ export const useFilterItem = (value: FilterValue, currentImageId: string) => {
   const classes = useMemo(() => {
     return {
       container: 'relative min-w-full',
-      input: cn(`sr-only`),
+      input: cn(`!sr-only`),
       label: cn(
         `flex flex-col gap-[6px] text-center !text-Light-100 text-regular-text-16 cursor-pointer hover:!text-Light-700 transition-colors`,
         currentFilter === value && '!text-Primary-500 pointer-events-none hover:!text-Primary-500'

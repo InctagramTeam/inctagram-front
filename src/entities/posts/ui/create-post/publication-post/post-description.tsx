@@ -1,7 +1,7 @@
 import { useAddPostPhotoStore } from '@/entities/posts'
 import { ReturnComponent, Textarea } from '@/shared'
 
-import { AvatarUser } from './user-avatar'
+import { AvatarUser } from '../../user-avatar'
 
 export const PostDescription = (): ReturnComponent => {
   const setDescription = useAddPostPhotoStore(state => state.setDescription)

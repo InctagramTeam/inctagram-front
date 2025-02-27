@@ -2,7 +2,9 @@ import * as React from 'react'
 import { useState } from 'react'
 
 import { useAddPostPhotoStore } from '@/entities/posts'
-import { AppRoutes, Modal, ModalContent, ReturnComponent, useTranslation } from '@/shared'
+import { usePublicPost } from '@/entities/posts/ui/create-post/use-public-post'
+import { DoubleModal } from '@/entities/posts/ui/double-modal'
+import { AppRoutes, Button, Modal, ModalContent, ReturnComponent, useTranslation } from '@/shared'
 import { clsx } from 'clsx'
 import { useRouter } from 'next/router'
 
@@ -10,7 +12,6 @@ import { AddPhotoForm } from './add-post-form/add-photo-form'
 import { AddPhotoModalHeaderContent } from './add-post-modal-header/add-photo-modal-header-content'
 import { CroppingPhoto } from './cropping-photo/cropping-photo'
 import { FiltersPhoto } from './filters-photo/filters-photo'
-import { ModalCloseAddPhotoModal } from './modal-close-add-photo-modal'
 import { PublicationPost } from './publication-post/publication-post'
 
 export const AddPhotoContainer = (): ReturnComponent => {
@@ -19,6 +20,7 @@ export const AddPhotoContainer = (): ReturnComponent => {
   const [isOpen, setIsOpen] = useState<boolean>(true)
   const [isOpenModalClose, setIsOpenModalClose] = useState<boolean>(false)
   const router = useRouter()
+  const { publicPost, clearState } = usePublicPost()
 
   const openChange = () => {
     if (modalState === 'add-photo') {
@@ -27,6 +29,11 @@ export const AddPhotoContainer = (): ReturnComponent => {
     } else {
       setIsOpenModalClose(true)
     }
+  }
+
+  const discardButtonHandler = () => {
+    clearState()
+    setIsOpenModalClose(false)
   }
 
   return (
@@ -47,7 +54,24 @@ export const AddPhotoContainer = (): ReturnComponent => {
         isClose={modalState === 'add-photo'}
         title={modalState === 'add-photo' ? t.uploadPhoto.addPhoto : undefined}
       >
-        <ModalCloseAddPhotoModal isOpen={isOpenModalClose} openChange={setIsOpenModalClose} />
+        <DoubleModal
+          isOpen={isOpenModalClose}
+          modalTitle={t.button.close}
+          openChange={setIsOpenModalClose}
+          text={t.pages.createPost.wantToCloseCreation}
+        >
+          <Button onClick={discardButtonHandler} type={'button'} variant={'outline'}>
+            {t.button.discard}
+          </Button>
+          <Button
+            className={'px-[24px] py-[6px]'}
+            onClick={() => publicPost(true)}
+            type={'button'}
+            variant={'primary'}
+          >
+            {t.button.saveDraft}
+          </Button>
+        </DoubleModal>
         {modalState === 'add-photo' && <AddPhotoForm />}
         {modalState === 'cropping' && <CroppingPhoto openChangeModalClose={setIsOpenModalClose} />}
         {modalState === 'filters' && <FiltersPhoto />}
