@@ -1,5 +1,5 @@
 'use client'
-import { Button } from '@/shared'
+import { AppRoutes, Button } from '@/shared'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Navigation, Pagination } from 'swiper/modules'
@@ -7,10 +7,11 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 type Props = {
   images: string[]
+  userId: number
 }
 
 export const PostImageSlider = (props: Props) => {
-  const { images } = props
+  const { images, userId } = props
 
   return (
     <div className={'z-0'}>
@@ -25,7 +26,7 @@ export const PostImageSlider = (props: Props) => {
         {images.map((image, index) => (
           <SwiperSlide key={index}>
             <Button asChild>
-              <Link href={'/'}>
+              <Link href={AppRoutes.PROFILE + userId}>
                 <Image alt={`Slide ${index}`} height={240} src={image} width={234} />
               </Link>
             </Button>
