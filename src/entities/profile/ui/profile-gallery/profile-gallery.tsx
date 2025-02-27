@@ -33,7 +33,7 @@ export const ProfileGallery = ({ userId }: { userId: number }): ReturnComponent 
           data.pages.map(page => (
             <Fragment key={page.nextOffset}>
               {page.data.map(post => (
-                <li key={post.id}>
+                <li key={post.postId}>
                   <GalleryImage postData={post} />
                 </li>
               ))}

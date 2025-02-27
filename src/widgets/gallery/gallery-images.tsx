@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { useDeletePost } from '@/entities/posts/api/hooks/use-delete-post'
-import { Post } from '@/entities/posts/model/types/posts.types'
+import { PostType } from '@/entities/posts/model/types/posts.types'
 import CommentItem from '@/entities/posts/ui/comments/comment-item'
 import { DoubleModal } from '@/entities/posts/ui/double-modal'
 import { AvatarUser } from '@/entities/posts/ui/user-avatar'
@@ -37,7 +37,7 @@ import { useRouter } from 'next/router'
 
 export type GalleryImageProps = {
   className?: string
-  postData: Post
+  postData: PostType
 }
 
 export const GalleryImage = ({ postData, className }: GalleryImageProps): ReturnComponent => {
@@ -50,7 +50,7 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
   const { t } = useTranslation()
 
   useEffect(() => {
-    if (post && +post === postData.id) {
+    if (post && +post === postData.postId) {
       setOpen(true)
     }
   }, [])
@@ -68,7 +68,7 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
         .push(
           {
             pathname: router.pathname,
-            query: { ...router.query, post: postData.id },
+            query: { ...router.query, post: postData.postId },
           },
           undefined,
           { shallow: true }
@@ -162,7 +162,7 @@ export const GalleryImage = ({ postData, className }: GalleryImageProps): Return
         >
           <Button
             className={'px-[32px] py-[6px]'}
-            onClick={() => deletePost(String(postData.id))}
+            onClick={() => deletePost(String(postData.postId))}
             type={'button'}
             variant={'outline'}
           >
