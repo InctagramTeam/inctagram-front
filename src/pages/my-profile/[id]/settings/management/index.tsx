@@ -13,6 +13,7 @@ import { PaymentSuccessfulModal } from '@/feature/payments/ui/payment-successful
 import { SubscriptionCostsCard } from '@/feature/payments/ui/subscription-costs-card/subscription-costs-card'
 import { TABS_VARIANTS, TabContent, getSettingsLayout, useTranslation } from '@/shared'
 import { useRouter } from 'next/router'
+import { CurrentSubscriptionCard } from '@/feature/payments/ui/current-subscription-card/current-subscription-card'
 
 const Management = () => {
   const { t } = useTranslation()
@@ -47,6 +48,8 @@ const Management = () => {
     <>
       <TabContent className={'flex'} value={TABS_VARIANTS.management}>
         <div className={'mt-[20px] flex w-full flex-col'}>
+          <CurrentSubscriptionCard />
+
           <AccountTypeCard
             accountTypeOptions={accountTypeOptions}
             currentAccountType={currentAccountType}

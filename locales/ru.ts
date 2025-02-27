@@ -197,6 +197,12 @@ export const ru: LocaleType = {
           },
         },
         managementTab: {
+          currentSubscription: {
+            cardTitle: 'Текущая подписка:',
+            expireAt: 'Закончится',
+            nextPayment: 'Следующий платеж',
+            checkboxTitle: 'Автопродление',
+          },
           accountType: 'Тип аккаунта:',
           accountTypeOptions: {
             personal: 'Персональный',

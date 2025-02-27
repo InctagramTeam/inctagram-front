@@ -26,7 +26,7 @@ export const AccountTypeCard = ({
       <Text asComponent={'p'} variant={'H3'}>
         {t.pages.profile.settings.managementTab.accountType}
       </Text>
-      <Card className={'mt-1.5 w-full pb-1.5 pl-3 pt-1.5'}>
+      <Card className={'mt-[18px] w-full pb-1.5 pl-3 pt-1.5'}>
         <CustomRadioGroup
           onValueChange={handleChangeCurrentRadio}
           options={accountTypeOptions}

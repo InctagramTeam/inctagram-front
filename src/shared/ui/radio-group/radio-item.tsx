@@ -6,13 +6,14 @@ import clsx from 'clsx'
 
 export type RadioOption = {
   label: string
+  isInactive: boolean
 } & ComponentPropsWithoutRef<typeof RadioGroup.Item>
 
 export const RadioItem = (props: RadioOption) => {
-  const { disabled, label, title, value, ...rest } = props
+  const { disabled, label, title, isInactive, value, ...rest } = props
 
   const itemClasses = clsx(
-    'h-5 w-5 rounded-full border-2',
+    `h-5 w-5 rounded-full border-2 ${isInactive && '!border-Light-900'}`,
     disabled
       ? 'cursor-auto border-Dark-100'
       : 'border-Light-100 hover:bg-Dark-300 hover:shadow-[0_0_0_8px] hover:shadow-Dark-300 focus:bg-Dark-500 focus:shadow-[0_0_0_8px] focus:shadow-Dark-500 active:bg-Dark-100 active:shadow-[0_0_0_8px] active:shadow-Dark-100'
@@ -23,9 +24,7 @@ export const RadioItem = (props: RadioOption) => {
     disabled ? 'before:bg-Dark-100' : 'before:bg-Light-100'
   )
 
-  const labelClasses = clsx(
-    'select-none pl-[10px] text-Light-100 aria-disabled:text-Light-900 hover:cursor-pointer aria-disabled:hover:cursor-auto'
-  )
+  const labelClasses = ` select-none pl-[10px] text-Light-100 aria-disabled:text-Light-900 hover:cursor-pointer aria-disabled:hover:cursor-auto ${isInactive && '!text-Light-900'}`
 
   return (
     <div className={'flex items-center'}>

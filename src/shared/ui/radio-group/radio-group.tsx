@@ -15,13 +15,18 @@ export type GroupProps = {
 
 export const CustomRadioGroup = forwardRef<ElementRef<typeof RadioGroup.Root>, GroupProps>(
   (props, ref) => {
-    const { className, options, ...rest } = props
+    const { className, options, value, ...rest } = props
 
     return (
       <div className={'p-1.5'}>
-        <RadioGroup.Root className={`flex flex-col gap-y-2.5 ${className}`} ref={ref} {...rest}>
+        <RadioGroup.Root
+          className={`flex flex-col gap-y-2.5 ${className}`}
+          ref={ref}
+          {...rest}
+          defaultValue={value}
+        >
           {options.map((item, index) => (
-            <RadioItem key={index} {...item} />
+            <RadioItem key={index} {...item} isInactive={value !== item.value} />
           ))}
         </RadioGroup.Root>
       </div>
